@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+  <springProfile name="default">
+    <logger name="com.thorpora" level="DEBUG" additivity="false">
+      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="FILE" />
+    </logger>
+  </springProfile>
+
+  <springProfile name="production">
+    <logger name="com.thorpora" level="INFO" additivity="false">
+      <appender-ref ref="FILE" />
+    </logger>
+  </springProfile>
+
+</configuration>
