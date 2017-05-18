@@ -1,0 +1,37 @@
+
+/* ~~~~~~~~~~~~~~~~~ */
+/* RESPONSIVE MIXINS */
+/* ~~~~~~~~~~~~~~~~~ */
+@mixin tiny        { @media (max-width: $tiny) { @content; }}
+@mixin small       { @media (max-width: $small) { @content; }}
+@mixin medium      { @media (max-width: $medium) { @content; }}
+@mixin large       { @media (max-width: $large) { @content; }}
+
+/* ~~~~~~~~~~~~~~~~ */
+/* FONT SIZE MIXINS */
+/* ~~~~~~~~~~~~~~~~ */
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~ */
+/* BACKGROUND IMAGE MIXINS */
+/* ~~~~~~~~~~~~~~~~~~~~~~~ */
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+@mixin background-image($name, $size:false){
+  background: rgba(0, 0, 0, 0) url(#{$image-path}/#{$name}.svg) no-repeat scroll 0 0;
+  @if($size){
+    background-size: $size;
+  }
+  .no-svg &{
+    background: rgba(0, 0, 0, 0) url(#{$image-path}/#{$name}.#{$fallback-extension}) no-repeat scroll 0 0;
+  }
+}
+

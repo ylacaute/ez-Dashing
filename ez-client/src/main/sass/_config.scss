@@ -1,0 +1,70 @@
+/* ~~~~~~~~~~ */
+/* APP CONFIG */
+/* ~~~~~~~~~~ */
+
+// font sizes
+$base-font-size : 1.6rem !default; // ex. 1.6rem would be "16px" equivalent
+$line-height    : 1.5 !default; // equiv line-height 1.5
+$h1-size        : 3.2rem !default; // equiv "32px"
+$h2-size        : 2.8rem !default; // equiv "28px"
+$h3-size        : 2.4rem !default; // equiv "24px"
+$h4-size        : 2.0rem !default; // equiv "20px"
+$h5-size        : 1.8rem !default; // equiv "18px"
+$h6-size        : 1.6rem !default; // equiv "16px"
+
+// font stacks
+$font-stack-common    : sans-serif !default; // common font
+$font-stack-headings  : sans-serif !default; // headings font
+$font-stack-monospace : consolas, courier, monospace !default; // monospace font
+
+// color scheme
+$base-text-black       : #242424;
+$todo-mvc-red          : #af2e2e;
+$todo-mvc-red-lighter  : #cc9a9a;
+$thorpora-red          : #c14649;
+$thorpora-gray         : #9d9d9d;
+$almost-white          : #fafafa;
+$almost-white-extrem   : #fdfdfd;
+$almost-readable-gray  : #9d9d9d;
+$todo-icon-beige-1     : #d7c8b6;
+$todo-icon-beige-2     : #ece9e2;
+$todo-icon-beige-3     : #ded9cf;
+
+$base-color             : $base-text-black;      // Text
+$primary-color          : $todo-mvc-red;         // Significant element
+$secondary-color        : $todo-mvc-red-lighter; // Less significant element
+$dark-bg-text-color     : $almost-white;//$todo-icon-beige-1;
+
+$link-color             : $secondary-color;
+$link-hover-color       : $primary-color;
+$placeholder-color      : $almost-readable-gray; // Placeholder, almost visible
+$base-title-color       : $secondary-color;
+
+$base-bg-color          : $almost-white;
+$primary-bg-color       : $almost-white-extrem;
+$secondary-bg-color     : $todo-icon-beige-2;
+$dark-bg-color          : $base-text-black;
+
+
+// spacings (choose unit you prefer)
+$tiny-value             : .5rem !default; // tiny value for margins / paddings
+$tiny-plus-value        : .7rem !default; // tiny+ value for margins / paddings
+$small-value            : 1rem !default; // small value for margins / paddings
+$small-plus-value       : 1.5rem !default; // small+ value for margins / paddings
+$medium-value           : 2rem !default; // medium value for margins / paddings
+$medium-plus-value      : 3rem !default; // medium+ value for margins / paddings
+$large-value            : 4rem !default; // large value for margins / paddings
+$large-plus-value       : 6rem !default; // large value for margins / paddings
+$extra-large-value      : 8rem !default; // extra large value for margins / paddings
+$extra-large-plus-value : 12rem !default; // extra large value for margins / paddings
+$ultra-large-value      : 16rem !default; // ultra large value for margins / paddings
+$ultra-large-plus-value : 20rem !default; // ultra large value for margins / paddings
+
+// Image path (use : #{$image-path})
+$image-path: '/img' !default;
+
+//kna-namespace (default : null)
+$kna-namespace: null !default;
+
+// Alias for knacss
+$base-background        : $base-bg-color;

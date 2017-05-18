@@ -1,0 +1,25 @@
+
+/* ~~~~~~~ */
+/* TOOLTIP */
+/* ~~~~~~~ */
+
+.tooltip div {
+    z-index:10;
+    display:none;
+    padding:14px 20px;
+    margin-top:60px;
+    margin-left:-140px;
+    border-radius:2px;        
+    box-shadow: 0px 0px 6px 2px #666;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    .tooltip-title {
+      font-weight: bold;
+    }
+}
+.tooltip:hover div {
+    display:inline;
+    position:absolute; 
+    color:#EEE;
+    background:#333;
+}

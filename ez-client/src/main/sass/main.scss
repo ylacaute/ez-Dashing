@@ -1,0 +1,71 @@
+
+// Main configuration (variables)
+@import "config.scss";
+
+// Knacss config
+@import "../../../node_modules/knacss/sass/_config/breakpoints";
+@import "../../../node_modules/knacss/sass/_config/mixins";
+@import "../../../node_modules/knacss/sass/_config/variables";
+
+// Normalize (basic reset)
+@import "../../../node_modules/knacss/sass/_vendor/normalize";
+
+// Basic style
+@import "../../../node_modules/knacss/sass/library/base";
+
+// Basic form style
+@import "../../../node_modules/knacss/sass/library/forms";
+
+// App framework styles
+@import "core/core-mixins";
+@import "core/buttons";
+@import 'core/tooltip';
+@import 'core/quote';
+@import 'core/effect/paper-effect';
+@import 'core/effect/font-effects';
+@import 'core/effect/icon-effects';
+@import 'core/icons';
+@import 'core/page-layout';
+
+// Page specific style
+@import 'page/index';
+
+
+html {
+  font-size: calc(1.2em * 0.625) !important;
+  @include medium {
+    font-size: calc(0.8em * 0.625) !important;
+  }
+  @include small {
+    font-size: calc(0.75em * 0.625) !important;
+  }
+  @include tiny {
+    font-size: calc(0.7em * 0.625) !important;
+  }
+  margin: 0;
+}
+html, body {
+  color: $base-color;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {
+  color: $placeholder-color;
+  font-style: italic;
+}
+* {
+  text-decoration: none;
+  outline:none;
+}
+
+
+
+
+
+
+
+
+
+

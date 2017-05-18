@@ -1,0 +1,83 @@
+/* EDF ORANGE : #ef481e */
+/* EDF BLUE : #193370 */
+/* DASHING GREEN : #94c140 */
+/* DASHING TURQ : #43bbb2 */
+html {
+  background-color: $dark-bg-color;
+}
+.main {
+  background-color: $dark-bg-color;
+}
+.react-grid-layout {
+  background-color: $dark-bg-color;
+}
+.react-grid-item {
+
+}
+.react-grid-placeholder {
+  background-color: #fff !important;
+}
+#resetBtn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  z-index: 999;
+}
+
+/* WIDGET WRAPPERS */
+.react-grid-layout > * {
+  background-color: #c14649;
+  /*padding: 10px;
+  background-color: #F00;*/
+}
+
+/* COMMON WIDGET PROPERTIES */
+.widget {
+  padding: 10px;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+/* COMMON WIDGET CHILDREN PROPERTIES */
+.widget > * {
+  margin: 0;
+}
+
+/* MAIN CONTENT OF WIDGET TAKE ALL PLACE POSSIBLE */
+.widget .content {
+  flex-grow: 1;
+}
+
+
+
+.clock-widget {
+  align-items: center;
+}
+
+.jenkins-widget {
+  background-color: #94c140;
+  height: 100%;
+}
+
+.sonar-widget {
+  background-color: #43bbb2;
+  height: 100%;
+}
+
+.team-widget {
+  background-color: #193370;
+  h1 {
+    margin: 0px;
+  }
+  .logo {
+    flex: 1;
+    @extend %icon;
+    background-image: url('#{$image-path}/logo.png');
+  }
+}
+
+
