@@ -18,10 +18,11 @@
     "test": "echo 'Error: TODO :)'"
   },
   "dependencies": {
+    "nodemon": "^1.11.0",
+    "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-grid-layout": "^0.14.6",
-    "nodemon": "^1.11.0"
+    "react-grid-layout": "^0.14.6"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

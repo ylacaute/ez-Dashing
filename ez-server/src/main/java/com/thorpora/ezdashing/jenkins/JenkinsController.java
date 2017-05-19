@@ -21,6 +21,8 @@ import com.offbytwo.jenkins.helper.JenkinsVersion;
 import com.offbytwo.jenkins.model.BuildWithDetails;
 import com.offbytwo.jenkins.model.FolderJob;
 import com.offbytwo.jenkins.model.Job;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +31,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 @RequestMapping("/api/jenkins")
 @RestController
 public class JenkinsController {
+
+    private static final Logger logger = LoggerFactory.getLogger(JenkinsController.class);
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
 
     private JenkinsProperties properties;
     private JenkinsServer server;
@@ -61,27 +66,29 @@ public class JenkinsController {
             @PathVariable String jobName,
             @PathVariable String branch) throws IOException {
 
+        // TODO: LOG REQUEST WITH AOP
+        logger.debug("GET /api/jenkins/lastBuild/{}/{}", jobName, branch);
+
         assertServerIsRunning();
         String jobUrl = properties.getJobBaseUrl() + jobName;
         server.getJob(jobName);
         FolderJob folder = new FolderJob(jobName, jobUrl);
         Job job = server.getJobs(folder).get(branch);
         BuildWithDetails details = job.details().getLastBuild().details();
-        LocalDate buildDate = Instant
+        String lastUpdate = Instant
                 .ofEpochMilli(details.getTimestamp())
                 .atZone(TimeZone.getDefault().toZoneId())
-                .toLocalDate();
-
+                .format(formatter);
+        String author = details.getCulprits().isEmpty() ? "" :details.getCulprits().get(0).getFullName();
         return LastBuild.builder()
                 .jobName(jobName)
                 .branch(branch)
                 .id(details.getId())
-                .date(buildDate.toString())
-                .isBuilding(details.isBuilding())
+                .lastUpdate(lastUpdate)
                 .duration(details.getDuration())
                 .estimatedDuration(details.getEstimatedDuration())
-                .author(details.getCulprits().get(0).getFullName())
-                .result(details.getResult().toString())
+                .author(author)
+                .status(details.getResult().toString())
                 .build();
     }
 

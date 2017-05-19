@@ -29,10 +29,23 @@ public class SonarConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(SonarConfig.class);
 
+
+    /*
+
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+                cm.setMaxTotal(20);
+                cm.setDefaultMaxPerRoute(20);
+                HttpHost localhost = new HttpHost("locahost", 80);
+                cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+                CloseableHttpClient httpClient = HttpClients.custom()
+                .setConnectionManager(cm)
+                .build();
+*/
+
     @Bean
     public Sonar Sonar(SonarProperties sonarProperties) {
         logger.debug("Creating Sonar client...");
-        Host server = new Host(sonarProperties.getBaseUrl()); //, sonarProperties.getUserName(), sonarProperties.getPassword()
+        Host server = new Host(sonarProperties.getBaseUrl(), sonarProperties.getUserName(), sonarProperties.getPassword()); //, sonarProperties.getUserName(), sonarProperties.getPassword()
         Sonar sonar = new Sonar(new HttpClient4Connector(server));
         return sonar;
     }

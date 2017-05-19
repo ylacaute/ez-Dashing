@@ -14,31 +14,15 @@ class JenkinsWidget extends React.Component {
     };
   }
 
-
   componentDidMount() {
-    var elt = document.getElementsByClassName("jenkins-widget")[0];
-
-
-    //console.log(" WIDTH ELT ", elt.offsetWidth);
-    //console.log("JK RESIZE", elt);
-
-    //elt.onresize = function() {
-    //  console.log('resized');
-    //};
-
-    //elt.addEventListener("resize", function() {
-    //  console.log('resized');
-    //});
-
     JenkinsClient.getBuildInfo(this.props.jobName, this.props.branch, (jsonResponse) => {
       console.log("jsonResponse : ", jsonResponse);
       this.setState({
-        buildState: jsonResponse.result,
-        lastUpdate: jsonResponse.date,
+        buildState: jsonResponse.status,
+        lastUpdate: jsonResponse.lastUpdate,
         author: jsonResponse.author
       });
     });
-
   }
 
   getClassName() {
@@ -46,13 +30,18 @@ class JenkinsWidget extends React.Component {
   }
 
   render() {
-
+    var content;
+    if (this.state.status == 'REBUILDING') {
+      content = <span>REBUILDING</span>;
+    } else {
+      content = <span></span>;
+    }
     return (
       <section className={this.getClassName()} id="test">
         <h1>{this.props.displayName}</h1>
         <label>{this.props.branch}</label>
         <div className="content">
-
+          {content}
         </div>
         <footer className="last-update">
           <div>{this.state.author}</div>

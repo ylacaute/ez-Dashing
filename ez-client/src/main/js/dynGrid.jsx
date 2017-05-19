@@ -2,10 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 
+import SonarJenkinsWidget from 'js/widget/SonarJenkinsWidget.jsx';
 import JenkinsWidget from 'js/widget/JenkinsWidget.jsx';
 import SonarWidget from 'js/widget/SonarWidget.jsx';
 import TeamWidget from 'js/widget/TeamWidget.jsx';
-import ClockWidget from 'js/widget/ClockWidget.jsx';
+
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const DYN_GRID_LS_KEY = 'A_DYN_GRID_LS_KEY_26';
@@ -86,61 +87,62 @@ class DynGrid extends React.Component {
             <TeamWidget/>
           </div>
 
-          <div key="jenkins1" data-grid={{x: 1, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget
+          <div key="w1" data-grid={{x: 1, y: 0, w: 1, h: 2}}>
+            <SonarJenkinsWidget
               displayName="BC-GAS-SYS"
               jobName="bc-gas-sys_-_Analyse_reccurente"
-              branch="master">
-            </JenkinsWidget>
+              branch="master"
+              projectKey="com.edelia.bilanconso.gas:bc-gas-sys:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="jenkins2" data-grid={{x: 2, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget
-              displayName="GAS-TARIFF"
-              jobName="gas-tariff-client_-_Analyse_reccurente"
-              branch="master">
-            </JenkinsWidget>
-          </div>
-          <div key="jenkins3" data-grid={{x: 3, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget
+          <div key="w2" data-grid={{x: 2, y: 0, w: 1, h: 2}}>
+            <SonarJenkinsWidget
               displayName="SIMILAR-HOME"
               jobName="elec-similar-home-sys_-_Analyse_reccurente"
-              branch="master">
-            </JenkinsWidget>
+              branch="master"
+              projectKey="com.edelia.bilanconso.similarhome:similar-home-sys:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="jenkins4" data-grid={{x: 4, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget
+          <div key="w3" data-grid={{x: 3, y: 0, w: 1, h: 2}}>
+            <SonarJenkinsWidget
               displayName="GAS-COMPO"
               jobName="gas-service-composition-sys_-_Analyse_reccurente"
-              branch="master">
-            </JenkinsWidget>
+              branch="master"
+              projectKey="com.edelia.bilanconso.gas.servicecomposition:gas-service-composition-sys:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="ClockWidget" data-grid={{x: 5, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget
-              displayName="BC-GAS-CLIENT"
+          <div key="w4" data-grid={{x: 4, y: 0, w: 1, h: 2}}>
+            <SonarJenkinsWidget
+              displayName="GAS-TARIFF"
+              jobName="gas-tariff-sys_-_Analyse_reccurente"
+              branch="master"
+              projectKey="com.edelia.gas.tariff:gas-tariff-sys:origin/master">
+            </SonarJenkinsWidget>
+          </div>
+          <div key="w5" data-grid={{x: 5, y: 0, w: 1, h: 2}}>
+            <SonarJenkinsWidget
+              displayName="BC-GAS-SYS CLIENT"
               jobName="bc-gas-client_-_Analyse_reccurente"
-              branch="master">
-            </JenkinsWidget>
+              branch="master"
+              projectKey=" com.edelia.bilanconso.gas.client:bc-gas-client:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="sonar1" data-grid={{x: 0, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
+          <div key="w6" data-grid={{x: 0, y: 1, w: 1, h: 2}}>
+            <SonarJenkinsWidget
+              displayName="SIMILAR-HOME CLIENT"
+              jobName="elec-similar-home-client_-_Analyse_reccurente"
+              branch="master"
+              projectKey="com.edelia.bilanconso.similarhome:similar-home-client:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="sonar2" data-grid={{x: 1, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
+          <div key="w7" data-grid={{x: 1, y: 1, w: 1, h: 2}}>
+            <SonarJenkinsWidget
+              displayName="GAS-TARIFF CLIENT"
+              jobName="gas-tariff-client_-_Analyse_reccurente"
+              branch="master"
+              projectKey="com.edelia.gas.tariff.client:gas-tariff-client:origin/master">
+            </SonarJenkinsWidget>
           </div>
-          <div key="sonar3" data-grid={{x: 2, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
-          </div>
-          <div key="sonar4" data-grid={{x: 3, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
-          </div>
-          <div key="sonar5" data-grid={{x: 4, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
-          </div>
-          <div key="sonar6" data-grid={{x: 5, y: 1, w: 1, h: 2}}>
-            <SonarWidget></SonarWidget>
-          </div>
-
-
         </ResponsiveReactGridLayout>
       </div>
     );

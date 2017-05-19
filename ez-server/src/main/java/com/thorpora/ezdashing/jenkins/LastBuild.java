@@ -27,12 +27,7 @@ public class LastBuild {
     /**
      * Date of the build, sample : 2017-05-17
      */
-    private String date;
-
-    /**
-     * Indicate if the build is still running
-     */
-    private boolean isBuilding;
+    private String lastUpdate;
 
     /**
      * Duration in seconds of the build (maybe not finished)
@@ -50,8 +45,8 @@ public class LastBuild {
     private String author;
 
     /**
-     * Result of the build, see {@link com.offbytwo.jenkins.model.BuildResult} for possible values
+     * Status of the build, see {@link com.offbytwo.jenkins.model.BuildResult} for possible values
      */
-    private String result;
+    private String status;
 
 }
