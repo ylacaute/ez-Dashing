@@ -5,7 +5,7 @@
   "config": {
     "dev": {
       "FRONT_PORT": "2222",
-      "API_PORT": "6666"
+      "API_PORT": "8080"
     }
   },
   "scripts": {

@@ -18,13 +18,22 @@ package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.helper.JenkinsVersion;
+import com.offbytwo.jenkins.model.BuildWithDetails;
+import com.offbytwo.jenkins.model.FolderJob;
+import com.offbytwo.jenkins.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.TimeZone;
+
 @RequestMapping("/api/jenkins")
+@RestController
 public class JenkinsController {
 
     private JenkinsProperties properties;
@@ -36,10 +45,49 @@ public class JenkinsController {
         this.server = server;
     }
 
+    /*
+    {
+      "literalVersion" : "1.642.4"
+    }
+     */
     @GetMapping("/version")
     public JenkinsVersion getVersion() {
         assertServerIsRunning();
         return server.getVersion();
+    }
+
+    @GetMapping("/lastBuild/{jobName}/{branch}")
+    public LastBuild getLastBuild(
+            @PathVariable String jobName,
+            @PathVariable String branch) throws IOException {
+
+        assertServerIsRunning();
+        String jobUrl = properties.getJobBaseUrl() + jobName;
+        server.getJob(jobName);
+        FolderJob folder = new FolderJob(jobName, jobUrl);
+        Job job = server.getJobs(folder).get(branch);
+        BuildWithDetails details = job.details().getLastBuild().details();
+        LocalDate buildDate = Instant
+                .ofEpochMilli(details.getTimestamp())
+                .atZone(TimeZone.getDefault().toZoneId())
+                .toLocalDate();
+
+        return LastBuild.builder()
+                .jobName(jobName)
+                .branch(branch)
+                .id(details.getId())
+                .date(buildDate.toString())
+                .isBuilding(details.isBuilding())
+                .duration(details.getDuration())
+                .estimatedDuration(details.getEstimatedDuration())
+                .author(details.getCulprits().get(0).getFullName())
+                .result(details.getResult().toString())
+                .build();
+    }
+
+    @GetMapping("/properties")
+    public JenkinsProperties getProperties() {
+        return properties;
     }
 
     private void assertServerIsRunning() {

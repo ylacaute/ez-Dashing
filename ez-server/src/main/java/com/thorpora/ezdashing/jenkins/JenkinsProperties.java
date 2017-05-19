@@ -19,13 +19,11 @@ package com.thorpora.ezdashing.jenkins;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@Order(1)
 @Getter
 @Setter
 @Component
@@ -47,5 +45,9 @@ public class JenkinsProperties {
         } catch (URISyntaxException ex) {
             throw new JenkinsException("Jenkins baseUrl is invalid", ex);
         }
+    }
+
+    public String getJobBaseUrl() {
+        return baseUrl + "/job/";
     }
 }

@@ -47,6 +47,11 @@ html {
   margin: 0;
 }
 
+.widget h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
 /* MAIN CONTENT OF WIDGET TAKE ALL PLACE POSSIBLE */
 .widget .content {
   flex-grow: 1;
@@ -59,8 +64,17 @@ html {
 }
 
 .jenkins-widget {
-  background-color: #94c140;
+  background-color: #999;
   height: 100%;
+}
+/*.jenkins-widget.UNKNOWN, .jenkins-widget.REBUILDING, .jenkins-widget.ABORTED, .jenkins-widget.NOT_BUILT, .jenkins-widget.CANCELLED {
+  background-color: #ccc;
+}*/
+.jenkins-widget.UNSTABLE, .jenkins-widget.FAILURE {
+  background-color: #f44;
+}
+.jenkins-widget.SUCCESS {
+  background-color: #94c140;
 }
 
 .sonar-widget {

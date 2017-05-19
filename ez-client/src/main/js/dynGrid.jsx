@@ -75,31 +75,51 @@ class DynGrid extends React.Component {
       <div>
         <button id="resetBtn" onClick={this.resetLayoutAndLocalStorage}>Reset Layout</button>
         <ResponsiveReactGridLayout
-            className="layout"
-            layouts={this.state.layouts}
-            breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-            cols={{lg: 6, md: 6, sm: 4, xs: 4, xxs: 2}}
-            onLayoutChange={this.onLayoutChange}
-            onBreakpointChange={this.onBreakpointChange}
-            onResizeStop={this.onResizeStop}>
+          className="layout"
+          layouts={this.state.layouts}
+          breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+          cols={{lg: 6, md: 6, sm: 4, xs: 4, xxs: 2}}
+          onLayoutChange={this.onLayoutChange}
+          onBreakpointChange={this.onBreakpointChange}
+          onResizeStop={this.onResizeStop}>
           <div key="teamWidget" data-grid={{x: 0, y: 0, w: 1, h: 2}}>
             <TeamWidget/>
           </div>
 
           <div key="jenkins1" data-grid={{x: 1, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget></JenkinsWidget>
+            <JenkinsWidget
+              displayName="BC-GAS-SYS"
+              jobName="bc-gas-sys_-_Analyse_reccurente"
+              branch="master">
+            </JenkinsWidget>
           </div>
           <div key="jenkins2" data-grid={{x: 2, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget></JenkinsWidget>
+            <JenkinsWidget
+              displayName="GAS-TARIFF"
+              jobName="gas-tariff-client_-_Analyse_reccurente"
+              branch="master">
+            </JenkinsWidget>
           </div>
           <div key="jenkins3" data-grid={{x: 3, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget></JenkinsWidget>
+            <JenkinsWidget
+              displayName="SIMILAR-HOME"
+              jobName="elec-similar-home-sys_-_Analyse_reccurente"
+              branch="master">
+            </JenkinsWidget>
           </div>
           <div key="jenkins4" data-grid={{x: 4, y: 0, w: 1, h: 2}}>
-            <JenkinsWidget></JenkinsWidget>
+            <JenkinsWidget
+              displayName="GAS-COMPO"
+              jobName="gas-service-composition-sys_-_Analyse_reccurente"
+              branch="master">
+            </JenkinsWidget>
           </div>
           <div key="ClockWidget" data-grid={{x: 5, y: 0, w: 1, h: 2}}>
-            <ClockWidget UTCOffset="2"></ClockWidget>
+            <JenkinsWidget
+              displayName="BC-GAS-CLIENT"
+              jobName="bc-gas-client_-_Analyse_reccurente"
+              branch="master">
+            </JenkinsWidget>
           </div>
           <div key="sonar1" data-grid={{x: 0, y: 1, w: 1, h: 2}}>
             <SonarWidget></SonarWidget>
@@ -119,6 +139,8 @@ class DynGrid extends React.Component {
           <div key="sonar6" data-grid={{x: 5, y: 1, w: 1, h: 2}}>
             <SonarWidget></SonarWidget>
           </div>
+
+
         </ResponsiveReactGridLayout>
       </div>
     );
