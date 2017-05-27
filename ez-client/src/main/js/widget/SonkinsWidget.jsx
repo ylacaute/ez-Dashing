@@ -2,7 +2,7 @@ import React from 'react';
 import JenkinsClient from 'js/client/JenkinsClient.jsx'
 import SonarClient from 'js/client/SonarClient.jsx'
 
-class SonarJenkinsWidget extends React.Component {
+class SonkinsWidget extends React.Component {
 
   constructor(props) {
     super(props);
@@ -80,7 +80,7 @@ class SonarJenkinsWidget extends React.Component {
 
 }
 
-SonarJenkinsWidget .propTypes = {
+SonkinsWidget .propTypes = {
   displayName: React.PropTypes.string.isRequired,
   jobName: React.PropTypes.string.isRequired,
   branch: React.PropTypes.string.isRequired,
@@ -88,5 +88,5 @@ SonarJenkinsWidget .propTypes = {
 };
 
 
-export default SonarJenkinsWidget;
+export default SonkinsWidget;
 

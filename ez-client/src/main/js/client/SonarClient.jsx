@@ -8,11 +8,13 @@ headers.append('Accept', 'application/json');
 headers.append('Content-Type', 'application/json');
 
 SonarClient.getSummaryInfos = function (projectKey, callback) {
+  /*
   console.log(">>>>> " + projectKey);
   console.log(">>>>> " + encodeURIComponent(projectKey));
   console.log(">>>>> " + encodeURI(projectKey));
+  */
   var url = host + "/api/sonar/summary?projectKey=" + encodeURIComponent(projectKey);
-  console.log("SONAR REQUEST : " + url);
+  //console.log("SONAR REQUEST : " + url);
   fetch(url, {
     method: 'GET',
     headers: headers

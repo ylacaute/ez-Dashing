@@ -14,7 +14,7 @@ headers.append('Content-Type', 'application/json');
 
 JenkinsClient.getBuildInfo = function (jobName, branchName, callback) {
   var url = host + "/api/jenkins/lastBuild/" + jobName + "/" + branchName;
-  console.log("JENKINS REQUEST : " + url);
+  //console.log("JENKINS REQUEST : " + url);
   fetch(url, {
     method: 'GET',
     headers: headers

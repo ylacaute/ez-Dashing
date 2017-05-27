@@ -1,0 +1,83 @@
+{
+  "widgets": [
+    {
+      "key": "w0",
+      "type": "TeamWidget"
+    },
+    {
+      "key": "w1",
+      "type": "SonkinsWidget",
+      "displayName": "BC-GAS-SYS",
+      "jobName": "bc-gas-sys_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.bilanconso.gas:bc-gas-sys:origin/master"
+    },
+    {
+      "key": "w2",
+      "type": "SonkinsWidget",
+      "displayName": "SIMILAR-HOME",
+      "jobName": "elec-similar-home-sys_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.bilanconso.similarhome:similar-home-sys:origin/master"
+    },
+    {
+      "key": "w3",
+      "type": "SonkinsWidget",
+      "displayName": "GAS-COMPO",
+      "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.bilanconso.gas.servicecomposition:gas-service-composition-sys:origin/master"
+    },
+    {
+      "key": "w4",
+      "type": "SonkinsWidget",
+      "displayName": "GAS-TARIFF",
+      "jobName": "gas-tariff-sys_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.gas.tariff:gas-tariff-sys:origin/master"
+    },
+    {
+      "key": "w5",
+      "type": "SonkinsWidget",
+      "displayName": "BC-GAS-SYS CLIENT",
+      "jobName": "bc-gas-client_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.bilanconso.gas.client:bc-gas-client:origin/master"
+    },
+    {
+      "key": "w6",
+      "type": "SonkinsWidget",
+      "displayName": "SIMILAR-HOME CLIENT",
+      "jobName": "elec-similar-home-client_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.bilanconso.similarhome:similar-home-client:origin/master"
+    },
+    {
+      "key": "w7",
+      "type": "SonkinsWidget",
+      "displayName": "GAS-TARIFF CLIENT",
+      "jobName": "gas-tariff-client_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.gas.tariff.client:gas-tariff-client:origin/master"
+    }
+  ],
+  "grid": {
+    "breakpoints": {
+      "lg": 1200,
+      "md": 996,
+      "sm": 768,
+      "xs": 480,
+      "xxs": 0
+    },
+    "cols": {
+      "lg": 6,
+      "md": 6,
+      "sm": 4,
+      "xs": 4,
+      "xxs": 2
+    },
+    "layouts": {},
+    "widget_w": 1,
+    "widget_h": 1
+  }
+}

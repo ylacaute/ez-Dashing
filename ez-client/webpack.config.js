@@ -51,7 +51,7 @@ var config = {
   resolve: {
     // Simplify JSX import (search imports for ./src/main)
     root: [
-      path.resolve('./src/main'),
+      path.resolve('./src/main')
     ]
   }
 };
