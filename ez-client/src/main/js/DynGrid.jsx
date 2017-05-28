@@ -12,15 +12,12 @@ import Config from 'js/ConfigLoader.jsx';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const DYN_GRID_LS_KEY = 'A_DYN_GRID_LS_KEY_26';
-//const config = require('../resources/config.json');
 
 class DynGrid extends React.Component {
 
   constructor(props) {
     super(props);
     //var layouts =  this.getFromLS('layouts') || {};
-    //console.log("GRID CONSTRUCTOR, CONFIG=", props.config);
-
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.resetLayoutAndLocalStorage = this.resetLayoutAndLocalStorage.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
@@ -47,7 +44,7 @@ class DynGrid extends React.Component {
   onLayoutChange(layout, layouts) {
     this.saveToLS('layouts', layouts);
     this.setState({layouts});
-    console.log("SAVED LAYOUTS : ", JSON.stringify(layouts));
+    //console.log("SAVED LAYOUTS : ", JSON.stringify(layouts));
   }
 
   onWidthChange(containerWidth, margin, cols, containerPadding) {

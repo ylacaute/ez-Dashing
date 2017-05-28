@@ -29,11 +29,22 @@ class SonarWidget extends React.Component {
     return (
       <section className="sonar-widget widget">
         <h1>{this.props.displayName}</h1>
-        <div className="content">
-          <p>Coverage<span className="metricValue">{this.state.coverage}</span></p>
-          <p>Lines<span className="metricValue">{this.state.coverage}</span></p>
-          <p>Violations<span className="metricValue">{this.state.violations}</span></p>
-        </div>
+        <table className="content">
+          <tbody>
+            <tr>
+              <td>Coverage</td>
+              <td>{this.state.coverage} %</td>
+            </tr>
+            <tr>
+              <td>Lines</td>
+              <td>{this.state.lines} %</td>
+            </tr>
+            <tr>
+              <td>Violations</td>
+              <td>{this.state.violations}</td>
+            </tr>
+          </tbody>
+        </table>
         <footer className="last-update">
           <div>{this.state.lastUpdate}</div>
         </footer>

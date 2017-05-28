@@ -18,15 +18,15 @@ class JenkinsWidget extends React.Component {
     JenkinsClient.getBuildInfo(this.props.jobName, this.props.branch, (jsonResponse) => {
       console.log("jsonResponse : ", jsonResponse);
       this.setState({
-        buildState: jsonResponse.status,
+        state: jsonResponse.state,
         lastUpdate: jsonResponse.lastUpdate,
         author: jsonResponse.author
       });
     });
   }
 
-  getClassName() {
-    return "jenkins-widget widget " + this.state.buildState;
+  getClassNames() {
+    return "jenkins-widget widget " + this.state.state;
   }
 
   render() {
@@ -37,7 +37,7 @@ class JenkinsWidget extends React.Component {
       content = <span></span>;
     }
     return (
-      <section className={this.getClassName()} id="test">
+      <section className={this.getClassNames()} id="test">
         <h1>{this.props.displayName}</h1>
         <label>{this.props.branch}</label>
         <div className="content">

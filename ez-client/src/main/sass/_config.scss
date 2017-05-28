@@ -3,9 +3,11 @@
 /* ~~~~~~~~~~ */
 
 // font sizes
-$base-font-size : 1.6rem !default; // ex. 1.6rem would be "16px" equivalent
+$base-font-size : 1.3rem !default; // ex. 1.6rem would be "16px" equivalent
+$med-font-size  : 1.3rem !default;
+
 $line-height    : 1.5 !default; // equiv line-height 1.5
-$h1-size        : 3.2rem !default; // equiv "32px"
+$h1-size        : 2.3rem !default; // equiv "32px"
 $h2-size        : 2.8rem !default; // equiv "28px"
 $h3-size        : 2.4rem !default; // equiv "24px"
 $h4-size        : 2.0rem !default; // equiv "20px"

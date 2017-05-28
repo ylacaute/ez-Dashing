@@ -1,5 +1,19 @@
 {
-  "/api/jenkins/*": "/jenkins",
-  "/api/sonar/*": "/sonar"
+  "/api/jenkins/info": "/jenkinsInfo",
+  "/api/jenkins/lastBuild/bc-gas-sys_-_Analyse_reccurente/master": "/jenkinsSuccess",
+  "/api/jenkins/lastBuild/elec-similar-home-sys_-_Analyse_reccurente/master": "/jenkinsFailure",
+  "/api/jenkins/lastBuild/gas-service-composition-sys_-_Analyse_reccurente/master": "/jenkinsBuilding",
+  "/api/jenkins/lastBuild/gas-tariff-sys_-_Analyse_reccurente/master": "/jenkinsSuccess",
+  "/api/jenkins/lastBuild/bc-gas-client_-_Analyse_reccurente/master": "/jenkinsSuccess",
+  "/api/jenkins/lastBuild/elec-similar-home-client_-_Analyse_reccurente/master": "/jenkinsSuccess",
+  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkinsSuccess",
+  "/api/sonar/summary?projectKey=com.edelia.bilanconso.gas%3Abc-gas-sys%3Aorigin%2Fmaster": "/sonarBadCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.bilanconso.similarhome%3Asimilar-home-sys%3Aorigin%2Fmaster": "/sonarAvgCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.bilanconso.gas.servicecomposition%3Agas-service-composition-sys%3Aorigin%2Fmaster": "/sonarGoodCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.gas.tariff%3Agas-tariff-sys%3Aorigin%2Fmaster": "/sonarGoodCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.bilanconso.gas.client%3Abc-gas-client%3Aorigin%2Fmaster": "/sonarGoodCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.bilanconso.similarhome%3Asimilar-home-client%3Aorigin%2Fmaster": "/sonarAvgCoverage",
+  "/api/sonar/summary?projectKey=com.edelia.gas.tariff.client%3Agas-tariff-client%3Aorigin%2Fmaster": "/sonarGoodCoverage",
+  "/api/sonar/summary?projectKey=:projectKey" : "/s1?projectKey=:projectKey",
+  "/api/sonar/summary" : "/sonarGoodCoverage"
 }
-

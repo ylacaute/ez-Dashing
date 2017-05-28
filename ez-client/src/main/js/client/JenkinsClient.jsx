@@ -1,31 +1,15 @@
-import React from 'react';
+import RestClient from 'js/client/RestClient.jsx';
 
-
-//headers.append('Authorization' , 'Basic ' + btoa(username + ':' + password));
 class JenkinsClient {}
 
-var host = 'http://localhost:2222';
-//var jobName = 'bc-gas-sys_-_Analyse_reccurente';
-//var branchName = 'master';
-
-var headers = new Headers();
-headers.append('Accept', 'application/json');
-headers.append('Content-Type', 'application/json');
-
 JenkinsClient.getBuildInfo = function (jobName, branchName, callback) {
-  var url = host + "/api/jenkins/lastBuild/" + jobName + "/" + branchName;
-  //console.log("JENKINS REQUEST : " + url);
-  fetch(url, {
-    method: 'GET',
-    headers: headers
-  }).then(response => {
-    return response.json();
-  }).then(json => {
-    callback(json);
-  }).catch(error => {
-    console.log("Error during http request : ", url);
-  });
+  let url = "/api/jenkins/lastBuild/" + jobName + "/" + branchName;
+  RestClient.get(url, callback);
+};
+
+JenkinsClient.getJenkinsInfo = function (callback) {
+  let url = "/api/jenkins/info";
+  RestClient.get(url, callback);
 };
 
 export default JenkinsClient;
-

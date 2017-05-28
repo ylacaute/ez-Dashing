@@ -2,20 +2,52 @@
 /* EDF BLUE : #193370 */
 /* DASHING GREEN : #94c140 */
 /* DASHING TURQ : #43bbb2 */
-html {
-  background-color: $dark-bg-color;
+$ez-success2: #5a9e9f;
+$ez-success: #74b53c;
+$ez-failure: #c65555;
+$ez-building: #dcae41;
+
+$tmp: #314356;
+
+
+$ez-grid-bg: $dark-bg-color;
+$ez-grid-placeholder: #fff !important;;
+$ez-widget-bg: #30353c; //#314356;//rgba(51, 67, 76, 1); //#33434c;         //
+$ez-widget-bg-header: rgba(33, 33, 33, 0.5);//#314356;//#466d6f;//
+
+$ez-widget-text-header: rgba(255, 255, 255, 0.8);
+$ez-widget-text-color: white;
+$ez-widget-more-text-color: rgba(33, 33, 33, 0.1);
+$ez-widget-opacity: 0.85;
+$ez-widget-last-update-color: #000;
+$ez-clock-widget-bg: #06a;
+$ez-team-widget-bg: #314356;
+$ez-jenkins-widget-bg: #999;
+
+$ez-widget-jenkins-health-bg: $ez-widget-bg;
+
+
+.jenkins-widget.SUCCESS header, .sonkins-widget.SUCCESS header {
+  //background-color: $ez-success;
+}
+.jenkins-widget.FAILURE header, .sonkins-widget.FAILURE header {
+  background-color: $ez-failure;
+}
+.jenkins-widget.REBUILDING header, .sonkins-widget.REBUILDING header {
+  background-color: $ez-building;
+}
+
+
+
+
+html, .main, .react-grid-layout {
+  background-color: $ez-grid-bg;
 }
 .main {
-  background-color: $dark-bg-color;
-}
-.react-grid-layout {
-  background-color: $dark-bg-color;
-}
-.react-grid-item {
-
+  font-size: $base-font-size;
 }
 .react-grid-placeholder {
-  background-color: #fff !important;
+  background-color: $ez-grid-placeholder;
 }
 #resetBtn {
   position: absolute;
@@ -24,69 +56,76 @@ html {
   z-index: 999;
 }
 
-/* WIDGET WRAPPERS */
-.react-grid-layout > * {
-  /*padding: 10px;
-  background-color: #F00;*/
-}
-
-/* COMMON WIDGET PROPERTIES */
 .widget {
-  padding: 10px;
   height: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
-  opacity: 0.8;
+  //opacity: $ez-widget-opacity;
+  color: $ez-widget-text-color;
+  background-color: $ez-widget-bg;
+  header {
+    background-color: $ez-widget-bg-header;
+    color: $ez-widget-text-header;
+    h1 {
+      font-size: $h1-size;
+      font-weight: bold;
+      margin: 0;
+    }
+    label {
+      font-style: italic;
+    }
+  }
+  .content {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    > * {
+      flex: 1;
+    }
+    .label-with-value {
+      label:nth-of-type(1) {
+        float: left;
+      }
+      label:nth-of-type(2) {
+        float: right;
+      }
+      .more {
+        font-weight: normal;
+        color: $ez-widget-more-text-color;
+      }
+    }
+  }
+  footer {
+    padding-bottom: 3px;
+    .last-update {
+      color: $ez-widget-last-update-color;
+      position: relative;
+      bottom: 0px;
+    }
+  }
 }
 
-/* COMMON WIDGET CHILDREN PROPERTIES */
-.widget > * {
-  margin: 0;
-}
-
-.widget h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-/* MAIN CONTENT OF WIDGET TAKE ALL PLACE POSSIBLE */
-.widget .content {
-  flex-grow: 1;
-}
-
-
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CLOCK WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .clock-widget {
+  font-size: $h1-size;
+  background-color: $ez-clock-widget-bg;
   align-items: center;
 }
 
-.jenkins-widget {
-  background-color: #999;
-  height: 100%;
-}
-/*.jenkins-widget.UNKNOWN, .jenkins-widget.ABORTED, .jenkins-widget.NOT_BUILT, .jenkins-widget.CANCELLED {
-  background-color: #ccc;
-}*/
-.jenkins-widget.UNSTABLE, .jenkins-widget.FAILURE {
-  background-color: #c44;
-}
-.jenkins-widget.SUCCESS {
-  background-color: #94c140;
-}
-.jenkins-widget.REBUILDING {
-  background-color: #dcae41;
-}
-
-.sonar-widget {
-  background-color: #43bbb2;
-  height: 100%;
-}
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* TEAM WIDGET (name + logo)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .team-widget {
-  background-color: #06a;
+  background-color: $ez-team-widget-bg;
   h1 {
     margin: 0px;
   }
@@ -97,45 +136,190 @@ html {
   }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* JENKINS WIDGET (last build info)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.jenkins-widget {
+  background-color: $ez-jenkins-widget-bg;
+  height: 100%;
+}
+.jenkins-widget.UNSTABLE, .jenkins-widget.FAILURE {
+  //background-color: #c44;
+}
+.jenkins-widget.SUCCESS {
+  //background-color: #94c140;
+}
+.jenkins-widget.REBUILDING {
+  //background-color: #dcae41;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* JENKINS INFO WIDGET (general info / health check)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.jenkins-info-widget {
+  background-color: $ez-widget-jenkins-health-bg;
+  .content .label-with-value {
+    margin-bottom: 10px;
+  }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SONAR WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sonar-widget {
+  background-color: #43bbb2;
+  height: 100%;
+}
 .sonar-widget .content {
   text-align: left;
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
 .sonar-widget .metricValue {
   float : right;
   font-weight: bold;
 }
 
-
-/*
-    SONAR + JENKINS WIDGET !
- */
-.sonar-jenkins-widget {
-  background-color: #999;
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SONKINS WIDGET (SONAR + JENKINS)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sonkins-widget {
+  //background-color: #999;
   height: 100%;
 }
-.sonar-jenkins-widget .content {
-  text-align: left;
-  padding: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(33, 33, 33, 0.1);
+.sonkins-widget.UNSTABLE, .sonkins-widget.FAILURE {
+  //background-color: #c44;
 }
-.sonar-jenkins-widget.UNSTABLE, .jenkins-widget.FAILURE {
-  background-color: #c44;
+.sonkins-widget.SUCCESS {
+  //background-color: #94c140;
 }
-.sonar-jenkins-widget.SUCCESS {
-  background-color: #94c140;
+.sonkins-widget.REBUILDING {
+  //background-color: #dcae41;
 }
-.sonar-jenkins-widget.REBUILDING {
-  background-color: #dcae41;
-}
-.sonar-jenkins-widget .metricValue {
+.sonkins-widget .metricValue {
   float : right;
   font-weight: bold;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CIRCULAR PROGRESS BAR COMPONENT
+/* Credits : https://github.com/iqnivek/react-circular-progressbar
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.circular-progress-bar {
+  .circular-progress-bar-path {
+    stroke: rgba(255, 255, 255, 0.9);
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .circular-progress-bar-trail {
+    stroke: rgba(33, 33, 33, 0.7);
+  }
+  .circular-progress-bar-text {
+    fill: #fff;
+    font-size: $base-font-size;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+}
+
+.circular-progress-bar {
+  .circular-progress-bar-path {
+    stroke: $ez-building;
+  }
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* LINEAR PROGRESS BAR COMPONENT
+/* Inspired of https://github.com/iqnivek/react-circular-progressbar
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.linear-progress-bar {
+  .linear-progress-bar-path {
+    stroke: rgba(255, 255, 255, 0.9);
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .linear-progress-bar-trail {
+    stroke: rgba(33, 33, 33, 0.7);
+  }
+  .linear-progress-bar-text {
+    fill: #fff;
+    font-size: $base-font-size;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+}
+.linear-progress-bar.high .linear-progress-bar-path {
+  stroke: #df701f;
+}
+.linear-progress-bar.critical .linear-progress-bar-path {
+  stroke: #c44;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* LINEAR BAR WITH LABEL FOR DISPLAYING METRICS
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.linear-metric-bar {
+  margin-bottom: 6px;
+  label {
+    font-size: $base-font-size;
+    margin-top: 0;
+    margin-bottom: -10px;
+  }
+  .metric-label {
+    float: left;
+  }
+  .metric-value {
+    float: right;
+  }
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* LINEAR BAR FOR CODE COVERAGE
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.linear-metric-bar.code-coverage {
+  margin-bottom: 6px;
+  position: relative;
+  label {
+    font-size: $base-font-size;
+    margin-top: 0;
+    margin-bottom: -10px;
+  }
+  .metric-label {
+    position: absolute;
+    right: 0.2rem;
+    bottom: 1.4rem;
+  }
+  .metric-value {
+    font-size: 2rem;
+    position: absolute;
+    left: 0.2rem;
+    bottom: 1.4rem;
+  }
+}
+.linear-metric-bar.code-coverage.bad {
+  .linear-progress-bar .linear-progress-bar-path, label {
+    stroke: #c44;
+  }
+  label {
+    color: #c44;
+  }
+}
+.linear-metric-bar.code-coverage.average {
+  .linear-progress-bar .linear-progress-bar-path, label {
+    stroke: #df701f;
+  }
+  label {
+    color: #df701f;
+  }
+}
+.linear-metric-bar.code-coverage.good {
+  .linear-progress-bar .linear-progress-bar-path {
+    stroke: $ez-success;
+  }
+  label {
+    color: $ez-success;
+  }
+  .metric-label {
+    display: none;
+  }
 }

@@ -15,7 +15,7 @@
     {
       "key": "w2",
       "type": "SonkinsWidget",
-      "displayName": "SIMILAR-HOME",
+      "displayName": "SIM-HOME",
       "jobName": "elec-similar-home-sys_-_Analyse_reccurente",
       "branch": "master",
       "projectKey": "com.edelia.bilanconso.similarhome:similar-home-sys:origin/master"
@@ -23,18 +23,28 @@
     {
       "key": "w3",
       "type": "SonkinsWidget",
+      "displayName": "GAS-TARIFF",
+      "jobName": "gas-tariff-sys_-_Analyse_reccurente",
+      "branch": "master",
+      "projectKey": "com.edelia.gas.tariff:gas-tariff-sys:origin/master"
+    },
+    {
+      "key": "w4",
+      "type": "SonkinsWidget",
       "displayName": "GAS-COMPO",
       "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
       "branch": "master",
       "projectKey": "com.edelia.bilanconso.gas.servicecomposition:gas-service-composition-sys:origin/master"
     },
     {
-      "key": "w4",
-      "type": "SonkinsWidget",
-      "displayName": "GAS-TARIFF",
-      "jobName": "gas-tariff-sys_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "com.edelia.gas.tariff:gas-tariff-sys:origin/master"
+      "key": "ClockWidget",
+      "type": "ClockWidget",
+      "UTCOffset": "2"
+    },
+    {
+      "key": "JenkinsMonitoringWidget",
+      "type": "JenkinsMonitoringWidget",
+      "displayName": "JENKINS HEALTH"
     },
     {
       "key": "w5",
@@ -47,7 +57,7 @@
     {
       "key": "w6",
       "type": "SonkinsWidget",
-      "displayName": "SIMILAR-HOME CLIENT",
+      "displayName": "SIM-HOME CLIENT",
       "jobName": "elec-similar-home-client_-_Analyse_reccurente",
       "branch": "master",
       "projectKey": "com.edelia.bilanconso.similarhome:similar-home-client:origin/master"
@@ -71,9 +81,9 @@
     },
     "cols": {
       "lg": 6,
-      "md": 6,
+      "md": 4,
       "sm": 4,
-      "xs": 4,
+      "xs": 2,
       "xxs": 2
     },
     "layouts": {},
