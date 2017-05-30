@@ -40,7 +40,6 @@ class ClockWidget extends React.Component {
         content={
           <div>
             <div>{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
-            <div className="icon jenkins"/>
           </div>
         }
       />

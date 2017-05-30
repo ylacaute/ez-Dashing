@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
 import ScalableText from 'js/chart/ScalableText.jsx';
-import SingleMetricContainer from 'js/container/SingleMetricContainer.jsx';
 import CircularProgressBar from 'js/chart/CircularProgressBar.jsx';
 import DateUtils from 'js/utils/DateUtils';
 
@@ -49,22 +48,21 @@ class SprintWidget extends React.Component {
 
   renderSprintNumberOnly() {
     return (
-      <Widget className="current-sprint"
-              title={this.props.displayName}
-              content={
-                <SingleMetricContainer>
-                  <ScalableText text={this.getCurrentSprintData().number.toString()}/>
-                </SingleMetricContainer>
-              }
+      <Widget
+        className="current-sprint number-only"
+        title="CURRENT SPRINT"
+        content={
+          <ScalableText text={this.getCurrentSprintData().number.toString()}/>
+        }
       />
     );
   }
 
-  renderSprintNumberWithProgress() {
+  renderSprintDoneDaysWithProgress() {
     let sprintData = this.getCurrentSprintData();
     return (
       <Widget
-        className="current-sprint"
+        className="current-sprint days-done"
         title={this.props.displayName}
         content={
           <CircularProgressBar
@@ -76,11 +74,32 @@ class SprintWidget extends React.Component {
     );
   }
 
+  renderSprintDaysLeftWithProgress() {
+    let sprintData = this.getCurrentSprintData();
+    return (
+      <Widget
+        className="current-sprint days-left"
+        title={
+          <span>SPRINT <strong>#7</strong></span>
+        }
+        content={
+          <CircularProgressBar
+            value={sprintData.progress}
+            displayValue={sprintData.daysLeft}
+            label="days left"/>
+        }
+      />
+    );
+  }
+
   render() {
-    if (this.props.sprintNumberOnly) {
-      return this.renderSprintNumberOnly();
-    } else {
-      return this.renderSprintNumberWithProgress();
+    switch (this.props.displayType) {
+      case "daysDone":
+        return this.renderSprintDoneDaysWithProgress();
+      case "numberOnly":
+        return this.renderSprintNumberOnly();
+      default:
+        return this.renderSprintDaysLeftWithProgress();
     }
   }
 }
@@ -88,14 +107,14 @@ class SprintWidget extends React.Component {
 SprintWidget.propTypes = {
   displayName: PropTypes.string,
   sprintDates: PropTypes.array.isRequired,
-  sprintNumberOnly: PropTypes.bool,
+  displayType: PropTypes.string,
   sprintOffset: PropTypes.number
 };
 
 SprintWidget.defaultProps = {
   sprintNumber: -1,
-  sprintNumberOnly: false,
-  sprintOffset: 0
+  sprintOffset: 0,
+  displayType: "daysLeft"
 };
 
 export default SprintWidget;

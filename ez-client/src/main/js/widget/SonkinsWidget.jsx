@@ -68,18 +68,6 @@ class SonkinsWidget extends React.Component {
           </div>
         </div>
       );
-      /*return (
-        <div>
-          <div className="last-update">
-            <div>Jenkins : 25/05 - 12:30</div>
-            <div>Sonar : 25/05 - 15:30</div>
-          </div>
-          <div className="metrics">
-            <SonarViolationMetric value={2}/>
-
-          </div>
-        </div>
-      )*/
     }
   }
 
@@ -88,7 +76,7 @@ class SonkinsWidget extends React.Component {
       <Widget
         className={`sonkins ${this.state.state}`}
         title={this.props.displayName}
-        subTitle={`${this.props.branch} - ${this.state.jenkinsLastUpdate}`}
+        subTitle={this.props.branch}
         content={
           this.renderContent()
         }

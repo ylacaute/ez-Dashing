@@ -39,9 +39,13 @@
       "projectKey": "com.edelia.bilanconso.gas.servicecomposition:gas-service-composition-sys:origin/master"
     },
     {
-      "key": "ClockWidget",
-      "type": "ClockWidget",
-      "UTCOffset": 2
+      "key": "SprintWidget",
+      "type": "SprintWidget",
+      "sprintOffset": 6,
+      "sprintDuration": 21,
+      "sprintDates": [
+        "2017-05-15", "2017-06-06"
+      ]
     },
     {
       "key": "JenkinsMonitoringWidget",
@@ -73,24 +77,9 @@
       "projectKey": "com.edelia.gas.tariff.client:gas-tariff-client:origin/master"
     },
     {
-      "key": "w8",
-      "type": "SprintWidget",
-      "sprintOffset": 6,
-      "sprintDuration": 21,
-      "sprintDates": [
-        "2017-05-15", "2017-06-06"
-      ]
-    },
-    {
-      "key": "w9",
-      "type": "SprintWidget",
-      "displayName": "CURRENT SPRINT",
-      "sprintOffset": 6,
-      "sprintNumberOnly" : true,
-      "sprintDuration": 21,
-      "sprintDates": [
-        "2017-05-15", "2017-06-06"
-      ]
+      "key": "ClockWidget",
+      "type": "ClockWidget",
+      "UTCOffset": 2
     }
   ],
   "avatars" : [{

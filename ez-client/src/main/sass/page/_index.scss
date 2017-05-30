@@ -21,6 +21,22 @@ html, .main, .react-grid-layout {
 }
 
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SPRINT WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.widget.current-sprint.days-left {
+  h1 strong {
+    color: #32c6c1;// $ez-bad;
+    font-size: 3.5rem;
+  }
+  .progress-bar .trail {
+    stroke: #fff;
+  }
+  .progress-bar .path {
+    stroke: #32c6c1;
+  }
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* CLOCK WIDGET
