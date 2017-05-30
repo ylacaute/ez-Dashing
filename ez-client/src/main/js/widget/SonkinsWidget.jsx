@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import Widget from 'js/widget/Widget.jsx';
+import JenkinsBuildMetric from 'js/fragment/JenkinsBuildMetric.jsx'
 import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import SonarClient from 'js/client/SonarClient.jsx';
-import LabelWithValue from 'js/fragment/LabelWithValue.jsx';
-import CircularProgressBar from 'js/chart/CircularProgressBar.jsx'
-import LinearMetricBar from 'js/chart/LinearMetricBar.jsx';
-
-//import ReactMDL from 'ReactMDL';
-//import ProgressBar from 'react-mdl/lib/ProgressBar';
-//import Progress from 'react-progress';
+import CodeCoverageMetric from 'js/fragment/CodeCoverageMetric.jsx';
+import SonarViolationMetric from 'js/fragment/SonarViolationMetric.jsx';
 
 class SonkinsWidget extends React.Component {
 
@@ -17,20 +16,20 @@ class SonkinsWidget extends React.Component {
       jenkinsLastUpdate: '',
       sonarLastUpdate: '',
       state: 'UNKNOWN',
-      progress: '',
+      progress: 0,
       buildAuthor: '',
-      lines: '',
-      coverage: '',
-      violations: ''
+      lines: 0,
+      coverage: 0,
+      violations: 0
     };
   }
 
   componentDidMount() {
     JenkinsClient.getBuildInfo(this.props.jobName, this.props.branch, (jsonResponse) => {
       this.setState({
+        jenkinsLastUpdate: jsonResponse.lastUpdate,
         state: jsonResponse.state,
         progress : jsonResponse.progress,
-        jenkinsLastUpdate: jsonResponse.lastUpdate,
         author: jsonResponse.author
       });
     });
@@ -44,63 +43,46 @@ class SonkinsWidget extends React.Component {
     });
   }
 
-  getClassNames() {
-    return "sonkins-widget widget " + this.state.state;
-  }
-
   renderContent() {
     if (this.state.state == 'UNKNOWN') {
       return (
-        <div className="content">
+        <div>
         </div>
       );
     }
     if (this.state.state == 'REBUILDING') {
       return (
-        <div className="content">
-          <CircularProgressBar percentage={this.state.progress}/>
-        </div>
+        <JenkinsBuildMetric value={this.state.progress}/>
       );
     } else {
-      return (
-        <div className="content">
-          <LabelWithValue label="Lines" value={this.state.lines}/>
-          <LabelWithValue label="Violations" value={this.state.violations}/>
-        </div>
+       return (
+         <SonarViolationMetric value={2}/>
       )
     }
   }
 
   render() {
     return (
-      <section className={this.getClassNames()} id="test">
-        <header>
-          <h1>{this.props.displayName}</h1>
-          <label>{this.props.branch} - {this.state.jenkinsLastUpdate}</label>
-        </header>
-        {this.renderContent()}
-        <footer>
-          <div className="author">{this.state.author}</div>
-
-        </footer>
-        <LinearMetricBar styleName="code-coverage"
-                         label="Code coverage"
-                         percentage={this.state.coverage}
-                         classForPercentage={(percentage) => {
-                           if (percentage < 60) return "bad";
-                           if (percentage < 70) return "average";
-                           return "good";
-                         }}/>
-      </section>
+      <Widget
+        className={`sonkins ${this.state.state}`}
+        title={this.props.displayName}
+        subTitle={`${this.props.branch} - ${this.state.jenkinsLastUpdate}`}
+        content={
+          this.renderContent()
+        }
+        footer={
+          <CodeCoverageMetric value={this.state.coverage}/>
+        }
+      />
     );
   }
 }
 
-SonkinsWidget .propTypes = {
-  displayName: React.PropTypes.string.isRequired,
-  jobName: React.PropTypes.string.isRequired,
-  branch: React.PropTypes.string.isRequired,
-  projectKey: React.PropTypes.string.isRequired
+SonkinsWidget.propTypes = {
+  displayName: PropTypes.string.isRequired,
+  jobName: PropTypes.string.isRequired,
+  branch: PropTypes.string.isRequired,
+  projectKey: PropTypes.string.isRequired
 };
 
 export default SonkinsWidget;

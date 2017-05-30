@@ -22,13 +22,12 @@
   },
   "dependencies": {
     "http": "0.0.0",
+    "muicss": "^0.9.16",
     "nodemon": "^1.11.0",
     "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-grid-layout": "^0.14.6",
-    "react-mdl": "^1.10.3",
-    "react-progressbar.js": "^0.2.0"
+    "react-grid-layout": "^0.14.6"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

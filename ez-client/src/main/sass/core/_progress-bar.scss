@@ -1,0 +1,93 @@
+
+$ez-base: #fff !default;
+$ez-good: #74b53c !default;
+$ez-avg: #df701f !default;
+$ez-bad: #c65555 !default;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* LINEAR PROGRESS BAR COMPONENT
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.linear-progress-bar-wrapper {
+  display: flex;
+  flex: 1;
+}
+.progress-bar.linear {
+  .path {
+    stroke: rgba(255, 255, 255, 0.9);
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .trail {
+    stroke: rgba(33, 33, 33, 0.7);
+  }
+  .display-value, .label {
+    fill: $ez-base;
+  }
+  .display-value {
+    font-size: 0.8rem;
+    text-anchor: start;
+  }
+  .label {
+    font-size: 0.4rem;
+    text-anchor: end;
+  }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CIRCULAR PROGRESS BAR
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.circular-progress-bar-wrapper {
+  display: flex;
+  flex: 1;
+}
+.progress-bar.circular {
+  .path {
+    stroke: rgba(255, 255, 255, 0.9);
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .trail {
+    stroke: rgba(33, 33, 33, 0.7);
+  }
+  .display-value, .label {
+    fill: $ez-base;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+  .display-value {
+    font-size: 2.8rem;
+  }
+  .label {
+    font-size: 1rem;
+  }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* COMMON PROGRESS BAR BEHAVIOUR
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.progress-bar.good {
+  .path {
+    stroke: $ez-good;
+  }
+  .display-value {
+    fill: $ez-good;
+  }
+}
+.progress-bar.avg {
+  .path {
+    stroke: $ez-avg;
+  }
+  .display-value {
+    color: $ez-avg;
+  }
+}
+.progress-bar.bad {
+  .path {
+    stroke: $ez-bad;
+  }
+  .display-value {
+    color: $ez-bad;
+  }
+}
+
+/* Inspired of :
+    - https://github.com/iqnivek/react-circular-progressbar
+*/

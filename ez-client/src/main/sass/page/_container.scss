@@ -1,0 +1,14 @@
+
+.single-metric-container {
+  @extend %flexColumn;
+  padding: 2rem;
+}
+
+
+.colorfulImage {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  mask: url(#mymask);
+  -webkit-mask-box-image: url(http://www.clker.com/cliparts/F/5/I/M/f/U/running-icon-white-on-transparent-background-md.png);
+}

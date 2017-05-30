@@ -6,7 +6,7 @@ class LinearProgressBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      percentage: props.initialAnimation ? 0 : props.percentage,
+      value: props.initialAnimation ? 0 : props.value
     };
   }
 
@@ -15,7 +15,7 @@ class LinearProgressBar extends React.Component {
       this.initialTimeout = setTimeout(() => {
         this.requestAnimationFrame = window.requestAnimationFrame(() => {
           this.setState({
-            percentage: this.props.percentage,
+            value: this.props.value,
           });
         });
       }, 0);
@@ -24,7 +24,7 @@ class LinearProgressBar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      percentage: nextProps.percentage,
+      value: nextProps.value,
     });
   }
 
@@ -33,37 +33,35 @@ class LinearProgressBar extends React.Component {
     window.cancelAnimationFrame(this.requestAnimationFrame);
   }
 
-  getClassNames() {
-    let className = "linear-progress-bar " + this.props.styleName + " ";
-    if (this.props.classForPercentage) {
-      className += this.props.classForPercentage(this.props.percentage);
-    }
-    return className;
-  }
-
   render() {
-    const pathDescription = "M 0,1 L 100,1";
-    const progressStyle = {
-      strokeDasharray: `${this.state.percentage} 100`,
-      strokeDashoffset: "0"
-    };
-    console.log("styleName : " + this.props.styleName);
+    const classNames = `linear progress-bar 
+      ${this.props.className} 
+      ${this.props.classForValue(this.props.value)}`;
+    const pathDescription = "M 0,20 L 100,20";
+    const progressStyle = { strokeDasharray: `${this.state.value} 100` };
+    const displayValue = this.props.displayValue != null ?
+        this.props.displayValue : this.props.textForValue(this.state.value);
+
     return (
-      <div>
-        <svg
-          className={this.getClassNames()}
-          viewBox="0 0 100 1">
+      <div className="linear-progress-bar-wrapper">
+        <svg className={classNames} width="100%" height="100%" viewBox="0 0 100 20">
           <path
-            className="linear-progress-bar-trail"
+            className="trail"
             d={pathDescription}
             strokeWidth={this.props.strokeWidth}
             fillOpacity={0}/>
           <path
-            className="linear-progress-bar-path"
+            className="path"
             d={pathDescription}
             strokeWidth={this.props.strokeWidth}
             fillOpacity={0}
             style={progressStyle}/>
+          <text className="display-value" x={2} y={16}>
+            {displayValue}
+          </text>
+          <text className="label" x={96} y={16}>
+            {this.props.label}
+          </text>
         </svg>
       </div>
     );
@@ -71,22 +69,22 @@ class LinearProgressBar extends React.Component {
 }
 
 LinearProgressBar.propTypes = {
-  percentage: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number,
   initialAnimation: PropTypes.bool,
-  classForPercentage: PropTypes.func,
-  textForPercentage: PropTypes.func,
+  textForValue: PropTypes.func,
+  classForValue: PropTypes.func,
+  displayValue: PropTypes.number
 };
 
 LinearProgressBar.defaultProps = {
-  strokeWidth: 8,
-  textForPercentage: (percentage) => `${percentage}%`,
-  initialAnimation: false,
-  classForPercentage: (percentage) => {
-    if (percentage > 80) return "high";
-    if (percentage > 95) return "critical";
-    return "low";
-  }
+  displayValue: null,
+  label: '',
+  value: 0,
+  strokeWidth: 2,
+  initialAnimation: true,
+  textForValue: (value) => `${value}`,
+  classForValue: (value) => ''
 };
 
 export default LinearProgressBar;

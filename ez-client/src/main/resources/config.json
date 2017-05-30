@@ -2,7 +2,9 @@
   "widgets": [
     {
       "key": "w0",
-      "type": "TeamWidget"
+      "type": "TeamWidget",
+      "displayName": "TEAM GAS",
+      "logoUrl": "/img/logo_clean.png"
     },
     {
       "key": "w1",
@@ -39,7 +41,7 @@
     {
       "key": "ClockWidget",
       "type": "ClockWidget",
-      "UTCOffset": "2"
+      "UTCOffset": 2
     },
     {
       "key": "JenkinsMonitoringWidget",
@@ -69,7 +71,30 @@
       "jobName": "gas-tariff-client_-_Analyse_reccurente",
       "branch": "master",
       "projectKey": "com.edelia.gas.tariff.client:gas-tariff-client:origin/master"
+    },
+    {
+      "key": "w8",
+      "type": "SprintWidget",
+      "sprintOffset": 6,
+      "sprintDuration": 21,
+      "sprintDates": [
+        "2017-05-15", "2017-06-06"
+      ]
+    },
+    {
+      "key": "w9",
+      "type": "SprintWidget",
+      "displayName": "CURRENT SPRINT",
+      "sprintOffset": 6,
+      "sprintNumberOnly" : true,
+      "sprintDuration": 21,
+      "sprintDates": [
+        "2017-05-15", "2017-06-06"
+      ]
     }
+
+
+
   ],
   "grid": {
     "breakpoints": {

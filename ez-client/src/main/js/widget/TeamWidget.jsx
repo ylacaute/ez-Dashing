@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import Widget from 'js/widget/Widget.jsx';
 
 class TeamWidget extends React.Component {
 
@@ -8,17 +10,29 @@ class TeamWidget extends React.Component {
   }
 
   render() {
-
+    const style = {
+      backgroundImage: 'url(' + this.props.logoUrl + ')',
+    };
     return (
-      <div className="team-widget widget">
-        <h1>TEAM GAS</h1>
-        <div className="logo">
-        </div>
-      </div>
+      <Widget
+        className="team"
+        title={this.props.displayName}
+        content={
+          <div className="logo" style={style}/>
+        }
+      />
     );
   }
-
 }
+
+TeamWidget.propTypes = {
+  displayName: PropTypes.string,
+  logoUrl: PropTypes.string
+};
+
+TeamWidget.defaultProps = {
+  logoUrl: ''
+};
 
 export default TeamWidget;
 

@@ -2,14 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 
-
-import SonkinsWidget from 'js/widget/SonkinsWidget.jsx';
-import JenkinsWidget from 'js/widget/JenkinsWidget.jsx';
-import SonarWidget from 'js/widget/SonarWidget.jsx';
-import TeamWidget from 'js/widget/TeamWidget.jsx';
-import Config from 'js/ConfigLoader.jsx';
-
-
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const DYN_GRID_LS_KEY = 'A_DYN_GRID_LS_KEY_26';
 
@@ -35,9 +27,8 @@ class DynGrid extends React.Component {
   }
 
   onResizeStop(layout, oldItem, newItem, placeholder, event, htmlElement) {
-
-    console.log(" htmlElement : ", htmlElement.parentElement);
-    console.log(" WIDTH : ", htmlElement.parentElement.offsetWidth);
+    //console.log(" htmlElement : ", htmlElement.parentElement);
+    //console.log(" WIDTH : ", htmlElement.parentElement.offsetWidth);
     //console.log(">>>>>>>>>>>>> htmlElement.offsetWidth : " + htmlElement.offsetWidth);
   }
 
@@ -48,7 +39,7 @@ class DynGrid extends React.Component {
   }
 
   onWidthChange(containerWidth, margin, cols, containerPadding) {
-    console.log("onWidthChange ==> cols=" + cols);
+    //console.log("onWidthChange ==> cols=" + cols);
   }
 
   getFromLS(key) {

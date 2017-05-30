@@ -27,8 +27,63 @@
 @import 'core/icons';
 @import 'core/page-layout';
 
+
+
+
+
+
+/* EDF ORANGE : #ef481e */
+/* EDF BLUE : #193370 */
+/* DASHING GREEN : #94c140 */
+/* DASHING TURQ : #43bbb2 */
+$ez-success2: #5a9e9f;
+
+$ez-base: #fff;
+$ez-good: #74b53c;
+$ez-bad: #c65555;
+$ez-avg: #df701f;
+
+$ez-building: #dcae41;
+
+$ez-gap: 0.5rem;
+
+$tmp: #314356;
+
+$ez-grid-bg: $dark-bg-color;
+$ez-grid-placeholder: $ez-base !important;
+
+$ez-widget-bg: #30353c; //#314356;//rgba(51, 67, 76, 1); //#33434c;         //
+$ez-widget-bg-header: rgba(33, 33, 33, 0.5); //#314356;//#466d6f;//
+
+$ez-widget-text-header: rgba(255, 255, 255, 0.8);
+$ez-widget-text-color: white;
+$ez-widget-more-text-color: rgba(33, 33, 33, 0.1);
+$ez-widget-opacity: 0.85;
+$ez-widget-last-update-color: #000;
+$ez-clock-widget-bg: #314356;
+$ez-team-widget-bg: #314356;
+$ez-jenkins-widget-bg: #999;
+
+$ez-widget-jenkins-health-bg: $ez-widget-bg;
+
+%flexColumn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+// Components
+@import 'core/progress-bar';
+@import 'page/container';
+@import 'page/widget';
+@import 'page/scalable-text';
+@import 'page/avatar';
+
 // Page specific style
 @import 'page/index';
+
+
 
 
 html {

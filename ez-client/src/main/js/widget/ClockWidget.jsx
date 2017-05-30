@@ -1,13 +1,9 @@
 import React from 'react';
-import AbstractWidget from 'js/widget/AbstractWidget.jsx';
+import PropTypes from 'prop-types';
 
-const DEFAULT_UTC_OFFSET = 2;
+import Widget from 'js/widget/Widget.jsx';
 
-class ClockWidget extends AbstractWidget {
-
-  constructor(props) {
-    super(props);
-  }
+class ClockWidget extends React.Component {
 
   componentWillMount() {
     this.setTime();
@@ -21,32 +17,14 @@ class ClockWidget extends AbstractWidget {
 
   setTime() {
     let now = new Date();
-    let utcOffset = this.props.UTCOffset != null ? parseInt(this.props.UTCOffset) : DEFAULT_UTC_OFFSET;
-    let hours = now.getUTCHours() + parseInt(utcOffset);
-
-    // correct for number over 24, and negatives
-    if (hours >= 24 ) {
-      hours -= 24;
-    }
-    if (hours < 0) {
-      hours += 12;
-    }
-
-    // add leading zero, first convert hours to string
-    hours = hours + "";
-    if (hours.length == 1) {
-      hours = "0" + hours;
-    }
-
-    // minutes are the same on every time zone
-    var minutes = now.getUTCMinutes();
-
-    // add leading zero, first convert hours to string
-    minutes = minutes + "";
-    if (minutes.length == 1) {
-      minutes = "0" + minutes;
-    }
-    var seconds = now.getUTCSeconds();
+    let hours = now.getUTCHours() + this.props.UTCOffset;
+    let minutes = now.getUTCMinutes();
+    let seconds = now.getUTCSeconds();
+    if (hours >= 24 ) hours -= 24;
+    if (hours < 0) hours += 12;
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
     this.setState({
       hours: hours,
       minutes: minutes,
@@ -56,11 +34,19 @@ class ClockWidget extends AbstractWidget {
 
   render() {
     return (
-      <div className="clock-widget widget">
-        <div id="clock">{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
-      </div>
+      <Widget
+        className="clock"
+        title={this.props.displayName}
+        content={
+          <div>{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
+        }
+      />
     );
   }
 }
+
+ClockWidget.propTypes = {
+  displayName: PropTypes.string
+};
 
 export default ClockWidget;

@@ -1,0 +1,12 @@
+
+$textColor: $ez-base;
+
+.scalable-text {
+  @extend %flexColumn;
+  .text {
+    fill: $textColor;
+    dominant-baseline: middle;
+    text-anchor: middle;
+    font-size: 10px;
+  }
+}
