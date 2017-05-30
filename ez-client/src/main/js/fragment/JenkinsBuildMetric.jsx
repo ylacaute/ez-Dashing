@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import CircularProgressBar from 'js/chart/CircularProgressBar.jsx'
 
 class JenkinsBuildMetric extends React.Component {

@@ -7,6 +7,7 @@ import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import SonarClient from 'js/client/SonarClient.jsx';
 import CodeCoverageMetric from 'js/fragment/CodeCoverageMetric.jsx';
 import SonarViolationMetric from 'js/fragment/SonarViolationMetric.jsx';
+import BuildAuthor from 'js/fragment/BuildAuthor.jsx';
 
 class SonkinsWidget extends React.Component {
 
@@ -29,8 +30,8 @@ class SonkinsWidget extends React.Component {
       this.setState({
         jenkinsLastUpdate: jsonResponse.lastUpdate,
         state: jsonResponse.state,
-        progress : jsonResponse.progress,
-        author: jsonResponse.author
+        progress: jsonResponse.progress,
+        buildAuthor: jsonResponse.author
       });
     });
     SonarClient.getSummaryInfos(this.props.projectKey, (jsonResponse) => {
@@ -55,9 +56,30 @@ class SonkinsWidget extends React.Component {
         <JenkinsBuildMetric value={this.state.progress}/>
       );
     } else {
-       return (
-         <SonarViolationMetric value={2}/>
-      )
+      return (
+        <div>
+          <div className="last-update">
+            <div>Jenkins : 25/05 - 12:30</div>
+            <div>Sonar : 25/05 - 15:30</div>
+          </div>
+          <div className="metrics">
+            <BuildAuthor avatars={this.props.avatars} jenkinsAuthor={this.state.buildAuthor}/>
+            <SonarViolationMetric value={0}/>
+          </div>
+        </div>
+      );
+      /*return (
+        <div>
+          <div className="last-update">
+            <div>Jenkins : 25/05 - 12:30</div>
+            <div>Sonar : 25/05 - 15:30</div>
+          </div>
+          <div className="metrics">
+            <SonarViolationMetric value={2}/>
+
+          </div>
+        </div>
+      )*/
     }
   }
 

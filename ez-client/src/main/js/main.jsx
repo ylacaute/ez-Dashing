@@ -10,6 +10,7 @@ import Style from 'sass/main.scss';
 import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
 import ReactGridResizableStyle from 'react-resizable/css/styles.css';
 import ConfigLoader from 'js/ConfigLoader.jsx';
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 class App extends React.Component {
@@ -35,8 +36,12 @@ class App extends React.Component {
     });
   }
 
-  createAllWidgets(config) {
-    return config.widgets.map(WidgetFactory.create, config);
+  createAllWidgets(fullConfig) {
+    let widgetConfigs = fullConfig.widgets;
+    return widgetConfigs.map((widgetConfig) => {
+      widgetConfig.avatars = fullConfig.avatars;
+      return WidgetFactory.create(widgetConfig);
+    });
   }
 
   generateLayouts(config) {

@@ -53,7 +53,7 @@ $ez-bad: #c65555 !default;
     text-anchor: middle;
   }
   .display-value {
-    font-size: 2.8rem;
+    font-size: 4rem;
   }
   .label {
     font-size: 1rem;
@@ -76,7 +76,7 @@ $ez-bad: #c65555 !default;
     stroke: $ez-avg;
   }
   .display-value {
-    color: $ez-avg;
+    fill: $ez-avg;
   }
 }
 .progress-bar.bad {
@@ -84,7 +84,7 @@ $ez-bad: #c65555 !default;
     stroke: $ez-bad;
   }
   .display-value {
-    color: $ez-bad;
+    fill: $ez-bad;
   }
 }
 

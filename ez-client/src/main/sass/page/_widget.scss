@@ -4,8 +4,8 @@ $titleFontSize: $h1-size;
 $titleColor: $ez-widget-text-header;
 $textColor: $ez-widget-text-color;
 $bgColor: $ez-widget-bg;
+$contentPadding: $ez-gap;
 
-$clockFontSize: $h1-size;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET
@@ -35,74 +35,8 @@ $clockFontSize: $h1-size;
   .content {
     @extend %flexColumn;
     flex-grow: 1;
-    padding: 1rem;
+    padding: $contentPadding;
   }
 }
 
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* TEAM WIDGET (name + logo)
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.team {
-  .logo {
-    flex: 1;
-    @extend %icon;
-  }
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* CLOCK WIDGET
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.clock {
-  font-size: $clockFontSize;
-  align-items: center;
-}
-
-.current-sprint {
-  .content {
-  }
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* SONKINS WIDGET (SONAR + JENKINS)
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.sonkins {
-  //background-color: #999;
-  height: 100%;
-  .content {
-    flex-direction: row;
-  }
-  footer {
-    margin-top: -30px;
-  }
-}
-
-.widget.sonkins.UNSTABLE, .sonkins-widget.FAILURE {
-  //background-color: #c44;
-}
-
-.widget.sonkins.SUCCESS {
-  //background-color: #94c140;
-}
-
-.widget.sonkins.REBUILDING {
-  //background-color: #dcae41;
-}
-
-.widget.sonkins .metricValue {
-  float: right;
-  font-weight: bold;
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* JENKINS BUILD
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.jenkins-build.progress-bar {
-  .path {
-    stroke: $ez-building;
-  }
-  .display-value, .label {
-    dominant-baseline: middle;
-  }
-}
 

@@ -92,10 +92,16 @@
         "2017-05-15", "2017-06-06"
       ]
     }
-
-
-
   ],
+  "avatars" : [{
+    "nick": "Epithor",
+    "jenkinsAuthor": "epi",
+    "url": "/img/avatars/epi.png"
+  }, {
+    "nick": "Bob",
+    "jenkinsAuthor": "Bob Marley",
+    "url": "/img/logo_clean.png"
+  }],
   "grid": {
     "breakpoints": {
       "lg": 1200,

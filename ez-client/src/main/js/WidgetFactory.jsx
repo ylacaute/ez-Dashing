@@ -8,22 +8,17 @@ import SprintWidget from 'js/widget/SprintWidget.jsx';
 class WidgetFactory {}
 
 WidgetFactory.create = function(widgetConfiguration) {
-  let component;
+  let Component;
   switch (widgetConfiguration.type) {
-    case "ClockWidget":       component = ClockWidget; break;
-    case "TeamWidget":        component = TeamWidget; break;
-    case "JenkinsMonitoringWidget": component = JenkinsMonitoringWidget; break;
-    case "SonkinsWidget":     component = SonkinsWidget; break;
-    case "SprintWidget":     component = SprintWidget; break;
+    case "ClockWidget": Component = ClockWidget; break;
+    case "TeamWidget": Component = TeamWidget; break;
+    case "JenkinsMonitoringWidget": Component = JenkinsMonitoringWidget; break;
+    case "SonkinsWidget": Component = SonkinsWidget; break;
+    case "SprintWidget": Component = SprintWidget; break;
   }
-  let widget = React.createElement(
-    component,
-    widgetConfiguration,
-    null
-  );
   return (
     <div key={widgetConfiguration.key}>
-      {widget}
+      <Component {...widgetConfiguration}/>
     </div>
   );
 };

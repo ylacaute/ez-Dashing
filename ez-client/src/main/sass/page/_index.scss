@@ -1,16 +1,5 @@
 
-
-.jenkins-widget.SUCCESS header, .sonkins-widget.SUCCESS header {
-  //background-color: $ez-success;
-}
-
-.jenkins-widget.FAILURE header, .sonkins-widget.FAILURE header {
-  background-color: $ez-bad;
-}
-
-.jenkins-widget.REBUILDING header, .sonkins-widget.REBUILDING header {
-  background-color: $ez-building;
-}
+$clockFontSize: $h1-size;
 
 html, .main, .react-grid-layout {
   background-color: $ez-grid-bg;
@@ -29,4 +18,94 @@ html, .main, .react-grid-layout {
   right: 5px;
   bottom: 5px;
   z-index: 999;
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CLOCK WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.widget.clock {
+  font-size: $clockFontSize;
+  align-items: center;
+
+  .icon {
+    @extend %icon;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Scalable-image
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.scalable-image {
+  @extend %icon;
+  flex: 1;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* WIDGET : SONKINS (SONAR + JENKINS)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.widget.sonkins.UNSTABLE header, .widget.sonkins.FAILURE header {
+  background-color: $ez-bad;
+}
+
+.widget.sonkins.SUCCESS header {
+  //background-color: $ez-good;
+}
+.widget.sonkins.REBUILDING header {
+  background-color: $ez-building;
+}
+
+.sonkins .content {
+  > div {
+    @extend %flexColumn;
+    flex-grow: 1;
+    /*> div {
+      padding: $ez-gap / 2;
+    }*/
+  }
+  .last-update {
+    //border: 1px solid red;
+    text-align: right;
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  .metrics {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    > div {
+      padding: $ez-gap / 2;
+    }
+  }
+}
+
+// FRAGMENT
+.jenkins-build.progress-bar {
+  .path {
+    stroke: $ez-building;
+  }
+  .display-value, .label {
+    dominant-baseline: middle;
+  }
+  .display-value {
+    font-size: 3rem;
+    fill: $ez-building;
+  }
+}
+
+// FRAMGENT
+.build-author {
+  @extend %flexColumn;
+  flex-grow: 1;
+}
+
+.widget.jenkins-monitoring .content {
+  > div {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
 }

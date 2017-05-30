@@ -50,7 +50,7 @@ class JenkinsMonitoringWidget extends React.Component {
   render() {
     return (
       <Widget
-        className="jenkins-info"
+        className="jenkins-monitoring"
         title={this.props.displayName}
         subTitle={this.state.version}
         content={

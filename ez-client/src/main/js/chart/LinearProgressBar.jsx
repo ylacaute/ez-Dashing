@@ -34,17 +34,17 @@ class LinearProgressBar extends React.Component {
   }
 
   render() {
-    const classNames = `linear progress-bar 
+    const classNames = `progress-bar linear  
       ${this.props.className} 
       ${this.props.classForValue(this.props.value)}`;
-    const pathDescription = "M 0,20 L 100,20";
+    const pathDescription = "M 0,12 L 100,12";
     const progressStyle = { strokeDasharray: `${this.state.value} 100` };
     const displayValue = this.props.displayValue != null ?
         this.props.displayValue : this.props.textForValue(this.state.value);
 
     return (
       <div className="linear-progress-bar-wrapper">
-        <svg className={classNames} width="100%" height="100%" viewBox="0 0 100 20">
+        <svg className={classNames} width="100%" height="100%" viewBox="0 0 100 12">
           <path
             className="trail"
             d={pathDescription}
@@ -56,10 +56,10 @@ class LinearProgressBar extends React.Component {
             strokeWidth={this.props.strokeWidth}
             fillOpacity={0}
             style={progressStyle}/>
-          <text className="display-value" x={2} y={16}>
+          <text className="display-value" x={2} y={8}>
             {displayValue}
           </text>
-          <text className="label" x={96} y={16}>
+          <text className="label" x={96} y={8}>
             {this.props.label}
           </text>
         </svg>
