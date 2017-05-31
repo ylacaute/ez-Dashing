@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Test in progress...
 class ColorfulImage extends React.Component {
 
   constructor(props) {

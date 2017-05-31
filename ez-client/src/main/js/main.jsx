@@ -39,7 +39,9 @@ class App extends React.Component {
   createAllWidgets(fullConfig) {
     let widgetConfigs = fullConfig.widgets;
     return widgetConfigs.map((widgetConfig) => {
-      widgetConfig.avatars = fullConfig.avatars;
+      if (widgetConfig.avatars == null) {
+        widgetConfig.avatars = fullConfig.avatars;
+      }
       return WidgetFactory.create(widgetConfig);
     });
   }
