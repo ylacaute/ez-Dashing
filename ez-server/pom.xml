@@ -82,6 +82,14 @@
       <version>5.1</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.offbytwo.jenkins/jenkins-client -->
+    <dependency>
+      <groupId>com.offbytwo.jenkins</groupId>
+      <artifactId>jenkins-client</artifactId>
+      <version>0.3.7</version>
+    </dependency>
+
+    <!-- JIRA -->
     <!-- https://mvnrepository.com/artifact/com.atlassian.jira/jira-rest-java-client-api -->
     <dependency>
       <groupId>com.atlassian.jira</groupId>
@@ -94,13 +102,21 @@
       <version>3.0.0</version>
     </dependency>
 
-
-
-    <!-- https://mvnrepository.com/artifact/com.offbytwo.jenkins/jenkins-client -->
+    <!-- JIRA -->
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+    <!--If pb with jira try : <version>4.2.2-atlassian1</version>-->
     <dependency>
-      <groupId>com.offbytwo.jenkins</groupId>
-      <artifactId>jenkins-client</artifactId>
-      <version>0.3.7</version>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.6</version>
+    </dependency>
+
+    <!-- JIRA -->
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpasyncclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpasyncclient</artifactId>
+      <version>4.0-beta3-atlassian2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>

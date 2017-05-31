@@ -17,17 +17,13 @@
 package com.thorpora.ezdashing.core.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.offbytwo.jenkins.JenkinsServer;
 import com.thorpora.ezdashing.StartupListener;
 import com.thorpora.ezdashing.core.error.ErrorLogger;
-import com.thorpora.ezdashing.jenkins.JenkinsConfig;
-import com.thorpora.ezdashing.jenkins.JenkinsProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @Configuration

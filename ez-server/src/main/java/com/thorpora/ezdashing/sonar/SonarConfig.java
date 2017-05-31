@@ -18,10 +18,6 @@ package com.thorpora.ezdashing.sonar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.wsclient.Host;
-import org.sonar.wsclient.Sonar;
-import org.sonar.wsclient.connectors.HttpClient4Connector;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
