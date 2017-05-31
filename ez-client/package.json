@@ -27,7 +27,8 @@
     "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-grid-layout": "^0.14.6"
+    "react-grid-layout": "^0.14.6",
+    "react-spinkit": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
+import BaseWidget from 'js/widget/BaseWidget.jsx';
+import ScalableText from 'js/chart/ScalableText.jsx';
 
-class ClockWidget extends React.Component {
+class ClockWidget extends BaseWidget {
 
   componentWillMount() {
     this.setTime();
@@ -26,6 +28,7 @@ class ClockWidget extends React.Component {
     if (minutes < 10) minutes = "0" + minutes;
     if (seconds < 10) seconds = "0" + seconds;
     this.setState({
+      date: now.toDateString(),
       hours: hours,
       minutes: minutes,
       seconds: seconds
@@ -39,7 +42,8 @@ class ClockWidget extends React.Component {
         title={this.props.displayName}
         content={
           <div>
-            <div>{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
+            <ScalableText className="date" text={this.state.date} />
+            <ScalableText className="time" text={`${this.state.hours}:${this.state.minutes}:${this.state.seconds}`} />
           </div>
         }
       />

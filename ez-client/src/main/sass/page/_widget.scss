@@ -36,7 +36,18 @@ $contentPadding: $ez-gap;
     @extend %flexColumn;
     flex-grow: 1;
     padding: $contentPadding;
+
+    .single {
+      padding-top: 2rem;
+    }
+
+    .sk-spinner {
+      color: #eee;
+      margin: auto;
+    }
   }
+
+
 }
 
 

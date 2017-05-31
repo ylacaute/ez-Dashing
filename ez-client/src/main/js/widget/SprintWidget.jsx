@@ -5,6 +5,7 @@ import Widget from 'js/widget/Widget.jsx';
 import ScalableText from 'js/chart/ScalableText.jsx';
 import CircularProgressBar from 'js/chart/CircularProgressBar.jsx';
 import DateUtils from 'js/utils/DateUtils';
+import BaseWidget from 'js/widget/BaseWidget.jsx';
 
 /**
  *  sprintDates should be an ordered array of dates corresponding to each start of sprint
@@ -16,7 +17,7 @@ import DateUtils from 'js/utils/DateUtils';
  *
  *  Sprint duration is calculated between dates if found, or with current sprint date + sprint duration property.
  */
-class SprintWidget extends React.Component {
+class SprintWidget extends BaseWidget {
 
   getCurrentSprintData() {
     let now = new Date();

@@ -14,12 +14,8 @@ class BuildAuthor extends React.Component {
         url: "/img/icon/anonymous_01.png"
       }
     } else {
-      console.log(" this.props.jenkinsAuthor : ",  this.props.jenkinsAuthor);
-      console.log(" this.props.author: ", this.props.author);
       avatar = this.props.avatars.find((avatar) => avatar.jenkinsAuthor == this.props.jenkinsAuthor);
-      console.log("AVATAR : ", avatar);
     }
-
     return (
       <div className="build-author">
         <ScalableImage url={avatar.url} />

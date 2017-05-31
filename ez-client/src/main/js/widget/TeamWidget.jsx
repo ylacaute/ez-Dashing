@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
 import ScalableImage from 'js/chart/ScalableImage.jsx';
+import BaseWidget from 'js/widget/BaseWidget.jsx';
 
-class TeamWidget extends React.Component {
+class TeamWidget extends BaseWidget {
 
   render() {
     return (

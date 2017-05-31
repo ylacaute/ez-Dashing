@@ -1,5 +1,5 @@
 
-$clockFontSize: $h1-size;
+$clockFontSize: 2rem;
 
 html, .main, .react-grid-layout {
   background-color: $ez-grid-bg;
@@ -24,16 +24,17 @@ html, .main, .react-grid-layout {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* SPRINT WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$sprint-color: #2268ae;
 .widget.current-sprint.days-left {
   h1 strong {
-    color: #32c6c1;// $ez-bad;
+    color: $sprint-color;
     font-size: 3.5rem;
   }
   .progress-bar .trail {
     stroke: #fff;
   }
   .progress-bar .path {
-    stroke: #32c6c1;
+    stroke: $sprint-color;
   }
 }
 
@@ -45,6 +46,15 @@ html, .main, .react-grid-layout {
   font-size: $clockFontSize;
   align-items: center;
 
+  .content {
+    width: 100%;
+    > div {
+      @extend %flexColumn;
+    }
+    .date {
+      padding-bottom: 20px;
+    }
+  }
   .icon {
     @extend %icon;
     width: 30px;
@@ -125,3 +135,4 @@ html, .main, .react-grid-layout {
     flex-direction: column;
   }
 }
+

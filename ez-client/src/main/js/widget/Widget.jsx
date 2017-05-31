@@ -27,8 +27,8 @@ class Widget extends React.Component {
 
 Widget.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
-  subTitle: PropTypes.string,
+  title: PropTypes.node,
+  subTitle: PropTypes.node,
   content: PropTypes.node,
   footer: PropTypes.node
 };

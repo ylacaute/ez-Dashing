@@ -5,10 +5,6 @@ import CircularProgressBar from 'js/chart/CircularProgressBar.jsx'
 
 class JenkinsBuildMetric extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <CircularProgressBar
@@ -18,5 +14,9 @@ class JenkinsBuildMetric extends React.Component {
     );
   }
 }
+
+JenkinsBuildMetric.propTypes = {
+  value: PropTypes.number.isRequired
+};
 
 export default JenkinsBuildMetric;
