@@ -17,7 +17,7 @@
 package com.thorpora.ezdashing;
 
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
-import com.thorpora.ezdashing.sonar.SonarProperties;
+import com.thorpora.ezdashing.sonar.JiraProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class StartupListener {
     private JenkinsProperties jenkinsProperties;
 
     @Autowired
-    private SonarProperties sonarProperties;
+    private JiraProperties sonarProperties;
 
     @EventListener(ContextRefreshedEvent.class)
     public void devContextRefreshedEvent() {

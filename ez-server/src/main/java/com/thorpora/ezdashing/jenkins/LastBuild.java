@@ -47,6 +47,6 @@ public class LastBuild {
     /**
      * Status of the build, see {@link com.offbytwo.jenkins.model.BuildResult} for possible values
      */
-    private String status;
+    private String state;
 
 }

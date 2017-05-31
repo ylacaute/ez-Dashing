@@ -14,34 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.sonar;
+package com.thorpora.ezdashing.jira;
 
+
+import com.atlassian.jira.rest.client.api.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/sonar")
-public class SonarController {
+public class JiraController {
 
-    private static final Logger logger = LoggerFactory.getLogger(SonarController.class);
+    private static final Logger logger = LoggerFactory.getLogger(JiraController.class);
 
-    private SonarClient client;
+    private JiraClient client;
 
     @Autowired
-    public SonarController(SonarClient client) {
+    public JiraController(JiraClient client) {
         this.client = client;
     }
 
-    @GetMapping("/summary")
-    public SonarSummary getSummary(@RequestParam String projectKey) {
-        // TODO: LOG REQUEST WITH AOP
-        logger.debug("GET /api/sonar/summary?projectKey={}", projectKey);
-        return client.getSonarSummary(projectKey);
+    @GetMapping("/test")
+    public User test() {
+        return client.test();
     }
-
 }

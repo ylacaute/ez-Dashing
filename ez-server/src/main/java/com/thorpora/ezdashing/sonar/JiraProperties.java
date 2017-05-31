@@ -29,7 +29,7 @@ import java.net.URISyntaxException;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "sonar")
-public class SonarProperties {
+public class JiraProperties {
 
     /**
      * Sample : "http://localhost:9000"
@@ -40,11 +40,4 @@ public class SonarProperties {
 
     private String password;
 
-    public URI getJenkinsURI() {
-        try {
-            return new URI(baseUrl);
-        } catch (URISyntaxException ex) {
-            throw new JenkinsException("Jenkins baseUrl is invalid", ex);
-        }
-    }
 }

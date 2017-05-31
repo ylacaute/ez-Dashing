@@ -1,5 +1,5 @@
 /**
- * Created by Yannick Lacaute on 22/12/16.
+ * Created by Yannick Lacaute on 17/05/17.
  * Copyright 2015-2016 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,20 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.core.error;
+package com.thorpora.ezdashing.jira;
 
-import lombok.Getter;
-import lombok.Setter;
+public class JiraException extends RuntimeException {
 
-import java.util.List;
+    public JiraException(String message) {
+        super(message);
+    }
 
-@Getter
-@Setter
-public class ErrorDTO {
-
-    private String timeStamp;
-    private String path;
-    private String message;
-    private List<Object> details;
+    public JiraException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

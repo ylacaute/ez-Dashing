@@ -1,5 +1,5 @@
 /**
- * Created by Yannick Lacaute on 22/12/16.
+ * Created by Yannick Lacaute on 17/05/17.
  * Copyright 2015-2016 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,20 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.core.error;
+package com.thorpora.ezdashing.jira;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Getter
 @Setter
-public class ErrorDTO {
+@Component
+@ConfigurationProperties(prefix = "jira")
+public class JiraProperties {
 
-    private String timeStamp;
-    private String path;
-    private String message;
-    private List<Object> details;
+    /**
+     * Sample : "http://localhost:9000"
+     */
+    private String baseUrl;
 
+    private String userName;
+
+    private String password;
+
+    public URI getJiraURI() {
+        try {
+            return new URI(baseUrl);
+        } catch (URISyntaxException ex) {
+            throw new JiraException("Jira baseUrl is invalid", ex);
+        }
+    }
 }

@@ -29,9 +29,19 @@ public class SonarConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(SonarConfig.class);
 
+    /*
+    We can't create a singleton since this version doesn't manage multi thread correctly -_-
+    TODO : replace connection manager and try to use a single sonar server instance
+    @Bean
+    public Sonar Sonar(SonarProperties sonarProperties) {
+        logger.debug("Creating Sonar client...");
+        Host server = new Host(sonarProperties.getBaseUrl(), sonarProperties.getUserName(), sonarProperties.getPassword()); //, sonarProperties.getUserName(), sonarProperties.getPassword()
+        Sonar sonar = new Sonar(new HttpClient4Connector(server));
+        return sonar;
+    }
+    */
 
     /*
-
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
                 cm.setMaxTotal(20);
                 cm.setDefaultMaxPerRoute(20);
@@ -40,14 +50,6 @@ public class SonarConfig {
                 CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(cm)
                 .build();
-*/
-
-    @Bean
-    public Sonar Sonar(SonarProperties sonarProperties) {
-        logger.debug("Creating Sonar client...");
-        Host server = new Host(sonarProperties.getBaseUrl(), sonarProperties.getUserName(), sonarProperties.getPassword()); //, sonarProperties.getUserName(), sonarProperties.getPassword()
-        Sonar sonar = new Sonar(new HttpClient4Connector(server));
-        return sonar;
-    }
+    */
 
 }

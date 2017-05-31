@@ -39,68 +39,31 @@ import java.util.TimeZone;
 public class JenkinsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JenkinsController.class);
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
 
-    private JenkinsProperties properties;
-    private JenkinsServer server;
+    private JenkinsClient client;
 
     @Autowired
-    public JenkinsController(JenkinsProperties properties, JenkinsServer server) {
-        this.properties = properties;
-        this.server = server;
+    public JenkinsController(JenkinsClient client) {
+        this.client = client;
     }
 
-    /*
-    {
-      "literalVersion" : "1.642.4"
-    }
+    /**
+     * Sample result : {"literalVersion" : "1.642.4"}
      */
     @GetMapping("/version")
     public JenkinsVersion getVersion() {
-        assertServerIsRunning();
-        return server.getVersion();
+        return client.getVersion();
     }
 
     @GetMapping("/lastBuild/{jobName}/{branch}")
     public LastBuild getLastBuild(
             @PathVariable String jobName,
             @PathVariable String branch) throws IOException {
-
         // TODO: LOG REQUEST WITH AOP
         logger.debug("GET /api/jenkins/lastBuild/{}/{}", jobName, branch);
-
-        assertServerIsRunning();
-        String jobUrl = properties.getJobBaseUrl() + jobName;
-        server.getJob(jobName);
-        FolderJob folder = new FolderJob(jobName, jobUrl);
-        Job job = server.getJobs(folder).get(branch);
-        BuildWithDetails details = job.details().getLastBuild().details();
-        String lastUpdate = Instant
-                .ofEpochMilli(details.getTimestamp())
-                .atZone(TimeZone.getDefault().toZoneId())
-                .format(formatter);
-        String author = details.getCulprits().isEmpty() ? "" :details.getCulprits().get(0).getFullName();
-        return LastBuild.builder()
-                .jobName(jobName)
-                .branch(branch)
-                .id(details.getId())
-                .lastUpdate(lastUpdate)
-                .duration(details.getDuration())
-                .estimatedDuration(details.getEstimatedDuration())
-                .author(author)
-                .status(details.getResult().toString())
-                .build();
+        return client.getLastBuild(jobName, branch);
     }
 
-    @GetMapping("/properties")
-    public JenkinsProperties getProperties() {
-        return properties;
-    }
 
-    private void assertServerIsRunning() {
-        if (!server.isRunning()) {
-            throw new JenkinsException("server is not running !");
-        }
-    }
 
 }
