@@ -41,7 +41,9 @@ public class SonarController {
     public SonarSummary getSummary(@RequestParam String projectKey) {
         // TODO: LOG REQUEST WITH AOP
         logger.debug("GET /api/sonar/summary?projectKey={}", projectKey);
-        return client.getSonarSummary(projectKey);
+        SonarSummary sonarSummary = client.getSonarSummary(projectKey);
+        logger.debug("Response for Sonar: {}", sonarSummary);
+        return sonarSummary;
     }
 
 }

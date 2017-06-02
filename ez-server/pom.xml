@@ -38,6 +38,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
+    <httpasyncclient.version>4.0-beta3-atlassian-1</httpasyncclient.version>
+    <httpclient.version>4.2.1-atlassian-2</httpclient.version>
   </properties>
 
 
@@ -100,6 +102,17 @@
       <artifactId>jenkins-client</artifactId>
       <version>0.3.7</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>22.0</version>
+    </dependency>
+
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

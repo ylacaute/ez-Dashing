@@ -46,10 +46,10 @@ public class SonarClient {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
 
-    private JiraProperties properties;
+    private SonarProperties properties;
 
     @Autowired
-    public SonarClient(JiraProperties properties) {
+    public SonarClient(SonarProperties properties) {
         this.properties = properties;
     }
 
@@ -63,7 +63,7 @@ public class SonarClient {
      */
     public SonarSummary getSonarSummary(String projectKey) {
         Sonar sonar = getServerSonar();
-
+        logger.info("Sonar request: metrics lines, coverage, violations for projectKey={}", projectKey);
         //ResourceQuery query = new ResourceQuery(projectKey);
         //query.setIncludeTrends(true);
         //Resource resource = server.find(query);

@@ -60,12 +60,12 @@ class SonkinsWidget extends BaseWidget {
       return (
         <div>
           <div className="last-update">
-            <div>Jenkins : 25/05 - 12:30</div>
-            <div>Sonar : 25/05 - 15:30</div>
+            <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
+            <div>Sonar : {this.state.sonarLastUpdate}</div>
           </div>
           <div className="metrics">
             <BuildAuthor avatars={this.props.avatars} jenkinsAuthor={this.state.buildAuthor}/>
-            <SonarViolationMetric value={0}/>
+            <SonarViolationMetric value={this.state.violations}/>
           </div>
         </div>
       );

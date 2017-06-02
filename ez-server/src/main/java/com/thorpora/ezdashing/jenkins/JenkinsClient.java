@@ -53,6 +53,7 @@ public class JenkinsClient {
     }
 
     public LastBuild getLastBuild(String jobName, String branch) {
+        logger.info("Jenkins request: lastBuild with jobName={}, branch={}", jobName, branch);
         assertServerIsRunning();
         BuildWithDetails details = getBuildWithDetails(jobName, branch);
         String lastUpdate = Instant
@@ -67,6 +68,7 @@ public class JenkinsClient {
                 .lastUpdate(lastUpdate)
                 .duration(details.getDuration())
                 .estimatedDuration(details.getEstimatedDuration())
+                .progress(75)
                 .author(author)
                 .state(details.getResult().toString())
                 .build();

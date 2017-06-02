@@ -13,7 +13,7 @@ class CodeCoverageMetric extends React.Component {
     return (
       <LinearProgressBar
         className="code-coverage"
-        value={this.props.value}
+        value={parseInt(this.props.value)}
         label="Code Coverage"
         textForValue={(value) => `${value} %`}
         classForValue={(val) => {

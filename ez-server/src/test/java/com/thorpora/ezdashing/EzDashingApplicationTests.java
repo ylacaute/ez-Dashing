@@ -1,7 +1,7 @@
 package com.thorpora.ezdashing;
 
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
-import com.thorpora.ezdashing.sonar.JiraProperties;
+import com.thorpora.ezdashing.sonar.SonarProperties;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ public class EzDashingApplicationTests {
 	private JenkinsProperties jenkinsProperties;
 
 	@Autowired
-	private JiraProperties sonarProperties;
+	private SonarProperties sonarProperties;
 
 	@Test
 	public void contextLoads() {

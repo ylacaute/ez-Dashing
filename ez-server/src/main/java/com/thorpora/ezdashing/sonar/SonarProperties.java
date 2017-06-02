@@ -16,20 +16,16 @@
  */
 package com.thorpora.ezdashing.sonar;
 
-import com.thorpora.ezdashing.jenkins.JenkinsException;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 @Getter
 @Setter
 @Component
 @ConfigurationProperties(prefix = "sonar")
-public class JiraProperties {
+public class SonarProperties {
 
     /**
      * Sample : "http://localhost:9000"

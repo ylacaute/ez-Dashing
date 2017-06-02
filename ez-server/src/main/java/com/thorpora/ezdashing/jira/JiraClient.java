@@ -19,7 +19,7 @@ package com.thorpora.ezdashing.jira;
 import com.atlassian.jira.rest.client.api.JiraRestClient;
 import com.atlassian.jira.rest.client.api.domain.User;
 import com.atlassian.util.concurrent.Promise;
-import com.thorpora.ezdashing.sonar.JiraProperties;
+import com.thorpora.ezdashing.sonar.SonarProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +37,11 @@ public class JiraClient {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
 
-    private JiraProperties properties;
+    private SonarProperties properties;
     private JiraRestClient jira;
 
     @Autowired
-    public JiraClient(JiraProperties properties, JiraRestClient jira) {
+    public JiraClient(SonarProperties properties, JiraRestClient jira) {
         this.properties = properties;
         this.jira = jira;
     }

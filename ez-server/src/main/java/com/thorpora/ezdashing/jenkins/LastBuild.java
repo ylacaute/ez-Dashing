@@ -1,12 +1,10 @@
 package com.thorpora.ezdashing.jenkins;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Builder
-@Getter
-@Setter
+@Data
 public class LastBuild {
 
     /**
@@ -48,5 +46,7 @@ public class LastBuild {
      * Status of the build, see {@link com.offbytwo.jenkins.model.BuildResult} for possible values
      */
     private String state;
+
+    private int progress;
 
 }

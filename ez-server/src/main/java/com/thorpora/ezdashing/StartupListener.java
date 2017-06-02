@@ -17,7 +17,8 @@
 package com.thorpora.ezdashing;
 
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
-import com.thorpora.ezdashing.sonar.JiraProperties;
+import com.thorpora.ezdashing.jira.JiraProperties;
+import com.thorpora.ezdashing.sonar.SonarProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,19 @@ public class StartupListener {
     private JenkinsProperties jenkinsProperties;
 
     @Autowired
-    private JiraProperties sonarProperties;
+    private SonarProperties sonarProperties;
+
+    @Autowired
+    private JiraProperties jiraProperties;
 
     @EventListener(ContextRefreshedEvent.class)
     public void devContextRefreshedEvent() {
         logger.info("Jenkins baseUrl: {}", jenkinsProperties.getBaseUrl());
         logger.info("Jenkins username: {}", jenkinsProperties.getUserName());
         logger.info("Sonar baseUrl: {}", sonarProperties.getBaseUrl());
-        logger.info("Application ready");
+        logger.info("Sonar username: {}", sonarProperties.getUserName());
+        logger.info("Jira baseUrl: {}", jiraProperties.getBaseUrl());
+        logger.info("Jira username: {}", jiraProperties.getUserName());
     }
 
 }

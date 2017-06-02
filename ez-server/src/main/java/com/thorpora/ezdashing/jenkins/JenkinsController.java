@@ -16,11 +16,7 @@
  */
 package com.thorpora.ezdashing.jenkins;
 
-import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.helper.JenkinsVersion;
-import com.offbytwo.jenkins.model.BuildWithDetails;
-import com.offbytwo.jenkins.model.FolderJob;
-import com.offbytwo.jenkins.model.Job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
 
 @RequestMapping("/api/jenkins")
 @RestController
@@ -61,7 +54,9 @@ public class JenkinsController {
             @PathVariable String branch) throws IOException {
         // TODO: LOG REQUEST WITH AOP
         logger.debug("GET /api/jenkins/lastBuild/{}/{}", jobName, branch);
-        return client.getLastBuild(jobName, branch);
+        LastBuild lastBuild = client.getLastBuild(jobName, branch);
+        logger.debug("Response for Jenkins: {}", lastBuild);
+        return lastBuild;
     }
 
 
