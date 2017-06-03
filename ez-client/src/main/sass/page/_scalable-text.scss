@@ -1,12 +1,20 @@
 
 $textColor: $ez-base;
 
+.scalable-text.grow {
+  flex-grow: 1;
+}
+
 .scalable-text {
   @extend %flexColumn;
-  .text {
+  text {
     fill: $textColor;
     dominant-baseline: middle;
-    text-anchor: middle;
-    font-size: 10px;
+    font-size: 0.8rem;
+  }
+  image {
+    //transform: rotate(20deg);
   }
 }
+
+

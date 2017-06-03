@@ -1,0 +1,18 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SPRINT WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$sprint-color: #2268ae;
+.widget.current-sprint.days-left {
+  h1 strong {
+    color: $sprint-color;
+    font-size: 3.5rem;
+  }
+  .progress-bar .trail {
+    stroke: #fff;
+  }
+  .progress-bar .path {
+    stroke: $sprint-color;
+  }
+}
+
+

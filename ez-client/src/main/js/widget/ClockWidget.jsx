@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
 import BaseWidget from 'js/widget/BaseWidget.jsx';
-import ScalableText from 'js/chart/ScalableText.jsx';
+import ScalableText from 'js/chart/ScalableTextWithIcon.jsx';
 
 class ClockWidget extends BaseWidget {
 
@@ -42,8 +42,12 @@ class ClockWidget extends BaseWidget {
         title={this.props.displayName}
         content={
           <div>
-            <ScalableText className="date" text={this.state.date} />
-            <ScalableText className="time" text={`${this.state.hours}:${this.state.minutes}:${this.state.seconds}`} />
+            <ScalableText className="date"
+                          text={this.state.date}
+                          textAnchor="middle"/>
+            <ScalableText className="time"
+                          text={`${this.state.hours}:${this.state.minutes}:${this.state.seconds}`}
+                          textAnchor="middle"/>
           </div>
         }
       />

@@ -18,6 +18,7 @@
 .icon.sass       { background-image: url('#{$image-path}/tech/sass.svg'); }
 .icon.sonar      { background-image: url('#{$image-path}/tech/sonar.svg'); }
 .icon.webpack    { background-image: url('#{$image-path}/tech/webpack.svg'); }
+.icon.arrow-up   { background-image: url('#{$image-path}/icon/arrow-up.svg'); }
 
 // A size must be specified
 %icon {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ScalableImage from 'js/chart/ScalableImage.jsx'
-
+import ScalableText from 'js/chart/ScalableText.jsx'
 
 const DEFAULT_AVATAR = {
   nick: 'ANONYMOUS',

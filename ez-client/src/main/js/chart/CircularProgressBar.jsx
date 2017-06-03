@@ -36,7 +36,8 @@ class CircularProgressBar extends React.Component {
   render() {
     const classNames = `progress-bar circular ${this.props.className} 
       ${this.props.classForValue(this.props.value, this.props.displayValue)}`;
-    const radius = (50 - this.props.strokeWidth / 2);
+    const largerStrokeWidth = this.props.strokeWidth + 1.2;
+    const radius = (50 - largerStrokeWidth / 2);
     const diameter = Math.PI * 2 * radius;
     const progressStyle = {
       strokeDasharray: `${diameter}px ${diameter}px`,
@@ -62,7 +63,7 @@ class CircularProgressBar extends React.Component {
           <path
             className="path"
             d={pathDescription}
-            strokeWidth={this.props.strokeWidth + 0.8}
+            strokeWidth={largerStrokeWidth}
             fillOpacity={0}
             style={progressStyle}/>
           <text className="display-value" x={50} y={displayValueY}>

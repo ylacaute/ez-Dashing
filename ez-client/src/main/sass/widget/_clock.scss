@@ -1,0 +1,27 @@
+
+$clockFontSize: 2rem;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CLOCK WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.widget.clock {
+  font-size: $clockFontSize;
+  align-items: center;
+  .content {
+    width: 100%;
+    > div {
+      @extend %flexColumn;
+    }
+    .date {
+      padding-bottom: 20px;
+    }
+  }
+  .icon {
+    @extend %icon;
+    width: 30px;
+    height: 30px;
+  }
+  .scalable-text text {
+    fill: #36afb3;
+  }
+}

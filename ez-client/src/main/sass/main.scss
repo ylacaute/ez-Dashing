@@ -68,14 +68,22 @@ $ez-widget-jenkins-health-bg: $ez-widget-bg;
   justify-content: center;
   flex-direction: column;
 }
-
+%flexRow {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
 
 // Components
 @import 'core/progress-bar';
 @import 'page/container';
-@import 'page/widget';
+@import 'widget/widget';
+@import 'widget/sonkins';
+@import 'widget/jenkinsMonitoring';
+@import 'widget/clock';
+@import 'widget/sprint';
+@import 'metric/metrics';
 @import 'page/scalable-text';
-@import 'page/avatar';
 
 // Page specific style
 @import 'page/index';

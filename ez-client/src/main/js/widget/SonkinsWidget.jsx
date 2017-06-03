@@ -10,6 +10,12 @@ import SonarClient from 'js/client/SonarClient.jsx';
 import CodeCoverageMetric from 'js/fragment/CodeCoverageMetric.jsx';
 import SonarViolationMetric from 'js/fragment/SonarViolationMetric.jsx';
 import BuildAuthor from 'js/fragment/BuildAuthor.jsx';
+import SimpleMetric from 'js/fragment/SimpleMetric.jsx';
+import ScalableImage from 'js/chart/ScalableImage.jsx';
+import LinesMetric from 'js/fragment/LinesMetric.jsx';
+
+import ScalableTextWithIcon from 'js/chart/ScalableTextWithIcon.jsx';
+
 
 class SonkinsWidget extends BaseWidget {
 
@@ -52,31 +58,93 @@ class SonkinsWidget extends BaseWidget {
     }
     if (this.state.state == 'REBUILDING') {
       return (
-        <div className="single">
+
           <JenkinsBuildMetric value={this.state.progress}/>
-        </div>
+
       );
     } else {
+      /*
+       <SonarViolationMetric value={0}/>
+       <SonarViolationMetric value={2}/>
+       */
+      //
+
+      /*
+       <SimpleMetric label="Lines"
+       value={45}
+       fixedLabelWidth={45}
+       fixedValueWidth={22}
+       classForValue={(val) => {
+       if (val > 40) return "good";
+       if (val > 30) return "avg";
+       return "bad";
+       }}
+       textForValue={(val) => `${val}k`}/>
+       */
+      /*
+
+       <ScalableImage className="arrow-up" />
+
+
+
+       <div className="last-update">
+       <div>Jenkins : 25/05 - 12:30</div>
+       <div>Sonar : 25/05 - 15:30</div>
+       </div>
+
+       <div className="last-update">
+       <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
+       <div>Sonar : {this.state.sonarLastUpdate}</div>
+       </div>
+       <SonarViolationMetric value={0}/>
+
+
+       <LinesMetric lines={42}/>
+       <ScalableTextWithIcon
+       text="25/05 - 12:30"
+       textAnchor="middle"
+       wViewPort={70}/>
+       <ScalableTextWithIcon
+       text="25/05 - 12:30"
+       textAnchor="middle"
+       wViewPort={70}/>
+
+       */
       return (
         <div>
-          <div className="last-update">
-            <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
-            <div>Sonar : {this.state.sonarLastUpdate}</div>
-          </div>
           <div className="metrics">
+            <SimpleMetric
+              value={0} fixedValueWidth={20}
+              label="Violations" fixedLabelWidth={60}
+              classForValue={(val) => {
+                if (val > 10) return "bad";
+                if (val > 0) return "avg";
+                return "good";
+              }}/>
             <BuildAuthor avatars={this.props.avatars} jenkinsAuthor={this.state.buildAuthor}/>
-            <SonarViolationMetric value={this.state.violations}/>
           </div>
+
         </div>
       );
     }
   }
 
+  renderBeforeContent() {
+    return (
+      <div className="before-content last-update">
+        <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
+        <div>Sonar : {this.state.sonarLastUpdate}</div>
+      </div>
+    );
+  }
+
   renderFooter() {
-    if (this.state.state == 'UNKNOWN') {
+    if (this.state.state == 'UNKNOWN' || this.state.state == 'REBUILDING') {
       return <div></div>;
     }
-    return <CodeCoverageMetric value={this.state.coverage}/>;
+    return (
+      <CodeCoverageMetric value={this.state.coverage}/>
+    );
   }
 
   render() {

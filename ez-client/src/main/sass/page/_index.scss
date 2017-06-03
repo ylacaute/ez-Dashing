@@ -1,11 +1,10 @@
 
-$clockFontSize: 2rem;
 
-html, .main, .react-grid-layout {
+html, body > section, .react-grid-layout {
   background-color: $ez-grid-bg;
 }
 
-.main {
+body > section {
   font-size: $base-font-size;
 }
 
@@ -22,117 +21,10 @@ html, .main, .react-grid-layout {
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* SPRINT WIDGET
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$sprint-color: #2268ae;
-.widget.current-sprint.days-left {
-  h1 strong {
-    color: $sprint-color;
-    font-size: 3.5rem;
-  }
-  .progress-bar .trail {
-    stroke: #fff;
-  }
-  .progress-bar .path {
-    stroke: $sprint-color;
-  }
-}
-
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* CLOCK WIDGET
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.clock {
-  font-size: $clockFontSize;
-  align-items: center;
-
-  .content {
-    width: 100%;
-    > div {
-      @extend %flexColumn;
-    }
-    .date {
-      padding-bottom: 20px;
-    }
-  }
-  .icon {
-    @extend %icon;
-    width: 30px;
-    height: 30px;
-  }
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Scalable-image
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .scalable-image {
   @extend %icon;
   flex: 1;
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* WIDGET : SONKINS (SONAR + JENKINS)
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.sonkins.UNSTABLE header, .widget.sonkins.FAILURE header {
-  background-color: $ez-bad;
-}
-
-.widget.sonkins.SUCCESS header {
-  //background-color: $ez-good;
-}
-.widget.sonkins.REBUILDING header {
-  background-color: $ez-building;
-}
-
-.sonkins .content {
-  > div {
-    @extend %flexColumn;
-    flex-grow: 1;
-    /*> div {
-      padding: $ez-gap / 2;
-    }*/
-  }
-  .last-update {
-    //border: 1px solid red;
-    text-align: right;
-    padding-bottom: 0.5rem;
-    font-size: 1.2rem;
-  }
-  .metrics {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    > div {
-      padding: $ez-gap / 2;
-    }
-  }
-}
-
-// FRAGMENT
-.jenkins-build.progress-bar {
-  .path {
-    stroke: $ez-building;
-  }
-  .display-value, .label {
-    dominant-baseline: middle;
-  }
-  .display-value {
-    font-size: 3rem;
-    fill: $ez-building;
-  }
-}
-
-// FRAMGENT
-.build-author {
-  @extend %flexColumn;
-  flex-grow: 1;
-}
-
-.widget.jenkins-monitoring .content {
-  > div {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-  }
 }
 
