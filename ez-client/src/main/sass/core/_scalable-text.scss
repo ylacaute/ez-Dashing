@@ -1,0 +1,13 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Scalable text (SVG)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$ez-base: #fff !default;
+
+.scalable-text {
+  @extend %flexColumn;
+  text {
+    fill: $ez-base;
+    dominant-baseline: middle;
+    font-size: 0.8rem;
+  }
+}

@@ -1,41 +1,6 @@
-
-// Main configuration (variables)
-@import "config.scss";
-
-// Knacss config
-@import "../../../node_modules/knacss/sass/_config/breakpoints";
-@import "../../../node_modules/knacss/sass/_config/mixins";
-@import "../../../node_modules/knacss/sass/_config/variables";
-
-// Normalize (basic reset)
-@import "../../../node_modules/knacss/sass/_vendor/normalize";
-
-// Basic style
-@import "../../../node_modules/knacss/sass/library/base";
-
-// Basic form style
-@import "../../../node_modules/knacss/sass/library/forms";
-
-// App framework styles
-@import "core/core-mixins";
-@import "core/buttons";
-@import 'core/tooltip';
-@import 'core/quote';
-@import 'core/effect/paper-effect';
-@import 'core/effect/font-effects';
-@import 'core/effect/icon-effects';
-@import 'core/icons';
-@import 'core/page-layout';
-
-
-
-
-
-
-/* EDF ORANGE : #ef481e */
-/* EDF BLUE : #193370 */
-/* DASHING GREEN : #94c140 */
-/* DASHING TURQ : #43bbb2 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing main configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 $ez-base: #fff;
 $ez-good: #74b53c;
 $ez-bad: #c65555;
@@ -43,27 +8,14 @@ $ez-avg: #df701f;
 $ez-building: #dcae41;
 $ez-date: #36afb3;
 $ez-sprint: #2268ae;
-
-$ez-gap: 1rem;
-
-$tmp: #314356;
-
-$ez-grid-bg: $dark-bg-color;
+$ez-grid-bg: #242424;
 $ez-grid-placeholder: $ez-base !important;
-
-$ez-widget-bg: #30353c; //#314356;//rgba(51, 67, 76, 1); //#33434c;         //
-$ez-widget-bg-header: rgba(33, 33, 33, 0.5); //#314356;//#466d6f;//
-
+$ez-gap: 1rem;
+$ez-widget-bg: #30353c;
+$ez-widget-bg-header: rgba(33, 33, 33, 0.5);
 $ez-widget-text-header: rgba(255, 255, 255, 0.8);
 $ez-widget-text-color: white;
-$ez-widget-more-text-color: rgba(33, 33, 33, 0.1);
-$ez-widget-opacity: 0.85;
-$ez-widget-last-update-color: #000;
-$ez-clock-widget-bg: #314356;
-$ez-team-widget-bg: #314356;
-$ez-jenkins-widget-bg: #999;
-
-$ez-widget-jenkins-health-bg: $ez-widget-bg;
+$image-path: '/img' !default;
 
 %flexColumn {
   display: flex;
@@ -76,23 +28,28 @@ $ez-widget-jenkins-health-bg: $ez-widget-bg;
   flex-direction: row;
 }
 
-// Components
+// Knacss
+@import "../../../node_modules/knacss/sass/_config/breakpoints";
+@import "../../../node_modules/knacss/sass/_config/mixins";
+@import "../../../node_modules/knacss/sass/_config/variables";
+@import "../../../node_modules/knacss/sass/_vendor/normalize";
+
+// Framework
+@import "core/core-mixins";
+@import 'core/icons';
 @import 'core/progress-bar';
-@import 'page/container';
+@import 'core/effect/blink_effect';
+@import 'core/effect/flip_effect';
+@import 'core/scalable-text';
+@import 'core/scalable-image';
+
+// Widgets
 @import 'widget/widget';
 @import 'widget/sonkins';
 @import 'widget/jenkinsMonitoring';
 @import 'widget/clock';
 @import 'widget/sprint';
 @import 'metric/metrics';
-@import 'page/scalable-text';
-@import 'core/effect/blink_effect';
-@import 'core/effect/flip_effect';
-
-// Page specific style
-@import 'page/index';
-
-
 
 
 html {
@@ -109,19 +66,33 @@ html {
   margin: 0;
 }
 html, body {
-  color: $base-color;
+  color: $ez-base;
+}
+html, body > section, .react-grid-layout {
+  background-color: $ez-grid-bg;
 }
 body {
   margin: 0;
   padding: 0;
 }
-::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {
-  color: $placeholder-color;
-  font-style: italic;
-}
 * {
   text-decoration: none;
   outline:none;
+}
+body > section {
+  font-size: $base-font-size;
+}
+.react-grid-placeholder {
+  background-color: $ez-grid-placeholder;
+}
+#resetBtn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  z-index: 999;
+}
+.date {
+  color: $ez-date;
 }
 
 

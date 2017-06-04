@@ -1,7 +1,8 @@
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* JENKINS MONITORING WIDGET (use 'monitoring' jenkins plugin api)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$ez-avg: #df701f !default;
+$ez-bad: #c65555 !default;
 
 .jenkins-monitoring {
   .content {

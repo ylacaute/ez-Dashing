@@ -13,7 +13,7 @@ class LinesCountMetric extends React.Component {
       iconRotation = 135;
     }
     return (
-      <div className="metric lines">
+      <div className="metric lines-count">
         <ScalableText
           iconUrl="/img/icon/arrow-up-green.png"
           iconRotation={iconRotation}

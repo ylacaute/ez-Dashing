@@ -1,12 +1,13 @@
-
-$ez-base: #fff !default;
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* PROGRESS BAR COMPONENTS (SVG)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 $ez-good: #74b53c !default;
 $ez-avg: #df701f !default;
 $ez-bad: #c65555 !default;
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* LINEAR PROGRESS BAR COMPONENT
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// LINEAR PROGRESS BAR
+
 .linear-progress-bar-wrapper {
   display: flex;
   flex: 1;
@@ -32,9 +33,9 @@ $ez-bad: #c65555 !default;
   }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* CIRCULAR PROGRESS BAR
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// CIRCULAR PROGRESS BAR
+
 .circular-progress-bar-wrapper {
   display: flex;
   flex: 1;
@@ -60,9 +61,9 @@ $ez-bad: #c65555 !default;
   }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* COMMON PROGRESS BAR BEHAVIOUR
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// COMMON PROGRESS BAR BEHAVIOUR
+
 .progress-bar.good {
   .path {
     stroke: $ez-good;

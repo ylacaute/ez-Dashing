@@ -1,5 +1,12 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* METRICS
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$ez-good: #74b53c !default;
+$ez-avg: #df701f !default;
+$ez-bad: #c65555 !default;
 
 
+// SIMPLE METRIC
 
 .metric.simple {
   @extend %flexColumn;
@@ -7,26 +14,10 @@
   width: 100%;
 }
 
-.metric.good {
-  .scalable-text.value text {
-    fill: $ez-good;
-  }
-}
-.metric.avg {
-  .scalable-text.value text {
-    fill: $ez-avg;
-  }
-}
-.metric.bad {
-  .scalable-text.value text {
-    fill: $ez-bad;
-  }
-}
 
+// CODE LINES COUNT METRIC
 
-
-
-.metric.lines {
+.metric.lines-count {
   @extend %flexRow;
   height: 100%;
   flex-grow: 1;
@@ -45,6 +36,20 @@
     flex-grow: 1;
   }
 }
+
+// GENERAL METRIC STATES
+
+.metric.good .scalable-text.value text {
+  fill: $ez-good;
+}
+.metric.avg .scalable-text.value text {
+  fill: $ez-avg;
+}
+.metric.bad .scalable-text.value text {
+  fill: $ez-bad;
+}
+
+
 
 
 

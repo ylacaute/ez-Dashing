@@ -1,25 +1,22 @@
-
-$headerBgColor: $ez-widget-bg-header;
-$titleFontSize: $h1-size;
-$titleColor: $ez-widget-text-header;
-$textColor: $ez-widget-text-color;
-$bgColor: $ez-widget-bg;
-$contentPadding: $ez-gap;
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$ez-widget-bg: #30353c !default;
+$ez-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
+$ez-widget-text-header: rgba(255, 255, 255, 0.8) !default;
+$ez-widget-text-color: white !default;
+$ez-gap: 1rem !default;
+
 .widget {
   @extend %flexColumn;
   height: 100%;
   text-align: center;
-  color: $textColor;
-  background-color: $bgColor;
+  color: $ez-widget-text-color;
+  background-color: $ez-widget-bg;
   header {
     @extend %flexColumn;
-    background-color: $headerBgColor;
-    color: $titleColor;
+    background-color: $ez-widget-bg-header;
+    color: $ez-widget-text-header;
     height: 50%;
     .title {
       fill-opacity: 0.8;
@@ -38,7 +35,7 @@ $contentPadding: $ez-gap;
   .content {
     @extend %flexColumn;
     flex-grow: 1;
-    padding: $contentPadding;
+    padding: $ez-gap;
     height: 100%;
     .single {
       padding-top: 2rem;
