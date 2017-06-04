@@ -20,34 +20,34 @@ $contentPadding: $ez-gap;
     @extend %flexColumn;
     background-color: $headerBgColor;
     color: $titleColor;
-    height: 70px;
-    min-height: 70px;
-    h1 {
-      font-size: $titleFontSize;
+    height: 50%;
+    .title {
+      fill-opacity: 0.8;
       font-weight: bold;
-      margin: 0;
+      flex-grow: 1;
     }
-    label {
-      font-style: italic;
-      margin: 0;
+    .afterTitle {
+      @extend %flexRow;
+      flex-grow: 1;
+      fill-opacity: 0.4;
+      > div {
+        display: flex;
+      }
     }
   }
   .content {
     @extend %flexColumn;
     flex-grow: 1;
     padding: $contentPadding;
-
+    height: 100%;
     .single {
       padding-top: 2rem;
     }
-
     .sk-spinner {
       color: #eee;
       margin: auto;
     }
   }
-
-
 }
 
 

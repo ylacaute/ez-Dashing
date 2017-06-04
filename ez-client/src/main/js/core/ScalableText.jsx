@@ -18,7 +18,7 @@ class ScalableText extends React.Component {
     return this.props.iconUrl != null;
   }
 
-  getIconCfg(wViewPort, hViewPort) {
+  getIconCfg(hViewPort) {
     const hIcon = hViewPort / 100 * this.props.hIconPercent;
     const wIcon = hIcon;
     const yIconAdjustment = -hViewPort / 100 * this.props.yIconAdjustmentPercent;
@@ -39,9 +39,13 @@ class ScalableText extends React.Component {
   }
 
   renderTextOnly(wViewPort, hViewPort) {
-    var xText = this.props.textAnchor == "middle" ? wViewPort / 2 : 0;
     var yText = hViewPort / 2;
-
+    var xText = wViewPort / 2;
+    if (this.props.textAnchor == "start") {
+      xText = 0;
+    } else if (this.props.textAnchor == "end") {
+      xText = wViewPort;
+    }
     return (
       <div className={this.getClassNames()}>
         <svg width="100%" height="100%" viewBox={`0 0 ${wViewPort} ${hViewPort}`}>
@@ -77,7 +81,7 @@ class ScalableText extends React.Component {
   render() {
     const wViewPort = this.props.wViewPort ? this.props.wViewPort : 1 + this.props.text.length * 6;
     const hViewPort = 10;
-    const iconCfg = this.getIconCfg(wViewPort, hViewPort);
+    const iconCfg = this.getIconCfg(hViewPort);
 
     if (this.shouldDisplayIcon()) {
       return this.renderWithIcon(wViewPort, hViewPort, iconCfg);
@@ -98,7 +102,6 @@ ScalableText.propTypes = {
 
 ScalableText.defaultProps = {
   className: '',
-  fixedWidth: 50,
   hIconPercent: 80,
   iconMarginRightPercent: 20,
   yIconAdjustmentPercent: 8,

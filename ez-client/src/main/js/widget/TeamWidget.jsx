@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/Widget.jsx';
+import Widget from 'js/widget/base/Widget.jsx';
 import ScalableImage from 'js/core/ScalableImage.jsx';
-import BaseWidget from 'js/widget/BaseWidget.jsx';
+import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 
-class TeamWidget extends BaseWidget {
+class TeamWidget extends RefreshableWidget {
 
   render() {
     return (

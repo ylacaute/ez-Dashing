@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/Widget.jsx';
-import BaseWidget from 'js/widget/BaseWidget.jsx';
+import Widget from 'js/widget/base/Widget.jsx';
+import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
 
-class ClockWidget extends BaseWidget {
+class ClockWidget extends RefreshableWidget {
 
-  componentWillMount() {
-    this.setTime();
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: '',
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
   }
 
-  componentDidMount() {
-    window.setInterval(function () {
-      this.setTime();
-    }.bind(this), 1000);
-  }
-
-  setTime() {
+  refreshData() {
     let now = new Date();
     let hours = now.getUTCHours() + this.props.UTCOffset;
     let minutes = now.getUTCMinutes();
@@ -57,6 +57,10 @@ class ClockWidget extends BaseWidget {
 
 ClockWidget.propTypes = {
   displayName: PropTypes.string
+};
+
+ClockWidget.defaultProps = {
+  refreshEvery: 1,
 };
 
 export default ClockWidget;

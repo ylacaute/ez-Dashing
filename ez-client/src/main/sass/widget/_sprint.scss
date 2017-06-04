@@ -1,18 +1,28 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* SPRINT WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$sprint-color: #2268ae;
-.widget.current-sprint.days-left {
-  h1 strong {
-    color: $sprint-color;
-    font-size: 3.5rem;
+$sprint-color: $ez-sprint;
+
+.widget.current-sprint {
+  header {
+    padding-left: 10%;
+    @extend %flexRow;
+    .sprint-label {
+      padding-right: 0.5rem;
+    }
+    .sprint-number {
+      padding-left: 0.5rem;
+    }
+    .sprint-number.scalable-text text {
+      fill: $sprint-color;
+    }
   }
-  .progress-bar .trail {
-    stroke: #fff;
-  }
-  .progress-bar .path {
-    stroke: $sprint-color;
+  .content {
+    .progress-bar .trail {
+      stroke: #fff;
+    }
+    .progress-bar .path {
+      stroke: $sprint-color;
+    }
   }
 }
-
-

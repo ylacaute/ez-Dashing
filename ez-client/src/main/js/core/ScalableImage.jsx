@@ -8,7 +8,7 @@ class ScalableImage extends React.Component {
   render() {
     return (
       <div className="scalable-image">
-        <img src={this.props.imgUrl}></img>
+        <img src={this.props.imgUrl} draggable="false" />
         { this.props.label != null &&
         <ScalableText
           className={`label ${this.props.labelClassName}`}

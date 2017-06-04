@@ -74,7 +74,7 @@ LinearProgressBar.propTypes = {
   initialAnimation: PropTypes.bool,
   textForValue: PropTypes.func,
   classForValue: PropTypes.func,
-  displayValue: PropTypes.number
+  displayValue: PropTypes.string
 };
 
 LinearProgressBar.defaultProps = {

@@ -2,46 +2,61 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET : SONKINS (SONAR + JENKINS)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.widget.sonkins.UNSTABLE header, .widget.sonkins.FAILURE header {
-  background-color: $ez-bad;
-}
 
-.widget.sonkins.SUCCESS header {
-  //background-color: $ez-good;
-}
-.widget.sonkins.REBUILDING header {
-  background-color: $ez-building;
-}
+// HEADER
 
-.sonkins .content {
-  height: 100%;
-
-  > div {
-    @extend %flexColumn;
-    flex-grow: 1;
-    height: 100%;
-  }
-  .header {
-    @extend %flexRow;
-    width: 100%;
-    height: 15%;
-
-    //.last-update {
-    //  text-align: right;
-    //  padding-bottom: 0.5rem;
-    //  font-size: 1rem;
-    //  min-width: 30%;
-    //}
-  }
-  .metrics {
-    @extend %flexRow;
-    flex-grow: 1;
-    height: 70%;
-    > div {
-      padding: $ez-gap / 2;
+.sonkins {
+  .afterTitle {
+    .branch {
+      display: flex;
+      padding-right: 30px;
+      width: 50%;
+    }
+    .last-update {
+      @extend %flexColumn;
+      width: 50%;
     }
   }
 }
+
+
+// CONTENT
+
+.sonkins {
+  .content {
+    height: 100%;
+    > div {
+      @extend %flexColumn;
+      flex-grow: 1;
+      height: 100%;
+    }
+    .header {
+      @extend %flexRow;
+      width: 100%;
+      height: 15%;
+    }
+    .metrics {
+      @extend %flexRow;
+      flex-grow: 1;
+      height: 70%;
+      > div {
+        padding: $ez-gap / 2;
+      }
+    }
+  }
+}
+
+// STATES
+
+.widget.sonkins.UNSTABLE header .title, .widget.sonkins.FAILURE header .title {
+  background-color: $ez-bad;
+}
+.widget.sonkins.REBUILDING header .title{
+  background-color: $ez-building;
+}
+
+
+// PART > BUILD-AUTHOR
 
 .build-author {
   @extend %flexColumn;
@@ -50,7 +65,8 @@
 }
 
 
-// FRAGMENT
+// PART > REBUILDING
+
 .jenkins-build.progress-bar {
   .path {
     stroke: $ez-building;
@@ -62,32 +78,4 @@
     font-size: 3rem;
     fill: $ez-building;
   }
-}
-
-
-.last-update {
-  @extend %flexRow;
-  //flex-grow: 1;
-  //width: 100%;
-  //background-color: $ez-widget-bg-header;
-  border-bottom: 3px solid $ez-widget-bg-header;
-  padding-bottom: 5px;
-  > div:nth-child(1) {
-    flex-grow: 1;
-    text-align: left;
-    padding-left: 5px;
-    text {
-      fill: #36afb3;
-    }
-  }
-  > div:nth-child(2) {
-    flex-grow: 1;
-    text-align: right;
-    padding-right: 5px;
-    text {
-      fill: #36afb3;
-    }
-  }
-  font-size: 1.2rem;
-
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/Widget.jsx';
+import Widget from 'js/widget/base/Widget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
 import CircularProgressBar from 'js/core/CircularProgressBar.jsx';
 import DateUtils from 'js/utils/DateUtils';
-import BaseWidget from 'js/widget/BaseWidget.jsx';
+import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 
 /**
  *  sprintDates should be an ordered array of dates corresponding to each start of sprint
@@ -17,7 +17,7 @@ import BaseWidget from 'js/widget/BaseWidget.jsx';
  *
  *  Sprint duration is calculated between dates if found, or with current sprint date + sprint duration property.
  */
-class SprintWidget extends BaseWidget {
+class SprintWidget extends RefreshableWidget {
 
   getCurrentSprintData() {
     let now = new Date();
@@ -80,8 +80,21 @@ class SprintWidget extends BaseWidget {
     return (
       <Widget
         className="current-sprint days-left"
-        title={
-          <span>SPRINT <strong>#7</strong></span>
+        customHeader={
+          <header>
+            <ScalableText
+              className="title sprint-label"
+              text="SPRINT"
+              textAnchor="end"
+              wViewPort={40}
+            />
+            <ScalableText
+              className="title sprint-number"
+              text="#7"
+              textAnchor="start"
+              wViewPort={18}
+            />
+          </header>
         }
         content={
           <CircularProgressBar

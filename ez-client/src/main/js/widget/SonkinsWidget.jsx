@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/Widget.jsx';
-import BaseWidget from 'js/widget/BaseWidget.jsx';
+import Widget from 'js/widget/base/Widget.jsx';
+import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import SonarClient from 'js/client/SonarClient.jsx';
 
@@ -11,7 +11,10 @@ import CodeCoverageMetric from 'js/metric/CodeCoverageMetric.jsx';
 import SonarViolationMetric from 'js/metric/SonarViolationMetric.jsx';
 import BuildAuthorMetric from 'js/metric/BuildAuthorMetric.jsx';
 
-class SonkinsWidget extends BaseWidget {
+import ScalableText from 'js/core/ScalableText.jsx';
+
+
+class SonkinsWidget extends RefreshableWidget {
 
   constructor(props) {
     super(props);
@@ -46,23 +49,39 @@ class SonkinsWidget extends BaseWidget {
     });
   }
 
+  renderAfterTitle() {
+    return (
+      <div className="afterTitle">
+        <ScalableText
+          className="branch"
+          text={this.props.branch}
+          textAnchor="middle"
+        />
+        <div className="last-update">
+          <ScalableText
+            iconUrl="/img/tech/jenkins.png"
+            text={this.state.jenkinsLastUpdate}
+            textAnchor="middle"
+          />
+          <ScalableText
+            iconUrl="/img/tech/sonar.png"
+            text={this.state.sonarLastUpdate}
+            textAnchor="middle"
+          />
+        </div>
+      </div>
+    );
+  }
+
   renderContent() {
     if (this.state.state == 'UNKNOWN') {
       return this.renderLoadingContent();
     }
     if (this.state.state == 'REBUILDING') {
       return (
-
-          <JenkinsBuildMetric value={this.state.progress}/>
-
+        <JenkinsBuildMetric value={this.state.progress}/>
       );
     } else {
-      /*
-       <div className="last-update">
-       <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
-       <div>Sonar : {this.state.sonarLastUpdate}</div>
-       </div>
-       */
       return (
         <div>
           <div className="metrics">
@@ -78,15 +97,6 @@ class SonkinsWidget extends BaseWidget {
         </div>
       );
     }
-  }
-
-  renderBeforeContent() {
-    return (
-      <div className="before-content last-update">
-        <div>Jenkins : {this.state.jenkinsLastUpdate}</div>
-        <div>Sonar : {this.state.sonarLastUpdate}</div>
-      </div>
-    );
   }
 
   renderFooter() {
@@ -105,7 +115,7 @@ class SonkinsWidget extends BaseWidget {
       <Widget
         className={`sonkins ${this.state.state}`}
         title={this.props.displayName}
-        subTitle={this.props.branch}
+        afterTitle={this.renderAfterTitle()}
         content={this.renderContent()}
         footer={this.renderFooter()}
       />
