@@ -1,28 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LinearProgressBar from 'js/core/LinearProgressBar.jsx'
+import LinearProgressBar from 'js/core/LinearProgressBar.jsx';
+import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
 
 class CodeCoverageMetric extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
       <LinearProgressBar
-        className="code-coverage"
+        className="metric code-coverage"
         value={parseInt(this.props.value)}
         label="Code Coverage"
         textForValue={(value) => `${value} %`}
-        classForValue={(val) => {
-          if (val > 65) return "good";
-          if (val > 55) return "avg";
-          return "bad";
-        }}/>
+        classForValue={(val) => ThresholdConfig.get(this.props.thresholds, val)}
+      />
     );
   }
 }
+
+CodeCoverageMetric.propTypes = {
+  value: PropTypes.number.isRequired,
+  thresholds: PropTypes.object
+};
 
 export default CodeCoverageMetric;

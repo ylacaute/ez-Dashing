@@ -83,14 +83,26 @@
     }
   ],
   "avatars" : [{
-    "nick": "Epithor",
-    "jenkinsAuthor": "epi",
+    "displayName": "Epithor",
+    "jenkinsAuthorPattern": ".*epi",
     "url": "/img/avatars/epi.png"
   }, {
-    "nick": "Bob",
+    "displayName": "Bob",
     "jenkinsAuthor": "Bob Marley",
     "url": "/img/logo_clean.png"
   }],
+  "thresholds": {
+    "codeCoverage": {
+      "good" : 64,
+      "avg" : 55,
+      "bad" : 0
+    },
+    "violations": {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
+    }
+  },
   "grid": {
     "breakpoints": {
       "lg": 1200,

@@ -1,23 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CircularProgressBar from 'js/core/CircularProgressBar.jsx'
+import SimpleMetric from 'js/metric/base/SimpleMetric.jsx';
+import ThresholdConfig from 'js/config/ThresholdConfig.jsx'
 
 class SonarViolationMetric extends React.Component {
 
   render() {
     return (
-      <CircularProgressBar className="sonar-violations"
-        value={100}
-        displayValue={this.props.value}
+      <SimpleMetric
+        className="metric violations"
         label="Violations"
-        classForValue={(value, displayValue) => {
-          if (displayValue > 5) return "bad";
-          if (displayValue > 1) return "avg";
-          return "good";
-        }}/>
+        value={this.props.value}
+        fixedValueWidth={20}
+        fixedLabelWidth={60}
+        classForValue={(val) => ThresholdConfig.get(this.props.thresholds, val)}
+      />
     );
   }
 }
+
+SonarViolationMetric.propTypes = {
+  value: PropTypes.number.isRequired,
+  thresholds: PropTypes.object
+};
 
 export default SonarViolationMetric;

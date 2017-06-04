@@ -40,7 +40,7 @@
     "lastUpdate": "28/05 - 15:00",
     "metrics" : {
       "lines": 10,
-      "coverage": 65,
+      "coverage": 56,
       "violations": 415
     }
   },

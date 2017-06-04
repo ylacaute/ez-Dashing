@@ -8,9 +8,10 @@ class JenkinsBuildMetric extends React.Component {
   render() {
     return (
       <CircularProgressBar
-        className="jenkins-build"
+        className="metric jenkins-build"
         value={this.props.value}
-        textForValue={(value) => `${value}%`}/>
+        textForValue={(value) => `${value}%`}
+      />
     );
   }
 }

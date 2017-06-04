@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ScalableText from 'js/core/ScalableText.jsx'
 
-class LinesMetric extends React.Component {
+class LinesCountMetric extends React.Component {
 
   render() {
     var iconRotation = 45;
@@ -18,20 +18,21 @@ class LinesMetric extends React.Component {
           iconUrl="/img/icon/arrow-up-green.png"
           iconRotation={iconRotation}
           text={`${this.props.lines}K Lines`}
-          wViewPort={100}/>
+          wViewPort={100}
+        />
       </div>
     );
   }
 }
 
-LinesMetric.propTypes = {
+LinesCountMetric.propTypes = {
   className: PropTypes.string,
   textForValue: PropTypes.func,
   classForValue: PropTypes.func,
   variation: PropTypes.string
 };
 
-LinesMetric.defaultProps = {
+LinesCountMetric.defaultProps = {
   className: '',
   textForValue: (value) => `${value}`,
   classForValue: (value) => '',
@@ -39,4 +40,4 @@ LinesMetric.defaultProps = {
 
 };
 
-export default LinesMetric;
+export default LinesCountMetric;

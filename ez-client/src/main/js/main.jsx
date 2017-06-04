@@ -42,6 +42,9 @@ class App extends React.Component {
       if (widgetConfig.avatars == null) {
         widgetConfig.avatars = fullConfig.avatars;
       }
+      if (widgetConfig.thresholds == null) {
+        widgetConfig.thresholds = fullConfig.thresholds;
+      }
       return WidgetFactory.create(widgetConfig);
     });
   }

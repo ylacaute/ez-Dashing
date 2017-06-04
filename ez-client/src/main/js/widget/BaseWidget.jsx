@@ -19,7 +19,7 @@ class BaseWidget extends React.Component {
 
   renderLoadingContent() {
     return (
-      <div className="spinner-content">
+      <div>
         <Spinner name='double-bounce' />
       </div>
     );
