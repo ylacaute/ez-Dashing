@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SvgArrow from 'js/chart/SvgArrow.jsx';
-
-
-class ScalableTextWithIcon extends React.Component {
+class ScalableText extends React.Component {
 
   getClassNames() {
     return "scalable-text " + this.props.className;
@@ -56,7 +53,6 @@ class ScalableTextWithIcon extends React.Component {
     );
   }
 
-
   renderWithIcon(wViewPort, hViewPort, iconCfg) {
     var xText = iconCfg.wIcon + iconCfg.iconMarginRight;
     var yText = hViewPort / 2;
@@ -91,24 +87,22 @@ class ScalableTextWithIcon extends React.Component {
   }
 }
 
-ScalableTextWithIcon.propTypes = {
+ScalableText.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
   wViewPort: PropTypes.number,
   iconUrl: PropTypes.string,
   iconRotation: PropTypes.number,
-  textAnchor: PropTypes.string,
-  grow: PropTypes.bool
+  textAnchor: PropTypes.string
 };
 
-ScalableTextWithIcon.defaultProps = {
+ScalableText.defaultProps = {
   className: '',
   fixedWidth: 50,
   hIconPercent: 80,
   iconMarginRightPercent: 20,
   yIconAdjustmentPercent: 8,
-  textAnchor: 'start',
-  grow: true
+  textAnchor: 'start'
 };
 
-export default ScalableTextWithIcon;
+export default ScalableText;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableTextWithIcon from 'js/chart/ScalableTextWithIcon.jsx'
+import ScalableText from 'js/core/ScalableText.jsx'
 
 class LinesMetric extends React.Component {
 
@@ -14,7 +14,7 @@ class LinesMetric extends React.Component {
     }
     return (
       <div className="metric lines">
-        <ScalableTextWithIcon
+        <ScalableText
           iconUrl="/img/icon/arrow-up-green.png"
           iconRotation={iconRotation}
           text={`${this.props.lines}K Lines`}

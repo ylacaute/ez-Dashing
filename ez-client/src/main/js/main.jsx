@@ -1,17 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Responsive, WidthProvider} from 'react-grid-layout';
-import DynGrid from 'js/DynGrid.jsx';
-import WidgetFactory from 'js/WidgetFactory.jsx';
+
+import RestClient from 'js/client/RestClient.jsx';
 import ObjectUtils from 'js/utils/ObjectUtils.js';
-import GridLayoutGenerator from 'js/GridLayoutGenerator.jsx';
+
+import DynGrid from 'js/core/DynGrid.jsx';
+import WidgetFactory from 'js/core/WidgetFactory.jsx';
+import GridLayoutGenerator from 'js/core/GridLayoutGenerator.jsx';
 
 import Style from 'sass/main.scss';
 import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
 import ReactGridResizableStyle from 'react-resizable/css/styles.css';
-import ConfigLoader from 'js/ConfigLoader.jsx';
-
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 class App extends React.Component {
 
@@ -24,16 +24,16 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    ConfigLoader.load((config) => {
+    RestClient.get("/config.json", ((config) => {
       if (ObjectUtils.isNullOrEmpty(config.grid.layouts)) {
-        config.grid.layouts = this.generateLayouts(config);
+        config.grid.layouts = GridLayoutGenerator.generate(config);
       }
       this.setState({
         config: config,
         widgets: this.createAllWidgets(config),
         loaded: true
       });
-    });
+    }));
   }
 
   createAllWidgets(fullConfig) {
@@ -46,31 +46,18 @@ class App extends React.Component {
     });
   }
 
-  generateLayouts(config) {
-    return GridLayoutGenerator.generate(config);
-  }
-
-  renderLoading() {
+  render() {
+    if (this.state.loaded == false) {
+      return <p>Please wait during load...</p>;
+    }
     return (
       <div>
-        <p>Please wait during load...</p>
+        <DynGrid
+          config={this.state.config}
+          widgets={this.state.widgets}>
+        </DynGrid>
       </div>
-    )
-  }
-
-  render() {
-    if (this.state.loaded == true) {
-      return (
-        <div>
-          <DynGrid
-            config={this.state.config}
-            widgets={this.state.widgets}>
-          </DynGrid>
-        </div>
-      );
-    } else {
-      return this.renderLoading();
-    }
+    );
   }
 }
 

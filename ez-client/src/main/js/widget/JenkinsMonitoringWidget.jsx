@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
 import JenkinsClient from 'js/client/JenkinsClient.jsx';
-import LinearProgressBar from 'js/chart/LinearProgressBar.jsx';
+import LinearProgressBar from 'js/core/LinearProgressBar.jsx';
 import BaseWidget from 'js/widget/BaseWidget.jsx';
-import LabelWithValue from 'js/fragment/LabelWithValue.jsx';
+import LabelWithValue from 'js/metric/LabelWithValue.jsx';
 
 class JenkinsMonitoringWidget extends BaseWidget {
 

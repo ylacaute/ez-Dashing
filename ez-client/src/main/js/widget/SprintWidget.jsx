@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
-import ScalableText from 'js/chart/ScalableText.jsx';
-import CircularProgressBar from 'js/chart/CircularProgressBar.jsx';
+import ScalableText from 'js/core/ScalableText.jsx';
+import CircularProgressBar from 'js/core/CircularProgressBar.jsx';
 import DateUtils from 'js/utils/DateUtils';
 import BaseWidget from 'js/widget/BaseWidget.jsx';
 

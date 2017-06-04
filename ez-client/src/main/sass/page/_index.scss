@@ -20,11 +20,21 @@ body > section {
 }
 
 
+.date {
+  color: $ez-date;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Scalable-image
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .scalable-image {
-  @extend %icon;
+  display:flex;
   flex: 1;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
 }
+
 

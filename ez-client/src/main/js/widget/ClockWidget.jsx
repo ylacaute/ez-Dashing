@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Widget from 'js/widget/Widget.jsx';
 import BaseWidget from 'js/widget/BaseWidget.jsx';
-import ScalableText from 'js/chart/ScalableTextWithIcon.jsx';
+import ScalableText from 'js/core/ScalableText.jsx';
 
 class ClockWidget extends BaseWidget {
 

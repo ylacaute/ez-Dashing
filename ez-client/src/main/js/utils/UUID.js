@@ -1,5 +1,4 @@
 
-
 class UUID {}
 
 UUID.random = function() {

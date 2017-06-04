@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LinearProgressBar from 'js/chart/LinearProgressBar.jsx'
+import LinearProgressBar from 'js/core/LinearProgressBar.jsx'
 
 class CodeCoverageMetric extends React.Component {
 

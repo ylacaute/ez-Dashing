@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import Widget from 'js/widget/Widget.jsx';
 import BaseWidget from 'js/widget/BaseWidget.jsx';
 
-import JenkinsBuildMetric from 'js/fragment/JenkinsBuildMetric.jsx'
+import JenkinsBuildMetric from 'js/metric/JenkinsBuildMetric.jsx'
 import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import SonarClient from 'js/client/SonarClient.jsx';
-import CodeCoverageMetric from 'js/fragment/CodeCoverageMetric.jsx';
-import SonarViolationMetric from 'js/fragment/SonarViolationMetric.jsx';
-import BuildAuthor from 'js/fragment/BuildAuthor.jsx';
-import SimpleMetric from 'js/fragment/SimpleMetric.jsx';
-import ScalableImage from 'js/chart/ScalableImage.jsx';
-import LinesMetric from 'js/fragment/LinesMetric.jsx';
+import CodeCoverageMetric from 'js/metric/CodeCoverageMetric.jsx';
+import SonarViolationMetric from 'js/metric/SonarViolationMetric.jsx';
+import BuildAuthor from 'js/metric/BuildAuthorMetric.jsx';
+import SimpleMetric from 'js/metric/SimpleMetric.jsx';
+import ScalableImage from 'js/core/ScalableImage.jsx';
+import LinesMetric from 'js/metric/LinesMetric.jsx';
 
-import ScalableTextWithIcon from 'js/chart/ScalableTextWithIcon.jsx';
+import ScalableText from 'js/core/ScalableText.jsx';
 
 
 class SonkinsWidget extends BaseWidget {
@@ -100,11 +100,11 @@ class SonkinsWidget extends BaseWidget {
 
 
        <LinesMetric lines={42}/>
-       <ScalableTextWithIcon
+       <ScalableText
        text="25/05 - 12:30"
        textAnchor="middle"
        wViewPort={70}/>
-       <ScalableTextWithIcon
+       <ScalableText
        text="25/05 - 12:30"
        textAnchor="middle"
        wViewPort={70}/>
@@ -121,7 +121,10 @@ class SonkinsWidget extends BaseWidget {
                 if (val > 0) return "avg";
                 return "good";
               }}/>
-            <BuildAuthor avatars={this.props.avatars} jenkinsAuthor={this.state.buildAuthor}/>
+            <BuildAuthor
+              avatars={this.props.avatars}
+              jenkinsAuthor={this.state.buildAuthor}
+            />
           </div>
 
         </div>

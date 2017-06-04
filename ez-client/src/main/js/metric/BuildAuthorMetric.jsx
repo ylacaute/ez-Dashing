@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableImage from 'js/chart/ScalableImage.jsx'
-import ScalableText from 'js/chart/ScalableText.jsx'
+import ScalableImage from 'js/core/ScalableImage.jsx'
+
 
 const DEFAULT_AVATAR = {
   nick: 'ANONYMOUS',
   url: "/img/avatars/anonymous_01.png"
 };
+
 
 class BuildAuthor extends React.Component {
 
@@ -23,10 +24,7 @@ class BuildAuthor extends React.Component {
     avatar.nick = this.props.jenkinsAuthor;
     return (
       <div className="build-author">
-        <ScalableImage url={avatar.url} />
-        { this.props.displayName &&
-        <label>{avatar.nick}</label>
-        }
+        <ScalableImage imgUrl={avatar.url} />
       </div>
     );
   }
@@ -35,11 +33,9 @@ class BuildAuthor extends React.Component {
 BuildAuthor.propTypes = {
   avatars: PropTypes.array,
   jenkinsAuthor: PropTypes.string,
-  displayName: PropTypes.bool
 };
 
 BuildAuthor.defaultProps = {
-  displayValue: false
 };
 
 export default BuildAuthor;

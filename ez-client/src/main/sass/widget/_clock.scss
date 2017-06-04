@@ -1,9 +1,11 @@
 
-$clockFontSize: 2rem;
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* CLOCK WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+$clockTextColor: $ez-date;
+$clockFontSize: 2rem;
+
 .widget.clock {
   font-size: $clockFontSize;
   align-items: center;
@@ -22,6 +24,6 @@ $clockFontSize: 2rem;
     height: 30px;
   }
   .scalable-text text {
-    fill: #36afb3;
+    fill: $clockTextColor;
   }
 }
