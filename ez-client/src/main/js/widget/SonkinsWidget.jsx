@@ -19,8 +19,11 @@ class SonkinsWidget extends RefreshableWidget {
   constructor(props) {
     super(props);
     this.state = {
-      jenkinsLastUpdate: '',
-      sonarLastUpdate: '',
+      jenkinsLoaded: false,
+      sonarLoaded: false,
+      exception: null,
+      jenkinsLastUpdate: '--/-- --:--',
+      sonarLastUpdate: '--/-- --:--',
       state: 'UNKNOWN',
       progress: 0,
       buildAuthor: '',
@@ -33,19 +36,28 @@ class SonkinsWidget extends RefreshableWidget {
   refreshData() {
     JenkinsClient.getBuildInfo(this.props.jobName, this.props.branch, (jsonResponse) => {
       this.setState({
+        jenkinsLoaded: true,
         jenkinsLastUpdate: jsonResponse.lastUpdate,
         state: jsonResponse.state,
         progress: jsonResponse.progress,
         buildAuthor: jsonResponse.author
       });
+    }, (exception) => {
+      console.log("Error during Jenkins request, details: ", exception);
+      this.setState({exception: exception});
     });
+
     SonarClient.getSummaryInfos(this.props.projectKey, (jsonResponse) => {
       this.setState({
+        sonarLoaded: true,
         sonarLastUpdate: jsonResponse.lastUpdate,
         lines: jsonResponse.metrics.lines,
         coverage: jsonResponse.metrics.coverage,
         violations: jsonResponse.metrics.violations
       });
+    }, (exception) => {
+      console.log("Error during Sonar request, details: ", exception);
+      this.setState({exception: exception});
     });
   }
 
@@ -74,7 +86,10 @@ class SonkinsWidget extends RefreshableWidget {
   }
 
   renderContent() {
-    if (this.state.state == 'UNKNOWN') {
+    if (this.state.exception != null) {
+      return this.renderError(this.state.exception);
+    }
+    if (this.state.sonarLoaded == false || this.state.jenkinsLoaded == false) {
       return this.renderLoadingContent();
     }
     if (this.state.state == 'REBUILDING') {

@@ -85,6 +85,11 @@
       "key": "ClockWidget",
       "type": "ClockWidget",
       "UTCOffset": 2
+    },
+    {
+      "key": "BugsWidget",
+      "type": "BugsWidget",
+      "displayName": "BUGS"
     }
   ],
   "avatars" : [{
@@ -110,6 +115,11 @@
       "bad" : 10,
       "avg" : 1,
       "good" : 0
+    },
+    "bugs": {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
     }
   },
   "grid": {
@@ -125,7 +135,7 @@
       "md": 4,
       "sm": 4,
       "xs": 2,
-      "xxs": 2
+      "xxs": 1
     },
     "layouts": {},
     "widget_w": 1,

@@ -1,4 +1,12 @@
 {
+  "bugs" : {
+    "total" : 42,
+    "details" : {
+      "p1" : 1,
+      "p2" : 5,
+      "p3" : 36
+    }
+  },
   "jenkinsInfo": {
     "lastUpdate": "28/05 - 15:00",
     "version": "2.46.3",

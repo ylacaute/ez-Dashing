@@ -47,6 +47,9 @@ $contentPadding: $ez-gap;
       color: #eee;
       margin: auto;
     }
+    .error {
+      @extend %flexColumn;
+    }
   }
 }
 

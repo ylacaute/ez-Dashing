@@ -4,6 +4,7 @@ import SonkinsWidget from 'js/widget/SonkinsWidget.jsx';
 import JenkinsMonitoringWidget from 'js/widget/JenkinsMonitoringWidget.jsx';
 import TeamWidget from 'js/widget/TeamWidget.jsx';
 import SprintWidget from 'js/widget/SprintWidget.jsx';
+import BugsWidget from 'js/widget/BugsWidget.jsx';
 
 class WidgetFactory {}
 
@@ -15,6 +16,7 @@ WidgetFactory.create = function(widgetConfiguration) {
     case "JenkinsMonitoringWidget": Component = JenkinsMonitoringWidget; break;
     case "SonkinsWidget": Component = SonkinsWidget; break;
     case "SprintWidget": Component = SprintWidget; break;
+    case "BugsWidget": Component = BugsWidget; break;
   }
   return (
     <div key={widgetConfiguration.key}>

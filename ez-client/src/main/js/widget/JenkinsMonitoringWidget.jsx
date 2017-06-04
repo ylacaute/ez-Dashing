@@ -13,8 +13,10 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   constructor(props) {
     super(props);
     this.state = {
-      lastUpdate: '',
-      version: '',
+      loaded: false,
+      exception: null,
+      lastUpdate: '--/-- --:--',
+      version: '--',
       memory: 0,
       cpu: 0,
       fileDescriptor: 0,
@@ -27,6 +29,7 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   componentDidMount() {
     JenkinsClient.getJenkinsInfo((jsonResponse) => {
       this.setState({
+        loaded: true,
         lastUpdate: jsonResponse.lastUpdate,
         version: jsonResponse.version,
         memory: jsonResponse.memory,
@@ -36,6 +39,9 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
         threadCount: jsonResponse.threadCount,
         freeDiskSpaceInTemp: jsonResponse.freeDiskSpaceInTemp
       });
+    }, (exception) => {
+      console.log("Error during Jenkins monitoring request, details: ", exception);
+      this.setState({exception: exception});
     });
   }
 
@@ -59,6 +65,12 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   }
 
   renderContent() {
+    if (this.state.exception != null) {
+      return this.renderError(this.state.exception);
+    }
+    if (this.state.loaded == false) {
+      return this.renderLoadingContent();
+    }
     const classForValue = (val) => ThresholdConfig.get(this.props.thresholds, val);
     const textForValue = (value) => `${value} %`;
     const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;

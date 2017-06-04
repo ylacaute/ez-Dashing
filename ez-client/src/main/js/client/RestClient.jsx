@@ -5,7 +5,7 @@ headers.append('Content-Type', 'application/json');
 
 class RestClient {}
 
-RestClient.get = function (path, callback) {
+RestClient.get = function (path, callback, errorCallback) {
   let url = window.location.origin + path;
   fetch(url, {
     method: 'GET',
@@ -15,7 +15,9 @@ RestClient.get = function (path, callback) {
   }).then(json => {
     callback(json);
   }).catch(error => {
-    console.log("Error during http request : " + url + ", details: " + error);
+    if (errorCallback != null) {
+      errorCallback(error);
+    }
   });
 };
 

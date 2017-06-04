@@ -1,4 +1,6 @@
 {
+  "/api/jira/bugs" : "/bugs",
+  "/api/sonar/summary": "/sonarSummary",
   "/api/jenkins/info": "/jenkinsInfo",
   "/api/jenkins/lastBuild/bc-gas-sys_-_Analyse_reccurente/master": "/jenkins1",
   "/api/jenkins/lastBuild/elec-similar-home-sys_-_Analyse_reccurente/master": "/jenkins2",
@@ -6,6 +8,5 @@
   "/api/jenkins/lastBuild/gas-tariff-sys_-_Analyse_reccurente/master": "/jenkins4",
   "/api/jenkins/lastBuild/bc-gas-client_-_Analyse_reccurente/master": "/jenkins5",
   "/api/jenkins/lastBuild/elec-similar-home-client_-_Analyse_reccurente/master": "/jenkins6",
-  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkins7",
-  "/api/sonar/summary": "/sonarSummary"
+  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkins7"
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 
+import ScalableImage from 'js/core/ScalableImage.jsx';
+
 class RefreshableWidget extends React.Component {
 
   componentDidMount() {
@@ -17,6 +19,16 @@ class RefreshableWidget extends React.Component {
   }
 
   refreshData() {
+  }
+
+  renderError(exception) {
+    return (
+      <div className="error">
+        <ScalableImage imgUrl="/img/icon/error.png" />
+        <p>{exception.name}</p>
+        <p>{exception.message}</p>
+      </div>
+    );
   }
 
   renderLoadingContent() {
