@@ -43,6 +43,9 @@
         padding: $ez-gap / 2;
       }
     }
+    .flip .face {
+      display: flex;
+    }
   }
 }
 

@@ -79,10 +79,19 @@ class SonkinsWidget extends RefreshableWidget {
     }
     if (this.state.state == 'REBUILDING') {
       return (
-        <JenkinsBuildMetric
-          className="blink"
-          value={this.state.progress}
-        />
+        <div className="flip-container">
+          <div className="flip">
+            <div className="front face">
+              <JenkinsBuildMetric value={this.state.progress} />
+            </div>
+            <div className="back face">
+              <BuildAuthorMetric
+                avatars={this.props.avatars}
+                jenkinsAuthor={this.state.buildAuthor}
+              />
+            </div>
+          </div>
+        </div>
       );
     } else {
       return (
@@ -109,7 +118,8 @@ class SonkinsWidget extends RefreshableWidget {
     return (
       <CodeCoverageMetric
         value={this.state.coverage}
-        thresholds={this.props.thresholds.codeCoverage}/>
+        thresholds={this.props.thresholds.codeCoverage}
+      />
     );
   }
 

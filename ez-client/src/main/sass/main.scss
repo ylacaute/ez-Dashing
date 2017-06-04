@@ -87,6 +87,7 @@ $ez-widget-jenkins-health-bg: $ez-widget-bg;
 @import 'metric/metrics';
 @import 'page/scalable-text';
 @import 'core/effect/blink_effect';
+@import 'core/effect/flip_effect';
 
 // Page specific style
 @import 'page/index';
