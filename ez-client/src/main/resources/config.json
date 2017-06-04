@@ -12,7 +12,7 @@
       "displayName": "BC-GAS-SYS",
       "jobName": "bc-gas-sys_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.bilanconso.gas:bc-gas-sys:origin/master"
+      "projectKey": "bc-gas-sys"
     },
     {
       "key": "w2",
@@ -20,7 +20,7 @@
       "displayName": "SIM-HOME",
       "jobName": "elec-similar-home-sys_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.bilanconso.similarhome:similar-home-sys:origin/master"
+      "projectKey": "similar-home-sys"
     },
     {
       "key": "w3",
@@ -28,7 +28,7 @@
       "displayName": "GAS-TARIFF",
       "jobName": "gas-tariff-sys_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.gas.tariff:gas-tariff-sys:origin/master"
+      "projectKey": "gas-tariff-sys"
     },
     {
       "key": "w4",
@@ -36,7 +36,7 @@
       "displayName": "GAS-COMPO",
       "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.bilanconso.gas.servicecomposition:gas-service-composition-sys:origin/master"
+      "projectKey": "gas-service-composition-sys"
     },
     {
       "key": "SprintWidget",
@@ -63,7 +63,7 @@
       "displayName": "BC-GAS-SYS CLIENT",
       "jobName": "bc-gas-client_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.bilanconso.gas.client:bc-gas-client:origin/master"
+      "projectKey": "bc-gas-client"
     },
     {
       "key": "w6",
@@ -71,7 +71,7 @@
       "displayName": "SIM-HOME CLIENT",
       "jobName": "elec-similar-home-client_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.bilanconso.similarhome:similar-home-client:origin/master"
+      "projectKey": "similar-home-client"
     },
     {
       "key": "w7",
@@ -79,7 +79,7 @@
       "displayName": "GAS-TARIFF CLIENT",
       "jobName": "gas-tariff-client_-_Analyse_reccurente",
       "branch": "master",
-      "projectKey": "com.edelia.gas.tariff.client:gas-tariff-client:origin/master"
+      "projectKey": "gas-tariff-client"
     },
     {
       "key": "ClockWidget",
@@ -92,9 +92,13 @@
     "jenkinsAuthorPattern": ".*epi",
     "url": "/img/avatars/epi.png"
   }, {
-    "displayName": "Bob",
-    "jenkinsAuthor": "Bob Marley",
-    "url": "/img/logo_clean.png"
+    "displayName": "Pénelope",
+    "jenkinsAuthorPattern": ".*Pénelope.*",
+    "url": "/img/avatars/Penelope.png"
+  }, {
+    "displayName": "Marc",
+    "jenkinsAuthorPattern": ".*[mM]arc.*",
+    "url": "/img/avatars/Marc.png"
   }],
   "thresholds": {
     "codeCoverage": {

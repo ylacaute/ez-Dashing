@@ -4,7 +4,9 @@ class SonarClient {}
 
 SonarClient.getSummaryInfos = function (projectKey, callback) {
   let path = "/api/sonar/summary?projectKey=" + encodeURIComponent(projectKey);
-  RestClient.get(path, callback);
+  RestClient.get(path, (json) => {
+    callback(json[0]);
+  });
 };
 
 export default SonarClient;

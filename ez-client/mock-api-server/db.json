@@ -8,48 +8,109 @@
     "threadCount": 134,
     "activeThreadCount": 12,
     "freeDiskSpaceInTemp": {
-      "label" : "2 Go",
-      "value" : 30
+      "label": "2 Go",
+      "value": 30
     }
   },
-  "jenkinsSuccess": {
+  "jenkins1": {
     "state": "SUCCESS",
-    "author": "epi",
-    "lastUpdate": "28/05 - 15:00"
+    "author": "marc avec un m",
+    "lastUpdate": "01/01 - 15:00"
   },
-  "jenkinsFailure": {
+  "jenkins2": {
     "state": "FAILURE",
-    "author": "epi",
-    "lastUpdate": "28/05 - 18:05"
+    "author": "unknown user",
+    "lastUpdate": "02/02 - 14:00"
   },
-  "jenkinsBuilding": {
+  "jenkins3": {
     "state": "REBUILDING",
     "progress": 80,
-    "author": "epi",
-    "lastUpdate": "28/05 - 18:05"
+    "author": "marc avec un m",
+    "lastUpdate": "03/03 - 11:22"
   },
-  "sonarBadCoverage": {
-    "lastUpdate": "28/05 - 15:00",
-    "metrics" : {
-      "lines": 10,
-      "coverage": 45,
-      "violations": 415
-    }
+  "jenkins4": {
+    "state": "SUCCESS",
+    "author": "Pénelope",
+    "lastUpdate": "04/04 - 20:00"
   },
-  "sonarAvgCoverage": {
-    "lastUpdate": "28/05 - 15:00",
-    "metrics" : {
-      "lines": 10,
-      "coverage": 56,
-      "violations": 415
-    }
+  "jenkins5": {
+    "state": "SUCCESS",
+    "author": "Tom",
+    "lastUpdate": "05/05 - 12:00"
   },
-  "sonarGoodCoverage": {
-    "lastUpdate": "28/05 - 15:00",
-    "metrics" : {
-      "lines": 10,
-      "coverage": 70,
-      "violations": 415
+  "jenkins6": {
+    "state": "SUCCESS",
+    "author": "Aymane",
+    "lastUpdate": "15/06 - 15:00"
+  },
+  "jenkins7": {
+    "state": "SUCCESS",
+    "author": "Marc Super Star",
+    "lastUpdate": "16/07 - 15:00"
+  },
+  "sonarSummary": [
+    {
+      "projectKey": "bc-gas-sys",
+      "lastUpdate": "01/01 - 15:00",
+      "metrics": {
+        "lines": 10,
+        "coverage": 85,
+        "violations": 0
+      }
+    },
+    {
+      "projectKey": "similar-home-sys",
+      "lastUpdate": "02/02 - 21:30",
+      "metrics": {
+        "lines": 10,
+        "coverage": 75,
+        "violations": 2
+      }
+    },
+    {
+      "projectKey": "gas-service-composition-sys",
+      "lastUpdate": "03/03 - 16:50",
+      "metrics": {
+        "lines": 10,
+        "coverage": 60,
+        "violations": 3
+      }
+    },
+    {
+      "projectKey": "gas-tariff-sys",
+      "lastUpdate": "04/04 - 18:00",
+      "metrics": {
+        "lines": 10,
+        "coverage": 81,
+        "violations": 18
+      }
+    },
+    {
+      "projectKey": "bc-gas-client",
+      "lastUpdate": "05/05 - 16:15",
+      "metrics": {
+        "lines": 10,
+        "coverage": 20,
+        "violations": 25
+      }
+    },
+    {
+      "projectKey": "similar-home-client",
+      "lastUpdate": "14/05 - 12:00",
+      "metrics": {
+        "lines": 10,
+        "coverage": 56,
+        "violations": 1
+      }
+    },
+    {
+      "projectKey": "gas-tariff-client",
+      "lastUpdate": "15/05 - 16:10",
+      "metrics": {
+        "lines": 10,
+        "coverage": 100,
+        "violations": 0
+      }
     }
-  }
+  ]
 }
