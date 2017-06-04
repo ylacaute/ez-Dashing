@@ -79,7 +79,10 @@ class SonkinsWidget extends RefreshableWidget {
     }
     if (this.state.state == 'REBUILDING') {
       return (
-        <JenkinsBuildMetric value={this.state.progress}/>
+        <JenkinsBuildMetric
+          className="blink"
+          value={this.state.progress}
+        />
       );
     } else {
       return (

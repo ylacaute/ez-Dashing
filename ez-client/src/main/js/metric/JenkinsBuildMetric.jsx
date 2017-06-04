@@ -8,7 +8,7 @@ class JenkinsBuildMetric extends React.Component {
   render() {
     return (
       <CircularProgressBar
-        className="metric jenkins-build"
+        className={`metric jenkins-build ${this.props.className}`}
         value={this.props.value}
         textForValue={(value) => `${value}%`}
       />
@@ -17,6 +17,7 @@ class JenkinsBuildMetric extends React.Component {
 }
 
 JenkinsBuildMetric.propTypes = {
+  className: PropTypes.string,
   value: PropTypes.number.isRequired
 };
 

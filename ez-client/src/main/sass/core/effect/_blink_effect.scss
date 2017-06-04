@@ -1,0 +1,25 @@
+$min-opacity: 0.3;
+
+.blink {
+  animation:2s blinker linear infinite;
+  -webkit-animation:2s blinker linear infinite;
+  -moz-animation:2s blinker linear infinite;
+}
+
+@-moz-keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: $min-opacity; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: $min-opacity; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: $min-opacity; }
+  100% { opacity: 1.0; }
+}
