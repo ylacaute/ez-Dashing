@@ -3,7 +3,7 @@
 /* JENKINS MONITORING WIDGET (use 'monitoring' jenkins plugin api)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widget.jenkins-monitoring {
+.jenkins-monitoring {
   .content {
     > div {
       display: flex;
@@ -14,4 +14,13 @@
       font-size: 8px;
     }
   }
+}
+
+// STATES
+
+.jenkins-monitoring.bad header .title {
+  background-color: $ez-bad;
+}
+.jenkins-monitoring.avg header .title {
+  background-color: $ez-avg;
 }

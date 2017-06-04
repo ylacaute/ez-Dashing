@@ -6,6 +6,7 @@ import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import LinearProgressBar from 'js/core/LinearProgressBar.jsx';
 import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
+import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
 
 class JenkinsMonitoringWidget extends RefreshableWidget {
 
@@ -58,14 +59,9 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   }
 
   renderContent() {
-    const classForValue = (val) => {
-      if (val >= 95) return "bad";
-      if (val >= 80) return "avg";
-      return "good";
-    };
+    const classForValue = (val) => ThresholdConfig.get(this.props.thresholds, val);
+    const textForValue = (value) => `${value} %`;
     const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
-    const percent = (value) => `${value} %`;
-    //cosnt wViewport = 50;
     return (
       <div>
         <LinearProgressBar
@@ -73,41 +69,58 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
           value={threadPercent}
           displayValue={`${this.state.activeThreadCount}`}
           classForValue={classForValue}
-
         />
         <LinearProgressBar
           label="Memory"
           value={this.state.memory}
-          textForValue={percent}
+          textForValue={textForValue}
           classForValue={classForValue}
         />
         <LinearProgressBar
           label="CPU"
           value={this.state.cpu}
-          textForValue={percent}
+          textForValue={textForValue}
           classForValue={classForValue}
         />
         <LinearProgressBar
           label="File descriptor"
           value={this.state.fileDescriptor}
-          textForValue={percent}
+          textForValue={textForValue}
           classForValue={classForValue}
         />
         <LinearProgressBar
           label="Free space"
           value={this.state.freeDiskSpaceInTemp.value}
           displayValue={this.state.freeDiskSpaceInTemp.label}
-          textForValue={percent}
+          textForValue={textForValue}
           classForValue={classForValue}
         />
       </div>
     );
   }
 
+  getGlobalHealth() {
+    const s = this.state;
+    const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
+    const kpis = [threadPercent, s.memory, s.cpu, s.fileDescriptor, s.freeDiskSpaceInTemp];
+    let result = "good";
+    for (let kpi of kpis) {
+      let health = ThresholdConfig.get(this.props.thresholds, kpi);
+      if (health == "bad") {
+        result = "bad";
+        break;
+      }
+      if (health == "avg") {
+        result = "avg";
+      }
+    }
+    return result;
+  }
+
   render() {
     return (
       <Widget
-        className="jenkins-monitoring"
+        className={`jenkins-monitoring ${this.getGlobalHealth()}`}
         title={this.props.displayName}
         afterTitle={this.renderAfterTitle()}
         content={this.renderContent()}

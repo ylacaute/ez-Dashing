@@ -50,7 +50,12 @@
     {
       "key": "JenkinsMonitoringWidget",
       "type": "JenkinsMonitoringWidget",
-      "displayName": "JENKINS HEALTH"
+      "displayName": "JENKINS HEALTH",
+      "thresholds": {
+        "bad" : 85,
+        "avg" : 75,
+        "good" : 0
+      }
     },
     {
       "key": "w5",
