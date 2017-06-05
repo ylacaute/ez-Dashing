@@ -30,6 +30,7 @@ __Requirements__ : Node 7, Java 8, Maven 3
  - __Sonkinswidget__ (weather icon base on last builds)
  
 # General Todos
+ - Improve docker configuration (for user configuration...)
  - __Testing__ ^^'
  - Bash scripts to ease install 
  - Add a Dashing color theme

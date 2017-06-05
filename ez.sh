@@ -6,8 +6,8 @@ FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 SERVER_ASSETS_DIR="$BACK_DIR/src/main/resources"
 DOCKER_DEP="$PROJECT_DIR/ez-os"
-DOCKER_OS_IMG="ez-dashing:os"
-DOCKER_IMG="ez-dashing:latest"
+DOCKER_OS_IMG_TAG="ylacaute/ez-dashing:os"
+DOCKER_IMG_TAG="ylacaute/ez-dashing:latest"
 
 echo "Current directory: $CURRENT_DIR"
 echo "Project directory: $PROJECT_DIR"
@@ -19,22 +19,20 @@ function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
 }
 
-# TODO : test it
 function createDockerImageDependency {
   banner "ez-Dashing docker dependency: Debian + JDK + Maven + NPM"
   cd "$DOCKER_DEP"
-  sudo docker build --tag="$DOCKER_OS_IMG"
+  sudo docker build --tag=${DOCKER_OS_IMG_TAG} ${PROJECT_DIR}
 }
 
-# TODO : dont works
 function createDockerImage {
   banner "ez-Dashing docker image"
-  sudo docker build --tag="${DOCKER_IMG}" .
+  sudo docker build --tag=${DOCKER_IMG_TAG} ${PROJECT_DIR}
 }
 
 function createDemoContainer {
   banner "Creating demo container from ez-Dashing image"
-  sudo docker run -p 2222:2222 -p 8080:8080 --name ez-dashing-demo -t ${DOCKER_IMG} bash ez.sh demo
+  sudo docker run -p 2222:2222 -p 8080:8080 --name ez-dashing-demo -t ${DOCKER_IMG_TAG} bash ez.sh demo
 }
 
 function startDemo {
