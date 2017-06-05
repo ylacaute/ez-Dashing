@@ -1,15 +1,16 @@
 #!/bin/bash
 
-CURRENT_DIR="$(pwd)"
+PREVIOUS_DIR="$(pwd)"
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 SERVER_ASSETS_DIR="$BACK_DIR/src/main/resources"
-DOCKER_DEP="$PROJECT_DIR/ez-os"
-DOCKER_OS_IMG_TAG="ylacaute/ez-dashing:os"
-DOCKER_IMG_TAG="ylacaute/ez-dashing:latest"
+DOCKER_DEP_DIR="$PROJECT_DIR/ez-os"
 
-echo "Current directory: $CURRENT_DIR"
+DOCKER_IMG_OS_TAG="ez-dashing:os"
+DOCKER_IMG_TAG="ez-dashing:latest"
+
+echo "Current directory: $PREVIOUS_DIR"
 echo "Project directory: $PROJECT_DIR"
 echo "Server assets directory: $SERVER_ASSETS_DIR"
 
@@ -19,23 +20,39 @@ function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
 }
 
-function createDockerImageDependency {
-  banner "ez-Dashing docker dependency: Debian + JDK + Maven + NPM"
-  cd "$DOCKER_DEP"
-  sudo docker build --tag=${DOCKER_OS_IMG_TAG} ${PROJECT_DIR}
+function createDockerOsImage {
+  cd ${DOCKER_DEP_DIR}
+  bash build.sh
+}
+
+function pushDockerOsImage {
+  banner "Push ez-Dashing docker image os to Docker Hub"
+  docker tag ${DOCKER_IMG_OS_TAG} ylacaute/${DOCKER_IMG_OS_TAG}
+  docker login
+  docker push ylacaute/${DOCKER_IMG_OS_TAG}
 }
 
 function createDockerImage {
   banner "ez-Dashing docker image"
-  sudo docker build --tag=${DOCKER_IMG_TAG} ${PROJECT_DIR}
+  cd ${PROJECT_DIR}
+  sudo docker build --tag=${DOCKER_IMG_TAG} .
+}
+
+function pushDockerImage {
+  banner "Push ez-Dashing docker image to Docker Hub"
+  docker tag ${DOCKER_IMG_TAG} ylacaute/${DOCKER_IMG_TAG}
+  docker login
+  docker push ylacaute/${DOCKER_IMG_TAG}
 }
 
 function createDemoContainer {
+  cd ${PROJECT_DIR}
   banner "Creating demo container from ez-Dashing image"
   sudo docker run -p 2222:2222 -p 8080:8080 --name ez-dashing-demo -t ${DOCKER_IMG_TAG} bash ez.sh demo
 }
 
 function startDemo {
+  cd ${FRONT_DIR}
   banner "STARTING EZ-DASHING FOR DEMO"
   echo "Starting the mock API, please wait..."
   npm run start-mock-api &
@@ -45,12 +62,19 @@ function startDemo {
 
 # TODO
 function startProduction {
+  cd ${FRONT_DIR}
   echo "Building front for production, please wait..."
   npm run build
   echo "Deploy front assets to the Spring Boot server"
   npm run deploy "$SERVER_ASSETS_DIR"
   echo "Starting Spring Boot server, please wait..."
   echo "TODO : Start Spring Boot"
+}
+
+function pushOnDockerHub {
+  echo "dd"
+  docker login
+  docker push ylacaute/ez-dashing:os
 }
 
 function displayUsage {
@@ -66,10 +90,13 @@ function main {
       createDemoContainer
       ;;
     docker-image-dep)
-      createDockerImageDependency
+      createDockerOsImage
       ;;
     docker-image)
       createDockerImage
+      ;;
+    help)
+      echo help
       ;;
     *)
       startProduction
@@ -77,9 +104,9 @@ function main {
   esac
 }
 
-cd $FRONT_DIR
 main $@
-cd $CURRENT_DIR
+
+cd ${PREVIOUS_DIR}
 
 
 

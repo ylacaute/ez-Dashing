@@ -4,6 +4,17 @@ __ez-Dashing__ is customizable free dashboard tool, build with React and Spring 
 
 The project is very young but in active development. All contributions are welcome.
 
+# Demo
+
+- __From script__
+```
+./ez.sh demo
+```
+- __With Docker__
+```
+docker run -p 2222:2222 -p 8080:8080 --name ez-dashing-demo -t ylacaute/ez-dashing:latest bash ez.sh demo
+```
+
 # Features
  - __Responsive__ (all supports, also on huge screens with scaling SVG)
  - __Configurable__ (grid, widgets, avatars, metric thresholds...)

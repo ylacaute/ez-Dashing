@@ -4,7 +4,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~ #
 
 # In order to build this image you first need to build the core dependency
-FROM ylacaute/ez-dashing:os
+FROM ez-dashing:os
 
 MAINTAINER Yannick Lacaute <yannick.lacaute@gmail.com>
 
