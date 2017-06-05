@@ -25,10 +25,11 @@ Check help of **ez.sh** for more options.
  - __Configurable__ (grid, widgets, avatars, metric thresholds...)
  - __Ready to use__ (no plugin system, Docker ready)
 
-# Installation
-__Requirements__ : Node 7, Java 8, Maven 3
- - Launch __install.sh__ (TODO)
- - Launch __start.sh__ (TODO)
+# Requirements
+ - Node 7
+ - Java 8
+ - Maven 3
+ - or... Docker
  
 # Existing widgets
  - __BugsWidget__ (jira) 
