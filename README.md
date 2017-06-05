@@ -7,7 +7,7 @@ The project is very young but in active development. All contributions are welco
 # Features
  - __Responsive__ (all supports, also on huge screens with scaling SVG)
  - __Configurable__ (grid, widgets, avatars, metric thresholds...)
- - __Ready to use__ (no plugin system)
+ - __Ready to use__ (no plugin system, Docker ready)
 
 # Installation
 __Requirements__ : Node 7, Java 8, Maven 3
@@ -31,9 +31,10 @@ __Requirements__ : Node 7, Java 8, Maven 3
  
 # General Todos
  - __Testing__ ^^'
- - __Dockerize__ 
  - Bash scripts to ease install 
  - Add a Dashing color theme
+ - Plugin system
+ - Improve error messages (if requests are 404, 403...)
  
 # Browser compatibility: 
  - __Chromium 57__ : good

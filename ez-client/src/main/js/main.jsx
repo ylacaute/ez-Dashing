@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 
 import RestClient from 'js/client/RestClient.jsx';
-import ObjectUtils from 'js/utils/ObjectUtils.js';
+import ObjectUtils from 'js/utils/ObjectUtils.jsx';
 
 import DynGrid from 'js/core/DynGrid.jsx';
 import WidgetFactory from 'js/core/WidgetFactory.jsx';

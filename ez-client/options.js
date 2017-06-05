@@ -1,7 +1,7 @@
 const path = require('path');
 
 var Options = {
-  DEFAULT_API_PORT: "8081",
+  DEFAULT_API_PORT: "8080",
   DEFAULT_BUILD_DIR: path.resolve(__dirname, 'assets'),
   API_PORT_OPT: "--api-port",
   BUILD_DIR_OPT: "--build-dir"

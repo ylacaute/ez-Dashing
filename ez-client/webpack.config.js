@@ -19,6 +19,7 @@ var config = {
     filename: 'bundle.js',
   },
   devServer: {
+    host: '0.0.0.0',
     proxy: {
       "/api": {
         target: "http://localhost:" + API_PORT

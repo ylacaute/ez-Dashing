@@ -1,5 +1,6 @@
 
-class UUID {}
+class UUID {
+}
 
 UUID.random = function() {
   function s4() {
@@ -10,4 +11,4 @@ UUID.random = function() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
 
-module.exports = UUID;
+export default UUID;

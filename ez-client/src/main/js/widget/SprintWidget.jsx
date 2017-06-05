@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Widget from 'js/widget/base/Widget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
 import CircularProgressBar from 'js/core/CircularProgressBar.jsx';
-import DateUtils from 'js/utils/DateUtils';
+import DateUtils from 'js/utils/DateUtils.jsx';
 import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 
 /**

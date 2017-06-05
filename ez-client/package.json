@@ -9,16 +9,16 @@
     }
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack -d",
-    "build-prod": "./node_modules/.bin/webpack -p",
-    "start-custom": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base assets --inline --hot",
-    "start-custom:args": "npm run start-custom -- args",
-    "start": "npm run start-custom -- --port $npm_package_config_dev_FRONT_PORT --api-port $npm_package_config_dev_API_PORT",
-    "start-api-custom": "./node_modules/.bin/json-server mock-api-server/db.json --routes mock-api-server/routes.json",
-    "start-api-custom:args": "npm run start-api-custom -- args",
-    "start-api": "npm run start-api-custom -- --port $npm_package_config_dev_API_PORT",
-    "pretest": "npm run build",
-    "test": "echo 'Error: TODO :)'"
+    "clean": "rm -rf assets",
+    "build": "./node_modules/.bin/webpack -p",
+    "deploy": "cp -R assets/*",
+    "build-dev": "./node_modules/.bin/webpack -d",
+    "start-dev-custom:args": "npm run start-dev-custom -- args",
+    "start-dev-custom": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base assets --inline --hot",
+    "start-dev": "npm run start-dev-custom -- --port $npm_package_config_dev_FRONT_PORT --api-port $npm_package_config_dev_API_PORT",
+    "start-mock-api-custom:args": "npm run start-mock-api-custom -- args",
+    "start-mock-api-custom": "./node_modules/.bin/json-server mock-api-server/db.json --routes mock-api-server/routes.json",
+    "start-mock-api": "npm run start-mock-api-custom -- --port $npm_package_config_dev_API_PORT"
   },
   "dependencies": {
     "http": "0.0.0",

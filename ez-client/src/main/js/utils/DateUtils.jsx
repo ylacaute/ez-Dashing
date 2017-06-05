@@ -1,3 +1,5 @@
+
+
 class DateUtils {
 }
 
@@ -20,5 +22,5 @@ DateUtils.diffInDays = function (first, second) {
   return Math.round((second - first) / (1000 * 60 * 60 * 24));
 };
 
-module.exports = DateUtils;
+export default DateUtils;
 
