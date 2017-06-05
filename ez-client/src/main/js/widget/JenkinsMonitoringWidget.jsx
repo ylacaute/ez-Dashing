@@ -8,6 +8,8 @@ import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
 import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
 
+const NO_DATE = '--/-- --:--';
+
 class JenkinsMonitoringWidget extends RefreshableWidget {
 
   constructor(props) {
@@ -15,7 +17,7 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     this.state = {
       loaded: false,
       exception: null,
-      lastUpdate: '--/-- --:--',
+      lastUpdate: NO_DATE,
       version: '--',
       memory: 0,
       cpu: 0,
@@ -46,17 +48,19 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   }
 
   renderAfterTitle() {
+    const version = this.state.version != null ? this.state.version : '--';
+    const lastUpdate = this.state.lastUpdate != null ? this.state.lastUpdate : NO_DATE;
     return (
       <div className="afterTitle">
         <ScalableText
           className="version"
-          text={`V${this.state.version}`}
+          text={`V${version}`}
           textAnchor="middle"
           wViewPort={50}
         />
         <div className="last-update">
           <ScalableText
-            text={this.state.lastUpdate}
+            text={lastUpdate}
             textAnchor="middle"
           />
         </div>
@@ -116,6 +120,8 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
     const kpis = [threadPercent, s.memory, s.cpu, s.fileDescriptor, s.freeDiskSpaceInTemp];
     let result = "good";
+    if (this.props.thresholds == null)
+      return result;
     for (let kpi of kpis) {
       let health = ThresholdConfig.get(this.props.thresholds, kpi);
       if (health == "bad") {
@@ -143,7 +149,13 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
 }
 
 JenkinsMonitoringWidget.propTypes = {
-  displayName: PropTypes.string
+  displayName: PropTypes.string,
+  thresholds: PropTypes.object,
+};
+
+JenkinsMonitoringWidget.defaultProps = {
+  displayName: 'undefined',
+  thresholds: null
 };
 
 export default JenkinsMonitoringWidget;

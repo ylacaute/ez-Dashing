@@ -121,14 +121,19 @@ class SprintWidget extends RefreshableWidget {
 SprintWidget.propTypes = {
   displayName: PropTypes.string,
   sprintDates: PropTypes.array.isRequired,
+  sprintDuration: PropTypes.number.isRequired,
   displayType: PropTypes.string,
+  sprintNumber: PropTypes.number,
   sprintOffset: PropTypes.number
 };
 
 SprintWidget.defaultProps = {
+  displayName: 'undefined',
+  sprintDates: [],
+  sprintDuration: 0,
+  displayType: "daysLeft",
   sprintNumber: -1,
-  sprintOffset: 0,
-  displayType: "daysLeft"
+  sprintOffset: 0
 };
 
 export default SprintWidget;

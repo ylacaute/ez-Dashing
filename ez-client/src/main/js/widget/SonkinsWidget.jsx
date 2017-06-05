@@ -13,6 +13,7 @@ import BuildAuthorMetric from 'js/metric/BuildAuthorMetric.jsx';
 
 import ScalableText from 'js/core/ScalableText.jsx';
 
+const NO_DATE = '--/-- --:--';
 
 class SonkinsWidget extends RefreshableWidget {
 
@@ -22,11 +23,11 @@ class SonkinsWidget extends RefreshableWidget {
       jenkinsLoaded: false,
       sonarLoaded: false,
       exception: null,
-      jenkinsLastUpdate: '--/-- --:--',
-      sonarLastUpdate: '--/-- --:--',
+      jenkinsLastUpdate: NO_DATE,
+      sonarLastUpdate: NO_DATE,
       state: 'UNKNOWN',
       progress: 0,
-      buildAuthor: '',
+      buildAuthor: '--',
       lines: 0,
       coverage: 0,
       violations: 0
@@ -43,7 +44,6 @@ class SonkinsWidget extends RefreshableWidget {
         buildAuthor: jsonResponse.author
       });
     }, (exception) => {
-      console.log("Error during Jenkins request, details: ", exception);
       this.setState({exception: exception});
     });
 
@@ -62,6 +62,8 @@ class SonkinsWidget extends RefreshableWidget {
   }
 
   renderAfterTitle() {
+    const jenkinsLastUpdate = this.state.jenkinsLastUpdate != null ? this.state.jenkinsLastUpdate : NO_DATE;
+    const sonarLastUpdate = this.state.sonarLastUpdate != null ? this.state.sonarLastUpdate : NO_DATE;
     return (
       <div className="afterTitle">
         <ScalableText
@@ -72,12 +74,12 @@ class SonkinsWidget extends RefreshableWidget {
         <div className="last-update">
           <ScalableText
             iconUrl="/img/tech/jenkins.png"
-            text={this.state.jenkinsLastUpdate}
+            text={jenkinsLastUpdate}
             textAnchor="middle"
           />
           <ScalableText
             iconUrl="/img/tech/sonar.png"
-            text={this.state.sonarLastUpdate}
+            text={sonarLastUpdate}
             textAnchor="middle"
           />
         </div>
@@ -127,7 +129,8 @@ class SonkinsWidget extends RefreshableWidget {
   }
 
   renderFooter() {
-    if (this.state.state == 'UNKNOWN' || this.state.state == 'REBUILDING') {
+    const s = this.state;
+    if (s.exception != null || s.sonarLoaded == false || s.state == 'UNKNOWN' || s.state == 'REBUILDING') {
       return <div></div>;
     }
     return (
@@ -152,15 +155,26 @@ class SonkinsWidget extends RefreshableWidget {
 }
 
 SonkinsWidget.propTypes = {
+  refreshEvery: PropTypes.number,
   displayName: PropTypes.string.isRequired,
   jobName: PropTypes.string.isRequired,
   branch: PropTypes.string.isRequired,
   projectKey: PropTypes.string.isRequired,
-  refreshEvery: PropTypes.number
+  avatars: PropTypes.array,
+  thresholds: PropTypes.object
 };
 
 SonkinsWidget.defaultProps = {
   refreshEvery: 60,
+  displayName: 'undefined',
+  jobName: 'undefined',
+  branch: 'undefined',
+  projectKey: 'undefined',
+  avatars: [],
+  thresholds: {
+    violations: {},
+    codeCoverage: {},
+  }
 };
 
 export default SonkinsWidget;

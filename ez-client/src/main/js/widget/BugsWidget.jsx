@@ -62,10 +62,13 @@ class BugsWidget extends RefreshableWidget {
 }
 
 BugsWidget.propTypes = {
-  displayName: PropTypes.string
+  displayName: PropTypes.string,
+  thresholds: PropTypes.object
 };
 
 BugsWidget.defaultProps = {
+  displayName: 'undefined',
+  thresholds: { bugs: 0 }
 };
 
 export default BugsWidget;

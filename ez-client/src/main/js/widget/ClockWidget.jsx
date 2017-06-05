@@ -56,11 +56,14 @@ class ClockWidget extends RefreshableWidget {
 }
 
 ClockWidget.propTypes = {
-  displayName: PropTypes.string
+  displayName: PropTypes.string,
+  UTCOffset: PropTypes.number
 };
 
 ClockWidget.defaultProps = {
-  refreshEvery: 1,
+  displayName: 'undefined',
+  UTCOffset: 2,
+  refreshEvery: 1
 };
 
 export default ClockWidget;
