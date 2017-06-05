@@ -10,10 +10,15 @@ The project is very young but in active development. All contributions are welco
 ```
 ./ez.sh demo
 ```
-- __With Docker__
+- __From Dock Hub__
 ```
 docker run -p 2222:2222 -p 8080:8080 --name ez-dashing-demo -t ylacaute/ez-dashing:latest bash ez.sh demo
 ```
+Go on [http://localhost:2222](http://localhost:2222)
+
+The Docker image allow you to run any command you would have started locally with **ez.sh**.
+
+Check help of **ez.sh** for more options.
 
 # Features
  - __Responsive__ (all supports, also on huge screens with scaling SVG)
