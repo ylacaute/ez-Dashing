@@ -47,3 +47,5 @@ __Requirements__ : Node 7, Java 8, Maven 3
 # Screenshots
 
 ![Screenshot](/ez-client/screenshot.png)
+
+![Screenshot](/ez-client/screenshot_resize.png)
