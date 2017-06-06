@@ -120,5 +120,149 @@
         "violations": 0
       }
     }
-  ]
+  ],
+  "dashboard" : {
+    "widgets": [
+      {
+        "key": "w0",
+        "type": "TeamWidget",
+        "displayName": "TEAM GAS",
+        "logoUrl": "/img/logo_clean.png"
+      },
+      {
+        "key": "w1",
+        "type": "SonkinsWidget",
+        "displayName": "BC-GAS-SYS",
+        "jobName": "bc-gas-sys_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "bc-gas-sys"
+      },
+      {
+        "key": "w2",
+        "type": "SonkinsWidget",
+        "displayName": "SIM-HOME",
+        "jobName": "elec-similar-home-sys_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "similar-home-sys"
+      },
+      {
+        "key": "w3",
+        "type": "SonkinsWidget",
+        "displayName": "GAS-TARIFF",
+        "jobName": "gas-tariff-sys_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "gas-tariff-sys"
+      },
+      {
+        "key": "w4",
+        "type": "SonkinsWidget",
+        "displayName": "GAS-COMPO",
+        "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "gas-service-composition-sys"
+      },
+      {
+        "key": "SprintWidget",
+        "type": "SprintWidget",
+        "sprintOffset": 6,
+        "sprintDuration": 21,
+        "sprintDates": [
+          "2017-05-15", "2017-06-13"
+        ]
+      },
+      {
+        "key": "JenkinsMonitoringWidget",
+        "type": "JenkinsMonitoringWidget",
+        "displayName": "JENKINS HEALTH",
+        "thresholds": {
+          "bad" : 85,
+          "avg" : 75,
+          "good" : 0
+        }
+      },
+      {
+        "key": "w5",
+        "type": "SonkinsWidget",
+        "displayName": "BC-GAS-SYS CLIENT",
+        "jobName": "bc-gas-client_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "bc-gas-client"
+      },
+      {
+        "key": "w6",
+        "type": "SonkinsWidget",
+        "displayName": "SIM-HOME CLIENT",
+        "jobName": "elec-similar-home-client_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "similar-home-client"
+      },
+      {
+        "key": "w7",
+        "type": "SonkinsWidget",
+        "displayName": "GAS-TARIFF CLIENT",
+        "jobName": "gas-tariff-client_-_Analyse_reccurente",
+        "branch": "master",
+        "projectKey": "gas-tariff-client"
+      },
+      {
+        "key": "ClockWidget",
+        "type": "ClockWidget",
+        "UTCOffset": 2
+      },
+      {
+        "key": "BugsWidget",
+        "type": "BugsWidget",
+        "displayName": "BUGS"
+      }
+    ],
+    "avatars" : [{
+      "displayName": "Epithor",
+      "jenkinsAuthorPattern": ".*epi",
+      "url": "/img/avatars/epi.png"
+    }, {
+      "displayName": "Pénelope",
+      "jenkinsAuthorPattern": ".*Pénelope.*",
+      "url": "/img/avatars/Penelope.png"
+    }, {
+      "displayName": "Marc",
+      "jenkinsAuthorPattern": ".*[mM]arc.*",
+      "url": "/img/avatars/Marc.png"
+    }],
+    "thresholds": {
+      "codeCoverage": {
+        "good" : 64,
+        "avg" : 55,
+        "bad" : 0
+      },
+      "violations": {
+        "bad" : 10,
+        "avg" : 1,
+        "good" : 0
+      },
+      "bugs": {
+        "bad" : 10,
+        "avg" : 1,
+        "good" : 0
+      }
+    },
+    "grid": {
+      "breakpoints": {
+        "lg": 1200,
+        "md": 996,
+        "sm": 768,
+        "xs": 480,
+        "xxs": 0
+      },
+      "cols": {
+        "lg": 6,
+        "md": 4,
+        "sm": 4,
+        "xs": 2,
+        "xxs": 1
+      },
+      "layouts": {},
+      "widget_w": 1,
+      "widget_h": 1
+    }
+  }
 }

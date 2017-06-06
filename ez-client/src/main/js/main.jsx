@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    RestClient.get("/config.json", ((config) => {
+    RestClient.get("/api/dashboard/config", ((config) => {
       if (ObjectUtils.isNullOrEmpty(config.grid.layouts)) {
         config.grid.layouts = GridLayoutGenerator.generate(config);
       }

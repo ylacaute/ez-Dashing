@@ -8,5 +8,6 @@
   "/api/jenkins/lastBuild/gas-tariff-sys_-_Analyse_reccurente/master": "/jenkins4",
   "/api/jenkins/lastBuild/bc-gas-client_-_Analyse_reccurente/master": "/jenkins5",
   "/api/jenkins/lastBuild/elec-similar-home-client_-_Analyse_reccurente/master": "/jenkins6",
-  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkins7"
+  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkins7",
+  "/api/dashboard/config": "/dashboard"
 }
