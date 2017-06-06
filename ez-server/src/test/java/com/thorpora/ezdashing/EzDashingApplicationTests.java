@@ -1,6 +1,8 @@
 package com.thorpora.ezdashing;
 
+import com.thorpora.ezdashing.core.DashboardProperties;
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
+import com.thorpora.ezdashing.jira.JiraProperties;
 import com.thorpora.ezdashing.sonar.SonarProperties;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -19,10 +21,18 @@ public class EzDashingApplicationTests {
 	@Autowired
 	private SonarProperties sonarProperties;
 
+	@Autowired
+	private JiraProperties jiraProperties;
+
+	@Autowired
+	private DashboardProperties dashboardProperties;
+
 	@Test
 	public void contextLoads() {
 		Assertions.assertThat(jenkinsProperties.getBaseUrl()).isEqualTo("http://localhost:8080/jenkins");
-		Assertions.assertThat(sonarProperties.getBaseUrl()).isEqualTo("https://sonarqube.com/projects");
+		Assertions.assertThat(sonarProperties.getBaseUrl()).isEqualTo("http://localhost:8080/sonar");
+		Assertions.assertThat(jiraProperties.getBaseUrl()).isEqualTo("http://localhost:8080/jira");
+		Assertions.assertThat(dashboardProperties.getConfigLocation()).isEqualTo("/user/config.json");
 	}
 
 }

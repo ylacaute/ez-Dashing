@@ -16,6 +16,7 @@
  */
 package com.thorpora.ezdashing;
 
+import com.thorpora.ezdashing.core.DashboardProperties;
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
 import com.thorpora.ezdashing.jira.JiraProperties;
 import com.thorpora.ezdashing.sonar.SonarProperties;
@@ -38,6 +39,9 @@ public class StartupListener {
     @Autowired
     private JiraProperties jiraProperties;
 
+    @Autowired
+    private DashboardProperties dashboardProperties;
+
     @EventListener(ContextRefreshedEvent.class)
     public void devContextRefreshedEvent() {
         logger.info("Jenkins baseUrl: {}", jenkinsProperties.getBaseUrl());
@@ -46,6 +50,7 @@ public class StartupListener {
         logger.info("Sonar username: {}", sonarProperties.getUserName());
         logger.info("Jira baseUrl: {}", jiraProperties.getBaseUrl());
         logger.info("Jira username: {}", jiraProperties.getUserName());
+        logger.info("Dashboard config location: {}", dashboardProperties.getConfigLocation());
     }
 
 }

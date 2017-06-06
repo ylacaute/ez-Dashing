@@ -32,13 +32,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * As we want a cleanTables API (100% JSON) we defined this web mapped on the
- * servlet error path. Note that if this error mapping is not set, Spring instantiate
- * {@link BasicErrorController} by default which will bring us the ugly
- * whileLabel html page.
- * <p>
  * The goal of {@link ErrorController} is to catch ALL errors, including
- * servlet error not catchable in ControllerAdvice
+ * servlet error not catchable in ControllerAdvice, and to give a clean API, 100% json.
  */
 @RestController
 @ControllerAdvice
@@ -60,11 +55,11 @@ public class ErrorController extends AbstractErrorController {
     }
 
     /**
-     * Most of the time we will catch functional exception. As each exception define its http status code
-     * By default we always set the message in the {@link ErrorDTO} in order to help the caller.
+     * Most of the time we will catch functional exception. As each exception defines its http status code
+     * by default we always set the message in the {@link ErrorDTO} in order to help the caller.
      * <p>
      * If for some reason, in a very specific case we don't want to send the default http code defined
-     * in the exception or if we don't want to set the message to the client, we juste have to define
+     * in the exception or if we don't want to set the message to the client, we just have to define
      * a specific exception handler to override the default behaviour defined here.
      */
     @ExceptionHandler(Throwable.class)
@@ -72,8 +67,6 @@ public class ErrorController extends AbstractErrorController {
         HttpStatus status = getHttpStatus(ex);
         response.setStatus(status.value());
         errorLogger.log(logger, ex);
-
-
 
         ErrorDTO jsonError = ErrorDTOBuilder.create()
                 .withErrorAttributes(getErrorAttributes(request, INCLUDE_STACK_TRACE_IN_DTO))
@@ -119,9 +112,7 @@ public class ErrorController extends AbstractErrorController {
 
     /**
      * This is the last error handler. The main goal is to handle servlet errors (not found, exception during
-     * servlet filter, etc).
-     *
-     * Usually you never reach this code : all exception are caught earlier.
+     * servlet filter, etc). Usually you never reach this code : all exceptions are caught earlier.
      */
     @RequestMapping
     public ErrorDTO onServletError(HttpServletRequest request, HttpServletResponse response) {

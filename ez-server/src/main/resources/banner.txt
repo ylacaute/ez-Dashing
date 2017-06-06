@@ -1,0 +1,12 @@
+${AnsiColor.BRIGHT_CYAN}
+ _______ ______     ______  _______ _______ _     _ _____ __   _  ______
+ |______  ____/ ___ |     \ |_____| |______ |_____|   |   | \  | |  ____
+ |______ /_____     |_____/ |     | ______| |     | __|__ |  \_| |_____|
+
+        ${AnsiColor.BRIGHT_WHITE}${spring.application.name} ${AnsiColor.BLUE}${application.formatted-version}
+
+        ${AnsiColor.BRIGHT_WHITE}Spring Boot Framework ${AnsiColor.BLUE}${spring-boot.formatted-version}
+
+        ${AnsiColor.BRIGHT_WHITE}Active profiles ${AnsiColor.BLUE}${spring.profiles.active}
+
+ ${AnsiColor.DEFAULT}
