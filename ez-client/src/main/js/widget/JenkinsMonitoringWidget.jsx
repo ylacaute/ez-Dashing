@@ -78,6 +78,8 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     const classForValue = (val) => ThresholdConfig.get(this.props.thresholds, val);
     const textForValue = (value) => `${value} %`;
     const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
+    const displayValuePosition = {x: 2, y: 10};
+    const labelPosition = {x:96, y: 10};
     return (
       <div>
         <LinearProgressBar
@@ -85,24 +87,31 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
           value={threadPercent}
           displayValue={`${this.state.activeThreadCount}`}
           classForValue={classForValue}
+          displayValuePosition={displayValuePosition}
+          labelPosition={labelPosition}
         />
         <LinearProgressBar
           label="Memory"
           value={this.state.memory}
           textForValue={textForValue}
           classForValue={classForValue}
+          displayValuePosition={displayValuePosition}
+          labelPosition={labelPosition}
         />
         <LinearProgressBar
           label="CPU"
           value={this.state.cpu}
           textForValue={textForValue}
           classForValue={classForValue}
+          displayValuePosition={displayValuePosition}
         />
         <LinearProgressBar
           label="File descriptor"
           value={this.state.fileDescriptor}
           textForValue={textForValue}
           classForValue={classForValue}
+          displayValuePosition={displayValuePosition}
+          labelPosition={labelPosition}
         />
         <LinearProgressBar
           label="Free space"
@@ -110,6 +119,8 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
           displayValue={this.state.freeDiskSpaceInTemp.label}
           textForValue={textForValue}
           classForValue={classForValue}
+          displayValuePosition={displayValuePosition}
+          labelPosition={labelPosition}
         />
       </div>
     );
@@ -159,4 +170,3 @@ JenkinsMonitoringWidget.defaultProps = {
 };
 
 export default JenkinsMonitoringWidget;
-
