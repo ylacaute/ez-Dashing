@@ -34,9 +34,9 @@ docker run -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-
 
 Go on [http://localhost:8080](http://localhost:8080)
 
-Please note :
- - your directory must be in absolute path for Docker
- - your directory must contains 'server.properties' and 'dashboard.json' (sample in project)
+__Please note that your config directory:__
+ - MUST be in absolute path for Docker
+ - MUST contains 'server.properties' and 'dashboard.json' (sample in project)
 
 # Build the application
 
@@ -44,7 +44,6 @@ Please note :
  - Node 7
  - Java 8
  - Maven 3
- - or... Docker
 
 __Build front and back-end from source__ (with production profile)
 ```
@@ -55,6 +54,7 @@ __Run the server__
 ./ez.sh start-prod <CONFIG_DIRECTORY>
 ```
 
+More options in ez.sh.
  
 # Existing widgets
  - __BugsWidget__ (jira) 
