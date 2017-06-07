@@ -23,12 +23,20 @@ import com.thorpora.ezdashing.sonar.SonarProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.env.Environment;
 
+import java.util.Arrays;
+
+@Profile("production")
 public class StartupListener {
 
     private final static Logger logger = LoggerFactory.getLogger(StartupListener.class);
+
+    @Autowired
+    private Environment env;
 
     @Autowired
     private JenkinsProperties jenkinsProperties;
@@ -50,7 +58,17 @@ public class StartupListener {
         logger.info("Sonar username: {}", sonarProperties.getUserName());
         logger.info("Jira baseUrl: {}", jiraProperties.getBaseUrl());
         logger.info("Jira username: {}", jiraProperties.getUserName());
-        logger.info("Dashboard config location: {}", dashboardProperties.getConfigLocation());
+        if (isProduction()) {
+            // Verify the dashboard config is loadable
+            dashboardProperties.getDashboardConfig();
+            logger.info("Dashboard config file found: {}.", dashboardProperties.getConfigLocation());
+        } else {
+            logger.info("Dashboard config location: {}", dashboardProperties.getConfigLocation());
+        }
+    }
+
+    private boolean isProduction() {
+        return Arrays.stream(env.getActiveProfiles()).anyMatch(p -> p.equals("prod"));
     }
 
 }

@@ -17,15 +17,21 @@
 package com.thorpora.ezdashing.core;
 
 import com.thorpora.ezdashing.core.config.AppConfigException;
+import com.thorpora.ezdashing.jenkins.JenkinsClient;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 @Getter
 @Setter
@@ -33,15 +39,43 @@ import java.nio.file.Paths;
 @ConfigurationProperties(prefix = "dashboard")
 public class DashboardProperties {
 
+    private static final Logger logger = LoggerFactory.getLogger(DashboardProperties.class);
+
+    /**
+     * When using docker, the configuration is always in this directory (volume) so
+     * the user doesn't have to precise this property in this server.properties.
+     */
+    private static final String FILENAME = "dashboard.json";
+
     private String configLocation;
+
+    @Autowired
+    private Environment env;
 
     public String getDashboardConfig() {
         byte[] encoded;
         try {
-            encoded = Files.readAllBytes(Paths.get(configLocation));
-        } catch (IOException e) {
-            throw new AppConfigException("Dashboard config file invalid, please verify the property 'dashboard.config'");
+            logger.info("Loading dashboard configuration file at '{}'", getConfigLocation());
+            encoded = Files.readAllBytes(Paths.get(getConfigLocation()));
+        } catch (IOException ex) {
+            throw new AppConfigException("Dashboard config file invalid, "
+                    + "please verify the property 'dashboard.configLocation'", ex);
         }
         return new String(encoded, Charset.forName("UTF-8"));
+    }
+
+    /**
+     * When we are using an external spring configuration (like with Docker), we assume the dashboard
+     * configuration is necessary in the same directory.
+     */
+    public String getConfigLocation() {
+        String externalConfigLocation = env.getProperty("spring.config.location");
+        if (externalConfigLocation != null && !externalConfigLocation.isEmpty()) {
+            String path = externalConfigLocation
+                    .substring(0, externalConfigLocation.lastIndexOf('/'))
+                    .replace("file:", "");
+            return path + "/" + FILENAME;
+        }
+        return configLocation;
     }
 }

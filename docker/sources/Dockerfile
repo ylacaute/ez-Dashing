@@ -6,16 +6,19 @@
 FROM ez-dashing:os
 MAINTAINER Yannick Lacaute <yannick.lacaute@gmail.com>
 
-RUN mkdir -p /usr/src/app
 COPY * /usr/src/app/
+COPY ez-client /usr/src/app/ez-client
+COPY ez-server /usr/src/app/ez-server
 
 # Build front
 WORKDIR /usr/src/app/ez-client
 RUN npm install
 
 # Build server
+# TODO : DONT FUCKING WORKS !!! WHY !!!
 WORKDIR /usr/src/app/ez-server
 RUN mvn package
 
 WORKDIR /usr/src/app/
+
 EXPOSE 2222 8080

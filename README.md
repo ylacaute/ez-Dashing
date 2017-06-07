@@ -4,6 +4,11 @@ __ez-Dashing__ is customizable free dashboard tool, build with React and Spring 
 
 The project is very young but in active development. All contributions are welcome.
 
+# Features
+ - __Responsive__ (all supports, also on huge screens with scaling SVG)
+ - __Configurable__ (grid, widgets, avatars, metric thresholds...)
+ - __Ready to use__ (no plugin system, Docker ready)
+
 # Demo
 
 - __From sources__
@@ -12,40 +17,44 @@ The project is very young but in active development. All contributions are welco
 ```
 - __From Dock Hub__
 ```
-docker run -p 2222:2222 -p 8080:8080 --name ez-demo -t ylacaute/ez-dashing:latest bash ez.sh demo
+docker run -it -p 2222:2222 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:2222](http://localhost:2222)
 
 # Production
 
-/!\ NOT READY TO USE YET (but almost) /!\
-
 - __From sources__
 ```
-./ez.sh start-prod --spring.config.location=file:/YOUR/CONFIG/FILE.properties
+./ez.sh start-prod /YOUR/CONFIG/DIR
 ```
 - __From Dock Hub__
 ```
-docker run -p 2222:2222 -p 8080:8080 --name ez-demo -t ylacaute/ez-dashing:latest bash ez.sh start-prod --spring.config.location=file:/YOUR/CONFIG/FILE.properties
+docker run -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
 ```
 
-Not that the current Docker image allow you to run any command you would have started locally with **ez.sh**. In the future there will probably be many images :
- - One similar to the current, with all source inside
- - One for demo only
- - One for prod only
+Go on [http://localhost:8080](http://localhost:8080)
 
-For user configuration, please check examples in the **config** directory.
+Please note :
+ - your directory must be in absolute path for Docker
+ - your directory must contains 'server.properties' and 'dashboard.json' (sample in project)
 
-# Features
- - __Responsive__ (all supports, also on huge screens with scaling SVG)
- - __Configurable__ (grid, widgets, avatars, metric thresholds...)
- - __Ready to use__ (no plugin system, Docker ready)
+# Build the application
 
-# Requirements
+## Requirements
  - Node 7
  - Java 8
  - Maven 3
  - or... Docker
+
+__Build front and back-end from source__ (with production profile)
+```
+./ez.sh build-prod
+```
+__Run the server__ 
+```
+./ez.sh start-prod <CONFIG_DIRECTORY>
+```
+
  
 # Existing widgets
  - __BugsWidget__ (jira) 
