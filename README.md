@@ -12,7 +12,7 @@ The project is very young but in active development. All contributions are welco
 ```
 - __From Dock Hub__
 ```
-docker run -p 2222:2222 -p 8080:8080 --name ez-demo -t ylacaute/ez-dashing:latest bash ez.sh start-demo
+docker run -p 2222:2222 -p 8080:8080 --name ez-demo -t ylacaute/ez-dashing:latest bash ez.sh demo
 ```
 Go on [http://localhost:2222](http://localhost:2222)
 
