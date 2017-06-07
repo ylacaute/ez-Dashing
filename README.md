@@ -29,9 +29,12 @@ Go on [http://localhost:2222](http://localhost:2222)
 docker run -p 2222:2222 -p 8080:8080 --name ez-demo -t ylacaute/ez-dashing:latest bash ez.sh start-prod --spring.config.location=file:/YOUR/CONFIG/FILE.properties
 ```
 
-Please check configuration examples in the **config** directory.
-More generally, the Docker image allow you to run any command you would have started locally with **ez.sh**.
+Not that the current Docker image allow you to run any command you would have started locally with **ez.sh**. In the future there will probably be many images :
+ - One similar to the current, with all source inside
+ - One for demo only
+ - One for prod only
 
+For user configuration, please check examples in the **config** directory.
 
 # Features
  - __Responsive__ (all supports, also on huge screens with scaling SVG)
