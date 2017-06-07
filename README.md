@@ -72,9 +72,8 @@ More options in ez.sh.
  - __Sonkinswidget__ (weather icon base on last builds)
  
 # General Todos
- - Improve overall user configuration
+ - Add more documentation on widgets
  - __Testing__ ^^'
- - Bash scripts to ease install 
  - Add a Dashing color theme
  - Plugin system
  - Improve error messages (if requests are 404, 403...)
