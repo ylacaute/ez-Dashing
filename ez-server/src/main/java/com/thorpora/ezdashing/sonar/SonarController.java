@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/sonar")
 public class SonarController {
@@ -38,12 +41,12 @@ public class SonarController {
     }
 
     @GetMapping("/summary")
-    public SonarSummary getSummary(@RequestParam String projectKey) {
+    public List<SonarSummary> getSummary(@RequestParam String projectKey) {
         // TODO: LOG REQUEST WITH AOP
         logger.debug("GET /api/sonar/summary?projectKey={}", projectKey);
         SonarSummary sonarSummary = client.getSonarSummary(projectKey);
         logger.debug("Response for Sonar: {}", sonarSummary);
-        return sonarSummary;
+        return Arrays.asList(sonarSummary);
     }
 
 }
