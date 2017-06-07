@@ -1,9 +1,10 @@
-# ~~~~~~~~~~~~~~~~~~~~~ #
-# ez-Dashing Dockerfile #
-# ~~~~~~~~~~~~~~~~~~~~~ #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ez-Dashing Experimental Dockerfile #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # In order to build this image you first need to build the core dependency
 FROM ez-dashing:os
+
 MAINTAINER Yannick Lacaute <yannick.lacaute@gmail.com>
 
 COPY * /usr/src/app/

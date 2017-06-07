@@ -1,6 +1,6 @@
-# ~~~~~~~~~~~~~~~~~~~~~ #
-# ez-Dashing Dockerfile #
-# ~~~~~~~~~~~~~~~~~~~~~ #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ez-Dashing Demo Dockerfile #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Expected command to run a the demo container :
 #

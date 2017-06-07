@@ -8,21 +8,19 @@
 # Note that '/tmp/ez-config' is your local directory containg configuration files. This directory
 # must be in lower case and should contains 'server.properties' and 'dashboard.json'.
 
-
+# TODO : optimize dependency
 # In order to build this image you first need to build the core dependency
 FROM ez-dashing:os
+
 MAINTAINER Yannick Lacaute <yannick.lacaute@gmail.com>
 
 COPY ez-server/target/classes /usr/src/app/classes
-#COPY ez-server/target/ez-dashing-*.jar /usr/src/app/
+
 COPY ez-server/target/ez-dashing-0.0.1-SNAPSHOT.jar /usr/src/app/ez-dashing-0.0.1-SNAPSHOT.jar
 
-# Build front
 WORKDIR /usr/src/app/
 
 EXPOSE 8080
 
-#ADD /home/epi/prog/ez-Dashing/config/ /usr/src/app/config
-# --spring.config.location=file:/home/epi/prog/ez-Dashing/config/user-config.properties
 ENTRYPOINT ["java","-jar","ez-dashing-0.0.1-SNAPSHOT.jar", "--spring.config.location=file:/ez-config/server.properties"]
 CMD [""]
