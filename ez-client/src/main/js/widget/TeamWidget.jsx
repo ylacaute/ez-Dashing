@@ -26,7 +26,6 @@ TeamWidget.propTypes = {
 };
 
 TeamWidget.defaultProps = {
-  displayName: 'undefined',
   logoUrl: ''
 };
 

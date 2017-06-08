@@ -61,7 +61,6 @@ ClockWidget.propTypes = {
 };
 
 ClockWidget.defaultProps = {
-  displayName: 'undefined',
   UTCOffset: 2,
   refreshEvery: 1
 };

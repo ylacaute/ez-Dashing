@@ -128,7 +128,6 @@ SprintWidget.propTypes = {
 };
 
 SprintWidget.defaultProps = {
-  displayName: 'undefined',
   sprintDates: [],
   sprintDuration: 0,
   displayType: "daysLeft",

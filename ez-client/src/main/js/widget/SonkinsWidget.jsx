@@ -165,8 +165,7 @@ SonkinsWidget.propTypes = {
 };
 
 SonkinsWidget.defaultProps = {
-  refreshEvery: 60,
-  displayName: 'undefined',
+  refreshEvery: 120,
   jobName: 'undefined',
   branch: 'undefined',
   projectKey: 'undefined',

@@ -165,8 +165,8 @@ JenkinsMonitoringWidget.propTypes = {
 };
 
 JenkinsMonitoringWidget.defaultProps = {
-  displayName: 'undefined',
-  thresholds: null
+  thresholds: null,
+  refreshEvery: 60
 };
 
 export default JenkinsMonitoringWidget;

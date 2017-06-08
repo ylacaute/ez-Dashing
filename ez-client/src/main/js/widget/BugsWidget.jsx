@@ -67,7 +67,6 @@ BugsWidget.propTypes = {
 };
 
 BugsWidget.defaultProps = {
-  displayName: 'undefined',
   thresholds: { bugs: 0 }
 };
 
