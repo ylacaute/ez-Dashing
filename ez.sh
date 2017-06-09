@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PREVIOUS_DIR="$(pwd)"
-PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 SERVER_ASSETS_DIR="$BACK_DIR/target/classes/static"
@@ -46,12 +46,11 @@ function createDockerLatest {
   sudo docker build -t ${DOCKER_IMG_LATEST_TAG} -f docker/latest/Dockerfile .
 }
 function pushDockerLatest {
-  banner "PUSHINING EZ-DASHING DEMO DOCKER IMAGE"
+  banner "PUSHING EZ-DASHING DEMO DOCKER IMAGE"
   docker tag ${DOCKER_IMG_LATEST_TAG} ylacaute/${DOCKER_IMG_LATEST_TAG}
   docker login
   docker push ylacaute/${DOCKER_IMG_LATEST_TAG}
 }
-
 
 # --------------------------------------------------------------------------- #
 # DOCKER SOURCE (DONT WORK, TODO)
@@ -97,7 +96,6 @@ function buildProduction {
   mvn package
 }
 
-
 # --------------------------------------------------------------------------- #
 # START PROD (FROM SOURCES)
 # --------------------------------------------------------------------------- #
@@ -107,17 +105,17 @@ function startProduction {
   for arg in $@; do
     echo "* Argument: $arg"
   done
-  local configPath="$1"
+  local configPath=${1}
+  shift
   if [[ "$configPath" == "" ]]; then
-    echo "Usage : ./ez.sh start-prod <directory>"
-    echo "You must provide your configuration directory with 'server.properties' and 'dashboard.json' inside"
+    echo "Directory missing !"
+    usage
     exit 1
   fi
-  shift
+
   java -jar ./ez-server/target/ez-dashing-${VERSION}.jar --spring.config.location=file:${configPath}/server.properties $@
   #java -jar ez-dashing-0.0.1-SNAPSHOT.jar --spring.config.location=file:/home/epi/prog/ez-Dashing/ez-config/server.properties
 }
-
 
 # --------------------------------------------------------------------------- #
 # START DEMO (FROM SOURCES)
@@ -131,36 +129,43 @@ function startDemo {
   npm run start-dev
 }
 
-function displayUsage {
+function usage {
   echo
-  echo "USAGE: ez.sh [OPTIONS]"
+  echo "USAGE: ez.sh COMMAND"
   echo
-  echo "Options"
+  echo "Commands:"
   echo
-  echo "  start-demo : start the demo (front with mocked api)"
-  echo "  start-prod <config_dir> : start the server in production mode"
-  echo "  prod debug : start the real app but without front optimization"
-  echo "  run-docker-demo : start the demo from the docker image (from Docker Hub)"
-  echo "  build-docker-image-dep : build the docker image dependency (OS)"
-  echo "  build-docker-image : build the docker image"
+  echo "  start-demo             start the demo (front with mocked api)"
+  echo "  start-prod <dir>       start the server in production mode"
+  echo "    <dir> must be your config directory which:"
+  echo "    * must have 'server.properties' and 'dashboard.json' inside"
+  echo "    * must be in absolute when using Docker"
+  echo "  build-prod             build all for production"
+  echo "  build-prod debug       build all for production (no minify/uglify)"
+  echo "  build-docker-demo      Build the demo docker image"
+  echo "  build-docker-latest    Build the prod docker image"
+  echo "  build-docker-sources   experimental, don't work"
+  echo "  push-docker-demo       Push demo image to Docker Hub"
+  echo "  push-docker-latest     Push latest image to Docker Hub"
   echo
 }
 
 function main {
-  case "$1" in
+  local command=${1}
+  shift
+  case ${command} in
 
     # DEMO FROM FRONT ONLY
     start-demo)
       startDemo;;
 
-    # PROD FROM SOURCES
+    # PROD FROM ALL SOURCES
     build-prod)
       buildProduction;;
     start-prod)
-      shift
       startProduction $@;;
 
-    # BUILD IMAGES
+    # BUILD DOCKER IMAGES
     build-docker-demo)
       createDockerDemo;;
     build-docker-latest)
@@ -170,13 +175,14 @@ function main {
     build-docker-image-dep)
       createDockerOsImage;;
 
-    # PUSH IMAGES
+    # PUSH DOCKER IMAGES
     push-docker-demo)
       pushDockerDemo;;
     push-docker-latest)
       pushDockerLatest;;
+
     *)
-      displayUsage
+      usage
   esac
 }
 

@@ -83,7 +83,7 @@ CircularProgressBar.propTypes = {
   strokeWidth: PropTypes.number,
   initialAnimation: PropTypes.bool,
   classForValue: PropTypes.func,
-  textForvalue: PropTypes.func,
+  textForValue: PropTypes.func,
   displayValue: PropTypes.number
 };
 
