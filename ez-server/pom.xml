@@ -130,13 +130,13 @@
     </dependency>
 
 
-    <!-- https://mvnrepository.com/artifact/com.netflix.feign/feign-core -->
+    <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
     <dependency>
-      <groupId>com.netflix.feign</groupId>
-      <artifactId>feign-core</artifactId>
-      <version>8.18.0</version>
-      <scope>runtime</scope>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-jackson</artifactId>
+      <version>9.5.0</version>
     </dependency>
+
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

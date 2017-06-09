@@ -18,25 +18,40 @@ package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.client.JenkinsHttpClient;
+import feign.Feign;
+import feign.auth.BasicAuthRequestInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 
-@Order(1)
+import java.time.format.DateTimeFormatter;
+
 @Configuration
 public class JenkinsConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(JenkinsConfig.class);
 
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM HH:MM");
+
     @Bean
-    public JenkinsHttpClient JenkinsHttpClient(JenkinsProperties jenkinsProperties) {
+    public JenkinsPluginsAPI JenkinsPluginsAPI(JenkinsProperties jenkinsProperties) {
+        return Feign.builder()
+                .requestInterceptor(new BasicAuthRequestInterceptor(
+                        jenkinsProperties.getUserName(),
+                        jenkinsProperties.getPassword()))
+                .logger(new feign.Logger.ErrorLogger())
+                .logLevel(feign.Logger.Level.BASIC)
+                .target(JenkinsPluginsAPI.class, jenkinsProperties.getBaseUrl());
+    }
+
+    @Bean
+    public JenkinsServer JenkinsServer(JenkinsProperties jenkinsProperties) {
         logger.debug("Creating Jenkins httpClient...");
-        return new JenkinsHttpClient(
+        return new JenkinsServer(new JenkinsHttpClient(
                 jenkinsProperties.getJenkinsURI(),
                 jenkinsProperties.getUserName(),
-                jenkinsProperties.getPassword());
+                jenkinsProperties.getPassword()));
     }
 
 }

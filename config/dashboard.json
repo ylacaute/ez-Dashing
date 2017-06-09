@@ -51,11 +51,7 @@
       "key": "JenkinsMonitoringWidget",
       "type": "JenkinsMonitoringWidget",
       "displayName": "JENKINS HEALTH",
-      "thresholds": {
-        "bad" : 85,
-        "avg" : 75,
-        "good" : 0
-      }
+      "diskSpaceInTemp" : 3000
     },
     {
       "key": "w5",
@@ -120,6 +116,26 @@
       "bad" : 10,
       "avg" : 1,
       "good" : 0
+    },
+    "memoryUsage": {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "cpuUsage": {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "fileDescriptorUsage": {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "freeDiskSpaceInTemp": {
+      "good" : 40,
+      "avg" : 20,
+      "bad" : 0
     }
   },
   "grid": {

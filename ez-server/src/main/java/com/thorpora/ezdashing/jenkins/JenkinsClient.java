@@ -16,27 +16,22 @@
  */
 package com.thorpora.ezdashing.jenkins;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.offbytwo.jenkins.JenkinsServer;
-import com.offbytwo.jenkins.client.JenkinsHttpClient;
 import com.offbytwo.jenkins.helper.JenkinsVersion;
-import com.offbytwo.jenkins.model.BaseModel;
 import com.offbytwo.jenkins.model.BuildWithDetails;
 import com.offbytwo.jenkins.model.FolderJob;
 import com.offbytwo.jenkins.model.Job;
-import com.thorpora.ezdashing.jenkins.monitoring.JenkinsMonitoring;
-import org.apache.commons.io.IOUtils;
+import com.thorpora.ezdashing.jenkins.dto.JenkinsLastBuild;
+import com.thorpora.ezdashing.jenkins.dto.JenkinsMonitoring;
+import com.thorpora.ezdashing.jenkins.mapper.JenkinsMonitoringMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 @Service
@@ -44,66 +39,42 @@ public class JenkinsClient {
 
     private static final Logger logger = LoggerFactory.getLogger(JenkinsClient.class);
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
-
     private JenkinsProperties properties;
     private JenkinsServer jenkins;
-    private JenkinsHttpClient jenkinsHttpClient;
+    private JenkinsPluginsAPI jenkinsPluginsAPI;
+    private ObjectMapper mapper;
 
     @Autowired
-    public JenkinsClient(JenkinsProperties properties, JenkinsHttpClient jenkinsHttpClient) {
+    public JenkinsClient(
+            JenkinsProperties properties,
+            JenkinsServer jenkinsServer,
+            JenkinsPluginsAPI jenkinsPluginsAPI) {
         this.properties = properties;
-        this.jenkins = new JenkinsServer(jenkinsHttpClient);
-        this.jenkinsHttpClient = jenkinsHttpClient;
+        this.jenkins = jenkinsServer;
+        this.jenkinsPluginsAPI = jenkinsPluginsAPI;
+        this.mapper = new ObjectMapper();
+    }
+
+    public JenkinsVersion getVersion() {
+        return jenkins.getVersion();
     }
 
     public JenkinsMonitoring getMonitoring() {
         try {
-            URI path = new URI(properties.getBaseUrl() + "/monitoring?format=json&period=jour");
-            InputStream file = jenkinsHttpClient.getFile(path);
-            System.out.println();
-            String theString = IOUtils.toString(file, Charset.forName("UTF-8"));
-
-        } catch (URISyntaxException | IOException ex) {
-            throw new JenkinsException("Jenkins baseUrl is invalid", ex);
+            return JenkinsMonitoringMapper.map(mapper.readTree(jenkinsPluginsAPI.getMonitoring()));
+        } catch (Exception ex) {
+            throw new JenkinsException("Error during jenkins monitoring request", ex);
         }
-
-        return JenkinsMonitoring.builder()
-                .lastUpdate("28/05 - 15:00")
-                .version("2.46.3")
-                .memory(80)
-                .cpu(10)
-                .fileDescriptor(74)
-                .threadCount(130)
-                .activeThreadCount(5)
-                /*.freeDiskSpaceInTemp(FreeDiskSpaceInTemp.builder()
-                    .label("3 Go")
-                    .value(13)
-                    .build())*/
-                .build();
-
-
     }
 
-    class Test extends BaseModel {
-
-    }
-
-    public JenkinsVersion getVersion() {
-        assertServerIsRunning();
-        return jenkins.getVersion();
-    }
-
-    public LastBuild getLastBuild(String jobName, String branch) {
-        logger.info("Jenkins request: lastBuild with jobName={}, branch={}", jobName, branch);
-        assertServerIsRunning();
+    public JenkinsLastBuild getLastBuild(String jobName, String branch) {
         BuildWithDetails details = getBuildWithDetails(jobName, branch);
         String lastUpdate = Instant
                 .ofEpochMilli(details.getTimestamp())
                 .atZone(TimeZone.getDefault().toZoneId())
-                .format(formatter);
+                .format(JenkinsConfig.DATE_FORMATTER);
         String author = details.getCulprits().isEmpty() ? "" :details.getCulprits().get(0).getFullName();
-        return LastBuild.builder()
+        return JenkinsLastBuild.builder()
                 .jobName(jobName)
                 .branch(branch)
                 .id(details.getId())
@@ -124,13 +95,8 @@ public class JenkinsClient {
             Job job = jenkins.getJobs(folder).get(branch);
             return job.details().getLastBuild().details();
         } catch (IOException ex) {
-            throw new JenkinsException("Error during jenkins request", ex);
+            throw new JenkinsException("Error during jenkins build request", ex);
         }
     }
 
-    private void assertServerIsRunning() {
-        if (!jenkins.isRunning()) {
-            throw new JenkinsException("jenkins is not running !");
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.thorpora.ezdashing.sonar;
+package com.thorpora.ezdashing.sonar.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +16,4 @@ public class SonarSummary {
 
 }
 
-@Builder
-@Data
-class SonarMetric {
 
-    private int lines;
-    private String coverage;
-    private int violations;
-
-}

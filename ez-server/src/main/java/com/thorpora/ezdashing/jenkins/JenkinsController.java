@@ -16,7 +16,8 @@
  */
 package com.thorpora.ezdashing.jenkins;
 
-import com.thorpora.ezdashing.jenkins.monitoring.JenkinsMonitoring;
+import com.thorpora.ezdashing.jenkins.dto.JenkinsMonitoring;
+import com.thorpora.ezdashing.jenkins.dto.JenkinsLastBuild;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+// TODO: LOG REQUEST WITH AOP
 @RequestMapping("/api/jenkins")
 @RestController
 public class JenkinsController {
@@ -47,20 +49,20 @@ public class JenkinsController {
 
     @GetMapping("/monitoring")
     public JenkinsMonitoring getMonitoring() {
-        return client.getMonitoring();
+        logger.info("GET /api/jenkins/monitoring");
+        JenkinsMonitoring result = client.getMonitoring();
+        logger.debug("Response for Jenkins: {}", result);
+        return result;
     }
 
     @GetMapping("/lastBuild/{jobName}/{branch}")
-    public LastBuild getLastBuild(
+    public JenkinsLastBuild getLastBuild(
             @PathVariable String jobName,
             @PathVariable String branch) throws IOException {
-        // TODO: LOG REQUEST WITH AOP
-        logger.debug("GET /api/jenkins/lastBuild/{}/{}", jobName, branch);
-        LastBuild lastBuild = client.getLastBuild(jobName, branch);
-        logger.debug("Response for Jenkins: {}", lastBuild);
-        return lastBuild;
+        logger.info("GET /api/jenkins/lastBuild/{}/{}", jobName, branch);
+        JenkinsLastBuild result = client.getLastBuild(jobName, branch);
+        logger.debug("Response for Jenkins: {}", result);
+        return result;
     }
-
-
 
 }

@@ -1,11 +1,11 @@
-package com.thorpora.ezdashing.jenkins;
+package com.thorpora.ezdashing.jenkins.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class LastBuild {
+public class JenkinsLastBuild {
 
     /**
      * The job name, sample : bc-gas-sys_-_Analyse_reccurente
@@ -47,6 +47,9 @@ public class LastBuild {
      */
     private String state;
 
+    /**
+     * Build progression in percentage
+     */
     private int progress;
 
 }

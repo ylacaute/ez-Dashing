@@ -7,8 +7,8 @@ JenkinsClient.getBuildInfo = function (jobName, branchName, callback, errorCallb
   RestClient.get(url, callback, errorCallback);
 };
 
-JenkinsClient.getJenkinsInfo = function (callback, errorCallback) {
-  let url = "/api/jenkins/info";
+JenkinsClient.getMonitoring = function (callback, errorCallback) {
+  let url = "/api/jenkins/monitoring";
   RestClient.get(url, callback, errorCallback);
 };
 

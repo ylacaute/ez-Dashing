@@ -14,9 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing;
+package com.thorpora.ezdashing.core;
 
-import com.thorpora.ezdashing.core.DashboardProperties;
 import com.thorpora.ezdashing.jenkins.JenkinsProperties;
 import com.thorpora.ezdashing.jira.JiraProperties;
 import com.thorpora.ezdashing.sonar.SonarProperties;
