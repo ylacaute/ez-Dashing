@@ -17,6 +17,7 @@
 package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
+import com.offbytwo.jenkins.client.JenkinsHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -30,14 +31,12 @@ public class JenkinsConfig {
     private static final Logger logger = LoggerFactory.getLogger(JenkinsConfig.class);
 
     @Bean
-    public JenkinsServer JenkinsServer(JenkinsProperties jenkinsProperties) {
-        logger.debug("Creating Jenkins client...");
-        return new JenkinsServer(
+    public JenkinsHttpClient JenkinsHttpClient(JenkinsProperties jenkinsProperties) {
+        logger.debug("Creating Jenkins httpClient...");
+        return new JenkinsHttpClient(
                 jenkinsProperties.getJenkinsURI(),
                 jenkinsProperties.getUserName(),
                 jenkinsProperties.getPassword());
-
     }
-
 
 }

@@ -130,6 +130,14 @@
     </dependency>
 
 
+    <!-- https://mvnrepository.com/artifact/com.netflix.feign/feign-core -->
+    <dependency>
+      <groupId>com.netflix.feign</groupId>
+      <artifactId>feign-core</artifactId>
+      <version>8.18.0</version>
+      <scope>runtime</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

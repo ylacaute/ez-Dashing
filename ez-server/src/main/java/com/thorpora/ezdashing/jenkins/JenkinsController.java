@@ -16,7 +16,7 @@
  */
 package com.thorpora.ezdashing.jenkins;
 
-import com.offbytwo.jenkins.helper.JenkinsVersion;
+import com.thorpora.ezdashing.jenkins.monitoring.JenkinsMonitoring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +40,14 @@ public class JenkinsController {
         this.client = client;
     }
 
-    /**
-     * Sample result : {"literalVersion" : "1.642.4"}
-     */
     @GetMapping("/version")
-    public JenkinsVersion getVersion() {
-        return client.getVersion();
+    public String getVersion() {
+        return client.getVersion().getLiteralVersion();
+    }
+
+    @GetMapping("/monitoring")
+    public JenkinsMonitoring getMonitoring() {
+        return client.getMonitoring();
     }
 
     @GetMapping("/lastBuild/{jobName}/{branch}")

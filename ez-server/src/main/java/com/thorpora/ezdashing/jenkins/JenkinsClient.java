@@ -17,16 +17,24 @@
 package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
+import com.offbytwo.jenkins.client.JenkinsHttpClient;
 import com.offbytwo.jenkins.helper.JenkinsVersion;
+import com.offbytwo.jenkins.model.BaseModel;
 import com.offbytwo.jenkins.model.BuildWithDetails;
 import com.offbytwo.jenkins.model.FolderJob;
 import com.offbytwo.jenkins.model.Job;
+import com.thorpora.ezdashing.jenkins.monitoring.JenkinsMonitoring;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
@@ -40,11 +48,45 @@ public class JenkinsClient {
 
     private JenkinsProperties properties;
     private JenkinsServer jenkins;
+    private JenkinsHttpClient jenkinsHttpClient;
 
     @Autowired
-    public JenkinsClient(JenkinsProperties properties, JenkinsServer jenkins) {
+    public JenkinsClient(JenkinsProperties properties, JenkinsHttpClient jenkinsHttpClient) {
         this.properties = properties;
-        this.jenkins = jenkins;
+        this.jenkins = new JenkinsServer(jenkinsHttpClient);
+        this.jenkinsHttpClient = jenkinsHttpClient;
+    }
+
+    public JenkinsMonitoring getMonitoring() {
+        try {
+            URI path = new URI(properties.getBaseUrl() + "/monitoring?format=json&period=jour");
+            InputStream file = jenkinsHttpClient.getFile(path);
+            System.out.println();
+            String theString = IOUtils.toString(file, Charset.forName("UTF-8"));
+
+        } catch (URISyntaxException | IOException ex) {
+            throw new JenkinsException("Jenkins baseUrl is invalid", ex);
+        }
+
+        return JenkinsMonitoring.builder()
+                .lastUpdate("28/05 - 15:00")
+                .version("2.46.3")
+                .memory(80)
+                .cpu(10)
+                .fileDescriptor(74)
+                .threadCount(130)
+                .activeThreadCount(5)
+                /*.freeDiskSpaceInTemp(FreeDiskSpaceInTemp.builder()
+                    .label("3 Go")
+                    .value(13)
+                    .build())*/
+                .build();
+
+
+    }
+
+    class Test extends BaseModel {
+
     }
 
     public JenkinsVersion getVersion() {
