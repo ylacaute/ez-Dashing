@@ -16,6 +16,8 @@
  */
 package com.thorpora.ezdashing.sonar;
 
+import com.thorpora.ezdashing.sonar.dto.SonarMetric;
+import com.thorpora.ezdashing.sonar.dto.SonarSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.wsclient.Host;
@@ -44,8 +46,6 @@ public class SonarClient {
 
     private static final Logger logger = LoggerFactory.getLogger(SonarClient.class);
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
-
     private SonarProperties properties;
 
     @Autowired
@@ -73,7 +73,7 @@ public class SonarClient {
         String lastUpdate = r.getDate() == null ? "" : r.getDate()
                 .toInstant()
                 .atZone(TimeZone.getDefault().toZoneId())
-                .format(formatter);
+                .format(SonarConfig.DATE_FORMATTER);
 
         SonarSummary summary = SonarSummary.builder()
                 .projectId(r.getId().toString())

@@ -130,6 +130,14 @@
     </dependency>
 
 
+    <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-jackson</artifactId>
+      <version>9.5.0</version>
+    </dependency>
+
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

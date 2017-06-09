@@ -8,17 +8,13 @@
     }
   },
   "jenkinsInfo": {
-    "lastUpdate": "28/05 - 15:00",
-    "version": "2.46.3",
-    "memory": 89,
-    "cpu": 8,
-    "fileDescriptor": 75,
-    "threadCount": 134,
-    "activeThreadCount": 12,
-    "freeDiskSpaceInTemp": {
-      "label": "2 Go",
-      "value": 30
-    }
+    "lastUpdate" : "09/06 23:06",
+    "version" : "v2.46.3",
+    "memoryUsage" : 11,
+    "cpuUsage" : 32,
+    "fileDescriptorUsage" : 8,
+    "activeThreadCount" : 0,
+    "freeDiskSpaceInTemp" : 800
   },
   "jenkins1": {
     "state": "SUCCESS",
@@ -174,11 +170,7 @@
         "key": "JenkinsMonitoringWidget",
         "type": "JenkinsMonitoringWidget",
         "displayName": "JENKINS HEALTH",
-        "thresholds": {
-          "bad" : 85,
-          "avg" : 75,
-          "good" : 0
-        }
+        "diskSpaceInTemp" : 3000
       },
       {
         "key": "w5",
@@ -243,6 +235,26 @@
         "bad" : 10,
         "avg" : 1,
         "good" : 0
+      },
+      "memoryUsage": {
+        "bad" : 80,
+        "avg" : 70,
+        "good" : 0
+      },
+      "cpuUsage": {
+        "bad" : 80,
+        "avg" : 70,
+        "good" : 0
+      },
+      "fileDescriptorUsage": {
+        "bad" : 80,
+        "avg" : 70,
+        "good" : 0
+      },
+      "freeDiskSpaceInTemp": {
+        "good" : 40,
+        "avg" : 20,
+        "bad" : 0
       }
     },
     "grid": {

@@ -20,10 +20,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.format.DateTimeFormatter;
+
 @Configuration
 public class SonarConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(SonarConfig.class);
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
 
     /*
     We can't create a singleton since this version doesn't manage multi thread correctly -_-

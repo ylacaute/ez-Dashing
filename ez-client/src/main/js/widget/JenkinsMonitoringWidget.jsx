@@ -7,6 +7,7 @@ import LinearProgressBar from 'js/core/LinearProgressBar.jsx';
 import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import ScalableText from 'js/core/ScalableText.jsx';
 import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
+import ByteUtils from 'js/utils/ByteUtils.jsx';
 
 const NO_DATE = '--/-- --:--';
 
@@ -29,16 +30,15 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   }
 
   componentDidMount() {
-    JenkinsClient.getJenkinsInfo((jsonResponse) => {
+    JenkinsClient.getMonitoring((jsonResponse) => {
       this.setState({
         loaded: true,
         lastUpdate: jsonResponse.lastUpdate,
         version: jsonResponse.version,
-        memory: jsonResponse.memory,
-        cpu: jsonResponse.cpu,
-        fileDescriptor: jsonResponse.fileDescriptor,
+        memoryUsage: jsonResponse.memoryUsage,
+        cpuUsage: jsonResponse.cpuUsage,
+        fileDescriptorUsage: jsonResponse.fileDescriptorUsage,
         activeThreadCount: jsonResponse.activeThreadCount,
-        threadCount: jsonResponse.threadCount,
         freeDiskSpaceInTemp: jsonResponse.freeDiskSpaceInTemp
       });
     }, (exception) => {
@@ -54,7 +54,7 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
       <div className="afterTitle">
         <ScalableText
           className="version"
-          text={`V${version}`}
+          text={`${version}`}
           textAnchor="middle"
           wViewPort={50}
         />
@@ -68,6 +68,18 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     );
   }
 
+  getFreeSpaceInTempData() {
+    const freeDiskSpaceInTempValue = this.state.freeDiskSpaceInTemp < this.props.diskSpaceInTemp ?
+      this.state.freeDiskSpaceInTemp : this.props.diskSpaceInTemp;
+    const freeDiskSpaceInTempUsage = freeDiskSpaceInTempValue / this.props.diskSpaceInTemp * 100;
+    const freeDiskSpaceInTempLabel = ByteUtils.asLabel(this.state.freeDiskSpaceInTemp);
+    return {
+      value: freeDiskSpaceInTempValue,
+      label: freeDiskSpaceInTempLabel,
+      usage: freeDiskSpaceInTempUsage
+    }
+  }
+
   renderContent() {
     if (this.state.exception != null) {
       return this.renderError(this.state.exception);
@@ -75,50 +87,42 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     if (this.state.loaded == false) {
       return this.renderLoadingContent();
     }
-    const classForValue = (val) => ThresholdConfig.get(this.props.thresholds, val);
     const textForValue = (value) => `${value} %`;
-    const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
     const displayValuePosition = {x: 2, y: 10};
     const labelPosition = {x:96, y: 10};
+    const freeSpace = this.getFreeSpaceInTempData();
+
     return (
       <div>
         <LinearProgressBar
-          label="Thread"
-          value={threadPercent}
-          displayValue={`${this.state.activeThreadCount}`}
-          classForValue={classForValue}
-          displayValuePosition={displayValuePosition}
-          labelPosition={labelPosition}
-        />
-        <LinearProgressBar
           label="Memory"
-          value={this.state.memory}
+          value={this.state.memoryUsage}
           textForValue={textForValue}
-          classForValue={classForValue}
+          classForValue={(val) => ThresholdConfig.get(this.props.thresholds.memoryUsage, val)}
           displayValuePosition={displayValuePosition}
           labelPosition={labelPosition}
         />
         <LinearProgressBar
           label="CPU"
-          value={this.state.cpu}
+          value={this.state.cpuUsage}
           textForValue={textForValue}
-          classForValue={classForValue}
+          classForValue={(val) => ThresholdConfig.get(this.props.thresholds.cpuUsage, val)}
           displayValuePosition={displayValuePosition}
         />
         <LinearProgressBar
-          label="File descriptor"
-          value={this.state.fileDescriptor}
+          label="File descriptors"
+          value={this.state.fileDescriptorUsage}
           textForValue={textForValue}
-          classForValue={classForValue}
+          classForValue={(val) => ThresholdConfig.get(this.props.thresholds.fileDescriptorUsage, val)}
           displayValuePosition={displayValuePosition}
           labelPosition={labelPosition}
         />
         <LinearProgressBar
-          label="Free space"
-          value={this.state.freeDiskSpaceInTemp.value}
-          displayValue={this.state.freeDiskSpaceInTemp.label}
+          label="Free temp space"
+          value={freeSpace.usage}
+          displayValue={freeSpace.label}
           textForValue={textForValue}
-          classForValue={classForValue}
+          classForValue={(val) => ThresholdConfig.get(this.props.thresholds.freeDiskSpaceInTemp, val)}
           displayValuePosition={displayValuePosition}
           labelPosition={labelPosition}
         />
@@ -127,14 +131,17 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
   }
 
   getGlobalHealth() {
-    const s = this.state;
-    const threadPercent = this.state.threadCount / 100 * this.state.activeThreadCount;
-    const kpis = [threadPercent, s.memory, s.cpu, s.fileDescriptor, s.freeDiskSpaceInTemp];
+    const kpis = {
+      memoryUsage: this.state.memoryUsage,
+      cpuUsage: this.state.cpuUsage,
+      fileDescriptorUsage: this.state.fileDescriptorUsage,
+      freeDiskSpaceInTemp: this.getFreeSpaceInTempData().usage
+    };
     let result = "good";
     if (this.props.thresholds == null)
       return result;
-    for (let kpi of kpis) {
-      let health = ThresholdConfig.get(this.props.thresholds, kpi);
+    for (let kpi in kpis) {
+      let health = ThresholdConfig.get(this.props.thresholds[kpi], kpis[kpi]);
       if (health == "bad") {
         result = "bad";
         break;
@@ -162,10 +169,13 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
 JenkinsMonitoringWidget.propTypes = {
   displayName: PropTypes.string,
   thresholds: PropTypes.object,
+  diskSpaceInTemp: PropTypes.number
 };
 
+// Disk space in Mo
 JenkinsMonitoringWidget.defaultProps = {
   thresholds: null,
+  diskSpaceInTemp: 10000,
   refreshEvery: 60
 };
 
