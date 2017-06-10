@@ -27,19 +27,7 @@ import org.sonar.wsclient.services.Resource;
 import org.sonar.wsclient.services.ResourceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
-
-// All possible metrics
-// http://sonar.dev.edelia.net/api/navigation/component?componentKey=com.edelia.bilanconso.gas:bc-gas-sys:origin/master
-// http://sonar.dev.edelia.net/api/resources?resource=com.edelia.bilanconso.gas%3Abc-gas-sys%3Aorigin%2Fmaster&metrics=coverage,lines,violations,sqale_rating,overall_coverage,new_overall_coverage,coverage,new_coverage,it_coverage,new_it_coverage,tests%2Cduplicated_lines_density,duplicated_blocks,ncloc,new_major_violations&verbose=false&format=json
-
-// TEST WITH FREE ONLINE SONAR
-//https://sonarqube.com/api/metrics/search
-//https://sonarqube.com/api/properties
-//https://sonarqube.com/api/resources?resource=qualinsight.badges.activation.measure&metrics=coverage&format=json
-//https://sonarqube.com/api/measures/components?componentKey=qualinsight.badges.activation.measure&metricKeys=coverage
 
 @Service
 public class SonarClient {
