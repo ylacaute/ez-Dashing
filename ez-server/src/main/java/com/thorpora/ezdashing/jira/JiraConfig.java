@@ -16,8 +16,10 @@
  */
 package com.thorpora.ezdashing.jira;
 
+import com.thorpora.ezdashing.core.FeignErrorLogger;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
+import feign.slf4j.Slf4jLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +37,7 @@ public class JiraConfig {
                 .requestInterceptor(new BasicAuthRequestInterceptor(
                         properties.getUserName(),
                         properties.getPassword()))
-                .logger(new feign.Logger.ErrorLogger())
+                .logger(new Slf4jLogger(JiraClient.class))
                 .logLevel(feign.Logger.Level.BASIC)
                 .target(JiraAPI.class, properties.getBaseUrl());
     }
