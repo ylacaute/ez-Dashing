@@ -56,27 +56,24 @@ __Run the server__
 
 More options in ez.sh.
  
-# Existing widgets
- - __issuesWidget__ (jira)
- - __ClockWidget__ (current date)
- - __jenkinsMonitoringWidget__ (jenkins health)
- - __SonkinsWidget__ (jenkins + sonar metrics)
- - __SprintWidget__ (Scrum sprint progression)
- - __TeamWidget__ (team name and logo)
-
-# Widgets Backlog
- - __MediaWidget__ (image / video / sound)
- - __PullRequestWidget__ (Gitlab, Github)
- - __TextWidget__ (scrolling text)
- - __GraphWidget__ (using D3 in the React way)
- - __Sonkinswidget__ (weather icon base on last builds)
+# Widgets
+- [x] __issuesWidget__ (jira)
+- [x] __ClockWidget__ (current date)
+- [x] __jenkinsMonitoringWidget__ (jenkins health)
+- [x] __SonkinsWidget__ (jenkins + sonar metrics)
+- [x] __SprintWidget__ (Scrum sprint progression)
+- [x] __TeamWidget__ (team name and logo)
+- [ ] __GraphWidget__ [DEV] (Animated graph keeping small value history)
+- [ ] __PullRequestWidget__ (Gitlab, Github)
+- [ ] __TextWidget__ (scrolling text)
+- [ ] __MediaWidget__ (Insert images, videos, sounds)
+- [ ] __Sonkinswidget__ (weather icon ?)
  
 # General Todos
- - Add more documentation on widgets
- - __Testing__ ^^'
+ - Add documentation on widgets configuration
  - Add a Dashing color theme
  - Plugin system
- - Improve error messages (if requests are 404, 403...)
+ - Improve error management
  
 # Browser compatibility: 
  - __Chromium 57__ : good
