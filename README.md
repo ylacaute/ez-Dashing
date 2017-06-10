@@ -91,4 +91,3 @@ More options in ez.sh.
 
 ![Screenshot](/ez-client/screenshot.png)
 
-![Screenshot](/ez-client/screenshot_resize.png)
