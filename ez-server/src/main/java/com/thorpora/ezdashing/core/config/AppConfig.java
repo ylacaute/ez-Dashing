@@ -20,10 +20,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thorpora.ezdashing.core.StartupListener;
 import com.thorpora.ezdashing.core.error.ErrorLogger;
+import org.slf4j.event.Level;
+import org.sonar.wsclient.connectors.ConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.net.ConnectException;
 
 @Configuration
 public class AppConfig {
@@ -35,7 +39,10 @@ public class AppConfig {
 
     @Bean
     public ErrorLogger errorLogger() {
-        return new ErrorLogger();
+        ErrorLogger errorLogger = new ErrorLogger();
+        errorLogger.map(Level.ERROR, ConnectionException.class);
+        errorLogger.mapRootCause(Level.ERROR, ConnectException.class);
+        return errorLogger;
     }
 
     @Bean

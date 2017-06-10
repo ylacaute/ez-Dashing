@@ -37,19 +37,34 @@ public class ErrorLogger {
 
     private Map<Class, Level> levelMapping = new HashMap<>();
     private Map<Class, Boolean> stackMapping = new HashMap<>();
+    private Map<Class, Boolean> rootCauseMapping = new HashMap<>();
 
     /**
      * Map exception which must be logged in a particular level, without stackTrace
      */
     public void map(Level logLevel, Class... exceptionClasses) {
-        map(logLevel, false, exceptionClasses);
+        map(logLevel, false, false, exceptionClasses);
+    }
+
+    /**
+     * Map exceptions with given root cause which must be logged in a particular level, without stackTrace
+     */
+    public void mapRootCause(Level logLevel, Class... rootCauseClasses) {
+        map(logLevel, false, true, rootCauseClasses);
     }
 
     /**
      * Map exception which must be logged in a particular level, with stackTrace
      */
     public void mapWithStack(Level logLevel, Class... exceptionClasses) {
-        map(logLevel, true, exceptionClasses);
+        map(logLevel, true, false, exceptionClasses);
+    }
+
+    /**
+     * Map exceptions with given root cause which must be logged in a particular level, with stackTrace
+     */
+    public void mapRootCauseWithStack(Level logLevel, Class... rootCauseClasses) {
+        map(logLevel, true, true, rootCauseClasses);
     }
 
     /**
@@ -62,8 +77,16 @@ public class ErrorLogger {
      * Logger an exception in a particular log level. If no mapping is set, the stackTrace is printed.
      */
     public void log(Logger logger, Throwable throwable) {
-        Level logLevel = resolveLogLevel(throwable);
-        boolean printStack = isStackTraceLogged(throwable);
+        Throwable rootCause = ExceptionUtils.getRootCause(throwable);
+        Level logLevel;
+        boolean printStack;
+        if (rootCauseMapping.get(rootCause.getClass())) {
+            logLevel = resolveLogLevel(rootCause);
+            printStack = isStackTraceLogged(rootCause);
+        } else {
+            logLevel = resolveLogLevel(throwable);
+            printStack = isStackTraceLogged(throwable);
+        }
         String message = resolveMessage(throwable);
 
         switch (logLevel) {
@@ -110,10 +133,11 @@ public class ErrorLogger {
         return message;
     }
 
-    private void map(Level logLevel, boolean printStackTrace, Class... exceptionClasses) {
+    private void map(Level logLevel, boolean printStackTrace, boolean mapRootCause, Class... exceptionClasses) {
         Arrays.stream(exceptionClasses).forEach(c -> {
             levelMapping.put(c, logLevel);
             stackMapping.put(c, printStackTrace);
+            rootCauseMapping.put(c, mapRootCause);
         });
     }
 

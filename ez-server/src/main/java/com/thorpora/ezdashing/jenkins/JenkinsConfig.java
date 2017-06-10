@@ -18,8 +18,10 @@ package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.client.JenkinsHttpClient;
+import com.thorpora.ezdashing.core.FeignErrorLogger;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
+import feign.slf4j.Slf4jLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +43,7 @@ public class JenkinsConfig {
                 .requestInterceptor(new BasicAuthRequestInterceptor(
                         jenkinsProperties.getUserName(),
                         jenkinsProperties.getPassword()))
-                .logger(new feign.Logger.ErrorLogger())
+                .logger(new Slf4jLogger(JenkinsClient.class))
                 .logLevel(feign.Logger.Level.BASIC)
                 .target(JenkinsPluginsAPI.class, jenkinsProperties.getBaseUrl());
     }
