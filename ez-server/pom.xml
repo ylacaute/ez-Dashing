@@ -11,22 +11,6 @@
   <name>ez-dashing</name>
   <description>Another free dashboard tool</description>
 
-  <repositories>
-    <repository>
-      <id>atlassian-public</id>
-      <url>https://m2proxy.atlassian.com/repository/public</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
-    </repository>
-  </repositories>
-
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -111,6 +95,5 @@
       </plugin>
     </plugins>
   </build>
-
 
 </project>
