@@ -57,7 +57,7 @@ __Run the server__
 More options in ez.sh.
  
 # Existing widgets
- - __BugsWidget__ (jira, not functionnal yet) 
+ - __issuesWidget__ (jira)
  - __ClockWidget__ (current date)
  - __jenkinsMonitoringWidget__ (jenkins health)
  - __SonkinsWidget__ (jenkins + sonar metrics)
