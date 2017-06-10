@@ -17,7 +17,7 @@ The project is very young but in active development. All contributions are welco
 ```
 - __From Dock Hub__
 ```
-docker run -it -p 2222:2222 --name ez-demo -t ylacaute/ez-dashing:demo
+docker run --rm -it -p 2222:2222 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:2222](http://localhost:2222)
 
@@ -29,7 +29,7 @@ Go on [http://localhost:2222](http://localhost:2222)
 ```
 - __From Dock Hub__
 ```
-docker run -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
+docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
 ```
 
 Go on [http://localhost:8080](http://localhost:8080)
