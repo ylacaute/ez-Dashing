@@ -17,7 +17,6 @@
 package com.thorpora.ezdashing.core;
 
 import com.thorpora.ezdashing.core.config.AppConfigException;
-import com.thorpora.ezdashing.jenkins.JenkinsClient;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -31,7 +30,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 @Getter
 @Setter

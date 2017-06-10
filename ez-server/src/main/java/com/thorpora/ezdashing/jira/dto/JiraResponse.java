@@ -1,5 +1,5 @@
 /**
- * Created by Yannick Lacaute on 17/05/17.
+ * Created by Yannick Lacaute on 10/06/17.
  * Copyright 2015-2016 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.sonar;
+package com.thorpora.ezdashing.jira.dto;
 
-import org.springframework.context.annotation.Configuration;
+import lombok.Builder;
+import lombok.Data;
 
-import java.time.format.DateTimeFormatter;
+@Builder
+@Data
+public class JiraResponse {
 
-@Configuration
-public class SonarConfig {
+    private int total;
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
+    private String response;
 
 }

@@ -83,9 +83,39 @@
       "UTCOffset": 2
     },
     {
-      "key": "BugsWidget",
-      "type": "BugsWidget",
-      "displayName": "BUGS"
+      "key": "IssuesWidget",
+      "type": "IssuesWidget",
+      "displayName": "ISSUES",
+      "issues": [
+        {
+          "label" : "TODO",
+          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\""
+        }, {
+          "label" : "IN PROGRESS",
+          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\""
+        }
+      ]
+    },
+    {
+      "key": "Emergency",
+      "type": "IssuesWidget",
+      "displayName": "P1 ISSUES",
+      "issues": [
+        {
+          "label" : "TODO",
+          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\""
+        }, {
+          "label" : "IN PROGRESS",
+          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\""
+        }
+      ],
+      "thresholds": {
+        "issues": {
+          "bad" : 2,
+          "avg" : 1,
+          "good" : 0
+        }
+      }
     }
   ],
   "avatars" : [{
@@ -112,7 +142,7 @@
       "avg" : 1,
       "good" : 0
     },
-    "bugs": {
+    "issues": {
       "bad" : 10,
       "avg" : 1,
       "good" : 0

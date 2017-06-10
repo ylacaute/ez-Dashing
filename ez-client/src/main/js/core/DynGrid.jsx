@@ -73,7 +73,6 @@ class DynGrid extends React.Component {
   render() {
     return (
       <div>
-        <button id="resetBtn" onClick={this.resetLayoutAndLocalStorage}>Reset Layout</button>
         <ResponsiveReactGridLayout
           className="layout"
           layouts={this.props.config.grid.layouts}

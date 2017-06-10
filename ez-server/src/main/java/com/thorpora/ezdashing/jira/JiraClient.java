@@ -16,42 +16,43 @@
  */
 package com.thorpora.ezdashing.jira;
 
-import com.atlassian.jira.rest.client.api.JiraRestClient;
-import com.atlassian.jira.rest.client.api.domain.User;
-import com.atlassian.util.concurrent.Promise;
-import com.thorpora.ezdashing.sonar.SonarProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thorpora.ezdashing.core.JsonUtils;
+import com.thorpora.ezdashing.jira.dto.JiraResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.format.DateTimeFormatter;
-
-// https://bitbucket.org/jaysee00/jrjc-example-client/src/e01e0da6d72e06aa21b0a8fe5c23d62b97192ca9/standalone/src/main/java/com/atlassian/jira/examples/Main.java?at=master&_ga=2.117005199.801030348.1496224908-1696540088.1494783443&fileviewer=file-view-default
-
 
 @Service
 public class JiraClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(JiraClient.class);
+    private static final int MAX_RESULT = 200;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
-
-    private SonarProperties properties;
-    private JiraRestClient jira;
+    private JiraAPI jiraAPI;
+    private ObjectMapper mapper;
 
     @Autowired
-    public JiraClient(SonarProperties properties, JiraRestClient jira) {
-        this.properties = properties;
-        this.jira = jira;
+    public JiraClient(
+            ObjectMapper objectMapper,
+            JiraAPI jiraAPI) {
+        this.mapper = objectMapper;
+        this.jiraAPI = jiraAPI;
     }
 
-    public User test() {
-        Promise<User> promise = jira.getUserClient().getUser(properties.getUserName());
-        User user = promise.claim();
-        System.out.println(String.format("Your admin user's email address is: %s\r\n", user.getEmailAddress()));
-        System.out.println("Example complete. Now exiting.");
-        return user;
+    public JiraResponse doQuery(String query) {
+        return buildResponse(jiraAPI.query(query, MAX_RESULT));
+    }
+
+    public JiraResponse doFastQuery(String query) {
+        return buildResponse(jiraAPI.queryWithFields(query, MAX_RESULT, "fields=key"));
+    }
+
+    private JiraResponse buildResponse(String rawResult) {
+        JsonNode root = JsonUtils.readTree(mapper, rawResult);
+        return JiraResponse.builder()
+                .total(root.get("total").asInt())
+                .response(rawResult)
+                .build();
     }
 
 }

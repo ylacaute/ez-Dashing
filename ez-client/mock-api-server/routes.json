@@ -1,7 +1,7 @@
 {
-  "/api/jira/bugs" : "/bugs",
+  "/api/jira/query/total" : "/jira",
   "/api/sonar/summary": "/sonarSummary",
-  "/api/jenkins/info": "/jenkinsInfo",
+  "/api/jenkins/monitoring": "/jenkinsMonitoring",
   "/api/jenkins/lastBuild/bc-gas-sys_-_Analyse_reccurente/master": "/jenkins1",
   "/api/jenkins/lastBuild/elec-similar-home-sys_-_Analyse_reccurente/master": "/jenkins2",
   "/api/jenkins/lastBuild/gas-service-composition-sys_-_Analyse_reccurente/master": "/jenkins3",

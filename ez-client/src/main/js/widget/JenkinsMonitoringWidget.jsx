@@ -20,16 +20,14 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
       exception: null,
       lastUpdate: NO_DATE,
       version: '--',
-      memory: 0,
-      cpu: 0,
-      fileDescriptor: 0,
-      threadCount: 0,
-      activeThreadCount: 0,
+      memoryUsage: 0,
+      cpuUsage: 0,
+      fileDescriptorUsage: 0,
       freeDiskSpaceInTemp: 0
     };
   }
 
-  componentDidMount() {
+  refreshData() {
     JenkinsClient.getMonitoring((jsonResponse) => {
       this.setState({
         loaded: true,
@@ -41,6 +39,9 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
         activeThreadCount: jsonResponse.activeThreadCount,
         freeDiskSpaceInTemp: jsonResponse.freeDiskSpaceInTemp
       });
+      // FIXME: why http response 500 is not catched ?
+      if (jsonResponse.message == "Internal Server Error")
+        throw { name: "Error 500", message: "Server error" }
     }, (exception) => {
       console.log("Error during Jenkins monitoring request, details: ", exception);
       this.setState({exception: exception});
@@ -82,8 +83,10 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
 
   renderContent() {
     if (this.state.exception != null) {
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
       return this.renderError(this.state.exception);
     }
+    console.log("HOLY SHIT");
     if (this.state.loaded == false) {
       return this.renderLoadingContent();
     }

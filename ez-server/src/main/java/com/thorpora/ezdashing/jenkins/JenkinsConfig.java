@@ -36,6 +36,7 @@ public class JenkinsConfig {
 
     @Bean
     public JenkinsPluginsAPI JenkinsPluginsAPI(JenkinsProperties jenkinsProperties) {
+        logger.debug("Creating Jenkins plugins client...");
         return Feign.builder()
                 .requestInterceptor(new BasicAuthRequestInterceptor(
                         jenkinsProperties.getUserName(),
@@ -47,7 +48,7 @@ public class JenkinsConfig {
 
     @Bean
     public JenkinsServer JenkinsServer(JenkinsProperties jenkinsProperties) {
-        logger.debug("Creating Jenkins httpClient...");
+        logger.debug("Creating Jenkins client...");
         return new JenkinsServer(new JenkinsHttpClient(
                 jenkinsProperties.getJenkinsURI(),
                 jenkinsProperties.getUserName(),

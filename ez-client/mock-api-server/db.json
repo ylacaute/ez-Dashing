@@ -1,20 +1,30 @@
 {
-  "bugs" : {
-    "total" : 42,
-    "details" : {
-      "p1" : 1,
-      "p2" : 5,
-      "p3" : 36
+  "jira": [
+    {
+      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\"",
+      "total": 1
+    },
+    {
+      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\"",
+      "total": 2
+    },
+    {
+      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\"",
+      "total": 3
+    },
+    {
+      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\"",
+      "total": 4
     }
-  },
-  "jenkinsInfo": {
-    "lastUpdate" : "09/06 23:06",
-    "version" : "v2.46.3",
-    "memoryUsage" : 11,
-    "cpuUsage" : 32,
-    "fileDescriptorUsage" : 8,
-    "activeThreadCount" : 0,
-    "freeDiskSpaceInTemp" : 800
+  ],
+  "jenkinsMonitoring": {
+    "lastUpdate": "09/06 23:06",
+    "version": "v2.46.3",
+    "memoryUsage": 11,
+    "cpuUsage": 32,
+    "fileDescriptorUsage": 8,
+    "activeThreadCount": 0,
+    "freeDiskSpaceInTemp": 800
   },
   "jenkins1": {
     "state": "SUCCESS",
@@ -117,7 +127,7 @@
       }
     }
   ],
-  "dashboard" : {
+  "dashboard": {
     "widgets": [
       {
         "key": "w0",
@@ -163,14 +173,15 @@
         "sprintOffset": 6,
         "sprintDuration": 21,
         "sprintDates": [
-          "2017-05-15", "2017-06-13"
+          "2017-05-15",
+          "2017-06-13"
         ]
       },
       {
         "key": "JenkinsMonitoringWidget",
         "type": "JenkinsMonitoringWidget",
         "displayName": "JENKINS HEALTH",
-        "diskSpaceInTemp" : 3000
+        "diskSpaceInTemp": 3000
       },
       {
         "key": "w5",
@@ -202,59 +213,95 @@
         "UTCOffset": 2
       },
       {
-        "key": "BugsWidget",
-        "type": "BugsWidget",
-        "displayName": "BUGS"
+        "key": "IssuesWidget",
+        "type": "IssuesWidget",
+        "displayName": "ISSUES",
+        "issues": [
+          {
+            "label": "TODO",
+            "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\""
+          },
+          {
+            "label": "IN PROGRESS",
+            "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\""
+          }
+        ]
+      },
+      {
+        "key": "Emergency",
+        "type": "IssuesWidget",
+        "displayName": "P1 ISSUES",
+        "issues": [
+          {
+            "label": "TODO",
+            "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\""
+          },
+          {
+            "label": "IN PROGRESS",
+            "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\""
+          }
+        ],
+        "thresholds": {
+          "issues": {
+            "bad": 2,
+            "avg": 1,
+            "good": 0
+          }
+        }
       }
     ],
-    "avatars" : [{
-      "displayName": "Epithor",
-      "jenkinsAuthorPattern": ".*epi",
-      "url": "/img/avatars/epi.png"
-    }, {
-      "displayName": "Pénelope",
-      "jenkinsAuthorPattern": ".*Pénelope.*",
-      "url": "/img/avatars/Penelope.png"
-    }, {
-      "displayName": "Marc",
-      "jenkinsAuthorPattern": ".*[mM]arc.*",
-      "url": "/img/avatars/Marc.png"
-    }],
+    "avatars": [
+      {
+        "displayName": "Epithor",
+        "jenkinsAuthorPattern": ".*epi",
+        "url": "/img/avatars/epi.png"
+      },
+      {
+        "displayName": "Pénelope",
+        "jenkinsAuthorPattern": ".*Pénelope.*",
+        "url": "/img/avatars/Penelope.png"
+      },
+      {
+        "displayName": "Marc",
+        "jenkinsAuthorPattern": ".*[mM]arc.*",
+        "url": "/img/avatars/Marc.png"
+      }
+    ],
     "thresholds": {
       "codeCoverage": {
-        "good" : 64,
-        "avg" : 55,
-        "bad" : 0
+        "good": 64,
+        "avg": 55,
+        "bad": 0
       },
       "violations": {
-        "bad" : 10,
-        "avg" : 1,
-        "good" : 0
+        "bad": 10,
+        "avg": 1,
+        "good": 0
       },
-      "bugs": {
-        "bad" : 10,
-        "avg" : 1,
-        "good" : 0
+      "issues": {
+        "bad": 10,
+        "avg": 1,
+        "good": 0
       },
       "memoryUsage": {
-        "bad" : 80,
-        "avg" : 70,
-        "good" : 0
+        "bad": 80,
+        "avg": 70,
+        "good": 0
       },
       "cpuUsage": {
-        "bad" : 80,
-        "avg" : 70,
-        "good" : 0
+        "bad": 80,
+        "avg": 70,
+        "good": 0
       },
       "fileDescriptorUsage": {
-        "bad" : 80,
-        "avg" : 70,
-        "good" : 0
+        "bad": 80,
+        "avg": 70,
+        "good": 0
       },
       "freeDiskSpaceInTemp": {
-        "good" : 40,
-        "avg" : 20,
-        "bad" : 0
+        "good": 40,
+        "avg": 20,
+        "bad": 0
       }
     },
     "grid": {

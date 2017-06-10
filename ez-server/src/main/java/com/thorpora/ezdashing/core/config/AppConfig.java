@@ -17,10 +17,9 @@
 package com.thorpora.ezdashing.core.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thorpora.ezdashing.core.StartupListener;
 import com.thorpora.ezdashing.core.error.ErrorLogger;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,8 +28,6 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @Configuration
 public class AppConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
-
     @Bean
     public StartupListener startupListener() {
         return new StartupListener();
@@ -38,8 +35,12 @@ public class AppConfig {
 
     @Bean
     public ErrorLogger errorLogger() {
-        ErrorLogger errorLogger = new ErrorLogger();
-        return errorLogger;
+        return new ErrorLogger();
+    }
+
+    @Bean
+    public ObjectMapper ObjectMapper() {
+        return new ObjectMapper();
     }
 
     @Autowired

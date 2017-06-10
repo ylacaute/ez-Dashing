@@ -16,8 +16,8 @@
  */
 package com.thorpora.ezdashing.jenkins;
 
-import com.thorpora.ezdashing.jenkins.dto.JenkinsMonitoring;
 import com.thorpora.ezdashing.jenkins.dto.JenkinsLastBuild;
+import com.thorpora.ezdashing.jenkins.dto.JenkinsMonitoring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

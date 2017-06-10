@@ -17,16 +17,20 @@
 package com.thorpora.ezdashing.jira;
 
 
-import com.atlassian.jira.rest.client.api.domain.User;
+import com.thorpora.ezdashing.jira.dto.JiraResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/sonar")
+@RequestMapping("/api/jira")
 public class JiraController {
 
     private static final Logger logger = LoggerFactory.getLogger(JiraController.class);
@@ -38,8 +42,20 @@ public class JiraController {
         this.client = client;
     }
 
-    @GetMapping("/test")
-    public User test() {
-        return client.test();
+    @GetMapping("/query")
+    public JiraResponse doQuery(@RequestParam("query") String query) {
+        logger.info("GET /query?query={}", query);
+        JiraResponse result = client.doQuery(query);
+        logger.debug("Response for Jira: {}", result);
+        return result;
     }
+
+    @GetMapping("/query/total")
+    public List<JiraResponse> doFastQuery(@RequestParam("query") String query) {
+        logger.info("GET /query?query={}", query);
+        JiraResponse result = client.doFastQuery(query);
+        logger.debug("Response for Jira: {}", result);
+        return Arrays.asList(result);
+    }
+
 }

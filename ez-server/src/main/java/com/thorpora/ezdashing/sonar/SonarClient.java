@@ -27,6 +27,7 @@ import org.sonar.wsclient.services.Resource;
 import org.sonar.wsclient.services.ResourceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.TimeZone;
 
 @Service
@@ -78,6 +79,9 @@ public class SonarClient {
         return summary;
     }
 
+    /**
+     * As Sonar client don't manage threads pool we create a new one for each request
+     */
     private Sonar getServerSonar() {
         Host server = new Host(properties.getBaseUrl(), properties.getUserName(), properties.getPassword());
         Sonar sonar = new Sonar(new HttpClient4Connector(server));

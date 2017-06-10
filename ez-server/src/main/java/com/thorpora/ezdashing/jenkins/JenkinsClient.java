@@ -22,11 +22,10 @@ import com.offbytwo.jenkins.helper.JenkinsVersion;
 import com.offbytwo.jenkins.model.BuildWithDetails;
 import com.offbytwo.jenkins.model.FolderJob;
 import com.offbytwo.jenkins.model.Job;
+import com.thorpora.ezdashing.core.JsonUtils;
 import com.thorpora.ezdashing.jenkins.dto.JenkinsLastBuild;
 import com.thorpora.ezdashing.jenkins.dto.JenkinsMonitoring;
 import com.thorpora.ezdashing.jenkins.mapper.JenkinsMonitoringMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +36,6 @@ import java.util.TimeZone;
 @Service
 public class JenkinsClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(JenkinsClient.class);
-
     private JenkinsProperties properties;
     private JenkinsServer jenkins;
     private JenkinsPluginsAPI jenkinsPluginsAPI;
@@ -46,13 +43,14 @@ public class JenkinsClient {
 
     @Autowired
     public JenkinsClient(
+            ObjectMapper objectMapper,
             JenkinsProperties properties,
             JenkinsServer jenkinsServer,
             JenkinsPluginsAPI jenkinsPluginsAPI) {
+        this.mapper = objectMapper;
         this.properties = properties;
         this.jenkins = jenkinsServer;
         this.jenkinsPluginsAPI = jenkinsPluginsAPI;
-        this.mapper = new ObjectMapper();
     }
 
     public JenkinsVersion getVersion() {
@@ -60,11 +58,8 @@ public class JenkinsClient {
     }
 
     public JenkinsMonitoring getMonitoring() {
-        try {
-            return JenkinsMonitoringMapper.map(mapper.readTree(jenkinsPluginsAPI.getMonitoring()));
-        } catch (Exception ex) {
-            throw new JenkinsException("Error during jenkins monitoring request", ex);
-        }
+        String rawResult = jenkinsPluginsAPI.getMonitoring();
+        return JenkinsMonitoringMapper.map(JsonUtils.readTree(mapper, rawResult));
     }
 
     public JenkinsLastBuild getLastBuild(String jobName, String branch) {

@@ -1,5 +1,5 @@
 /**
- * Created by Yannick Lacaute on 17/05/17.
+ * Created by Yannick Lacaute on 09/06/17.
  * Copyright 2015-2016 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.sonar;
+package com.thorpora.ezdashing.jira;
 
-import org.springframework.context.annotation.Configuration;
+import feign.Param;
+import feign.RequestLine;
 
-import java.time.format.DateTimeFormatter;
+public interface JiraAPI {
 
-@Configuration
-public class SonarConfig {
+    @RequestLine("GET /rest/api/2/search?jql={query}&maxResults={maxResult}")
+    String query(
+            @Param("query") String query,
+            @Param("maxResult") int maxResult);
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
-
+    @RequestLine("GET /rest/api/2/search?jql={query}&maxResults={maxResult}&fields={fields}")
+    String queryWithFields(
+            @Param("query") String query,
+            @Param("maxResult") int maxResult,
+            @Param("fields") String fields);
 }

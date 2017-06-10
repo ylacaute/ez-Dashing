@@ -1,5 +1,5 @@
 /**
- * Created by Yannick Lacaute on 17/05/17.
+ * Created by Yannick Lacaute on 10/06/17.
  * Copyright 2015-2016 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.sonar;
+package com.thorpora.ezdashing.core;
 
-import org.springframework.context.annotation.Configuration;
+public class JsonException extends RuntimeException {
 
-import java.time.format.DateTimeFormatter;
+    public JsonException(String message) {
+        super(message);
+    }
 
-@Configuration
-public class SonarConfig {
-
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
+    public JsonException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

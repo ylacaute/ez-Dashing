@@ -49,6 +49,7 @@ $image-path: '/img' !default;
 @import 'widget/jenkinsMonitoring';
 @import 'widget/clock';
 @import 'widget/sprint';
+@import 'widget/issuesWidget';
 @import 'metric/metrics';
 
 

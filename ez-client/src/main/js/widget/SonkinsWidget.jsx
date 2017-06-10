@@ -44,6 +44,7 @@ class SonkinsWidget extends RefreshableWidget {
         buildAuthor: jsonResponse.author
       });
     }, (exception) => {
+      console.log("Error during Jenkins request, details: ", exception);
       this.setState({exception: exception});
     });
 

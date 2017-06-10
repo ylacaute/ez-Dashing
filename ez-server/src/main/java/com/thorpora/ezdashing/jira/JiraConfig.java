@@ -16,9 +16,8 @@
  */
 package com.thorpora.ezdashing.jira;
 
-import com.atlassian.jira.rest.client.api.JiraRestClient;
-import com.atlassian.jira.rest.client.api.JiraRestClientFactory;
-import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
+import feign.Feign;
+import feign.auth.BasicAuthRequestInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -30,13 +29,15 @@ public class JiraConfig {
     private static final Logger logger = LoggerFactory.getLogger(JiraConfig.class);
 
     @Bean
-    public JiraRestClient JiraRestClient(JiraProperties properties) {
-        logger.debug("Creating JIRA client...");
-        JiraRestClientFactory factory = new AsynchronousJiraRestClientFactory();
-        return factory.createWithBasicHttpAuthentication(
-                properties.getJiraURI(),
-                properties.getUserName(),
-                properties.getPassword());
+    public JiraAPI JiraAPI(JiraProperties properties) {
+        logger.debug("Creating Jira client...");
+        return Feign.builder()
+                .requestInterceptor(new BasicAuthRequestInterceptor(
+                        properties.getUserName(),
+                        properties.getPassword()))
+                .logger(new feign.Logger.ErrorLogger())
+                .logLevel(feign.Logger.Level.BASIC)
+                .target(JiraAPI.class, properties.getBaseUrl());
     }
 
 }
