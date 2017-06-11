@@ -56,7 +56,7 @@ __Run the server__
 
 More options in ez.sh.
  
-# Widgets
+# Widgets backlog
 - [x] __IssuesWidget__ (jira)
 - [x] __ClockWidget__ (current date)
 - [x] __jenkinsMonitoringWidget__ (jenkins health)
@@ -72,9 +72,16 @@ More options in ez.sh.
 # General Todos
  - Fix React warning in front build (wrong way for minify/uglify for prod)
  - Add a Dashing color theme (black theme not always good)
+ - Use Travis-CI for this project
  - Add documentation on widgets configuration
  - Plugin system
  - Improve error management
+ 
+# Widget system not fixed
+ - Could Widget dependency management be interesting ?
+   - Client API could be invisible Widget and make event listened by any other widget
+   - But configuration must stay as simple as possible
+ - How generic a widget should be ? 
  
 # Browser compatibility: 
  - __Chromium 57__ : good

@@ -27,9 +27,9 @@ class DynGrid extends React.Component {
   }
 
   onResizeStop(layout, oldItem, newItem, placeholder, event, htmlElement) {
-    //console.log(" htmlElement : ", htmlElement.parentElement);
-    //console.log(" WIDTH : ", htmlElement.parentElement.offsetWidth);
-    //console.log(">>>>>>>>>>>>> htmlElement.offsetWidth : " + htmlElement.offsetWidth);
+    console.log(" htmlElement : ", htmlElement.parentElement);
+    console.log(" WIDTH : ", htmlElement.parentElement.offsetWidth);
+    console.log(">>>>>>>>>>>>> htmlElement.offsetWidth : " + htmlElement.offsetWidth);
   }
 
   onLayoutChange(layout, layouts) {

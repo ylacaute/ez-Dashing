@@ -248,6 +248,16 @@
             "good": 0
           }
         }
+      },
+      {
+        "key": "g1",
+        "type": "GraphWidget",
+        "displayName": "GRAPH"
+      },
+      {
+        "key": "g2",
+        "type": "SampleGraphWidget",
+        "displayName": "SAMPLE"
       }
     ],
     "avatars": [

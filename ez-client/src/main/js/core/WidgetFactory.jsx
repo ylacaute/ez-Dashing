@@ -5,6 +5,8 @@ import JenkinsMonitoringWidget from 'js/widget/JenkinsMonitoringWidget.jsx';
 import TeamWidget from 'js/widget/TeamWidget.jsx';
 import SprintWidget from 'js/widget/SprintWidget.jsx';
 import IssuesWidget from 'js/widget/IssuesWidget.jsx';
+import GraphWidget from 'js/widget/GraphWidget.jsx';
+import SampleGraphWidget from 'js/widget/sample/SampleGraphWidget.jsx';
 
 class WidgetFactory {}
 
@@ -17,6 +19,8 @@ WidgetFactory.create = function(widgetConfiguration) {
     case "SonkinsWidget": Component = SonkinsWidget; break;
     case "SprintWidget": Component = SprintWidget; break;
     case "IssuesWidget": Component = IssuesWidget; break;
+    case "GraphWidget" : Component = GraphWidget; break;
+    case "SampleGraphWidget" : Component = SampleGraphWidget; break;
   }
 
   return (

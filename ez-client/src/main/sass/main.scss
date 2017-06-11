@@ -34,6 +34,8 @@ $image-path: '/img' !default;
 @import "../../../node_modules/knacss/sass/_config/variables";
 @import "../../../node_modules/knacss/sass/_vendor/normalize";
 
+@import "../../../node_modules/chartist/dist/scss/chartist";
+
 // Framework
 @import "core/core-mixins";
 @import 'core/icons';
@@ -44,12 +46,13 @@ $image-path: '/img' !default;
 @import 'core/scalable-image';
 
 // Widgets
-@import 'widget/widget';
-@import 'widget/sonkins';
-@import 'widget/jenkinsMonitoring';
-@import 'widget/clock';
-@import 'widget/sprint';
-@import 'widget/issuesWidget';
+@import 'widget/Widget';
+@import 'widget/SonkinsWidget';
+@import 'widget/JenkinsMonitoringWidget';
+@import 'widget/ClockWidget';
+@import 'widget/SprintWidget';
+@import 'widget/IssuesWidget';
+@import 'widget/GraphWidget';
 @import 'metric/metrics';
 
 
