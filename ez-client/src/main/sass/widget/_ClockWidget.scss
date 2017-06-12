@@ -7,6 +7,7 @@ $ez-date: #36afb3 !default;
   font-size: 2rem;
   align-items: center;
   .content {
+    padding: 0;
     width: 100%;
     > div {
       @extend %flexColumn;
