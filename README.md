@@ -70,8 +70,9 @@ More options in ez.sh.
 - [ ] __Sonkinswidget__ (weather icon ?)
  
 # General Todos
+ - Fix React warning in front build (wrong way for minify/uglify for prod)
+ - Add a Dashing color theme (black theme not always good)
  - Add documentation on widgets configuration
- - Add a Dashing color theme
  - Plugin system
  - Improve error management
  
