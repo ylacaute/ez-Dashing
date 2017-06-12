@@ -90,7 +90,7 @@ class SprintWidget extends RefreshableWidget {
             />
             <ScalableText
               className="title sprint-number"
-              text="#7"
+              text={`#${sprintData.number}`}
               textAnchor="start"
               wViewPort={18}
             />
