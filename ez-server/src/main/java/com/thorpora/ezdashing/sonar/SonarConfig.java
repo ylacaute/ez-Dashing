@@ -23,6 +23,6 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class SonarConfig {
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:MM");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM HH:MM");
 
 }
