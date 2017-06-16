@@ -1,8 +1,8 @@
 # ez-Dashing
 
-__ez-Dashing__ is customizable free dashboard tool, build with React and Spring Boot, for agile development team.
+__ez-Dashing__ is customizable free dashboard tool, build with React and Spring Boot, for agile development team. The project is very young but in active development. All contributions are welcome.
 
-The project is very young but in active development. All contributions are welcome.
+Please note this project was made quickly and I am currently thinking about a new code design/architecture to build a more robust solutioN.
 
 # Features
  - __Responsive__ (all supports, also on huge screens with scaling SVG)
