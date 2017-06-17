@@ -88,6 +88,24 @@ class SonkinsWidget extends RefreshableWidget {
     );
   }
 
+  renderContentBuilding() {
+    return (
+      <div className="flip-container">
+        <div className="flip">
+          <div className="front face">
+            <JenkinsBuildMetric value={this.state.progress} />
+          </div>
+          <div className="back face">
+            <BuildAuthorMetric
+              avatars={this.props.avatars}
+              jenkinsAuthor={this.state.buildAuthor}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderContent() {
     if (this.state.exception != null) {
       return this.renderError(this.state.exception);
@@ -96,37 +114,22 @@ class SonkinsWidget extends RefreshableWidget {
       return this.renderLoadingContent();
     }
     if (this.state.state == 'REBUILDING') {
-      return (
-        <div className="flip-container">
-          <div className="flip">
-            <div className="front face">
-              <JenkinsBuildMetric value={this.state.progress} />
-            </div>
-            <div className="back face">
-              <BuildAuthorMetric
-                avatars={this.props.avatars}
-                jenkinsAuthor={this.state.buildAuthor}
-              />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <div className="metrics">
-            <SonarViolationMetric
-              value={this.state.violations}
-              thresholds={this.props.thresholds.violations}
-            />
-            <BuildAuthorMetric
-              avatars={this.props.avatars}
-              jenkinsAuthor={this.state.buildAuthor}
-            />
-          </div>
-        </div>
-      );
+      return this.renderContentBuilding();
     }
+    return (
+      <div>
+        <div className="metrics">
+          <SonarViolationMetric
+            value={this.state.violations}
+            thresholds={this.props.thresholds.violations}
+          />
+          <BuildAuthorMetric
+            avatars={this.props.avatars}
+            jenkinsAuthor={this.state.buildAuthor}
+          />
+        </div>
+      </div>
+    );
   }
 
   renderFooter() {

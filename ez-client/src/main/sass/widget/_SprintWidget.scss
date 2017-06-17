@@ -2,6 +2,7 @@
 /* SPRINT WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 $ez-sprint: #2268ae !default;
+$ez-title: #eee !default;
 
 .widget.current-sprint {
   header {
@@ -19,10 +20,14 @@ $ez-sprint: #2268ae !default;
   }
   .content {
     .progress-bar .trail {
-      stroke: #fff;
+      stroke: $ez-title;
     }
     .progress-bar .path {
       stroke: $ez-sprint;
     }
+    text {
+      fill: $ez-title;
+    }
+
   }
 }

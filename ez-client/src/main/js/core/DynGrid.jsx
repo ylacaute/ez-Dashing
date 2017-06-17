@@ -71,13 +71,15 @@ class DynGrid extends React.Component {
   }
 
   render() {
+    const { layouts, breakpoints, cols, rowHeight } = this.props.config.grid;
     return (
       <div>
         <ResponsiveReactGridLayout
+          rowHeight={rowHeight}
           className="layout"
-          layouts={this.props.config.grid.layouts}
-          breakpoints={this.props.config.grid.breakpoints}
-          cols={this.props.config.grid.cols}
+          layouts={layouts}
+          breakpoints={breakpoints}
+          cols={cols}
           onLayoutChange={this.onLayoutChange}
           onBreakpointChange={this.onBreakpointChange}
           onResizeStop={this.onResizeStop}

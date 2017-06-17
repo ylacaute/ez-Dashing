@@ -46,7 +46,7 @@ class SampleGraphWidget extends RefreshableWidget {
     return {
       type: "Line",
       data: {
-        labels: ['-10s', '-9s', '-8s', '-7s', '-6s', '-5s', '-4s', '-3s', '-2s', '-1s', 'NOW'],
+        labels: ['-10m', '', '', '', '', '-5m', '', '', '', '', 'NOW'],
         series: this.state.series
       },
       options: {

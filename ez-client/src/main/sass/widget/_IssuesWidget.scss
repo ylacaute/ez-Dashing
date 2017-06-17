@@ -2,10 +2,13 @@
 /* WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widget.issues .content {
-
-  > div {
-    @extend %flexRow;
+.widget.issues {
+  header {
+    height: 17%;
   }
-
+  .content {
+    > div {
+      @extend %flexRow;
+    }
+  }
 }

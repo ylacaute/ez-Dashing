@@ -138,7 +138,7 @@
       {
         "key": "w1",
         "type": "SonkinsWidget",
-        "displayName": "BC-GAS-SYS",
+        "displayName": "GAS-SYS",
         "jobName": "bc-gas-sys_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "bc-gas-sys"
@@ -154,7 +154,7 @@
       {
         "key": "w3",
         "type": "SonkinsWidget",
-        "displayName": "GAS-TARIFF",
+        "displayName": "TARIFF",
         "jobName": "gas-tariff-sys_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "gas-tariff-sys"
@@ -162,7 +162,7 @@
       {
         "key": "w4",
         "type": "SonkinsWidget",
-        "displayName": "GAS-COMPO",
+        "displayName": "COMPO",
         "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "gas-service-composition-sys"
@@ -186,7 +186,7 @@
       {
         "key": "w5",
         "type": "SonkinsWidget",
-        "displayName": "BC-GAS-SYS CLIENT",
+        "displayName": "GAS-SYS CT",
         "jobName": "bc-gas-client_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "bc-gas-client"
@@ -194,7 +194,7 @@
       {
         "key": "w6",
         "type": "SonkinsWidget",
-        "displayName": "SIM-HOME CLIENT",
+        "displayName": "SIM-HOME CT",
         "jobName": "elec-similar-home-client_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "similar-home-client"
@@ -202,7 +202,7 @@
       {
         "key": "w7",
         "type": "SonkinsWidget",
-        "displayName": "GAS-TARIFF CLIENT",
+        "displayName": "TARIFF CT",
         "jobName": "gas-tariff-client_-_Analyse_reccurente",
         "branch": "master",
         "projectKey": "gas-tariff-client"
@@ -330,6 +330,7 @@
         "xxs": 1
       },
       "layouts": {},
+      "rowHeight" : 120,
       "widget_w": 1,
       "widget_h": 1
     }

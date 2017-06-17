@@ -4,7 +4,6 @@
 $ez-bad: #c65555 !default;
 $ez-building: #dcae41 !default;
 
-
 // HEADER
 
 .sonkins {
@@ -13,6 +12,9 @@ $ez-building: #dcae41 !default;
       display: flex;
       padding-right: 30px;
       width: 50%;
+      text {
+        font-size: 7px;
+      }
     }
     .last-update {
       @extend %flexColumn;
@@ -54,11 +56,19 @@ $ez-building: #dcae41 !default;
 
 // STATES
 
-.widget.sonkins.UNSTABLE header .title, .widget.sonkins.FAILURE header .title {
+.widget.sonkins.UNSTABLE header .title,
+.widget.sonkins.FAILURE header .title {
   background-color: $ez-bad;
+  text {
+    fill: #222;
+  }
 }
+
 .widget.sonkins.REBUILDING header .title{
   background-color: $ez-building;
+  text {
+    fill: #222;
+  }
 }
 
 

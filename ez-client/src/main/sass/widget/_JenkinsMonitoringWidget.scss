@@ -21,7 +21,13 @@ $ez-bad: #c65555 !default;
 
 .jenkins-monitoring.bad header .title {
   background-color: $ez-bad;
+  text {
+    fill: #222;
+  }
 }
 .jenkins-monitoring.avg header .title {
   background-color: $ez-avg;
+  text {
+    fill: #222;
+  }
 }
