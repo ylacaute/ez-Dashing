@@ -14,31 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.jira;
+package com.thorpora.ezdashing.consumer;
 
-import feign.Feign;
-import feign.auth.BasicAuthRequestInterceptor;
-import feign.slf4j.Slf4jLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class JiraConfig {
+public class ConsumerConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(JiraConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConsumerConfig.class);
 
     @Bean
-    public JiraAPI JiraAPI(JiraProperties properties) {
-        logger.debug("Creating Jira client...");
-        return Feign.builder()
-                .requestInterceptor(new BasicAuthRequestInterceptor(
-                        properties.getUserName(),
-                        properties.getPassword()))
-                .logger(new Slf4jLogger(JiraClient.class))
-                .logLevel(feign.Logger.Level.BASIC)
-                .target(JiraAPI.class, properties.getBaseUrl());
+    public ConsumerRegistry ConsumerRegistry() {
+        logger.debug("Creating consumer registry...");
+        return new ConsumerRegistry();
     }
+
 
 }

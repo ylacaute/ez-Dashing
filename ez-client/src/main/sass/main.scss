@@ -1,23 +1,27 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing main configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-base: #aaa;
-$ez-good: #74b53c;
-$ez-bad: #c65555;
-$ez-avg: #db8240;
-$ez-building: #dcae41;
-$ez-date: #36afb3;
-$ez-sprint: #2268ae;
-$ez-gray: #999;
-$ez-title: #eee;
 
-$ez-grid-bg: #242424;
-$ez-grid-placeholder: $ez-base !important;
-$ez-gap: 1rem;
-$ez-widget-bg: #30353c;
-$ez-widget-bg-header: rgba(33, 33, 33, 0.5);
-$ez-widget-text-header: rgba(255, 255, 255, 0.8);
-$ez-widget-text-color: white;
+// Color theme
+@import 'theme/blackTheme';
+
+$ez-base: #aaa !default;
+$ez-good: #74b53c !default;
+$ez-bad: #c65555 !default;
+$ez-avg: #db8240 !default;
+$ez-building: #dcae41 !default;
+$ez-date: #36afb3 !default;
+$ez-sprint: #2268ae !default;
+$ez-gray: #999 !default;
+$ez-title: #eee !default;
+
+$ez-grid-bg: #242424 !default;
+$ez-grid-placeholder: $ez-base !important !default;
+$ez-gap: 1rem !default;
+$ez-widget-bg: #30353c !default;
+$ez-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
+$ez-widget-text-header: rgba(255, 255, 255, 0.8) !default;
+$ez-widget-text-color: white !default;
 $image-path: '/img' !default;
 
 %flexColumn {

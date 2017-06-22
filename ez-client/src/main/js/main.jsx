@@ -9,6 +9,8 @@ import DynGrid from 'js/core/DynGrid.jsx';
 import WidgetFactory from 'js/core/WidgetFactory.jsx';
 import GridLayoutGenerator from 'js/core/GridLayoutGenerator.jsx';
 
+import DataSources from 'js/core/DataSources.jsx';
+
 import Style from 'sass/main.scss';
 import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
 import ReactGridResizableStyle from 'react-resizable/css/styles.css';
@@ -28,6 +30,7 @@ class App extends React.Component {
       if (ObjectUtils.isNullOrEmpty(config.grid.layouts)) {
         config.grid.layouts = GridLayoutGenerator.generate(config);
       }
+      DataSources.load(config.dataSources);
       this.setState({
         config: config,
         widgets: this.createAllWidgets(config),

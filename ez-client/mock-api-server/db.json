@@ -1,22 +1,28 @@
 {
   "jira": [
     {
-      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\"",
+      "query": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\"",
       "total": 1
     },
     {
-      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\"",
+      "query": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\"",
       "total": 2
     },
     {
-      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\"",
+      "query": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\"",
       "total": 3
     },
     {
-      "query": "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\"",
+      "query": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\"",
       "total": 4
+    },
+    {
+      "query": "/rest/api/2/search?jql=PROJECT%20IN%20(similar-home-sys,bc-gas-sys,%20gas-service-composition-sys,%20gas-tariff-sys)%20AND%20type%20=%20%22Anomalie%20d%27Impl%C3%A9mentation%22%20AND%20statusCategory%20=%20%22To%20Do%22",
+      "total": 42
     }
   ],
+
+
   "jenkinsMonitoring": {
     "lastUpdate": "09/06 23:06",
     "version": "v2.46.3",
@@ -128,6 +134,17 @@
     }
   ],
   "dashboard": {
+    "dataSources": [{
+      "name" : "jira",
+      "baseUrl" : "https://jira:8989",
+      "userName" : "test",
+      "password" : "test"
+    },{
+      "name" : "jenkins",
+      "baseUrl" : "https://jenkins:8999",
+      "userName" : "test",
+      "password" : "test"
+    }],
     "widgets": [
       {
         "key": "w0",
@@ -173,6 +190,7 @@
         "sprintOffset": 6,
         "sprintDuration": 21,
         "sprintDates": [
+          "2017-04-15",
           "2017-05-15",
           "2017-06-13"
         ]

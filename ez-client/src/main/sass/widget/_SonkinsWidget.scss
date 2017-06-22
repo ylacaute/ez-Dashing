@@ -60,17 +60,23 @@ $ez-building: #dcae41 !default;
 .widget.sonkins.FAILURE header .title {
   background-color: $ez-bad;
   text {
-    fill: #222;
+    fill: #000;
   }
 }
 
 .widget.sonkins.REBUILDING header .title{
   background-color: $ez-building;
   text {
-    fill: #222;
+    fill: #000;
   }
 }
 
+.widget.sonkins.SUCCESS header .title{
+  background-color: $ez-good;
+  text {
+    fill: #000;
+  }
+}
 
 // PART > BUILD-AUTHOR
 

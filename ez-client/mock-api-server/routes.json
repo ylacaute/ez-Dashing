@@ -1,4 +1,5 @@
 {
+  "/api/consumer/jira" : "/jira",
   "/api/jira/query/total" : "/jira",
   "/api/sonar/summary": "/sonarSummary",
   "/api/jenkins/monitoring": "/jenkinsMonitoring",

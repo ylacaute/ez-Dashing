@@ -80,7 +80,7 @@ public class ErrorLogger {
         Throwable rootCause = ExceptionUtils.getRootCause(throwable);
         Level logLevel;
         boolean printStack;
-        if (rootCauseMapping.get(rootCause.getClass())) {
+        if (rootCause != null && rootCauseMapping.get(rootCause.getClass()) != null) {
             logLevel = resolveLogLevel(rootCause);
             printStack = isStackTraceLogged(rootCause);
         } else {

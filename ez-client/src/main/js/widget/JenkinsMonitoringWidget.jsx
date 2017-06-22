@@ -83,10 +83,8 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
 
   renderContent() {
     if (this.state.exception != null) {
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
       return this.renderError(this.state.exception);
     }
-    console.log("HOLY SHIT");
     if (this.state.loaded == false) {
       return this.renderLoadingContent();
     }

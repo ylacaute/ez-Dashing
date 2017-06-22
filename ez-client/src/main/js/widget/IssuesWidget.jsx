@@ -6,6 +6,7 @@ import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import JiraClient from 'js/client/JiraClient.jsx';
 import SimpleMetric from 'js/metric/base/SimpleMetric.jsx';
 import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
+import DataSources from 'js/core/DataSources.jsx';
 
 class IssuesWidget extends RefreshableWidget {
 
@@ -18,7 +19,13 @@ class IssuesWidget extends RefreshableWidget {
   }
 
   loadIssue(issueConfig) {
-    JiraClient.totalOfQuery(issueConfig.query, (jsonResponse) => {
+    const query = "/rest/api/2/search?jql=" + issueConfig.query;
+    DataSources.doGet('jira', query, (jsonResponse) => {
+      // Hack for JsonServer which serve an Array instead of an object
+      if (Array.isArray(jsonResponse)) {
+        jsonResponse = jsonResponse[0];
+      }
+      console.log("JIRA RESPONSE : ", jsonResponse);
       const issue = {
         label : issueConfig.label,
         value : jsonResponse.total

@@ -18,7 +18,6 @@ package com.thorpora.ezdashing.jenkins;
 
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.client.JenkinsHttpClient;
-import com.thorpora.ezdashing.core.FeignErrorLogger;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.slf4j.Slf4jLogger;

@@ -1,6 +1,5 @@
 {
-  "widgets": [
-    {
+  "widgets": [{
       "key": "w0",
       "type": "TeamWidget",
       "displayName": "TEAM GAS",
@@ -118,6 +117,17 @@
       }
     }
   ],
+  "dataSources": [{
+    "name" : "jira",
+    "baseUrl" : "https://issues.edelia.net",
+    "userName" : "y.lacaute",
+    "password" : "Edelia2017"
+  },{
+    "name" : "jenkins",
+    "baseUrl" : "https://jenkins:8999",
+    "userName" : "test",
+    "password" : "test"
+  }],
   "avatars" : [{
     "displayName": "Epithor",
     "jenkinsAuthorPattern": ".*epi",

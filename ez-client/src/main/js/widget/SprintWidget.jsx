@@ -19,12 +19,22 @@ import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
  */
 class SprintWidget extends RefreshableWidget {
 
+  constructor(props) {
+    super(props);
+    this.state = this.getCurrentSprintData();
+  }
+
+  refreshData() {
+    this.setState(this.getCurrentSprintData());
+  }
+
   getCurrentSprintData() {
     let now = new Date();
-    let sprintNumber = -1;
+    let sprintNumber = 0;
     let sprintStartDate = null;
     let nextStartDate = null;
     const arrayDates = this.props.sprintDates.map(DateUtils.parse);
+
     for (let i = arrayDates.length - 1; i >= 0; i--) {
       if (now > arrayDates[i]) {
         sprintNumber = i;
@@ -53,22 +63,21 @@ class SprintWidget extends RefreshableWidget {
         className="current-sprint number-only"
         title="CURRENT SPRINT"
         content={
-          <ScalableText text={this.getCurrentSprintData().number.toString()}/>
+          <ScalableText text={this.state.number.toString()}/>
         }
       />
     );
   }
 
   renderSprintDoneDaysWithProgress() {
-    let sprintData = this.getCurrentSprintData();
     return (
       <Widget
         className="current-sprint days-done"
         title={this.props.displayName}
         content={
           <CircularProgressBar
-            value={sprintData.progress}
-            displayValue={sprintData.days}
+            value={this.state.progress}
+            displayValue={this.state.days}
             label="days"/>
         }
       />
@@ -76,7 +85,6 @@ class SprintWidget extends RefreshableWidget {
   }
 
   renderSprintDaysLeftWithProgress() {
-    let sprintData = this.getCurrentSprintData();
     return (
       <Widget
         className="current-sprint days-left"
@@ -90,7 +98,7 @@ class SprintWidget extends RefreshableWidget {
             />
             <ScalableText
               className="title sprint-number"
-              text={`#${sprintData.number}`}
+              text={`#${this.state.number}`}
               textAnchor="start"
               wViewPort={18}
             />
@@ -98,8 +106,8 @@ class SprintWidget extends RefreshableWidget {
         }
         content={
           <CircularProgressBar
-            value={sprintData.progress}
-            displayValue={sprintData.daysLeft}
+            value={this.state.progress}
+            displayValue={this.state.daysLeft}
             label="days left"/>
         }
       />
@@ -120,18 +128,17 @@ class SprintWidget extends RefreshableWidget {
 
 SprintWidget.propTypes = {
   displayName: PropTypes.string,
+  displayType: PropTypes.oneOf(['daysLeft','daysDone', 'numberOnly']),
   sprintDates: PropTypes.array.isRequired,
   sprintDuration: PropTypes.number.isRequired,
-  displayType: PropTypes.string,
-  sprintNumber: PropTypes.number,
   sprintOffset: PropTypes.number
 };
 
 SprintWidget.defaultProps = {
+  refreshEvery: 3600,
+  displayType: "daysLeft",
   sprintDates: [],
   sprintDuration: 0,
-  displayType: "daysLeft",
-  sprintNumber: -1,
   sprintOffset: 0
 };
 
