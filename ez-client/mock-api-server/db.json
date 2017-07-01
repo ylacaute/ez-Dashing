@@ -292,7 +292,7 @@
       {
         "displayName": "Marc",
         "jenkinsAuthorPattern": ".*[mM]arc.*",
-        "url": "/img/avatars/Marc.png"
+        "url": "/img/icon/good.png"
       }
     ],
     "thresholds": {
@@ -341,7 +341,7 @@
         "xxs": 0
       },
       "cols": {
-        "lg": 6,
+        "lg": 7,
         "md": 4,
         "sm": 4,
         "xs": 2,

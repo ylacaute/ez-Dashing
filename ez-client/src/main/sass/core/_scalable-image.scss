@@ -4,7 +4,7 @@
 
 .scalable-image {
   display:flex;
-  flex: 1;
+  flex-grow: 1;
   img {
     width: 100%;
     object-fit: contain;

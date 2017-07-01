@@ -18,6 +18,7 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
   devServer: {
     host: '0.0.0.0',
     proxy: {
@@ -41,6 +42,9 @@ var config = {
       }
     ]
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   plugins: [
     // Used to extract final css file (and not use html style tag)
     new ExtractTextPlugin("style.css"),
@@ -50,7 +54,7 @@ var config = {
     }])
   ],
   resolve: {
-    // Simplify JSX import (search imports for ./src/main)
+    // Simplify JSX import (search imports from ./src/main)
     root: [
       path.resolve('./src/main')
     ]

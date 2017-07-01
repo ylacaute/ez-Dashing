@@ -1,6 +1,6 @@
 import React from 'react';
 import ClockWidget from 'js/widget/ClockWidget.jsx';
-import SonkinsWidget from 'js/widget/SonkinsWidget.jsx';
+import SonkinsWidget from 'js/widget/SonkinsWidget/index.jsx';
 import JenkinsMonitoringWidget from 'js/widget/JenkinsMonitoringWidget.jsx';
 import TeamWidget from 'js/widget/TeamWidget.jsx';
 import SprintWidget from 'js/widget/SprintWidget.jsx';

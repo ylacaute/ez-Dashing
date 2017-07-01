@@ -38,7 +38,7 @@ $ez-bad: #c65555 !default;
 
 .circular-progress-bar-wrapper {
   display: flex;
-  flex: 1;
+  flex-grow: 1;
 }
 .progress-bar.circular {
   .path {

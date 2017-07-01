@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableImage from 'js/core/ScalableImage.jsx'
-import AvatarConfig from 'js/config/AvatarConfig.jsx'
+import ScalableImage from 'js/core/ScalableImage.jsx';
+import ScalableText from 'js/core/ScalableText.jsx';
+import AvatarConfig from 'js/config/AvatarConfig.jsx';
 
 class BuildAuthorMetric extends React.Component {
 
@@ -11,6 +12,10 @@ class BuildAuthorMetric extends React.Component {
     return (
       <div className="metric build-author">
         <ScalableImage imgUrl={avatar.url} />
+        <div className="info">
+          <ScalableText text="Last build" textAnchor="middle"/>
+          <ScalableText text={avatar.displayName} textAnchor="middle"/>
+        </div>
       </div>
     );
   }

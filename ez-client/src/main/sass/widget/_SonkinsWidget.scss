@@ -1,8 +1,16 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET : SONKINS (SONAR + JENKINS)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$ez-base: #fff !default;
 $ez-bad: #c65555 !default;
 $ez-building: #dcae41 !default;
+
+$ez-sonkins-header-bg-good: none !default;
+$ez-sonkins-header-text-good: $ez-base !default;
+$ez-sonkins-header-bg-bad: $ez-bad !default;
+$ez-sonkins-header-text-bad: $ez-base !default;
+$ez-sonkins-header-bg-building: $ez-building !default;
+$ez-sonkins-header-text-building: $ez-base !default;
 
 // HEADER
 
@@ -40,11 +48,14 @@ $ez-building: #dcae41 !default;
       height: 15%;
     }
     .metrics {
-      @extend %flexRow;
+      @extend %flexColumn;
       flex-grow: 1;
       height: 70%;
+
       > div {
-        padding: $ez-gap / 2;
+        @extend %flexRow;
+        flex-grow: 1;
+        height: 100%;
       }
     }
     .flip .face {
@@ -58,32 +69,40 @@ $ez-building: #dcae41 !default;
 
 .widget.sonkins.UNSTABLE header .title,
 .widget.sonkins.FAILURE header .title {
-  background-color: $ez-bad;
+  background-color: $ez-sonkins-header-bg-bad;
   text {
-    fill: #000;
+    fill: $ez-sonkins-header-text-bad;
   }
 }
 
 .widget.sonkins.REBUILDING header .title{
-  background-color: $ez-building;
+  background-color: $ez-sonkins-header-bg-building;
   text {
-    fill: #000;
+    fill: $ez-sonkins-header-text-building;
   }
 }
 
 .widget.sonkins.SUCCESS header .title{
-  background-color: $ez-good;
+  background-color: $ez-sonkins-header-bg-good;
   text {
-    fill: #000;
+    fill: $ez-sonkins-header-text-good;
   }
 }
 
 // PART > BUILD-AUTHOR
 
 .build-author {
-  @extend %flexColumn;
-  flex-grow: 1;
+  @extend %flexRow;
+  //flex-grow: 1;
   width: 100%;
+  .scalable-image {
+    padding: 15px 0px 15px 0;
+
+  }
+  .info {
+    @extend %flexColumn;
+    flex-grow: 1;
+  }
 }
 
 

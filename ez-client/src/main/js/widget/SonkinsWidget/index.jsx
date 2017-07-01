@@ -6,12 +6,16 @@ import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
 import JenkinsClient from 'js/client/JenkinsClient.jsx';
 import SonarClient from 'js/client/SonarClient.jsx';
 
+import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
+
 import JenkinsBuildMetric from 'js/metric/JenkinsBuildMetric.jsx'
 import CodeCoverageMetric from 'js/metric/CodeCoverageMetric.jsx';
-import SonarViolationMetric from 'js/metric/SonarViolationMetric.jsx';
+import SimpleMetricWithIcon from 'js/metric/base/SimpleMetricWithIcon.jsx';
 import BuildAuthorMetric from 'js/metric/BuildAuthorMetric.jsx';
 
 import ScalableText from 'js/core/ScalableText.jsx';
+import SimpleMetric from 'js/metric/base/SimpleMetric.jsx';
+
 
 const NO_DATE = '--/-- --:--';
 
@@ -116,20 +120,45 @@ class SonkinsWidget extends RefreshableWidget {
     if (this.state.state == 'REBUILDING') {
       return this.renderContentBuilding();
     }
+    /*
+     <BuildAuthorMetric
+     avatars={this.props.avatars}
+     jenkinsAuthor={this.state.buildAuthor}
+     />
+     */
     return (
       <div>
         <div className="metrics">
-          <SonarViolationMetric
-            value={this.state.violations}
-            thresholds={this.props.thresholds.violations}
-          />
-          <BuildAuthorMetric
-            avatars={this.props.avatars}
-            jenkinsAuthor={this.state.buildAuthor}
-          />
+          <div className="iconMetric">
+            <div>
+              <p>IMG</p>
+            </div>
+            <div>
+              <p>TXT</p>
+            </div>
+          </div>
+          <div>
+            <SimpleMetric
+              className="metric violations"
+              label="Violations"
+              value={this.state.violations}
+              fixedValueWidth={30}
+              fixedLabelWidth={60}
+              classForValue={(val) => ThresholdConfig.get(this.props.thresholds.violations, val)}
+            />
+            <SimpleMetric
+              className="metric coverage"
+              label="Coverage"
+              value="56"
+              fixedValueWidth={30}
+              fixedLabelWidth={60}
+              textForValue={(val) => `${val} %`}
+              classForValue={(val) => ThresholdConfig.get(this.props.thresholds.codeCoverage, val)}
+            />
+          </div>
         </div>
       </div>
-    );
+      );
   }
 
   renderFooter() {
@@ -137,11 +166,13 @@ class SonkinsWidget extends RefreshableWidget {
     if (s.exception != null || s.sonarLoaded == false || s.state == 'UNKNOWN' || s.state == 'REBUILDING') {
       return <div></div>;
     }
+    return <div></div>;
     return (
       <CodeCoverageMetric
         value={this.state.coverage}
         thresholds={this.props.thresholds.codeCoverage}
       />
+
     );
   }
 

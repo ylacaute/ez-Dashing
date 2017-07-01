@@ -81,9 +81,9 @@ class ScalableText extends React.Component {
   render() {
     const wViewPort = this.props.wViewPort ? this.props.wViewPort : 1 + this.props.text.length * 6;
     const hViewPort = 10;
-    const iconCfg = this.getIconCfg(hViewPort);
 
     if (this.shouldDisplayIcon()) {
+      const iconCfg = this.getIconCfg(hViewPort);
       return this.renderWithIcon(wViewPort, hViewPort, iconCfg);
     } else {
       return this.renderTextOnly(wViewPort, hViewPort);
