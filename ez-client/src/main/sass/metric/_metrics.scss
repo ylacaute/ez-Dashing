@@ -12,6 +12,15 @@ $ez-bad: #c65555 !default;
   @extend %flexColumn;
   flex-grow: 1;
   width: 100%;
+  height: 100%;
+
+
+  .scalable-text .value {
+    height: 50%;
+  }
+  .scalable-text .label {
+    height: 100%;
+  }
 }
 
 

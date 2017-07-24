@@ -36,28 +36,24 @@ $ez-sonkins-header-text-building: $ez-base !default;
 
 .sonkins {
   .content {
-    height: 100%;
+    padding: 1rem 0 0 0;
     > div {
       @extend %flexColumn;
       flex-grow: 1;
       height: 100%;
-    }
-    .header {
-      @extend %flexRow;
-      width: 100%;
-      height: 15%;
-    }
-    .metrics {
-      @extend %flexColumn;
-      flex-grow: 1;
-      height: 70%;
 
-      > div {
-        @extend %flexRow;
+      .main-content {
+        @extend %flexColumn;
         flex-grow: 1;
         height: 100%;
+        > div {
+          @extend %flexRow;
+          //flex-grow: 1;
+          height: 100%;
+        }
       }
     }
+
     .flip .face {
       display: flex;
     }
@@ -73,6 +69,7 @@ $ez-sonkins-header-text-building: $ez-base !default;
   text {
     fill: $ez-sonkins-header-text-bad;
   }
+
 }
 
 .widget.sonkins.REBUILDING header .title{
@@ -92,16 +89,15 @@ $ez-sonkins-header-text-building: $ez-base !default;
 // PART > BUILD-AUTHOR
 
 .build-author {
-  @extend %flexRow;
+  @extend %flexColumn;
   //flex-grow: 1;
   width: 100%;
   .scalable-image {
-    padding: 15px 0px 15px 0;
-
+    //padding: 15px 0px 15px 0;
+    height: 100%;
   }
-  .info {
-    @extend %flexColumn;
-    flex-grow: 1;
+  .scalable-text {
+    height: 100%;
   }
 }
 
