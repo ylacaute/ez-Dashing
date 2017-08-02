@@ -1,0 +1,15 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+* {
+    color: #444;
+}
+h1, h2, section, footer {
+    text-align: center;
+}
+.logo {
+    padding: 30px;
+}

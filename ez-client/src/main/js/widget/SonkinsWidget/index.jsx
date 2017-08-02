@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/base/Widget.jsx';
-import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
-import JenkinsClient from 'js/client/JenkinsClient.jsx';
-import SonarClient from 'js/client/SonarClient.jsx';
+import Widget from 'widget/base/Widget.jsx';
+import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
+import JenkinsClient from 'client/JenkinsClient.js';
+import SonarClient from 'client/SonarClient.js';
 
-import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
+import ThresholdConfig from 'config/ThresholdConfig.jsx';
 
-import JenkinsBuildMetric from 'js/metric/JenkinsBuildMetric.jsx'
-import CodeCoverageMetric from 'js/metric/CodeCoverageMetric.jsx';
-import SimpleMetricWithIcon from 'js/metric/base/SimpleMetricWithIcon.jsx';
-import BuildAuthorMetric from 'js/metric/BuildAuthorMetric.jsx';
+import JenkinsBuildMetric from 'metric/JenkinsBuildMetric.jsx'
+import CodeCoverageMetric from 'metric/CodeCoverageMetric.jsx';
+import SimpleMetricWithIcon from 'metric/base/SimpleMetricWithIcon.jsx';
+import BuildAuthorMetric from 'metric/BuildAuthorMetric.jsx';
 
-import ScalableText from 'js/core/ScalableText.jsx';
-import SimpleMetric from 'js/metric/base/SimpleMetric.jsx';
+import ScalableText from 'core/ScalableText.jsx';
+import SimpleMetric from 'metric/base/SimpleMetric.jsx';
 
 
 const NO_DATE = '--/-- --:--';

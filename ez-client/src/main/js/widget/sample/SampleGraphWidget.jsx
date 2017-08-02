@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/base/Widget.jsx';
-import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
+import Widget from 'widget/base/Widget.jsx';
+import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
 
-import ChartistGraph from 'js/graph/ChartistGraph.jsx';
+import ChartistGraph from 'graph/ChartistGraph.jsx';
 
 let Chartist = require('chartist');
 

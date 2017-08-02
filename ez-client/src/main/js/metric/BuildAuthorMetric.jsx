@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableImage from 'js/core/ScalableImage.jsx';
-import ScalableText from 'js/core/ScalableText.jsx';
-import AvatarConfig from 'js/config/AvatarConfig.jsx';
+import ScalableImage from 'core/ScalableImage.jsx';
+import ScalableText from 'core/ScalableText.jsx';
+import AvatarConfig from 'config/AvatarConfig.jsx';
 
 class BuildAuthorMetric extends React.Component {
 

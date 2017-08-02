@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableImage from 'js/core/ScalableImage.jsx'
-import SimpleMetric from 'js/metric/base/SimpleMetric.jsx';
+import ScalableImage from 'core/ScalableImage.jsx'
+import SimpleMetric from 'metric/base/SimpleMetric.jsx';
 
 
 class SimpleMetricWithIcon extends React.Component {

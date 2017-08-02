@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/base/Widget.jsx';
-import JenkinsClient from 'js/client/JenkinsClient.jsx';
-import LinearProgressBar from 'js/core/LinearProgressBar.jsx';
-import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
-import ScalableText from 'js/core/ScalableText.jsx';
-import ThresholdConfig from 'js/config/ThresholdConfig.jsx';
-import ByteUtils from 'js/utils/ByteUtils.jsx';
+import Widget from 'widget/base/Widget.jsx';
+import JenkinsClient from 'client/JenkinsClient.js';
+import LinearProgressBar from 'core/LinearProgressBar.jsx';
+import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
+import ScalableText from 'core/ScalableText.jsx';
+import ThresholdConfig from 'config/ThresholdConfig.jsx';
+import ByteUtils from 'utils/ByteUtils.js';
 
 const NO_DATE = '--/-- --:--';
 

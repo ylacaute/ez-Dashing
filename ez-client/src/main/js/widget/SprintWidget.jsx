@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Widget from 'js/widget/base/Widget.jsx';
-import ScalableText from 'js/core/ScalableText.jsx';
-import CircularProgressBar from 'js/core/CircularProgressBar.jsx';
-import DateUtils from 'js/utils/DateUtils.jsx';
-import RefreshableWidget from 'js/widget/base/RefreshableWidget.jsx';
+import Widget from 'widget/base/Widget.jsx';
+import ScalableText from 'core/ScalableText.jsx';
+import CircularProgressBar from 'core/CircularProgressBar.jsx';
+import DateUtils from 'utils/DateUtils.js';
+import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
 
 /**
  *  sprintDates should be an ordered array of dates corresponding to each start of sprint

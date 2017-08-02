@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScalableText from 'js/core/ScalableText.jsx'
+import ScalableText from 'core/ScalableText.jsx'
 
 class SimpleMetric extends React.Component {
 

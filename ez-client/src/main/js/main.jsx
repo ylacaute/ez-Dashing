@@ -1,70 +1,63 @@
-import React from 'react';
-import {render} from 'react-dom';
-import {Responsive, WidthProvider} from 'react-grid-layout';
 
-import RestClient from 'js/client/RestClient.jsx';
-import ObjectUtils from 'js/utils/ObjectUtils.jsx';
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 
-import DynGrid from 'js/core/DynGrid.jsx';
-import WidgetFactory from 'js/core/WidgetFactory.jsx';
-import GridLayoutGenerator from 'js/core/GridLayoutGenerator.jsx';
+import Application from './Application.jsx'
 
-import DataSources from 'js/core/DataSources.jsx';
+import logoClickCount from 'redux/reducer/Logo';
+import tickCount from 'redux/reducer/Clock';
+import jenkinsMonitoring from 'redux/reducer/JenkinsMonitoring';
+import configLoaderReducer from 'redux/reducer/configLoaderReducer';
 
-import Style from 'sass/main.scss';
-import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
-import ReactGridResizableStyle from 'react-resizable/css/styles.css';
 
-class App extends React.Component {
+import LoggerMiddleware from 'redux/middleware/Logger';
+import CrashReporterMiddleware from 'redux/middleware/CrashReporter';
+import ClockMiddleware from 'redux/middleware/Clock';
+import JenkinsMonitoringMiddleware from 'redux/middleware/JenkinsMonitoring';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      config: null
-    };
-  }
+import { ClockService } from 'service/clock/ClockService';
+import { JenkinsMonitoringService } from 'service/jenkins/JenkinsMonitoringService';
+import { ConfigLoader } from 'service/config/ConfigLoader';
 
-  componentWillMount() {
-    RestClient.get("/api/dashboard/config", ((config) => {
-      if (ObjectUtils.isNullOrEmpty(config.grid.layouts)) {
-        config.grid.layouts = GridLayoutGenerator.generate(config);
-      }
-      DataSources.load(config.dataSources);
-      this.setState({
-        config: config,
-        widgets: this.createAllWidgets(config),
-        loaded: true
-      });
-    }));
-  }
 
-  createAllWidgets(fullConfig) {
-    let widgetConfigs = fullConfig.widgets;
-    return widgetConfigs.map((widgetConfig) => {
-      if (widgetConfig.avatars == null) {
-        widgetConfig.avatars = fullConfig.avatars;
-      }
-      if (widgetConfig.thresholds == null) {
-        widgetConfig.thresholds = fullConfig.thresholds;
-      }
-      return WidgetFactory.create(widgetConfig);
-    });
-  }
+// Service instances
+let clockService = new ClockService();
+let jenkinsMonitoringService = new JenkinsMonitoringService();
 
-  render() {
-    if (this.state.loaded == false) {
-      return <p>Please wait during load...</p>;
-    }
-    return (
-      <div>
-        <DynGrid
-          config={this.state.config}
-          widgets={this.state.widgets}>
-        </DynGrid>
-      </div>
-    );
-  }
-}
+let configLoader = new ConfigLoader();
 
-render(<App/>, document.getElementById('react-app'));
+// Store instance. Note that state slices have the same name as the reducer for simplicity, so reducers are not
+// suffixed by 'Reducer'.
+const store = createStore(
+  combineReducers({
+    logoClickCount,
+    tickCount,
+    jenkinsMonitoring,
+    config : configLoaderReducer
+  }),
+  applyMiddleware(
+    //LoggerMiddleware,
+    CrashReporterMiddleware,
+    ClockMiddleware(clockService),
+    JenkinsMonitoringMiddleware(jenkinsMonitoringService)
+  )
+);
+
+console.log('Starting application...');
+
+
+configLoader.setDispatch(store.dispatch);
+jenkinsMonitoringService.setDispatch(store.dispatch);
+clockService.setDispatch(store.dispatch);
+
+clockService.start();
+configLoader.load();
+
+render(
+  <Provider store={store}>
+    <Application />
+  </Provider>,
+  document.getElementById('react-app')
+);
