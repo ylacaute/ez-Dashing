@@ -1,9 +1,9 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* METRICS
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-good: #74b53c !default;
-$ez-avg: #df701f !default;
-$ez-bad: #c65555 !default;
+$color-good: #74b53c !default;
+$color-average: #df701f !default;
+$color-bad: #c65555 !default;
 
 
 // SIMPLE METRIC
@@ -49,13 +49,13 @@ $ez-bad: #c65555 !default;
 // GENERAL METRIC STATES
 
 .metric.good .scalable-text.value text {
-  fill: $ez-good;
+  fill: $color-good;
 }
 .metric.avg .scalable-text.value text {
-  fill: $ez-avg;
+  fill: $color-average;
 }
 .metric.bad .scalable-text.value text {
-  fill: $ez-bad;
+  fill: $color-bad;
 }
 
 

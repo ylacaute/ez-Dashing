@@ -1,8 +1,8 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* SPRINT WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-sprint: #2268ae !default;
-$ez-title: #eee !default;
+$color-sprint: #2268ae !default;
+$color-title: #eee !default;
 
 .widget.current-sprint {
   header {
@@ -15,18 +15,18 @@ $ez-title: #eee !default;
       padding-left: 0.5rem;
     }
     .sprint-number.scalable-text text {
-      fill: $ez-sprint;
+      fill: $color-sprint;
     }
   }
   .content {
     .progress-bar .trail {
-      stroke: $ez-title;
+      stroke: $color-title;
     }
     .progress-bar .path {
-      stroke: $ez-sprint;
+      stroke: $color-sprint;
     }
     text {
-      fill: $ez-title;
+      fill: $color-title;
     }
 
   }

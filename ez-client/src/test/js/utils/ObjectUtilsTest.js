@@ -28,4 +28,21 @@ describe('ObjectUtils', () => {
     assert.equal(ObjectUtils.isNullOrEmpty(array), false);
   });
 
+  it('typeOf() should return String', () => {
+    let obj = 'Hello';
+    assert.equal(ObjectUtils.typeOf(obj), 'String');
+  });
+
+  it('typeOf() should return Array', () => {
+    let array = [];
+    assert.equal(ObjectUtils.typeOf(array), 'Array');
+  });
+
+  it('typeOf() should return user defined type', () => {
+    let SampleClass = () => {
+    };
+    let instance = new SampleClass();
+    assert.equal(ObjectUtils.typeOf(instance), 'SampleClass');
+  });
+
 });

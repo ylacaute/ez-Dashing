@@ -1,47 +1,22 @@
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ez-Dashing main configuration
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@charset "UTF-8";
 
-// Color theme
-@import 'theme/blackTheme';
-
-$ez-base: #aaa !default;
-$ez-good: #74b53c !default;
-$ez-bad: #c65555 !default;
-$ez-avg: #db8240 !default;
-$ez-building: #dcae41 !default;
-$ez-date: #36afb3 !default;
-$ez-sprint: #2268ae !default;
-$ez-gray: #999 !default;
-$ez-title: #eee !default;
-
-$ez-grid-bg: #242424 !default;
-$ez-grid-placeholder: $ez-base !important !default;
-$ez-gap: 1rem !default;
-$ez-widget-bg: #30353c !default;
-$ez-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
-$ez-widget-text-header: rgba(255, 255, 255, 0.8) !default;
-$ez-widget-text-color: white !default;
-$image-path: '/img' !default;
-
-%flexColumn {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-%flexRow {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
+// 1.Base
+@import 'base/variables';
+@import 'base/layouts';
+@import 'base/page';
 
 // Knacss
-@import "../../../node_modules/knacss/sass/_config/breakpoints";
-@import "../../../node_modules/knacss/sass/_config/mixins";
-@import "../../../node_modules/knacss/sass/_config/variables";
-@import "../../../node_modules/knacss/sass/_vendor/normalize";
+//@import "node_modules/knacss/sass/_config/breakpoints";
+//@import "node_modules/knacss/sass/_config/mixins";
+//@import "node_modules/knacss/sass/_config/variables";
+//@import "node_modules/knacss/sass/_vendor/normalize";
+//@import "node_modules/knacss/sass/library/base";
 
-@import "../../../node_modules/chartist/dist/scss/chartist";
+// React-grid-layout
+@import "/node_modules/react-grid-layout/css/styles.css";
+@import "/node_modules/react-resizable/css/styles.css";
+
+//@import "../../../node_modules/chartist/dist/scss/chartist";
 
 // Framework
 @import "core/core-mixins";
@@ -51,6 +26,9 @@ $image-path: '/img' !default;
 @import 'core/effect/flip_effect';
 @import 'core/scalable-text';
 @import 'core/scalable-image';
+
+// Components
+@import 'component/grid';
 
 // Widgets
 @import 'widget/Widget';
@@ -63,39 +41,8 @@ $image-path: '/img' !default;
 @import 'metric/metrics';
 
 
-html {
-  font-size: calc(1.2em * 0.625) !important;
-  @include medium {
-    font-size: calc(0.8em * 0.625) !important;
-  }
-  @include small {
-    font-size: calc(0.75em * 0.625) !important;
-  }
-  @include tiny {
-    font-size: calc(0.7em * 0.625) !important;
-  }
-  margin: 0;
-}
-html, body {
-  color: $ez-base;
-}
-html, body > section, .react-grid-layout {
-  background-color: $ez-grid-bg;
-}
-body {
-  margin: 0;
-  padding: 0;
-}
-* {
-  text-decoration: none;
-  outline:none;
-}
-body > section {
-  font-size: $base-font-size;
-}
-.react-grid-placeholder {
-  background-color: $ez-grid-placeholder;
-}
+
+
 #resetBtn {
   position: absolute;
   right: 5px;
@@ -103,9 +50,8 @@ body > section {
   z-index: 999;
 }
 .date {
-  color: $ez-date;
+  color: $color-date;
 }
-
 
 
 

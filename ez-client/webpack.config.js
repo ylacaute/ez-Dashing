@@ -95,13 +95,18 @@ let commonConfig = {
       },
       {
         test: /\.(css|sass|scss)$/,
-        exclude: /(node_modules)/,
+        //exclude: /(node_modules)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       }
     ]
+  },
+
+  // https://github.com/webpack-contrib/css-loader/issues/447
+  node: {
+    fs: 'empty'
   }
 };
 

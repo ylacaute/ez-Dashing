@@ -4,8 +4,12 @@ import { bindActionCreators  } from 'redux';
 import { connect } from 'react-redux';
 import { Logo, LogoActionCreator }  from 'component/logo/Logo.jsx';
 import UUID from 'utils/UUID';
+import Grid from 'component/grid/Grid.jsx';
 
-import Style from 'index.scss';
+
+
+
+import Style from 'theme/defaultTheme.scss';
 
 const env = IS_DEV ? "DEV" : "PROD";
 const hash = "" + __webpack_hash__;
@@ -13,11 +17,12 @@ const hash = "" + __webpack_hash__;
 class Application extends React.Component {
 
   static propTypes = {
-    tickCount: PropTypes.number.isRequired,
+//    loaded: PropTypes.boolean
+    /*tickCount: PropTypes.number.isRequired,
     logoClickCount: PropTypes.number.isRequired,
     jenkinsMonitoring: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired
+    config: PropTypes.object.isRequired*/
   };
 
   constructor(props) {
@@ -25,8 +30,25 @@ class Application extends React.Component {
   };
 
   render() {
+    if (this.props.config.loaded === false) {
+      return <p>Please wait during load...</p>;
+    }
     return (
       <div>
+        <Grid
+          config={this.props.config.config}
+          widgets={this.props.config.widgets}>
+        </Grid>
+      </div>
+    );
+  }
+
+  /*
+  render() {
+    console.log("fuckin DS : ", this.props.dataSource);
+    return (
+      <div>
+        <div><strong>jiraTodo: </strong>{JSON.stringify(this.props.jiraDataSource.todo)}</div>
         <div><strong>Sample UUID: </strong>{UUID.random()}</div>
         <div><strong>Build env: </strong>{env}</div>
         <div><strong>Build hash: </strong>{hash}</div>
@@ -39,6 +61,7 @@ class Application extends React.Component {
       </div>
     );
   };
+  */
 
 }
 
@@ -47,8 +70,10 @@ const mapStateToProps = state => {
     logoClickCount: state.logoClickCount,
     tickCount: state.tickCount,
     jenkinsMonitoring: state.jenkinsMonitoring,
-    config: state.config
-  }
+    config: state.config,
+    dsName: state.dataSource.dsName,
+    jiraDataSource: state.dataSource.jira || {}
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -73,15 +98,14 @@ import {Responsive, WidthProvider} from 'react-grid-layout';
 import RestClient from 'client/RestClient.js';
 import ObjectUtils from 'utils/ObjectUtils.js';
 
-import DynGrid from 'core/DynGrid.jsx';
+
 import WidgetFactory from 'core/WidgetFactory.jsx';
 import GridLayoutGenerator from 'core/GridLayoutGenerator.jsx';
 
 import DataSources from 'core/DataSources.jsx';
 
 import Style from 'sass/main.scss';
-import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
-import ReactGridResizableStyle from 'react-resizable/css/styles.css';
+
 
 class App extends React.Component {
 

@@ -1,8 +1,8 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* JENKINS MONITORING WIDGET (use 'monitoring' jenkins plugin api)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-avg: #df701f !default;
-$ez-bad: #c65555 !default;
+$color-average: #df701f !default;
+$color-bad: #c65555 !default;
 
 .jenkins-monitoring {
   .content {
@@ -20,13 +20,13 @@ $ez-bad: #c65555 !default;
 // STATES
 
 .jenkins-monitoring.bad header .title {
-  background-color: $ez-bad;
+  background-color: $color-bad;
   text {
     fill: #222;
   }
 }
 .jenkins-monitoring.avg header .title {
-  background-color: $ez-avg;
+  background-color: $color-average;
   text {
     fill: #222;
   }

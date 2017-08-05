@@ -1,16 +1,16 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET : SONKINS (SONAR + JENKINS)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-base: #fff !default;
-$ez-bad: #c65555 !default;
-$ez-building: #dcae41 !default;
+$color-base: #fff !default;
+$color-bad: #c65555 !default;
+$color-building: #dcae41 !default;
 
 $ez-sonkins-header-bg-good: none !default;
-$ez-sonkins-header-text-good: $ez-base !default;
-$ez-sonkins-header-bg-bad: $ez-bad !default;
-$ez-sonkins-header-text-bad: $ez-base !default;
-$ez-sonkins-header-bg-building: $ez-building !default;
-$ez-sonkins-header-text-building: $ez-base !default;
+$ez-sonkins-header-text-good: $color-base !default;
+$ez-sonkins-header-bg-bad: $color-bad !default;
+$ez-sonkins-header-text-bad: $color-base !default;
+$ez-sonkins-header-bg-building: $color-building !default;
+$ez-sonkins-header-text-building: $color-base !default;
 
 // HEADER
 
@@ -106,13 +106,13 @@ $ez-sonkins-header-text-building: $ez-base !default;
 
 .jenkins-build.progress-bar {
   .path {
-    stroke: $ez-building;
+    stroke: $color-building;
   }
   .display-value, .label {
     dominant-baseline: middle;
   }
   .display-value {
     font-size: 3rem;
-    fill: $ez-building;
+    fill: $color-building;
   }
 }

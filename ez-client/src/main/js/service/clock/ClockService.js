@@ -1,21 +1,11 @@
 
-export const ActionType = {
-  Tick: 'TICK'
-};
-
-export const ActionCreator = {
-  onTick : (tickCount) => {
-    return {
-      type: ActionType.Tick,
-      tickCount: tickCount
-    }
-  }
+export const ClockActionType = {
+  ClockTick: 'CLOCK_TICK'
 };
 
 const DEFAULT_PROPS = {
   milliseconds: 1000,
-  tickCount: 0,
-  onTick: () => {}
+  tickCount: 0
 };
 
 export class ClockService {
@@ -28,18 +18,16 @@ export class ClockService {
     this.dispatch = dispatch;
   }
 
-  onLogoClicked(clickCount) {
-    if (clickCount === 10) {
-      this.stop();
-    }
-  };
-
   start() {
     this.timer = setInterval(this.tick.bind(this), this.props.milliseconds);
   };
 
   tick() {
-    this.dispatch(ActionCreator.onTick(++this.props.tickCount));
+    this.dispatch({
+      type: ClockActionType.ClockTick,
+      date: new Date(),
+      tickCount: ++this.props.tickCount
+    });
   };
 
   stop() {

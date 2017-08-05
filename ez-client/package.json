@@ -29,6 +29,8 @@
     "chai react-spinkit: ^3.0.0 chartist: ^0.11.0"
   ],
   "dependencies": {
+    "immutable": "^3.8.1",
+    "jsonpath": "^0.2.12",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-grid-layout": "^0.14.7"
@@ -59,6 +61,7 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.4",
+    "knacss": "^6.1.2",
     "mocha": "^3.4.2",
     "mocha-loader": "^1.1.1",
     "node-sass": "^4.5.3",

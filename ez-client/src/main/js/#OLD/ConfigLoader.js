@@ -1,9 +1,8 @@
 import RestClient from 'client/RestClient';
 import ObjectUtils from 'utils/ObjectUtils.js';
 import GridLayoutGenerator from 'service/config/GridLayoutGenerator';
-import DataSourceFactory from 'service/config/DataSourceFactory';
-import DataSource from 'service/dataSource/DataSource';
 import WidgetComponentFactory from 'service/config/WidgetComponentFactory';
+//import DataSourceFactory from "datasource/DataSourceFactory";
 
 /**
  * Default properties
@@ -19,18 +18,6 @@ const DEFAULT_PROPS = {
 export const ActionType = {
   ConfigLoadSuccess: 'CONFIG_LOAD_SUCCESS',
   ConfigLoadFailure: 'CONFIG_LOAD_FAILURE'
-};
-
-/**
- *
- */
-export const ActionCreator = {
-  jenkinsDataReceived : data => {
-    return {
-      type: ActionType.DataReceived,
-      data: data
-    }
-  }
 };
 
 let createAllWidgets = fullConfig => {
@@ -63,17 +50,18 @@ export class ConfigLoader {
       } else {
         console.log('[INFO] Use use grid layout configuration');
       }
-      DataSourceFactory.create(jsonConfig.dataSources);
+
+      // jsonConfig.dataSources.forEach((ds) => {
+      //   DataSourceFactory.create(ds, this.dispatch);
+      // });
+
       this.dispatch({
         type: ActionType.ConfigLoadSuccess,
-        config: {
-          config: jsonConfig,
-          configLoaded: true,
-          widgets: createAllWidgets(jsonConfig),
-        }
+        config: jsonConfig,
+        widgets: createAllWidgets(jsonConfig)
       });
-    }), error => {
-      console.log('[ERROR] Error during config loading, please verify your configuration, details:', error);
+    }), exception => {
+      console.log('[FATAL] Error during config loading, details:', exception);
     })
   }
 

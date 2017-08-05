@@ -29,7 +29,6 @@ export default class GridLayoutGenerator {
 
   static generate = (config) => {
     let cols = config.grid.cols;
-    console.log("[INFO] Generating default grid layouts");
     return {
       lg: generateSingle(cols.lg, config),
       md: generateSingle(cols.md, config),

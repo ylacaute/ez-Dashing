@@ -1,7 +1,7 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* CLOCK WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-date: #36afb3 !default;
+$color-date: #36afb3 !default;
 
 .widget.clock {
   font-size: 2rem;
@@ -22,6 +22,6 @@ $ez-date: #36afb3 !default;
     height: 30px;
   }
   .scalable-text text {
-    fill: $ez-date;
+    fill: $color-date;
   }
 }

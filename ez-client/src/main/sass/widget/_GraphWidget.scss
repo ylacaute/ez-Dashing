@@ -36,15 +36,15 @@
 .ct-series-a {
   .ct-line {
     stroke-width: 2px;
-    stroke: $ez-good;
+    stroke: $color-good;
   }
   .ct-point {
     stroke-width: 5px;
     stroke-linecap: round;
-    stroke: $ez-good;
+    stroke: $color-good;
   }
   .ct-area {
-    fill: $ez-good;
+    fill: $color-good;
   }
 }
 
@@ -52,12 +52,12 @@
 .ct-series-b {
   .ct-line {
     stroke-width: 2px;
-    stroke: $ez-bad;
+    stroke: $color-bad;
   }
   .ct-point {
     stroke-width: 0px;
     stroke-linecap: round;
-    stroke: $ez-bad;
+    stroke: $color-bad;
   }
   .ct-area {
     fill: none;

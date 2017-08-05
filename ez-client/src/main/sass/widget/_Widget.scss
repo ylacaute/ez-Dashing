@@ -1,28 +1,28 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-widget-bg: #30353c !default;
-$ez-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
+$color-widget-bg: #30353c !default;
+$color-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
 $ez-widget-text-header: rgba(255, 255, 255, 0.8) !default;
 $ez-widget-text-color: white !default;
 $ez-gap: 1rem !default;
-$ez-title: #ddd !default;
-$ez-gray: #888 !default;
+$color-title: #ddd !default;
+$color-gray: #888 !default;
 
 .widget {
   @extend %flexColumn;
   height: 100%;
   text-align: center;
   color: $ez-widget-text-color;
-  background-color: $ez-widget-bg;
+  background-color: $color-widget-bg;
   header {
     @extend %flexColumn;
-    background-color: $ez-widget-bg-header;
+    background-color: $color-widget-bg-header;
     color: $ez-widget-text-header;
     height: 50%;
     .title {
       text {
-        fill: $ez-title;
+        fill: $color-title;
       }
       //fill-opacity: 0.8;
       flex-grow: 1;
@@ -36,7 +36,7 @@ $ez-gray: #888 !default;
         display: flex;
       }
       text {
-        fill: $ez-gray;
+        fill: $color-gray;
       }
     }
   }

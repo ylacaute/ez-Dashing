@@ -1,3 +1,27 @@
+,
+,
+      {
+        "type": "JiraWidget",
+        "displayName": "ALL BUGS",
+        "dataSource": [ "jira#inProgress" ]
+      }
+
+
+
+,
+      {
+        "type": "JiraWidget",
+        "displayName": "ALL BUGS",
+        "dataSource": [
+          {
+            "name": "jira",
+            "queries": [ "inProgress" ]
+          }
+        ]
+      }
+
+
+
 {
   "jira": [
     {
