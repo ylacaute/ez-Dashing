@@ -5,7 +5,7 @@ import Widget from 'widget/base/Widget.jsx';
 import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
 import JiraClient from 'client/JiraClient.js';
 import SimpleMetric from 'metric/base/SimpleMetric.jsx';
-import ThresholdConfig from 'config/ThresholdConfig.jsx';
+import ThresholdConfig from 'config/ThresholdConfig';
 import DataSources from 'core/DataSources.jsx';
 
 class IssuesWidget extends RefreshableWidget {
@@ -79,7 +79,7 @@ class IssuesWidget extends RefreshableWidget {
     return (
       <Widget
         className="issues"
-        title={this.props.displayName}
+        title={this.props.title}
         content={this.renderContent()}
       />
     );
@@ -87,7 +87,7 @@ class IssuesWidget extends RefreshableWidget {
 }
 
 IssuesWidget.propTypes = {
-  displayName: PropTypes.string,
+  title: PropTypes.string,
   thresholds: PropTypes.object,
   issues: PropTypes.array.isRequired,
 };

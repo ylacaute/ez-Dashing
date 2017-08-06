@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // Use https://github.com/fraserxu/react-chartist ?
 class ChartistGraph extends Component {
 
-  displayName: 'ChartistGraph';
+  title: 'ChartistGraph';
 
   componentWillReceiveProps(newProps) {
     this.updateChart(newProps);

@@ -1,28 +1,61 @@
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ez-Dashing main configuration
+/* ez-Dashing color configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+// BASE COLOR
 $color-base: #aaa !default;
-$color-good: #74b53c !default;
-$color-bad: #c65555 !default;
-$color-average: #db8240 !default;
-$color-building: #dcae41 !default;
-
-$color-date: #36afb3 !default;
-$color-sprint: #2268ae !default;
+$color-black: #242424 !default;
+$color-black-half-opacity: rgba(33, 33, 33, 0.5) !default;
+$color-blue: #2268ae !default;
+$color-blue-dark: #30353c !default;
+$color-cyan: #36afb3 !default;
 $color-gray: #999 !default;
-$color-title: #eee !default;
-
-$color-grid-bg: #242424 !default;
-
-
-$ez-gap: 1rem !default;
-$color-widget-bg: #30353c !default;
-$color-widget-bg-header: rgba(33, 33, 33, 0.5) !default;
-$ez-widget-text-header: rgba(255, 255, 255, 0.8) !default;
-$ez-widget-text-color: white !default;
-$image-path: '/img' !default;
-
-
+$color-gray-light: #aaa !default;
+$color-green: #74b53c !default;
+$color-orange: #db8240 !default;
+$color-orange: #dcae41 !default;
+$color-red: #c65555 !default;
+$color-white: #eee !default;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
+
+// GENERIC TEXT COLOR
+$color-average: $color-orange !default;
+$color-bad: $color-red !default;
+$color-base: $color-gray-light !default;
+$color-building: $color-orange !default;
+$color-good: $color-green !default;
+$color-title: $color-white !default;
+$color-spinner: $color-white !default;
+
+// COMPONENT TEXT COLOR
+$color-text-clock: $color-cyan !default;
+$color-text-sprint: $color-blue !default;
+$color-text-widget: $color-white !default;
+$color-text-widget-header: $color-white !default;
+$color-text-widget-sub-title: $color-gray-light !default;
+$color-text-widget-title: $color-title !default;
+
+// BACKGROUND COMPONENT COLOR
+$color-bg-grid: $color-black !default;
+$color-bg-grid-placeholder: $color-white-half-opacity;
+$color-bg-widget: $color-blue-dark !default;
+$color-bg-widget-header: $color-black-half-opacity !default;
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing padding configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// GENERIC PADDING
+$padding-content: 1rem !default;
+
+// COMPONENT PADDING
+$padding-widget-content: $padding-content;
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing misc configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$image-path: '/img' !default;

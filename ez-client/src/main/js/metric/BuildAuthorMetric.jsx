@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ScalableImage from 'core/ScalableImage.jsx';
 import ScalableText from 'core/ScalableText.jsx';
-import AvatarConfig from 'config/AvatarConfig.jsx';
+import AvatarConfig from 'config/AvatarConfig';
 
 class BuildAuthorMetric extends React.Component {
 

@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators  } from 'redux';
 import { connect } from 'react-redux';
 import { Logo, LogoActionCreator }  from 'component/logo/Logo.jsx';
+
+import GridEventCreator from 'component/grid/GridEventCreator';
+
+
 import UUID from 'utils/UUID';
 import Grid from 'component/grid/Grid.jsx';
-
-
-
 
 import Style from 'theme/defaultTheme.scss';
 
@@ -17,6 +18,7 @@ const hash = "" + __webpack_hash__;
 class Application extends React.Component {
 
   static propTypes = {
+    actions: PropTypes.object.isRequired
 //    loaded: PropTypes.boolean
     /*tickCount: PropTypes.number.isRequired,
     logoClickCount: PropTypes.number.isRequired,
@@ -29,15 +31,21 @@ class Application extends React.Component {
     super(props);
   };
 
+  /*onElementResized(sizeInfo) {
+    console.log("[DEBUG] Component resize: ", sizeInfo);
+  }*/
+
   render() {
-    if (this.props.config.loaded === false) {
+    if (this.props.startup.loaded === false) {
       return <p>Please wait during load...</p>;
     }
     return (
       <div>
         <Grid
-          config={this.props.config.config}
-          widgets={this.props.config.widgets}>
+          onGridReady={this.props.actions.onGridReady}
+          onElementResized={this.props.actions.onElementResized}
+          config={this.props.startup.dashboardConfig.grid}
+          widgets={this.props.startup.widgetComponents}>
         </Grid>
       </div>
     );
@@ -67,17 +75,14 @@ class Application extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    startup: state.startup,
     logoClickCount: state.logoClickCount,
-    tickCount: state.tickCount,
-    jenkinsMonitoring: state.jenkinsMonitoring,
-    config: state.config,
-    dsName: state.dataSource.dsName,
-    jiraDataSource: state.dataSource.jira || {}
+    jenkinsMonitoring: state.jenkinsMonitoring
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(LogoActionCreator, dispatch)
+  actions: bindActionCreators(GridEventCreator, dispatch)
 });
 
 export default connect(

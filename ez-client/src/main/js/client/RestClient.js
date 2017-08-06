@@ -14,7 +14,7 @@ let parseJsonResponse = (response) => {
 };
 
 let handlHTTPResponse = (response, options, path) => {
-  console.log('[RESPONSE', response.status + ']', options.verb, path);
+  //console.log('[RESPONSE', response.status + ']', options.verb, path);
   if (!response.ok) {
     if (response.status === 504) {
       throw new RestException('Unable to contact the API server, is your server started ?', response);
@@ -37,7 +37,7 @@ let handlHTTPError = (error, errorCallback) => {
 
 
 let jsonFetch = (path, options, callback, errorCallback) => {
-  console.log('[REQUEST]', options.verb, path);
+  //console.log('[REQUEST]', options.verb, path);
   let url = window.location.origin + path;
   fetch(url, {
     headers: defaultHeaders,

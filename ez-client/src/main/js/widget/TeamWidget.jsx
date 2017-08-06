@@ -11,7 +11,7 @@ class TeamWidget extends RefreshableWidget {
     return (
       <Widget
         className="team"
-        title={this.props.displayName}
+        title={this.props.title}
         content={
           <ScalableImage imgUrl={this.props.logoUrl} />
         }
@@ -21,7 +21,7 @@ class TeamWidget extends RefreshableWidget {
 }
 
 TeamWidget.propTypes = {
-  displayName: PropTypes.string,
+  title: PropTypes.string,
   logoUrl: PropTypes.string
 };
 

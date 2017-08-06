@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Widget from 'component/widget/base/Widget.jsx';
-import ScalableText from 'core/ScalableText.jsx';
+import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
-class ClockWidget extends React.Component {
+class ClockWidget extends AbstractWidget {
 
   static propTypes = {
-    displayName: PropTypes.string,
+    title: PropTypes.string,
+    className: PropTypes.string,
+    sizeInfo: PropTypes.object,
     UTCOffset: PropTypes.number,
     clock: PropTypes.object.isRequired
   };
@@ -15,10 +16,6 @@ class ClockWidget extends React.Component {
   static defaultProps = {
     UTCOffset: 2
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   getClockData() {
     let now = this.props.clock.date;
@@ -31,37 +28,29 @@ class ClockWidget extends React.Component {
     if (minutes < 10) minutes = "0" + minutes;
     if (seconds < 10) seconds = "0" + seconds;
     return {
-      date: now.toDateString(),
+      date: now.toLocaleDateString("fr-FR"),
       hours: hours,
       minutes: minutes,
       seconds: seconds
     };
   }
 
-  render() {
+  renderContent() {
     const { date, hours, minutes, seconds } = this.getClockData();
     return (
-      <Widget
-        className="clock"
-        title={this.props.displayName}
-        content={
-          <div>
-            <ScalableText className="date"
-                          text={date}
-                          textAnchor="middle"/>
-            <ScalableText className="time"
-                          text={`${hours}:${minutes}:${seconds}`}
-                          textAnchor="middle"/>
-          </div>
-        }
-      />
+      <div>
+        <p>{date}</p>
+        <p>{hours}:{minutes}:{seconds}</p>
+      </div>
     );
   }
+
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     clock: state.clock,
+    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
 };
 

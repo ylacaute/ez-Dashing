@@ -1,7 +1,7 @@
 import React from 'react';
 import ClockWidget from 'component/widget/ClockWidget.jsx';
 import JiraWidget from 'component/widget/JiraWidget.jsx';
-
+import JenkinsWidget from 'component/widget/JenkinsWidget.jsx';
 
 
 /*import SonkinsWidget from 'widget/SonkinsWidget/index.jsx';
@@ -21,6 +21,7 @@ export default class WidgetFactory {
     switch (widgetConfiguration.type) {
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
+      case "JenkinsWidget": Component = JenkinsWidget; break;
       /*case "TeamWidget": Component = TeamWidget; break;
       case "JenkinsMonitoringWidget": Component = JenkinsMonitoringWidget; break;
       case "SonkinsWidget": Component = SonkinsWidget; break;
@@ -30,7 +31,7 @@ export default class WidgetFactory {
       case "SampleGraphWidget" : Component = SampleGraphWidget; break;*/
     }
     return (
-      <div key={widgetConfiguration.key}>
+      <div id={widgetConfiguration.key} key={widgetConfiguration.key}>
         <Component {...widgetConfiguration}/>
       </div>
     );

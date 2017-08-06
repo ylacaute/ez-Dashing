@@ -1,21 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map } from 'immutable';
 import ScalableText from 'core/ScalableText.jsx';
-
+import cn from 'classnames';
 class Widget extends React.Component {
-
-  static mapDataSource = (state, ownProps) => {
-    let newDateSource = {
-      ...ownProps.dataSource
-    };
-    ownProps.dataSource.forEach(dsKey => {
-      newDateSource[dsKey] = state.dataSource[dsKey];
-    });
-    return {
-      dataSource: newDateSource
-    }
-  };
 
   renderError(exception) {
     return (
@@ -35,9 +22,21 @@ class Widget extends React.Component {
     );
   };
 
+  checkPreconditions() {
+    if (this.props.sizeInfo == null) {
+      console.log("[ERROR] Widget properties are not mapped, please use {...this.props} when using Widget.");
+    }
+  }
+
+
+
   render() {
+    this.checkPreconditions();
+    const { className, sizeInfo} = this.props;
+    const classNames = cn('widget', className, sizeInfo.wBreakpointClass, sizeInfo.hBreakpointClass);
+    //{`widget ${this.props.className}`}
     return (
-      <section className={`widget ${this.props.className}`}>
+      <section className={classNames}>
         { this.props.customHeader && this.props.customHeader}
         { !this.props.customHeader && this.props.title != null &&
           <header>

@@ -172,12 +172,12 @@
         "queries": [
           {
             "name": "todo",
-            "refresh": 5,
+            "refresh": 30,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority"
           },
           {
             "name": "inProgress",
-            "refresh": 5,
+            "refresh": 30,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority"
           }
         ]
@@ -190,13 +190,21 @@
       },
       {
         "type": "JiraWidget",
-        "displayName": "P1 BUGS",
-        "dataSource": [ "jira#todo" ]
+        "title": "P1 BUGS",
+        "dataSource": [
+          "jira#todo"
+        ]
       },
       {
         "type": "JiraWidget",
-        "displayName": "ALL BUGS",
-        "dataSource": [ "jira#inProgress" ]
+        "title": "ALL BUGS",
+        "dataSource": [
+          "jira#inProgress"
+        ]
+      },
+      {
+        "type": "JenkinsWidget",
+        "title": "LAYOUT TEST"
       }
     ],
     "avatars": [
@@ -254,6 +262,24 @@
       }
     },
     "grid": {
+      "itemBreakpoints": {
+        "width": {
+          "lg": 1200,
+          "md": 996,
+          "sm": 768,
+          "xs": 480,
+          "xxs": 240,
+          "xxxs": 0
+        },
+        "height": {
+          "lg": 800,
+          "md": 600,
+          "sm": 400,
+          "xs": 280,
+          "xxs": 140,
+          "xxxs": 0
+        }
+      },
       "breakpoints": {
         "lg": 1200,
         "md": 996,

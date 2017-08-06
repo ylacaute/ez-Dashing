@@ -31,10 +31,10 @@
 @import 'component/grid';
 
 // Widgets
-@import 'widget/Widget';
+@import 'component/widget/base/Widget';
 @import 'widget/SonkinsWidget';
 @import 'widget/JenkinsMonitoringWidget';
-@import 'widget/ClockWidget';
+@import 'component/widget/ClockWidget';
 @import 'widget/SprintWidget';
 @import 'widget/IssuesWidget';
 @import 'widget/GraphWidget';
@@ -49,15 +49,35 @@
   bottom: 5px;
   z-index: 999;
 }
-.date {
-  color: $color-date;
+
+
+
+
+
+.layout-test {
+  @extend %flexColumn;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 20px;
+  div {
+    display: flex;
+    //border: 1px solid red;
+    height: 100%;
+    //width: 100%;
+    margin: auto;
+  }
+
+}
+
+.widget.row-xs {
+  .layout-test {
+    font-size: 50px;
+  }
 }
 
 
-
-
-
-
-
-
-
+.widget.row-sm, .widget.row-md, .widget.row-lg {
+  .layout-test {
+    font-size: 80px;
+  }
+}

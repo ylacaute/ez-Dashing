@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Map } from 'immutable';
 
 import LoggerMiddleware from 'redux/middleware/Logger';
 import CrashReporterMiddleware from 'redux/middleware/CrashReporter';
@@ -12,8 +11,9 @@ import logoClickCount from 'redux/reducer/Logo';
 
 import ClockReducer from 'redux/reducer/ClockReducer';
 import jenkinsMonitoring from 'redux/reducer/JenkinsMonitoring';
-import configLoaderReducer from 'redux/reducer/configLoaderReducer';
+import StartupReducer from 'redux/reducer/StartupReducer';
 import DataSourceReducer from 'redux/reducer/DataSourceReducer';
+import WidgetReducer from 'redux/reducer/WidgetReducer';
 
 import RestClient from 'client/RestClient';
 import ObjectUtils from 'utils/ObjectUtils.js';
@@ -21,6 +21,8 @@ import GridLayoutGenerator from 'service/setup/GridLayoutGenerator';
 import WidgetFactory from 'service/setup/WidgetFactory';
 import DataSourceService from "service/datasource/DataSourceService";
 import UUID from 'utils/UUID';
+import StringUtils from 'utils/StringUtils';
+
 
 export const SetupEvent = {
   ConfigLoadSuccess: 'CONFIG_LOAD_SUCCESS'
@@ -35,21 +37,28 @@ export default class SetupService {
   };
 
   /**
-   * If the initial state depend on the configuration it can be initialized here
+   * If the initial state depends on the configuration it can be initialized here
    */
   generateInitialState(dashboardConfig) {
-    const initialState = {};
+    let initialState = {};
+    initialState.widget = {};
+    dashboardConfig.widgets.forEach(widgetConfig => {
+      initialState.widget[widgetConfig.id] = {
+        sizeInfo: {} // todo : move in config, and update config correctly in reducers
+      };
+    });
     console.log('[INFO] Initial application state initialized to', initialState);
     return initialState;
   };
 
   createReducers() {
     return combineReducers({
+      startup: StartupReducer,
+      widget: WidgetReducer,
       logoClickCount,
       clock: ClockReducer,
       jenkinsMonitoring,
-      config: configLoaderReducer,
-      dataSource: DataSourceReducer
+      dataSource: DataSourceReducer,
     });
   };
 
@@ -84,20 +93,25 @@ export default class SetupService {
    * we then prefer to map it on an empty array.
    *
    * Generate a unique widget key (required for react-grid-layout)
+   * Each Widget has an id equals to its key.
    */
 
   extendsDashboardConfig(dashboardConfig) {
     dashboardConfig.widgets.forEach(widgetConfig => {
-      if (widgetConfig.avatars === null) {
+      if (widgetConfig.avatars == null) {
         widgetConfig.avatars = dashboardConfig.avatars;
       }
-      if (widgetConfig.thresholds === null) {
+      if (widgetConfig.thresholds == null) {
         widgetConfig.thresholds = dashboardConfig.thresholds;
       }
-      if (widgetConfig.dataSources === null) {
-        widgetConfig.dataSources = [];
+      if (widgetConfig.dataSource == null) {
+        widgetConfig.dataSource = [];
       }
-      widgetConfig.key = UUID.random();
+      if (widgetConfig.className == null) {
+        widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
+      }
+      //widgetConfig.loaded = true;
+      widgetConfig.key = widgetConfig.id = UUID.random();
     });
     if (ObjectUtils.isNullOrEmpty(dashboardConfig.grid.layouts)) {
       dashboardConfig.grid.layouts = GridLayoutGenerator.generate(dashboardConfig);
@@ -124,7 +138,7 @@ export default class SetupService {
 
     this.getDashboardConfig(dashboardConfig => {
       this.extendsDashboardConfig(dashboardConfig);
-      console.log("Extended config:", dashboardConfig);
+      //console.log("[DEBUG] Extended config:", dashboardConfig);
       const clockService = new ClockService();
       const jenkinsMonitoringService = new JenkinsMonitoringService();
       const dataSourceService = new DataSourceService(dashboardConfig);
@@ -141,8 +155,8 @@ export default class SetupService {
 
       store.dispatch({
         type: SetupEvent.ConfigLoadSuccess,
-        config: dashboardConfig,
-        widgets: this.createAllWidgets(dashboardConfig)
+        dashboardConfig: dashboardConfig,
+        widgetComponents: this.createAllWidgets(dashboardConfig)
       });
 
       clockService.start();

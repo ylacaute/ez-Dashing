@@ -49,7 +49,7 @@ class GraphWidget extends RefreshableWidget {
     return (
       <Widget
         className="graph"
-        title={this.props.displayName}
+        title={this.props.title}
         content={this.renderResponsiveGraph()}
       />
     );
@@ -58,7 +58,7 @@ class GraphWidget extends RefreshableWidget {
 }
 
 GraphWidget.propTypes = {
-  displayName: PropTypes.string
+  title: PropTypes.string
 };
 
 GraphWidget.defaultProps = {

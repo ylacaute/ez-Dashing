@@ -6,14 +6,14 @@ const initialState = {
   loaded: false
 };
 
-export default function configLoaderReducer(state = initialState, action) {
+export default function StartupReducer(state = initialState, action) {
   switch (action.type) {
     case SetupEvent.ConfigLoadSuccess:
-      console.log("[REDUCER] ConfigLoadSuccess:", action.config);
+      console.log("[REDUCER] ConfigLoadSuccess:", action.dashboardConfig);
       return {
         loaded: true,
-        config: action.config,
-        widgets: action.widgets
+        dashboardConfig: action.dashboardConfig,
+        widgetComponents: action.widgetComponents
       };
     default:
       return state

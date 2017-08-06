@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SimpleMetric from 'metric/base/SimpleMetric.jsx';
-import ThresholdConfig from 'config/ThresholdConfig.jsx'
+import ThresholdConfig from 'config/ThresholdConfig'
 
 class SonarViolationMetric extends React.Component {
 

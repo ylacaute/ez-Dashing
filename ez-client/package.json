@@ -29,7 +29,6 @@
     "chai react-spinkit: ^3.0.0 chartist: ^0.11.0"
   ],
   "dependencies": {
-    "immutable": "^3.8.1",
     "jsonpath": "^0.2.12",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

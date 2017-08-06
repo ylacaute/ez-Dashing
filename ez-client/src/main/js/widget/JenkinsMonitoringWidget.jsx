@@ -6,7 +6,7 @@ import JenkinsClient from 'client/JenkinsClient.js';
 import LinearProgressBar from 'core/LinearProgressBar.jsx';
 import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
 import ScalableText from 'core/ScalableText.jsx';
-import ThresholdConfig from 'config/ThresholdConfig.jsx';
+import ThresholdConfig from 'config/ThresholdConfig';
 import ByteUtils from 'utils/ByteUtils.js';
 
 const NO_DATE = '--/-- --:--';
@@ -158,7 +158,7 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
     return (
       <Widget
         className={`jenkins-monitoring ${this.getGlobalHealth()}`}
-        title={this.props.displayName}
+        title={this.props.title}
         afterTitle={this.renderAfterTitle()}
         content={this.renderContent()}
       />
@@ -168,7 +168,7 @@ class JenkinsMonitoringWidget extends RefreshableWidget {
 }
 
 JenkinsMonitoringWidget.propTypes = {
-  displayName: PropTypes.string,
+  title: PropTypes.string,
   thresholds: PropTypes.object,
   diskSpaceInTemp: PropTypes.number
 };

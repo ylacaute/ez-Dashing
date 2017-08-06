@@ -23,10 +23,10 @@ export const ActionType = {
 let createAllWidgets = fullConfig => {
   let widgetConfigs = fullConfig.widgets;
   return widgetConfigs.map((widgetConfig) => {
-    if (widgetConfig.avatars === null) {
+    if (widgetConfig.avatars == null) {
       widgetConfig.avatars = fullConfig.avatars;
     }
-    if (widgetConfig.thresholds === null) {
+    if (widgetConfig.thresholds == null) {
       widgetConfig.thresholds = fullConfig.thresholds;
     }
     return WidgetComponentFactory.create(widgetConfig);

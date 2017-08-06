@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import LinearProgressBar from 'core/LinearProgressBar.jsx';
-import ThresholdConfig from 'config/ThresholdConfig.jsx';
+import ThresholdConfig from 'config/ThresholdConfig';
 
 class CodeCoverageMetric extends React.Component {
 

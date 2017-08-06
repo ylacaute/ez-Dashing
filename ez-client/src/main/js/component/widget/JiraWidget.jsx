@@ -2,35 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import JSONPath from 'jsonpath';
-import Widget from 'component/widget/base/Widget.jsx';
 import ObjectUtils from 'utils/ObjectUtils';
+import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
-
-class JiraWidget extends React.Component {
+class JiraWidget extends AbstractWidget {
 
   static propTypes = {
-    displayName: PropTypes.string,
-    className: PropTypes.string
+    title: PropTypes.string,
+    className: PropTypes.string,
+    sizeInfo: PropTypes.object
   };
 
   static defaultProps = {
-    displayName: 'Jira',
-    className: 'jira'
   };
-
-  constructor(props) {
-    super(props);
-  }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (!this.isDataSourceAvailable()) {
-  //     return true;
-  //   }
-  //
-  //   console.log("timestamp : ", this.getDSTimestamp());
-  //   console.log("nextProps timestamp : ", nextProps.dataSource[nextProps.dataSource[0]].timestamp);
-  //   return true;
-  // }
 
   /**
    * Most of the time, Widget are linked to only one dataSource, so most of time
@@ -58,42 +42,39 @@ class JiraWidget extends React.Component {
     }
   }
 
-  renderContent() {
+  // renderContent() {
+  //   if (!this.isDataSourceAvailable()) {
+  //     return (
+  //       <div>
+  //         <p>Waiting data...</p>
+  //       </div>
+  //     )
+  //   }
+  //   let { total, keys } = this.extractDataSourceData();
+  //   return (
+  //     <div>
+  //       <p>Total in TODO : {total}</p>
+  //       <p>Issues in TODO : {keys}</p>
+  //     </div>
+  //   )
+  // }
 
-    if (!this.isDataSourceAvailable()) {
-      return (
-        <div>
-          <p>Waiting data...</p>
-        </div>
-      )
-    }
-    let { total, keys } = this.extractDataSourceData();
+  renderContent() {
     return (
-      <div>
-        <p>Total in TODO : {total}</p>
-        <p>Issues in TODO : {keys}</p>
+      <div className="layout-test">
+        <div>BC-GAS-2054</div>
+        <div>BC-GAS-2211</div>
+        <div>BC-GAS-2564</div>
+        <div>BC-GAS-2068</div>
       </div>
     )
-  }
-
-  render() {
-    const { className, displayName} = this.props;
-    return (
-      <Widget
-        className={className}
-        title={displayName}
-        content={this.renderContent()}
-      />
-    );
   }
 
 }
 
 const mapStateToProps = (state, ownProps) => {
-
   let result = {
-    //clock: state.clock,
-    ...Widget.mapDataSource(state, ownProps)
+    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
   return result;
 };

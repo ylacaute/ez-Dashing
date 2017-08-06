@@ -9,6 +9,7 @@ html {
 */
 
 html {
+  font-family: sans-serif;
   font-size: calc(1.2em * 0.625) !important;
   margin: 0;
 }
@@ -16,7 +17,7 @@ html, body {
   color: $color-base;
 }
 html, body > section, .react-grid-layout {
-  background-color: $color-grid-bg;
+  background-color: $color-bg-grid;
 }
 body {
   margin: 0;

@@ -6,7 +6,7 @@ import RefreshableWidget from 'widget/base/RefreshableWidget.jsx';
 import JenkinsClient from 'client/JenkinsClient.js';
 import SonarClient from 'client/SonarClient.js';
 
-import ThresholdConfig from 'config/ThresholdConfig.jsx';
+import ThresholdConfig from 'config/ThresholdConfig';
 
 import JenkinsBuildMetric from 'metric/JenkinsBuildMetric.jsx'
 import CodeCoverageMetric from 'metric/CodeCoverageMetric.jsx';
@@ -180,7 +180,7 @@ class SonkinsWidget extends RefreshableWidget {
     return (
       <Widget
         className={`sonkins ${this.state.state}`}
-        title={this.props.displayName}
+        title={this.props.title}
         afterTitle={this.renderAfterTitle()}
         content={this.renderContent()}
         footer={this.renderFooter()}
@@ -191,7 +191,7 @@ class SonkinsWidget extends RefreshableWidget {
 
 SonkinsWidget.propTypes = {
   refreshEvery: PropTypes.number,
-  displayName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   jobName: PropTypes.string.isRequired,
   branch: PropTypes.string.isRequired,
   projectKey: PropTypes.string.isRequired,

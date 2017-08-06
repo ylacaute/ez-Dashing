@@ -73,7 +73,7 @@ class SprintWidget extends RefreshableWidget {
     return (
       <Widget
         className="current-sprint days-done"
-        title={this.props.displayName}
+        title={this.props.title}
         content={
           <CircularProgressBar
             value={this.state.progress}
@@ -127,7 +127,7 @@ class SprintWidget extends RefreshableWidget {
 }
 
 SprintWidget.propTypes = {
-  displayName: PropTypes.string,
+  title: PropTypes.string,
   displayType: PropTypes.oneOf(['daysLeft','daysDone', 'numberOnly']),
   sprintDates: PropTypes.array.isRequired,
   sprintDuration: PropTypes.number.isRequired,
