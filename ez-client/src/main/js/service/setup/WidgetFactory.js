@@ -1,4 +1,9 @@
 import React from 'react';
+
+import HelloWorldWidget from 'component/widget/HelloWorldWidget.jsx';
+import ErrorWidget from 'component/widget/ErrorWidget.jsx';
+
+
 import ClockWidget from 'component/widget/ClockWidget.jsx';
 import JiraWidget from 'component/widget/JiraWidget.jsx';
 import JenkinsWidget from 'component/widget/JenkinsWidget.jsx';
@@ -19,6 +24,8 @@ export default class WidgetFactory {
   static create = (widgetConfiguration) => {
     let Component;
     switch (widgetConfiguration.type) {
+      case "HelloWorldWidget": Component = HelloWorldWidget; break;
+      case "ErrorWidget": Component = ErrorWidget; break;
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
       case "JenkinsWidget": Component = JenkinsWidget; break;

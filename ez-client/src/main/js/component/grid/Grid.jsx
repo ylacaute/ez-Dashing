@@ -17,8 +17,6 @@ export default class Grid extends React.Component {
 
   constructor(props) {
     super(props);
-    this.initialized = false;
-    this.resizedId = null;
   }
 
   /**
@@ -30,18 +28,11 @@ export default class Grid extends React.Component {
    * We wait 500ms to dispatch grid Ready, it is not necessary but visually nicer.
    */
   componentDidMount() {
-    if (!this.initialized) {
-      const widgetIds = this.props.widgets.map(w => w.key);
-      widgetIds.forEach(wid => {
-        setTimeout(() => {
-          this.props.onElementResized(wid, this.getSizeInfo(wid));
-        }, 0);
-      });
-      setTimeout(() => {
-        this.props.onGridReady(widgetIds);
-        this.initialized = true;
-      }, 500);
-    }
+    const widgetIds = this.props.widgets.map(w => w.key);
+    this.dispatchResizeToAllWidgets(widgetIds);
+    setTimeout(() => {
+      this.props.onGridReady(widgetIds);
+    }, 500);
   }
 
   getWidthClass(size) {
@@ -69,13 +60,20 @@ export default class Grid extends React.Component {
   /**
    * The timeout to 0 is necessary to be sure to have the good size.
    */
-  onLayoutChange(layout) {
-    if (this.resizedId != null) {
+  dispatchResizeToAllWidgets(widgetIds) {
+    const ids = widgetIds ? widgetIds : this.props.widgets.map(w => w.key);
+    ids.forEach(wid => {
       setTimeout(() => {
-        this.props.onElementResized(this.resizedId, this.getSizeInfo(this.resizedId));
-        this.resizedId = null;
+        this.props.onElementResized(wid, this.getSizeInfo(wid));
       }, 0);
-    }
+    });
+  }
+
+  /**
+   * We need to send resize events to all widgets because all there size may have changed.
+   */
+  onLayoutChange(layout) {
+    this.dispatchResizeToAllWidgets();
   }
 
   render() {

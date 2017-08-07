@@ -1,20 +1,21 @@
 @charset "UTF-8";
 
-// 1.Base
+// VARIABLES
 @import 'base/variables';
+@import "node_modules/knacss/sass/_config/variables";
+
+// BASE
+@import "node_modules/knacss/sass/_config/breakpoints";
+@import "node_modules/knacss/sass/_config/mixins";
+@import "node_modules/knacss/sass/_vendor/normalize";
+@import "node_modules/knacss/sass/library/base";
 @import 'base/layouts';
-@import 'base/page';
+@import 'base/base';
 
-// Knacss
-//@import "node_modules/knacss/sass/_config/breakpoints";
-//@import "node_modules/knacss/sass/_config/mixins";
-//@import "node_modules/knacss/sass/_config/variables";
-//@import "node_modules/knacss/sass/_vendor/normalize";
-//@import "node_modules/knacss/sass/library/base";
-
-// React-grid-layout
+// REACT-GRID-LAYOUT
 @import "/node_modules/react-grid-layout/css/styles.css";
 @import "/node_modules/react-resizable/css/styles.css";
+
 
 //@import "../../../node_modules/chartist/dist/scss/chartist";
 
@@ -24,17 +25,21 @@
 @import 'core/progress-bar';
 @import 'core/effect/blink_effect';
 @import 'core/effect/flip_effect';
+
+@import 'core/effect/spinnerEffect';
+
 @import 'core/scalable-text';
-@import 'core/scalable-image';
 
 // Components
 @import 'component/grid';
 
 // Widgets
 @import 'component/widget/base/Widget';
+@import 'component/widget/HelloWorldWidget';
+@import 'component/widget/ClockWidget';
+
 @import 'widget/SonkinsWidget';
 @import 'widget/JenkinsMonitoringWidget';
-@import 'component/widget/ClockWidget';
 @import 'widget/SprintWidget';
 @import 'widget/IssuesWidget';
 @import 'widget/GraphWidget';

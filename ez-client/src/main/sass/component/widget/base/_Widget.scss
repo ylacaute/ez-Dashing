@@ -1,13 +1,58 @@
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* WIDGET
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widgetWrapper {
+  border: 1px solid red;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
 
 .widget {
   @extend %flexColumn;
-  height: 100%;
-  text-align: center;
   color: $color-text-widget;
   background-color: $color-bg-widget;
+  height: 100%;
+  text-align: center;
+
+
+  header {
+    @extend %flexColumn;
+    color: $color-text-widget-header;
+    background-color: $color-bg-widget-header;
+    min-height: 20%;
+  }
+
+  article {
+    @extend %flexColumn;
+    flex-grow: 1;
+    padding: $padding-widget-content;
+  }
+
+  footer {
+    background-color: $color-bg-widget-footer;
+  }
+
+}
+
+.widget.error {
+  img {
+    //width: 60%;
+    //align-self: center;
+    //user-select: none;
+  }
+}
+
+
+
+
+
+
+/*
+.widget {
+
   header {
     @extend %flexColumn;
     background-color: $color-bg-widget-header;
@@ -49,3 +94,4 @@
 }
 
 
+*/

@@ -1,14 +1,12 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* WIDGET
+/* HELLO WORLD WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widget.issues {
-  header {
-    height: 17%;
+.widget.helloworld {
+
+  article {
+    color: $color-cyan;
+    font-size: 250%;
   }
-  .content {
-    > div {
-      @extend %flexRow;
-    }
-  }
+
 }

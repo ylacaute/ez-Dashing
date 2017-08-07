@@ -1,6 +1,6 @@
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing color configuration
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // BASE COLOR
 $color-base: #aaa !default;
@@ -31,31 +31,58 @@ $color-spinner: $color-white !default;
 $color-text-clock: $color-cyan !default;
 $color-text-sprint: $color-blue !default;
 $color-text-widget: $color-white !default;
-$color-text-widget-header: $color-white !default;
+$color-text-widget-header: $color-title !default;
 $color-text-widget-sub-title: $color-gray-light !default;
-$color-text-widget-title: $color-title !default;
 
 // BACKGROUND COMPONENT COLOR
 $color-bg-grid: $color-black !default;
 $color-bg-grid-placeholder: $color-white-half-opacity;
 $color-bg-widget: $color-blue-dark !default;
 $color-bg-widget-header: $color-black-half-opacity !default;
+$color-bg-widget-footer: $color-black-half-opacity !default;
 
 
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // GENERIC PADDING
 $padding-content: 1rem !default;
 
 // COMPONENT PADDING
-$padding-widget-content: $padding-content;
+$padding-widget-content: $padding-content !default;
 
 
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing misc configuration
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 $image-path: '/img' !default;
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing KNACSS configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// MOBILE FONT SIZE
+$base-font-size : 1.4rem !default;
+$line-height    : 1.4 !default;
+$h1-size        : 1.8rem !default;
+$h2-size        : 1.6rem !default;
+$h3-size        : 1.4rem !default;
+$h4-size        : 1.4rem !default;
+$h5-size        : 1.4rem !default;
+$h6-size        : 1.4rem !default;
+
+// DESKTOP FONT SIZE
+$base-font-size-l : 1.4 rem !default;
+$line-height-l    : 1.5 !default;
+$h1-size-l        : 1.8rem !default;
+$h2-size-l        : 1.6rem !default;
+$h3-size-l        : 1.4rem !default;
+$h4-size-l        : 1.4rem !default;
+$h5-size-l        : 1.4rem !default;
+$h6-size-l        : 1.4rem !default;
+
+
+

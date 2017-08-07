@@ -185,6 +185,14 @@
     ],
     "widgets": [
       {
+        "type": "HelloWorldWidget",
+        "title": "Sample"
+      },
+      {
+        "type": "ErrorWidget",
+        "title": "Sample ERROR"
+      },
+      {
         "type": "ClockWidget",
         "UTCOffset": 2
       },
