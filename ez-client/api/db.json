@@ -30,20 +30,22 @@
     "total": 42,
     "issues": [
       {
-        "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-        "id": "38332",
-        "self": "https://issues.xxx.net/rest/api/2/issue/38332",
-        "key": "BCGAS-42",
-        "fields": {
-          "components": [
-            {
-              "self": "https://issues.xxx.net/rest/api/2/component/10907",
-              "id": "10907",
-              "name": "bc-gas-sys",
-              "description": "desc"
-            }
-          ]
-        }
+        "key": "BCGAS-442"
+      },
+      {
+        "key": "BCGAS-1200"
+      },
+      {
+        "key": "BCGAS-1215"
+      },
+      {
+        "key": "BCGAS-1132"
+      },
+      {
+        "key": "BCGAS-1130"
+      },
+      {
+        "key": "BCGAS-1019"
       }
     ]
   },
@@ -175,8 +177,8 @@
             "refresh": 30,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
-              "total": "$.total",
-              "issuesKeys": "$.issues[*].key"
+              "todoTotal": "$.total",
+              "todoIssuesKeys": "$.issues[*].key"
             }
           },
           {
@@ -184,8 +186,8 @@
             "refresh": 30,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
-              "total": "$.total",
-              "issuesKeys": "$.issues[*].key"
+              "inProgressTotal": "$.total",
+              "inProgressIssuesKeys": "$.issues[*].key"
             }
           }
         ]
@@ -215,14 +217,14 @@
       },
       {
         "type": "JiraWidget",
-        "title": "P1 BUGS",
+        "title": "BUGS (P1)",
         "dataSource": [
-          "jira#todo"
+          "jira#todo", "jira#inProgress"
         ]
       },
       {
         "type": "JiraWidget",
-        "title": "ALL BUGS",
+        "title": "BUGS (ALL)",
         "dataSource": [
           "jira#inProgress"
         ]
@@ -256,7 +258,7 @@
         "avg": 1,
         "good": 0
       },
-      "issues": {
+      "bugs": {
         "bad": 10,
         "avg": 1,
         "good": 0

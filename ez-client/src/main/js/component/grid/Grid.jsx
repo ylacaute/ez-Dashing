@@ -20,20 +20,22 @@ export default class Grid extends React.Component {
   }
 
   /**
-   * The first time the grid is mounted, we don't know yet the calculated size of elements so we
-   * dispatch a resize event for all of them (those events will allow to add css breakpoint properties
-   * depending there size). When the grid is mounted, it automaticaly send layoutChange event which send
-   * resize event to widgetS.
+   * The first time the grid is mounted, we don't know yet the calculated size of elements as a result we
+   * dispatch a resize event for all of them (these events will allow to add css breakpoint properties
+   * for each widget, depending on there size).
+   * When the grid is mounted, it does not always emit a layoutChange event, so we need to dispatch a
+   * resize on mount, as the result, sometimes these events are duplicated on start but without any consequences.
    *
-   * We could display immediately widget but it is better to be sure the graphical stuff are totally done.
-   * Indeed, the responsive behaviour of each widget depends on the previous resize event sent.
-   *
+   * We could display widgets immediately but it is better to be sure the graphical stuff are totally done.
+   * Indeed, the responsive behaviour of each widget depends on the previous resize event sent be cause of CSS
+   * breakpoint class.
    * As the consequence, we arbitrary wait 500ms to dispatch grid Ready which will authorize widget to display
-   * themselves. 500ms is enormous but allow a better user experience : user have time to clearly see the loaders,
-   * then widgets.
+   * themselves. 500 ms is enormous but allow a better user experience : the user has time to clearly see the
+   * loaders, then widgets.
    */
   componentDidMount() {
     const widgetIds = this.props.widgets.map(w => w.key);
+    this.dispatchResizeToAllWidgets();
     setTimeout(() => {
       this.props.onGridReady(widgetIds);
     }, 500);

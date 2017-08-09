@@ -35,11 +35,11 @@ export default class AbstractWidget extends React.Component {
    * Generate the widget CSS class names as a single string
    */
   getWidgetClassNames() {
-    return classnames(
+    return [
       AbstractWidget.widgetClassName,
       this.props.className,
       this.props.sizeInfo.wBreakpointClass,
-      this.props.sizeInfo.hBreakpointClass);
+      this.props.sizeInfo.hBreakpointClass];
   }
 
   /**
@@ -143,7 +143,7 @@ export default class AbstractWidget extends React.Component {
       return this.renderError();
     try {
       return (
-        <section className={this.getWidgetClassNames()}>
+        <section className={classnames(this.getWidgetClassNames())}>
           {this.renderHeaderWrapper()}
           <article className="content">
             {this.renderContent()}

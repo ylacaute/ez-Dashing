@@ -9,7 +9,7 @@ export default class ThresholdConfig {
         }
       }
     }
-    return "undefined";
+    return "";
   };
 
 }

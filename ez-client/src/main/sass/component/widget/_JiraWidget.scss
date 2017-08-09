@@ -1,0 +1,72 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* JIRA WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+//.icon.inProgress { background-image: url('#{$image-path}/inProgress.png'); }
+//
+//// A size must be specified
+//%icon {
+//  background-repeat: no-repeat;
+//  background-size: contain;
+//  background-position: center center;
+//}
+//
+
+
+.widget.jira {
+
+  header {
+    span {
+      vertical-align: middle;
+    }
+    strong {
+      color: $color-good;
+      vertical-align: middle;
+      font-size: 150%;
+    }
+  }
+
+  article {
+    text-align: left;
+    font-size: 200%;
+    ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 2rem;
+      text-indent: 0rem;
+      li .icon {
+        @extend %icon;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        vertical-align: sub;
+        margin-right: 1rem;
+      }
+      li .icon.todo {
+        background-image: url('#{$image-path}/todo.png');
+      }
+      li .icon.inProgress {
+        background-image: url('#{$image-path}/inProgress.png');
+      }
+    }
+  }
+}
+
+// Threshold styles
+.widget.jira.avg header strong {
+  color: $color-average;
+}
+.widget.jira.bad header strong {
+  color: $color-bad;
+}
+
+// Responsive widget styles
+.widget.jira.height-xxxs article ul li:nth-child(n+2) {
+  display: none;
+}
+.widget.jira.height-xxs article ul li:nth-child(n+5) {
+  display: none;
+}
+.widget.jira.height-xs article ul li:nth-child(n+6) {
+  display: none;
+}
