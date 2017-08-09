@@ -1,44 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import JSONPath from 'jsonpath';
-import ObjectUtils from 'utils/ObjectUtils';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
 class JiraWidget extends AbstractWidget {
 
+  /**
+   *  issuesKeys and total are array because JSONPath always return arrays. As those data come from
+   *  a generic dataSource system, only the Widget can know the real nature of those data.
+   *  Each widget has to live with that !.
+   */
   static propTypes = {
+    dataReceivedAtLeastOne: PropTypes.bool,
+    issuesKeys: PropTypes.array,
+    total: PropTypes.array
   };
 
   static defaultProps = {
+    dataReceivedAtLeastOne: false,
+    issuesKeys: [],
+    total: []
   };
-
-  /**
-   * Most of the time, Widget are linked to only one dataSource, so most of time
-   * this function is enough.
-   */
-  getDS() {
-    return this.props.dataSource[this.props.dataSource[0]];
-  }
-
-  getDSTimestamp() {
-    return this.props.dataSource[this.props.dataSource[0]].timestamp;
-  }
-
-  isDataSourceAvailable() {
-    //console.log("JIRA PROPS :", this.props);
-    let k = this.props.dataSource[0].toString();
-    let isAvailable = !ObjectUtils.isNullOrEmpty(this.props.dataSource[k]);
-    return isAvailable;
-  }
-
-  extractDataSourceData() {
-    let ds = this.getDS();
-    return {
-      total: ds.total,// JSONPath.query(ds, '$.total'),
-      issuesKeys: ds.issuesKeys//JSONPath.query(ds, '$.issues[*].key')
-    }
-  }
 
   renderHeader() {
     return (
@@ -50,14 +32,13 @@ class JiraWidget extends AbstractWidget {
   }
 
   renderContent() {
-    if (!this.isDataSourceAvailable()) {
-      console.log("DataSourceAvailable NOT available in JIRA WIDGET");
+    const { total, issuesKeys, dataReceivedAtLeastOne } = this.props;
+    if (!dataReceivedAtLeastOne) {
       return this.renderLoading();
     }
-    let { total, issuesKeys } = this.extractDataSourceData();
     return (
       <div>
-        <p>Total in TODO : {total}</p>
+        <p>Total in TODO : {total[0]}</p>
         <p>Issues in TODO : {issuesKeys}</p>
       </div>
     )

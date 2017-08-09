@@ -1,31 +1,31 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from "redux";
 
-import LoggerMiddleware from 'redux/middleware/Logger';
-import CrashReporterMiddleware from 'redux/middleware/CrashReporter';
-import ClockMiddleware from 'redux/middleware/Clock';
-import DataSourceMiddleware from 'redux/middleware/DataSourceMiddleware';
+import LoggerMiddleware from "redux/middleware/Logger";
+import CrashReporterMiddleware from "redux/middleware/CrashReporter";
+import ClockMiddleware from "redux/middleware/Clock";
+import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
 
-import { ClockService } from 'service/clock/ClockService';
-import { JenkinsMonitoringService } from 'service/jenkins/JenkinsMonitoringService';
-import logoClickCount from 'redux/reducer/Logo';
+import { ClockService } from "service/clock/ClockService";
+import { JenkinsMonitoringService } from "service/jenkins/JenkinsMonitoringService";
+import logoClickCount from "redux/reducer/Logo";
 
-import ClockReducer from 'redux/reducer/ClockReducer';
-import jenkinsMonitoring from 'redux/reducer/JenkinsMonitoring';
-import StartupReducer from 'redux/reducer/StartupReducer';
-import DataSourceReducer from 'redux/reducer/DataSourceReducer';
-import WidgetReducer from 'redux/reducer/WidgetReducer';
+import ClockReducer from "redux/reducer/ClockReducer";
+import jenkinsMonitoring from "redux/reducer/JenkinsMonitoring";
+import StartupReducer from "redux/reducer/StartupReducer";
+import WidgetReducer from "redux/reducer/WidgetReducer";
 
-import RestClient from 'client/RestClient';
-import ObjectUtils from 'utils/ObjectUtils.js';
-import GridLayoutGenerator from 'service/setup/GridLayoutGenerator';
-import WidgetFactory from 'service/setup/WidgetFactory';
+import RestClient from "client/RestClient";
+import ObjectUtils from "utils/ObjectUtils.js";
+import GridLayoutGenerator from "service/setup/GridLayoutGenerator";
+import WidgetFactory from "service/setup/WidgetFactory";
 import DataSourceService from "service/datasource/DataSourceService";
-import UUID from 'utils/UUID';
-import StringUtils from 'utils/StringUtils';
+import UUID from "utils/UUID";
+import Logger from "logger/Logger";
 
+const logger = Logger.getLogger("StartupService");
 
 export const SetupEvent = {
-  ConfigLoadSuccess: 'CONFIG_LOAD_SUCCESS'
+  ConfigLoadSuccess: "CONFIG_LOAD_SUCCESS"
 };
 
 let counter = 1;
@@ -33,7 +33,7 @@ let counter = 1;
 export default class SetupService {
 
   getServerConfigPath() {
-    return '/api/dashboard/config';
+    return "/api/dashboard/config";
   };
 
   /**
@@ -47,7 +47,7 @@ export default class SetupService {
         sizeInfo: {} // todo : move in config, and update config correctly in reducers
       };
     });
-    console.log('[INFO] Initial application state initialized to', initialState);
+    logger.info("Initial application state initialized to ", initialState);
     return initialState;
   };
 
@@ -57,8 +57,7 @@ export default class SetupService {
       widget: WidgetReducer,
       logoClickCount,
       clock: ClockReducer,
-      jenkinsMonitoring,
-      dataSource: DataSourceReducer,
+      jenkinsMonitoring
     });
   };
 
@@ -77,7 +76,7 @@ export default class SetupService {
   getDashboardConfig(callback) {
     const path = this.getServerConfigPath();
     RestClient.get(path, callback, exception => {
-      console.log('[FATAL] Error during application initialization, details:', exception);
+      logger.error("Error during application initialization, details:", exception);
     });
   };
 
@@ -115,9 +114,9 @@ export default class SetupService {
     });
     if (ObjectUtils.isNullOrEmpty(dashboardConfig.grid.layouts)) {
       dashboardConfig.grid.layouts = GridLayoutGenerator.generate(dashboardConfig);
-      console.log('[INFO] Use auto-generated grid layout configuration');
+      logger.info("Use auto-generated grid layout configuration");
     } else {
-      console.log('[INFO] Use user grid layout configuration');
+      logger.info("Use user grid layout configuration");
     }
   }
 
@@ -134,11 +133,11 @@ export default class SetupService {
    * Application starting point
    */
   initialize(callback) {
-    console.log("[INFO] Starting ez-Dashing...");
+    logger.info("Starting ez-Dashing...");
 
     this.getDashboardConfig(dashboardConfig => {
       this.extendsDashboardConfig(dashboardConfig);
-      //console.log("[DEBUG] Extended config:", dashboardConfig);
+      logger.debug("Extended config:", dashboardConfig);
       const clockService = new ClockService();
       const jenkinsMonitoringService = new JenkinsMonitoringService();
       const dataSourceService = new DataSourceService(dashboardConfig);
@@ -161,7 +160,6 @@ export default class SetupService {
 
       clockService.start();
       dataSourceService.refreshAll();
-      console.log("[INFO] ez-Dashing ready !");
       callback(store);
     });
   }

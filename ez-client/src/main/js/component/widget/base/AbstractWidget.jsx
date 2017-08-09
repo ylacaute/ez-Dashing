@@ -26,16 +26,8 @@ export default class AbstractWidget extends React.Component {
   }
 
   static mapCommonWidgetProps = (state, ownProps) => {
-    let newDateSource = {
-      ...ownProps.dataSource
-    };
-    ownProps.dataSource.forEach(dataSourceId => {
-      newDateSource[dataSourceId] = state.dataSource[dataSourceId];
-    });
     return {
-      loaded: state.widget[ownProps.id].loaded,
-      dataSource: newDateSource,
-      sizeInfo: state.widget[ownProps.id].sizeInfo
+      ...state.widget[ownProps.id]
     }
   };
 

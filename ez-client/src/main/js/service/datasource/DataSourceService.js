@@ -1,14 +1,17 @@
-import RestClient from 'client/RestClient';
-import JSONPath from 'jsonpath';
+import RestClient from "client/RestClient";
+import JSONPath from "jsonpath";
+import Logger from "logger/Logger";
+
+const logger = Logger.getLogger("DataSourceService");
 
 export const DataSourceEvent = {
-  DataSourceRefreshed: 'DATASOURCE_REFRESHED'
+  DataSourceRefreshed: "DATA_SOURCE_REFRESHED"
 };
 
 export default class DataSourceService {
 
   static getDataSourceId(dsConfig, queryConfig) {
-    return dsConfig.name + '#' + queryConfig.name;
+    return dsConfig.name + "#" + queryConfig.name;
   }
 
   constructor(dashboardConfig) {
@@ -17,6 +20,16 @@ export default class DataSourceService {
 
   setDispatch(dispatch) {
     this.dispatch = dispatch;
+  }
+
+  getWidgetIdsListening(dataSourceId) {
+    let result = [];
+    this.dashboardConfig.widgets.forEach(widgetConfig => {
+      if (widgetConfig.dataSource.includes(dataSourceId)) {
+        result.push(widgetConfig.id);
+      }
+    });
+    return result;
   }
 
   onClockTick(tickCount) {
@@ -47,29 +60,30 @@ export default class DataSourceService {
   }
 
   refreshDataSourceQuery(dsConfig, queryConfig) {
-    console.log('[INFO] Refreshing query \'' + queryConfig.name
-      + '\' of dataSource \'' + dsConfig.name + '\'');
+    logger.info("Refreshing query '{}' of dataSource '{}'", queryConfig.name, dsConfig.name);
     const path = this.getDataSourceServerPath();
 
-    RestClient.get(path + dsConfig.name + '/' + queryConfig.name, jsonResponse => {
+    RestClient.get(path + dsConfig.name + "/" + queryConfig.name, jsonResponse => {
       const dataSourceId = DataSourceService.getDataSourceId(dsConfig, queryConfig);
+      logger.trace("getWidgetIdsListening : " + this.getWidgetIdsListening(dataSourceId));
       this.dispatch({
         type: DataSourceEvent.DataSourceRefreshed,
         dataSourceId: dataSourceId,
+        widgetIdsListening: this.getWidgetIdsListening(dataSourceId),
         payload: {
           ...this.getMappedProperties(queryConfig, jsonResponse)
         }
       });
     }, error => {
-      console.log('[ERROR] Unable to refresh dataSource, details:', error);
+      logger.error("Unable to refresh dataSource, details:", error);
     });
   };
 
   getMappedProperties(queryConfig, jsonResponse) {
     if (queryConfig.mapping == null) {
       throw {
-        name: 'Invalid dataSource configuration',
-        message: 'You must define a mapping for query ' + queryConfig.name
+        name: "Invalid dataSource configuration",
+        message: "You must define a mapping for query " + queryConfig.name
       }
     }
     const mapping = queryConfig.mapping;
@@ -77,6 +91,7 @@ export default class DataSourceService {
     for (let propertyName in mapping) {
       result[propertyName] = JSONPath.query(jsonResponse, mapping[propertyName]);
     }
+    logger.trace("getMappedProperties for query '{}':", queryConfig.name, result);
     return result;
   }
 

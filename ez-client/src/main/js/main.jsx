@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -6,6 +5,7 @@ import Application from './Application.jsx'
 import SetupService from 'service/setup/SetupService';
 import Logger from 'logger/Logger';
 
+// Logger configuration
 Logger.ENABLE_COLOR = true;
 Logger.setRootLevel(Logger.Level.DEBUG);
 Logger.Level = {
@@ -16,7 +16,9 @@ Logger.Level = {
   ERROR: [4, 'ERROR', 'color:#c65555'],
 };
 Logger.setLevel("WidgetReducer", Logger.Level.DEBUG);
-Logger.setLevel("ClockReducer", Logger.Level.DEBUG);
+Logger.setLevel("ClockReducer", Logger.Level.INFO);
+Logger.setLevel("RestClient", Logger.Level.INFO);
+Logger.setLevel("DataSourceService", Logger.Level.TRACE);
 
 const setupService = new SetupService();
 

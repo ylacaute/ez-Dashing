@@ -17,6 +17,8 @@ export default function WidgetReducer(state = initialState, action) {
 
     /**
      * When an item is resized, we update its sizeInfo property
+     * To understand why there are as many event that there are widgets, please see Grid comments who
+     * emits those events.
      */
     case GridEvent.ItemResized:
       const widgetId = action.widgetId;
@@ -35,33 +37,37 @@ export default function WidgetReducer(state = initialState, action) {
      * When the Grid is ready, we can finally display the widgets by give them the loaded property
      */
     case GridEvent.Ready:
-      let readyState = {};
-      let ids = action.widgetIds;
-      ids.forEach(id => {
-        readyState[id] = {
+      let newLoadedStatusState = {
+        ...state
+      };
+      action.widgetIds.forEach(id => {
+        newLoadedStatusState[id] = {
           ...state[id],
           loaded: true
         }
       });
       logger.debug("GridReady");
-      return readyState;
+      return newLoadedStatusState;
 
     /**
-     * When a dataSource is refreshed, we need to update properties of all widgets interesed by this dataSource.
+     * When a dataSource is refreshed, we need to update properties of all widgets interested by this dataSource.
      */
     case DataSourceEvent.DataSourceRefreshed:
-      const dataSourceId = action.dataSourceId;
+      const { dataSourceId, widgetIdsListening } = action;
       const properties = action.payload;
-      //console.log("WHAT IS THIS : ", this);
-      //console.log("[REDUCER] DataSourceRefreshed (id=" + dataSourceId + ")");
-      // let result = {
-      //   ...state,
-      //   [dataSourceId] : {
-      //     ...properties
-      //   }
-      // };
-      // return result;
-      logger.debug("DataSourceRefreshed (id={})", dataSourceId);
+
+      let newDataSourcePropsState = {
+        ...state
+      };
+      widgetIdsListening.forEach(id => {
+        newDataSourcePropsState[id] = {
+          ...state[id],
+          ...properties,
+          dataReceivedAtLeastOne: true
+        }
+      });
+      logger.debug("DataSourceRefreshed (id={}), newState :", dataSourceId, newDataSourcePropsState);
+      return newDataSourcePropsState;
 
     default:
       return state;

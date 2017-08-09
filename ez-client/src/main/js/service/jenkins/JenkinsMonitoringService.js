@@ -33,13 +33,7 @@ export class JenkinsMonitoringService {
   }
 
   onTick(tickCount) {
-    /*if (tickCount % this.props.refresh === 0) {
-      RestClient.get(this.props.path, (jsonResponse) => {
-        this.dispatch(ActionCreator.jenkinsDataReceived(jsonResponse));
-      }, (exception) => {
-        console.log("Error during JenkinsMonitoring HTTP request, details: ", exception);
-      });
-    }*/
+
   };
 
 }

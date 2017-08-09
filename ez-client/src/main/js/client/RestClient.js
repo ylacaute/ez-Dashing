@@ -1,52 +1,56 @@
-import RestException from 'client/RestException';
+import Logger from "logger/Logger";
+import RestException from "client/RestException";
+
+const logger = Logger.getLogger("RestClient");
+
+let requestIdCounter = 0;
 
 let defaultHeaders = new Headers();
-defaultHeaders.append('Accept', 'application/json');
-defaultHeaders.append('Content-Type', 'application/json');
-
+defaultHeaders.append("Accept", "application/json");
+defaultHeaders.append("Content-Type", "application/json");
 
 let parseJsonResponse = (response) => {
   try {
     return response.json();
   } catch (jsonError) {
-    throw new RestException('Can\'t parse HTTP response as valid JSON', jsonError);
+    throw new RestException("Can't parse HTTP response as valid JSON", jsonError);
   }
 };
 
-let handlHTTPResponse = (response, options, path) => {
-  //console.log('[RESPONSE', response.status + ']', options.verb, path);
+let handleHTTPResponse = (requestId, response, options, path) => {
+  logger.debug("RESPONSE[id={}] {} - {} {}", requestId, response.status, options.verb, path);
   if (!response.ok) {
     if (response.status === 504) {
-      throw new RestException('Unable to contact the API server, is your server started ?', response);
+      throw new RestException("Unable to contact the API server, is your server started ?", response);
     } else if (response.status >= 500) {
-      throw new RestException('Internal server error', response);
+      throw new RestException("Internal server error", response);
     } else {
-      throw new RestException('Request error, please verify your request is correct', response);
+      throw new RestException("Request error, please verify your request is correct", response);
     }
   }
   return response;
 };
 
-let handlHTTPError = (error, errorCallback) => {
+let handleHTTPError = (error, errorCallback) => {
   if (errorCallback != null) {
     errorCallback(error);
   } else {
-    console.log('[ERROR] Uncaught error during HTTP response process, details:', error);
+    logger.error("Uncaught error during HTTP response process, details:", error);
   }
 };
 
-
 let jsonFetch = (path, options, callback, errorCallback) => {
-  //console.log('[REQUEST]', options.verb, path);
+  const requestId = ++requestIdCounter;
+  logger.debug("REQUEST[id={}] - {} {}", requestId, options.verb, path);
   let url = window.location.origin + path;
   fetch(url, {
     headers: defaultHeaders,
     ...options
   })
-    .then((response) => handlHTTPResponse(response, options, path))
+    .then((response) => handleHTTPResponse(requestId, response, options, path))
     .then(parseJsonResponse)
     .then(callback)
-    .catch(error => handlHTTPError(error, errorCallback));
+    .catch(error => handleHTTPError(error, errorCallback));
 };
 
 
@@ -54,14 +58,14 @@ export default class RestClient {
 
   static get = (path, callback, errorCallback) => {
     let options = {
-      verb: 'GET',
+      verb: "GET",
     };
     jsonFetch(path, options, callback, errorCallback);
   };
 
   static post = (path, payload, callback, errorCallback) => {
     let options = {
-      verb: 'GET',
+      verb: "GET",
       body: JSON.stringify(payload)
     };
     jsonFetch(path, options, callback, errorCallback);
