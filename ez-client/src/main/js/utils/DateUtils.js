@@ -21,10 +21,22 @@ export default class DateUtils {
   };
 
   /**
-   *
+   * Return the difference in days between two dates ignoring time
    */
   static diffInDays = (first, second) => {
-    return Math.round((second - first) / (1000 * 60 * 60 * 24));
+    let firstWithoutTime = new Date(first.getFullYear(), first.getMonth(), first.getDate());
+    let secondWithoutTime = new Date(second.getFullYear(), second.getMonth(), second.getDate());
+
+    return Math.round((secondWithoutTime - firstWithoutTime) / (1000 * 60 * 60 * 24));
   };
+
+  /**
+   * Add days to a Date and return the result a new Date.
+   */
+  static addDays(date, days) {
+    let result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
 }

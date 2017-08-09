@@ -186,15 +186,24 @@
     "widgets": [
       {
         "type": "HelloWorldWidget",
-        "title": "Sample"
+        "title": "HELLO WORLD"
       },
       {
         "type": "ErrorWidget",
-        "title": "Sample ERROR"
+        "title": "SAMPLE ERROR"
       },
       {
         "type": "ClockWidget",
         "UTCOffset": 2
+      },
+      {
+        "type": "SprintWidget",
+        "sprintDates": [
+          "2017-07-20",
+          "2017-08-10"
+        ],
+        "sprintDuration": 21,
+        "sprintOffset": 8
       },
       {
         "type": "JiraWidget",
@@ -209,10 +218,6 @@
         "dataSource": [
           "jira#inProgress"
         ]
-      },
-      {
-        "type": "JenkinsWidget",
-        "title": "LAYOUT TEST"
       }
     ],
     "avatars": [

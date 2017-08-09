@@ -6,9 +6,6 @@ import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 class ClockWidget extends AbstractWidget {
 
   static propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    sizeInfo: PropTypes.object,
     UTCOffset: PropTypes.number,
     clock: PropTypes.object.isRequired
   };

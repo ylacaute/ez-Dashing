@@ -22,25 +22,25 @@
 // Framework
 @import "core/core-mixins";
 @import 'core/icons';
-@import 'core/progress-bar';
 @import 'core/effect/blink_effect';
 @import 'core/effect/flip_effect';
-
 @import 'core/effect/spinnerEffect';
-
 @import 'core/scalable-text';
+
+// Generic components
+@import 'component/chart/CircularProgressBar';
 
 // Components
 @import 'component/grid';
 
-// Widgets
+// Widgets components
 @import 'component/widget/base/Widget';
 @import 'component/widget/HelloWorldWidget';
 @import 'component/widget/ClockWidget';
+@import 'component/widget/SprintWidget';
 
 @import 'widget/SonkinsWidget';
 @import 'widget/JenkinsMonitoringWidget';
-@import 'widget/SprintWidget';
 @import 'widget/IssuesWidget';
 @import 'widget/GraphWidget';
 @import 'metric/metrics';

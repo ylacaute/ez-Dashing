@@ -28,5 +28,17 @@ describe('DateUtils', () => {
     assert.equal(DateUtils.diffInDays(date1, date2), 42);
   });
 
+  it('diffInDays() should give the différence in days (1) [Ignore exact time]', () => {
+    let date1 = new Date(2017, 6, 30, 19, 46);
+    let date2 = new Date(2017, 6, 31, 20, 42);
+    assert.equal(DateUtils.diffInDays(date1, date2), 1);
+  });
+
+  it('diffInDays() should give the différence in days (1) [Ignore exact time]', () => {
+    let date1 = new Date(2017, 6, 30, 19, 46);
+    let date2 = new Date(2017, 6, 31, 18, 42);
+    assert.equal(DateUtils.diffInDays(date1, date2), 1);
+  });
+
 });
 

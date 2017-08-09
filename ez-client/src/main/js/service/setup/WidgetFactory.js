@@ -1,12 +1,14 @@
 import React from 'react';
 
-import HelloWorldWidget from 'component/widget/HelloWorldWidget.jsx';
-import ErrorWidget from 'component/widget/ErrorWidget.jsx';
+// Sample widgets
+import HelloWorldWidget from 'component/widget/sample/HelloWorldWidget.jsx';
+import ErrorWidget from 'component/widget/sample/ErrorWidget.jsx';
 
-
-import ClockWidget from 'component/widget/ClockWidget.jsx';
-import JiraWidget from 'component/widget/JiraWidget.jsx';
-import JenkinsWidget from 'component/widget/JenkinsWidget.jsx';
+// Real widgets
+import ClockWidget from 'component/widget/clock/ClockWidget.jsx';
+import JiraWidget from 'component/widget/jira/JiraWidget.jsx';
+import SprintWidget from 'component/widget/sprint/SprintWidget.jsx';
+import JenkinsWidget from 'component/widget/jenkins/JenkinsWidget.jsx';
 
 
 /*import SonkinsWidget from 'widget/SonkinsWidget/index.jsx';
@@ -23,12 +25,19 @@ export default class WidgetFactory {
 
   static create = (widgetConfiguration) => {
     let Component;
+
     switch (widgetConfiguration.type) {
+
+      // Sample widgets
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
       case "ErrorWidget": Component = ErrorWidget; break;
+
+      // Real widgets
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
+      case "SprintWidget": Component = SprintWidget; break;
       case "JenkinsWidget": Component = JenkinsWidget; break;
+
       /*case "TeamWidget": Component = TeamWidget; break;
       case "JenkinsMonitoringWidget": Component = JenkinsMonitoringWidget; break;
       case "SonkinsWidget": Component = SonkinsWidget; break;
@@ -37,6 +46,7 @@ export default class WidgetFactory {
       case "GraphWidget" : Component = GraphWidget; break;
       case "SampleGraphWidget" : Component = SampleGraphWidget; break;*/
     }
+
     return (
       <div id={widgetConfiguration.key} key={widgetConfiguration.key}>
         <Component {...widgetConfiguration}/>

@@ -9,6 +9,9 @@ export default class AbstractWidget extends React.Component {
   static widgetClassName = 'widget';
 
   static propTypes = {
+    title: PropTypes.string,
+    className: PropTypes.string,
+    sizeInfo: PropTypes.object,
     loaded: PropTypes.bool,
     onError: PropTypes.bool
   };
@@ -17,6 +20,10 @@ export default class AbstractWidget extends React.Component {
     loaded: false,
     onError: false
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   static mapCommonWidgetProps = (state, ownProps) => {
     let newDateSource = {
@@ -31,6 +38,17 @@ export default class AbstractWidget extends React.Component {
       sizeInfo: state.widget[ownProps.id].sizeInfo
     }
   };
+
+  /**
+   * Generate the widget CSS class names as a single string
+   */
+  getWidgetClassNames() {
+    return classnames(
+      AbstractWidget.widgetClassName,
+      this.props.className,
+      this.props.sizeInfo.wBreakpointClass,
+      this.props.sizeInfo.hBreakpointClass);
+  }
 
   /**
    * When a widget is on error, we need a independent template in order to not depend on some override methods.
@@ -80,17 +98,6 @@ export default class AbstractWidget extends React.Component {
   renderContent() {
     console.log("[WARN] A Widget has not implemented the renderContent method");
     return null;
-  }
-
-  /**
-   * Generate the widget CSS class names as a single string
-   */
-  getWidgetClassNames() {
-    return classnames(
-      AbstractWidget.widgetClassName,
-      this.props.className,
-      this.props.sizeInfo.wBreakpointClass,
-      this.props.sizeInfo.hBreakpointClass);
   }
 
   /**

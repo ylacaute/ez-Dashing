@@ -1,0 +1,35 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SPRINT WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.sprint {
+
+  header {
+    span {
+      vertical-align: middle;
+    }
+    strong {
+      color: $color-text-sprint;
+      vertical-align: middle;
+      font-size: 150%;
+      &::before {
+        content: ' #';
+      }
+    }
+  }
+
+  article {
+    .progress-bar {
+      .trail {
+        stroke: $color-title;
+      }
+      .path {
+        stroke: $color-text-sprint;
+      }
+      text {
+        fill: $color-title;
+      }
+    }
+  }
+
+}

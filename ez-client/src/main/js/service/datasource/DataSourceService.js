@@ -28,6 +28,14 @@ export default class DataSourceService {
     });
   };
 
+  refreshAll() {
+    this.dashboardConfig.dataSources.forEach(dsConfig => {
+      dsConfig.queries.forEach(queryConfig => {
+        this.refreshDataSourceQuery(dsConfig, queryConfig);
+      })
+    });
+  }
+
   getDataSourceServerPath() {
     let path = this.dashboardConfig.server.dataSourcePath;
     if (path.slice(-1) !== "/")

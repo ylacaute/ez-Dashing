@@ -160,6 +160,7 @@ export default class SetupService {
       });
 
       clockService.start();
+      dataSourceService.refreshAll();
       console.log("[INFO] ez-Dashing ready !");
       callback(store);
     });

@@ -2,14 +2,6 @@
 /* WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widgetWrapper {
-  border: 1px solid red;
-  position: relative;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
 .widget {
   @extend %flexColumn;
   color: $color-text-widget;
@@ -37,15 +29,15 @@
 
 }
 
-.widget.error {
-  img {
-    //width: 60%;
-    //align-self: center;
-    //user-select: none;
-  }
-}
-
-
+//// Responsive style depending on the dynamic widget size
+//.widget.width-xs header h1 {
+//  font-size: 250%;
+//}
+//.widget.width-sm header h1,
+//.widget.width-md header h1,
+//.widget.width-lg header h1 {
+//  font-size: 500%;
+//}
 
 
 

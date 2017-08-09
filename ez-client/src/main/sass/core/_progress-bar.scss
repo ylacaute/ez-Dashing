@@ -8,20 +8,14 @@ $color-bad: #c65555 !default;
 
 // LINEAR PROGRESS BAR
 
-.linear-progress-bar-wrapper {
+.progress-bar-wrapper {
   display: flex;
   flex: 1;
 }
+
 .progress-bar.linear {
   .path {
-    stroke: rgba(255, 255, 255, 0.9);
     transition: stroke-dashoffset 0.5s ease 0s;
-  }
-  .trail {
-    stroke: rgba(33, 33, 33, 0.7);
-  }
-  .display-value, .label {
-    fill: $color-base;
   }
   .display-value {
     font-size: 0.8rem;
@@ -36,30 +30,8 @@ $color-bad: #c65555 !default;
 
 // CIRCULAR PROGRESS BAR
 
-.circular-progress-bar-wrapper {
-  display: flex;
-  flex-grow: 1;
-}
-.progress-bar.circular {
-  .path {
-    stroke: rgba(255, 255, 255, 0.9);
-    transition: stroke-dashoffset 0.5s ease 0s;
-  }
-  .trail {
-    stroke: rgba(33, 33, 33, 0.7);
-  }
-  .display-value, .label {
-    fill: $color-base;
-    dominant-baseline: middle;
-    text-anchor: middle;
-  }
-  .display-value {
-    font-size: 4rem;
-  }
-  .label {
-    font-size: 1rem;
-  }
-}
+
+
 
 
 // COMMON PROGRESS BAR BEHAVIOUR

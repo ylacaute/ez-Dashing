@@ -8,9 +8,6 @@ import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 class JenkinsWidget extends AbstractWidget {
 
   static propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    sizeInfo: PropTypes.object
   };
 
   static defaultProps = {

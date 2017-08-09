@@ -8,9 +8,6 @@ import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 class JiraWidget extends AbstractWidget {
 
   static propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    sizeInfo: PropTypes.object
   };
 
   static defaultProps = {
@@ -42,30 +39,16 @@ class JiraWidget extends AbstractWidget {
     }
   }
 
-  // renderContent() {
-  //   if (!this.isDataSourceAvailable()) {
-  //     return (
-  //       <div>
-  //         <p>Waiting data...</p>
-  //       </div>
-  //     )
-  //   }
-  //   let { total, keys } = this.extractDataSourceData();
-  //   return (
-  //     <div>
-  //       <p>Total in TODO : {total}</p>
-  //       <p>Issues in TODO : {keys}</p>
-  //     </div>
-  //   )
-  // }
-
   renderContent() {
+    if (!this.isDataSourceAvailable()) {
+      console.log("loading");
+      return this.renderLoading();
+    }
+    let { total, keys } = this.extractDataSourceData();
     return (
-      <div className="layout-test">
-        <div>BC-GAS-2054</div>
-        <div>BC-GAS-2211</div>
-        <div>BC-GAS-2564</div>
-        <div>BC-GAS-2068</div>
+      <div>
+        <p>Total in TODO : {total}</p>
+        <p>Issues in TODO : {keys}</p>
       </div>
     )
   }

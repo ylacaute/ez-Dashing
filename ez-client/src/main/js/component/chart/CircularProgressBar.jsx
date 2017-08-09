@@ -1,12 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class CircularProgressBar extends React.Component {
+export default class CircularProgressBar extends React.Component {
+
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    strokeWidth: PropTypes.number,
+    initialAnimation: PropTypes.bool,
+    classForValue: PropTypes.func,
+    textForValue: PropTypes.func,
+    displayValue: PropTypes.number,
+  };
+
+  static defaultProps = {
+    displayValue: null,
+    label: '',
+    value: 0,
+    strokeWidth: 3,
+    initialAnimation: true,
+    textForValue: (value) => `${value}`,
+    classForValue: (value, displayValue) => ''
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value,
+      value: props.initialAnimation ? 0 : props.value,
     };
   }
 
@@ -18,7 +37,7 @@ class CircularProgressBar extends React.Component {
             value: this.props.value,
           });
         });
-      }, 0);
+      }, 200);
     }
   }
 
@@ -32,6 +51,26 @@ class CircularProgressBar extends React.Component {
     clearTimeout(this.initialTimeout);
     window.cancelAnimationFrame(this.requestAnimationFrame);
   }
+
+
+  /*
+
+.progress-bar.linear {
+.path {
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+.display-value {
+  font-size: 0.8rem;
+  text-anchor: start;
+}
+.label {
+  font-size: 0.4rem;
+  text-anchor: end;
+}
+}
+*/
+
+
 
   render() {
     const classNames = `progress-bar circular ${this.props.className} 
@@ -53,7 +92,7 @@ class CircularProgressBar extends React.Component {
     const displayValueY = (this.props.label != null && this.props.label != '') ? 45 : 53;
 
     return (
-      <div className="circular-progress-bar-wrapper">
+      <div className="progress-bar-wrapper">
         <svg className={classNames} width="100%" viewBox="0 0 100 100">
           <path
             className="trail"
@@ -77,24 +116,3 @@ class CircularProgressBar extends React.Component {
     );
   }
 }
-
-CircularProgressBar.propTypes = {
-  value: PropTypes.number.isRequired,
-  strokeWidth: PropTypes.number,
-  initialAnimation: PropTypes.bool,
-  classForValue: PropTypes.func,
-  textForValue: PropTypes.func,
-  displayValue: PropTypes.number
-};
-
-CircularProgressBar.defaultProps = {
-  displayValue: null,
-  label: '',
-  value: 0,
-  strokeWidth: 3,
-  initialAnimation: true,
-  textForValue: (value) => `${value}`,
-  classForValue: (value, displayValue) => ''
-};
-
-export default CircularProgressBar;
