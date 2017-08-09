@@ -4,6 +4,19 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import Application from './Application.jsx'
 import SetupService from 'service/setup/SetupService';
+import Logger from 'logger/Logger';
+
+Logger.ENABLE_COLOR = true;
+Logger.setRootLevel(Logger.Level.DEBUG);
+Logger.Level = {
+  TRACE: [0, 'TRACE', 'color:#999'],
+  DEBUG: [1, 'DEBUG', 'color:#999'],
+  INFO: [2, 'INFO', 'color:black'],
+  WARN: [3, 'WARN', 'color:#db8240'],
+  ERROR: [4, 'ERROR', 'color:#c65555'],
+};
+Logger.setLevel("WidgetReducer", Logger.Level.DEBUG);
+Logger.setLevel("ClockReducer", Logger.Level.DEBUG);
 
 const setupService = new SetupService();
 

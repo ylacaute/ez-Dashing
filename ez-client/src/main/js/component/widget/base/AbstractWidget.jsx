@@ -29,8 +29,8 @@ export default class AbstractWidget extends React.Component {
     let newDateSource = {
       ...ownProps.dataSource
     };
-    ownProps.dataSource.forEach(dsKey => {
-      newDateSource[dsKey] = state.dataSource[dsKey];
+    ownProps.dataSource.forEach(dataSourceId => {
+      newDateSource[dataSourceId] = state.dataSource[dataSourceId];
     });
     return {
       loaded: state.widget[ownProps.id].loaded,

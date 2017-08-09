@@ -1,5 +1,7 @@
-
+import Logger from 'logger/Logger';
 import { ClockActionType } from 'service/clock/ClockService';
+
+const logger = Logger.getLogger("ClockReducer");
 
 const initialState = {
   date: new Date(),
@@ -8,11 +10,14 @@ const initialState = {
 
 export default function ClockReducer(state = initialState, action) {
   switch (action.type) {
+
     case ClockActionType.ClockTick:
+      logger.debug("ClockTick");
       return {
         date: action.date,
         tickCount: action.tickCount
       };
+
     default:
       return state
   }

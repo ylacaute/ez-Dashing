@@ -39,7 +39,6 @@ export default class SprintCalculator {
         sprintNumber = i + 1;
         sprintStartDate = arrayDates[i];
         if (i + 1 < arrayDates.length) {
-          console.log("SET SPRINT DURATION :(");
           sprintDuration = DateUtils.diffInDays(sprintStartDate, arrayDates[i + 1]);
         }
         break;
@@ -55,13 +54,8 @@ export default class SprintCalculator {
       }
     }
 
-    console.log("sprintNumber before adjustment: " + sprintNumber);
-    console.log("sprintStartDate before adjustment: " + sprintStartDate);
-    console.log("dayDiff before adjustment: " + dayDiff);
-
     if (dayDiff > sprintDuration) {
       const doneSprints = Math.floor(dayDiff / sprintDuration);
-      console.log("doneSprints : " + doneSprints);
       sprintNumber += doneSprints;
       sprintStartDate = DateUtils.addDays(sprintStartDate, (doneSprints * sprintDuration));
     }

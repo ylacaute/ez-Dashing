@@ -1,6 +1,7 @@
-
-//import { ActionType } from 'service/setup/SetupService';
+import Logger from 'logger/Logger';
 import { SetupEvent } from 'service/setup/SetupService';
+
+const logger = Logger.getLogger("StartupReducer");
 
 const initialState = {
   loaded: false
@@ -9,7 +10,7 @@ const initialState = {
 export default function StartupReducer(state = initialState, action) {
   switch (action.type) {
     case SetupEvent.ConfigLoadSuccess:
-      console.log("[REDUCER] ConfigLoadSuccess:", action.dashboardConfig);
+      logger.debug("ConfigLoadSuccess, dashboardConfig:", action.dashboardConfig);
       return {
         loaded: true,
         dashboardConfig: action.dashboardConfig,

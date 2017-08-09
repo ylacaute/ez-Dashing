@@ -123,7 +123,6 @@ describe('SprintCalculator', () => {
 
   it('Should calculate progress rounded (95.xxxx to 90)', () => {
     let now = new Date(2017, 7, 9, 12, 46);
-    console.log("FUCKING DATE NOW = " + now);
     let springDates = [ "2017-07-20", "2017-08-10" ];
     let sprintDuration = 21; // Should be used
     let springOffset = 8;    // Should be used

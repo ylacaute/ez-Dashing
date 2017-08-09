@@ -1,4 +1,5 @@
 import RestClient from 'client/RestClient';
+import JSONPath from 'jsonpath';
 
 export const DataSourceEvent = {
   DataSourceRefreshed: 'DATASOURCE_REFRESHED'
@@ -6,7 +7,7 @@ export const DataSourceEvent = {
 
 export default class DataSourceService {
 
-  static getDSKey(dsConfig, queryConfig) {
+  static getDataSourceId(dsConfig, queryConfig) {
     return dsConfig.name + '#' + queryConfig.name;
   }
 
@@ -51,19 +52,33 @@ export default class DataSourceService {
     const path = this.getDataSourceServerPath();
 
     RestClient.get(path + dsConfig.name + '/' + queryConfig.name, jsonResponse => {
-      const keyDataSource = DataSourceService.getDSKey(dsConfig, queryConfig);
+      const dataSourceId = DataSourceService.getDataSourceId(dsConfig, queryConfig);
       this.dispatch({
         type: DataSourceEvent.DataSourceRefreshed,
+        dataSourceId: dataSourceId,
         payload: {
-          dsKey: keyDataSource,
-          timestamp: new Date().getTime(),
-          jsonData: jsonResponse
+          ...this.getMappedProperties(queryConfig, jsonResponse)
         }
       });
     }, error => {
       console.log('[ERROR] Unable to refresh dataSource, details:', error);
     });
   };
+
+  getMappedProperties(queryConfig, jsonResponse) {
+    if (queryConfig.mapping == null) {
+      throw {
+        name: 'Invalid dataSource configuration',
+        message: 'You must define a mapping for query ' + queryConfig.name
+      }
+    }
+    const mapping = queryConfig.mapping;
+    let result = {};
+    for (let propertyName in mapping) {
+      result[propertyName] = JSONPath.query(jsonResponse, mapping[propertyName]);
+    }
+    return result;
+  }
 
 };
 

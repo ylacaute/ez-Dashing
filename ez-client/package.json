@@ -14,6 +14,7 @@
     "test": "node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --progress",
     "api": "./node_modules/.bin/json-server api/db.json --routes api/routes.json",
+    "api2": "nodemon --watch  api --routes api/routes.json",
     "prod": "NODE_ENV=prod webpack -p --progress",
     "serve": "node_modules/.bin/http-server dist"
   },

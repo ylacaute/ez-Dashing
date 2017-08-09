@@ -18,7 +18,7 @@ class JiraWidget extends AbstractWidget {
    * this function is enough.
    */
   getDS() {
-    return this.props.dataSource[this.props.dataSource[0]].jsonData;
+    return this.props.dataSource[this.props.dataSource[0]];
   }
 
   getDSTimestamp() {
@@ -26,6 +26,7 @@ class JiraWidget extends AbstractWidget {
   }
 
   isDataSourceAvailable() {
+    //console.log("JIRA PROPS :", this.props);
     let k = this.props.dataSource[0].toString();
     let isAvailable = !ObjectUtils.isNullOrEmpty(this.props.dataSource[k]);
     return isAvailable;
@@ -34,21 +35,30 @@ class JiraWidget extends AbstractWidget {
   extractDataSourceData() {
     let ds = this.getDS();
     return {
-      total: JSONPath.query(ds, '$.total'),
-      keys: JSONPath.query(ds, '$.issues[*].key')
+      total: ds.total,// JSONPath.query(ds, '$.total'),
+      issuesKeys: ds.issuesKeys//JSONPath.query(ds, '$.issues[*].key')
     }
+  }
+
+  renderHeader() {
+    return (
+      <h1>
+        <strong>{this.props.number}</strong>
+        <span>{this.props.title}</span>
+      </h1>
+    )
   }
 
   renderContent() {
     if (!this.isDataSourceAvailable()) {
-      console.log("loading");
+      console.log("DataSourceAvailable NOT available in JIRA WIDGET");
       return this.renderLoading();
     }
-    let { total, keys } = this.extractDataSourceData();
+    let { total, issuesKeys } = this.extractDataSourceData();
     return (
       <div>
         <p>Total in TODO : {total}</p>
-        <p>Issues in TODO : {keys}</p>
+        <p>Issues in TODO : {issuesKeys}</p>
       </div>
     )
   }
