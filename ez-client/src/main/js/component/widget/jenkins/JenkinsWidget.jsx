@@ -28,7 +28,6 @@ class JenkinsWidget extends AbstractWidget {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    clock: state.clock,
     ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
 };

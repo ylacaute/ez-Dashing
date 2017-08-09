@@ -1,15 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
-import LoggerMiddleware from "redux/middleware/Logger";
+import LoggerMiddleware from "redux/middleware/LoggerMiddleware";
 import CrashReporterMiddleware from "redux/middleware/CrashReporter";
-import ClockMiddleware from "redux/middleware/Clock";
 import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
 
-import { ClockService } from "service/clock/ClockService";
 import { JenkinsMonitoringService } from "service/jenkins/JenkinsMonitoringService";
 import logoClickCount from "redux/reducer/Logo";
 
-import ClockReducer from "redux/reducer/ClockReducer";
 import jenkinsMonitoring from "redux/reducer/JenkinsMonitoring";
 import StartupReducer from "redux/reducer/StartupReducer";
 import WidgetReducer from "redux/reducer/WidgetReducer";
@@ -28,8 +25,6 @@ export const SetupEvent = {
   ConfigLoadSuccess: "CONFIG_LOAD_SUCCESS"
 };
 
-let counter = 1;
-
 export default class SetupService {
 
   getServerConfigPath() {
@@ -44,7 +39,7 @@ export default class SetupService {
     initialState.widget = {};
     dashboardConfig.widgets.forEach(widgetConfig => {
       initialState.widget[widgetConfig.id] = {
-        sizeInfo: {} // todo : move in config, and update config correctly in reducers
+        sizeInfo: {}
       };
     });
     logger.info("Initial application state initialized to ", initialState);
@@ -56,16 +51,14 @@ export default class SetupService {
       startup: StartupReducer,
       widget: WidgetReducer,
       logoClickCount,
-      clock: ClockReducer,
       jenkinsMonitoring
     });
   };
 
-  createMiddlewares(clockService, dataSourceService) {
+  createMiddlewares(dataSourceService) {
     return applyMiddleware(
-      //LoggerMiddleware,
+      LoggerMiddleware,
       CrashReporterMiddleware,
-      ClockMiddleware(clockService),
       DataSourceMiddleware(dataSourceService)
     );
   };
@@ -138,18 +131,16 @@ export default class SetupService {
     this.getDashboardConfig(dashboardConfig => {
       this.extendsDashboardConfig(dashboardConfig);
       logger.debug("Extended config:", dashboardConfig);
-      const clockService = new ClockService();
       const jenkinsMonitoringService = new JenkinsMonitoringService();
       const dataSourceService = new DataSourceService(dashboardConfig);
 
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(dashboardConfig),
-        this.createMiddlewares(clockService, dataSourceService)
+        this.createMiddlewares(dataSourceService)
       );
 
       jenkinsMonitoringService.setDispatch(store.dispatch);
-      clockService.setDispatch(store.dispatch);
       dataSourceService.setDispatch(store.dispatch);
 
       store.dispatch({
@@ -158,7 +149,6 @@ export default class SetupService {
         widgetComponents: this.createAllWidgets(dashboardConfig)
       });
 
-      clockService.start();
       dataSourceService.refreshAll();
       callback(store);
     });

@@ -19,6 +19,8 @@ Logger.setLevel("WidgetReducer", Logger.Level.DEBUG);
 Logger.setLevel("ClockReducer", Logger.Level.INFO);
 Logger.setLevel("RestClient", Logger.Level.INFO);
 Logger.setLevel("DataSourceService", Logger.Level.TRACE);
+Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
+
 
 const setupService = new SetupService();
 

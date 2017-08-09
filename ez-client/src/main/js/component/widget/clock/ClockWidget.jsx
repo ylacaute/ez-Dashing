@@ -6,16 +6,31 @@ import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 class ClockWidget extends AbstractWidget {
 
   static propTypes = {
-    UTCOffset: PropTypes.number,
-    clock: PropTypes.object.isRequired
+    UTCOffset: PropTypes.number
   };
 
   static defaultProps = {
     UTCOffset: 2
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...this.getClockData()
+    };
+    this.inteval = setInterval(() => {
+      this.setState({
+        ...this.getClockData()
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.inteval);
+  }
+
   getClockData() {
-    let now = this.props.clock.date;
+    let now = new Date();
     let hours = now.getUTCHours() + this.props.UTCOffset;
     let minutes = now.getUTCMinutes();
     let seconds = now.getUTCSeconds();
@@ -33,7 +48,7 @@ class ClockWidget extends AbstractWidget {
   }
 
   renderContent() {
-    const { date, hours, minutes, seconds } = this.getClockData();
+    const { date, hours, minutes, seconds } = this.state;
     return (
       <div>
         <p>{date}</p>
@@ -46,7 +61,6 @@ class ClockWidget extends AbstractWidget {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    clock: state.clock,
     ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
 };

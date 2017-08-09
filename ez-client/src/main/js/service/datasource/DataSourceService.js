@@ -10,18 +10,34 @@ export const DataSourceEvent = {
 
 export default class DataSourceService {
 
+  /**
+   * If no refresh has been specified in configuration for a dataSource query,
+   * this default value is used, in seconds.
+   */
+  static DEFAULT_REFRESH = 60;
+
   static getDataSourceId(dsConfig, queryConfig) {
     return dsConfig.name + "#" + queryConfig.name;
   }
 
+  /**
+   * Get the full loaded dashboard configuration as argument
+   */
   constructor(dashboardConfig) {
     this.dashboardConfig = dashboardConfig;
+    this.initializeResfreshTimers();
   };
 
+  /**
+   * Set the redux dispatch in order to emit events
+   */
   setDispatch(dispatch) {
     this.dispatch = dispatch;
   }
 
+  /**
+   * Return the ids of widgets listening to the dataSource given in argument
+   */
   getWidgetIdsListening(dataSourceId) {
     let result = [];
     this.dashboardConfig.widgets.forEach(widgetConfig => {
@@ -32,15 +48,23 @@ export default class DataSourceService {
     return result;
   }
 
-  onClockTick(tickCount) {
+  /**
+   * Initialize timers for each dataSources queries in order to automatic refresh.
+   * If no refresh has been specified in configuration, use the default one (60 seconds).
+   */
+  initializeResfreshTimers() {
+    this.timers = {};
+
     this.dashboardConfig.dataSources.forEach(dsConfig => {
       dsConfig.queries.forEach(queryConfig => {
-        if (tickCount % queryConfig.refresh === 0) {
-          this.refreshDataSourceQuery(dsConfig, queryConfig);
-        }
+        let refresh = queryConfig.refresh || DataSourceService.DEFAULT_REFRESH;
+
+        this.timers[queryConfig.name] = setInterval(() => {
+          this.refreshDataSourceQuery(dsConfig, queryConfig)
+        }, refresh * 1000);
       })
     });
-  };
+  }
 
   refreshAll() {
     this.dashboardConfig.dataSources.forEach(dsConfig => {
