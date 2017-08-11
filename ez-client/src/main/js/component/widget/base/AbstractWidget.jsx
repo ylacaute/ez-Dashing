@@ -21,15 +21,25 @@ export default class AbstractWidget extends React.Component {
     onError: false
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   static mapCommonWidgetProps = (state, ownProps) => {
     return {
       ...state.widget[ownProps.id]
     }
   };
+
+  constructor(props) {
+    super(props);
+  }
+
+  isDataSourcesLoaded() {
+    let loaded = true;
+    this.props.dataSource.forEach(ds => {
+      if (ds.loaded === false) {
+        loaded = false;
+      }
+    });
+    return loaded;
+  }
 
   /**
    * Generate the widget CSS class names as a single string
@@ -141,12 +151,20 @@ export default class AbstractWidget extends React.Component {
       return this.renderLoading();
     if (this.props.onError == true)
       return this.renderError();
+
+    let content;
+    if (!this.isDataSourcesLoaded()) {
+      content = this.renderLoading();
+    } else {
+      content = this.renderContent();
+    }
+
     try {
       return (
         <section className={classnames(this.getWidgetClassNames())}>
           {this.renderHeaderWrapper()}
           <article className="content">
-            {this.renderContent()}
+            {content}
           </article>
           {this.renderFooterWrapper()}
         </section>

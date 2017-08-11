@@ -2,17 +2,6 @@
 /* JIRA WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-//.icon.inProgress { background-image: url('#{$image-path}/inProgress.png'); }
-//
-//// A size must be specified
-//%icon {
-//  background-repeat: no-repeat;
-//  background-size: contain;
-//  background-position: center center;
-//}
-//
-
-
 .widget.jira {
 
   header {
@@ -32,7 +21,7 @@
     ul {
       list-style: none;
       margin-left: 0;
-      padding-left: 2rem;
+      padding-left: 1rem;
       text-indent: 0rem;
       li .icon {
         @extend %icon;
@@ -42,11 +31,15 @@
         vertical-align: sub;
         margin-right: 1rem;
       }
-      li .icon.todo {
-        background-image: url('#{$image-path}/todo.png');
-      }
-      li .icon.inProgress {
-        background-image: url('#{$image-path}/inProgress.png');
+      li .icon {
+        mask: url('#{$image-path}/rightArrow.svg') no-repeat 50% 50%;
+        -webkit-mask: url('#{$image-path}/rightArrow.svg') no-repeat 50% 50%;
+        &.todo {
+          background-color: $color-red;
+        }
+        &.progress {
+          background-color: $color-black-half-opacity;
+        }
       }
     }
   }

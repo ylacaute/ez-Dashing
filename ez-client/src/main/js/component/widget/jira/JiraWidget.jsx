@@ -30,34 +30,25 @@ class JiraWidget extends AbstractWidget {
       .getWidgetClassNames()
       .concat(ThresholdConfig.get(
         this.props.thresholds.bugs,
-        this.props.todoTotal));
+        this.getTotal()));
+  }
+
+  getTotal() {
+    return (parseInt(this.props.todoTotal) || 0)
+      + (parseInt(this.props.inProgressTotal) || 0);
   }
 
   renderHeader() {
-    const { todoTotal, todoTitle } = this.props;
     return (
       <h1>
-        <strong>{todoTotal} </strong>
-        <span>{todoTitle}</span>
+        <strong>{this.getTotal()} </strong>
+        <span>{this.props.title}</span>
       </h1>
     )
   }
 
-  isDataSourcesLoaded() {
-    let loaded = true;
-    this.props.dataSource.forEach(ds => {
-      if (ds.loaded === false) {
-        loaded = false;
-      }
-    });
-    return loaded;
-  }
-
   renderContent() {
     const { todoIssuesKeys, inProgressIssuesKeys } = this.props;
-    if (!this.isDataSourcesLoaded()) {
-      return this.renderLoading();
-    }
     const todoIssues = todoIssuesKeys.map((issueKey) =>
       <li key={issueKey}>
         <span className="icon todo"/>
@@ -66,7 +57,7 @@ class JiraWidget extends AbstractWidget {
     );
     const inProgressIssues = inProgressIssuesKeys.map((issueKey) =>
       <li key={issueKey}>
-        <span className="icon inProgress"/>
+        <span className="icon progress"/>
         <span>{issueKey}</span>
       </li>
     );

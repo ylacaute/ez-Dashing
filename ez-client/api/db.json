@@ -217,14 +217,14 @@
       },
       {
         "type": "JiraWidget",
-        "title": "BUGS (P1)",
+        "title": "BUGS (ALL)",
         "dataSource": [
           "jira-todo", "jira-inProgress"
         ]
       },
       {
         "type": "JiraWidget",
-        "title": "BUGS (ALL)",
+        "title": "BUGS (P1)",
         "dataSource": [
           "jira-inProgress"
         ]
