@@ -2,14 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators  } from 'redux';
 import { connect } from 'react-redux';
-import { Logo, LogoActionCreator }  from 'component/logo/Logo.jsx';
-
 import GridEventCreator from 'component/grid/GridEventCreator';
-
-
-import UUID from 'utils/UUID';
 import Grid from 'component/grid/Grid.jsx';
-
 import Style from 'theme/defaultTheme.scss';
 
 const env = IS_DEV ? "DEV" : "PROD";
@@ -30,10 +24,6 @@ class Application extends React.Component {
   constructor(props) {
     super(props);
   };
-
-  /*onElementResized(sizeInfo) {
-    console.log("[DEBUG] Component resize: ", sizeInfo);
-  }*/
 
   render() {
     if (this.props.startup.loaded === false) {
@@ -76,7 +66,6 @@ class Application extends React.Component {
 const mapStateToProps = state => {
   return {
     startup: state.startup,
-    logoClickCount: state.logoClickCount,
     jenkinsMonitoring: state.jenkinsMonitoring
   };
 };

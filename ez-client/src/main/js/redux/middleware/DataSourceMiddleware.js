@@ -1,8 +1,9 @@
+import { SetupEvent } from 'service/setup/SetupService';
 
 const dataSourceMiddleware = dataSourceService => store => next => action => {
 
-  // if (action.type === ) {
-  //   dataSourceService.do...);
+  // if (action.type === SetupEvent.ConfigLoadSuccess) {
+  //   dataSourceService.initialize(action);
   // }
 
   return next(action);

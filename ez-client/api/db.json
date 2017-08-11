@@ -174,7 +174,7 @@
         "queries": [
           {
             "name": "todo",
-            "refresh": 30,
+            "refresh": 3,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
               "todoTotal": "$.total",
@@ -183,7 +183,7 @@
           },
           {
             "name": "inProgress",
-            "refresh": 30,
+            "refresh": 3,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
               "inProgressTotal": "$.total",
@@ -219,14 +219,14 @@
         "type": "JiraWidget",
         "title": "BUGS (P1)",
         "dataSource": [
-          "jira#todo", "jira#inProgress"
+          "jira-todo", "jira-inProgress"
         ]
       },
       {
         "type": "JiraWidget",
         "title": "BUGS (ALL)",
         "dataSource": [
-          "jira#inProgress"
+          "jira-inProgress"
         ]
       }
     ],

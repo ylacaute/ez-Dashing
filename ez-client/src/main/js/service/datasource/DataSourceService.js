@@ -1,6 +1,7 @@
 import RestClient from "client/RestClient";
 import JSONPath from "jsonpath";
 import Logger from "logger/Logger";
+import DataSourceFactory from 'service/datasource/DataSourceFactory';
 
 const logger = Logger.getLogger("DataSourceService");
 
@@ -11,28 +12,60 @@ export const DataSourceEvent = {
 export default class DataSourceService {
 
   /**
-   * If no refresh has been specified in configuration for a dataSource query,
-   * this default value is used, in seconds.
-   */
-  static DEFAULT_REFRESH = 60;
-
-  static getDataSourceId(dsConfig, queryConfig) {
-    return dsConfig.name + "#" + queryConfig.name;
-  }
-
-  /**
-   * Get the full loaded dashboard configuration as argument
+   * Get the full loaded dashboard configuration as argument.
+   * The created dataSources will be part of the state tree.
    */
   constructor(dashboardConfig) {
     this.dashboardConfig = dashboardConfig;
+    this.dataSources = DataSourceFactory.create(dashboardConfig.dataSources);
     this.initializeResfreshTimers();
   };
 
   /**
-   * Set the redux dispatch in order to emit events
+   * Initialize timers for each dataSources in order to have an scheduled refresh.
    */
-  setDispatch(dispatch) {
-    this.dispatch = dispatch;
+  initializeResfreshTimers() {
+    this.timers = {};
+    this.dataSources.forEach(ds => {
+      this.timers[ds.id] = setInterval(() => {
+        this.refreshDataSource(ds);
+      }, ds.refresh * 1000);
+    });
+  }
+
+  refreshDataSource(ds) {
+    logger.info("Refreshing dataSource '{}'", ds.id);
+    const path = this.getDataSourceServerPath();
+
+    RestClient.get(path + ds.id, jsonResponse => {
+      const widgetIdsListening = this.getWidgetIdsListening(ds.id);
+      logger.trace("getWidgetIdsListening : " + widgetIdsListening);
+
+      this.store.dispatch({
+        type: DataSourceEvent.DataSourceRefreshed,
+        dataSourceId: ds.id,
+        widgetIdsListening: widgetIdsListening,
+        payload: {
+          ...this.getMappedProperties(ds, jsonResponse)
+        }
+      });
+    }, error => {
+      logger.error("Unable to refresh dataSource, details:", error);
+    });
+  };
+
+  /**
+   * Return dataSources (state tree)
+   */
+  getDataSources() {
+    return this.dataSources;
+  }
+
+  /**
+   * Set the redux store in order to emit events and read the current state
+   */
+  setStore(store) {
+    this.store = store;
   }
 
   /**
@@ -48,28 +81,10 @@ export default class DataSourceService {
     return result;
   }
 
-  /**
-   * Initialize timers for each dataSources queries in order to automatic refresh.
-   * If no refresh has been specified in configuration, use the default one (60 seconds).
-   */
-  initializeResfreshTimers() {
-    this.timers = {};
-
-    this.dashboardConfig.dataSources.forEach(dsConfig => {
-      dsConfig.queries.forEach(queryConfig => {
-        let refresh = queryConfig.refresh || DataSourceService.DEFAULT_REFRESH;
-
-        this.timers[queryConfig.name] = setInterval(() => {
-          this.refreshDataSourceQuery(dsConfig, queryConfig)
-        }, refresh * 1000);
-      })
-    });
-  }
-
   refreshAll() {
     this.dashboardConfig.dataSources.forEach(dsConfig => {
       dsConfig.queries.forEach(queryConfig => {
-        this.refreshDataSourceQuery(dsConfig, queryConfig);
+        this.refreshDataSource(dsConfig, queryConfig);
       })
     });
   }
@@ -83,39 +98,19 @@ export default class DataSourceService {
     return path;
   }
 
-  refreshDataSourceQuery(dsConfig, queryConfig) {
-    logger.info("Refreshing query '{}' of dataSource '{}'", queryConfig.name, dsConfig.name);
-    const path = this.getDataSourceServerPath();
-
-    RestClient.get(path + dsConfig.name + "/" + queryConfig.name, jsonResponse => {
-      const dataSourceId = DataSourceService.getDataSourceId(dsConfig, queryConfig);
-      logger.trace("getWidgetIdsListening : " + this.getWidgetIdsListening(dataSourceId));
-      this.dispatch({
-        type: DataSourceEvent.DataSourceRefreshed,
-        dataSourceId: dataSourceId,
-        widgetIdsListening: this.getWidgetIdsListening(dataSourceId),
-        payload: {
-          ...this.getMappedProperties(queryConfig, jsonResponse)
-        }
-      });
-    }, error => {
-      logger.error("Unable to refresh dataSource, details:", error);
-    });
-  };
-
-  getMappedProperties(queryConfig, jsonResponse) {
-    if (queryConfig.mapping == null) {
+  getMappedProperties(ds, jsonResponse) {
+    const mapping = ds.mapping;
+    if (mapping == null) {
       throw {
         name: "Invalid dataSource configuration",
-        message: "You must define a mapping for query " + queryConfig.name
+        message: "You must define a mapping for query " + ds.id
       }
     }
-    const mapping = queryConfig.mapping;
     let result = {};
     for (let propertyName in mapping) {
       result[propertyName] = JSONPath.query(jsonResponse, mapping[propertyName]);
     }
-    logger.trace("getMappedProperties for query '{}':", queryConfig.name, result);
+    logger.trace("getMappedProperties for query '{}':", ds.id, result);
     return result;
   }
 

@@ -1,16 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-
 import LoggerMiddleware from "redux/middleware/LoggerMiddleware";
 import CrashReporterMiddleware from "redux/middleware/CrashReporter";
 import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
-
 import { JenkinsMonitoringService } from "service/jenkins/JenkinsMonitoringService";
-import logoClickCount from "redux/reducer/Logo";
-
 import jenkinsMonitoring from "redux/reducer/JenkinsMonitoring";
 import StartupReducer from "redux/reducer/StartupReducer";
+import DataSourceReducer from "redux/reducer/DataSourceReducer";
 import WidgetReducer from "redux/reducer/WidgetReducer";
-
 import RestClient from "client/RestClient";
 import ObjectUtils from "utils/ObjectUtils.js";
 import GridLayoutGenerator from "service/setup/GridLayoutGenerator";
@@ -18,6 +14,7 @@ import WidgetFactory from "service/setup/WidgetFactory";
 import DataSourceService from "service/datasource/DataSourceService";
 import UUID from "utils/UUID";
 import Logger from "logger/Logger";
+
 
 const logger = Logger.getLogger("StartupService");
 
@@ -49,8 +46,8 @@ export default class SetupService {
   createReducers() {
     return combineReducers({
       startup: StartupReducer,
+      dataSource: DataSourceReducer,
       widget: WidgetReducer,
-      logoClickCount,
       jenkinsMonitoring
     });
   };
@@ -131,9 +128,9 @@ export default class SetupService {
     this.getDashboardConfig(dashboardConfig => {
       this.extendsDashboardConfig(dashboardConfig);
       logger.debug("Extended config:", dashboardConfig);
+
       const jenkinsMonitoringService = new JenkinsMonitoringService();
       const dataSourceService = new DataSourceService(dashboardConfig);
-
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(dashboardConfig),
@@ -141,15 +138,15 @@ export default class SetupService {
       );
 
       jenkinsMonitoringService.setDispatch(store.dispatch);
-      dataSourceService.setDispatch(store.dispatch);
-
+      dataSourceService.setStore(store);
       store.dispatch({
         type: SetupEvent.ConfigLoadSuccess,
+        dataSources: dataSourceService.getDataSources(),
         dashboardConfig: dashboardConfig,
         widgetComponents: this.createAllWidgets(dashboardConfig)
       });
 
-      dataSourceService.refreshAll();
+      //dataSourceService.refreshAll();
       callback(store);
     });
   }

@@ -18,7 +18,7 @@ Logger.Level = {
 Logger.setLevel("WidgetReducer", Logger.Level.DEBUG);
 Logger.setLevel("ClockReducer", Logger.Level.INFO);
 Logger.setLevel("RestClient", Logger.Level.INFO);
-Logger.setLevel("DataSourceService", Logger.Level.TRACE);
+Logger.setLevel("DataSourceService", Logger.Level.DEBUG);
 Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
 
 

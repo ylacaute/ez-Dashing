@@ -12,7 +12,6 @@ class JiraWidget extends AbstractWidget {
    *  a generic dataSource system, only the Widget can know the real nature of those data.
    */
   static propTypes = {
-    dataReceivedAtLeastOne: PropTypes.bool,
     todoIssuesKeys: PropTypes.array,
     todoTotal: PropTypes.array,
     inProgressIssuesKeys: PropTypes.array,
@@ -20,7 +19,6 @@ class JiraWidget extends AbstractWidget {
   };
 
   static defaultProps = {
-    dataReceivedAtLeastOne: false,
     todoIssuesKeys: [],
     todoTotal: [],
     inProgressIssuesKeys: [],
@@ -45,9 +43,19 @@ class JiraWidget extends AbstractWidget {
     )
   }
 
+  isDataSourcesLoaded() {
+    let loaded = true;
+    this.props.dataSource.forEach(ds => {
+      if (ds.loaded === false) {
+        loaded = false;
+      }
+    });
+    return loaded;
+  }
+
   renderContent() {
-    const { todoIssuesKeys, inProgressIssuesKeys, dataReceivedAtLeastOne } = this.props;
-    if (!dataReceivedAtLeastOne) {
+    const { todoIssuesKeys, inProgressIssuesKeys } = this.props;
+    if (!this.isDataSourcesLoaded()) {
       return this.renderLoading();
     }
     const todoIssues = todoIssuesKeys.map((issueKey) =>
@@ -76,6 +84,7 @@ const mapStateToProps = (state, ownProps) => {
   let result = {
     ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
+  //console.log("HUGE STATE = ", state);
   return result;
 };
 

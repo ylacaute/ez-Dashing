@@ -1,76 +1,121 @@
-
 import Logger from 'logger/Logger';
 import GridEvent from 'component/grid/GridEvent';
 import { DataSourceEvent } from 'service/datasource/DataSourceService';
+import { SetupEvent } from 'service/setup/SetupService';
 
 const logger = Logger.getLogger("WidgetReducer");
-
 const initialState = {};
 
+
+const findById = (dataSources, id) => {
+  return dataSources.find(ds => ds.id == id);
+};
+
+const indexOfId = (dataSources, id) => {
+  const ds = dataSources.find(ds => ds.id == id);
+  return dataSources.indexOf(ds);
+};
+
+
 /**
- * This reducer manage ALL Widgets props.
- * Each widget have to map the redux state depending on their id
+ * This reducer manage all Widgets properties.
  */
-export default function WidgetReducer(state = initialState, action) {
+export default function(state = initialState, action) {
+
+  let newState = {
+    ...state
+  };
 
   switch (action.type) {
 
+
     /**
-     * When an item is resized, we update its sizeInfo property
-     * To understand why there are as many event that there are widgets, please see Grid comments who
-     * emits those events.
+     * When configuration is loaded, we update all widgets properties
+     */
+    case SetupEvent.ConfigLoadSuccess:
+      logger.debug("ConfigLoadSuccess");
+      const widgetConfigs = action.dashboardConfig.widgets;
+
+      widgetConfigs.forEach(widgetConfig => {
+        let widgetDataSource = [];
+        widgetConfig.dataSource.forEach(dsId => {
+          widgetDataSource.push({
+            id: dsId,
+            loaded: false
+          });
+        });
+        newState[widgetConfig.id] = {
+          ...state[widgetConfig.id],
+          ...widgetConfig,
+          dataSource: widgetDataSource
+        };
+      });
+
+      break;
+
+
+    /**
+     * When a widget is resized, we update its sizeInfo property.
      */
     case GridEvent.ItemResized:
+      logger.trace("ItemResized (widgetId={})", action.widgetId);
       const widgetId = action.widgetId;
       const sizeInfo = action.payload;
-      let newState = {
-        ...state,
-        [widgetId] : {
-          ...state[widgetId],
-          sizeInfo: sizeInfo
-        }
+
+      newState[widgetId] = {
+        ...state[widgetId],
+        sizeInfo: sizeInfo
       };
-      logger.debug("ItemResized (widgetId={})", widgetId);
-      return newState;
+      break;
+
 
     /**
      * When the Grid is ready, we can finally display the widgets by give them the loaded property
      */
     case GridEvent.Ready:
-      let newLoadedStatusState = {
-        ...state
-      };
+      logger.debug("GridReady");
+
       action.widgetIds.forEach(id => {
-        newLoadedStatusState[id] = {
+        newState[id] = {
           ...state[id],
           loaded: true
         }
       });
-      logger.debug("GridReady");
-      return newLoadedStatusState;
+      break;
+
 
     /**
      * When a dataSource is refreshed, we need to update properties of all widgets interested by this dataSource.
      */
     case DataSourceEvent.DataSourceRefreshed:
-      const { dataSourceId, widgetIdsListening } = action;
+      logger.debug("DataSourceRefreshed (id={})", action.dataSourceId);
+      const { dataSourceId } = action;
       const properties = action.payload;
 
-      let newDataSourcePropsState = {
-        ...state
-      };
-      widgetIdsListening.forEach(id => {
-        newDataSourcePropsState[id] = {
+      action.widgetIdsListening.forEach(id => {
+        const dataSourceToUpdate = findById(state[id].dataSource, dataSourceId);
+        const dataSourceToUpdateIndex = indexOfId(state[id].dataSource, dataSourceId);
+
+        newState[id] = {
           ...state[id],
           ...properties,
-          dataReceivedAtLeastOne: true
+          dataSource: [
+            ...newState[id].dataSource.slice(0, dataSourceToUpdateIndex),
+            {
+              ...dataSourceToUpdate,
+              loaded: true
+            },
+            ...newState[id].dataSource.slice(dataSourceToUpdateIndex + 1)
+          ]
         }
       });
-      logger.debug("DataSourceRefreshed (id={}), newState :", dataSourceId, newDataSourcePropsState);
-      return newDataSourcePropsState;
+      break;
+
 
     default:
       return state;
 
   }
+
+  return newState;
 }
