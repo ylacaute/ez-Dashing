@@ -8,6 +8,9 @@ import ErrorWidget from 'component/widget/sample/ErrorWidget.jsx';
 import ClockWidget from 'component/widget/clock/ClockWidget.jsx';
 import JiraWidget from 'component/widget/jira/JiraWidget.jsx';
 import SprintWidget from 'component/widget/sprint/SprintWidget.jsx';
+import TeamWidget from 'component/widget/team/TeamWidget.jsx';
+import SonarWidget from 'component/widget/sonar/SonarWidget.jsx';
+import SonkinsWidget from 'component/widget/sonkins/SonkinsWidget.jsx';
 import JenkinsWidget from 'component/widget/jenkins/JenkinsWidget.jsx';
 
 
@@ -36,6 +39,9 @@ export default class WidgetFactory {
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
       case "SprintWidget": Component = SprintWidget; break;
+      case "TeamWidget": Component = TeamWidget; break;
+      case "SonarWidget": Component = SonarWidget; break;
+      case "SonkinsWidget": Component = SonkinsWidget; break;
       case "JenkinsWidget": Component = JenkinsWidget; break;
 
       /*case "TeamWidget": Component = TeamWidget; break;

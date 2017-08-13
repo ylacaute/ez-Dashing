@@ -13,16 +13,16 @@ class JiraWidget extends AbstractWidget {
    */
   static propTypes = {
     todoIssuesKeys: PropTypes.array,
-    todoTotal: PropTypes.array,
+    todoTotal: PropTypes.number,
     inProgressIssuesKeys: PropTypes.array,
-    inProgressTotal: PropTypes.array
+    inProgressTotal: PropTypes.number
   };
 
   static defaultProps = {
     todoIssuesKeys: [],
-    todoTotal: [],
+    todoTotal: 0,
     inProgressIssuesKeys: [],
-    inProgressTotal: []
+    inProgressTotal: 0
   };
 
   getWidgetClassNames() {

@@ -1,164 +1,4 @@
 {
-  "jiraTodo": {
-    "expand": "names,schema",
-    "startAt": 0,
-    "maxResults": 50,
-    "total": 1,
-    "issues": [
-      {
-        "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-        "id": "38332",
-        "self": "https://issues.xxx.net/rest/api/2/issue/38332",
-        "key": "BCGAS-250",
-        "fields": {
-          "components": [
-            {
-              "self": "https://issues.xxx.net/rest/api/2/component/10907",
-              "id": "10907",
-              "name": "bc-gas-sys",
-              "description": "desc"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "jiraInProgress": {
-    "expand": "names,schema",
-    "startAt": 0,
-    "maxResults": 50,
-    "total": 42,
-    "issues": [
-      {
-        "key": "BCGAS-442"
-      },
-      {
-        "key": "BCGAS-1200"
-      },
-      {
-        "key": "BCGAS-1215"
-      },
-      {
-        "key": "BCGAS-1132"
-      },
-      {
-        "key": "BCGAS-1130"
-      },
-      {
-        "key": "BCGAS-1019"
-      }
-    ]
-  },
-  "jenkinsMonitoring": {
-    "lastUpdate": "09/06 23:06",
-    "version": "v2.46.3",
-    "memoryUsage": 11,
-    "cpuUsage": 32,
-    "fileDescriptorUsage": 8,
-    "activeThreadCount": 0,
-    "freeDiskSpaceInTemp": 800
-  },
-  "jenkins1": {
-    "state": "SUCCESS",
-    "author": "marc avec un m",
-    "lastUpdate": "01/01 - 15:00"
-  },
-  "jenkins2": {
-    "state": "FAILURE",
-    "author": "unknown user",
-    "lastUpdate": "02/02 - 14:00"
-  },
-  "jenkins3": {
-    "state": "REBUILDING",
-    "progress": 80,
-    "author": "marc avec un m",
-    "lastUpdate": "03/03 - 11:22"
-  },
-  "jenkins4": {
-    "state": "SUCCESS",
-    "author": "Pénelope",
-    "lastUpdate": "04/04 - 20:00"
-  },
-  "jenkins5": {
-    "state": "SUCCESS",
-    "author": "Tom",
-    "lastUpdate": "05/05 - 12:00"
-  },
-  "jenkins6": {
-    "state": "SUCCESS",
-    "author": "Aymane",
-    "lastUpdate": "15/06 - 15:00"
-  },
-  "jenkins7": {
-    "state": "SUCCESS",
-    "author": "Marc Super Star",
-    "lastUpdate": "16/07 - 15:00"
-  },
-  "sonarSummary": [
-    {
-      "projectKey": "bc-gas-sys",
-      "lastUpdate": "01/01 - 15:00",
-      "metrics": {
-        "lines": 10,
-        "coverage": 85,
-        "violations": 0
-      }
-    },
-    {
-      "projectKey": "similar-home-sys",
-      "lastUpdate": "02/02 - 21:30",
-      "metrics": {
-        "lines": 10,
-        "coverage": 75,
-        "violations": 2
-      }
-    },
-    {
-      "projectKey": "gas-service-composition-sys",
-      "lastUpdate": "03/03 - 16:50",
-      "metrics": {
-        "lines": 10,
-        "coverage": 60,
-        "violations": 3
-      }
-    },
-    {
-      "projectKey": "gas-tariff-sys",
-      "lastUpdate": "04/04 - 18:00",
-      "metrics": {
-        "lines": 10,
-        "coverage": 81,
-        "violations": 18
-      }
-    },
-    {
-      "projectKey": "bc-gas-client",
-      "lastUpdate": "05/05 - 16:15",
-      "metrics": {
-        "lines": 10,
-        "coverage": 20,
-        "violations": 25
-      }
-    },
-    {
-      "projectKey": "similar-home-client",
-      "lastUpdate": "14/05 - 12:00",
-      "metrics": {
-        "lines": 10,
-        "coverage": 56,
-        "violations": 1
-      }
-    },
-    {
-      "projectKey": "gas-tariff-client",
-      "lastUpdate": "15/05 - 16:10",
-      "metrics": {
-        "lines": 10,
-        "coverage": 100,
-        "violations": 0
-      }
-    }
-  ],
   "dashboard": {
     "server": {
       "dataSourcePath": "/api/datasource/"
@@ -178,7 +18,7 @@
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
               "todoTotal": "$.total",
-              "todoIssuesKeys": "$.issues[*].key"
+              "todoIssuesKeys[]": "$.issues[*].key"
             }
           },
           {
@@ -187,7 +27,27 @@
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
               "inProgressTotal": "$.total",
-              "inProgressIssuesKeys": "$.issues[*].key"
+              "inProgressIssuesKeys[]": "$.issues[*].key"
+            }
+          }
+        ]
+      },
+      {
+        "name": "sonar",
+        "baseUrl": "https://sonar:1234",
+        "credentials": {
+          "userName": "test",
+          "password": "test"
+        },
+        "queries": [
+          {
+            "name": "stats",
+            "refresh": 1,
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json",
+            "mapping": {
+              "lines": "$.component.measures[?(@.metric == 'lines')].value",
+              "coverage": "$.component.measures[?(@.metric == 'coverage')].value",
+              "violations": "$.component.measures[?(@.metric == 'violations')].value"
             }
           }
         ]
@@ -195,8 +55,12 @@
     ],
     "widgets": [
       {
+        "type": "TeamWidget",
+        "title": "SUPER TEAM"
+      },
+      {
         "type": "HelloWorldWidget",
-        "title": "HELLO WORLD"
+        "title": "HELLO WORLD 2"
       },
       {
         "type": "ErrorWidget",
@@ -228,6 +92,15 @@
         "dataSource": [
           "jira-inProgress"
         ]
+      },
+      {
+        "type": "SonarWidget",
+        "title": "Sonar A",
+        "dataSource": [ "sonar-stats" ]
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "Sonkins A"
       }
     ],
     "avatars": [
@@ -248,7 +121,7 @@
       }
     ],
     "thresholds": {
-      "codeCoverage": {
+      "coverage": {
         "good": 64,
         "avg": 55,
         "bad": 0

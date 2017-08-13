@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import BreakpointConfig from 'config/BreakpointConfig';
+import WindowUtils from 'utils/WindowUtils';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -39,6 +40,9 @@ export default class Grid extends React.Component {
     setTimeout(() => {
       this.props.onGridReady(widgetIds);
     }, 500);
+    WindowUtils.onResizeEnd(() => {
+      this.dispatchResizeToAllWidgets();
+    });
   }
 
   getWidthClass(size) {
@@ -78,7 +82,7 @@ export default class Grid extends React.Component {
   /**
    * We need to send resize events to all widgets because all there size may have changed.
    */
-  onLayoutChange(layout) {
+  onLayoutChange() {
     this.dispatchResizeToAllWidgets();
   }
 

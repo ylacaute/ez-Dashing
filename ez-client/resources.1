@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SonarCloud</title>
+  <meta name="description" content="SonarCloud is a service operated by SonarSource, the company that develops and promotes open-source code quality products SonarQube and SonarLint.
+">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="/favicon-sonarcloud-120x120.png">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://about.sonarcloud.io/">
+  <link rel="alternate" type="application/rss+xml" title="SonarCloud" href="https://about.sonarcloud.io/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="wrapper">
+    <a href="/" class="site-logo">
+      <img title="Go to SonarCloud"
+           alt="Go to SonarCloud"
+           src="/images/SonarCloud-white.svg"
+           width="175"
+           height="50">
+    </a>
+    <span class="spacer">&nbsp;</span>
+    <a href="https://sonarcloud.io/sessions/new" class="sign-in">Sign in</a>
+  </div>
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <div class="post-content">
+    <h1 class="about-title" id="continuous-code-quality-online">Continuous Code Quality Online</h1>
+
+<p class="about-subtitle">Improve mechanically the quality of your project with SonarCloud,<br />
+available on 20 programming languages.</p>
+
+<div class="about about-price-tiers">
+    <div class="about-price-tier">
+        <em>Free</em>
+        <h3>for open source</h3>
+        <span>&nbsp;</span>
+    </div>
+    <div class="about-price-tier">
+        <span>From <em>5&euro;</em>/mo</span>
+        <h3>for private projects</h3>
+        <a href="#" id="see-prices">see prices</a>
+    </div>
+</div>
+
+<div id="prices">
+    <header>Pricing</header>
+    <section>
+        The price of the service is based on the total number of lines of your private projects.<br />
+        Lines of public projects are free.
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <em>Lines</em>
+                        <br />
+                        <span class="remark">Up to</span>
+                    </th>
+                    <th>
+                        <em>Price *</em>
+                        <br />
+                        <span class="remark">&euro; / month</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>25,000</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>50,000</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>100,000</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>250,000</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>500,000</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>1,000,000</td>
+                    <td>300</td>
+                </tr>
+                <tr>
+                    <td>2,500,000</td>
+                    <td>700</td>
+                </tr>
+                <tr>
+                    <td>5,000,000</td>
+                    <td>1,400</td>
+                </tr>
+                <tr>
+                    <td>10,000,000</td>
+                    <td>2,500</td>
+                </tr>
+                <tr>
+                    <td>20,000,000</td>
+                    <td>4,000</td>
+                </tr>
+            </tbody>
+        </table>
+        <span class="remark">* 8% VAT will be added for Switzerland</span>
+    </section>
+    <footer>
+        <a href="#" id="close-prices">Close</a>
+    </footer>
+</div>
+
+<div class="about about-start">
+    <div class="about-start-using">
+        <span>Start using SonarCloud</span>
+        <a href="/contact">Need help?</a>
+    </div>
+    <div class="about-start-signup">
+        <a class="btn" href="/get-started">Configure &amp; Sign up</a>
+        <a href="https://sonarcloud.io/sessions/new">Just sign up</a>
+    </div>
+</div>
+
+<script src="js/jquery.js"></script>
+
+<script src="js/jquery-ui.min.js"></script>
+
+<script>
+$(function() {
+    $('#see-prices').click(function() {
+        $('#prices').dialog({
+            modal: true
+            , minWidth: 650
+            , dialogClass: 'no-close'
+        });
+    });
+    $('#close-prices').click(function() {
+        $('#prices').dialog('close');
+    });
+});
+</script>
+
+<div class="about about-explore">
+    <span class="explore">Explore open source projects on SonarCloud</span>
+    <span class="explore-sub">
+        SonarCloud offers free access to analyze open source projects.<br />
+        This is public and open to everyone who wants to browse the service.
+    </span>
+    <span class="explore-sub">
+        <a href="https://sonarcloud.io/projects" class="btn btn-explore">Browse</a>
+    </span>
+</div>
+
+<div class="about-news about">
+<span class="about-news-news">News<img src="images/chevron-right-300.svg" alt="news" /></span>
+
+<a href="http://feedburner.google.com/fb/a/mailverify?uri=NewsSonarCloud&amp;loc=en_US">Subscribe by email</a>
+<a href="http://feeds.feedburner.com/NewsSonarCloud">Subscribe by feed</a>
+<a href="/news">See all</a>
+</div>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="grey-band">
+    <div>
+      © 2008-2017, SonarCloud by <a href="http://www.sonarsource.com" title="SonarSource SA">SonarSource SA</a>. All rights reserved.
+    </div>
+    <div>
+      <a href="/news">News</a> -
+      <a href="/terms.pdf">Terms</a> -
+      <a href="https://twitter.com/sonarqube">Twitter</a> -
+      <a href="/get-started/">Get Started</a> -
+      <a href="/contact/">Help</a> -
+      <a href="https://sonarcloud.io/about">About</a>
+    </div>
+  </div>
+  <div class="white-band">SonarCloud is a service operated by <a href="http://sonarsource.com">SonarSource</a>, the company that develops and promotes open source <a href="http://sonarqube.org">SonarQube</a> and <a href="http://sonarlint.org">SonarLint</a></div>
+</footer>
+
+
+  </body>
+
+  <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-1880045-10']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</html>

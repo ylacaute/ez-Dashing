@@ -1,0 +1,47 @@
+{
+  "jenkinsMonitoring": {
+    "lastUpdate": "09/06 23:06",
+    "version": "v2.46.3",
+    "memoryUsage": 11,
+    "cpuUsage": 32,
+    "fileDescriptorUsage": 8,
+    "activeThreadCount": 0,
+    "freeDiskSpaceInTemp": 800
+  },
+  "jenkins1": {
+    "state": "SUCCESS",
+    "author": "marc avec un m",
+    "lastUpdate": "01/01 - 15:00"
+  },
+  "jenkins2": {
+    "state": "FAILURE",
+    "author": "unknown user",
+    "lastUpdate": "02/02 - 14:00"
+  },
+  "jenkins3": {
+    "state": "REBUILDING",
+    "progress": 80,
+    "author": "marc avec un m",
+    "lastUpdate": "03/03 - 11:22"
+  },
+  "jenkins4": {
+    "state": "SUCCESS",
+    "author": "Pénelope",
+    "lastUpdate": "04/04 - 20:00"
+  },
+  "jenkins5": {
+    "state": "SUCCESS",
+    "author": "Tom",
+    "lastUpdate": "05/05 - 12:00"
+  },
+  "jenkins6": {
+    "state": "SUCCESS",
+    "author": "Aymane",
+    "lastUpdate": "15/06 - 15:00"
+  },
+  "jenkins7": {
+    "state": "SUCCESS",
+    "author": "Marc Super Star",
+    "lastUpdate": "16/07 - 15:00"
+  }
+}

@@ -13,8 +13,7 @@
   "scripts": {
     "test": "node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --progress",
-    "api": "./node_modules/.bin/json-server api/db.json --routes api/routes.json",
-    "api2": "nodemon --watch  api --routes api/routes.json",
+    "api": "babel-node --presets es2015 ./node_modules/.bin/json-server api/db.js --routes api/routes.json",
     "prod": "NODE_ENV=prod webpack -p --progress",
     "serve": "node_modules/.bin/http-server dist"
   },
@@ -36,6 +35,7 @@
     "react-grid-layout": "^0.14.7"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -65,6 +65,7 @@
     "mocha": "^3.4.2",
     "mocha-loader": "^1.1.1",
     "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
     "phantomjs-polyfill": "0.0.2",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",

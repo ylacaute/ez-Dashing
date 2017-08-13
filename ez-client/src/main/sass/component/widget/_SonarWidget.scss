@@ -1,0 +1,65 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SONAR WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.sonar {
+
+
+  article {
+    text-align: left;
+    font-size: 120%;
+    div {
+      text-align: center;
+      .metric {
+        @extend %flexColumn;
+        display: inline-block;
+        margin-top: 1rem;
+        //border: 1px solid red;
+        width: 100%;
+        line-height: 1.2;
+        .value {
+          color: $color-good;
+          font-size: 150%;
+
+        }
+      }
+    }
+  }
+}
+
+// Thresholds
+.widget.sonar .metric.avg .value {
+  color: $color-average;
+}
+.widget.sonar .metric.bad .value {
+  color: $color-bad;
+}
+
+// Responsive widget styles: font and icon size
+// --------------------------------------------
+.widget.sonar.width-xxs article {
+  font-size: 150%;
+  .metric {
+    width: 50%;
+    .value {
+      font-size: 180%;
+    }
+  }
+}
+.widget.sonar.width-xs article,
+.widget.sonar.width-sm article,
+.widget.sonar.width-md article,
+.widget.sonar.width-lg article
+{
+  font-size: 180%;
+  .metric {
+    width: 30%;
+    .value {
+      font-size: 220%;
+    }
+  }
+}
+
+.widget.sonar.height-xxxs article div .metric:nth-child(n+2) {
+  display: none;
+}

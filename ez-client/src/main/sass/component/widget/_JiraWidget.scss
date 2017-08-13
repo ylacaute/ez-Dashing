@@ -11,13 +11,13 @@
     strong {
       color: $color-good;
       vertical-align: middle;
-      font-size: 150%;
+      font-size: 180%;
     }
   }
 
   article {
     text-align: left;
-    font-size: 200%;
+    font-size: 120%;
     ul {
       list-style: none;
       margin-left: 0;
@@ -25,8 +25,8 @@
       text-indent: 0rem;
       li .icon {
         @extend %icon;
-        width: 30px;
-        height: 30px;
+        width: 16px;
+        height: 16px;
         display: inline-block;
         vertical-align: sub;
         margin-right: 1rem;
@@ -46,6 +46,7 @@
 }
 
 // Threshold styles
+// ----------------
 .widget.jira.avg header strong {
   color: $color-average;
 }
@@ -53,7 +54,8 @@
   color: $color-bad;
 }
 
-// Responsive widget styles
+// Responsive widget styles: number of jira issues displayed
+// ---------------------------------------------------------
 .widget.jira.height-xxxs article ul li:nth-child(n+2) {
   display: none;
 }
@@ -62,4 +64,25 @@
 }
 .widget.jira.height-xs article ul li:nth-child(n+6) {
   display: none;
+}
+
+// Responsive widget styles: font and icon size
+// --------------------------------------------
+.widget.jira.width-xxs article {
+  font-size: 200%;
+  ul li .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+.widget.jira.width-xs article,
+.widget.jira.width-sm article,
+.widget.jira.width-md article,
+.widget.jira.width-lg article
+{
+  font-size: 300%;
+  ul li .icon {
+    width: 40px;
+    height: 40px;
+  }
 }

@@ -1,0 +1,52 @@
+{
+  "jiraTodo": {
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 500050,
+    "total": 1,
+    "issues": [
+      {
+        "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+        "id": "38332",
+        "self": "https://issues.xxx.net/rest/api/2/issue/38332",
+        "key": "BCGAS-250",
+        "fields": {
+          "components": [
+            {
+              "self": "https://issues.xxx.net/rest/api/2/component/10907",
+              "id": "10907",
+              "name": "bc-gas-sys",
+              "description": "desc"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "jiraInProgress": {
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 42,
+    "issues": [
+      {
+        "key": "BCGAS-442"
+      },
+      {
+        "key": "BCGAS-1200"
+      },
+      {
+        "key": "BCGAS-1215"
+      },
+      {
+        "key": "BCGAS-1132"
+      },
+      {
+        "key": "BCGAS-1130"
+      },
+      {
+        "key": "BCGAS-1019"
+      }
+    ]
+  }
+}

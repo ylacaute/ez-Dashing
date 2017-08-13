@@ -61,6 +61,11 @@ module.exports = function(config) {
           SRC_DIR,
           LIB_DIR
         ]
+      },
+
+      // https://github.com/webpack-contrib/css-loader/issues/447
+      node: {
+        fs: 'empty'
       }
     },
 

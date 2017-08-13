@@ -43,6 +43,7 @@ export default class DataSourceService {
 
       this.store.dispatch({
         type: DataSourceEvent.DataSourceRefreshed,
+        lastUpdate: new Date(),
         dataSourceId: ds.id,
         widgetIdsListening: widgetIdsListening,
         payload: {
@@ -98,6 +99,22 @@ export default class DataSourceService {
     return path;
   }
 
+  /**
+   * We are mapping json result with the defined properties in the query configuration. Note that JSONPath
+   * always return an array so we always take the first element of the given array, execpt if we really
+   * want an array, we then have to precise it with '[]'.
+   *
+   * For example, in the query configuration we could have:
+   *
+   *   "mapping": {
+   *      "inProgressTotal": "$.total",
+   *      "inProgressIssuesKeys[]": "$.issues[*].key"
+   *   }
+   *
+   * inProgressTotal is normal property: in take the first element of the returned array of JSONPath.
+   * inProgressIssuesKeys[] is an array: we keep the array returned by JSONPath
+   *
+   */
   getMappedProperties(ds, jsonResponse) {
     const mapping = ds.mapping;
     if (mapping == null) {
@@ -107,8 +124,15 @@ export default class DataSourceService {
       }
     }
     let result = {};
+    let jsonPathValue;
     for (let propertyName in mapping) {
-      result[propertyName] = JSONPath.query(jsonResponse, mapping[propertyName]);
+      if (propertyName.indexOf("[]") >= 0) {
+        jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
+        result[propertyName.replace("[]", "")] = jsonPathValue;
+      } else {
+        jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
+        result[propertyName] = jsonPathValue[0];
+      }
     }
     logger.trace("getMappedProperties for query '{}':", ds.id, result);
     return result;

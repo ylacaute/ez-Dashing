@@ -74,7 +74,6 @@ export default class AbstractWidget extends React.Component {
         </header>
         <article>
           <ScalableImage src="/img/error.png"/>
-
           <p>{name}</p>
           <p>{message}</p>
         </article>
@@ -147,10 +146,10 @@ export default class AbstractWidget extends React.Component {
    * Main render function, should not be override
    */
   render() {
-    if (this.props.loaded != true)
-      return this.renderLoading();
     if (this.props.onError == true)
       return this.renderError();
+    if (this.props.loaded != true)
+      return this.renderLoading();
 
     let content;
     if (!this.isDataSourcesLoaded()) {

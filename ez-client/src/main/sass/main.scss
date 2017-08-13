@@ -39,10 +39,11 @@
 @import 'component/widget/ClockWidget';
 @import 'component/widget/SprintWidget';
 @import 'component/widget/JiraWidget';
+@import 'component/widget/SonarWidget';
+@import 'component/widget/SonkinsWidget';
 
-@import 'widget/SonkinsWidget';
+
 @import 'widget/JenkinsMonitoringWidget';
-@import 'widget/IssuesWidget';
 @import 'widget/GraphWidget';
 @import 'metric/metrics';
 
