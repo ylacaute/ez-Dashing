@@ -25,13 +25,13 @@
       "qualifier": "TRK",
       "measures": [{
         "metric": "lines",
-        "value": "12235"
+        "value": "9841"
       }, {
         "metric": "coverage",
-        "value": "64.9"
+        "value": "89.9"
       }, {
         "metric": "violations",
-        "value": "1"
+        "value": "0"
       }]
     }
   }

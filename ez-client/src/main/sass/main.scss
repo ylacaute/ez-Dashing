@@ -36,6 +36,7 @@
 
 // Widgets components
 @import 'component/widget/base/Widget';
+@import 'component/widget/base/Metric';
 @import 'component/widget/HelloWorldWidget';
 @import 'component/widget/ClockWidget';
 @import 'component/widget/SprintWidget';
@@ -44,8 +45,8 @@
 @import 'component/widget/SonkinsWidget';
 
 
-@import 'widget/JenkinsMonitoringWidget';
-@import 'widget/GraphWidget';
+//@import 'widget/JenkinsMonitoringWidget';
+//@import 'widget/GraphWidget';
 @import 'metric/metrics';
 
 

@@ -2,6 +2,7 @@ import RestClient from "client/RestClient";
 import JSONPath from "jsonpath";
 import Logger from "logger/Logger";
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
+import TypeUtils from 'utils/TypeUtils';
 
 const logger = Logger.getLogger("DataSourceService");
 
@@ -30,6 +31,7 @@ export default class DataSourceService {
       this.timers[ds.id] = setInterval(() => {
         this.refreshDataSource(ds);
       }, ds.refresh * 1000);
+      this.refreshDataSource(ds);// refresh at start
     });
   }
 
@@ -124,15 +126,23 @@ export default class DataSourceService {
       }
     }
     let result = {};
-    let jsonPathValue;
+    let type, prop, jsonPathValue;
+
     for (let propertyName in mapping) {
-      if (propertyName.indexOf("[]") >= 0) {
-        jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
-        result[propertyName.replace("[]", "")] = jsonPathValue;
+      if (propertyName.indexOf(":") >= 0) {
+        // A type is defined
+        type = propertyName.split(":")[0];
+        prop = propertyName.split(":")[1];
       } else {
-        jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
-        result[propertyName] = jsonPathValue[0];
+        type = "string";
+        prop = propertyName;
       }
+      jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
+      if (type != "array") {
+        jsonPathValue = jsonPathValue[0];
+      }
+      result[prop] = TypeUtils.convert(jsonPathValue, type);
+      result[propertyName] = jsonPathValue;
     }
     logger.trace("getMappedProperties for query '{}':", ds.id, result);
     return result;

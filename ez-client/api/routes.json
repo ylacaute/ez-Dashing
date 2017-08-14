@@ -1,17 +1,10 @@
 {
   "/api/datasource/jira-todo" : "/jiraTodo",
   "/api/datasource/jira-inProgress" : "/jiraInProgress",
-  "/api/datasource/sonar-stats" : "/sonarSystemA",
-  "/api/datasource/jenkins-lastBuild" : "/jenkinsSystemA",
-  "/api/jira/query/total" : "/jira",
-  "/api/sonar/summary": "/sonarSummary",
+  "/api/datasource/sonar-stats-systemA" : "/sonarSystemA",
+  "/api/datasource/sonar-stats-systemB" : "/sonarSystemB",
+  "/api/datasource/jenkins-lastBuild-systemA" : "/jenkinsSystemA",
+  "/api/datasource/jenkins-lastBuild-systemB" : "/jenkinsSystemB",
   "/api/jenkins/monitoring": "/jenkinsMonitoring",
-  "/api/jenkins/lastBuild/bc-gas-sys_-_Analyse_reccurente/master": "/jenkins1",
-  "/api/jenkins/lastBuild/elec-similar-home-sys_-_Analyse_reccurente/master": "/jenkins2",
-  "/api/jenkins/lastBuild/gas-service-composition-sys_-_Analyse_reccurente/master": "/jenkins3",
-  "/api/jenkins/lastBuild/gas-tariff-sys_-_Analyse_reccurente/master": "/jenkins4",
-  "/api/jenkins/lastBuild/bc-gas-client_-_Analyse_reccurente/master": "/jenkins5",
-  "/api/jenkins/lastBuild/elec-similar-home-client_-_Analyse_reccurente/master": "/jenkins6",
-  "/api/jenkins/lastBuild/gas-tariff-client_-_Analyse_reccurente/master": "/jenkins7",
   "/api/dashboard/config": "/dashboard"
 }

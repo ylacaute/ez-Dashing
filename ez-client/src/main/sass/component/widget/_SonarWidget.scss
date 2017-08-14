@@ -18,21 +18,11 @@
         width: 100%;
         line-height: 1.2;
         .value {
-          color: $color-good;
           font-size: 150%;
-
         }
       }
     }
   }
-}
-
-// Thresholds
-.widget.sonar .metric.avg .value {
-  color: $color-average;
-}
-.widget.sonar .metric.bad .value {
-  color: $color-bad;
 }
 
 // Responsive widget styles: font and icon size

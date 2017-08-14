@@ -34,8 +34,7 @@ class JiraWidget extends AbstractWidget {
   }
 
   getTotal() {
-    return (parseInt(this.props.todoTotal) || 0)
-      + (parseInt(this.props.inProgressTotal) || 0);
+    return this.props.todoTotal + this.props.inProgressTotal;
   }
 
   renderHeader() {
@@ -75,7 +74,7 @@ const mapStateToProps = (state, ownProps) => {
   let result = {
     ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };
-  //console.log("HUGE STATE = ", state);
+  console.log("HUGE STATE = ", state);
   return result;
 };
 

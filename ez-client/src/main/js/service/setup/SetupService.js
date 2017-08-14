@@ -74,6 +74,7 @@ export default class SetupService {
    * Extends dashboard configuration.
    *
    * If no grid layout is set, generate a default one.
+   * If no thresholds is set, generate an empty one. Same for avatars.
    *
    * If a widget doesn't override avatars configuration, the avatars configuration is taken from
    * the global scope. Same for thresholds.
@@ -86,6 +87,12 @@ export default class SetupService {
    */
 
   extendsDashboardConfig(dashboardConfig) {
+    if (dashboardConfig.thresholds == null) {
+      dashboardConfig.thresholds = {};
+    }
+    if (dashboardConfig.avatars == null) {
+      dashboardConfig.avatars = {};
+    }
     dashboardConfig.widgets.forEach(widgetConfig => {
       if (widgetConfig.avatars == null) {
         widgetConfig.avatars = dashboardConfig.avatars;
@@ -99,7 +106,6 @@ export default class SetupService {
       if (widgetConfig.className == null) {
         widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
       }
-      //widgetConfig.loaded = true;
       widgetConfig.key = widgetConfig.id = UUID.random();
     });
     if (ObjectUtils.isNullOrEmpty(dashboardConfig.grid.layouts)) {
@@ -114,7 +120,9 @@ export default class SetupService {
    * Generate React widget components
    */
   createAllWidgets(dashboardConfig) {
-    return dashboardConfig.widgets.map((widgetConfig) => {
+    return dashboardConfig.widgets
+      .filter(elt => elt.enabled != false)
+      .map((widgetConfig) => {
       return WidgetFactory.create(widgetConfig);
     });
   }
@@ -146,7 +154,6 @@ export default class SetupService {
         widgetComponents: this.createAllWidgets(dashboardConfig)
       });
 
-      //dataSourceService.refreshAll();
       callback(store);
     });
   }

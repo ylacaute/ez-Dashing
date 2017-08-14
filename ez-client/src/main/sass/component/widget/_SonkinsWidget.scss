@@ -2,34 +2,32 @@
 /* SONKINS WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+// MOBILE FIRST
 .widget.sonkins {
 
   .metric {
-    //border: 1px solid red;
     display: inline-block;
     width: 100%;
-    height: 90px;
     overflow: hidden;
-    font-size: 120%;
     &.image .value {
       height: 60%;
     }
     & > div {
       display: flex;
-      justify-content: flex-end;
-      flex-direction: column;
+      justify-content: space-between;
+      flex-direction: row-reverse;
       height: 100%;
       overflow: hidden;
       line-height: 1.2;
+      align-items: center;
       img {
         object-fit: contain;
-        height: 50px;
+        height: 25px;
       }
       * {
         margin: 0;
       }
       .value {
-        color: $color-good;
         font-size: 150%;
       }
       .name {
@@ -39,24 +37,30 @@
 
 }
 
-// Responsive widget styles: font and icon size
-// --------------------------------------------
-.widget.sonkins.width-xxs article {
+// DESKTOP
+.widget.sonkins.desktop {
   font-size: 120%;
   .metric {
+    height: 90px;
+    font-size: 120%;
     width: 50%;
-    .value {
-      font-size: 190%;
+    & > div {
+      justify-content: flex-end;
+      flex-direction: column;
+      img {
+        object-fit: contain;
+        height: 50px;
+      }
+      .value {
+        font-size: 190%;
+      }
     }
+
   }
 }
 .widget.sonkins.width-xs article {
-  font-size: 120%;
   .metric {
     width: 25%;
-    .value {
-      font-size: 190%;
-    }
   }
 }
 .widget.sonkins.width-sm article,
@@ -71,3 +75,5 @@
     }
   }
 }
+
+

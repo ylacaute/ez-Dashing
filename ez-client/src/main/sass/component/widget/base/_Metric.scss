@@ -1,0 +1,18 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* METRIC
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// Thresholds
+.metric .value {
+  color: $color-cyan;
+}
+.metric.good .value {
+  color: $color-good;
+}
+.metric.avg .value {
+  color: $color-average;
+}
+.metric.bad .value {
+  color: $color-bad;
+}
+

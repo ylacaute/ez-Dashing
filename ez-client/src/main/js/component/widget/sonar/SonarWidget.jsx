@@ -2,53 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
-import ScalableImage from 'component/scalable/ScalableImage.jsx';
-import ThresholdConfig from "config/ThresholdConfig";
+import Metric from 'component/widget/base/Metric.jsx';
 
 class SonarWidget extends AbstractWidget {
 
   static propTypes = {
     logoUrl: PropTypes.string,
-    lines: PropTypes.string,
-    coverage: PropTypes.string,
-    violations: PropTypes.string
+    lines: PropTypes.number,
+    coverage: PropTypes.number,
+    violations: PropTypes.number
   };
 
   static defaultProps = {
     logoUrl: '/img/logo.png',
-    lines: "0",
-    coverage: "0",
-    violations: "0"
+    lines: 0,
+    coverage: 0,
+    violations: 0
   };
 
-  /*
-          <div className="metric">Coverage: {coverage}</div>
-        <div className="metric">Violations: {violations}</div>
-
-   */
   renderContent() {
-    const lines = parseInt(this.props.lines);
-    const coverage = parseFloat(this.props.coverage);
-    const violations = parseInt(this.props.violations);
-
-    const linesMetricClass = "metric";
-    const violationMetricClass = "metric " + ThresholdConfig.get(this.props.thresholds.violations, violations);
-    const coverageMetricClass = "metric " + ThresholdConfig.get(this.props.thresholds.coverage, coverage);
-
+    const { lines, coverage, violations } = this.props;
     return (
       <div>
-        <div className={linesMetricClass}>
-          <div className="value">{lines}</div>
-          <div className="name">Lines</div>
-        </div>
-        <div className={violationMetricClass}>
-          <div className="value">{violations}</div>
-          <div className="name">Violations</div>
-        </div>
-        <div className={coverageMetricClass}>
-          <div className="value">{coverage}</div>
-          <div className="name">Coverage</div>
-        </div>
+        <Metric label="Lines" value={lines} />
+        <Metric label="Violations" value={violations} thresholds={this.props.thresholds.violations}/>
+        <Metric label="Coverage" value={coverage} thresholds={this.props.thresholds.coverage}/>
       </div>
     );
   }
@@ -56,7 +34,6 @@ class SonarWidget extends AbstractWidget {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log("Receive state : ", state);
   return {
     ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
   };

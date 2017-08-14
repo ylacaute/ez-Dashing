@@ -29,8 +29,10 @@
     "chai react-spinkit: ^3.0.0 chartist: ^0.11.0"
   ],
   "dependencies": {
+    "eases": "^1.0.8",
     "jsonpath": "^0.2.12",
     "react": "^16.0.0-beta.5",
+    "react-animated-number": "^0.4.3",
     "react-dom": "^16.0.0-beta.5",
     "react-grid-layout": "^0.14.7"
   },

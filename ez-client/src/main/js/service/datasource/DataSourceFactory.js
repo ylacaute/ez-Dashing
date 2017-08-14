@@ -27,12 +27,12 @@ export default class DataSourceFactory {
       dsConfig.queries.forEach(queryConfig => {
         dataSources.push({
           loaded: false,
-          id: dsConfig.name + "-" + queryConfig.name,
+          id: queryConfig.id,
           baseUrl: dsConfig.baseUrl,
           credentials: dsConfig.credentials,
-          refresh: queryConfig.refresh || DataSourceFactory.DEFAULT_REFRESH,
           path: queryConfig.path,
-          mapping: queryConfig.mapping
+          refresh: queryConfig.refresh || dsConfig.refresh || DataSourceFactory.DEFAULT_REFRESH,
+          mapping: queryConfig.mapping || dsConfig.mapping || {}
         })
       })
     });

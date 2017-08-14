@@ -1,21 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
-import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
-import AvatarConfig from 'config/AvatarConfig';
-import ScalableImage from 'component/scalable/ScalableImage.jsx';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
+import LinearProgressBar from "component/chart/LinearProgressBar.jsx";
+import AvatarConfig from "config/AvatarConfig";
+import ScalableImage from "component/scalable/ScalableImage.jsx";
+import Metric from "component/widget/base/Metric.jsx";
+
 
 class SonkinsWidget extends AbstractWidget {
 
   static propTypes = {
-    status: PropTypes.string,
-    author: PropTypes.string
+    status: PropTypes.oneOf([
+      "FAILURE", "UNSTABLE", "REBUILDING", "BUILDING", "ABORTED", "SUCCESS", "UNKNOWN"
+    ]),
+    author: PropTypes.string,
+    lines: PropTypes.number,
+    coverage: PropTypes.number,
+    violations: PropTypes.number
   };
 
   static defaultProps = {
-    status: 'UNKNOWN',
-    author: ''
+    status: "UNKNOWN",
+    author: "",
+    lines: 0,
+    coverage: 0,
+    violations: 0
   };
 
 
@@ -33,15 +43,11 @@ class SonkinsWidget extends AbstractWidget {
         />
 
 
-   */
-  renderContent() {
 
-    let avatar = AvatarConfig.get(this.props.jenkinsAuthor, this.props.avatars);
-//<ScalableImage src={avatar.url}/>
-    console.log("FUCKIGN AVATAR : ", avatar);
-    return (
-      <div>
-        <div className="metric image">
+
+
+
+<div className="metric image">
           <div>
             <div className="value">
               <img
@@ -52,25 +58,20 @@ class SonkinsWidget extends AbstractWidget {
             <div className="name">Last build</div>
           </div>
         </div>
-        <div className="metric">
-          <div>
-            <div className="value">45k</div>
-            <div className="name">Lines</div>
-          </div>
-        </div>
-        <div className="metric">
-          <div>
-            <div className="value">45</div>
-            <div className="name">Violations</div>
-          </div>
-        </div>
-        <div className="metric">
-          <div>
-            <div className="value">67.8%</div>
-            <div className="name">Coverage</div>
+   */
+  renderContent() {
+    const { lines, coverage, violations, author, avatars } = this.props;
 
-          </div>
-        </div>
+    let avatar = AvatarConfig.get(author, avatars);
+//<ScalableImage src={avatar.url}/>
+    return (
+      <div>
+        <Metric className="lines" label="Last build" value={
+          <img draggable="false" src={avatar.url} />}
+        />
+        <Metric label="Lines" value={lines} />
+        <Metric label="Violations" value={violations} thresholds={this.props.thresholds.violations} />
+        <Metric label="Coverage" value={coverage} thresholds={this.props.thresholds.coverage} />
       </div>
     );
   }

@@ -5,69 +5,73 @@
     },
     "dataSources": [
       {
-        "name": "jira",
         "baseUrl": "https://jira:8989",
         "credentials": {
           "userName": "test",
           "password": "test"
         },
+        "refresh": 30,
         "queries": [
           {
-            "name": "todo",
-            "refresh": 10,
+            "id": "jira-todo",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
-              "todoTotal": "$.total",
-              "todoIssuesKeys[]": "$.issues[*].key"
+              "int:todoTotal": "$.total",
+              "array:todoIssuesKeys": "$.issues[*].key"
             }
           },
           {
-            "name": "inProgress",
-            "refresh": 10,
+            "id": "jira-inProgress",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
-              "inProgressTotal": "$.total",
-              "inProgressIssuesKeys[]": "$.issues[*].key"
+              "int:inProgressTotal": "$.total",
+              "array:inProgressIssuesKeys": "$.issues[*].key"
             }
           }
         ]
       },
       {
-        "name": "sonar",
         "baseUrl": "https://sonar:1234",
         "credentials": {
           "userName": "test",
           "password": "test"
         },
+        "refresh": 30,
+        "mapping": {
+          "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
+          "float:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
+          "int:violations": "$.component.measures[?(@.metric == 'violations')].value"
+        },
         "queries": [
           {
-            "name": "stats",
-            "refresh": 10,
-            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json",
-            "mapping": {
-              "lines": "$.component.measures[?(@.metric == 'lines')].value",
-              "coverage": "$.component.measures[?(@.metric == 'coverage')].value",
-              "violations": "$.component.measures[?(@.metric == 'violations')].value"
-            }
+            "id": "sonar-stats-systemA",
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          },
+          {
+            "id": "sonar-stats-systemB",
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
           }
         ]
       },
       {
-        "name": "jenkins",
         "baseUrl": "https://jenkins:12345",
         "credentials": {
           "userName": "test",
           "password": "test"
         },
+        "refresh": 30,
+        "mapping": {
+          "string:status": "$.result",
+          "string:author": "$.changeSet.items[-1:].author.fullName"
+        },
         "queries": [
           {
-            "name": "lastBuild",
-            "refresh": 2,
-            "path": "/job/systemA/branch/master/lastBuild/api/json",
-            "mapping": {
-              "status": "$.result",
-              "author": "$.changeSet.items[-1:].author.fullName"
-            }
+            "id": "jenkins-lastBuild-systemA",
+            "path": "/job/systemA/branch/master/lastBuild/api/json"
+          },
+          {
+            "id": "jenkins-lastBuild-systemB",
+            "path": "/job/systemB/branch/master/lastBuild/api/json"
           }
         ]
       }
@@ -75,19 +79,23 @@
     "widgets": [
       {
         "type": "TeamWidget",
-        "title": "SUPER TEAM"
+        "title": "SUPER TEAM",
+        "enabled": true
       },
       {
         "type": "HelloWorldWidget",
-        "title": "HELLO WORLD 2"
+        "title": "HELLO WORLD 2",
+        "enabled": true
       },
       {
         "type": "ErrorWidget",
-        "title": "SAMPLE ERROR"
+        "title": "SAMPLE ERROR",
+        "enabled": true
       },
       {
         "type": "ClockWidget",
-        "UTCOffset": 2
+        "UTCOffset": 2,
+        "enabled": true
       },
       {
         "type": "SprintWidget",
@@ -96,13 +104,15 @@
           "2017-08-10"
         ],
         "sprintDuration": 21,
-        "sprintOffset": 8
+        "sprintOffset": 8,
+        "enabled": true
       },
       {
         "type": "JiraWidget",
         "title": "BUGS (ALL)",
         "dataSource": [
-          "jira-todo", "jira-inProgress"
+          "jira-todo",
+          "jira-inProgress"
         ]
       },
       {
@@ -115,14 +125,28 @@
       {
         "type": "SonarWidget",
         "title": "Sonar A",
-        "dataSource": [ "sonar-stats" ]
+        "dataSource": [
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
       },
       {
         "type": "SonkinsWidget",
         "title": "Sonkins A",
         "dataSource": [
-          "jenkins-lastBuild"
-        ]
+          "jenkins-lastBuild-systemA",
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "Sonkins B",
+        "dataSource": [
+          "jenkins-lastBuild-systemB",
+          "sonar-stats-systemB"
+        ],
+        "enabled": true
       }
     ],
     "avatars": [
@@ -138,8 +162,8 @@
       },
       {
         "displayName": "Marc",
-        "jenkinsAuthorPattern": ".*[mM]arc.*",
-        "url": "/img/icon/good.png"
+        "jenkinsAuthorPattern": "jenkins",
+        "url": "/img/avatars/jenkins.png"
       }
     ],
     "thresholds": {
@@ -198,6 +222,24 @@
           "xxxs": 0
         }
       },
+      "itemBreakpoints2": {
+        "width": {
+          "lg": 1200,
+          "md": 996,
+          "sm": 768,
+          "xs": 480,
+          "xxs": 240,
+          "xxxs": 0
+        },
+        "height": {
+          "lg": 800,
+          "md": 600,
+          "sm": 400,
+          "xs": 280,
+          "xxs": 140,
+          "xxxs": 0
+        }
+      },
       "breakpoints": {
         "lg": 1200,
         "md": 996,
@@ -213,7 +255,7 @@
         "xxs": 1
       },
       "layouts": {},
-      "rowHeight": 120,
+      "rowHeight": 122,
       "widget_w": 1,
       "widget_h": 1
     }
