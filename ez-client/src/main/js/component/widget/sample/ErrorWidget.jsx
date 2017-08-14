@@ -1,24 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
 class ErrorWidget extends AbstractWidget {
 
-  static propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    sizeInfo: PropTypes.object
-  };
-
-  static defaultProps = {
-    onError: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasError: true
+    }
+  }
 
   renderContent() {
     return (
       <div>
-        <h2>This content will not be displayed because of the property onError</h2>
+        <h2>This content will not be displayed because of its error state</h2>
       </div>
     );
   }

@@ -1,18 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
 class HelloWorldWidget extends AbstractWidget {
-
-  static propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    sizeInfo: PropTypes.object
-  };
-
-  static defaultProps = {
-  };
 
   renderContent() {
     return (

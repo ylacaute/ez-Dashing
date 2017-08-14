@@ -29,6 +29,7 @@
 
 // Generic components
 @import 'component/chart/CircularProgressBar';
+@import 'component/chart/LinearProgressBar';
 
 // Components
 @import 'component/grid';
@@ -47,3 +48,7 @@
 @import 'widget/GraphWidget';
 @import 'metric/metrics';
 
+
+@-moz-document url-prefix() {
+
+}

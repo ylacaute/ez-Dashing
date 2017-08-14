@@ -14,7 +14,7 @@
         "queries": [
           {
             "name": "todo",
-            "refresh": 3,
+            "refresh": 10,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
               "todoTotal": "$.total",
@@ -23,7 +23,7 @@
           },
           {
             "name": "inProgress",
-            "refresh": 3,
+            "refresh": 10,
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
               "inProgressTotal": "$.total",
@@ -42,12 +42,31 @@
         "queries": [
           {
             "name": "stats",
-            "refresh": 1,
+            "refresh": 10,
             "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json",
             "mapping": {
               "lines": "$.component.measures[?(@.metric == 'lines')].value",
               "coverage": "$.component.measures[?(@.metric == 'coverage')].value",
               "violations": "$.component.measures[?(@.metric == 'violations')].value"
+            }
+          }
+        ]
+      },
+      {
+        "name": "jenkins",
+        "baseUrl": "https://jenkins:12345",
+        "credentials": {
+          "userName": "test",
+          "password": "test"
+        },
+        "queries": [
+          {
+            "name": "lastBuild",
+            "refresh": 2,
+            "path": "/job/systemA/branch/master/lastBuild/api/json",
+            "mapping": {
+              "status": "$.result",
+              "author": "$.changeSet.items[-1:].author.fullName"
             }
           }
         ]
@@ -100,7 +119,10 @@
       },
       {
         "type": "SonkinsWidget",
-        "title": "Sonkins A"
+        "title": "Sonkins A",
+        "dataSource": [
+          "jenkins-lastBuild"
+        ]
       }
     ],
     "avatars": [

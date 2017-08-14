@@ -2,6 +2,7 @@
   "/api/datasource/jira-todo" : "/jiraTodo",
   "/api/datasource/jira-inProgress" : "/jiraInProgress",
   "/api/datasource/sonar-stats" : "/sonarSystemA",
+  "/api/datasource/jenkins-lastBuild" : "/jenkinsSystemA",
   "/api/jira/query/total" : "/jira",
   "/api/sonar/summary": "/sonarSummary",
   "/api/jenkins/monitoring": "/jenkinsMonitoring",

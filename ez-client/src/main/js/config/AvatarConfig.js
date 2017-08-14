@@ -17,7 +17,7 @@ export default class AvatarConfig {
     if (resultAvatar == null) {
       resultAvatar = {
         displayName: name,
-        url: "/img/avatars/anonymous_01.png"
+        url: "/img/avatars/anonymous.png"
       }
     }
     return resultAvatar;

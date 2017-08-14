@@ -12,13 +12,11 @@ export default class AbstractWidget extends React.Component {
     title: PropTypes.string,
     className: PropTypes.string,
     sizeInfo: PropTypes.object,
-    loaded: PropTypes.bool,
-    onError: PropTypes.bool
+    loaded: PropTypes.bool
   };
 
   static defaultProps = {
-    loaded: false,
-    onError: false
+    loaded: false
   };
 
   static mapCommonWidgetProps = (state, ownProps) => {
@@ -29,7 +27,15 @@ export default class AbstractWidget extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      hasError: false
+    }
   }
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+  }
+
 
   isDataSourcesLoaded() {
     let loaded = true;
@@ -146,7 +152,7 @@ export default class AbstractWidget extends React.Component {
    * Main render function, should not be override
    */
   render() {
-    if (this.props.onError == true)
+    if (this.state.hasError == true)
       return this.renderError();
     if (this.props.loaded != true)
       return this.renderLoading();
@@ -158,19 +164,15 @@ export default class AbstractWidget extends React.Component {
       content = this.renderContent();
     }
 
-    try {
-      return (
-        <section className={classnames(this.getWidgetClassNames())}>
-          {this.renderHeaderWrapper()}
-          <article className="content">
-            {content}
-          </article>
-          {this.renderFooterWrapper()}
-        </section>
-      );
-    } catch (error) {
-      return this.renderError(error);
-    }
+    return (
+      <section className={classnames(this.getWidgetClassNames())}>
+        {this.renderHeaderWrapper()}
+        <article className="content">
+          {content}
+        </article>
+        {this.renderFooterWrapper()}
+      </section>
+    );
   }
 
 }
