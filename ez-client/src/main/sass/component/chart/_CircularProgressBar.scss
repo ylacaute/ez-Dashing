@@ -1,6 +1,9 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* CIRCULAR PROGRESS BAR
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$color-progress-bar-trail: #222 !default;
+$color-progress-bar-path: #888 !default;
+$color-progress-bar-text: #FFF !default;
 
 .progress-bar-wrapper {
   display: flex;
@@ -20,5 +23,14 @@
   }
   .label {
     font-size: 1.4rem;
+  }
+  .trail {
+    stroke: $color-progress-bar-trail;
+  }
+  .path {
+    stroke: $color-progress-bar-path;
+  }
+  text {
+    fill: $color-progress-bar-text;
   }
 }

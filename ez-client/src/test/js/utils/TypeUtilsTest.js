@@ -58,4 +58,22 @@ describe("TypeUtils", () => {
     assert.equal(TypeUtils.isFloat(1.02), true);
     assert.equal(TypeUtils.isFloat(9999.09), true);
   });
+
+  it("convert() should convert to boolean", () => {
+    assert.equal(TypeUtils.convert("true", "bool"), true);
+    assert.equal(TypeUtils.convert("false", "bool"), false);
+  });
+
+  it("convert() should convert to integer", () => {
+    assert.equal(TypeUtils.convert("42", "int"), 42);
+  });
+
+  it("convert() should convert to float", () => {
+    assert.equal(TypeUtils.convert("42.5", "float"), 42.5);
+  });
+
+  it("convert() should convert to string", () => {
+    assert.equal(TypeUtils.convert("42.5", "str"), "42.5");
+  });
+
 });

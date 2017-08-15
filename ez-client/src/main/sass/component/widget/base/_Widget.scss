@@ -8,7 +8,7 @@
   background-color: $color-bg-widget;
   height: 100%;
   text-align: center;
-
+  font-size: 100%;
 
   header {
     @extend %flexColumn;
@@ -29,61 +29,6 @@
 
 }
 
-//// Responsive style depending on the dynamic widget size
-//.widget.width-xs header h1 {
-//  font-size: 250%;
-//}
-//.widget.width-sm header h1,
-//.widget.width-md header h1,
-//.widget.width-lg header h1 {
-//  font-size: 500%;
-//}
-
-
-
-
-/*
-.widget {
-
-  header {
-    @extend %flexColumn;
-    background-color: $color-bg-widget-header;
-    color: $color-text-widget-header;
-    height: 50%;
-    .title {
-      text {
-        fill: $color-text-widget-title;
-      }
-      flex-grow: 1;
-    }
-    .afterTitle {
-      @extend %flexRow;
-      flex-grow: 1;
-      > div {
-        display: flex;
-      }
-      text {
-        fill: $color-text-widget-sub-title;
-      }
-    }
-  }
-  .content {
-    @extend %flexColumn;
-    flex-grow: 1;
-    padding: $padding-widget-content;
-    height: 100%;
-    .single {
-      padding-top: 2rem;
-    }
-    .sk-spinner {
-      color: $color-spinner;
-      margin: auto;
-    }
-    .error {
-      @extend %flexColumn;
-    }
-  }
+.widget.desktop article{
+  font-size: 120%;
 }
-
-
-*/

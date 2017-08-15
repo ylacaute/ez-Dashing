@@ -5,6 +5,7 @@
   "/api/datasource/sonar-stats-systemB" : "/sonarSystemB",
   "/api/datasource/jenkins-lastBuild-systemA" : "/jenkinsSystemA",
   "/api/datasource/jenkins-lastBuild-systemB" : "/jenkinsSystemB",
+  "/api/datasource/jenkins-lastBuild-systemC" : "/jenkinsSystemC",
   "/api/jenkins/monitoring": "/jenkinsMonitoring",
   "/api/dashboard/config": "/dashboard"
 }

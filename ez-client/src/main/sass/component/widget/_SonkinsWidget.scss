@@ -2,75 +2,80 @@
 /* SONKINS WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// MOBILE FIRST: Single column (label - value)
+// MOBILE FIRST
 .widget.sonkins {
 
-  .metric {
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    & > div {
+  &.FAILURE {
+    @include infiniteBgColorChange($color-bg-widget, $color-bad, 8s);
+    font-weight: bold;
+    .metric {
+      width: 100% !important;
+      img {
+        height: 10rem;
+      }
+    }
+  }
+
+  &.BUILDING, &.REBUILDING {
+    @include infiniteFlipping(20s);
+    font-weight: bold;
+
+    article {
+      .flip-container {
+        display: flex;
+        flex-grow: 1;
+        .face {
+          display: flex;
+        }
+      }
+    }
+
+    .progress-bar {
+      .trail {
+        stroke: $color-black;
+      }
+      .path {
+        stroke: $color-building;
+      }
+      text {
+        fill: $color-building;
+      }
+    }
+
+  }
+}
+
+.widget.sonkins.desktop.REBUILDING,
+.widget.sonkins.desktop.BUILDING {
+  article {
+    .metric {
       display: flex;
-      justify-content: space-between;
-      flex-direction: row-reverse;
+      align-self: center;
+      justify-content: center;
+      width: 100%;
       height: 100%;
-      overflow: hidden;
-      line-height: 1.2;
-      align-items: center;
+      flex-grow: 1;
+      > div {
+        height: auto;
+        align-self: center;
+      }
       img {
-        object-fit: contain;
-        height: 2.5rem;
-        padding-bottom: 0.5rem;
-      }
-      .value {
-        font-size: 150%;
+        height: 10rem;
       }
     }
   }
-
 }
 
-// DESKTOP: 2 columns, each value is above its label
-.widget.sonkins.desktop {
-  font-size: 120%;
-  .metric {
-    height: 9rem;
-    font-size: 120%;
-    width: 50%;
-    & > div {
-      justify-content: flex-end;
-      flex-direction: column;
-      img {
-        object-fit: contain;
-        height: 5rem;
-      }
-      .value {
-        font-size: 190%;
-      }
-    }
-
+// RESPONSIVE BEHAVIOUR: no need to display avatar on very small height
+.widget.sonkins.desktop.height-xxxs.REBUILDING,
+.widget.sonkins.desktop.height-xxxs.BUILDING {
+  img {
+    display: none;
   }
 }
 
-// DESKTOP: 4 columns
-.widget.sonkins.width-xs article {
-  .metric {
-    width: 25%;
+.widget.sonkins.desktop.height-xxxs {
+  img {
+    height: 3.5rem;
   }
 }
-
-// DESKTOP: 4 columns, larger font
-.widget.sonkins.width-sm article,
-.widget.sonkins.width-md article,
-.widget.sonkins.width-lg article
-{
-  font-size: 120%;
-  .metric {
-    width: 25%;
-    .value {
-      font-size: 190%;
-    }
-  }
-}
-
-

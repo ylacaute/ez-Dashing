@@ -22,10 +22,11 @@
 // Framework
 @import "core/core-mixins";
 @import 'core/icons';
-@import 'core/effect/blink_effect';
-@import 'core/effect/flip_effect';
+@import 'core/effect/blinkEffect';
 @import 'core/effect/spinnerEffect';
 @import 'core/scalable-text';
+
+@import 'core/effect/effectMixins';
 
 // Generic components
 @import 'component/chart/CircularProgressBar';
@@ -45,11 +46,5 @@
 @import 'component/widget/SonkinsWidget';
 
 
-//@import 'widget/JenkinsMonitoringWidget';
-//@import 'widget/GraphWidget';
 @import 'metric/metrics';
 
-
-@-moz-document url-prefix() {
-
-}

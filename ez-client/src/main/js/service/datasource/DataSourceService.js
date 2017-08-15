@@ -139,10 +139,9 @@ export default class DataSourceService {
       }
       jsonPathValue = JSONPath.query(jsonResponse, mapping[propertyName]);
       if (type != "array") {
-        jsonPathValue = jsonPathValue[0];
+        jsonPathValue = TypeUtils.convert(jsonPathValue[0], type);
       }
-      result[prop] = TypeUtils.convert(jsonPathValue, type);
-      result[propertyName] = jsonPathValue;
+      result[prop] = jsonPathValue;
     }
     logger.trace("getMappedProperties for query '{}':", ds.id, result);
     return result;

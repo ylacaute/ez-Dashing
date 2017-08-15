@@ -16,3 +16,87 @@
   color: $color-bad;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   METRIC COMMON LAYOUT
+
+   <div>
+     <div class="metric">...</div>
+     <div class="metric">...</div>
+      ...
+   </div
+
+   metric are just div inside another div. The layout here describe a
+   default responsive behaviour for these metrics.
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+// MOBILE FIRST: Single column (label     value)
+%metric {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1rem;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    height: 100%;
+    overflow: hidden;
+    line-height: 1.2;
+    align-items: center;
+    img {
+      object-fit: contain;
+      height: 2.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .value {
+      font-size: 150%;
+    }
+  }
+}
+.metric {
+  @extend %metric;
+}
+
+// DESKTOP DEFAULT: 2 columns, each value is above its label
+.desktop .metric {
+  //height: 9rem;
+  font-size: 120%;
+  width: 50%;
+  & > div {
+    justify-content: flex-end;
+    flex-direction: column;
+    img {
+      object-fit: contain;
+      height: 5rem;
+    }
+    .value {
+      font-size: 190%;
+    }
+  }
+}
+
+// DESKTOP LARGER: 4 columns, each value is above its label
+.desktop.width-xs article {
+  .metric {
+    width: 25%;
+  }
+}
+
+// DESKTOP EVEN LARGER: same as before, larger
+.desktop.width-sm .metric,
+.desktop.width-md .metric,
+.desktop.width-lg .metric {
+  width: 25%;
+  .value {
+    font-size: 190%;
+  }
+}
+
+// RESPONSIVE BASED ON HEIGHT: If the height and the width are very small, we display only the first metric which
+// is supposed the most important one.
+.height-xxxs.width-xxxs .metric:nth-child(n+2),
+.height-xxxs.width-xxs .metric:nth-child(n+2) {
+  display: none;
+}

@@ -23,9 +23,21 @@ export default class SonarWidget extends AbstractWidget {
     const { lines, coverage, violations } = this.props;
     return (
       <div>
-        <Metric label="Lines" value={lines} />
-        <Metric label="Violations" value={violations} thresholds={this.props.thresholds.violations}/>
-        <Metric label="Coverage" value={coverage} thresholds={this.props.thresholds.coverage}/>
+        <Metric
+          label="Lines"
+          value={lines}
+        />
+        <Metric
+          label="Violations"
+          value={violations}
+          thresholds={this.props.thresholds.violations}
+        />
+        <Metric
+          label="Coverage"
+          value={coverage}
+          formatValue={n => `${n}%`}
+          thresholds={this.props.thresholds.coverage}
+        />
       </div>
     );
   }

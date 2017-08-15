@@ -61,17 +61,23 @@
         },
         "refresh": 30,
         "mapping": {
+          "bool:building": "$.building",
+          "int:progress": "$.executor.progress",
           "string:status": "$.result",
           "string:author": "$.changeSet.items[-1:].author.fullName"
         },
         "queries": [
           {
             "id": "jenkins-lastBuild-systemA",
-            "path": "/job/systemA/branch/master/lastBuild/api/json"
+            "path": "/job/systemA/branch/master/lastBuild/api/json&depth=1"
           },
           {
             "id": "jenkins-lastBuild-systemB",
-            "path": "/job/systemB/branch/master/lastBuild/api/json"
+            "path": "/job/systemB/branch/master/lastBuild/api/json&depth=1"
+          },
+          {
+            "id": "jenkins-lastBuild-systemC",
+            "path": "/job/systemC/branch/master/lastBuild/api/json&depth=1"
           }
         ]
       }
@@ -85,7 +91,7 @@
       {
         "type": "ErrorWidget",
         "title": "SAMPLE ERROR",
-        "enabled": true
+        "enabled": false
       },
       {
         "type": "TeamWidget",
@@ -132,7 +138,7 @@
       },
       {
         "type": "SonkinsWidget",
-        "title": "Sonkins A",
+        "title": "SYSTEM A",
         "dataSource": [
           "jenkins-lastBuild-systemA",
           "sonar-stats-systemA"
@@ -141,9 +147,18 @@
       },
       {
         "type": "SonkinsWidget",
-        "title": "Sonkins B",
+        "title": "SYSTEM B",
         "dataSource": [
           "jenkins-lastBuild-systemB",
+          "sonar-stats-systemB"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM C",
+        "dataSource": [
+          "jenkins-lastBuild-systemC",
           "sonar-stats-systemB"
         ],
         "enabled": true

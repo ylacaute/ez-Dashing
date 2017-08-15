@@ -13,27 +13,31 @@ export default class TypeUtils {
     return Number(n) === n && n % 1 !== 0;
   }
 
-  static convert = (stringValue, typeAsString) => {
-    let result = stringValue;
+  static convert = (obj, typeAsString) => {
+    let result;
+
+    if (obj == null) {
+      return null;
+    }
+
     switch (typeAsString) {
+      case "str":
       case "string":
+        result = obj.toString();
         break;
       case "bool":
       case "boolean":
-        result = stringValue == "true";
+        result = (obj == true || obj == "true" || obj == "True");
         break;
       case "int":
       case "integer":
-        result = parseInt(stringValue);
+        result = parseInt(obj);
         break;
       case "float":
-        result = parseFloat(stringValue);
-        break;
-      case "array":
-        result = Array.from(stringValue);
+        result = parseFloat(obj);
         break;
       default:
-        throw "Unsupported type exception: '" + stringValue + "'";
+        throw "Unsupported type exception: '" + obj + "'";
     }
     return result;
   };

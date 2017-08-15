@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import AvatarConfig from "config/AvatarConfig";
 import Metric from "component/widget/base/Metric.jsx";
+import FlipComponent from "component/effect/FlipComponent.jsx";
+import CircularProgressBar from 'component/chart/CircularProgressBar.jsx'
+
+// Samples :
+// https://builds.apache.org/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true
 
 
 export default class SonkinsWidget extends AbstractWidget {
@@ -12,36 +17,84 @@ export default class SonkinsWidget extends AbstractWidget {
       "FAILURE", "UNSTABLE", "REBUILDING", "BUILDING", "ABORTED", "SUCCESS", "UNKNOWN"
     ]),
     author: PropTypes.string,
-    goodBuildUrl: PropTypes.string,
+    building: PropTypes.bool,
+    progress: PropTypes.number,
     lines: PropTypes.number,
     coverage: PropTypes.number,
-    violations: PropTypes.number
+    violations: PropTypes.number,
+    goodBuildUrl: PropTypes.string
   };
 
   static defaultProps = {
     status: "UNKNOWN",
     author: "",
-    goodBuildUrl: "/img/good.png",
+    building: false,
+    progress: 0,
     lines: 0,
     coverage: 0,
-    violations: 0
+    violations: 0,
+    goodBuildUrl: "/img/good.png"
   };
 
+  /**
+   * Return the real status of Jenkins.
+   * Indeed sometimes jenkins returns a null status when building and set a building boolean to true.
+   */
+  getStatus() {
+    return this.props.building ? "BUILDING" : this.props.status;
+  }
 
-  renderContent() {
-    const { status, lines, coverage, violations, author, avatars } = this.props;
-    const avatar = AvatarConfig.get(author, avatars);
-    let url = avatar.url;
+  getWidgetClassNames() {
+    return super
+      .getWidgetClassNames()
+      .concat(this.getStatus());
+  }
 
-    if (status != "FAILURE") {
-      url = this.props.goodBuildUrl;
-    }
+  renderOnBuildUnknown() {
     return (
       <div>
-        <Metric
-          label="Last build"
-          value={ <img draggable="false" src={url} /> }
+        <p>UNKOWN STATE</p>
+      </div>
+    );
+  }
+
+  renderAuthorMetric(label, iconUrl) {
+    const url = iconUrl != null ? iconUrl : this.props.goodBuildUrl;
+    return (
+      <Metric
+        label={label}
+        value={
+          <img draggable="false" src={url} />
+        }
+      />
+    );
+  }
+
+  renderBuilding(avatar) {
+    return (
+      <FlipComponent>
+        {this.renderAuthorMetric("BUILDING", avatar.url)}
+        <CircularProgressBar
+          value={this.props.progress}
+          textForValue={(value) => `${value}%`}
         />
+      </FlipComponent>
+    );
+  }
+
+  renderBuildFail(avatar) {
+    return (
+      <div>
+        {this.renderAuthorMetric("BUILD FAILURE", avatar.url)}
+      </div>
+    );
+  }
+
+  renderBuildSuccess() {
+    const { lines, coverage, violations } = this.props;
+    return (
+      <div>
+        {this.renderAuthorMetric("Last build")}
         <Metric
           label="Lines"
           value={lines}
@@ -59,6 +112,26 @@ export default class SonkinsWidget extends AbstractWidget {
         />
       </div>
     );
+  }
+
+  renderContent() {
+    const { author, avatars } = this.props;
+    const avatar = AvatarConfig.get(author, avatars);
+
+    switch (this.getStatus()) {
+      case "SUCCESS":
+        return this.renderBuildSuccess();
+      case "BUILDING":
+      case "REBUILDING":
+        return this.renderBuilding(avatar);
+      case "UNKNOWN":
+      case "FAILURE":
+      case "UNSTABLE":
+        return this.renderBuildFail(avatar);
+      case "ABORTED":
+      default:
+        return this.renderOnBuildUnknown();
+    }
   }
 
 }
