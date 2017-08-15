@@ -26,6 +26,7 @@ export default class SonarWidget extends AbstractWidget {
         <Metric
           label="Lines"
           value={lines}
+          formatValue={n => `${parseInt(n / 1000)}k`}
         />
         <Metric
           label="Violations"

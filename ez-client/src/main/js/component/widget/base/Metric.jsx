@@ -33,7 +33,7 @@ export default class Metric extends React.Component {
     if (this.props.animated && (isFloat || isInt)) {
       let formatFunc = formatValue;
       if (isInt) {
-        formatFunc = n => parseInt(formatValue(n));
+        formatFunc = n => formatValue(parseInt(n));
       }
       return (
         <AnimatedNumber component="div"

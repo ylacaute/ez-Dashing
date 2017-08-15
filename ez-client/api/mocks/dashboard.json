@@ -39,7 +39,7 @@
         "refresh": 30,
         "mapping": {
           "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
-          "float:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
+          "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
           "int:violations": "$.component.measures[?(@.metric == 'violations')].value"
         },
         "queries": [
