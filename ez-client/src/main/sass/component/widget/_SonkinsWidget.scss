@@ -17,7 +17,7 @@
   }
 
   &.BUILDING, &.REBUILDING {
-    @include infiniteFlipping(20s);
+    @include infiniteFlipping(10s);
     font-weight: bold;
 
     article {
