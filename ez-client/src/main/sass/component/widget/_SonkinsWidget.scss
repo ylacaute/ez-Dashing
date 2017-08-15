@@ -2,16 +2,13 @@
 /* SONKINS WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// MOBILE FIRST
+// MOBILE FIRST: Single column (label - value)
 .widget.sonkins {
 
   .metric {
     display: inline-block;
     width: 100%;
     overflow: hidden;
-    &.image .value {
-      height: 60%;
-    }
     & > div {
       display: flex;
       justify-content: space-between;
@@ -22,26 +19,22 @@
       align-items: center;
       img {
         object-fit: contain;
-        height: 25px;
-      }
-      * {
-        margin: 0;
+        height: 2.5rem;
+        padding-bottom: 0.5rem;
       }
       .value {
         font-size: 150%;
-      }
-      .name {
       }
     }
   }
 
 }
 
-// DESKTOP
+// DESKTOP: 2 columns, each value is above its label
 .widget.sonkins.desktop {
   font-size: 120%;
   .metric {
-    height: 90px;
+    height: 9rem;
     font-size: 120%;
     width: 50%;
     & > div {
@@ -49,7 +42,7 @@
       flex-direction: column;
       img {
         object-fit: contain;
-        height: 50px;
+        height: 5rem;
       }
       .value {
         font-size: 190%;
@@ -58,11 +51,15 @@
 
   }
 }
+
+// DESKTOP: 4 columns
 .widget.sonkins.width-xs article {
   .metric {
     width: 25%;
   }
 }
+
+// DESKTOP: 4 columns, larger font
 .widget.sonkins.width-sm article,
 .widget.sonkins.width-md article,
 .widget.sonkins.width-lg article

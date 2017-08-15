@@ -11,6 +11,7 @@ export default class Metric extends React.Component {
     className: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.node,
+    formatValue: PropTypes.func,
     animated: PropTypes.bool,
     thresholds: PropTypes.object
   };
@@ -19,32 +20,41 @@ export default class Metric extends React.Component {
     className: '',
     label: '',
     value: {},
+    formatValue: n => n,
     animated: true,
     thresholds: null
   };
 
-  renderValue(value) {
-    if (TypeUtils.isNumber(value) && this.props.animated) {
+  renderValue(value, formatValue) {
+    const renderedValue = <div className="value">{value}</div>;
+    const isFloat = TypeUtils.isFloat(value);
+    const isInt = TypeUtils.isInt(value);
+
+    if (this.props.animated && (isFloat || isInt)) {
+      let formatFunc = formatValue;
+      if (isInt) {
+        formatFunc = n => parseInt(formatValue(n));
+      }
       return (
         <AnimatedNumber component="div"
                         className="value"
+                        stepPrecision={2}
                         value={value}
                         style={{transition: '0.8s ease-out' }}
-                        duration={2000}
-                        formatValue={n => parseInt(n)}/>
+                        duration={500}
+                        formatValue={formatFunc}/>
       )
-    } else {
-      return <div className="value">{value}</div>
     }
+    return renderedValue;
   }
 
   render() {
-    const { className, label, value, thresholds } = this.props;
+    const { className, label, value, formatValue, thresholds } = this.props;
 
     return (
       <div className={cn("metric", className, ThresholdConfig.get(thresholds, value))}>
         <div>
-          {this.renderValue(value)}
+          {this.renderValue(value, formatValue)}
           <div className="name">{label}</div>
         </div>
       </div>

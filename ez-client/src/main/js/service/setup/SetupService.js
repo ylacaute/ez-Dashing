@@ -135,7 +135,7 @@ export default class SetupService {
 
     this.getDashboardConfig(dashboardConfig => {
       this.extendsDashboardConfig(dashboardConfig);
-      logger.debug("Extended config:", dashboardConfig);
+      logger.info("Extended config:", dashboardConfig);
 
       const jenkinsMonitoringService = new JenkinsMonitoringService();
       const dataSourceService = new DataSourceService(dashboardConfig);

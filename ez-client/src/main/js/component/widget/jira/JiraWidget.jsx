@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import ThresholdConfig from "config/ThresholdConfig";
 
-class JiraWidget extends AbstractWidget {
+export default class JiraWidget extends AbstractWidget {
 
   /**
    *  "issuesKeys" and "total" properties came from a dataSource, configured in the dashboard configuration.
@@ -69,16 +68,3 @@ class JiraWidget extends AbstractWidget {
   }
 
 }
-
-const mapStateToProps = (state, ownProps) => {
-  let result = {
-    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
-  };
-  console.log("HUGE STATE = ", state);
-  return result;
-};
-
-export default connect(
-  mapStateToProps
-)(JiraWidget)
-

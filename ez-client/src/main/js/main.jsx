@@ -15,12 +15,13 @@ Logger.Level = {
   WARN: [3, 'WARN', 'color:#db8240'],
   ERROR: [4, 'ERROR', 'color:#c65555'],
 };
-Logger.setLevel("WidgetReducer", Logger.Level.DEBUG);
-Logger.setLevel("ClockReducer", Logger.Level.INFO);
+Logger.setLevel("WidgetReducer", Logger.Level.INFO);
+Logger.setLevel("DataSourceReducer", Logger.Level.INFO);
+Logger.setLevel("StartupReducer", Logger.Level.INFO);
 Logger.setLevel("RestClient", Logger.Level.INFO);
-Logger.setLevel("DataSourceService", Logger.Level.DEBUG);
+Logger.setLevel("DataSourceService", Logger.Level.INFO);
+Logger.setLevel("StartupService", Logger.Level.INFO);
 Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
-
 
 const setupService = new SetupService();
 

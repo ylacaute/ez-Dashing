@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ObjectUtils from 'utils/ObjectUtils';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
+import Logger from 'logger/Logger';
+
+const logger = Logger.getLogger("AbstractWidget");
 
 export default class AbstractWidget extends React.Component {
 
@@ -19,6 +22,10 @@ export default class AbstractWidget extends React.Component {
     loaded: false
   };
 
+  /**
+   * All widgets MUST call this function in order to retrieve from the new redux state all common
+   * widgets properties.
+   */
   static mapCommonWidgetProps = (state, ownProps) => {
     return {
       ...state.widget[ownProps.id]
@@ -32,11 +39,19 @@ export default class AbstractWidget extends React.Component {
     }
   }
 
+  /**
+   * Introduced in React v16: we can know nicely catch a rendering exception.
+   * When an exception occurs in rendering, we set the widget in an error state which will
+   * trigger a new rendering in safe-mode (see renderError).
+   */
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
   }
 
 
+  /**
+   * Return true if all the dataSources on the widget depend are loaded, return false otherwise.
+   */
   isDataSourcesLoaded() {
     let loaded = true;
     this.props.dataSource.forEach(ds => {
@@ -48,7 +63,9 @@ export default class AbstractWidget extends React.Component {
   }
 
   /**
-   * Generate the widget CSS class names as a single string
+   * Generate the widget CSS class names as an array. Using an array ease the overrides of this method by calling a
+   * concat on super.getWidgetClassNames(). Also thanks to the module 'classnames' which accept arrays as argument
+   * to generate the final CSS class string.
    */
   getWidgetClassNames() {
     return [
@@ -59,7 +76,8 @@ export default class AbstractWidget extends React.Component {
   }
 
   /**
-   * When a widget is on error, we need a independent template in order to not depend on some override methods.
+   * Render method of a widget in error. This method must be safe and independent in order to be sure
+   * to not generate another exception.
    */
   renderError(error) {
     let title = 'Unknown widget';
@@ -69,7 +87,8 @@ export default class AbstractWidget extends React.Component {
       if (error.name != null) name = error.name;
       if (error.message != null) message = error.message;
     }
-    if (!ObjectUtils.isNullOrEmpty(this.props.title)) title = this.props.title;
+    if (!ObjectUtils.isNullOrEmpty(this.props.title))
+      title = this.props.title;
 
     return (
       <section className={classnames(AbstractWidget.widgetClassName, 'error')}>
@@ -103,7 +122,7 @@ export default class AbstractWidget extends React.Component {
    * No widget content by default. Any widget has to override it.
    */
   renderContent() {
-    console.log("[WARN] A Widget has not implemented the renderContent method");
+    logger.warn("A Widget has not implemented the renderContent method");
     return null;
   }
 

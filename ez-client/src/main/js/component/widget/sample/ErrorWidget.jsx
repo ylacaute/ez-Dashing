@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
-class ErrorWidget extends AbstractWidget {
+export default class ErrorWidget extends AbstractWidget {
 
   constructor(props) {
     super(props);
@@ -20,14 +19,3 @@ class ErrorWidget extends AbstractWidget {
   }
 
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
-  };
-};
-
-export default connect(
-  mapStateToProps
-)(ErrorWidget)
-

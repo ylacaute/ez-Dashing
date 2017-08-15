@@ -18,7 +18,9 @@ const indexOfId = (dataSources, id) => {
 
 
 /**
- * This reducer manage all Widgets properties.
+ * This reducer manage the 'widgets' tree state part, in other words, all Widgets properties.
+ * Note that in order to make Widgets as dump as possible, we give them the loaded property of each dataSources
+ * they depend on. Thus, widgets only depend on this state tree part by default.
  */
 export default function(state = initialState, action) {
 
@@ -50,7 +52,6 @@ export default function(state = initialState, action) {
           dataSource: widgetDataSource
         };
       });
-
       break;
 
 

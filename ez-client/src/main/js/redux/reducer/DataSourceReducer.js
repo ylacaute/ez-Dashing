@@ -16,7 +16,7 @@ const indexOfId = (dataSources, id) => {
 
 
 /**
- * This reducer manage all DataSources information.
+ * This reducer manage the 'dataSources' tree state part, in other words, all dataSources properties.
  */
 export default function dataSourceReducer(state = initialState, action) {
 
@@ -28,21 +28,15 @@ export default function dataSourceReducer(state = initialState, action) {
 
 
     /**
-     * When configuration is loaded, it means dataSources are created must be injected in state tree.
+     * When configuration is loaded, it means dataSources are created and must be injected in state tree.
      * At this step these dataSources aren't loaded yet (they have loaded property set to false). This property
      * will be true as soon as the dataSource will receive data.
      */
     case SetupEvent.ConfigLoadSuccess:
       logger.debug("ConfigLoadSuccess");
       newState.dataSources = action.dataSources;
-      // dataSources.forEach(ds => {
-      //   newState[ds.id] = {
-      //     ...state[ds.id],
-      //     ...ds
-      //   };
-      // });
-
       break;
+
 
     /**
      * When a dataSource is refreshed, we mark it as loaded.
@@ -62,10 +56,6 @@ export default function dataSourceReducer(state = initialState, action) {
         },
         ...dataSources.slice(dataSourceToUpdateIndex + 1)
       ];
-      // newState[dataSourceId] = {
-      //   ...state[dataSourceId],
-      //   loaded: true
-      // };
       break;
 
     default:

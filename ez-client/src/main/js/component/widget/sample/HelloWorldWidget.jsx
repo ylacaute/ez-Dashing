@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
-class HelloWorldWidget extends AbstractWidget {
+export default class HelloWorldWidget extends AbstractWidget {
 
   renderContent() {
     return (
@@ -19,14 +18,3 @@ class HelloWorldWidget extends AbstractWidget {
   }
 
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
-  };
-};
-
-export default connect(
-  mapStateToProps
-)(HelloWorldWidget)
-

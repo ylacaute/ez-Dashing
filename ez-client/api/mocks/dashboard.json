@@ -78,11 +78,6 @@
     ],
     "widgets": [
       {
-        "type": "TeamWidget",
-        "title": "SUPER TEAM",
-        "enabled": true
-      },
-      {
         "type": "HelloWorldWidget",
         "title": "HELLO WORLD 2",
         "enabled": true
@@ -90,6 +85,11 @@
       {
         "type": "ErrorWidget",
         "title": "SAMPLE ERROR",
+        "enabled": true
+      },
+      {
+        "type": "TeamWidget",
+        "title": "SUPER TEAM",
         "enabled": true
       },
       {

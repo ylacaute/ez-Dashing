@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 import Metric from 'component/widget/base/Metric.jsx';
 
-class SonarWidget extends AbstractWidget {
+export default class SonarWidget extends AbstractWidget {
 
   static propTypes = {
     logoUrl: PropTypes.string,
@@ -32,12 +31,3 @@ class SonarWidget extends AbstractWidget {
   }
 
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...AbstractWidget.mapCommonWidgetProps(state, ownProps)
-  };
-};
-
-
-export default connect(mapStateToProps)(SonarWidget)
