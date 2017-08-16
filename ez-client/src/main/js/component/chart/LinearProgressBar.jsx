@@ -4,90 +4,42 @@ import PropTypes from 'prop-types';
 export default class LinearProgressBar extends React.Component {
 
   static propTypes = {
-    value: PropTypes.number.isRequired,
-    strokeWidth: PropTypes.number,
-    initialAnimation: PropTypes.bool,
-    textForValue: PropTypes.func,
-    classForValue: PropTypes.func,
-    displayValue: PropTypes.string,
     className: PropTypes.string,
-    displayValuePosition: PropTypes.object,
-    labelPosition: PropTypes.object,
+    percent: PropTypes.number.isRequired
   };
 
   static defaultProps = {
-    displayValue: null,
-    label: '',
-    strokeWidth: 2,
-    initialAnimation: true,
-    textForValue: (value) => `${value}`,
-    classForValue: (value) => '',
     className: '',
-    displayValuePosition: { x: 2, y: 8 },
-    labelPosition: { x: 96, y: 8 }
+    percent: 0
   };
 
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.initialAnimation ? 0 : props.value
-    };
-  }
+  state = {
+    percent: this.props.percent
+  };
 
   componentDidMount() {
-    if (this.props.initialAnimation) {
-      this.initialTimeout = setTimeout(() => {
-        this.requestAnimationFrame = window.requestAnimationFrame(() => {
-          this.setState({
-            value: this.props.value,
-          });
-        });
-      }, 0);
-    }
-  }
+    this.updateState(this.props);
+  };
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      value: nextProps.value,
-    });
-  }
+    this.updateState(nextProps);
+  };
 
-  componentWillUnmount() {
-    clearTimeout(this.initialTimeout);
-    window.cancelAnimationFrame(this.requestAnimationFrame);
-  }
+  updateState() {
+    this.setState({
+      percent: this.props.percent
+    });
+  };
 
   render() {
-    const classNames = `progress-bar linear  
-      ${this.props.className} 
-      ${this.props.classForValue(this.props.value)}`;
-    const pathDescription = "M 0,12 L 100,12";
-    const progressStyle = { strokeDasharray: `${this.state.value} 100` };
-    const displayValue = this.props.displayValue != null ?
-      this.props.displayValue : this.props.textForValue(this.state.value);
-    const { displayValuePosition, labelPosition, strokeWidth } = this.props;
+    let { percent } = this.state;
+    percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
+    const style = {
+      width: `${percent}%`
+    };
     return (
-      <div className="linear-progress-bar-wrapper">
-        <svg className={classNames} width="100%" height="100%" viewBox="0 0 100 12">
-          <path
-            className="trail"
-            d={pathDescription}
-            strokeWidth={strokeWidth}
-            fillOpacity={0} />
-          <path
-            className="path"
-            d={pathDescription}
-            strokeWidth={strokeWidth}
-            fillOpacity={0}
-            style={progressStyle} />
-          <text className="display-value" x={displayValuePosition.x} y={displayValuePosition.y}>
-            {displayValue}
-          </text>
-          <text className="label" x={labelPosition.x} y={labelPosition.y}>
-            {this.props.label}
-          </text>
-        </svg>
+      <div className={'linear-progress-bar ' + this.props.className}>
+        <div style={style}/>
       </div>
     );
   }
