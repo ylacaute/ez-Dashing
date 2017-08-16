@@ -1,4 +1,4 @@
-import Logger from 'logger/Logger';
+import Logger from 'utils/Logger';
 import GridEvent from 'component/grid/GridEvent';
 import { DataSourceEvent } from 'service/datasource/DataSourceService';
 import { SetupEvent } from 'service/setup/SetupService';

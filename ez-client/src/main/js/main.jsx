@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import Application from './Application.jsx'
 import SetupService from 'service/setup/SetupService';
-import Logger from 'logger/Logger';
+import Logger from 'utils/Logger';
 
 // Logger configuration
 Logger.ENABLE_COLOR = true;

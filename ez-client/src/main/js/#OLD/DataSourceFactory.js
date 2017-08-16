@@ -1,4 +1,4 @@
-import RestClient from 'client/RestClient';
+import RestClient from 'utils/RestClient';
 import DataSourceActionType from 'datasource/DataSourceEvent';
 
 const BASE_PATH = '/api/datasource/';

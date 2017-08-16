@@ -1,4 +1,4 @@
-import RestClient from 'client/RestClient';
+import RestClient from 'utils/RestClient';
 import ObjectUtils from 'utils/ObjectUtils.js';
 import GridLayoutGenerator from 'service/config/GridLayoutGenerator';
 import WidgetComponentFactory from 'service/config/WidgetComponentFactory';

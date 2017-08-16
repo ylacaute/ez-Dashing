@@ -1,5 +1,5 @@
-import Logger from "logger/Logger";
-import RestException from "client/RestException";
+import Logger from "utils/Logger";
+import RestException from "utils/RestException";
 
 const logger = Logger.getLogger("RestClient");
 

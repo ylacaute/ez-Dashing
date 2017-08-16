@@ -1,9 +1,5 @@
 import React from 'react';
-
-// Sample widgets
 import { HelloWorldWidget, ErrorWidget} from 'component/widget/sample';
-
-// Real widgets
 import ClockWidget from 'component/widget/clock';
 import JiraWidget from 'component/widget/jira';
 import SprintWidget from 'component/widget/sprint';
@@ -18,12 +14,8 @@ export default class WidgetFactory {
     let Component;
 
     switch (widgetConfiguration.type) {
-
-      // Sample widgets
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
       case "ErrorWidget": Component = ErrorWidget; break;
-
-      // Real widgets
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
       case "SprintWidget": Component = SprintWidget; break;
@@ -39,5 +31,16 @@ export default class WidgetFactory {
       </div>
     );
   };
+
+  /**
+   * Generate React widget components
+   */
+  static createAllWidgets(dashboardConfig) {
+    return dashboardConfig.widgets
+      .filter(elt => elt.enabled != false)
+      .map((widgetConfig) => {
+        return WidgetFactory.create(widgetConfig);
+      });
+  }
 
 }

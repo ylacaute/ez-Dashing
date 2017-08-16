@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ObjectUtils from 'utils/ObjectUtils';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
-import Logger from 'logger/Logger';
+import Logger from 'utils/Logger';
 
 const logger = Logger.getLogger("AbstractWidget");
 

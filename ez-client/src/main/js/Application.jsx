@@ -65,8 +65,7 @@ class Application extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    startup: state.startup,
-    jenkinsMonitoring: state.jenkinsMonitoring
+    startup: state.startup
   };
 };
 
@@ -89,7 +88,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 
-import RestClient from 'client/RestClient.js';
+import RestClient from 'utils/RestClient.js';
 import ObjectUtils from 'utils/ObjectUtils.js';
 
 

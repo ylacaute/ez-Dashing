@@ -1,4 +1,4 @@
-import Logger from "logger/Logger";
+import Logger from "utils/Logger";
 
 const logger = Logger.getLogger("LoggerMiddleware");
 
