@@ -116,7 +116,7 @@ export default class AbstractWidget extends React.Component {
    */
   renderLoading() {
     return (
-      <div className="spinner">
+      <div className="cubeSpinner">
         <div className="cube1"></div>
         <div className="cube2"></div>
       </div>

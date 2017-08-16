@@ -18,9 +18,11 @@
 
   &.BUILDING, &.REBUILDING {
     @include infiniteFlipping(10s);
+
     font-weight: bold;
 
     article {
+      @include infiniteBlinking(2s, 0.3);
       .flip-container {
         display: flex;
         flex-grow: 1;

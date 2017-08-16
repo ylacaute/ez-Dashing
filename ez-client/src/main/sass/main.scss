@@ -16,24 +16,16 @@
 @import "/node_modules/react-grid-layout/css/styles.css";
 @import "/node_modules/react-resizable/css/styles.css";
 
-
 //@import "../../../node_modules/chartist/dist/scss/chartist";
 
-// Framework
-@import "core/core-mixins";
-@import 'core/icons';
-@import 'core/effect/blinkEffect';
-@import 'core/effect/spinnerEffect';
-@import 'core/scalable-text';
-
-@import 'core/effect/effectMixins';
-
-// Generic components
-@import 'component/chart/CircularProgressBar';
-@import 'component/chart/LinearProgressBar';
+// Utils
+@import 'utils/icons';
+@import 'utils/effects';
 
 // Components
 @import 'component/grid';
+@import 'component/chart/CircularProgressBar';
+@import 'component/chart/LinearProgressBar';
 
 // Widgets components
 @import 'component/widget/base/Widget';
@@ -44,7 +36,10 @@
 @import 'component/widget/JiraWidget';
 @import 'component/widget/SonarWidget';
 @import 'component/widget/SonkinsWidget';
+@import 'component/widget/GraphWidget';
+@import 'component/widget/JenkinsMonitoringWidget';
 
 
-@import 'metric/metrics';
+@include enableCubeSpinner();
+
 

@@ -26,4 +26,73 @@
     fill: $color-good;
   }
 
+
 }
+
+
+//OLD
+/*
+$color-good: #74b53c !default;
+$color-average: #df701f !default;
+$color-bad: #c65555 !default;
+
+
+// LINEAR PROGRESS BAR
+
+.progress-bar-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.progress-bar.linear {
+  .path {
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .display-value {
+    font-size: 0.8rem;
+    text-anchor: start;
+  }
+  .label {
+    font-size: 0.4rem;
+    text-anchor: end;
+  }
+}
+
+
+// CIRCULAR PROGRESS BAR
+
+
+
+
+
+// COMMON PROGRESS BAR BEHAVIOUR
+
+.progress-bar.good {
+  .path {
+    stroke: $color-good;
+  }
+  .display-value {
+    fill: $color-good;
+  }
+}
+.progress-bar.avg {
+  .path {
+    stroke: $color-average;
+  }
+  .display-value {
+    fill: $color-average;
+  }
+}
+.progress-bar.bad {
+  .path {
+    stroke: $color-bad;
+  }
+  .display-value {
+    fill: $color-bad;
+  }
+}
+
+/* Inspired of :
+    - https://github.com/iqnivek/react-circular-progressbar
+*/
+

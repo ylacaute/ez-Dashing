@@ -1,4 +1,8 @@
 
+html, body > section, .react-grid-layout {
+  background-color: $color-bg-grid;
+}
+
 .react-grid-placeholder {
   background-color: $color-bg-grid-placeholder !important;
 }
