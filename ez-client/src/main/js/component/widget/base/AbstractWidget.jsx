@@ -12,14 +12,19 @@ export default class AbstractWidget extends React.Component {
   static widgetClassName = 'widget';
 
   static propTypes = {
+    loaded: PropTypes.bool,
     title: PropTypes.string,
+    subTitle: PropTypes.string,
     className: PropTypes.string,
-    sizeInfo: PropTypes.object,
-    loaded: PropTypes.bool
+    sizeInfo: PropTypes.object
   };
 
   static defaultProps = {
-    loaded: false
+    loaded: false,
+    title: null,
+    subTitle: null,
+    className: "",
+    sizeInfo: {},
   };
 
   /**

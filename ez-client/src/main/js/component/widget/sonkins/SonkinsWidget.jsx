@@ -18,6 +18,7 @@ export default class SonkinsWidget extends AbstractWidget {
     ]),
     author: PropTypes.string,
     building: PropTypes.bool,
+    branch: PropTypes.string,
     progress: PropTypes.number,
     lines: PropTypes.number,
     coverage: PropTypes.number,
@@ -28,6 +29,7 @@ export default class SonkinsWidget extends AbstractWidget {
   static defaultProps = {
     status: "UNKNOWN",
     author: "",
+    branch: "master",
     building: false,
     progress: 0,
     lines: 0,
@@ -50,10 +52,22 @@ export default class SonkinsWidget extends AbstractWidget {
       .concat(this.getStatus());
   }
 
+  /**
+   * Simple Header by default, with h1 tag
+   */
+  renderHeader() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <strong>{this.props.branch}</strong>
+      </div>
+    )
+  }
+
   renderOnBuildUnknown() {
     return (
       <div>
-        <p>UNKOWN STATE</p>
+        <p>UNKNOWN STATE</p>
       </div>
     );
   }
