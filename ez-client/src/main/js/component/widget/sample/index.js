@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
-import ErrorWidget from "component/widget/sample/ErrorWidget.jsx";
+import HelloErrorWidget from "component/widget/sample/HelloErrorWidget.jsx";
 import HelloWorldWidget from "component/widget/sample/HelloWorldWidget.jsx";
+import HelloGraphWidget from "component/widget/sample/HelloGraphWidget.jsx";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 module.exports = {
-  ErrorWidget: connect(mapStateToProps)(ErrorWidget),
-  HelloWorldWidget: connect(mapStateToProps)(HelloWorldWidget)
+  HelloErrorWidget: connect(mapStateToProps)(HelloErrorWidget),
+  HelloWorldWidget: connect(mapStateToProps)(HelloWorldWidget),
+  HelloGraphWidget: connect(mapStateToProps)(HelloGraphWidget)
 };

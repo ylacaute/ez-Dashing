@@ -1,0 +1,41 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* BURNDOWN CHART WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+$color-chart-burndown-tick-line: $color-gray;
+$color-chart-burndown-tick-label: $color-gray;
+$color-chart-burndown-line-ref: red;
+$color-chart-burndown-line-current: white;
+
+.widget.burndownchart {
+
+  article {
+    background-color: $color-bg-widget-header;
+
+
+  }
+
+  .myChart {
+    width: 100% !important;
+    height: 100% !important;
+
+    .tick-label {
+      fill: $color-chart-burndown-tick-label;
+    }
+    .tick-line {
+      stroke: $color-chart-burndown-tick-line;
+    }
+    g g:not(.tick) {
+      // First line
+      g:nth-child(1) path {
+        stroke: $color-chart-burndown-line-ref;
+      }
+      // Second line
+      g:nth-child(2) path {
+        stroke: $color-chart-burndown-line-current;
+      }
+    }
+  }
+}
+

@@ -85,13 +85,23 @@
     "widgets": [
       {
         "type": "HelloWorldWidget",
-        "title": "HELLO WORLD 2",
-        "enabled": true
+        "title": "HELLO WORLD",
+        "enabled": false
       },
       {
-        "type": "ErrorWidget",
-        "title": "SAMPLE ERROR",
+        "type": "HelloErrorWidget",
+        "title": "HELLO ERROR",
         "enabled": false
+      },
+      {
+        "type": "HelloGraphWidget",
+        "title": "HELLO GRAPH",
+        "enabled": false
+      },
+      {
+        "type": "BurndownChartWidget",
+        "title": "BURNDOWN",
+        "enabled": true
       },
       {
         "type": "TeamWidget",

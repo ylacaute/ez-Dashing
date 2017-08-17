@@ -1,8 +1,8 @@
 import React from 'react';
-import { HelloWorldWidget, ErrorWidget} from 'component/widget/sample';
+import { HelloWorldWidget, HelloErrorWidget, HelloGraphWidget } from 'component/widget/sample';
 import ClockWidget from 'component/widget/clock';
 import JiraWidget from 'component/widget/jira';
-import SprintWidget from 'component/widget/sprint';
+import { SprintWidget, BurndownChartWidget } from 'component/widget/sprint';
 import TeamWidget from 'component/widget/team';
 import SonarWidget from 'component/widget/sonar';
 import SonkinsWidget from 'component/widget/sonkins';
@@ -15,10 +15,12 @@ export default class WidgetFactory {
 
     switch (widgetConfiguration.type) {
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
-      case "ErrorWidget": Component = ErrorWidget; break;
+      case "HelloGraphWidget": Component = HelloGraphWidget; break;
+      case "HelloErrorWidget": Component = HelloErrorWidget; break;
       case "ClockWidget": Component = ClockWidget; break;
       case "JiraWidget": Component = JiraWidget; break;
       case "SprintWidget": Component = SprintWidget; break;
+      case "BurndownChartWidget": Component = BurndownChartWidget; break;
       case "TeamWidget": Component = TeamWidget; break;
       case "SonarWidget": Component = SonarWidget; break;
       case "SonkinsWidget": Component = SonkinsWidget; break;

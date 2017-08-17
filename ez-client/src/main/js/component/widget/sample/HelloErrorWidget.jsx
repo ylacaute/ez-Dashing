@@ -1,7 +1,7 @@
 import React from 'react';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 
-export default class ErrorWidget extends AbstractWidget {
+export default class HelloErrorWidget extends AbstractWidget {
 
   constructor(props) {
     super(props);
