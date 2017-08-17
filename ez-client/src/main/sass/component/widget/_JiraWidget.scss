@@ -69,10 +69,10 @@
 // Responsive widget styles: font and icon size
 // --------------------------------------------
 .widget.jira.width-xxs article {
-  font-size: 200%;
+  font-size: 150%;
   ul li .icon {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
 }
 .widget.jira.width-xs article,
@@ -80,9 +80,9 @@
 .widget.jira.width-md article,
 .widget.jira.width-lg article
 {
-  font-size: 300%;
+  font-size: 200%;
   ul li .icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 }
