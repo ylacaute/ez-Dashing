@@ -57,10 +57,10 @@ export default class SprintWidget extends AbstractWidget {
   renderContent() {
     const { progress, daysLeft } = this.state;
     return (
-      <CircularProgressBar
-        value={progress}
-        displayValue={daysLeft}
-        label="days left"/>
+        <CircularProgressBar
+          value={progress}
+          displayValue={daysLeft}
+          label="days left"/>
     );
   }
 

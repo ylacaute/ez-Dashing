@@ -10,7 +10,7 @@ export default class HelloWorldWidget extends AbstractWidget {
     this.state = {
       inc: 0
     };
-    setInterval(() => {this.setState({inc: this.state.inc + 10})}, 1000);
+    setInterval(() => {this.setState({inc: this.state.inc + 10})}, 2000);
   }
 
   renderContent() {

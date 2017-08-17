@@ -31,19 +31,6 @@
         }
       }
     }
-
-    .progress-bar {
-      .trail {
-        stroke: $color-black;
-      }
-      .path {
-        stroke: $color-building;
-      }
-      text {
-        fill: $color-building;
-      }
-    }
-
   }
 }
 
@@ -82,3 +69,19 @@
   }
 }
 
+
+
+// SONKINS PROGRESS BAR CONFIGURATION
+.widget.sonkins .progress-bar{
+  .trail {
+    stroke: $color-black;
+    background: $color-black;
+  }
+  .path {
+    stroke: $color-building;
+    background: $color-building !important;
+  }
+  text {
+    fill: $color-building;
+  }
+}

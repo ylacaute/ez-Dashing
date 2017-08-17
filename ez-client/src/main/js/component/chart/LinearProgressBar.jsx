@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default class LinearProgressBar extends React.Component {
 
@@ -9,7 +9,7 @@ export default class LinearProgressBar extends React.Component {
   };
 
   static defaultProps = {
-    className: '',
+    className: "",
     percent: 0
   };
 
@@ -38,8 +38,9 @@ export default class LinearProgressBar extends React.Component {
       width: `${percent}%`
     };
     return (
-      <div className={'linear-progress-bar ' + this.props.className}>
-        <div style={style}/>
+      <div className={"progress-bar linear trail " + this.props.className}>
+        <div className="path" style={style}/>
+        <div className="trail"/>
       </div>
     );
   }
