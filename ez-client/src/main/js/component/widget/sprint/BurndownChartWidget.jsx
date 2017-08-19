@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from 'victory';
 
@@ -39,14 +40,30 @@ const currentVelocity = [
 
 export default class BurndownChartWidget extends AbstractWidget {
 
+  static propTypes = {
+    issues: PropTypes.array.isRequired,
+  };
+
+  static defaultProps = {
+    issues: []
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       inc: 0
     };
   }
-
   renderContent() {
+
+    return (
+      <div>
+        <p>NUMBER OF ISSUES CLOSED: {this.props.issues.length}</p>
+      </div>
+    );
+  }
+
+  renderContent2() {
     return (
       <VictoryChart
         width={1000}

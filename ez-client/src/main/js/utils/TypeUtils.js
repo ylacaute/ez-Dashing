@@ -1,3 +1,4 @@
+import moment from 'moment';
 
 export default class TypeUtils {
 
@@ -35,6 +36,9 @@ export default class TypeUtils {
         break;
       case "float":
         result = parseFloat(obj);
+        break;
+      case "date":
+        result = moment(obj).toDate();
         break;
       default:
         throw "Unsupported type exception: '" + obj + "'";

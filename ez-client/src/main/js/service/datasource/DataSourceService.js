@@ -1,7 +1,7 @@
 import RestClient from "utils/RestClient";
 import Logger from "utils/Logger";
+import JSONPathMapper from 'utils//JSONPathMapper';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
-import JSONPathMapper from 'service/datasource/JSONPathMapper';
 
 const logger = Logger.getLogger("DataSourceService");
 
@@ -39,21 +39,30 @@ export default class DataSourceService {
     const path = this.getDataSourceServerPath();
 
     RestClient.get(path + ds.id, jsonResponse => {
-      const widgetIdsListening = this.getWidgetIdsListening(ds.id);
-      logger.trace("getWidgetIdsListening : " + widgetIdsListening);
-
       this.store.dispatch({
         type: DataSourceEvent.DataSourceRefreshed,
         lastUpdate: new Date(),
         dataSourceId: ds.id,
-        widgetIdsListening: widgetIdsListening,
+        widgetIdsListening: this.getWidgetIdsListening(ds.id),
         payload: {
-          ...JSONPathMapper.mapProperties(ds, jsonResponse)
+          ...this.mapProperties(ds, jsonResponse)
         }
       });
     }, error => {
       logger.error("Unable to refresh dataSource, details:", error);
     });
+  };
+
+  mapProperties(ds, jsonResponse) {
+    if (ds.mapping == null) {
+      throw {
+        name: "Invalid dataSource configuration",
+        message: "You must define a mapping for query " + ds.id
+      }
+    }
+    let mappedProperties = JSONPathMapper.mapProperties(ds.mapping, jsonResponse);
+    logger.trace("getMappedProperties for query '{}':", ds.id, mappedProperties);
+    return mappedProperties;
   };
 
   /**
@@ -80,6 +89,7 @@ export default class DataSourceService {
         result.push(widgetConfig.id);
       }
     });
+    logger.trace("getWidgetIdsListening : " + result);
     return result;
   }
 

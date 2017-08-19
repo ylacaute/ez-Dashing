@@ -4,6 +4,7 @@ export default class Logger {
 
   static ENABLE_COLOR = false;
   static ROOT_LOGGER_NAME = "ROOT_LOGGER_NAME";
+  static LOG_ON_CONSOLE = true;
 
   static Level = {
     TRACE: [0, 'TRACE', 'color:green'],
@@ -67,10 +68,12 @@ export default class Logger {
   consoleLog(msgLevel, args) {
     const logObj = this.generateLog(msgLevel, args);
     if (logObj != null) {
-      if (Logger.ENABLE_COLOR) {
-        console.log("%c " + logObj.log, msgLevel[2], ...logObj.argsArrayForConsole);
-      } else {
-        console.log(logObj.log, ...logObj.argsArrayForConsole);
+      if (Logger.LOG_ON_CONSOLE) {
+        if (Logger.ENABLE_COLOR) {
+          console.log("%c " + logObj.log, msgLevel[2], ...logObj.argsArrayForConsole);
+        } else {
+          console.log(logObj.log, ...logObj.argsArrayForConsole);
+        }
       }
       return logObj.log;
     }

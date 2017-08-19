@@ -232,7 +232,5 @@ describe("JsonPATH", () => {
     assert.equal(lastAuthor[0], "jenkins3");
   });
 
-
-
 });
 
