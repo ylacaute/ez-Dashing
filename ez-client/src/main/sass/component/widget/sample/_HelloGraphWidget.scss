@@ -1,10 +1,10 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* BURNDOWN CHART WIDGET
+/* HELLO GRAPH WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // Victory chart framework is sadly opiniotated about inline styles, that's what we are obliged to use
 // !important to customize chart in SASS instead of 'victory theme' which are JS based file.
-.widget.burndownchart svg {
+.widget.hellograph svg {
   svg {
     g:nth-child(1) line,  // MAIN VERTICAL AXIS
     g:nth-child(2) line { // MAIN HORIZONTAL AXIS

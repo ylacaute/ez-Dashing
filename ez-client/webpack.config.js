@@ -26,7 +26,7 @@ let commonConfig = {
       'react-hot-loader/patch',
       './js/main.jsx'
     ],
-    vendor: ["react", "react-dom"]
+    vendor: ["eases", "jsonpath", "react", "react-animated-number", "react-dom", "react-grid-layout",  "victory"]
   },
 
   // Directories where to search to resolve imports

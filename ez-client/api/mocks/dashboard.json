@@ -27,6 +27,20 @@
               "int:inProgressTotal": "$.total",
               "array:inProgressIssuesKeys": "$.issues[*].key"
             }
+          },
+          {
+            "id": "jira-closed",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=creator,priority,customfield_11103,customfield_11111,resolutiondate",
+            "mapping": {
+              "array:issues": {
+                "jsonPath" : "$.issues",
+                "mapping" : {
+                  "string:key" : "$.key",
+                  "int:storyPoints" : "$.fields.customfield_11111",
+                  "string:resolutionDate" : "$.fields.resolutiondate"
+                }
+              }
+            }
           }
         ]
       },
@@ -96,7 +110,7 @@
       {
         "type": "HelloGraphWidget",
         "title": "HELLO GRAPH",
-        "enabled": false
+        "enabled": true
       },
       {
         "type": "BurndownChartWidget",

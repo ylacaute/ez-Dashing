@@ -30,7 +30,8 @@
 // Widgets components
 @import 'component/widget/base/Widget';
 @import 'component/widget/base/Metric';
-@import 'component/widget/HelloWorldWidget';
+@import 'component/widget/sample/HelloGraphWidget';
+@import 'component/widget/sample/HelloWorldWidget';
 @import 'component/widget/ClockWidget';
 @import 'component/widget/SprintWidget';
 @import 'component/widget/BurndownChartWidget';
@@ -42,3 +43,4 @@
 
 
 @include enableCubeSpinner();
+

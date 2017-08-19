@@ -1,34 +1,40 @@
 import React from 'react';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from 'victory';
 
-const {
-  // main component
-  Chart,
-  // graphs
-  Bars, Cloud, Dots, Labels, Lines, Pies, RadialLines, Ticks, Title,
-  // wrappers
-  Layer, Animate, Transform, Handlers,
-  // helpers
-  helpers, DropShadow, Gradient
-} = require('rumble-charts');
+const plannedVelocity = [
+  {date: '10-09-2017', storyPoints: 42},
+  {date: '11-09-2017', storyPoints: 42},
+  {date: '12-09-2017', storyPoints: 38},
+  {date: '13-09-2017', storyPoints: 38},
+  {date: '14-09-2017', storyPoints: 35},
+  {date: '15-09-2017', storyPoints: 30},
+  {date: '16-09-2017', storyPoints: 30},
+  {date: '17-09-2017', storyPoints: 28},
+  {date: '18-09-2017', storyPoints: 25},
+  {date: '19-09-2017', storyPoints: 25},
+  {date: '20-09-2017', storyPoints: 25},
+  {date: '21-09-2017', storyPoints: 20},
+  {date: '22-09-2017', storyPoints: 15},
+  {date: '23-09-2017', storyPoints: 15},
+  {date: '24-09-2017', storyPoints: 10},
+  {date: '25-09-2017', storyPoints: 0}
+];
 
-const series = [{
-  data: [1, 2, 3]
-}, {
-  data: [5, 7, 11]
-}, {
-  data: [13, 17, 19]
-}];
+const currentVelocity = [
+  {date: '10-09-2017', storyPoints: 42},
+  {date: '11-09-2017', storyPoints: 42},
+  {date: '12-09-2017', storyPoints: 42},
+  {date: '13-09-2017', storyPoints: 42},
+  {date: '14-09-2017', storyPoints: 32},
+  {date: '15-09-2017', storyPoints: 30},
+  {date: '16-09-2017', storyPoints: 30},
+  {date: '17-09-2017', storyPoints: 30},
+  {date: '18-09-2017', storyPoints: 25},
+  {date: '19-09-2017', storyPoints: 15},
+  {date: '20-09-2017', storyPoints: 15}
+];
 
-const series2 = [{
-  name: 'sprintPlannedVelocity',
-  data: [42, 42, 42, 40, 35, 35, 30, 10, 5, 5, 0]
-}, {
-  name: 'sprintCurrentVelocity',
-  data: [42, 42, 32, 32, 32, 30, 25, 10, 5, 0, 0]
-}];
-
-const labels = ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "d11"];
 
 export default class HelloGraphWidget extends AbstractWidget {
 
@@ -40,56 +46,39 @@ export default class HelloGraphWidget extends AbstractWidget {
     //setInterval(() => {this.setState({inc: this.state.inc + 10})}, 2000);
   }
 
-  renderContent3() {
-    return (
-      <Chart width={600} height={250} minY={0} series={series2}>
-        <Layer width='90%' height='90%'>
-          <Bars opacity={0.5} />
-          <Lines />
-          <Dots />
-        </Layer>
-      </Chart>
-    );
-  }
   renderContent() {
-    const series = series2;
-
-    //label={({index, props}) => props.series[index].name}
-
     return (
-      <Chart className="myChart" width={1600} height={400} series={series}
-             minY={0}
-             scaleX={{paddingStart: 0, paddingEnd: 0}}
-             scaleY={{paddingTop: 10}}
-      >
-        <Layer width='90%' height='90%' position='top center'>
-          <Ticks
-            className="tick"
-            axis='y'
-            lineLength='100%'
-            lineVisible={true}
-            labelStyle={{textAnchor:'end', dominantBaseline:'middle'}}
-            labelAttributes={{x: -10}}
+        <VictoryChart
+          width={1000}
+          height={500}
+          domainPadding={1}>
+          <VictoryAxis
+            tickValues={[1, 3, 5, 7, 9, 11, 13, 15, 17]}
+            tickFormat={(x, i) => x}
           />
-          <Ticks
-            className="tick"
-            axis='x'
-            label={({index, props}) => {
-              // console.log("CHART INDEX : ", index);
-              // console.log("CHART PROPS : ", props);
-              //return props.series[index].name;
-              return labels[index];
-            }}
-            labelStyle={{textAnchor:'middle', dominantBaseline:'text-before-edge'}}
-            labelAttributes={{y: 15}}
+          <VictoryAxis
+            dependentAxis
+            tickFormat={(x) => (`${x} SP`)}
           />
-          <Lines
-            groupPadding='3%'
-            innerPadding='0.5%'
+          <VictoryArea
+            data={plannedVelocity}
+            x="date"
+            y="storyPoints"
           />
-        </Layer>
-      </Chart>
+          <VictoryLine
+            data={plannedVelocity}
+            x="date"
+            y="storyPoints"
+          />
+
+          <VictoryLine
+            className="currentVelocity"
+            data={currentVelocity}
+            x="date"
+            y="storyPoints"
+          />
+        </VictoryChart>
+
     );
   }
-
-}
+};
