@@ -16,15 +16,11 @@
  */
 package com.thorpora.ezdashing.config;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thorpora.ezdashing.core.StartupListener;
 import com.thorpora.ezdashing.core.error.ErrorLogger;
 import org.slf4j.event.Level;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.net.ConnectException;
 
@@ -45,17 +41,6 @@ public class AppConfig {
         ErrorLogger errorLogger = new ErrorLogger();
         errorLogger.mapRootCause(Level.ERROR, ConnectException.class);
         return errorLogger;
-    }
-
-    @Bean
-    public ObjectMapper ObjectMapper() {
-        return new ObjectMapper();
-    }
-
-    @Autowired
-    public void configureJackson(Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
-        jackson2ObjectMapperBuilder.serializationInclusion(JsonInclude.Include.NON_NULL);
-        jackson2ObjectMapperBuilder.indentOutput(true);
     }
 
 }

@@ -13,7 +13,7 @@
   "scripts": {
     "test": "node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --progress",
-    "api": "babel-node --presets es2015 ./node_modules/.bin/json-server api/db.js --routes api/routes.json",
+    "api": "babel-node --presets es2015 ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8081",
     "prod": "NODE_ENV=prod webpack -p --progress",
     "serve": "node_modules/.bin/http-server dist"
   },

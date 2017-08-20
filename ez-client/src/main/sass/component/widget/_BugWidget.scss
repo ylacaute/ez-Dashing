@@ -1,8 +1,8 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* JIRA WIDGET
+/* BUG WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widget.jira {
+.widget.bug {
 
   header {
     span {
@@ -47,38 +47,38 @@
 
 // Threshold styles
 // ----------------
-.widget.jira.avg header strong {
+.widget.bug.avg header strong {
   color: $color-average;
 }
-.widget.jira.bad header strong {
+.widget.bug.bad header strong {
   color: $color-bad;
 }
 
 // Responsive widget styles: number of jira issues displayed
 // ---------------------------------------------------------
-.widget.jira.height-xxxs article ul li:nth-child(n+2) {
+.widget.bug.height-xxxs article ul li:nth-child(n+2) {
   display: none;
 }
-.widget.jira.height-xxs article ul li:nth-child(n+5) {
+.widget.bug.height-xxs article ul li:nth-child(n+6) {
   display: none;
 }
-.widget.jira.height-xs article ul li:nth-child(n+6) {
+.widget.bug.height-xs article ul li:nth-child(n+11) {
   display: none;
 }
 
 // Responsive widget styles: font and icon size
 // --------------------------------------------
-.widget.jira.width-xxs article {
+.widget.bug.width-xxs article {
   font-size: 150%;
   ul li .icon {
     width: 24px;
     height: 24px;
   }
 }
-.widget.jira.width-xs article,
-.widget.jira.width-sm article,
-.widget.jira.width-md article,
-.widget.jira.width-lg article
+.widget.bug.width-xs article,
+.widget.bug.width-sm article,
+.widget.bug.width-md article,
+.widget.bug.width-lg article
 {
   font-size: 200%;
   ul li .icon {

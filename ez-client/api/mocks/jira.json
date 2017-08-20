@@ -193,53 +193,151 @@
       }
     }]
   },
-  "bugTodo": {
+  "bugTodoP0P1": {
     "expand": "names,schema",
     "startAt": 0,
-    "maxResults": 500050,
-    "total": 1,
+    "maxResults": 50,
+    "total": 3,
     "issues": [
       {
-        "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-        "id": "38332",
-        "self": "https://issues.xxx.net/rest/api/2/issue/38332",
-        "key": "BCGAS-250",
+        "key": "BCGAS-2500",
         "fields": {
-          "components": [
-            {
-              "self": "https://issues.xxx.net/rest/api/2/component/10907",
-              "id": "10907",
-              "name": "bc-gas-sys",
-              "description": "desc"
-            }
-          ]
+          "priority": {
+            "name": "P0 - Très Haute"
+          }
+        }
+      },{
+        "key": "BCGAS-2501",
+        "fields": {
+          "priority": {
+            "name": "P1 - Haute"
+          }
         }
       }
     ]
   },
-  "bugInProgress": {
+  "bugInProgressP0P1": {
     "expand": "names,schema",
     "startAt": 0,
     "maxResults": 50,
-    "total": 42,
+    "total": 3,
     "issues": [
       {
-        "key": "BCGAS-442"
-      },
+        "key": "BCGAS-2502",
+        "fields": {
+          "priority": {
+            "name": "P1 - Haute"
+          }
+        }
+      },{
+        "key": "BCGAS-2503",
+        "fields": {
+          "priority": {
+            "name": "P1 - Haute"
+          }
+        }
+      }
+    ]
+  },
+  "bugTodoP2P3": {
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 3,
+    "issues": [
       {
-        "key": "BCGAS-1200"
-      },
+        "key": "BCGAS-2504",
+        "fields": {
+          "priority": {
+            "name": "P2 - Moyenne"
+          }
+        }
+      },{
+        "key": "BCGAS-2505",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2506",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      }
+    ]
+  },
+  "bugInProgressP2P3": {
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 3,
+    "issues": [
       {
-        "key": "BCGAS-1215"
-      },
-      {
-        "key": "BCGAS-1132"
-      },
-      {
-        "key": "BCGAS-1130"
-      },
-      {
-        "key": "BCGAS-1019"
+        "key": "BCGAS-2507",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2508",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2509",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2510",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2511",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2512",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2513",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2514",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
+      },{
+        "key": "BCGAS-2515",
+        "fields": {
+          "priority": {
+            "name": "P3 - Faible"
+          }
+        }
       }
     ]
   }

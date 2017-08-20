@@ -39,7 +39,7 @@ public class DashboardConfiguration {
     if (this.dataSources == null) {
       this.dataSources = JsonPath
               .parse(content)
-              .read("$.dashboard.dataSources", new TypeRef<List<DataSource>>(){});
+              .read("$.dataSources", new TypeRef<List<DataSource>>(){});
     }
     return dataSources;
   }

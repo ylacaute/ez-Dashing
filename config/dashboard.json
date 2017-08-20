@@ -1,184 +1,388 @@
 {
-  "widgets": [{
-      "key": "w0",
-      "type": "TeamWidget",
-      "displayName": "TEAM GAS",
-      "logoUrl": "/img/logo_clean.png"
-    },
+  "server": {
+    "dataSourcePath": "/api/consumer/"
+  },
+  "dataSources": [
     {
-      "key": "w1",
-      "type": "SonkinsWidget",
-      "displayName": "BC-GAS-SYS",
-      "jobName": "bc-gas-sys_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "bc-gas-sys"
-    },
-    {
-      "key": "w2",
-      "type": "SonkinsWidget",
-      "displayName": "SIM-HOME",
-      "jobName": "elec-similar-home-sys_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "similar-home-sys"
-    },
-    {
-      "key": "w3",
-      "type": "SonkinsWidget",
-      "displayName": "GAS-TARIFF",
-      "jobName": "gas-tariff-sys_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "gas-tariff-sys"
-    },
-    {
-      "key": "w4",
-      "type": "SonkinsWidget",
-      "displayName": "GAS-COMPO",
-      "jobName": "gas-service-composition-sys_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "gas-service-composition-sys"
-    },
-    {
-      "key": "SprintWidget",
-      "type": "SprintWidget",
-      "sprintOffset": 6,
-      "sprintDuration": 21,
-      "sprintDates": [
-        "2017-05-15", "2017-06-13"
+      "baseUrl": "https://issues.net",
+      "credentials": {
+        "userName": "test",
+        "password": "test"
+      },
+      "refresh": 30,
+      "queries": [
+        {
+          "id": "jira-bug-todo-p0-p1",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+          "mapping": {
+            "array:todoBugs": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "string:priority": "$.fields.priority.name"
+              }
+            }
+          }
+        },
+        {
+          "id": "jira-bug-inProgress-p0-p1",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+          "mapping": {
+            "array:inProgressBugs": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "string:priority": "$.fields.priority.name"
+              }
+            }
+          }
+        },
+        {
+          "id": "jira-bug-todo-p2-p3",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+          "mapping": {
+            "array:todoBugs": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "string:priority": "$.fields.priority.name"
+              }
+            }
+          }
+        },
+        {
+          "id": "jira-bug-inProgress-p2-p3",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+          "mapping": {
+            "array:inProgressBugs": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "string:priority": "$.fields.priority.name"
+              }
+            }
+          }
+        },
+        {
+          "id": "jira-story-closed",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+          "mapping": {
+            "array:closedIssues": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "int:storyPoints": "$.fields.customfield_11111",
+                "regexp:int:sprintNumber": {
+                  "jsonPath": "$.fields.customfield_11103",
+                  "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                  "matchIndex": 2,
+                  "ignoreException": true
+                },
+                "date:resolutionDate": "$.fields.resolutiondate"
+              }
+            }
+          }
+        },
+        {
+          "id": "jira-story-ready",
+          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
+          "mapping": {
+            "array:readyIssues": {
+              "jsonPath": "$.issues",
+              "mapping": {
+                "string:key": "$.key",
+                "int:storyPoints": "$.fields.customfield_11111",
+                "regexp:int:sprintNumber": {
+                  "jsonPath": "$.fields.customfield_11103",
+                  "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                  "matchIndex": 2,
+                  "ignoreException": true
+                }
+              }
+            }
+          }
+        }
       ]
     },
     {
-      "key": "JenkinsMonitoringWidget",
-      "type": "JenkinsMonitoringWidget",
-      "displayName": "JENKINS HEALTH",
-      "diskSpaceInTemp" : 3000
-    },
-    {
-      "key": "w5",
-      "type": "SonkinsWidget",
-      "displayName": "BC-GAS-SYS CLIENT",
-      "jobName": "bc-gas-client_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "bc-gas-client"
-    },
-    {
-      "key": "w6",
-      "type": "SonkinsWidget",
-      "displayName": "SIM-HOME CLIENT",
-      "jobName": "elec-similar-home-client_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "similar-home-client"
-    },
-    {
-      "key": "w7",
-      "type": "SonkinsWidget",
-      "displayName": "GAS-TARIFF CLIENT",
-      "jobName": "gas-tariff-client_-_Analyse_reccurente",
-      "branch": "master",
-      "projectKey": "gas-tariff-client"
-    },
-    {
-      "key": "ClockWidget",
-      "type": "ClockWidget",
-      "UTCOffset": 2
-    },
-    {
-      "key": "IssuesWidget",
-      "type": "IssuesWidget",
-      "displayName": "ISSUES",
-      "issues": [
+      "baseUrl": "https://sonar:1234",
+      "credentials": {
+        "userName": "test",
+        "password": "test"
+      },
+      "refresh": 30,
+      "mapping": {
+        "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
+        "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
+        "int:violations": "$.component.measures[?(@.metric == 'violations')].value"
+      },
+      "queries": [
         {
-          "label" : "TODO",
-          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\""
-        }, {
-          "label" : "IN PROGRESS",
-          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\""
+          "id": "sonar-stats-systemA",
+          "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+        },
+        {
+          "id": "sonar-stats-systemB",
+          "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
         }
       ]
     },
     {
-      "key": "Emergency",
-      "type": "IssuesWidget",
-      "displayName": "P1 ISSUES",
-      "issues": [
+      "baseUrl": "https://jenkins:12345",
+      "credentials": {
+        "userName": "test",
+        "password": "test"
+      },
+      "refresh": 30,
+      "mapping": {
+        "bool:building": "$.building",
+        "int:progress": "$.executor.progress",
+        "string:status": "$.result",
+        "string:author": "$.changeSet.items[-1:].author.fullName"
+      },
+      "queries": [
         {
-          "label" : "TODO",
-          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" AND priority > \"P2 - Moyenne\""
-        }, {
-          "label" : "IN PROGRESS",
-          "query" : "PROJECT IN (similar-home-sys,bc-gas-sys, gas-service-composition-sys, gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" AND priority > \"P2 - Moyenne\""
+          "id": "jenkins-lastBuild-systemA",
+          "path": "/job/systemA/branch/master/lastBuild/api/json&depth=1"
+        },
+        {
+          "id": "jenkins-lastBuild-systemB",
+          "path": "/job/systemB/branch/master/lastBuild/api/json&depth=1"
+        },
+        {
+          "id": "jenkins-lastBuild-systemC",
+          "path": "/job/systemC/branch/master/lastBuild/api/json&depth=1"
         }
-      ],
-      "thresholds": {
-        "issues": {
-          "bad" : 2,
-          "avg" : 1,
-          "good" : 0
-        }
-      }
+      ]
     }
   ],
-  "dataSources": [{
-    "name" : "jira",
-    "baseUrl" : "https://issues.edelia.net",
-    "userName" : "y.lacaute",
-    "password" : "Edelia2017"
-  },{
-    "name" : "jenkins",
-    "baseUrl" : "https://jenkins:8999",
-    "userName" : "test",
-    "password" : "test"
-  }],
-  "avatars" : [{
-    "displayName": "Epithor",
-    "jenkinsAuthorPattern": ".*epi",
-    "url": "/img/avatars/epi.png"
-  }, {
-    "displayName": "Pénelope",
-    "jenkinsAuthorPattern": ".*Pénelope.*",
-    "url": "/img/avatars/Penelope.png"
-  }, {
-    "displayName": "Marc",
-    "jenkinsAuthorPattern": ".*[mM]arc.*",
-    "url": "/img/avatars/Marc.png"
-  }],
+  "widgets": [
+    {
+      "type": "HelloWorldWidget",
+      "title": "HELLO WORLD",
+      "enabled": false
+    },
+    {
+      "type": "HelloErrorWidget",
+      "title": "HELLO ERROR",
+      "enabled": false
+    },
+    {
+      "type": "HelloGraphWidget",
+      "title": "HELLO GRAPH",
+      "enabled": false
+    },
+    {
+      "type": "BurndownChartWidget",
+      "title": "BURNDOWN",
+      "enabled": true,
+      "dataSource": [
+        "jira-story-closed",
+        "jira-story-ready"
+      ],
+      "sprintDates": [
+        "2017-07-20",
+        "2017-08-10"
+      ],
+      "sprintDuration": 21,
+      "sprintOffset": 8,
+      "enabled": true
+    },
+    {
+      "type": "TeamWidget",
+      "enabled": true
+    },
+    {
+      "type": "ClockWidget",
+      "UTCOffset": 2,
+      "enabled": true
+    },
+    {
+      "type": "SprintWidget",
+      "sprintDates": [
+        "2017-07-20",
+        "2017-08-10"
+      ],
+      "sprintDuration": 21,
+      "sprintOffset": 8,
+      "enabled": true
+    },
+    {
+      "type": "BugWidget",
+      "title": "BUGS",
+      "dataSource": [
+        "jira-bug-todo-p2-p3",
+        "jira-bug-inProgress-p2-p3"
+      ]
+    },
+    {
+      "type": "BugWidget",
+      "title": "URGENT BUGS",
+      "dataSource": [
+        "jira-bug-todo-p0-p1",
+        "jira-bug-inProgress-p0-p1"
+      ]
+    },
+    {
+      "type": "SonarWidget",
+      "title": "Sonar A",
+      "dataSource": [
+        "sonar-stats-systemA"
+      ],
+      "enabled": false
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM A",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemA",
+        "sonar-stats-systemA"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM B",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemB",
+        "sonar-stats-systemB"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM C",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemA",
+        "sonar-stats-systemA"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM D",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemB",
+        "sonar-stats-systemB"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM E",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemA",
+        "sonar-stats-systemA"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "SonkinsWidget",
+      "title": "SYSTEM F",
+      "branch": "master",
+      "dataSource": [
+        "jenkins-lastBuild-systemB",
+        "sonar-stats-systemB"
+      ],
+      "enabled": true
+    }
+  ],
+  "avatars": [
+    {
+      "displayName": "Epithor",
+      "jenkinsAuthorPattern": ".*epi",
+      "url": "/img/avatars/epi.png"
+    },
+    {
+      "displayName": "Pénelope",
+      "jenkinsAuthorPattern": ".*Pénelope.*",
+      "url": "/img/avatars/Penelope.png"
+    },
+    {
+      "displayName": "Marc",
+      "jenkinsAuthorPattern": "jenkins",
+      "url": "/img/avatars/jenkins.png"
+    }
+  ],
   "thresholds": {
-    "codeCoverage": {
-      "good" : 64,
-      "avg" : 55,
-      "bad" : 0
+    "coverage": {
+      "good": 64,
+      "avg": 55,
+      "bad": 0
     },
     "violations": {
-      "bad" : 10,
-      "avg" : 1,
-      "good" : 0
+      "bad": 10,
+      "avg": 1,
+      "good": 0
     },
-    "issues": {
-      "bad" : 10,
-      "avg" : 1,
-      "good" : 0
+    "bugs": {
+      "bad": 10,
+      "avg": 1,
+      "good": 0
     },
     "memoryUsage": {
-      "bad" : 80,
-      "avg" : 70,
-      "good" : 0
+      "bad": 80,
+      "avg": 70,
+      "good": 0
     },
     "cpuUsage": {
-      "bad" : 80,
-      "avg" : 70,
-      "good" : 0
+      "bad": 80,
+      "avg": 70,
+      "good": 0
     },
     "fileDescriptorUsage": {
-      "bad" : 80,
-      "avg" : 70,
-      "good" : 0
+      "bad": 80,
+      "avg": 70,
+      "good": 0
     },
     "freeDiskSpaceInTemp": {
-      "good" : 40,
-      "avg" : 20,
-      "bad" : 0
+      "good": 40,
+      "avg": 20,
+      "bad": 0
     }
   },
   "grid": {
+    "itemBreakpoints": {
+      "width": {
+        "lg": 1200,
+        "md": 996,
+        "sm": 768,
+        "xs": 480,
+        "xxs": 240,
+        "xxxs": 0
+      },
+      "height": {
+        "lg": 800,
+        "md": 600,
+        "sm": 400,
+        "xs": 280,
+        "xxs": 140,
+        "xxxs": 0
+      }
+    },
+    "itemBreakpoints2": {
+      "width": {
+        "lg": 1200,
+        "md": 996,
+        "sm": 768,
+        "xs": 480,
+        "xxs": 240,
+        "xxxs": 0
+      },
+      "height": {
+        "lg": 800,
+        "md": 600,
+        "sm": 400,
+        "xs": 280,
+        "xxs": 140,
+        "xxxs": 0
+      }
+    },
     "breakpoints": {
       "lg": 1200,
       "md": 996,
@@ -187,13 +391,14 @@
       "xxs": 0
     },
     "cols": {
-      "lg": 6,
+      "lg": 7,
       "md": 4,
       "sm": 4,
       "xs": 2,
       "xxs": 1
     },
     "layouts": {},
+    "rowHeight": 122,
     "widget_w": 1,
     "widget_h": 1
   }

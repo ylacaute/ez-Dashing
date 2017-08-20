@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import ThresholdConfig from "config/ThresholdConfig";
 
-export default class JiraWidget extends AbstractWidget {
+const MAX_DISPLAYABLE_ISSUES = 10;
+
+export default class BugWidget extends AbstractWidget {
 
   /**
    *  "issuesKeys" and "total" properties came from a dataSource, configured in the dashboard configuration.
@@ -11,17 +13,13 @@ export default class JiraWidget extends AbstractWidget {
    *  a generic dataSource system, only the Widget can know the real nature of those data.
    */
   static propTypes = {
-    todoIssuesKeys: PropTypes.array,
-    todoTotal: PropTypes.number,
-    inProgressIssuesKeys: PropTypes.array,
-    inProgressTotal: PropTypes.number
+    inProgressBugs: PropTypes.array,
+    todoBugs: PropTypes.array
   };
 
   static defaultProps = {
-    todoIssuesKeys: [],
-    todoTotal: 0,
-    inProgressIssuesKeys: [],
-    inProgressTotal: 0
+    inProgressBugs: [],
+    todoBugs: []
   };
 
   getWidgetClassNames() {
@@ -33,7 +31,7 @@ export default class JiraWidget extends AbstractWidget {
   }
 
   getTotal() {
-    return this.props.todoTotal + this.props.inProgressTotal;
+    return this.props.inProgressBugs.length + this.props.todoBugs.length;
   }
 
   renderHeader() {
@@ -45,8 +43,23 @@ export default class JiraWidget extends AbstractWidget {
     )
   }
 
+  /**
+   * Return the issues with MAX_DISPLAYABLE_ISSUES items at max.
+   */
+  getWithMaxItems(array) {
+    const max = Math.min(array.length, MAX_DISPLAYABLE_ISSUES);
+    return array.slice(0, max);
+  }
+
+  getKeys(bugs) {
+    const items = this.getWithMaxItems(bugs);
+    return items.map(i => i.key);
+  }
+
   renderContent() {
-    const { todoIssuesKeys, inProgressIssuesKeys } = this.props;
+    const todoIssuesKeys = this.getKeys(this.props.todoBugs);
+    const inProgressIssuesKeys = this.getKeys(this.props.inProgressBugs);
+
     const todoIssues = todoIssuesKeys.map((issueKey) =>
       <li key={issueKey}>
         <span className="icon todo"/>

@@ -87,10 +87,13 @@ export default class AbstractWidget extends React.Component {
   renderError(error) {
     let title = 'Unknown widget';
     let name = 'Unknown error';
-    let message = 'Pleas check your configuration';
+    let message = 'Please check your configuration';
     if (error != null) {
       if (error.name != null) name = error.name;
       if (error.message != null) message = error.message;
+    } else if (this.props.error != null) {
+      if (this.props.error.name != null) name = this.props.error.name;
+      if (this.props.error.message != null) message = this.props.error.message;
     }
     if (!ObjectUtils.isNullOrEmpty(this.props.title))
       title = this.props.title;

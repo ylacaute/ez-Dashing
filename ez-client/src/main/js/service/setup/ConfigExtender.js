@@ -21,7 +21,7 @@ export default class ConfigExtender {
    * we then prefer to map it on an empty array.
    *
    * Generate a unique widget key (required for react-grid-layout)
-   * Each Widget has an id equals to its key.
+   * Generate a unique id equals to the key.
    */
   static extendsConfig(dashboardConfig) {
     if (dashboardConfig.thresholds == null) {

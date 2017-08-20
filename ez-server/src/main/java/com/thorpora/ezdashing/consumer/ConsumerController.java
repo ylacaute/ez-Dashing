@@ -37,15 +37,7 @@ public class ConsumerController {
         this.registry = registry;
     }
 
-//    @PostMapping("/authentication/{consumerName}")
-//    public void authentication(
-//            @PathVariable String consumerName,
-//            @RequestBody AuthenticationDTO authenticationDTO) {
-//        logger.debug("GET /authentication/{}?authenticationDTO={}", consumerName, authenticationDTO);
-//        registry.register(consumerName, authenticationDTO);
-//    }
-
-    @GetMapping("/{queryId}")
+    @GetMapping(value = "/{queryId}", produces = "application/json")
     public String getSummary(@PathVariable String queryId) {
         logger.debug("GET /api/consumer/{}", queryId);
         Consumer consumer = registry.getConsumer(queryId);

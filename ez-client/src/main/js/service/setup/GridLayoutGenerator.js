@@ -7,7 +7,10 @@ let generateSingle = (nbCols, configuration) => {
   let xCounter = 0;
   let yCounter = 0;
 
-  widgetConfigs.forEach((widgetConfig) => {
+  for (let i = 0; i < widgetConfigs.length; i++) {
+    let widgetConfig = widgetConfigs[i];
+    if (widgetConfig.enabled == false)
+      continue;
     let widgetGridConfig = Object.assign({}, defaultProps, {
       i: widgetConfig.key,
       x: xCounter++,
@@ -18,7 +21,7 @@ let generateSingle = (nbCols, configuration) => {
       yCounter++;
       xCounter = 0;
     }
-  });
+  }
   return layout;
 };
 

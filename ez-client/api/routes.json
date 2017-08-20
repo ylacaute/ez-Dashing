@@ -1,6 +1,8 @@
 {
-  "/api/consumer/jira-bug-todo" : "/bugTodo",
-  "/api/consumer/jira-bug-inProgress" : "/bugInProgress",
+  "/api/consumer/jira-bug-todo-p0-p1" : "/bugTodoP0P1",
+  "/api/consumer/jira-bug-inProgress-p0-p1" : "/bugInProgressP0P1",
+  "/api/consumer/jira-bug-todo-p2-p3" : "/bugTodoP2P3",
+  "/api/consumer/jira-bug-inProgress-p2-p3" : "/bugInProgressP2P3",
   "/api/consumer/jira-story-closed" : "/storyClosed",
   "/api/consumer/jira-story-ready" : "/storyReady",
   "/api/consumer/sonar-stats-systemA" : "/sonarSystemA",

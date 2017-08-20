@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
-import JiraWidget from "component/widget/jira/JiraWidget.jsx";
+import BugWidget from "component/widget/jira/BugWidget.jsx";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -8,5 +8,5 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(JiraWidget)
+export default connect(mapStateToProps)(BugWidget)
 

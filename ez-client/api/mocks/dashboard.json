@@ -5,7 +5,7 @@
     },
     "dataSources": [
       {
-        "baseUrl": "https://jira:8989",
+        "baseUrl": "https://issues.net",
         "credentials": {
           "userName": "test",
           "password": "test"
@@ -13,24 +13,59 @@
         "refresh": 30,
         "queries": [
           {
-            "id": "jira-bug-todo",
-            "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
+            "id": "jira-bug-todo-p0-p1",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
             "mapping": {
-              "int:todoTotal": "$.total",
-              "array:todoIssuesKeys": "$.issues[*].key"
+              "array:todoBugs": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "string:priority": "$.fields.priority.name"
+                }
+              }
             }
           },
           {
-            "id": "jira-bug-inProgress",
-            "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
+            "id": "jira-bug-inProgress-p0-p1",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
             "mapping": {
-              "int:inProgressTotal": "$.total",
-              "array:inProgressIssuesKeys": "$.issues[*].key"
+              "array:inProgressBugs": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "string:priority": "$.fields.priority.name"
+                }
+              }
+            }
+          },
+          {
+            "id": "jira-bug-todo-p2-p3",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+            "mapping": {
+              "array:todoBugs": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "string:priority": "$.fields.priority.name"
+                }
+              }
+            }
+          },
+          {
+            "id": "jira-bug-inProgress-p2-p3",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+            "mapping": {
+              "array:inProgressBugs": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "string:priority": "$.fields.priority.name"
+                }
+              }
             }
           },
           {
             "id": "jira-story-closed",
-            "refresh": 2,
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
               "array:closedIssues": {
@@ -51,7 +86,6 @@
           },
           {
             "id": "jira-story-ready",
-            "refresh": 2,
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
             "mapping": {
               "array:readyIssues": {
@@ -90,6 +124,10 @@
           },
           {
             "id": "sonar-stats-systemB",
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          },
+          {
+            "id": "sonar-stats-systemC",
             "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
           }
         ]
@@ -175,18 +213,19 @@
         "enabled": true
       },
       {
-        "type": "JiraWidget",
-        "title": "BUGS (ALL)",
+        "type": "BugWidget",
+        "title": "BUGS",
         "dataSource": [
-          "jira-bug-todo",
-          "jira-bug-inProgress"
+          "jira-bug-todo-p2-p3",
+          "jira-bug-inProgress-p2-p3"
         ]
       },
       {
-        "type": "JiraWidget",
-        "title": "BUGS (P1)",
+        "type": "BugWidget",
+        "title": "URGENT BUGS",
         "dataSource": [
-          "jira-bug-inProgress"
+          "jira-bug-todo-p0-p1",
+          "jira-bug-inProgress-p0-p1"
         ]
       },
       {
@@ -195,7 +234,7 @@
         "dataSource": [
           "sonar-stats-systemA"
         ],
-        "enabled": true
+        "enabled": false
       },
       {
         "type": "SonkinsWidget",
@@ -223,6 +262,36 @@
         "branch": "master",
         "dataSource": [
           "jenkins-lastBuild-systemC",
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM D",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemA",
+          "sonar-stats-systemB"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM E",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemA",
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM F",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemA",
           "sonar-stats-systemB"
         ],
         "enabled": true
