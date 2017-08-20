@@ -23,11 +23,9 @@ import java.io.IOException;
 
 public class JsonUtils {
 
-    public static String format(String inlineJson) {
-        ObjectMapper mapper = new ObjectMapper();
-        Object json = null;
+    public static String format(ObjectMapper mapper, String inlineJson) {
         try {
-            json = mapper.readValue(inlineJson, Object.class);
+            Object json = mapper.readValue(inlineJson, Object.class);
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
         } catch (IOException ex) {
             throw new RuntimeException("Invalid json", ex);

@@ -16,67 +16,54 @@
  */
 package com.thorpora.ezdashing.consumer;
 
-import com.thorpora.ezdashing.jira.JiraClient;
+import com.thorpora.ezdashing.dashboard.model.DataSource;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.slf4j.Slf4jLogger;
-import lombok.Builder;
-import lombok.Data;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
-@Builder
+@Slf4j
 public class Consumer {
 
-    private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
-
     private APIConsumer apiConsumer;
+    private DataSource dataSource;
 
-    private String name;
-
-    private String baseUrl;
-
-    private String userName;
-
-    private String password;
-
-    public void initialize() {
-        logger.debug("Initialize APIConsumer '{}'", name);
+    public Consumer(DataSource dataSource) {
+        this.dataSource = dataSource;
         this.apiConsumer = Feign.builder()
-                .requestInterceptor(new BasicAuthRequestInterceptor(userName, password))
-                .logger(new Slf4jLogger(JiraClient.class))
+                .requestInterceptor(new BasicAuthRequestInterceptor(
+                        dataSource.getCredentials().getUserName(),
+                        dataSource.getCredentials().getPassword()))
+                .logger(new Slf4jLogger(Consumer.class))
                 .logLevel(feign.Logger.Level.BASIC)
-                .target(APIConsumer.class, baseUrl);
+                .target(APIConsumer.class, dataSource.getBaseUrl());
     }
 
-    // TODO : find a better way to make a generic call to Feign from an encoded query
-    public String query(String encodedQuery) {
-        String query = null;
-        try {
-            query = URLDecoder.decode(encodedQuery, "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            throw new ConsumerException(String
-                    .format("Consumer '{]' failed to decode query '{}'", name, encodedQuery), ex);
-        }
-        String[] pathAndQueryParams = query.split("\\?");
+    public String doQuery(String queryId) {
+        String fullQuery = dataSource.getQueries().stream()
+                .filter(q -> queryId.equals(q.getId()))
+                .findFirst()
+                .get()
+                .getPath();
+        String[] pathAndQueryParams = fullQuery.split("\\?");
         String path = pathAndQueryParams[0];
-        String queryParams = pathAndQueryParams[1];
+        Map<String, String> paramsMap = getQueryParamsAsMap(pathAndQueryParams[1]);
+        return apiConsumer.query(path, paramsMap);
+    }
+
+    private Map<String, String> getQueryParamsAsMap(String queryParams) {
         String[] queryParamsSplited = queryParams.split("&");
         Map<String, String> paramsMap = new HashMap<>();
         for (String queryParam : queryParamsSplited) {
             int equalIdx = queryParam.indexOf("=");
-            String querryparamName = queryParam.substring(0, equalIdx);
-            String querryparamValue = queryParam.substring(equalIdx + 1, queryParam.length());
-            paramsMap.put(querryparamName, querryparamValue);
+            String querryParamName = queryParam.substring(0, equalIdx);
+            String querryParamValue = queryParam.substring(equalIdx + 1, queryParam.length());
+            paramsMap.put(querryParamName, querryParamValue);
         }
-        logger.debug("Consumer query: path={}, paramsMap={}", path, paramsMap);
-        return apiConsumer.query(path, paramsMap);
+        return paramsMap;
     }
 
 }

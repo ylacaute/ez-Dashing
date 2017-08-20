@@ -16,13 +16,13 @@
  */
 package com.thorpora.ezdashing.consumer;
 
-import com.thorpora.ezdashing.consumer.dto.AuthenticationDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/consumer")
@@ -37,26 +37,20 @@ public class ConsumerController {
         this.registry = registry;
     }
 
-    @PostMapping("/authentication/{consumerName}")
-    public void authentication(
-            @PathVariable String consumerName,
-            @RequestBody AuthenticationDTO authenticationDTO) {
-        logger.debug("GET /authentication/{}?authenticationDTO={}", consumerName, authenticationDTO);
-        registry.register(consumerName, authenticationDTO);
-    }
+//    @PostMapping("/authentication/{consumerName}")
+//    public void authentication(
+//            @PathVariable String consumerName,
+//            @RequestBody AuthenticationDTO authenticationDTO) {
+//        logger.debug("GET /authentication/{}?authenticationDTO={}", consumerName, authenticationDTO);
+//        registry.register(consumerName, authenticationDTO);
+//    }
 
-    @GetMapping("/{consumerName}")
-    public String getSummary(
-            @PathVariable String consumerName,
-            @RequestParam("query") String encodedQuery,
-            AuthenticationDTO authenticationDTO) {
-        logger.debug("GET /api/consumer/{}?authenticationDTO={},query={}", consumerName, authenticationDTO, encodedQuery);
-        Consumer consumer = registry.getConsumer(consumerName);
-        if (consumer == null) {
-            consumer = registry.register(consumerName, authenticationDTO);
-        }
-        String consumerResponse = consumer.query(encodedQuery);
-        logger.debug("Response of consumer '{}' : {}", consumerName, consumerResponse);
+    @GetMapping("/{queryId}")
+    public String getSummary(@PathVariable String queryId) {
+        logger.debug("GET /api/consumer/{}", queryId);
+        Consumer consumer = registry.getConsumer(queryId);
+        String consumerResponse = consumer.doQuery(queryId);
+        logger.debug("Response of queryId '{}' : {}", queryId, consumerResponse);
         return consumerResponse;
     }
 

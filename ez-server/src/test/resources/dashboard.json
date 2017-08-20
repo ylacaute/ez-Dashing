@@ -1,0 +1,342 @@
+{
+  "dashboard": {
+    "server": {
+      "dataSourcePath": "/api/consumer/"
+    },
+    "dataSources": [
+      {
+        "baseUrl": "https://jira:8989",
+        "credentials": {
+          "userName": "test",
+          "password": "test"
+        },
+        "refresh": 30,
+        "queries": [
+          {
+            "id": "jira-bugs-todo",
+            "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
+            "mapping": {
+              "int:todoTotal": "$.total",
+              "array:todoIssuesKeys": "$.issues[*].key"
+            }
+          },
+          {
+            "id": "jira-bugs-inProgress",
+            "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
+            "mapping": {
+              "int:inProgressTotal": "$.total",
+              "array:inProgressIssuesKeys": "$.issues[*].key"
+            }
+          },
+          {
+            "id": "jira-issues-closed",
+            "refresh": 2,
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+            "mapping": {
+              "array:closedIssues": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "int:storyPoints": "$.fields.customfield_11111",
+                  "regexp:int:sprintNumber": {
+                    "jsonPath": "$.fields.customfield_11103",
+                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                    "matchIndex": 2,
+                    "ignoreException": true
+                  },
+                  "date:resolutionDate": "$.fields.resolutiondate"
+                }
+              }
+            }
+          },
+          {
+            "id": "jira-issues-ready",
+            "refresh": 2,
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
+            "mapping": {
+              "array:readyIssues": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "int:storyPoints": "$.fields.customfield_11111",
+                  "regexp:int:sprintNumber": {
+                    "jsonPath": "$.fields.customfield_11103",
+                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                    "matchIndex": 2,
+                    "ignoreException": true
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "baseUrl": "https://sonar:1234",
+        "credentials": {
+          "userName": "test",
+          "password": "test"
+        },
+        "refresh": 30,
+        "mapping": {
+          "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
+          "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
+          "int:violations": "$.component.measures[?(@.metric == 'violations')].value"
+        },
+        "queries": [
+          {
+            "id": "sonar-stats-systemA",
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          },
+          {
+            "id": "sonar-stats-systemB",
+            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          }
+        ]
+      },
+      {
+        "baseUrl": "https://jenkins:12345",
+        "credentials": {
+          "userName": "test",
+          "password": "test"
+        },
+        "refresh": 30,
+        "mapping": {
+          "bool:building": "$.building",
+          "int:progress": "$.executor.progress",
+          "string:status": "$.result",
+          "string:author": "$.changeSet.items[-1:].author.fullName"
+        },
+        "queries": [
+          {
+            "id": "jenkins-lastBuild-systemA",
+            "path": "/job/systemA/branch/master/lastBuild/api/json&depth=1"
+          },
+          {
+            "id": "jenkins-lastBuild-systemB",
+            "path": "/job/systemB/branch/master/lastBuild/api/json&depth=1"
+          },
+          {
+            "id": "jenkins-lastBuild-systemC",
+            "path": "/job/systemC/branch/master/lastBuild/api/json&depth=1"
+          }
+        ]
+      }
+    ],
+    "widgets": [
+      {
+        "type": "HelloWorldWidget",
+        "title": "HELLO WORLD",
+        "enabled": false
+      },
+      {
+        "type": "HelloErrorWidget",
+        "title": "HELLO ERROR",
+        "enabled": false
+      },
+      {
+        "type": "HelloGraphWidget",
+        "title": "HELLO GRAPH",
+        "enabled": false
+      },
+      {
+        "type": "BurndownChartWidget",
+        "title": "BURNDOWN",
+        "enabled": true,
+        "dataSource": [
+          "jira-issues-closed",
+          "jira-issues-ready"
+        ],
+        "sprintDates": [
+          "2017-07-20",
+          "2017-08-10"
+        ],
+        "sprintDuration": 21,
+        "sprintOffset": 8,
+        "enabled": true
+      },
+      {
+        "type": "TeamWidget",
+        "enabled": true
+      },
+      {
+        "type": "ClockWidget",
+        "UTCOffset": 2,
+        "enabled": true
+      },
+      {
+        "type": "SprintWidget",
+        "sprintDates": [
+          "2017-07-20",
+          "2017-08-10"
+        ],
+        "sprintDuration": 21,
+        "sprintOffset": 8,
+        "enabled": true
+      },
+      {
+        "type": "JiraWidget",
+        "title": "BUGS (ALL)",
+        "dataSource": [
+          "jira-bugs-todo",
+          "jira-bugs-inProgress"
+        ]
+      },
+      {
+        "type": "JiraWidget",
+        "title": "BUGS (P1)",
+        "dataSource": [
+          "jira-bugs-inProgress"
+        ]
+      },
+      {
+        "type": "SonarWidget",
+        "title": "Sonar A",
+        "dataSource": [
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM A",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemA",
+          "sonar-stats-systemA"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM B",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemB",
+          "sonar-stats-systemB"
+        ],
+        "enabled": true
+      },
+      {
+        "type": "SonkinsWidget",
+        "title": "SYSTEM C",
+        "branch": "master",
+        "dataSource": [
+          "jenkins-lastBuild-systemC",
+          "sonar-stats-systemB"
+        ],
+        "enabled": true
+      }
+    ],
+    "avatars": [
+      {
+        "displayName": "Epithor",
+        "jenkinsAuthorPattern": ".*epi",
+        "url": "/img/avatars/epi.png"
+      },
+      {
+        "displayName": "Pénelope",
+        "jenkinsAuthorPattern": ".*Pénelope.*",
+        "url": "/img/avatars/Penelope.png"
+      },
+      {
+        "displayName": "Marc",
+        "jenkinsAuthorPattern": "jenkins",
+        "url": "/img/avatars/jenkins.png"
+      }
+    ],
+    "thresholds": {
+      "coverage": {
+        "good": 64,
+        "avg": 55,
+        "bad": 0
+      },
+      "violations": {
+        "bad": 10,
+        "avg": 1,
+        "good": 0
+      },
+      "bugs": {
+        "bad": 10,
+        "avg": 1,
+        "good": 0
+      },
+      "memoryUsage": {
+        "bad": 80,
+        "avg": 70,
+        "good": 0
+      },
+      "cpuUsage": {
+        "bad": 80,
+        "avg": 70,
+        "good": 0
+      },
+      "fileDescriptorUsage": {
+        "bad": 80,
+        "avg": 70,
+        "good": 0
+      },
+      "freeDiskSpaceInTemp": {
+        "good": 40,
+        "avg": 20,
+        "bad": 0
+      }
+    },
+    "grid": {
+      "itemBreakpoints": {
+        "width": {
+          "lg": 1200,
+          "md": 996,
+          "sm": 768,
+          "xs": 480,
+          "xxs": 240,
+          "xxxs": 0
+        },
+        "height": {
+          "lg": 800,
+          "md": 600,
+          "sm": 400,
+          "xs": 280,
+          "xxs": 140,
+          "xxxs": 0
+        }
+      },
+      "itemBreakpoints2": {
+        "width": {
+          "lg": 1200,
+          "md": 996,
+          "sm": 768,
+          "xs": 480,
+          "xxs": 240,
+          "xxxs": 0
+        },
+        "height": {
+          "lg": 800,
+          "md": 600,
+          "sm": 400,
+          "xs": 280,
+          "xxs": 140,
+          "xxxs": 0
+        }
+      },
+      "breakpoints": {
+        "lg": 1200,
+        "md": 996,
+        "sm": 768,
+        "xs": 480,
+        "xxs": 0
+      },
+      "cols": {
+        "lg": 7,
+        "md": 4,
+        "sm": 4,
+        "xs": 2,
+        "xxs": 1
+      },
+      "layouts": {},
+      "rowHeight": 122,
+      "widget_w": 1,
+      "widget_h": 1
+    }
+  }
+}

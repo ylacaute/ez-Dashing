@@ -16,9 +16,8 @@
  */
 package com.thorpora.ezdashing.core;
 
-import com.thorpora.ezdashing.jenkins.JenkinsProperties;
-import com.thorpora.ezdashing.jira.JiraProperties;
-import com.thorpora.ezdashing.sonar.SonarProperties;
+import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
+import com.thorpora.ezdashing.dashboard.model.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Profile("production")
 public class StartupListener {
@@ -37,34 +37,16 @@ public class StartupListener {
     @Autowired
     private Environment env;
 
-    @Autowired
-    private JenkinsProperties jenkinsProperties;
-
-    @Autowired
-    private SonarProperties sonarProperties;
-
-    @Autowired
-    private JiraProperties jiraProperties;
-
-    @Autowired
-    private DashboardProperties dashboardProperties;
-
     @EventListener(ContextRefreshedEvent.class)
     public void devContextRefreshedEvent() {
-        logger.info("Jenkins baseUrl: {}", jenkinsProperties.getBaseUrl());
-        logger.info("Jenkins username: {}", jenkinsProperties.getUserName());
-        logger.info("Sonar baseUrl: {}", sonarProperties.getBaseUrl());
-        logger.info("Sonar username: {}", sonarProperties.getUserName());
-        logger.info("Jira baseUrl: {}", jiraProperties.getBaseUrl());
-        logger.info("Jira username: {}", jiraProperties.getUserName());
-        if (isProduction()) {
-            // Verify the dashboard config is loadable
-            dashboardProperties.getDashboardConfig();
-            logger.info("Dashboard config file found: {}.", dashboardProperties.getConfigLocation());
-        } else {
-            logger.info("Dashboard config location: {}", dashboardProperties.getConfigLocation());
+        List<DataSource> ds = dashboardConfig.getDataSources();
+        for (int i = 0; i < ds.size(); i++) {
+            logger.info("DataSource[{}]: baseUrl set to {}", i, ds.get(i).getBaseUrl());
         }
     }
+
+    @Autowired
+    private DashboardConfiguration dashboardConfig;
 
     private boolean isProduction() {
         return Arrays.stream(env.getActiveProfiles()).anyMatch(p -> p.equals("prod"));
