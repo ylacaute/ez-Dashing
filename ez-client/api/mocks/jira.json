@@ -10,9 +10,9 @@
       "self": "https://issues.ede.net/rest/api/2/issue/44255",
       "key": "BC-3817",
       "fields": {
-        "customfield_11111": 2.0,
+        "customfield_11111": 5.0,
         "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-04T14:53:49.000+0200"
+        "resolutiondate": "2017-08-12T14:53:49.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
@@ -20,9 +20,9 @@
       "self": "https://issues.ede.net/rest/api/2/issue/43570",
       "key": "BC-3592",
       "fields": {
-        "customfield_11111": 1.0,
+        "customfield_11111": 2.0,
         "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-12T17:28:03.000+0200"
+        "resolutiondate": "2017-08-14T17:28:03.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
@@ -42,7 +42,7 @@
       "fields": {
         "customfield_11111": 3.0,
         "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-17T12:20:05.000+0200"
+        "resolutiondate": "2017-08-20T12:20:05.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",

@@ -1,21 +1,29 @@
 import DateUtils from 'utils/DateUtils';
 
 
-export default class SprintCalculator {
-
-  /**
-   * Extract dates of configuration (string) to an array of Date.
-   */
-  static getSprintDates(sprintDatesConfig) {
-    if (sprintDatesConfig.length < 1) {
-      throw {
-        name: "Invalid configuration",
-        message: "At least one date must be specified in sprintDates"
-      };
-    }
-    return sprintDatesConfig.map(DateUtils.parse);
+/**
+ * Extract dates of configuration (string) to an array of Date.
+ */
+function parseDates(sprintDatesConfig) {
+  if (sprintDatesConfig.length < 1) {
+    throw {
+      name: "Invalid configuration",
+      message: "At least one date must be specified in sprintDates"
+    };
   }
+  return sprintDatesConfig.map(DateUtils.parse);
+}
 
+function generateDates(sprintStartDate, sprintDuration) {
+  let dates = [];
+  for (let i = 0; i < sprintDuration; i++) {
+    dates.push(DateUtils.addDays(sprintStartDate, i));
+  }
+  return dates;
+}
+
+
+export default class SprintCalculator {
 
   /**
    * Calculation of the start date of the current sprint :
@@ -23,12 +31,9 @@ export default class SprintCalculator {
    * The calculation is done from the given array dates in configuration. If the configuration
    * is not up to date, we try to guess the start date from the last known value of the array
    * dates and from the sprintDuration.
-   *
-   *
-   *
    */
   static calculateSprintData(now, sprintDatesConfig, theoreticalSprintDuration, sprintOffset) {
-    const arrayDates = SprintCalculator.getSprintDates(sprintDatesConfig);
+    const arrayDates = parseDates(sprintDatesConfig);
     let sprintDuration = theoreticalSprintDuration;
     let sprintNumber = 1;
     let sprintStartDate = null;
@@ -55,7 +60,7 @@ export default class SprintCalculator {
     }
 
     if (dayDiff > sprintDuration) {
-      const doneSprints = Math.floor(dayDiff / sprintDuration);
+      const doneSprints = Math.floor(dayDiff / (sprintDuration + 0));
       sprintNumber += doneSprints;
       sprintStartDate = DateUtils.addDays(sprintStartDate, (doneSprints * sprintDuration));
     }
@@ -66,7 +71,8 @@ export default class SprintCalculator {
       number: sprintNumber + sprintOffset,
       days: sprintDays,
       daysLeft: sprintDuration - sprintDays,
-      progress: Math.floor(sprintDays / sprintDuration * 100)
+      progress: Math.floor(sprintDays / sprintDuration * 100),
+      dates: generateDates(sprintStartDate, sprintDuration)
     };
   }
 

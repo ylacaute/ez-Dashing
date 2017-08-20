@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
-import CircularProgressBar from 'component/chart/CircularProgressBar.jsx';
-import SprintCalculator from 'component/widget/sprint/SprintCalculator';
+import React from "react";
+import PropTypes from "prop-types";
+import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
+import CircularProgressBar from "component/chart/CircularProgressBar.jsx";
+import SprintCalculator from "component/widget/sprint/SprintCalculator";
 
 export default class SprintWidget extends AbstractWidget {
 
@@ -13,8 +13,10 @@ export default class SprintWidget extends AbstractWidget {
   };
 
   static defaultProps = {
+    title: "SPRINT",
+    sprintDates: [],
+    sprintDuration: 0,
     sprintOffset: 0,
-    title: 'SPRINT',
   };
 
   constructor(props) {

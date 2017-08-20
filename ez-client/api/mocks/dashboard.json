@@ -34,17 +34,17 @@
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
               "array:closedIssues": {
-                "jsonPath" : "$.issues",
-                "mapping" : {
-                  "string:key" : "$.key",
-                  "int:storyPoints" : "$.fields.customfield_11111",
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "int:storyPoints": "$.fields.customfield_11111",
                   "regexp:int:sprintNumber": {
-                    "jsonPath" : "$.fields.customfield_11103",
-                    "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
-                    "matchIndex" : 2,
+                    "jsonPath": "$.fields.customfield_11103",
+                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                    "matchIndex": 2,
                     "ignoreException": true
                   },
-                  "date:resolutionDate" : "$.fields.resolutiondate"
+                  "date:resolutionDate": "$.fields.resolutiondate"
                 }
               }
             }
@@ -137,15 +137,23 @@
       {
         "type": "HelloGraphWidget",
         "title": "HELLO GRAPH",
-        "enabled": true
+        "enabled": false
       },
       {
         "type": "BurndownChartWidget",
         "title": "BURNDOWN",
         "enabled": true,
         "dataSource": [
-          "jira-issues-closed", "jira-issues-ready"
-        ]
+          "jira-issues-closed",
+          "jira-issues-ready"
+        ],
+        "sprintDates": [
+          "2017-07-20",
+          "2017-08-10"
+        ],
+        "sprintDuration": 21,
+        "sprintOffset": 8,
+        "enabled": true
       },
       {
         "type": "TeamWidget",

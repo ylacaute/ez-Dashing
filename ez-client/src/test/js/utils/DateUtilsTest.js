@@ -3,9 +3,14 @@ import { assert } from "chai";
 
 describe("DateUtils", () => {
 
-  it("format() should format as dd-MM-yyyy mm:hh", () => {
+  it("format() should format as DD/MM/YYYY", () => {
     let date = new Date(2017, 6, 30, 19, 39);
-    assert.equal(DateUtils.format(date), "30-07-2017 19:39");
+    assert.equal(DateUtils.formatDDMM(date), "30/07");
+  });
+
+  it("formatWithTime() should format as DD/MM/YYYY HH:mm", () => {
+    let date = new Date(2017, 6, 30, 19, 39);
+    assert.equal(DateUtils.formatWithTime(date), "30/07/2017 19:39");
   });
 
   it("parse() should create a valid date from pattern yyyy-MM-dd", () => {
@@ -38,6 +43,18 @@ describe("DateUtils", () => {
     let date1 = new Date(2017, 6, 30, 19, 46);
     let date2 = new Date(2017, 6, 31, 18, 42);
     assert.equal(DateUtils.diffInDays(date1, date2), 1);
+  });
+
+  it("addDays() should return a new Date with one day more", () => {
+    let date1 = new Date(2017, 6, 30);
+    let date2 = new Date(2017, 6, 31);
+    assert.equal(DateUtils.addDays(date1, 1).getTime(), date2.getTime());
+  });
+
+  it("addDays() should return a new Date with the next month", () => {
+    let date1 = new Date(2017, 6, 30);
+    let date2 = new Date(2017, 7, 30);
+    assert.equal(DateUtils.addDays(date1, 31).getTime(), date2.getTime());
   });
 
 });

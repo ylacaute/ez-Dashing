@@ -1,22 +1,33 @@
-
+import moment from 'moment';
 
 export default class DateUtils {
 
   /**
-   * Format JS Date object to 'dd-MM-yyyy hh:mm'
+   * Format JS Date object to "DD/MM"
    */
-  static format = (date) => {
-    return ("0" + date.getDate()).slice(-2) + "-" +
-      ("0" + (date.getMonth() + 1)).slice(-2) + "-" +
-      date.getFullYear() + " " +
-      ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+  static formatDDMM = (date) => {
+    return moment(date).format("DD/MM");
+  };
+
+  /**
+   * Format JS Date object to "DD/MM/YY"
+   */
+  static formatDDMMYY = (date) => {
+    return moment(date).format("DD/MM/YY");
+  };
+
+  /**
+   * Format JS Date object to "DD/MM/YYYY HH:mm"
+   */
+  static formatWithTime = (date) => {
+    return moment(date).format("DD/MM/YYYY HH:mm");
   };
 
   /**
    * Parse a date in yyyy-mm-dd format. Months are 0-based, so we do -1
    */
   static parse = (input) => {
-    let parts = input.split('-');
+    let parts = input.split("-");
     return new Date(parts[0], parts[1] - 1, parts[2]);
   };
 
