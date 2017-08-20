@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "server": {
-      "dataSourcePath": "/api/datasource/"
+      "dataSourcePath": "/api/consumer/"
     },
     "dataSources": [
       {
@@ -13,7 +13,7 @@
         "refresh": 30,
         "queries": [
           {
-            "id": "jira-bugs-todo",
+            "id": "jira-bug-todo",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
               "int:todoTotal": "$.total",
@@ -21,7 +21,7 @@
             }
           },
           {
-            "id": "jira-bugs-inProgress",
+            "id": "jira-bug-inProgress",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
               "int:inProgressTotal": "$.total",
@@ -29,7 +29,7 @@
             }
           },
           {
-            "id": "jira-issues-closed",
+            "id": "jira-story-closed",
             "refresh": 2,
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
@@ -50,7 +50,7 @@
             }
           },
           {
-            "id": "jira-issues-ready",
+            "id": "jira-story-ready",
             "refresh": 2,
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
             "mapping": {
@@ -144,8 +144,8 @@
         "title": "BURNDOWN",
         "enabled": true,
         "dataSource": [
-          "jira-issues-closed",
-          "jira-issues-ready"
+          "jira-story-closed",
+          "jira-story-ready"
         ],
         "sprintDates": [
           "2017-07-20",
@@ -178,15 +178,15 @@
         "type": "JiraWidget",
         "title": "BUGS (ALL)",
         "dataSource": [
-          "jira-bugs-todo",
-          "jira-bugs-inProgress"
+          "jira-bug-todo",
+          "jira-bug-inProgress"
         ]
       },
       {
         "type": "JiraWidget",
         "title": "BUGS (P1)",
         "dataSource": [
-          "jira-bugs-inProgress"
+          "jira-bug-inProgress"
         ]
       },
       {

@@ -1,5 +1,5 @@
 {
-  "issuesClosed": {
+  "storyClosed": {
     "expand": "schema,names",
     "startAt": 0,
     "maxResults": 50,
@@ -96,7 +96,7 @@
       }
     }]
   },
-  "issuesReady": {
+  "storyReady": {
     "expand": "schema,names",
     "startAt": 0,
     "maxResults": 100,
@@ -193,7 +193,7 @@
       }
     }]
   },
-  "bugsTodo": {
+  "bugTodo": {
     "expand": "names,schema",
     "startAt": 0,
     "maxResults": 500050,
@@ -217,7 +217,7 @@
       }
     ]
   },
-  "bugsInProgress": {
+  "bugInProgress": {
     "expand": "names,schema",
     "startAt": 0,
     "maxResults": 50,

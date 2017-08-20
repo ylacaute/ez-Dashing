@@ -1,13 +1,13 @@
 {
-  "/api/datasource/jira-bugs-todo" : "/bugsTodo",
-  "/api/datasource/jira-bugs-inProgress" : "/bugsInProgress",
-  "/api/datasource/jira-issues-closed" : "/issuesClosed",
-  "/api/datasource/jira-issues-ready" : "/issuesReady",
-  "/api/datasource/sonar-stats-systemA" : "/sonarSystemA",
-  "/api/datasource/sonar-stats-systemB" : "/sonarSystemB",
-  "/api/datasource/jenkins-lastBuild-systemA" : "/jenkinsSystemA",
-  "/api/datasource/jenkins-lastBuild-systemB" : "/jenkinsSystemB",
-  "/api/datasource/jenkins-lastBuild-systemC" : "/jenkinsSystemC",
+  "/api/consumer/jira-bug-todo" : "/bugTodo",
+  "/api/consumer/jira-bug-inProgress" : "/bugInProgress",
+  "/api/consumer/jira-story-closed" : "/storyClosed",
+  "/api/consumer/jira-story-ready" : "/storyReady",
+  "/api/consumer/sonar-stats-systemA" : "/sonarSystemA",
+  "/api/consumer/sonar-stats-systemB" : "/sonarSystemB",
+  "/api/consumer/jenkins-lastBuild-systemA" : "/jenkinsSystemA",
+  "/api/consumer/jenkins-lastBuild-systemB" : "/jenkinsSystemB",
+  "/api/consumer/jenkins-lastBuild-systemC" : "/jenkinsSystemC",
   "/api/jenkins/monitoring": "/jenkinsMonitoring",
   "/api/dashboard/config": "/dashboard"
 }
