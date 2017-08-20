@@ -1,33 +1,33 @@
-import JSONPathMapper from "utils/JSONPathMapper";
+import JsonMapper from "utils/JsonMapper";
 import { assert } from "chai";
 
-describe("JSONPathMapper", () => {
+describe("JsonMapper", () => {
 
   it("mapProperties() should map single string without specifying type", () => {
     let json = { field: "a string value" };
     let mapping = { "name": "$.field" };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.name, "a string value");
   });
 
   it("mapProperties() should map single string with specifying type", () => {
     let json = { field: "a string value" };
     let mapping = { "string:name": "$.field" };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.name, "a string value");
   });
 
   it("mapProperties() should map single int", () => {
     let json = { field: 42 };
     let mapping = { "int:name": "$.field" };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.name, 42);
   });
 
   it("mapProperties() should map single date", () => {
     let json = { date: "2017-07-12T17:28:03.000+0200" };
     let mapping = { "date:myDate": "$.date" };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(
       result.myDate.getTime(),
       new Date(2017, 6, 12, 17, 28, 3).getTime());
@@ -48,7 +48,7 @@ describe("JSONPathMapper", () => {
         matchIndex: 2
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.number, "8");
   });
 
@@ -62,7 +62,7 @@ describe("JSONPathMapper", () => {
         ignoreException: true
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.number, null);
   });
 
@@ -71,25 +71,25 @@ describe("JSONPathMapper", () => {
     let mapping = {
       "regexp:sprintNumber" : {
         jsonPath: "$.field",
-        regexp: "(.*)name=Sprint[ ]([0-9])*[ ](.*)",
+        regexp: "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
         matchIndex: 2,
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.sprintNumber, "8");
   });
 
   it("mapProperties() should map a regexp and use the specified type to convert the result", () => {
-    let json = { field: "com....4c3[id=244...=CLOSED,name=Sprint 8 - AAA - R 2.19,startDate=2017-07...." };
+    let json = { field: "com....4c3[id=244...=CLOSED,name=Sprint 10 - AAA - R 2.19,startDate=2017-07...." };
     let mapping = {
       "regexp:sprintNumber" : {
         jsonPath: "$.field",
-        regexp: "(.*)name=Sprint[ ]([0-9])*[ ](.*)",
+        regexp: "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
         matchIndex: 2,
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
-    assert.equal(result.sprintNumber, 8);
+    let result = JsonMapper.mapProperties(mapping, json);
+    assert.equal(result.sprintNumber, 10);
   });
 
   it("mapProperties() should map array ignoring some fields", () => {
@@ -111,7 +111,7 @@ describe("JSONPathMapper", () => {
         }
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(result.newData.length, 2);
     assert.equal(Array.isArray(result.newData), true);
     assert.equal(result.newData[0].name, "Bob marley1");
@@ -138,7 +138,7 @@ describe("JSONPathMapper", () => {
         }
       }
     };
-    let result = JSONPathMapper.mapProperties(mapping, json);
+    let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(typeof result.newData, "object");
     assert.equal(Array.isArray(result.newData), false);
     assert.equal(result.newData.name, "Bob marley");

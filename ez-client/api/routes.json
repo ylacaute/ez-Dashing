@@ -1,7 +1,8 @@
 {
-  "/api/datasource/jira-todo" : "/jiraTodo",
-  "/api/datasource/jira-inProgress" : "/jiraInProgress",
-  "/api/datasource/jira-closed" : "/jiraClosed",
+  "/api/datasource/jira-bugs-todo" : "/bugsTodo",
+  "/api/datasource/jira-bugs-inProgress" : "/bugsInProgress",
+  "/api/datasource/jira-issues-closed" : "/issuesClosed",
+  "/api/datasource/jira-issues-ready" : "/issuesReady",
   "/api/datasource/sonar-stats-systemA" : "/sonarSystemA",
   "/api/datasource/sonar-stats-systemB" : "/sonarSystemB",
   "/api/datasource/jenkins-lastBuild-systemA" : "/jenkinsSystemA",

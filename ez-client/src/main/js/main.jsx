@@ -19,7 +19,7 @@ Logger.setLevel("WidgetReducer", Logger.Level.INFO);
 Logger.setLevel("DataSourceReducer", Logger.Level.INFO);
 Logger.setLevel("StartupReducer", Logger.Level.INFO);
 Logger.setLevel("RestClient", Logger.Level.INFO);
-Logger.setLevel("DataSourceService", Logger.Level.TRACE);
+Logger.setLevel("DataSourceService", Logger.Level.INFO);
 Logger.setLevel("StartupService", Logger.Level.INFO);
 Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
 

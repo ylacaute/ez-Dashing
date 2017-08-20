@@ -13,7 +13,7 @@
         "refresh": 30,
         "queries": [
           {
-            "id": "jira-todo",
+            "id": "jira-bugs-todo",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"To Do\" & fields=creator,priority",
             "mapping": {
               "int:todoTotal": "$.total",
@@ -21,7 +21,7 @@
             }
           },
           {
-            "id": "jira-inProgress",
+            "id": "jira-bugs-inProgress",
             "path": "/rest/api/2/search?jql=PROJECT IN (similar-home-sys,bc-gas-sys,gas-service-composition-sys,gas-tariff-sys) AND type = \"Anomalie d'Implémentation\" AND statusCategory = \"In Progress\" & fields=creator,priority",
             "mapping": {
               "int:inProgressTotal": "$.total",
@@ -29,22 +29,42 @@
             }
           },
           {
-            "id": "jira-closed",
+            "id": "jira-issues-closed",
             "refresh": 2,
-            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=creator,priority,customfield_11103,customfield_11111,resolutiondate",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
-              "array:issues": {
+              "array:closedIssues": {
                 "jsonPath" : "$.issues",
                 "mapping" : {
                   "string:key" : "$.key",
                   "int:storyPoints" : "$.fields.customfield_11111",
                   "regexp:int:sprintNumber": {
                     "jsonPath" : "$.fields.customfield_11103",
-                    "regexp" : "(.*)name=Sprint[ ]([0-9])*[ ](.*)",
+                    "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
                     "matchIndex" : 2,
                     "ignoreException": true
                   },
                   "date:resolutionDate" : "$.fields.resolutiondate"
+                }
+              }
+            }
+          },
+          {
+            "id": "jira-issues-ready",
+            "refresh": 2,
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
+            "mapping": {
+              "array:readyIssues": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "int:storyPoints": "$.fields.customfield_11111",
+                  "regexp:int:sprintNumber": {
+                    "jsonPath": "$.fields.customfield_11103",
+                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+                    "matchIndex": 2,
+                    "ignoreException": true
+                  }
                 }
               }
             }
@@ -124,7 +144,7 @@
         "title": "BURNDOWN",
         "enabled": true,
         "dataSource": [
-          "jira-closed"
+          "jira-issues-closed", "jira-issues-ready"
         ]
       },
       {
@@ -150,15 +170,15 @@
         "type": "JiraWidget",
         "title": "BUGS (ALL)",
         "dataSource": [
-          "jira-todo",
-          "jira-inProgress"
+          "jira-bugs-todo",
+          "jira-bugs-inProgress"
         ]
       },
       {
         "type": "JiraWidget",
         "title": "BUGS (P1)",
         "dataSource": [
-          "jira-inProgress"
+          "jira-bugs-inProgress"
         ]
       },
       {

@@ -1,5 +1,5 @@
 {
-  "jiraClosed": {
+  "issuesClosed": {
     "expand": "schema,names",
     "startAt": 0,
     "maxResults": 50,
@@ -7,47 +7,47 @@
     "issues": [{
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "44255",
-      "self": "https://issues.edelia.net/rest/api/2/issue/44255",
+      "self": "https://issues.ede.net/rest/api/2/issue/44255",
       "key": "BC-3817",
       "fields": {
         "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
         "resolutiondate": "2017-08-04T14:53:49.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "43570",
-      "self": "https://issues.edelia.net/rest/api/2/issue/43570",
+      "self": "https://issues.ede.net/rest/api/2/issue/43570",
       "key": "BC-3592",
       "fields": {
         "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
         "resolutiondate": "2017-07-12T17:28:03.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42949",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42949",
+      "self": "https://issues.ede.net/rest/api/2/issue/42949",
       "key": "BC-3320",
       "fields": {
         "customfield_11111": 13.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
         "resolutiondate": "2017-07-18T11:00:44.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42936",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42936",
+      "self": "https://issues.ede.net/rest/api/2/issue/42936",
       "key": "BC-3318",
       "fields": {
         "customfield_11111": 3.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 10 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
         "resolutiondate": "2017-07-17T12:20:05.000+0200"
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42818",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42818",
+      "self": "https://issues.ede.net/rest/api/2/issue/42818",
       "key": "BC-3294",
       "fields": {
         "customfield_11111": 3.0,
@@ -57,7 +57,7 @@
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42791",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42791",
+      "self": "https://issues.ede.net/rest/api/2/issue/42791",
       "key": "BC-3288",
       "fields": {
         "customfield_11111": 1.0,
@@ -67,7 +67,7 @@
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42750",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42750",
+      "self": "https://issues.ede.net/rest/api/2/issue/42750",
       "key": "BC-3269",
       "fields": {
         "customfield_11111": 1.0,
@@ -76,68 +76,8 @@
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42710",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42710",
-      "key": "BC-3261",
-      "fields": {
-        "customfield_11111": 3.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-27T10:29:00.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42319",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42319",
-      "key": "BC-3198",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-06T15:47:05.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42318",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42318",
-      "key": "BC-3197",
-      "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-24T10:24:27.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42309",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42309",
-      "key": "BC-3193",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-06T11:06:32.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42217",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42217",
-      "key": "BC-3159",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-11T16:29:49.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42216",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42216",
-      "key": "BC-3158",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-11T16:29:54.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42157",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42157",
+      "self": "https://issues.ede.net/rest/api/2/issue/42157",
       "key": "BC-3129",
       "fields": {
         "customfield_11111": null,
@@ -147,367 +87,113 @@
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
       "id": "42152",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42152",
+      "self": "https://issues.ede.net/rest/api/2/issue/42152",
       "key": "BC-3127",
       "fields": {
         "customfield_11111": null,
         "customfield_11103": null,
         "resolutiondate": "2017-08-11T16:38:43.000+0200"
       }
-    }, {
+    }]
+  },
+  "issuesReady": {
+    "expand": "schema,names",
+    "startAt": 0,
+    "maxResults": 100,
+    "total": 10,
+    "issues": [{
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42140",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42140",
-      "key": "BC-3122",
+      "id": "44879",
+      "self": "https://issues.ede.net/rest/api/2/issue/44879",
+      "key": "BC-3903",
       "fields": {
-        "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-07-06T11:07:03.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@46e9b3e3[id=272,rapidViewId=124,state=FUTURE,name=Sprint 10 - GAZ - R 2.20,startDate=2017-07-17T17:18:58.962+02:00,endDate=2017-07-17T17:18:58.962+02:00,completeDate=<null>,sequence=272]"],
+        "customfield_11111": 5.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "42031",
-      "self": "https://issues.edelia.net/rest/api/2/issue/42031",
-      "key": "BC-3039",
+      "id": "44725",
+      "self": "https://issues.ede.net/rest/api/2/issue/44725",
+      "key": "BC-3874",
       "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-21T10:51:43.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@46e9b3e3[id=272,rapidViewId=124,state=FUTURE,name=Sprint 10 - GAZ - R 2.20,startDate=2017-07-17T17:18:58.962+02:00,endDate=2017-07-17T17:18:58.962+02:00,completeDate=<null>,sequence=272]"],
+        "customfield_11111": 8.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41936",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41936",
-      "key": "BC-3012",
+      "id": "44374",
+      "self": "https://issues.ede.net/rest/api/2/issue/44374",
+      "key": "BC-3843",
       "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@d734b13[id=195,rapidViewId=124,state=CLOSED,name=Sprint 6 - GAZ,startDate=2017-05-23T14:11:07.802+02:00,endDate=2017-06-12T06:11:00.000+02:00,completeDate=2017-06-12T17:16:54.393+02:00,sequence=195]"],
-        "resolutiondate": "2017-06-12T16:10:38.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@46e9b3e3[id=272,rapidViewId=124,state=FUTURE,name=Sprint 10 - GAZ - R 2.20,startDate=2017-07-17T17:18:58.962+02:00,endDate=2017-07-17T17:18:58.962+02:00,completeDate=<null>,sequence=272]"],
+        "customfield_11111": 13.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41791",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41791",
-      "key": "BC-2993",
+      "id": "44253",
+      "self": "https://issues.ede.net/rest/api/2/issue/44253",
+      "key": "BC-3816",
       "fields": {
-        "customfield_11111": null,
         "customfield_11103": null,
-        "resolutiondate": "2017-06-08T18:01:23.000+0200"
+        "customfield_11111": 5.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41771",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41771",
-      "key": "BC-2992",
+      "id": "43821",
+      "self": "https://issues.ede.net/rest/api/2/issue/43821",
+      "key": "BC-3619",
       "fields": {
-        "customfield_11111": null,
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@46e9b3e3[id=272,rapidViewId=124,state=FUTURE,name=Sprint 10 - GAZ - R 2.20,startDate=2017-07-17T17:18:58.962+02:00,endDate=2017-07-17T17:18:58.962+02:00,completeDate=<null>,sequence=272]"],
+        "customfield_11111": 0.5
+      }
+    }, {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "43505",
+      "self": "https://issues.ede.net/rest/api/2/issue/43505",
+      "key": "BC-3567",
+      "fields": {
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@e40d020[id=273,rapidViewId=124,state=FUTURE,name=Sprint 11 - GAZ - R 2.20,startDate=2017-07-28T11:19:47.525+02:00,endDate=2017-07-28T11:19:47.525+02:00,completeDate=<null>,sequence=273]"],
+        "customfield_11111": 5.0
+      }
+    }, {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "42951",
+      "self": "https://issues.ede.net/rest/api/2/issue/42951",
+      "key": "BC-3321",
+      "fields": {
         "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:59:39.000+0200"
+        "customfield_11111": 8.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41770",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41770",
-      "key": "BC-2991",
+      "id": "42191",
+      "self": "https://issues.ede.net/rest/api/2/issue/42191",
+      "key": "BC-3142",
       "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:34:43.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@e40d020[id=273,rapidViewId=124,state=FUTURE,name=Sprint 11 - GAZ - R 2.20,startDate=2017-07-28T11:19:47.525+02:00,endDate=2017-07-28T11:19:47.525+02:00,completeDate=<null>,sequence=273]"],
+        "customfield_11111": 2.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41766",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41766",
-      "key": "BC-2990",
+      "id": "40696",
+      "self": "https://issues.ede.net/rest/api/2/issue/40696",
+      "key": "BC-2654",
       "fields": {
-        "customfield_11111": 0.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:31:32.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@e40d020[id=273,rapidViewId=124,state=FUTURE,name=Sprint 11 - GAZ - R 2.20,startDate=2017-07-28T11:19:47.525+02:00,endDate=2017-07-28T11:19:47.525+02:00,completeDate=<null>,sequence=273]"],
+        "customfield_11111": 13.0
       }
     }, {
       "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41716",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41716",
-      "key": "BC-2968",
+      "id": "34018",
+      "self": "https://issues.ede.net/rest/api/2/issue/34018",
+      "key": "BC-894",
       "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:36:16.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41712",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41712",
-      "key": "BC-2965",
-      "fields": {
-        "customfield_11111": 0.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:33:19.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41709",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41709",
-      "key": "BC-2964",
-      "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:28:04.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41701",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41701",
-      "key": "BC-2961",
-      "fields": {
-        "customfield_11111": 0.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-08T17:30:00.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41596",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41596",
-      "key": "BC-2907",
-      "fields": {
-        "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-19T16:38:29.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41594",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41594",
-      "key": "BC-2906",
-      "fields": {
-        "customfield_11111": 8.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-07T12:08:35.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41568",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41568",
-      "key": "BC-2905",
-      "fields": {
-        "customfield_11111": 8.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-07-18T15:39:39.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41544",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41544",
-      "key": "BC-2895",
-      "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-03T12:08:56.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41508",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41508",
-      "key": "BC-2894",
-      "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-11T16:30:10.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41377",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41377",
-      "key": "BC-2878",
-      "fields": {
-        "customfield_11111": 8.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-21T10:51:23.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41342",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41342",
-      "key": "BC-2869",
-      "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-27T11:02:09.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41083",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41083",
-      "key": "BC-2737",
-      "fields": {
-        "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-28T10:29:37.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41082",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41082",
-      "key": "BC-2736",
-      "fields": {
-        "customfield_11111": 5.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@d734b13[id=195,rapidViewId=124,state=CLOSED,name=Sprint 6 - GAZ,startDate=2017-05-23T14:11:07.802+02:00,endDate=2017-06-12T06:11:00.000+02:00,completeDate=2017-06-12T17:16:54.393+02:00,sequence=195]"],
-        "resolutiondate": "2017-06-12T09:55:03.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41081",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41081",
-      "key": "BC-2735",
-      "fields": {
-        "customfield_11111": 13.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-30T18:32:30.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41080",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41080",
-      "key": "BC-2734",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@d734b13[id=195,rapidViewId=124,state=CLOSED,name=Sprint 6 - GAZ,startDate=2017-05-23T14:11:07.802+02:00,endDate=2017-06-12T06:11:00.000+02:00,completeDate=2017-06-12T17:16:54.393+02:00,sequence=195]"],
-        "resolutiondate": "2017-06-01T10:38:14.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41073",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41073",
-      "key": "BC-2733",
-      "fields": {
-        "customfield_11111": 3.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@44df04c3[id=244,rapidViewId=124,state=CLOSED,name=Sprint 8 - GAZ - R 2.19,startDate=2017-07-04T16:20:39.109+02:00,endDate=2017-07-24T20:30:00.000+02:00,completeDate=2017-07-25T13:40:55.906+02:00,sequence=244]"],
-        "resolutiondate": "2017-06-30T10:19:16.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "41070",
-      "self": "https://issues.edelia.net/rest/api/2/issue/41070",
-      "key": "BC-2732",
-      "fields": {
-        "customfield_11111": 3.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-30T18:32:08.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40989",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40989",
-      "key": "BC-2712",
-      "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-06-06T10:21:00.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40960",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40960",
-      "key": "BC-2704",
-      "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-08-11T16:24:49.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40715",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40715",
-      "key": "BC-2664",
-      "fields": {
-        "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@33f09d81[id=245,rapidViewId=124,state=ACTIVE,name=Sprint 9 - GAZ - R 2.19,startDate=2017-07-25T18:00:00.000+02:00,endDate=2017-08-14T18:00:00.000+02:00,completeDate=<null>,sequence=245]"],
-        "resolutiondate": "2017-08-11T16:30:54.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40714",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40714",
-      "key": "BC-2663",
-      "fields": {
-        "customfield_11111": 20.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@d734b13[id=195,rapidViewId=124,state=CLOSED,name=Sprint 6 - GAZ,startDate=2017-05-23T14:11:07.802+02:00,endDate=2017-06-12T06:11:00.000+02:00,completeDate=2017-06-12T17:16:54.393+02:00,sequence=195]"],
-        "resolutiondate": "2017-06-12T16:19:24.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40703",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40703",
-      "key": "BC-2661",
-      "fields": {
-        "customfield_11111": 3.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-05-10T14:04:44.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40695",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40695",
-      "key": "BC-2653",
-      "fields": {
-        "customfield_11111": 2.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-23T11:08:31.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40403",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40403",
-      "key": "BC-2531",
-      "fields": {
-        "customfield_11111": 13.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@464cf5da[id=204,rapidViewId=124,state=CLOSED,name=Sprint 7 - GAZ,startDate=2017-06-13T16:05:10.617+02:00,endDate=2017-07-03T08:05:00.000+02:00,completeDate=2017-07-03T13:58:31.783+02:00,sequence=204]"],
-        "resolutiondate": "2017-06-30T10:19:46.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40299",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40299",
-      "key": "BC-2473",
-      "fields": {
-        "customfield_11111": 13.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@3e291b58[id=194,rapidViewId=124,state=CLOSED,name=Sprint 5 - GAZ,startDate=2017-05-02T17:42:41.538+02:00,endDate=2017-05-23T05:42:00.000+02:00,completeDate=2017-05-23T14:59:52.627+02:00,sequence=194]"],
-        "resolutiondate": "2017-05-23T13:22:33.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40298",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40298",
-      "key": "BC-2472",
-      "fields": {
-        "customfield_11111": 8.0,
-        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@3e291b58[id=194,rapidViewId=124,state=CLOSED,name=Sprint 5 - GAZ,startDate=2017-05-02T17:42:41.538+02:00,endDate=2017-05-23T05:42:00.000+02:00,completeDate=2017-05-23T14:59:52.627+02:00,sequence=194]"],
-        "resolutiondate": "2017-05-17T10:55:14.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40267",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40267",
-      "key": "BC-2467",
-      "fields": {
-        "customfield_11111": 1.0,
-        "customfield_11103": null,
-        "resolutiondate": "2017-05-02T16:10:20.000+0200"
-      }
-    }, {
-      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
-      "id": "40037",
-      "self": "https://issues.edelia.net/rest/api/2/issue/40037",
-      "key": "BC-2407",
-      "fields": {
-        "customfield_11111": null,
-        "customfield_11103": null,
-        "resolutiondate": "2017-04-25T10:23:52.000+0200"
+        "customfield_11103": ["com.atlassian.greenhopper.service.sprint.Sprint@46e9b3e3[id=272,rapidViewId=124,state=FUTURE,name=Sprint 10 - GAZ - R 2.20,startDate=2017-07-17T17:18:58.962+02:00,endDate=2017-07-17T17:18:58.962+02:00,completeDate=<null>,sequence=272]"],
+        "customfield_11111": 16.0
       }
     }]
   },
-
-  "jiraTodo": {
+  "bugsTodo": {
     "expand": "names,schema",
     "startAt": 0,
     "maxResults": 500050,
@@ -531,7 +217,7 @@
       }
     ]
   },
-  "jiraInProgress": {
+  "bugsInProgress": {
     "expand": "names,schema",
     "startAt": 0,
     "maxResults": 50,

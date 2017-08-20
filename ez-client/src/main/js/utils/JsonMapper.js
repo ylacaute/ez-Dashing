@@ -1,8 +1,5 @@
 import JSONPath from "jsonpath";
 import TypeUtils from 'utils/TypeUtils';
-import Logger from 'utils/Logger';
-
-const logger = Logger.getLogger("JSONPathMapper");
 
 /**
  * If the property contains ":" that means the type is explicitly set.
@@ -44,7 +41,7 @@ function mapObject(mappingDefinition, json) {
   const child = JSONPath.query(json, jsonPath)[0];
 
   return {
-    ...JSONPathMapper.mapProperties(mapping, child)
+    ...JsonMapper.mapProperties(mapping, child)
   };
 }
 
@@ -57,7 +54,7 @@ function mapArray(mappingDefinition, json) {
   const { jsonPath, mapping } = mappingDefinition;
   const child = JSONPath.query(json, jsonPath)[0];
 
-  return child.map(child => JSONPathMapper.mapProperties(mapping, child));
+  return child.map(child => JsonMapper.mapProperties(mapping, child));
 }
 
 /**
@@ -82,7 +79,7 @@ function mapRegexp(propType, mappingDefinition, json) {
   }
 }
 
-export default class JSONPathMapper {
+export default class JsonMapper {
 
   /**
    * We are mapping json result with the defined properties in the query configuration. Note that JSONPath
@@ -117,7 +114,6 @@ export default class JSONPathMapper {
             result[propName] = mapObject(mappingDefinition, jsonResponse);
             break;
           case "regexp":
-            console.log("propName : ", propName);
             const reProps = splitTypeAndName(propName);
             result[reProps.propName] = mapRegexp(reProps.propType, mappingDefinition, jsonResponse);
             break;

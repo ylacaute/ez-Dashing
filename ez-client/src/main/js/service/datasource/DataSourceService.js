@@ -1,6 +1,6 @@
 import RestClient from "utils/RestClient";
 import Logger from "utils/Logger";
-import JSONPathMapper from 'utils//JSONPathMapper';
+import JsonMapper from 'utils//JsonMapper';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
 
 const logger = Logger.getLogger("DataSourceService");
@@ -60,7 +60,7 @@ export default class DataSourceService {
         message: "You must define a mapping for query " + ds.id
       }
     }
-    let mappedProperties = JSONPathMapper.mapProperties(ds.mapping, jsonResponse);
+    let mappedProperties = JsonMapper.mapProperties(ds.mapping, jsonResponse);
     logger.trace("getMappedProperties for query '{}':", ds.id, mappedProperties);
     return mappedProperties;
   };

@@ -41,11 +41,13 @@ const currentVelocity = [
 export default class BurndownChartWidget extends AbstractWidget {
 
   static propTypes = {
-    issues: PropTypes.array.isRequired,
+    closedIssues: PropTypes.array.isRequired,
+    readyIssues: PropTypes.array.isRequired
   };
 
   static defaultProps = {
-    issues: []
+    closedIssues: [],
+    readyIssues: []
   };
 
   constructor(props) {
@@ -54,11 +56,26 @@ export default class BurndownChartWidget extends AbstractWidget {
       inc: 0
     };
   }
-  renderContent() {
 
+  generateChartData() {
+
+    return {};
+  }
+
+  getSprintDates() {
+
+    return [];
+  }
+
+  renderContent() {
+    const currentClosedIssues = this.props.closedIssues.filter(i => i.sprintNumber == 10);
+    const currentReadyIssues = this.props.readyIssues.filter(i => i.sprintNumber == 10);
+    console.log("Closed issues : ", currentClosedIssues);
+    console.log("Ready issues : ", currentReadyIssues);
     return (
       <div>
-        <p>NUMBER OF ISSUES CLOSED: {this.props.issues.length}</p>
+        <p>NUMBER OF ISSUES CLOSED: {currentClosedIssues.length}</p>
+        <p>NUMBER OF ISSUES READY: {currentReadyIssues.length}</p>
       </div>
     );
   }
