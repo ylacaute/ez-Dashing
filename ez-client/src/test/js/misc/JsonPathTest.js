@@ -72,7 +72,7 @@ describe("JsonPATH", () => {
             ]
           },
           "remoteUrls": [
-            "git@hermes.edelia.net:devinterne/bc-gas-client.git"
+            "git@hermes.net:devinterne/bc-gas-client.git"
           ],
           "scmName": ""
         },
@@ -102,7 +102,7 @@ describe("JsonPATH", () => {
       "queueId": 380178,
       "result": "SUCCESS",
       "timestamp": 1492782440396,
-      "url": "http://tools-29a.admin.edelia.net:37777/job/bc-gas-client_-_Analyse_reccurente/branch/master/78/",
+      "url": "http://tools-29a.admin.net:3777/job/bc-gas-client_-_Analyse_reccurente/branch/master/78/",
       "builtOn": "",
       "changeSet": {
         "items": [
@@ -115,10 +115,6 @@ describe("JsonPATH", () => {
             ],
             "commitId": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
             "timestamp": 1492782154000,
-            "author": {
-              "absoluteUrl": "http://tools-29a.admin.edelia.net:37777/user/jenkins",
-              "fullName": "jenkins1"
-            },
             "comment": "create new release branch 0.49\n",
             "date": "2017-04-21 15:42:34 +0200",
             "id": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
@@ -151,10 +147,6 @@ describe("JsonPATH", () => {
             ],
             "commitId": "8173d44e1ede0876e54a8ed3c858502c16c44c0c",
             "timestamp": 1492782311000,
-            "author": {
-              "absoluteUrl": "http://tools-29a.admin.edelia.net:37777/user/jenkins",
-              "fullName": "jenkins2"
-            },
             "comment": "[maven-release-plugin] prepare release bc-gas-client-0.49.0\n",
             "date": "2017-04-21 15:45:11 +0200",
             "id": "8173d44e1ede0876e54a8ed3c858502c16c44c0c",
@@ -187,10 +179,6 @@ describe("JsonPATH", () => {
             ],
             "commitId": "1c49e9d9ef9b8965cac15c2e6e9f77bd275ced66",
             "timestamp": 1492782315000,
-            "author": {
-              "absoluteUrl": "http://tools-29a.admin.edelia.net:37777/user/jenkins",
-              "fullName": "jenkins3"
-            },
             "comment": "[maven-release-plugin] prepare for next development iteration\n",
             "date": "2017-04-21 15:45:15 +0200",
             "id": "1c49e9d9ef9b8965cac15c2e6e9f77bd275ced66",
@@ -219,7 +207,7 @@ describe("JsonPATH", () => {
       },
       "culprits": [
         {
-          "absoluteUrl": "http://tools-29a.admin.edelia.net:37777/user/jenkins",
+          "absoluteUrl": "http://jjt:54/user/jenkins",
           "fullName": "jenkins"
         }
       ],
