@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import ThresholdConfig from "config/ThresholdConfig";
+import ScalableImage from 'component/scalable/ScalableImage.jsx';
 
 const MAX_DISPLAYABLE_ISSUES = 10;
 
@@ -14,12 +15,14 @@ export default class BugWidget extends AbstractWidget {
    */
   static propTypes = {
     inProgressBugs: PropTypes.array,
-    todoBugs: PropTypes.array
+    todoBugs: PropTypes.array,
+    noBugIcon: PropTypes.string
   };
 
   static defaultProps = {
     inProgressBugs: [],
-    todoBugs: []
+    todoBugs: [],
+    noBugIcon: "/img/good.png"
   };
 
   getWidgetClassNames() {
@@ -57,6 +60,9 @@ export default class BugWidget extends AbstractWidget {
   }
 
   renderContent() {
+    if (this.getTotal() == 0) {
+      return this.renderEmptyBug();
+    }
     const todoIssuesKeys = this.getKeys(this.props.todoBugs);
     const inProgressIssuesKeys = this.getKeys(this.props.inProgressBugs);
 
@@ -77,6 +83,12 @@ export default class BugWidget extends AbstractWidget {
         {todoIssues}
         {inProgressIssues}
       </ul>
+    )
+  }
+
+  renderEmptyBug() {
+    return (
+      <ScalableImage className="emptyBugIcon" src={this.props.noBugIcon}/>
     )
   }
 

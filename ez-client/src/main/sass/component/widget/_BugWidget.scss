@@ -42,6 +42,9 @@
         }
       }
     }
+    .emptyBugIcon {
+      padding: 15%;
+    }
   }
 }
 
@@ -85,4 +88,10 @@
     width: 32px;
     height: 32px;
   }
+}
+
+// Responsive widget styles: no need padding for icon (when no bug)
+// ----------------------------------------------------------------
+.widget.bug.height-xxxs article .emptyBugIcon {
+  padding: 0;
 }
