@@ -9,7 +9,7 @@
         "userName": "test",
         "password": "test"
       },
-      "refresh": 30,
+      "refresh": 120,
       "queries": [
         {
           "id": "jira-bug-todo-p0-p1",
@@ -105,12 +105,12 @@
       ]
     },
     {
-      "baseUrl": "https://sonar:1234",
+      "baseUrl": "https://sonarcloud.io",
       "credentials": {
-        "userName": "test",
-        "password": "test"
+        "userName": "",
+        "password": ""
       },
-      "refresh": 30,
+      "refresh": 120,
       "mapping": {
         "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
         "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
@@ -119,21 +119,21 @@
       "queries": [
         {
           "id": "sonar-stats-systemA",
-          "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          "path": "/api/measures/component?componentKey=org.starchartlabs.lockdown:lockdown&metricKeys=coverage,lines,violations&format=json"
         },
         {
           "id": "sonar-stats-systemB",
-          "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
+          "path": "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations&format=json"
         }
       ]
     },
     {
-      "baseUrl": "https://jenkins:12345",
+      "baseUrl": "https://builds.apache.org",
       "credentials": {
-        "userName": "test",
-        "password": "test"
+        "userName": "",
+        "password": ""
       },
-      "refresh": 30,
+      "refresh": 120,
       "mapping": {
         "bool:building": "$.building",
         "int:progress": "$.executor.progress",
@@ -143,15 +143,15 @@
       "queries": [
         {
           "id": "jenkins-lastBuild-systemA",
-          "path": "/job/systemA/branch/master/lastBuild/api/json&depth=1"
+            "path": "/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1"
         },
         {
           "id": "jenkins-lastBuild-systemB",
-          "path": "/job/systemB/branch/master/lastBuild/api/json&depth=1"
+          "path": "/job/Solr-reference-guide-7.0/911/api/json?pretty=true&depth=1"
         },
         {
           "id": "jenkins-lastBuild-systemC",
-          "path": "/job/systemC/branch/master/lastBuild/api/json&depth=1"
+          "path": "/job/yetus-java/525/api/json?pretty=true&depth=1"
         }
       ]
     }

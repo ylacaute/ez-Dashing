@@ -5,6 +5,7 @@ import AvatarConfig from "config/AvatarConfig";
 import Metric from "component/widget/base/Metric.jsx";
 import FlipComponent from "component/effect/FlipComponent.jsx";
 import CircularProgressBar from 'component/chart/CircularProgressBar.jsx'
+import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
 
 // Samples :
 // https://builds.apache.org/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true
@@ -86,13 +87,16 @@ export default class SonkinsWidget extends AbstractWidget {
 
   renderBuilding(avatar) {
     return (
-      <FlipComponent>
-        {this.renderAuthorMetric("BUILDING", avatar.url)}
-        <CircularProgressBar
-          value={this.props.progress}
-          textForValue={(value) => `${value}%`}
-        />
-      </FlipComponent>
+      <div>
+        <FlipComponent>
+          {this.renderAuthorMetric("BUILDING", avatar.url)}
+          <CircularProgressBar
+            value={this.props.progress}
+            textForValue={(value) => `${value}%`}
+          />
+        </FlipComponent>
+        <LinearProgressBar percent={this.props.progress}/>
+      </div>
     );
   }
 

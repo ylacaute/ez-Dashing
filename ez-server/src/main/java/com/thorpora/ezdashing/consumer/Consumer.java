@@ -16,14 +16,18 @@
  */
 package com.thorpora.ezdashing.consumer;
 
+import com.thorpora.ezdashing.dashboard.model.Credentials;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.slf4j.Slf4jLogger;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Slf4j
 public class Consumer {
@@ -33,10 +37,14 @@ public class Consumer {
 
     public Consumer(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.apiConsumer = Feign.builder()
-                .requestInterceptor(new BasicAuthRequestInterceptor(
-                        dataSource.getCredentials().getUserName(),
-                        dataSource.getCredentials().getPassword()))
+        Credentials cred = dataSource.getCredentials();
+        Feign.Builder builder = Feign.builder();
+        if (cred != null && !isEmpty(cred.getUserName()) && !isEmpty(cred.getPassword())) {
+            builder.requestInterceptor(new BasicAuthRequestInterceptor(
+                    cred.getUserName(),
+                    cred.getPassword()));
+        }
+        this.apiConsumer = builder
                 .logger(new Slf4jLogger(Consumer.class))
                 .logLevel(feign.Logger.Level.BASIC)
                 .target(APIConsumer.class, dataSource.getBaseUrl());

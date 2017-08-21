@@ -1,6 +1,5 @@
 import React from 'react';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
-
 import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
 
 export default class HelloWorldWidget extends AbstractWidget {
