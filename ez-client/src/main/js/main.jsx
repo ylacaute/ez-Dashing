@@ -5,6 +5,9 @@ import Application from './Application.jsx'
 import SetupService from 'service/setup/SetupService';
 import Logger from 'utils/Logger';
 
+import ReactGridLayoutStyle from "react-grid-layout/css/styles.css";
+import ReactGridResizableStyle from "react-resizable/css/styles.css";
+
 // Logger configuration
 Logger.ENABLE_COLOR = true;
 Logger.setRootLevel(Logger.Level.DEBUG);
