@@ -126,7 +126,7 @@ let devConfig = {
     host: '0.0.0.0',
     proxy: {
       "/api": {
-        target: "http://localhost:8081"
+        target: "http://localhost:8080"
       }
     }
   },
