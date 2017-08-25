@@ -19,10 +19,10 @@ package com.thorpora.ezdashing.consumer;
 import com.thorpora.ezdashing.dashboard.model.Credentials;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import feign.Feign;
+import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.slf4j.Slf4jLogger;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class Consumer {
         }
         this.apiConsumer = builder
                 .logger(new Slf4jLogger(Consumer.class))
-                .logLevel(feign.Logger.Level.BASIC)
+                .logLevel(Logger.Level.BASIC)
                 .target(APIConsumer.class, dataSource.getBaseUrl());
     }
 

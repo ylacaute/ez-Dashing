@@ -42,7 +42,7 @@ public class ConsumerController {
         logger.debug("GET /api/consumer/{}", queryId);
         Consumer consumer = registry.getConsumer(queryId);
         String consumerResponse = consumer.doQuery(queryId);
-        logger.debug("Response of queryId '{}' : {}", queryId, consumerResponse);
+        //logger.debug("Response of queryId '{}' : {}", queryId, consumerResponse);
         return consumerResponse;
     }
 
