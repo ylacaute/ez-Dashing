@@ -10,7 +10,7 @@
           "userName": "test",
           "password": "test"
         },
-        "refresh": 30,
+        "refresh": 120,
         "queries": [
           {
             "id": "jira-bug-todo-p0-p1",
@@ -111,7 +111,7 @@
           "userName": "test",
           "password": "test"
         },
-        "refresh": 30,
+        "refresh": 120,
         "mapping": {
           "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
           "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
@@ -138,7 +138,7 @@
           "userName": "test",
           "password": "test"
         },
-        "refresh": 30,
+        "refresh": 120,
         "mapping": {
           "bool:building": "$.building",
           "int:progress": "$.executor.progress",
