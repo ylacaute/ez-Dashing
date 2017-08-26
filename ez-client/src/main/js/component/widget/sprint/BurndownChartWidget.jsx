@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from "victory";
-import SprintCalculator from "component/widget/sprint/SprintCalculator";
 import VelocityCalculator from "component/widget/sprint/VelocityCalculator";
 
 export default class BurndownChartWidget extends AbstractWidget {
@@ -30,13 +29,9 @@ export default class BurndownChartWidget extends AbstractWidget {
 
 
   renderContent() {
-    const { sprintStartDate, sprintEndDate, sprintNumber } = this.props;
+    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
     const now = new Date();
-
-    const currentClosedIssues = this.props.closedIssues.filter(i => i.sprintNumber == sprintNumber);
-    const currentReadyIssues = this.props.readyIssues.filter(i => i.sprintNumber == sprintNumber);
-    const allSprintIssues = currentClosedIssues.concat(currentReadyIssues);
-
+    const allSprintIssues = closedIssues.concat(readyIssues);
     if (allSprintIssues.length == 0) {
       this.setState({
         hasError: true,
@@ -46,7 +41,6 @@ export default class BurndownChartWidget extends AbstractWidget {
         }
       });
     }
-
     const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
 
     return (

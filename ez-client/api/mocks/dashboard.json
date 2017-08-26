@@ -85,19 +85,13 @@
           },
           {
             "id": "jira-story-closed",
-            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
               "array:closedIssues": {
                 "jsonPath": "$.issues",
                 "mapping": {
                   "string:key": "$.key",
                   "int:storyPoints": "$.fields.customfield_11111",
-                  "regexp:int:sprintNumber": {
-                    "jsonPath": "$.fields.customfield_11103",
-                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
-                    "matchIndex": 2,
-                    "ignoreException": true
-                  },
                   "date:resolutionDate": "$.fields.resolutiondate"
                 }
               }
@@ -111,19 +105,13 @@
           },
           {
             "id": "jira-story-ready",
-            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11103,customfield_11111&maxResults=100",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11111&maxResults=100",
             "mapping": {
               "array:readyIssues": {
                 "jsonPath": "$.issues",
                 "mapping": {
                   "string:key": "$.key",
-                  "int:storyPoints": "$.fields.customfield_11111",
-                  "regexp:int:sprintNumber": {
-                    "jsonPath": "$.fields.customfield_11103",
-                    "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
-                    "matchIndex": 2,
-                    "ignoreException": true
-                  }
+                  "int:storyPoints": "$.fields.customfield_11111"
                 }
               }
             },
