@@ -126,9 +126,9 @@ function startDemo {
   banner "STARTING EZ-DASHING FOR DEMO"
   cd ${FRONT_DIR}
   echo "Starting the mock API, please wait..."
-  npm run start-mock-api &
+  npm run api &
   echo "Starting the front app, please wait..."
-  npm run start-dev
+  npm run dev
 }
 
 function usage {

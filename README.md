@@ -2,13 +2,15 @@
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development.
 
-I contribute to this project during my free time, I am aware that many things could be improved. Feel free to add your contribution !
+I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
 
- - __Responsive__
- - __Configurable__
- - __Ready to use__
+**Guidelines**
+
+ - Responsive
+ - Configurable
+ - Ready to use
  
-# Tech stack
+**Tech Stack**
 
  - React 16
  - Redux 3
@@ -17,27 +19,28 @@ I contribute to this project during my free time, I am aware that many things co
  - Maven
  - Docker 
 
-
 # Demo
 
+Downloads dependencies as usual with npm or yarn if you want to run from sources.
+
 - __From sources__
-```
+```bash
 ./ez.sh start-demo
 ```
 - __From Docker Hub__
-```
+```bash
 docker run --rm -it -p 2222:2222 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
-Go on [http://localhost:8080](http://localhost:8080)
+Go on [http://localhost:8081](http://localhost:8081)
 
 # Production
 
 - __From sources__
-```
+```bash
 ./ez.sh start-prod /YOUR/CONFIG/DIR
 ```
 - __From Docker Hub__
-```
+```bash
 docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
 ```
 
@@ -85,11 +88,14 @@ You define an _server.properties_ server configuration file:
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 
 ## Global backlog
+- [ ] __Improve the build process__
 - [ ] __DataSource Template__ DataSources should allow variables (not only global)
 - [ ] __Theme system__ Need to configure Webpack correctly to generate many css output
 - [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
-
+- [ ] __Fix React warning__  wrong way for minify/uglify for prod
+- [ ] __Use Travis-CI__
+- [ ] __Dynamic widget__ make pure json configurable widget 
 
 ## Build the application
 
@@ -99,33 +105,23 @@ You define an _server.properties_ server configuration file:
  - Maven 3
 
 __Build front and back-end from source__ (with production profile)
-```
+```bash
 ./ez.sh build-prod
 ```
 __Run the server__ 
-```
+```bash
 ./ez.sh start-prod <CONFIG_DIRECTORY>
 ```
+In order to verify that everything is ok, you can use the config directory of this project, linked to public online sonar and jenkins server.
 
-More options in ez.sh.
+More options in ez.sh:
+```bash
+/ez.sh -h
+```
 
-# General Todos
- - Fix React warning in front build (wrong way for minify/uglify for prod)
- - Add a Dashing color theme (black theme not always good)
- - Use Travis-CI for this project
- - Add documentation on widgets configuration
- - Plugin system
- - Improve error management
- 
-# Widget system not fixed
- - Could Widget dependency management be interesting ?
-   - Client API could be invisible Widget and make event listened by any other widget
-   - But configuration must stay as simple as possible
- - How generic a widget should be ? 
- 
-# Browser compatibility: 
- - __Chromium 57__ : good
- - __Firefox 52__ : bad
+## Browser compatibility: 
+ - __Chromium__ : good
+ - __Firefox__ : average
  - __Safari__ : not tested
  - __Internet Explorer__ not tested
 
@@ -135,4 +131,6 @@ More options in ez.sh.
 # Screenshots
 
 ![Screenshot](/ez-client/screenshot.png)
+
+![Screenshot](/ez-client/screenshot2.png)
 
