@@ -2,62 +2,43 @@ import React from "react";
 import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import CircularProgressBar from "component/chart/CircularProgressBar.jsx";
-import SprintCalculator from "component/widget/sprint/SprintCalculator";
+import DateUtils from 'utils/DateUtils';
 
 export default class SprintWidget extends AbstractWidget {
 
   static propTypes = {
-    sprintDates: PropTypes.array.isRequired,
-    sprintDuration: PropTypes.number.isRequired,
-    sprintOffset: PropTypes.number
+    sprintId: PropTypes.string.isRequired,
+    sprintName: PropTypes.string.isRequired,
+    sprintNumber: PropTypes.number.isRequired,
+    sprintStartDate: PropTypes.instanceOf(Date).isRequired,
+    sprintEndDate: PropTypes.instanceOf(Date).isRequired,
   };
 
   static defaultProps = {
     title: "SPRINT",
-    sprintDates: [],
-    sprintDuration: 0,
-    sprintOffset: 0,
+    sprintId: "-",
+    sprintName: "-",
+    sprintNumber: 0,
+    sprintStartDate: new Date(),
+    sprintEndDate: new Date(),
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: 0,
-      days: 0,
-      daysLeft: 0,
-      progress: 0
-    };
-    this.timer = setInterval(this.refreshData.bind(this), 3600);
-  }
-
-  componentDidMount() {
-    this.refreshData();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
 
   renderHeader() {
     return (
       <h1>
         <span>{this.props.title}</span>
-        <strong>{this.state.number}</strong>
+        <strong>{this.props.sprintNumber}</strong>
       </h1>
     )
   }
 
-  refreshData() {
-    this.setState(SprintCalculator.calculateSprintData(
-      new Date(),
-      this.props.sprintDates,
-      this.props.sprintDuration,
-      this.props.sprintOffset
-    ));
-  }
-
   renderContent() {
-    const { progress, daysLeft } = this.state;
+    const { sprintStartDate, sprintEndDate } = this.props;
+    const now = new Date();
+    const sprintDuration = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
+    const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
+    const progress = daysLeft / sprintDuration * 100;
+
     return (
         <CircularProgressBar
           value={progress}

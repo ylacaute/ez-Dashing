@@ -1,4 +1,5 @@
 import RestClient from "utils/RestClient";
+import URLUtils from "utils/URLUtils";
 import Logger from "utils/Logger";
 import JsonMapper from 'utils//JsonMapper';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
@@ -27,19 +28,24 @@ export default class DataSourceService {
   initializeResfreshTimers() {
     this.timers = {};
     this.dataSources.forEach(ds => {
-      this.timers[ds.id] = setInterval(() => {
-        this.refreshDataSource(ds);
-      }, ds.refresh * 1000);
-      this.refreshDataSource(ds);// refresh at start
+      if (ds.dependencies == 0) {
+        this.timers[ds.id] = setInterval(() => {
+          this.refreshDataSource(ds);
+        }, ds.refresh * 1000);
+        setTimeout(() => this.refreshDataSource(ds), 500);
+        //this.refreshDataSource(ds);// refresh at start
+      } else {
+        logger.debug("The dataSource {} has dependencies, waiting.", ds.id);
+      }
     });
   }
 
   refreshDataSource(ds) {
     logger.info("Refreshing dataSource '{}'", ds.id);
-    const path = this.getDataSourceServerPath();
-
-    RestClient.get(path + ds.id, jsonResponse => {
-      this.store.dispatch({
+    const path = this.getDataSourceServerPath() + ds.id;
+    const queryParams = URLUtils.serializeAsQueryParams(ds.queryParams);
+    RestClient.get(path + queryParams, jsonResponse => {
+      const result = {
         type: DataSourceEvent.DataSourceRefreshed,
         lastUpdate: new Date(),
         dataSourceId: ds.id,
@@ -47,7 +53,9 @@ export default class DataSourceService {
         payload: {
           ...this.mapProperties(ds, jsonResponse)
         }
-      });
+      };
+      logger.debug("Dispatching refreshed dataSource:", result);
+      this.store.dispatch(result);
     }, error => {
       logger.error("Unable to refresh dataSource, details:", error);
     });
@@ -93,14 +101,6 @@ export default class DataSourceService {
     return result;
   }
 
-  refreshAll() {
-    this.dashboardConfig.dataSources.forEach(dsConfig => {
-      dsConfig.queries.forEach(queryConfig => {
-        this.refreshDataSource(dsConfig, queryConfig);
-      })
-    });
-  }
-
   getDataSourceServerPath() {
     let path = this.dashboardConfig.server.dataSourcePath;
     if (path.slice(-1) !== "/")
@@ -110,6 +110,28 @@ export default class DataSourceService {
     return path;
   }
 
+  /**
+   * For now only support ONE dependency.
+   * When a dataSource is refreshed and this one is defined as a dependency as another dataSource, we take
+   * listened params and transform them as queryParams to refresh the dependent dataSource.
+   */
+  onDataSourceRefreshed(action) {
+    const dsRefreshedId = action.dataSourceId;
+
+    this.dataSources.forEach(ds => {
+      const dsDenpendency = ds.dependencies.find(d => d.dataSource == dsRefreshedId);
+      if (dsDenpendency == null) {
+        return
+      }
+      // We found a dataSource which contains a dependency equals to the refreshed dataSource
+      ds.queryParams = {};
+      dsDenpendency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
+      logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
+      this.refreshDataSource(ds);
+    });
+
+
+  }
 
 };
 

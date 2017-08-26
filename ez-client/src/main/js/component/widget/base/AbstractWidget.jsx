@@ -94,6 +94,9 @@ export default class AbstractWidget extends React.Component {
     } else if (this.props.error != null) {
       if (this.props.error.name != null) name = this.props.error.name;
       if (this.props.error.message != null) message = this.props.error.message;
+    } else if (this.state.error != null) {
+      if (this.state.error.name != null) name = this.state.error.name;
+      if (this.state.error.message != null) message = this.state.error.message;
     }
     if (!ObjectUtils.isNullOrEmpty(this.props.title))
       title = this.props.title;

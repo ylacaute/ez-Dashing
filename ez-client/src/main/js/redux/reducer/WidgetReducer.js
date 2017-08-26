@@ -118,5 +118,6 @@ export default function(state = initialState, action) {
 
   }
 
+  logger.trace("New state: ", newState);
   return newState;
 }

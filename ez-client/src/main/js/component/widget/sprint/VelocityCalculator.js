@@ -74,5 +74,12 @@ export default class VelocityCalculator {
     return velocity;
   }
 
+  static calculate(now, sprintStartDate, sprintEndDate, allSprintIssues) {
+    const dates = DateUtils.getAllDatesBetween(sprintStartDate, sprintEndDate, true);
+    return {
+      plannedVelocity: VelocityCalculator.calculatePlannedVelocity(dates, allSprintIssues),
+      currentVelocity: VelocityCalculator.calculateVelocity(now, dates, allSprintIssues)
+    }
+  }
 
 }

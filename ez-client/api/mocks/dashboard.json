@@ -16,6 +16,22 @@
         "refresh": 120,
         "queries": [
           {
+            "id": "jira-sprint-active",
+            "path": "/rest/agile/1.0/board/${jiraBoardId}/sprint?state=active",
+            "mapping": {
+              "sprintId": "$.values[0].id",
+              "sprintName": "$.values[0].name",
+              "regexp:int:sprintNumber": {
+                "jsonPath": "$.values[0].name",
+                "regexp": "Sprint[ ]([0-9]+)[ ](.*)",
+                "matchIndex": 1,
+                "ignoreException": true
+              },
+              "date:sprintStartDate": "$.values[0].startDate",
+              "date:sprintEndDate": "$.values[0].endDate"
+            }
+          },
+          {
             "id": "jira-bug-todo-p0-p1",
             "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
             "mapping": {
@@ -69,7 +85,7 @@
           },
           {
             "id": "jira-story-closed",
-            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
             "mapping": {
               "array:closedIssues": {
                 "jsonPath": "$.issues",
@@ -85,11 +101,17 @@
                   "date:resolutionDate": "$.fields.resolutiondate"
                 }
               }
-            }
+            },
+            "dependencies": [{
+              "dataSource": "jira-sprint-active",
+              "params": [
+                "sprintId"
+              ]
+            }]
           },
           {
             "id": "jira-story-ready",
-            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt&fields=customfield_11103,customfield_11111&maxResults=100",
+            "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11103,customfield_11111&maxResults=100",
             "mapping": {
               "array:readyIssues": {
                 "jsonPath": "$.issues",
@@ -104,7 +126,13 @@
                   }
                 }
               }
-            }
+            },
+            "dependencies": [{
+              "dataSource": "jira-sprint-active",
+              "params": [
+                "sprintId"
+              ]
+            }]
           }
         ]
       },
@@ -179,18 +207,11 @@
       {
         "type": "BurndownChartWidget",
         "title": "BURNDOWN (SprintId=${jiraBoardId})",
-        "enabled": true,
         "dataSource": [
           "jira-story-closed",
-          "jira-story-ready"
-        ],
-        "sprintDates": [
-          "2017-07-20",
-          "2017-08-10"
-        ],
-        "sprintDuration": 21,
-        "sprintOffset": 8,
-        "enabled": true
+          "jira-story-ready",
+          "jira-sprint-active"
+        ]
       },
       {
         "type": "TeamWidget",
@@ -203,13 +224,9 @@
       },
       {
         "type": "SprintWidget",
-        "sprintDates": [
-          "2017-07-20",
-          "2017-08-10"
-        ],
-        "sprintDuration": 21,
-        "sprintOffset": 8,
-        "enabled": true
+        "dataSource" : [
+          "jira-sprint-active"
+        ]
       },
       {
         "type": "BugWidget",

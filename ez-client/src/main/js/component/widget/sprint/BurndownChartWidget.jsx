@@ -8,58 +8,46 @@ import VelocityCalculator from "component/widget/sprint/VelocityCalculator";
 export default class BurndownChartWidget extends AbstractWidget {
 
   static propTypes = {
-    sprintDates: PropTypes.array.isRequired,
-    sprintDuration: PropTypes.number.isRequired,
-    sprintOffset: PropTypes.number,
+    sprintId: PropTypes.string.isRequired,
+    sprintName: PropTypes.string.isRequired,
+    sprintNumber: PropTypes.number.isRequired,
+    sprintStartDate: PropTypes.instanceOf(Date).isRequired,
+    sprintEndDate: PropTypes.instanceOf(Date).isRequired,
     closedIssues: PropTypes.array.isRequired,
     readyIssues: PropTypes.array.isRequired
   };
 
   static defaultProps = {
     title: "BURNDOWN CHART",
-    sprintDates: [],
-    sprintDuration: 0,
-    sprintOffset: 0,
+    sprintId: "-",
+    sprintName: "-",
+    sprintNumber: 0,
+    sprintStartDate: new Date(),
+    sprintEndDate: new Date(),
     closedIssues: [],
     readyIssues: []
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: 0,
-      days: 0,
-      daysLeft: 0,
-      progress: 0
-    };
-    this.timer = setInterval(this.refreshData.bind(this), 3600);
-  }
-
-  componentDidMount() {
-    this.refreshData();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  refreshData() {
-    this.setState(SprintCalculator.calculateSprintData(
-      new Date(),
-      this.props.sprintDates,
-      this.props.sprintDuration,
-      this.props.sprintOffset
-    ));
-  }
 
   renderContent() {
+    const { sprintStartDate, sprintEndDate, sprintNumber } = this.props;
     const now = new Date();
-    const { number, dates } = this.state;
-    const currentClosedIssues = this.props.closedIssues.filter(i => i.sprintNumber == number);
-    const currentReadyIssues = this.props.readyIssues.filter(i => i.sprintNumber == number);
+
+    const currentClosedIssues = this.props.closedIssues.filter(i => i.sprintNumber == sprintNumber);
+    const currentReadyIssues = this.props.readyIssues.filter(i => i.sprintNumber == sprintNumber);
     const allSprintIssues = currentClosedIssues.concat(currentReadyIssues);
-    const plannedVelocity = VelocityCalculator.calculatePlannedVelocity(dates, allSprintIssues);
-    const currentVelocity = VelocityCalculator.calculateVelocity(now, dates, allSprintIssues);
+
+    if (allSprintIssues.length == 0) {
+      this.setState({
+        hasError: true,
+        error: {
+          name: "No JIRA issues",
+          message: "Please verify your request configuration"
+        }
+      });
+    }
+
+    const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
 
     return (
       <VictoryChart
@@ -75,17 +63,17 @@ export default class BurndownChartWidget extends AbstractWidget {
           tickFormat={(x) => (`${x} SP`)}
         />
         <VictoryArea
-          data={plannedVelocity}
+          data={velocity.plannedVelocity}
           x="date"
           y="storyPoints"
         />
         <VictoryLine
-          data={plannedVelocity}
+          data={velocity.plannedVelocity}
           x="date"
           y="storyPoints"
         />
         <VictoryLine
-          data={currentVelocity}
+          data={velocity.currentVelocity}
           x="date"
           y="storyPoints"
         />

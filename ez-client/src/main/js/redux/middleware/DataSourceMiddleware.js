@@ -1,10 +1,10 @@
-import { SetupEvent } from 'service/setup/SetupService';
+import { DataSourceEvent } from 'service/datasource/DataSourceService';
 
 const dataSourceMiddleware = dataSourceService => store => next => action => {
 
-  // if (action.type === SetupEvent.ConfigLoadSuccess) {
-  //   dataSourceService.initialize(action);
-  // }
+  if (action.type === DataSourceEvent.DataSourceRefreshed) {
+    dataSourceService.onDataSourceRefreshed(action);
+  }
 
   return next(action);
 };

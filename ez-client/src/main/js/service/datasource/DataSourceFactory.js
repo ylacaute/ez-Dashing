@@ -32,7 +32,8 @@ export default class DataSourceFactory {
           credentials: dsConfig.credentials,
           path: queryConfig.path,
           refresh: queryConfig.refresh || dsConfig.refresh || DataSourceFactory.DEFAULT_REFRESH,
-          mapping: queryConfig.mapping || dsConfig.mapping || {}
+          mapping: queryConfig.mapping || dsConfig.mapping || {},
+          dependencies: queryConfig.dependencies || []
         })
       })
     });

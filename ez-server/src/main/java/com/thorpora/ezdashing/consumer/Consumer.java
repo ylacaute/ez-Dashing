@@ -50,16 +50,24 @@ public class Consumer {
                 .target(APIConsumer.class, dataSource.getBaseUrl());
     }
 
-    public String doQuery(String queryId) {
+    public String doQuery(String queryId, Map<String, String> params) {
         String fullQuery = dataSource.getQueries().stream()
                 .filter(q -> queryId.equals(q.getId()))
                 .findFirst()
                 .get()
                 .getPath();
+        fullQuery = replaceVariables(fullQuery, params);
         String[] pathAndQueryParams = fullQuery.split("\\?");
         String path = pathAndQueryParams[0];
         Map<String, String> paramsMap = getQueryParamsAsMap(pathAndQueryParams[1]);
         return apiConsumer.query(path, paramsMap);
+    }
+
+    private String replaceVariables(String fullQuery, Map<String, String> params) {
+        for (String paramKey : params.keySet()) {
+            fullQuery = fullQuery.replace("${" + paramKey + "}", params.get(paramKey));
+        }
+        return fullQuery;
     }
 
     private Map<String, String> getQueryParamsAsMap(String queryParams) {

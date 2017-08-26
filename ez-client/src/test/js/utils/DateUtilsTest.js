@@ -57,5 +57,29 @@ describe("DateUtils", () => {
     assert.equal(DateUtils.addDays(date1, 31).getTime(), date2.getTime());
   });
 
+  it("getAllDatesBetween() should return 0 days", () => {
+    let start = new Date(2017, 6, 1);
+    let end = new Date(2017, 6, 1);
+    let result = DateUtils.getAllDatesBetween(start, end, false);
+    assert.equal(result.length, 0);
+  });
+
+  it("getAllDatesBetween() should return 1 day", () => {
+    let start = new Date(2017, 6, 1);
+    let end = new Date(2017, 6, 1);
+    let result = DateUtils.getAllDatesBetween(start, end, true);
+    assert.equal(result.length, 1);
+  });
+
+  it("getAllDatesBetween() should return 3 days", () => {
+    let start = new Date(2017, 6, 1);
+    let end = new Date(2017, 6, 3);
+    let result = DateUtils.getAllDatesBetween(start, end, true);
+    assert.equal(result.length, 3);
+    assert.equal(result[0].toString(), "Sat Jul 01 2017 00:00:00 GMT+0200 (CEST)");
+    assert.equal(result[1].toString(), "Sun Jul 02 2017 00:00:00 GMT+0200 (CEST)");
+    assert.equal(result[2].toString(), "Mon Jul 03 2017 00:00:00 GMT+0200 (CEST)");
+  });
+
 });
 

@@ -19,10 +19,9 @@ package com.thorpora.ezdashing.consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/consumer")
@@ -38,11 +37,11 @@ public class ConsumerController {
     }
 
     @GetMapping(value = "/{queryId}", produces = "application/json")
-    public String getSummary(@PathVariable String queryId) {
+    public String getSummary(@PathVariable String queryId, @RequestParam Map<String, String> params) {
         logger.debug("GET /api/consumer/{}", queryId);
         Consumer consumer = registry.getConsumer(queryId);
-        String consumerResponse = consumer.doQuery(queryId);
-        //logger.debug("Response of queryId '{}' : {}", queryId, consumerResponse);
+        String consumerResponse = consumer.doQuery(queryId, params);
+        logger.trace("Response of queryId '{}' : {}", queryId, consumerResponse);
         return consumerResponse;
     }
 

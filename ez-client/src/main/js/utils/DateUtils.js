@@ -50,4 +50,23 @@ export default class DateUtils {
     return result;
   }
 
+  /**
+   * Return Dates between two dates (day step). Time is set to 00:00:00.
+   */
+  static getAllDatesBetween(startDate, endDate, includeLastDate) {
+    let result = [];
+    let first = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    let end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+    let nbDays = DateUtils.diffInDays(first, end);
+    let date = first;
+    for (let i = 0; i < nbDays; i++) {
+      result.push(date);
+      date = DateUtils.addDays(date, 1);
+    }
+    if (includeLastDate) {
+      result.push(date);
+    }
+    return result;
+  }
+
 }
