@@ -36,6 +36,8 @@
     "react-animated-number": "^0.4.3",
     "react-dom": "^16.0.0-beta.5",
     "react-grid-layout": "^0.14.7",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2",
     "victory": "^0.21.5"
   },
   "devDependencies": {
@@ -72,8 +74,6 @@
     "nodemon": "^1.11.0",
     "phantomjs-polyfill": "0.0.2",
     "react-hot-loader": "^3.0.0-beta.7",
-    "react-redux": "^5.0.5",
-    "redux": "^3.7.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
