@@ -11,7 +11,7 @@
     "url": "https://ylacaute@github.com/ylacaute/ez-Dashing.git"
   },
   "scripts": {
-    "test": "node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
+    "test": "node ./node_modules/karma/bin/karma start --single-run ",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --progress --port 8081",
     "api": "babel-node --presets es2015 ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8080",
     "prod": "NODE_ENV=prod webpack -p --progress",

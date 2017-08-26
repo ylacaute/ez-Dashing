@@ -1,4 +1,7 @@
 {
+  "env": {
+    "jiraBoardId": "124"
+  },
   "server": {
     "dataSourcePath": "/api/consumer/"
   },

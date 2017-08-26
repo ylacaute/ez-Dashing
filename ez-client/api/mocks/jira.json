@@ -340,5 +340,21 @@
         }
       }
     ]
+  },
+  "currentSprint" : {
+    "maxResults": 50,
+    "startAt": 0,
+    "isLast": true,
+    "values": [
+      {
+        "id": 272,
+        "self": "https://aaa.net/rest/agile/1.0/sprint/272",
+        "state": "active",
+        "name": "Sprint 1x - AAA - R 120",
+        "startDate": "2017-08-15T08:18:24.297+02:00",
+        "endDate": "2017-09-04T17:18:00.000+02:00",
+        "originBoardId": 124
+      }
+    ]
   }
 }

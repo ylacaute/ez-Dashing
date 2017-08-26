@@ -70,4 +70,41 @@ describe("StringUtils", () => {
     assert.equal(result, 3);
   });
 
+  it("replaceVars() should replace nothing", () => {
+    let input = "My input ${var} something";
+    let vars = {
+      wrongVar : "value"
+    };
+    let result = StringUtils.replaceVars(input, vars);
+    assert.equal(result, input);
+  });
+
+  it("replaceVars() should replace one var", () => {
+    let input = "hello ${var}";
+    let vars = {
+      var : "world"
+    };
+    let result = StringUtils.replaceVars(input, vars);
+    assert.equal(result, "hello world");
+  });
+
+  it("replaceVars() should replace many vars", () => {
+    let input = "hello ${var} ${var} ${var2}";
+    let vars = {
+      var : "world",
+      var2 : "world2",
+    };
+    let result = StringUtils.replaceVars(input, vars);
+    assert.equal(result, "hello world world world2");
+  });
+
+  it("replaceVars() should not replace null var", () => {
+    let input = "hello ${var} ${var} ${var2}";
+    let vars = {
+      var : null
+    };
+    let result = StringUtils.replaceVars(input, vars);
+    assert.equal(result, input);
+  });
+
 });

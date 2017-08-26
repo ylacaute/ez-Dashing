@@ -72,13 +72,13 @@ export default class SetupService {
     logger.info("Starting ez-Dashing...");
 
     this.getDashboardConfig(dashboardConfig => {
-      ConfigExtender.extendsConfig(dashboardConfig);
-      logger.info("Extended config:", dashboardConfig);
+      const cfg = ConfigExtender.extendsConfig(dashboardConfig);
+      logger.info("Extended config:", cfg);
 
-      const dataSourceService = new DataSourceService(dashboardConfig);
+      const dataSourceService = new DataSourceService(cfg);
       const store = createStore(
         this.createReducers(),
-        this.generateInitialState(dashboardConfig),
+        this.generateInitialState(cfg),
         this.createMiddlewares(dataSourceService)
       );
 
@@ -86,8 +86,8 @@ export default class SetupService {
       store.dispatch({
         type: SetupEvent.ConfigLoadSuccess,
         dataSources: dataSourceService.getDataSources(),
-        dashboardConfig: dashboardConfig,
-        widgetComponents: WidgetFactory.createAllWidgets(dashboardConfig)
+        dashboardConfig: cfg,
+        widgetComponents: WidgetFactory.createAllWidgets(cfg)
       });
 
       callback(store);

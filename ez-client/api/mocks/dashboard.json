@@ -1,5 +1,8 @@
 {
   "dashboard": {
+    "env": {
+      "jiraBoardId": "124"
+    },
     "server": {
       "dataSourcePath": "/api/consumer/"
     },
@@ -125,10 +128,6 @@
           {
             "id": "sonar-stats-systemB",
             "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
-          },
-          {
-            "id": "sonar-stats-systemC",
-            "path": "/api/measures/component?componentKey=ubu.gii.dass.poolobject&metricKeys=coverage,lines,violations&format=json"
           }
         ]
       },
@@ -179,7 +178,7 @@
       },
       {
         "type": "BurndownChartWidget",
-        "title": "BURNDOWN",
+        "title": "BURNDOWN (SprintId=${jiraBoardId})",
         "enabled": true,
         "dataSource": [
           "jira-story-closed",
