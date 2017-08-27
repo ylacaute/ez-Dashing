@@ -1,8 +1,6 @@
-# ez-Dashing
+# <img src="ez-client/src/main/resources/img/logo.png" alt="ez-Dashing">
 
-__ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development.
-
-I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
+__ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development. I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
 
 **Guidelines**
 
@@ -10,48 +8,49 @@ I contribute to this project during my free time, I am aware that many things co
  - Configurable
  - Ready to use
  
-**Tech Stack**
+ **Tech Stack**
 
-![GitHub Logo](/images/logo.png)
-
- - React 16
- - Redux 3
- - Webpack 3
- - Spring Boot 1.5
- - Maven
- - Docker 
+<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" width="50px"/><img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" width="50px"/><img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" width="50px"/><img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" width="50px"/><img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" width="50px"/><img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" width="50px"/>
 
 # Demo
 
 Downloads dependencies as usual with npm or yarn if you want to run from sources.
 
-- __From sources__
-```bash
-./ez.sh start-demo
-```
 - __From Docker Hub__
 ```bash
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
 
+- __From sources__
+You need download dependencies first in the client directory:
+```bash
+npm i 
+```
+And then use the ez script:
+```bash
+./ez.sh start-demo
+```
+Go on [http://localhost:8081](http://localhost:8081)
+
 # Production
+
+You can directly start to use __ez-Dashing__ by pulling the production docker image. You just have to define your json configuration.
+
+- __From Docker Hub__
+```bash
+docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
+```
+Go on [http://localhost:8080](http://localhost:8080)
+
+__Please note that your config directory:__
+ - MUST be in absolute path for Docker
+ - MUST contains 'server.properties' and 'dashboard.json' (check samples config in project)
 
 - __From sources__
 ```bash
 ./ez.sh start-prod /YOUR/CONFIG/DIR
 ```
-- __From Docker Hub__
-```bash
-docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
-```
-
-Go on [http://localhost:8080](http://localhost:8080)
-
-__Please note that your config directory:__
- - MUST be in absolute path for Docker
- - MUST contains 'server.properties' and 'dashboard.json' (sample in project)
-
 
 # Documentation
 
