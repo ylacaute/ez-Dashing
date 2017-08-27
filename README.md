@@ -17,18 +17,18 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 Downloads dependencies as usual with npm or yarn if you want to run from sources.
 
 ## From Docker Hub
-```bash
+```sh
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
 
 ## From sources
 You need download dependencies first in the client directory:
-```bash
+```sh
 npm i 
 ```
 And then use the ez script:
-```bash
+```sh
 ./ez.sh start-demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
@@ -38,7 +38,7 @@ Go on [http://localhost:8081](http://localhost:8081)
 You can directly start to use __ez-Dashing__ by pulling the production docker image. You just have to define your json configuration.
 
 ## From Docker Hub
-```bash
+```sh
 docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
 ```
 Go on [http://localhost:8080](http://localhost:8080)
@@ -48,7 +48,7 @@ __Please note that your config directory:__
  - MUST contains 'server.properties' and 'dashboard.json' (check samples config in project)
 
 ## From sources
-```bash
+```sh
 ./ez.sh start-prod /YOUR/CONFIG/DIR
 ```
 
@@ -106,18 +106,18 @@ You define an [server.properties](/config/server.properties) server configuratio
  - Maven 3
 
 __Build front and back-end from source__ (with production profile)
-```bash
+```sh
 ./ez.sh build-prod
 ```
 __Run the server__ 
-```bash
+```bashsh
 ./ez.sh start-prod <CONFIG_DIRECTORY>
 ```
 In order to verify that everything is ok, you can use the config directory of this project, linked to public online sonar and jenkins server.
 
 More options in ez.sh:
-```bash
-/ez.sh -h
+```sh
+./ez.sh -h
 ```
 
 ## Browser compatibility: 
@@ -127,7 +127,7 @@ More options in ez.sh:
  - __Internet Explorer__ not tested
 
 # License
- - ez-Dashing is licensed under the [Apache 2 license](/LICENSE).
+__ez-Dashing__ is licensed under the [Apache 2 license](/LICENSE).
 
 # Screenshots
 
