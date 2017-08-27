@@ -87,6 +87,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 
 ## Global backlog
+- [ ] __Save widget position__ With the localstorage
 - [ ] __Improve the build process__ Especially the sh/docker part
 - [ ] __DataSource Template__ DataSources should allow variables (not only global)
 - [ ] __Theme system__ Need to configure Webpack correctly to generate many css output
