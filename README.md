@@ -14,8 +14,6 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 
 # Demo
 
-Downloads dependencies as usual with npm or yarn if you want to run from sources.
-
 ## From Docker Hub
 ```sh
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
@@ -23,11 +21,11 @@ docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 Go on [http://localhost:8081](http://localhost:8081)
 
 ## From sources
-You need download dependencies first in the client directory:
+You need download dependencies first in the client directory
 ```sh
 npm i 
 ```
-And then use the ez script:
+And then use the ez script
 ```sh
 ./ez.sh start-demo
 ```
@@ -68,12 +66,12 @@ You define a [dashboard.json](/config/dashboard.json) configuration file, compos
 
 ### Server configuration
 You define an [server.properties](/config/server.properties) server configuration file:
- - **empty by default:** this file must exit but can stay empty. It allow you override the default Spring boot configuration.
+ - **empty by default:** this file must exist but can stay empty. It allow you override the default Spring boot configuration.
 
 ### The workflow
  - DataSources are regularly refreshed. When refreshed, REST responses are mapped to properties depending your configuration
  - Properties are then injected into the application state 
- - Widget are dumb components with properties defined in the configuration and the mapped properties of the dataSources they listen to 
+ - Widgets are dumb components with properties defined in the configuration and the mapped properties of the dataSources they listen to 
  - Widgets are re-rendered each time properties change
 
 ## Widgets backlog
@@ -94,9 +92,10 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __Theme system__ Need to configure Webpack correctly to generate many css output
 - [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
+- [ ] __Use Docker compose__
 - [ ] __Fix React warning__  wrong way for minify/uglify for prod
 - [ ] __Use Travis-CI__
-- [ ] __Dynamic widget__ make pure json configurable widget 
+- [ ] __Dynamic widget__ idealy, make pure json configurable widget 
 
 ## Build the application
 
@@ -115,7 +114,7 @@ __Run the server__
 ```
 In order to verify that everything is ok, you can use the config directory of this project, linked to public online sonar and jenkins server.
 
-More options in ez.sh:
+More options in __ez.sh__
 ```sh
 ./ez.sh -h
 ```
