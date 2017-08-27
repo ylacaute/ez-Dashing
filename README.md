@@ -16,13 +16,13 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 
 Downloads dependencies as usual with npm or yarn if you want to run from sources.
 
-- __From Docker Hub__
+## From Docker Hub
 ```bash
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
 
-- __From sources__
+## From sources
 You need download dependencies first in the client directory:
 ```bash
 npm i 
@@ -37,7 +37,7 @@ Go on [http://localhost:8081](http://localhost:8081)
 
 You can directly start to use __ez-Dashing__ by pulling the production docker image. You just have to define your json configuration.
 
-- __From Docker Hub__
+## From Docker Hub
 ```bash
 docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
 ```
@@ -47,7 +47,7 @@ __Please note that your config directory:__
  - MUST be in absolute path for Docker
  - MUST contains 'server.properties' and 'dashboard.json' (check samples config in project)
 
-- __From sources__
+## From sources
 ```bash
 ./ez.sh start-prod /YOUR/CONFIG/DIR
 ```
