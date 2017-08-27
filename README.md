@@ -57,7 +57,7 @@ __Please note that your config directory:__
 ## Overview
 
 ### Front configuration
-You define a _dashboard.json_ configuration file, composed of the sections below:
+You define a [dashboard.json](/config/dashboard.json) configuration file, composed of the sections below:
  - **env:** global variables which can be used anywhere in the configuration
  - **server:** server config, you currently can't touch this part
  - **dataSources:** refreshable dataSources making REST call and mapping the result to properties
@@ -67,7 +67,7 @@ You define a _dashboard.json_ configuration file, composed of the sections below
  - **grid:** mainly responsive configuration parameters of the grid
 
 ### Server configuration
-You define an _server.properties_ server configuration file:
+You define an [server.properties](/config/server.properties) server configuration file:
  - **empty by default:** this file must exit but can stay empty. It allow you override the default Spring boot configuration.
 
 ### The workflow
