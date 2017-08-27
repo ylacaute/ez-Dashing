@@ -70,7 +70,7 @@ let commonConfig = {
     // Generate the index.html from a template
     new HtmlWebpackPlugin({
       hash: true,
-      title: 'RR-Boilerplate',
+      title: 'ez-Dashing',
       filename: 'index.html',
       template: TEMPLATE_DIR + '/index.ejs',
       inject: 'body'
