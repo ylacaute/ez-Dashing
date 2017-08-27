@@ -111,7 +111,22 @@ You define an [server.properties](/config/server.properties) server configuratio
  - Java 8
  - Maven 3
 
-__Build front and back-end from source__ (with production profile)
+### Development
+__Start the mocked API__ (mock the backend)
+```sh
+npm run api
+```
+__Start the dev server (hot reload)__
+```sh
+npm run dev
+```
+__Build the back end__
+```sh
+mvn package
+```
+
+### Production
+__Build front and back-end from script__
 ```sh
 ./ez.sh build-prod
 ```
