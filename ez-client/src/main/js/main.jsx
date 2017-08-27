@@ -1,67 +1,39 @@
-import React from 'react';
-import {render} from 'react-dom';
-import {Responsive, WidthProvider} from 'react-grid-layout';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import Application from './Application.jsx'
+import SetupService from 'service/setup/SetupService';
+import Logger from 'utils/Logger';
 
-import RestClient from 'js/client/RestClient.jsx';
-import ObjectUtils from 'js/utils/ObjectUtils.jsx';
+import ReactGridLayoutStyle from "react-grid-layout/css/styles.css";
+import ReactGridResizableStyle from "react-resizable/css/styles.css";
 
-import DynGrid from 'js/core/DynGrid.jsx';
-import WidgetFactory from 'js/core/WidgetFactory.jsx';
-import GridLayoutGenerator from 'js/core/GridLayoutGenerator.jsx';
+// Logger configuration
+Logger.ENABLE_COLOR = true;
+Logger.setRootLevel(Logger.Level.DEBUG);
+Logger.Level = {
+  TRACE: [0, 'TRACE', 'color:#999'],
+  DEBUG: [1, 'DEBUG', 'color:#999'],
+  INFO: [2, 'INFO', 'color:black'],
+  WARN: [3, 'WARN', 'color:#db8240'],
+  ERROR: [4, 'ERROR', 'color:#c65555'],
+};
+Logger.setLevel("WidgetReducer", Logger.Level.INFO);
+Logger.setLevel("DataSourceReducer", Logger.Level.INFO);
+Logger.setLevel("StartupReducer", Logger.Level.INFO);
+Logger.setLevel("RestClient", Logger.Level.INFO);
+Logger.setLevel("DataSourceService", Logger.Level.DEBUG);
+Logger.setLevel("StartupService", Logger.Level.INFO);
+Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
 
-import Style from 'sass/main.scss';
-import ReactGridLayoutStyle from 'react-grid-layout/css/styles.css';
-import ReactGridResizableStyle from 'react-resizable/css/styles.css';
+const setupService = new SetupService();
 
-class App extends React.Component {
+setupService.initialize(store => {
+  render(
+    <Provider store={store}>
+      <Application />
+    </Provider>,
+    document.getElementById('react-app')
+  );
+});
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      config: null
-    };
-  }
-
-  componentWillMount() {
-    RestClient.get("/api/dashboard/config", ((config) => {
-      if (ObjectUtils.isNullOrEmpty(config.grid.layouts)) {
-        config.grid.layouts = GridLayoutGenerator.generate(config);
-      }
-      this.setState({
-        config: config,
-        widgets: this.createAllWidgets(config),
-        loaded: true
-      });
-    }));
-  }
-
-  createAllWidgets(fullConfig) {
-    let widgetConfigs = fullConfig.widgets;
-    return widgetConfigs.map((widgetConfig) => {
-      if (widgetConfig.avatars == null) {
-        widgetConfig.avatars = fullConfig.avatars;
-      }
-      if (widgetConfig.thresholds == null) {
-        widgetConfig.thresholds = fullConfig.thresholds;
-      }
-      return WidgetFactory.create(widgetConfig);
-    });
-  }
-
-  render() {
-    if (this.state.loaded == false) {
-      return <p>Please wait during load...</p>;
-    }
-    return (
-      <div>
-        <DynGrid
-          config={this.state.config}
-          widgets={this.state.widgets}>
-        </DynGrid>
-      </div>
-    );
-  }
-}
-
-render(<App/>, document.getElementById('react-app'));

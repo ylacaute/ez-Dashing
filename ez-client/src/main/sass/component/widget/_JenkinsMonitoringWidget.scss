@@ -1,0 +1,41 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* JENKINS MONITORING WIDGET (use 'monitoring' jenkins plugin api)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+
+// OLD
+/*
+$color-average: #df701f !default;
+$color-bad: #c65555 !default;
+
+.jenkins-monitoring {
+  .content {
+    > div {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+    }
+    .progress-bar text.display-value {
+      font-size: 8px;
+    }
+  }
+}
+
+// STATES
+
+.jenkins-monitoring.bad header .title {
+  background-color: $color-bad;
+  text {
+    fill: #222;
+  }
+}
+.jenkins-monitoring.avg header .title {
+  background-color: $color-average;
+  text {
+    fill: #222;
+  }
+}
+*/

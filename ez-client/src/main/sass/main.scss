@@ -1,107 +1,40 @@
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ez-Dashing main configuration
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$ez-base: #fff;
-$ez-good: #74b53c;
-$ez-bad: #c65555;
-$ez-avg: #df701f;
-$ez-building: #dcae41;
-$ez-date: #36afb3;
-$ez-sprint: #2268ae;
-$ez-grid-bg: #242424;
-$ez-grid-placeholder: $ez-base !important;
-$ez-gap: 1rem;
-$ez-widget-bg: #30353c;
-$ez-widget-bg-header: rgba(33, 33, 33, 0.5);
-$ez-widget-text-header: rgba(255, 255, 255, 0.8);
-$ez-widget-text-color: white;
-$image-path: '/img' !default;
+@charset "UTF-8";
 
-%flexColumn {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-%flexRow {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
+// VARIABLES
+@import 'base/variables';
+@import "node_modules/knacss/sass/_config/variables";
 
-// Knacss
-@import "../../../node_modules/knacss/sass/_config/breakpoints";
-@import "../../../node_modules/knacss/sass/_config/mixins";
-@import "../../../node_modules/knacss/sass/_config/variables";
-@import "../../../node_modules/knacss/sass/_vendor/normalize";
+// BASE
+@import "node_modules/knacss/sass/_config/breakpoints";
+@import "node_modules/knacss/sass/_config/mixins";
+@import "node_modules/knacss/sass/_vendor/normalize";
+@import "node_modules/knacss/sass/library/base";
+@import 'base/layouts';
+@import 'base/base';
 
-// Framework
-@import "core/core-mixins";
-@import 'core/icons';
-@import 'core/progress-bar';
-@import 'core/effect/blink_effect';
-@import 'core/effect/flip_effect';
-@import 'core/scalable-text';
-@import 'core/scalable-image';
+// Utils
+@import 'utils/icons';
+@import 'utils/effects';
 
-// Widgets
-@import 'widget/widget';
-@import 'widget/sonkins';
-@import 'widget/jenkinsMonitoring';
-@import 'widget/clock';
-@import 'widget/sprint';
-@import 'widget/issuesWidget';
-@import 'metric/metrics';
+// Components
+@import 'component/grid';
+@import 'component/chart/CircularProgressBar';
+@import 'component/chart/LinearProgressBar';
+
+// Widgets components
+@import 'component/widget/base/Widget';
+@import 'component/widget/base/Metric';
+@import 'component/widget/sample/HelloGraphWidget';
+@import 'component/widget/sample/HelloWorldWidget';
+@import 'component/widget/ClockWidget';
+@import 'component/widget/SprintWidget';
+@import 'component/widget/BurndownChartWidget';
+@import 'component/widget/BugWidget';
+@import 'component/widget/SonarWidget';
+@import 'component/widget/SonkinsWidget';
+@import 'component/widget/GraphWidget';
+@import 'component/widget/JenkinsMonitoringWidget';
 
 
-html {
-  font-size: calc(1.2em * 0.625) !important;
-  @include medium {
-    font-size: calc(0.8em * 0.625) !important;
-  }
-  @include small {
-    font-size: calc(0.75em * 0.625) !important;
-  }
-  @include tiny {
-    font-size: calc(0.7em * 0.625) !important;
-  }
-  margin: 0;
-}
-html, body {
-  color: $ez-base;
-}
-html, body > section, .react-grid-layout {
-  background-color: $ez-grid-bg;
-}
-body {
-  margin: 0;
-  padding: 0;
-}
-* {
-  text-decoration: none;
-  outline:none;
-}
-body > section {
-  font-size: $base-font-size;
-}
-.react-grid-placeholder {
-  background-color: $ez-grid-placeholder;
-}
-#resetBtn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  z-index: 999;
-}
-.date {
-  color: $ez-date;
-}
-
-
-
-
-
-
-
-
-
+@include enableCubeSpinner();
 

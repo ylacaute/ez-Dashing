@@ -1,0 +1,26 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CLOCK WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$color-text-clock: #36afb3 !default;
+
+// General style
+.widget.clock {
+  color: $color-text-clock;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+// Responsive style depending on the dynamic widget size
+.widget.clock {
+  &.width-xxs {
+    font-size: 250%;
+  }
+  &.width-xs, &.width-sm, &.width-md, &.width-lg {
+    font-size: 500%;
+  }
+  &.height-xxxs {
+    p:nth-child(2) {
+      display: none;
+    }
+  }
+}

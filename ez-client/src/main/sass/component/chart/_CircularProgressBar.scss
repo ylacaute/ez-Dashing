@@ -1,0 +1,36 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* CIRCULAR PROGRESS BAR
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$color-progress-bar-trail: #222 !default;
+$color-progress-bar-path: #888 !default;
+$color-progress-bar-text: #FFF !default;
+
+.progress-bar-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.progress-bar.circular {
+  .path {
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+  .display-value, .label {
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+  .display-value {
+    font-size: 4rem;
+  }
+  .label {
+    font-size: 1.4rem;
+  }
+  .trail {
+    stroke: $color-progress-bar-trail;
+  }
+  .path {
+    stroke: $color-progress-bar-path;
+  }
+  text {
+    fill: $color-progress-bar-text;
+  }
+}

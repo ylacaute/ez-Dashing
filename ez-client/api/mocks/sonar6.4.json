@@ -1,0 +1,39 @@
+{
+  "sonarSystemA": {
+    "component": {
+      "id": "systemA",
+      "key": "systemA",
+      "name": "201701poolobject",
+      "qualifier": "TRK",
+      "measures": [{
+        "metric": "lines",
+        "value": "12804"
+      }, {
+        "metric": "coverage",
+        "value": "65.8"
+      }, {
+        "metric": "violations",
+        "value": "12"
+      }]
+    }
+  },
+  "sonarSystemB": {
+    "component": {
+      "id": "systemB",
+      "key": "systemB",
+      "name": "201701poolobject",
+      "qualifier": "TRK",
+      "measures": [{
+        "metric": "lines",
+        "value": "9841"
+      }, {
+        "metric": "coverage",
+        "value": "89.9"
+      }, {
+        "metric": "violations",
+        "value": "0"
+      }]
+    }
+  }
+
+}

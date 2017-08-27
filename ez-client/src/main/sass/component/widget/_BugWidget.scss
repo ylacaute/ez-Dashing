@@ -1,0 +1,97 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* BUG WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.bug {
+
+  header {
+    span {
+      vertical-align: middle;
+    }
+    strong {
+      color: $color-good;
+      vertical-align: middle;
+      font-size: 180%;
+    }
+  }
+
+  article {
+    text-align: left;
+    font-size: 120%;
+    ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 1rem;
+      text-indent: 0rem;
+      li .icon {
+        @extend %icon;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        vertical-align: sub;
+        margin-right: 1rem;
+      }
+      li .icon {
+        mask: url('#{$image-path}/rightArrow.svg') no-repeat 50% 50%;
+        -webkit-mask: url('#{$image-path}/rightArrow.svg') no-repeat 50% 50%;
+        &.todo {
+          background-color: $color-red;
+        }
+        &.progress {
+          background-color: $color-black-half-opacity;
+        }
+      }
+    }
+    .emptyBugIcon {
+      padding: 15%;
+    }
+  }
+}
+
+// Threshold styles
+// ----------------
+.widget.bug.avg header strong {
+  color: $color-average;
+}
+.widget.bug.bad header strong {
+  color: $color-bad;
+}
+
+// Responsive widget styles: number of jira issues displayed
+// ---------------------------------------------------------
+.widget.bug.height-xxxs article ul li:nth-child(n+2) {
+  display: none;
+}
+.widget.bug.height-xxs article ul li:nth-child(n+6) {
+  display: none;
+}
+.widget.bug.height-xs article ul li:nth-child(n+11) {
+  display: none;
+}
+
+// Responsive widget styles: font and icon size
+// --------------------------------------------
+.widget.bug.width-xxs article {
+  font-size: 150%;
+  ul li .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.widget.bug.width-xs article,
+.widget.bug.width-sm article,
+.widget.bug.width-md article,
+.widget.bug.width-lg article
+{
+  font-size: 200%;
+  ul li .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+// Responsive widget styles: no need padding for icon (when no bug)
+// ----------------------------------------------------------------
+.widget.bug.height-xxxs article .emptyBugIcon {
+  padding: 0;
+}

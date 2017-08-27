@@ -1,0 +1,50 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget {
+  @extend %flexColumn;
+  color: $color-text-widget;
+  background-color: $color-bg-widget;
+  height: 100%;
+  text-align: center;
+
+  header {
+    @extend %flexColumn;
+    color: $color-text-widget-header;
+    background-color: $color-bg-widget-header;
+    height: 4rem;
+    min-height: 4rem;
+
+    // If there is a div, we are displaying a subTitle
+    div {
+      @extend %flexRow;
+      justify-content: space-between;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      h1 {
+        display: flex;
+      }
+      strong {
+        display: flex;
+        color: $color-text-widget-sub-title;
+        font-size: $font-size-widget-sub-title;
+      }
+    }
+  }
+
+  article {
+    @extend %flexColumn;
+    flex-grow: 1;
+    padding: $padding-widget-content;
+  }
+
+  footer {
+    background-color: $color-bg-widget-footer;
+  }
+
+}
+
+.widget.desktop article{
+  font-size: $font-size-widget-article-desktop;
+}

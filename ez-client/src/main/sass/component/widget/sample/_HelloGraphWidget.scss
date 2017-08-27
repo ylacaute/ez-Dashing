@@ -1,0 +1,39 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* HELLO GRAPH WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// Victory chart framework is sadly opiniotated about inline styles, that's what we are obliged to use
+// !important to customize chart in SASS instead of 'victory theme' which are JS based file.
+.widget.hellograph svg {
+  svg {
+    g:nth-child(1) line,  // MAIN VERTICAL AXIS
+    g:nth-child(2) line { // MAIN HORIZONTAL AXIS
+      stroke: $color-chart-burndown-tick !important;
+      stroke-dasharray: none !important;
+    }
+    g:nth-child(1) g line,  // VERTICAL AXIS TICKS
+    g:nth-child(2) g line { // HORIZONTAL AXIS TICKS
+      stroke: $color-chart-burndown-tick !important;
+      stroke-dasharray: none !important;
+    }
+    g:nth-child(1) g text tspan,  // VERTICAL AXIS LABELS
+    g:nth-child(2) g text tspan { // HORIZONTAL AXIS LABELS
+      fill: $color-chart-burndown-label !important;
+      font-family: $font-stack-common !important;
+    }
+    g:nth-child(3) g path { // AREA VELOCITY REFERENCE
+      //stroke: $color-chart-burndown-line-velocity-ref !important;
+      fill: $color-chart-burndown-line-velocity-ref !important;
+      stroke: none !important;
+      opacity: 0.05 !important;
+    }
+    g:nth-child(4) g path { // LINE VELOCITY REFERENCE
+      stroke: $color-chart-burndown-line-velocity-ref !important;
+      opacity: 0.5 !important;
+    }
+    g:nth-child(5) g path { // LINE CURRENT VELOCITY
+      stroke: $color-chart-burndown-line-velocity-cur !important;
+    }
+  }
+
+}

@@ -1,0 +1,377 @@
+{
+  "jenkinsSystemA": {
+    "actions": [
+      {
+        "causes": [
+          {
+            "shortDescription": "Started by an SCM change"
+          }
+        ]
+      },
+      {},
+      {
+        "buildsByBranchName": {
+          "origin/master": {
+            "buildNumber": 78,
+            "buildResult": null,
+            "marked": {
+              "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+              "branch": [
+                {
+                  "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+                  "name": "origin/master"
+                }
+              ]
+            },
+            "revision": {
+              "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+              "branch": [
+                {
+                  "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+                  "name": "origin/master"
+                }
+              ]
+            }
+          }
+        },
+        "lastBuiltRevision": {
+          "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+          "branch": [
+            {
+              "SHA1": "57afeabe10282eb255ce437dce5a22854a7a70ff",
+              "name": "origin/master"
+            }
+          ]
+        },
+        "remoteUrls": [
+          "git@titi.com:devinterne/super.git"
+        ],
+        "scmName": ""
+      },
+      {},
+      {},
+      {},
+      {
+        "failCount": 0,
+        "skipCount": 0,
+        "totalCount": 109,
+        "urlName": "testReport"
+      },
+      {},
+      {}
+    ],
+    "artifacts": [],
+    "building": false,
+    "description": null,
+    "displayName": "#78",
+    "duration": 37902,
+    "estimatedDuration": 33027,
+    "executor": null,
+    "fullDisplayName": "plopreccurente » master #78",
+    "id": "78",
+    "keepLog": false,
+    "number": 78,
+    "queueId": 380178,
+    "result": "SUCCESS",
+    "timestamp": 1492782440396,
+    "url": "http://tools.net:12345/job/plopreccurente/branch/master/78/",
+    "builtOn": "",
+    "changeSet": {
+      "items": [
+        {
+          "affectedPaths": [
+            "superapi-client/pom.xml",
+            "super-api-client/pom.xml",
+            "pom.xml",
+            "superapi-client-model/pom.xml"
+          ],
+          "commitId": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
+          "timestamp": 1492782154000,
+          "author": {
+            "absoluteUrl": "http://tools.net:12345/user/jenkins",
+            "fullName": "jenkins"
+          },
+          "comment": "create new release branch 0.49\n",
+          "date": "2017-04-21 15:42:34 +0200",
+          "id": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
+          "msg": "create new release branch 0.49",
+          "paths": [
+            {
+              "editType": "edit",
+              "file": "super-api-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "superapi-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "superapi-client-model/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "pom.xml"
+            }
+          ]
+        },
+        {
+          "affectedPaths": [
+            "superapi-client/pom.xml",
+            "super-api-client/pom.xml",
+            "pom.xml",
+            "superapi-client-model/pom.xml"
+          ],
+          "commitId": "8173d44e1ede0876e54a8ed3c858502c16c44c0c",
+          "timestamp": 1492782311000,
+          "author": {
+            "absoluteUrl": "http://tools.net:12345/user/jenkins",
+            "fullName": "jenkins"
+          },
+          "comment": "[maven-release-plugin] prepare release superclient-0.49.0\n",
+          "date": "2017-04-21 15:45:11 +0200",
+          "id": "8173d44e1ede0876e54a8ed3c858502c16c44c0c",
+          "msg": "[maven-release-plugin] prepare release superclient-0.49.0",
+          "paths": [
+            {
+              "editType": "edit",
+              "file": "superapi-client-model/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "superapi-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "super-api-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "pom.xml"
+            }
+          ]
+        },
+        {
+          "affectedPaths": [
+            "superapi-client/pom.xml",
+            "pom.xml",
+            "super-api-client/pom.xml",
+            "superapi-client-model/pom.xml"
+          ],
+          "commitId": "1c49e9d9ef9b8965cac15c2e6e9f77bd275ced66",
+          "timestamp": 1492782315000,
+          "author": {
+            "absoluteUrl": "http://tools.net:12345/user/jenkins",
+            "fullName": "Bob"
+          },
+          "comment": "[maven-release-plugin] prepare for next development iteration\n",
+          "date": "2017-04-21 15:45:15 +0200",
+          "id": "1c49e9d9ef9b8965cac15c2e6e9f77bd275ced66",
+          "msg": "[maven-release-plugin] prepare for next development iteration",
+          "paths": [
+            {
+              "editType": "edit",
+              "file": "pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "superapi-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "super-api-client/pom.xml"
+            },
+            {
+              "editType": "edit",
+              "file": "superapi-client-model/pom.xml"
+            }
+          ]
+        }
+      ],
+      "kind": "git"
+    },
+    "culprits": [
+      {
+        "absoluteUrl": "http://tools.net:12345/user/jenkins",
+        "fullName": "jenkins"
+      }
+    ],
+    "mavenArtifacts": {},
+    "mavenVersionUsed": "3.0.5"
+  },
+  "jenkinsSystemB": {
+    "artifacts": [],
+    "building": false,
+    "description": null,
+    "displayName": "#78",
+    "duration": 37902,
+    "estimatedDuration": 33027,
+    "executor": null,
+    "fullDisplayName": "plopreccurente » master #78",
+    "id": "78",
+    "keepLog": false,
+    "number": 78,
+    "queueId": 380178,
+    "result": "FAILURE",
+    "timestamp": 1492782440396,
+    "url": "http://tools.net:12345/job/plopreccurente/branch/master/78/",
+    "builtOn": "",
+    "changeSet": {
+      "items": [
+        {
+          "affectedPaths": [
+            "superapi-client/pom.xml",
+            "super-api-client/pom.xml",
+            "pom.xml",
+            "superapi-client-model/pom.xml"
+          ],
+          "commitId": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
+          "timestamp": 1492782154000,
+          "author": {
+            "absoluteUrl": "http://tools.net:12345/user/jenkins",
+            "fullName": "jenkins"
+          },
+          "comment": "create new release branch 0.49\n",
+          "date": "2017-04-21 15:42:34 +0200",
+          "id": "4d3d6715c3464d5158d3106ad7240d5705ec38ed",
+          "msg": "create new release branch 0.49"
+        }
+      ],
+      "kind": "git"
+    },
+    "culprits": [
+      {
+        "absoluteUrl": "http://tools.net:12345/user/jenkins",
+        "fullName": "jenkins"
+      }
+    ],
+    "mavenArtifacts": {},
+    "mavenVersionUsed": "3.0.5"
+  },
+  "jenkinsSystemC": {
+    "THIS_URL_AT": "https://builds.apache.org/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1",
+    "_class" : "hudson.model.FreeStyleBuild",
+    "actions" : [
+      {
+        "_class" : "hudson.model.CauseAction",
+        "causes" : [
+          {
+            "_class" : "hudson.triggers.TimerTrigger$TimerTriggerCause",
+            "shortDescription" : "Started by timer"
+          },
+          {
+            "_class" : "hudson.triggers.TimerTrigger$TimerTriggerCause",
+            "shortDescription" : "Started by timer"
+          }
+        ]
+      },
+      {
+
+      },
+      {
+        "_class" : "jenkins.metrics.impl.TimeInQueueAction",
+        "queuingDurationMillis" : 1224335,
+        "totalDurationMillis" : 1224335
+      },
+      {
+
+      },
+      {
+        "_class" : "hudson.plugins.git.util.BuildData",
+        "buildsByBranchName" : {
+          "refs/remotes/origin/master" : {
+            "_class" : "hudson.plugins.git.util.Build",
+            "buildNumber" : 19640,
+            "buildResult" : null,
+            "marked" : {
+              "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+              "branch" : [
+                {
+                  "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+                  "name" : "refs/remotes/origin/master"
+                }
+              ]
+            },
+            "revision" : {
+              "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+              "branch" : [
+                {
+                  "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+                  "name" : "refs/remotes/origin/master"
+                }
+              ]
+            }
+          }
+        },
+        "lastBuiltRevision" : {
+          "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+          "branch" : [
+            {
+              "SHA1" : "0e32869f01697abf29292aa786d0cdcca10213c6",
+              "name" : "refs/remotes/origin/master"
+            }
+          ]
+        },
+        "remoteUrls" : [
+          "https://git-wip-us.apache.org/repos/asf/hbase.git"
+        ],
+        "scmName" : ""
+      },
+      {
+        "_class" : "hudson.plugins.git.GitTagAction",
+        "tags" : [
+
+        ]
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      }
+    ],
+    "artifacts" : [
+
+    ],
+    "building" : true,
+    "description" : null,
+    "displayName" : "#19640",
+    "duration" : 0,
+    "estimatedDuration" : 1699282,
+    "executor" : {
+      "currentExecutable" : {
+        "_class" : "hudson.model.FreeStyleBuild",
+        "number" : 19640,
+        "url" : "https://builds.apache.org/job/HBase-Flaky-Tests/19640/"
+      },
+      "currentWorkUnit" : {
+
+      },
+      "idle" : false,
+      "likelyStuck" : false,
+      "number" : 1,
+      "progress" : 41
+    },
+    "fullDisplayName" : "HBase-Flaky-Tests #19640",
+    "id" : "19640",
+    "keepLog" : false,
+    "number" : 19640,
+    "queueId" : 24296,
+    "result" : null,
+    "timestamp" : 1502804006606,
+    "url" : "https://builds.apache.org/job/HBase-Flaky-Tests/19640/",
+    "builtOn" : "H11",
+    "changeSet" : {
+      "_class" : "hudson.plugins.git.GitChangeSetList",
+      "items" : [
+
+      ],
+      "kind" : "git"
+    }
+  }
+}

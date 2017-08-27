@@ -1,0 +1,102 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SONKINS WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// MOBILE FIRST
+.widget.sonkins {
+
+  article > div {
+    .progress-bar.linear {
+      align-self: center;
+      display: none;
+    }
+  }
+
+  &.FAILURE {
+    @include infiniteBgColorChange($color-bg-widget, $color-bad, 8s);
+    font-weight: bold;
+    .metric {
+      width: 100% !important;
+      img {
+        height: 10rem;
+      }
+    }
+  }
+
+  &.BUILDING, &.REBUILDING {
+    @include infiniteFlipping(10s);
+    font-weight: bold;
+    article {
+      @include infiniteBlinking(2s, 0.3);
+      > div {  // wrapper only on building
+        display: flex;
+        flex-grow: 1;
+      }
+      .flip-container {
+        display: flex;
+        flex-grow: 1;
+        .face {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+.widget.sonkins.desktop.REBUILDING,
+.widget.sonkins.desktop.BUILDING {
+  article {
+    .metric {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      flex-grow: 1;
+      > div {
+        height: auto;
+        align-self: center;
+      }
+      img {
+        height: 10rem;
+      }
+    }
+  }
+}
+
+// RESPONSIVE BEHAVIOUR: no need to display avatar on very small height
+.widget.sonkins.desktop.height-xxxs.REBUILDING,
+.widget.sonkins.desktop.height-xxxs.BUILDING {
+  img {
+    display: none;
+  }
+}
+
+.widget.sonkins.desktop.height-xxxs {
+  img {
+    height: 3.5rem;
+  }
+  .flip-container {
+    display: none;
+  }
+  .progress-bar.linear {
+    display: flex;
+  }
+}
+
+// SONKINS PROGRESS BAR CONFIGURATION
+.widget.sonkins .progress-bar{
+  .trail {
+    stroke: $color-black;
+    background: $color-black;
+  }
+  .path {
+    stroke: $color-building;
+    background: $color-building !important;
+  }
+  text {
+    fill: $color-building;
+  }
+}
+
+

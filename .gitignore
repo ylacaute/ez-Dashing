@@ -23,4 +23,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-out.log
+out.log*
+ez-server/out.log*
+config/private

@@ -4,6 +4,7 @@ PREVIOUS_DIR="$(pwd)"
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
+FRONT_BUILD_DIR="$FRONT_DIR/dist"
 SERVER_ASSETS_DIR="$BACK_DIR/target/classes/static"
 
 DOCKER_IMG_DEMO_TAG="ez-dashing:demo"
@@ -85,11 +86,12 @@ function buildProduction {
     npm run build-dev
   else
     echo "DEBUG OFF (minify/uglify)"
-    npm run build
+    npm run prod
   fi
   echo "Deploy front assets to the Spring Boot server"
   mkdir -p ${SERVER_ASSETS_DIR}
-  npm run deploy "$SERVER_ASSETS_DIR"
+  #npm run deploy "$SERVER_ASSETS_DIR"
+  cp -R ${FRONT_BUILD_DIR}/* ${SERVER_ASSETS_DIR}
 
   cd ${BACK_DIR}
   echo "Building back for production, please wait..."
@@ -124,9 +126,9 @@ function startDemo {
   banner "STARTING EZ-DASHING FOR DEMO"
   cd ${FRONT_DIR}
   echo "Starting the mock API, please wait..."
-  npm run start-mock-api &
+  npm run api &
   echo "Starting the front app, please wait..."
-  npm run start-dev
+  npm run dev
 }
 
 function usage {
