@@ -58,6 +58,7 @@ __Please note that your config directory:__
 You define a [dashboard.json](/config/dashboard.json) configuration file, composed of the sections below:
  - **env:** global variables which can be used anywhere in the configuration
  - **server:** server config, you currently can't touch this part
+ - **theme:** choose your favorite theme ("default", "black", etc)
  - **dataSources:** refreshable dataSources making REST call and mapping the result to properties
  - **widgets:** your widgets, usually attached to one or many dataSources. See widgets backlog to see available widgets.
  - **avatars:** declare some avatars for your team
@@ -73,6 +74,11 @@ You define an [server.properties](/config/server.properties) server configuratio
  - Properties are then injected into the application state 
  - Widgets are dumb components with properties defined in the configuration and the mapped properties of the dataSources they listen to 
  - Widgets are re-rendered each time properties change
+
+### Why dataSources ?
+ - User have a total control of REST requests and how data are mapped to the application
+ - No more REST client dependencies : you build your own !
+ - One dataSource can serve many components (no request duplication) 
 
 ## Widgets backlog
 - [x] __ClockWidget__

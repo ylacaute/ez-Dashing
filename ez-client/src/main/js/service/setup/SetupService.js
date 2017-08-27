@@ -10,7 +10,7 @@ import WidgetFactory from "service/setup/WidgetFactory";
 import DataSourceService from "service/datasource/DataSourceService";
 import Logger from "utils/Logger";
 import ConfigExtender from "service/setup/ConfigExtender";
-
+import ThemeLoader from "service/setup/ThemeLoader";
 
 const logger = Logger.getLogger("StartupService");
 
@@ -89,7 +89,7 @@ export default class SetupService {
         dashboardConfig: cfg,
         widgetComponents: WidgetFactory.createAllWidgets(cfg)
       });
-
+      ThemeLoader.setTheme(cfg.theme);
       callback(store);
     });
   }

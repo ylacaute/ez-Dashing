@@ -6,6 +6,7 @@
     "server": {
       "dataSourcePath": "/api/consumer/"
     },
+    "theme": "default",
     "dataSources": [
       {
         "baseUrl": "https://issues.net",

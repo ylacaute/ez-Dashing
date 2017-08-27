@@ -4,7 +4,6 @@ import { bindActionCreators  } from 'redux';
 import { connect } from 'react-redux';
 import GridEventCreator from 'component/grid/GridEventCreator';
 import Grid from 'component/grid/Grid.jsx';
-import Style from 'theme/defaultTheme.scss';
 
 class Application extends React.Component {
 

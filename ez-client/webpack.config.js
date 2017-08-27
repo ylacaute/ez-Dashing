@@ -26,7 +26,14 @@ let commonConfig = {
       'react-hot-loader/patch',
       './js/main.jsx'
     ],
-    vendor: ["eases", "jsonpath", "moment", "react", "react-animated-number", "react-dom", "react-grid-layout",  "victory"]
+    vendor: [
+      "eases", "jsonpath", "moment", "react", "react-animated-number",
+      "react-dom", "react-grid-layout",  "victory"],
+    blackTheme: "./sass/theme/black.scss",
+    darkBlueTheme: "./sass/theme/black.scss",
+    dashingTheme: "./sass/theme/dashing.scss",
+    defaultTheme: "./sass/theme/default.scss",
+    neonTheme: "./sass/theme/neon.scss"
   },
 
   // Directories where to search to resolve imports
@@ -51,7 +58,7 @@ let commonConfig = {
 
     // Extract css in a file
     new ExtractTextPlugin({
-      filename: "css/style.css",
+      filename: "css/[name].css",
       allChunks: true
     }),
 
@@ -73,7 +80,9 @@ let commonConfig = {
       title: 'ez-Dashing',
       filename: 'index.html',
       template: TEMPLATE_DIR + '/index.ejs',
-      inject: 'body'
+      inject: 'body',
+      // Don't inject css into the html template in order to manage them dynamically
+      excludeChunks: [ "blackTheme", "darkBlueTheme", "dashingTheme", "defaultTheme", "neonTheme"]
     })
   ],
   module: {

@@ -13,6 +13,8 @@ export default class ConfigExtender {
    *
    * Replace, in all the configuration, all variables found in the env section by their value.
    *
+   * If no theme is set, use the "default" theme.
+   *
    * If no grid layout is set, generate a default one.
    * If no thresholds is set, generate an empty one. Same for avatars.
    *
@@ -33,6 +35,9 @@ export default class ConfigExtender {
       dashboardConfig.env = {};
     } else {
       dashboardConfig = JsonUtils.replaceVars(dashboardConfig, dashboardConfig.env);
+    }
+    if (dashboardConfig.theme == null) {
+      dashboardConfig.theme = "default";
     }
     if (dashboardConfig.thresholds == null) {
       dashboardConfig.thresholds = {};
