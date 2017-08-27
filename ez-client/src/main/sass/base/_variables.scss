@@ -19,6 +19,7 @@ $color-white: #eee !default;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
 
 // GENERIC TEXT COLOR
+$color-text: $color-white !default;
 $color-average: $color-orange !default;
 $color-bad: $color-red !default;
 $color-base: $color-gray-light !default;
@@ -46,11 +47,12 @@ $color-progress-bar-trail: #222 !default;
 $color-progress-bar-path: #888 !default;
 $color-progress-bar-text: #FFF !default;
 
-$color-chart-burndown-tick: rgba(0, 0, 0, 0.2);
-$color-chart-burndown-label: #fff;
-$color-chart-burndown-line-velocity-ref: $color-green;
-$color-chart-burndown-line-velocity-cur: white;
+$color-chart-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-chart-burndown-label: #fff !default;
+$color-chart-burndown-line-velocity-ref: $color-green !default;
+$color-chart-burndown-line-velocity-cur: white !default;
 
+$color-metric-name: $color-text !default;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration

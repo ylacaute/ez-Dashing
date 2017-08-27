@@ -1,13 +1,46 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing black color theme
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// General
-$color-bg-grid: #000;
-$color-bg-widget: #050607;
-$color-good: #7ad627;
-$color-bad: #d41717;
-$color-average: #e7a71e;
+// BASE COLOR
+$color-base: #151515 !default;
+$color-black: #212121 !default;
+$color-black-darker: #1E1E1E !default;
+$color-blue: #2268ae !default;
+$color-blue-dark: #30353c !default;
+$color-cyan: #2e9bdc !default;
+$color-gray: #999 !default;
+$color-gray-light: #aaa !default;
+$color-green: #88b250;
+$color-orange: #e56d3b !default;
+$color-yellow: #bdb232;
+$color-red: #d03c4c;
+$color-white: #eee !default;
+$color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
 
-// Widgets
-$color-bg-widget-header: rgba(33, 33, 33, 0.5);
+
+// GENERIC TEXT COLOR
+$color-average: $color-orange !default;
+$color-bad: $color-red !default;
+$color-base: $color-gray-light !default;
+$color-building: $color-yellow !default;
+$color-good: $color-green !default;
+$color-title: $color-white !default;
+$color-spinner: $color-white !default;
+
+// COMPONENT TEXT COLOR
+$color-text-clock: $color-cyan !default;
+$color-text-sprint: $color-blue !default;
+$color-text-widget: $color-white !default;
+$color-text-widget-header: $color-title !default;
+$color-text-widget-sub-title: $color-gray-light !default;
+
+// BACKGROUND COMPONENT COLOR
+$color-bg-grid: $color-base !default;
+$color-bg-grid-placeholder: $color-white-half-opacity;
+$color-bg-widget: $color-black !default;
+$color-bg-widget-header: $color-black !default;
+$color-bg-widget-footer: $color-black !default;
 
 // Sonkins states
 $ez-sonkins-header-bg-good: none;
@@ -17,4 +50,13 @@ $ez-sonkins-header-text-bad: $color-bg-grid;
 $ez-sonkins-header-bg-building: $color-average;
 $ez-sonkins-header-text-building: $color-bg-grid;
 
+$color-chart-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-chart-burndown-label: #fff !default;
+$color-chart-burndown-line-velocity-ref: $color-cyan !default;
+$color-chart-burndown-line-velocity-cur: white !default;
+
+$color-metric-name: $color-white !default;
+
+
 @import '../main';
+
