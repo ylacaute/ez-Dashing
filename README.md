@@ -29,7 +29,7 @@ Downloads dependencies as usual with npm or yarn if you want to run from sources
 ```
 - __From Docker Hub__
 ```bash
-docker run --rm -it -p 2222:2222 --name ez-demo -t ylacaute/ez-dashing:demo
+docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
 
@@ -88,7 +88,7 @@ You define an _server.properties_ server configuration file:
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 
 ## Global backlog
-- [ ] __Improve the build process__
+- [ ] __Improve the build process__ Especially the sh/docker part
 - [ ] __DataSource Template__ DataSources should allow variables (not only global)
 - [ ] __Theme system__ Need to configure Webpack correctly to generate many css output
 - [ ] __Add documentation__ 

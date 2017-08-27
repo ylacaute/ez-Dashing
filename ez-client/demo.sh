@@ -1,4 +1,4 @@
 #!/bin/sh
 
-npm run start-mock-api &
-npm run start-dev
+npm run api &
+npm run dev
