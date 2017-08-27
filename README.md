@@ -1,4 +1,4 @@
-# <img src="ez-client/src/main/resources/img/logo.png" alt="ez-Dashing">
+# ez-Dashing
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development. I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
 
@@ -10,7 +10,7 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
  
  **Tech Stack**
 
-<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" width="50px"/><img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" width="50px"/><img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" width="50px"/><img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" width="50px"/><img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" width="50px"/><img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" title="React 16" width="50px"/><img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" title="Redux" width="50px"/><img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" title="Webpack 3" width="50px"/><img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" title="Spring boot 1.5" width="50px"/><img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" width="50px"/><img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" width="50px"/>
 
 # Demo
 
