@@ -12,6 +12,8 @@ I contribute to this project during my free time, I am aware that many things co
  
 **Tech Stack**
 
+![GitHub Logo](/images/logo.png)
+
  - React 16
  - Redux 3
  - Webpack 3
