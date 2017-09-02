@@ -2,15 +2,18 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import LoggerMiddleware from "redux/middleware/LoggerMiddleware";
 import CrashReporterMiddleware from "redux/middleware/CrashReporter";
 import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
+import GridMiddleware from "redux/middleware/GridMiddleware";
 import StartupReducer from "redux/reducer/StartupReducer";
 import DataSourceReducer from "redux/reducer/DataSourceReducer";
 import WidgetReducer from "redux/reducer/WidgetReducer";
+import GridReducer from "redux/reducer/GridReducer";
 import RestClient from "utils/RestClient";
 import WidgetFactory from "service/setup/WidgetFactory";
 import DataSourceService from "service/datasource/DataSourceService";
 import Logger from "utils/Logger";
 import ConfigExtender from "service/setup/ConfigExtender";
 import ThemeLoader from "service/setup/ThemeLoader";
+import GridLayoutService from "service/grid/GridLayoutService";
 
 const logger = Logger.getLogger("StartupService");
 
@@ -43,15 +46,17 @@ export default class SetupService {
     return combineReducers({
       startup: StartupReducer,
       dataSource: DataSourceReducer,
-      widget: WidgetReducer
+      widget: WidgetReducer,
+      grid: GridReducer
     });
   };
 
-  createMiddlewares(dataSourceService) {
+  createMiddlewares(dataSourceService, gridLayoutService) {
     return applyMiddleware(
       LoggerMiddleware,
       CrashReporterMiddleware,
-      DataSourceMiddleware(dataSourceService)
+      DataSourceMiddleware(dataSourceService),
+      GridMiddleware(gridLayoutService)
     );
   };
 
@@ -73,15 +78,14 @@ export default class SetupService {
 
     this.getDashboardConfig(dashboardConfig => {
       const cfg = ConfigExtender.extendsConfig(dashboardConfig);
-      logger.info("Extended config:", cfg);
-
       const dataSourceService = new DataSourceService(cfg);
+      const gridLayoutService = new GridLayoutService(cfg);
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(cfg),
-        this.createMiddlewares(dataSourceService)
+        this.createMiddlewares(dataSourceService, gridLayoutService)
       );
-
+      gridLayoutService.setStore(store);
       dataSourceService.setStore(store);
       store.dispatch({
         type: SetupEvent.ConfigLoadSuccess,

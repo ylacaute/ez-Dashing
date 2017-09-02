@@ -13,7 +13,7 @@ $color-gray: #999 !default;
 $color-gray-light: #aaa !default;
 $color-green: #88b250;
 $color-orange: #e56d3b !default;
-$color-yellow: #bdb232;
+$color-yellow: #cd852d;
 $color-red: #d03c4c;
 $color-white: #eee !default;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
@@ -57,6 +57,11 @@ $color-chart-burndown-line-velocity-cur: white !default;
 
 $color-metric-name: $color-white !default;
 
+$color-burger-menu-bg: #222;
+$color-burger-menu-burger-button: #222 !default;
+$color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
+$color-burger-menu-cross-button: $color-red !default;
+$color-burger-menu-item: $color-white !default;
 
 @import '../main';
 

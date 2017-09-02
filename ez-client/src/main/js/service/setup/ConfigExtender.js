@@ -1,8 +1,7 @@
 import Logger from "utils/Logger";
 import UUID from "utils/UUID";
-import ObjectUtils from "utils/ObjectUtils";
 import JsonUtils from "utils/JsonUtils";
-import GridLayoutGenerator from "service/setup/GridLayoutGenerator";
+import GridLayoutService from "service/grid/GridLayoutService";
 
 const logger = Logger.getLogger("ConfigExtender");
 
@@ -45,7 +44,7 @@ export default class ConfigExtender {
     if (dashboardConfig.avatars == null) {
       dashboardConfig.avatars = {};
     }
-    dashboardConfig.widgets.forEach(widgetConfig => {
+    dashboardConfig.widgets.forEach((widgetConfig, index) => {
       if (widgetConfig.avatars == null) {
         widgetConfig.avatars = dashboardConfig.avatars;
       }
@@ -58,14 +57,13 @@ export default class ConfigExtender {
       if (widgetConfig.className == null) {
         widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
       }
-      widgetConfig.key = widgetConfig.id = UUID.random();
+      if (widgetConfig.id == null) {
+        widgetConfig.id = "w_" + index;
+      }
+      widgetConfig.key = widgetConfig.id;
     });
-    if (ObjectUtils.isNullOrEmpty(dashboardConfig.grid.layouts)) {
-      dashboardConfig.grid.layouts = GridLayoutGenerator.generate(dashboardConfig);
-      logger.info("Use auto-generated grid layout configuration");
-    } else {
-      logger.info("Use user grid layout configuration");
-    }
+    GridLayoutService.loadGridLayout(dashboardConfig);
+    logger.info("Extended config:", dashboardConfig);
     return dashboardConfig;
   }
 

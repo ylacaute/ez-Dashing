@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-class ScalableImage extends React.Component {
+export default class ScalableImage extends React.Component {
 
   static propTypes = {
     className: PropTypes.string
@@ -34,6 +34,3 @@ class ScalableImage extends React.Component {
   }
 
 }
-
-export default ScalableImage;
-

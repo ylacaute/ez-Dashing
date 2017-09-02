@@ -52,26 +52,6 @@ export default class CircularProgressBar extends React.Component {
     window.cancelAnimationFrame(this.requestAnimationFrame);
   }
 
-
-  /*
-
-.progress-bar.linear {
-.path {
-  transition: stroke-dashoffset 0.5s ease 0s;
-}
-.display-value {
-  font-size: 0.8rem;
-  text-anchor: start;
-}
-.label {
-  font-size: 0.4rem;
-  text-anchor: end;
-}
-}
-*/
-
-
-
   render() {
     const classNames = `progress-bar circular ${this.props.className} 
       ${this.props.classForValue(this.props.value, this.props.displayValue)}`;

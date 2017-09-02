@@ -65,7 +65,7 @@ export default class RestClient {
 
   static post = (path, payload, callback, errorCallback) => {
     let options = {
-      verb: "GET",
+      verb: "POST",
       body: JSON.stringify(payload)
     };
     jsonFetch(path, options, callback, errorCallback);

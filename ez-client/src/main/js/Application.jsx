@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { bindActionCreators  } from 'redux';
 import { connect } from 'react-redux';
 import GridEventCreator from 'component/grid/GridEventCreator';
+import MenuEventCreator from 'MenuEventCreator';
 import Grid from 'component/grid/Grid.jsx';
+import Menu from 'Menu.jsx';
 
 class Application extends React.Component {
 
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    gridActions: PropTypes.object.isRequired,
+    menuActions: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -21,10 +24,12 @@ class Application extends React.Component {
     }
     return (
       <div>
+        <Menu resetLayout={this.props.menuActions.resetLayout}/>
         <Grid
-          onGridReady={this.props.actions.onGridReady}
-          onElementResized={this.props.actions.onElementResized}
-          config={this.props.startup.dashboardConfig.grid}
+          onGridReady={this.props.gridActions.onGridReady}
+          onElementResized={this.props.gridActions.onElementResized}
+          onLayoutChange={this.props.gridActions.onLayoutChange}
+          config={this.props.grid}
           widgets={this.props.startup.widgetComponents}>
         </Grid>
       </div>
@@ -34,12 +39,14 @@ class Application extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    startup: state.startup
+    startup: state.startup,
+    grid: state.grid
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(GridEventCreator, dispatch)
+  gridActions: bindActionCreators(GridEventCreator, dispatch),
+  menuActions: bindActionCreators(MenuEventCreator, dispatch)
 });
 
 export default connect(

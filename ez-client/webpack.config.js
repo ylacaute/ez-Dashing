@@ -30,7 +30,7 @@ let commonConfig = {
       "eases", "jsonpath", "moment", "react", "react-animated-number",
       "react-dom", "react-grid-layout",  "victory"],
     blackTheme: "./sass/theme/black.scss",
-    darkBlueTheme: "./sass/theme/black.scss",
+    darkBlueTheme: "./sass/theme/darkBlue.scss",
     dashingTheme: "./sass/theme/dashing.scss",
     defaultTheme: "./sass/theme/default.scss",
     neonTheme: "./sass/theme/neon.scss"

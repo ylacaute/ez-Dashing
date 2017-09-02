@@ -1,6 +1,4 @@
 
-
-
 export default class WindowUtils {
 
   static resizeTimeout = null;

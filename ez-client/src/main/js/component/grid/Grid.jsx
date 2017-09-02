@@ -82,8 +82,9 @@ export default class Grid extends React.Component {
   /**
    * We need to send resize events to all widgets because all there size may have changed.
    */
-  onLayoutChange() {
+  onLayoutChange(currentLayout, allLayouts) {
     this.dispatchResizeToAllWidgets();
+    this.props.onLayoutChange(currentLayout, allLayouts);
   }
 
   render() {

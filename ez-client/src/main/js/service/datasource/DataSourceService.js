@@ -129,8 +129,6 @@ export default class DataSourceService {
       logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
       this.refreshDataSource(ds);
     });
-
-
   }
 
 };
