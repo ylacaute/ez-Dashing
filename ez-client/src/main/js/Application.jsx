@@ -10,8 +10,8 @@ import Menu from 'Menu.jsx';
 class Application extends React.Component {
 
   static propTypes = {
-    gridActions: PropTypes.object.isRequired,
-    menuActions: PropTypes.object.isRequired
+    gridEvents: PropTypes.object.isRequired,
+    menuEvents: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -24,11 +24,15 @@ class Application extends React.Component {
     }
     return (
       <div>
-        <Menu resetLayout={this.props.menuActions.resetLayout}/>
+        <Menu
+          resetLayout={this.props.menuEvents.resetLayout}
+          resetTheme={this.props.menuEvents.resetTheme}
+          changeTheme={this.props.menuEvents.changeTheme}
+        />
         <Grid
-          onGridReady={this.props.gridActions.onGridReady}
-          onElementResized={this.props.gridActions.onElementResized}
-          onLayoutChange={this.props.gridActions.onLayoutChange}
+          onGridReady={this.props.gridEvents.onGridReady}
+          onElementResized={this.props.gridEvents.onElementResized}
+          onLayoutChange={this.props.gridEvents.onLayoutChange}
           config={this.props.grid}
           widgets={this.props.startup.widgetComponents}>
         </Grid>
@@ -45,8 +49,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  gridActions: bindActionCreators(GridEventCreator, dispatch),
-  menuActions: bindActionCreators(MenuEventCreator, dispatch)
+  gridEvents: bindActionCreators(GridEventCreator, dispatch),
+  menuEvents: bindActionCreators(MenuEventCreator, dispatch)
 });
 
 export default connect(

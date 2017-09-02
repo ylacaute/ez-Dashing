@@ -7,7 +7,7 @@ const gridMiddleware = gridService => store => next => action => {
     gridService.onGridLayoutChange(action);
   }
 
-  if (action.type === MenuEvent.resetLayout) {
+  if (action.type === MenuEvent.ResetLayout) {
     gridService.resetLayout();
   }
 

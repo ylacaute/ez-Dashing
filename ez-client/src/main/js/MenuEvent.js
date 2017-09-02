@@ -1,6 +1,8 @@
 
 const MenuEvent = {
-  resetLayout: "MENU_RESET_LAYOUT"
+  ResetLayout: "MENU_RESET_LAYOUT",
+  ResetTheme: "MENU_RESET_THEME",
+  ChangeTheme: "MENU_CHANGE_THEME"
 };
 
 export default MenuEvent;

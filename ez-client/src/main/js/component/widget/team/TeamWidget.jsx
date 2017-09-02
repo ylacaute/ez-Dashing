@@ -10,7 +10,7 @@ export default class TeamWidget extends AbstractWidget {
   };
 
   static defaultProps = {
-    logoUrl: '/img/logo.png'
+    logoUrl: '/img/ezLogo.png'
   };
 
   renderContent() {

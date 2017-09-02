@@ -27,3 +27,20 @@
   background-size: contain;
   background-position: center center;
 }
+
+/**
+ * This mixin allow to use a svg as icon to ease theme customization (change the icon color depending on
+ * the theme). The background color became the icon color due to the applied mask.
+ *
+ * Sample usage : @include svgMaskIcon(16px, red, 'layout.svg');
+ */
+@mixin svgMaskIcon($size, $bg-color, $svgFile) {
+  @extend %icon;
+  display: inline-block;
+  vertical-align: sub;
+  width: $size;
+  height: $size;
+  background-color: $bg-color;
+  mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
+  -webkit-mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
+}

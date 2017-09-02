@@ -6,6 +6,8 @@ class Menu extends React.Component {
 
   static propTypes = {
     resetLayout: PropTypes.func.isRequired,
+    resetTheme: PropTypes.func.isRequired,
+    changeTheme: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -17,14 +19,39 @@ class Menu extends React.Component {
     this.props.resetLayout();
   }
 
+  resetTheme(event) {
+    event.preventDefault();
+    this.props.resetTheme();
+  }
+
+  changeTheme(event, themeName) {
+    event.preventDefault();
+    this.props.changeTheme(themeName);
+  }
+
   render() {
     return (
       <BurgerMenu>
         <h1>
-          <i className="ez-logo"></i>
+          <i className="icon ez-logo"></i>
           <span>ez-Dashing</span>
         </h1>
-        <a onClick={this.resetLayout.bind(this)} className="menu-item" href="/">Reset layout</a>
+        <a className="menu-item" onClick={this.resetLayout.bind(this)} href="#">
+          <i className="icon layout"/>
+          <span>Reset layout</span>
+        </a>
+        <a className="menu-item" onClick={this.resetTheme.bind(this)} href="#">
+          <i className="icon theme"/>
+          <span>Reset theme</span>
+        </a>
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")} href="#">
+          <i className="icon theme"/>
+          <span>Set black Theme</span>
+        </a>
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")} href="#">
+          <i className="icon theme"/>
+          <span>Set default Theme</span>
+        </a>
       </BurgerMenu>
     );
   }

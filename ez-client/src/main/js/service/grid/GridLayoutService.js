@@ -23,8 +23,9 @@ export default class GridLayoutService {
   }
 
   resetLayout() {
-    logger.info("Reset dashboard layout (reset localStorage and reload layout from configuration)");
-    localStorage.clear();
+    logger.info("Reset dashboard layout from localStorage and reload layout from configuration");
+    //localStorage.clear();
+    localStorage.removeItem(LAYOUT_KEY);
     location.reload(true);
   }
 

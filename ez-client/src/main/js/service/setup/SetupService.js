@@ -3,6 +3,7 @@ import LoggerMiddleware from "redux/middleware/LoggerMiddleware";
 import CrashReporterMiddleware from "redux/middleware/CrashReporter";
 import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
 import GridMiddleware from "redux/middleware/GridMiddleware";
+import ThemeMiddleware from "redux/middleware/ThemeMiddleware";
 import StartupReducer from "redux/reducer/StartupReducer";
 import DataSourceReducer from "redux/reducer/DataSourceReducer";
 import WidgetReducer from "redux/reducer/WidgetReducer";
@@ -12,7 +13,7 @@ import WidgetFactory from "service/setup/WidgetFactory";
 import DataSourceService from "service/datasource/DataSourceService";
 import Logger from "utils/Logger";
 import ConfigExtender from "service/setup/ConfigExtender";
-import ThemeLoader from "service/setup/ThemeLoader";
+import ThemeService from "service/theme/ThemeService";
 import GridLayoutService from "service/grid/GridLayoutService";
 
 const logger = Logger.getLogger("StartupService");
@@ -51,12 +52,13 @@ export default class SetupService {
     });
   };
 
-  createMiddlewares(dataSourceService, gridLayoutService) {
+  createMiddlewares(dataSourceService, gridLayoutService, themeService) {
     return applyMiddleware(
       LoggerMiddleware,
       CrashReporterMiddleware,
       DataSourceMiddleware(dataSourceService),
-      GridMiddleware(gridLayoutService)
+      GridMiddleware(gridLayoutService),
+      ThemeMiddleware(themeService)
     );
   };
 
@@ -80,10 +82,11 @@ export default class SetupService {
       const cfg = ConfigExtender.extendsConfig(dashboardConfig);
       const dataSourceService = new DataSourceService(cfg);
       const gridLayoutService = new GridLayoutService(cfg);
+      const themeService = new ThemeService(cfg);
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(cfg),
-        this.createMiddlewares(dataSourceService, gridLayoutService)
+        this.createMiddlewares(dataSourceService, gridLayoutService, themeService)
       );
       gridLayoutService.setStore(store);
       dataSourceService.setStore(store);
@@ -93,7 +96,7 @@ export default class SetupService {
         dashboardConfig: cfg,
         widgetComponents: WidgetFactory.createAllWidgets(cfg)
       });
-      ThemeLoader.setTheme(cfg.theme);
+      themeService.loadTheme();
       callback(store);
     });
   }

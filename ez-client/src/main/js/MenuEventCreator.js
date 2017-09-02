@@ -3,9 +3,22 @@ import MenuEvent from 'MenuEvent';
 
 const MenuEventCreator = {
 
-  resetLayout : () => {
+  resetLayout: () => {
     return {
-      type: MenuEvent.resetLayout
+      type: MenuEvent.ResetLayout
+    }
+  },
+
+  resetTheme: () => {
+    return {
+      type: MenuEvent.ResetTheme
+    }
+  },
+
+  changeTheme: (themeName) => {
+    return {
+      type: MenuEvent.ChangeTheme,
+      payload: themeName
     }
   }
 
