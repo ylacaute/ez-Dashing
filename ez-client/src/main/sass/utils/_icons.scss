@@ -1,13 +1,7 @@
 
-// A size must be specified
-%base-image {
-  background-size: contain;
-  background: no-repeat center center;
-}
-
 @mixin image($bg-image) {
-  @extend %base-image;
-  background-image: url('#{$image-path}/#{$bg-image}');
+  background-size: contain;
+  background: url('#{$image-path}/#{$bg-image}') no-repeat center center;
 }
 
 /**
@@ -23,13 +17,12 @@
 }
 
 /**
- * Same as svgMask but for sized icons
+ * Same as svgMask but with sized icons
  */
 @mixin svgMaskIcon($size, $bg-color, $svgFile) {
-  @extend %base-image;
+  @include svgMask($bg-color, $svgFile);
   display: inline-block;
   vertical-align: sub;
   width: $size;
   height: $size;
-  @include svgMask($bg-color, $svgFile);
 }
