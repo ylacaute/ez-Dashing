@@ -143,7 +143,10 @@ More options in __ez.sh__
 
 ## Browser compatibility: 
  - __Chromium__ : good
- - __Firefox__ : average (svg mask is sadly not implemented in FF despite it is W3C compliant)
+ - __Firefox__ : average 
+ -- SVG mask is not implemented yet in FF despite it is W3C compliant
+ -- Performance problem with React Grid Layout
+ -- Bug on flex display
  - __Safari__ : not tested
  - __Internet Explorer__ not tested
 

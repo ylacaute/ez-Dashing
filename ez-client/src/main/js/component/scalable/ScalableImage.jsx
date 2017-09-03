@@ -15,6 +15,7 @@ export default class ScalableImage extends React.Component {
     display: "flex",
     flexGrow: 1,
     height: "100%",
+    width: "100%"
   };
 
   imgBaseStyle = {

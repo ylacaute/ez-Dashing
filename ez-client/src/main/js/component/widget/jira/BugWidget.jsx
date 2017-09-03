@@ -30,7 +30,8 @@ export default class BugWidget extends AbstractWidget {
       .getWidgetClassNames()
       .concat(ThresholdConfig.get(
         this.props.thresholds.bugs,
-        this.getTotal()));
+        this.getTotal()))
+      .concat(this.getTotal() == 0 ? "empty" : "")
   }
 
   getTotal() {
@@ -59,6 +60,12 @@ export default class BugWidget extends AbstractWidget {
     return items.map(i => i.key);
   }
 
+  renderEmptyBug() {
+    return (
+      <ScalableImage className="no-bug-image"/>
+    )
+  }
+
   renderContent() {
     if (this.getTotal() == 0) {
       return this.renderEmptyBug();
@@ -83,12 +90,6 @@ export default class BugWidget extends AbstractWidget {
         {todoIssues}
         {inProgressIssues}
       </ul>
-    )
-  }
-
-  renderEmptyBug() {
-    return (
-      <ScalableImage className="no-bug-image"/>
     )
   }
 

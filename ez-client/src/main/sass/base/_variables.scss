@@ -11,7 +11,7 @@ $color-blue-dark: #30353c !default;
 $color-cyan: #36afb3 !default;
 $color-gray: #999 !default;
 $color-gray-light: #aaa !default;
-$color-green: #74b53c !default;
+$color-green: #73ab40 !default;
 $color-orange: #db8240 !default;
 $color-yellow: #dcae41 !default;
 $color-red: #c65555 !default;
@@ -42,10 +42,9 @@ $color-bg-widget: $color-blue-dark !default;
 $color-bg-widget-header: $color-black-half-opacity !default;
 $color-bg-widget-footer: $color-black-half-opacity !default;
 
-// SPECIFIC COMPONENT COLOR
-$color-progress-bar-trail: #222 !default;
-$color-progress-bar-path: #888 !default;
-$color-progress-bar-text: #FFF !default;
+$color-progress-bar-trail: $color-black-half-opacity !default;
+$color-progress-bar-path: $color-text-sprint !default;
+$color-progress-bar-text: $color-title !default;
 
 $color-chart-burndown-tick: rgba(0, 0, 0, 0.2) !default;
 $color-chart-burndown-label: #fff !default;
@@ -60,6 +59,15 @@ $color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
 $color-burger-menu-cross-button: $color-text !default;
 $color-burger-menu-item: $color-text !default;
 
+$color-sonkins-progress-bar-trail: $color-black-half-opacity !default;
+$color-sonkins-progress-bar-path: $color-building !default;
+$color-sonkins-progress-bar-text: $color-building !default;
+
+$color-metric-neutral: $color-cyan;
+$color-metric-good: $color-good;
+$color-metric-average: $color-average;
+$color-metric-bad: $color-bad;
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -73,10 +81,16 @@ $padding-widget-content: $padding-content !default;
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ez-Dashing misc configuration
+/* ez-Dashing image configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 $image-path: '/img' !default;
-
+$image-app-logo: 'tech/ezLogo.png' !default;
+$image-error: 'error.svg' !default;
+$image-bug-empty: 'correct.svg' !default;
+$image-bug-todo: 'rightArrow.svg' !default;
+$image-burger-menu-layout: 'layout.svg' !default;
+$image-burger-menu-theme: 'painterPalette.svg' !default;
+$image-sonkins-build-success: 'thumb.svg' !default;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing KNACSS configuration

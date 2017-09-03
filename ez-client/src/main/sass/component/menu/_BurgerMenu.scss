@@ -13,19 +13,15 @@
 
 .bm-menu {
   background: $color-burger-menu-bg;
-  //padding: 2.5em 1.5em 0;
-  fontSize: 1.15em;
-
+  //font-size: 1.15em;
   .bm-item-list {
-    //padding: 0.8em;
     h1 {
       margin: 0 auto;
       padding: 2em 1em;
       color: #eee;
 
-      .icon.ez-logo {
-        @extend %icon;
-        background-image: url('#{$image-path}/tech/ezLogo.png');
+      .logo-icon {
+        @include image($image-app-logo);
         display: inline-block;
         width: 100px;
         height: 50px;
@@ -38,12 +34,16 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       text-decoration: none;
-
       i {
         margin-right: 1em;
       }
+      .layout-icon {
+        @include svgMaskIcon(16px, $color-burger-menu-item, $image-burger-menu-layout);
+      }
+      .theme-icon {
+        @include svgMaskIcon(16px, $color-burger-menu-item, $image-burger-menu-theme);
+      }
     }
-
     .menu-item:hover {
       background: rgba(0, 0, 0, 0.2);
       box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
@@ -66,12 +66,3 @@
 }
 
 
-// ICON DEFINITIONS
-.menu-item .icon.layout {
-  //@include svgMaskIcon(16px, $color-burger-menu-item, 'layout.svg');
-  @include svgMaskIcon(16px, $color-burger-menu-item, 'thumb.svg');
-}
-
-.menu-item .icon.theme {
-  @include svgMaskIcon(16px, $color-burger-menu-item, 'painterPalette.svg');
-}

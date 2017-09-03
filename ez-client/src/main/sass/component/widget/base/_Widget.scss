@@ -39,7 +39,7 @@
     padding: $padding-widget-content;
 
     .error-image {
-      @include svgMask($color-bad, 'error.svg');
+      @include svgMask($color-bad, $image-error);
     }
   }
 

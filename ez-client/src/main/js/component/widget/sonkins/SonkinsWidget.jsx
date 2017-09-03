@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import AvatarConfig from "config/AvatarConfig";
-import Metric from "component/widget/base/Metric.jsx";
+import Metric from "component/widget/base/Metric2.jsx";
 import FlipComponent from "component/effect/FlipComponent.jsx";
 import CircularProgressBar from 'component/chart/CircularProgressBar.jsx'
 import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
+import ScalableImage from 'component/scalable/ScalableImage.jsx';
 
 // Samples :
 // https://builds.apache.org/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true
@@ -48,12 +49,9 @@ export default class SonkinsWidget extends AbstractWidget {
   getWidgetClassNames() {
     return super
       .getWidgetClassNames()
-      .concat(this.getStatus());
+      .concat(this.getStatus().toLowerCase());
   }
 
-  /**
-   * Simple Header by default, with h1 tag
-   */
   renderHeader() {
     return (
       <div>
@@ -63,24 +61,13 @@ export default class SonkinsWidget extends AbstractWidget {
     )
   }
 
-  renderOnBuildUnknown() {
-    return (
-      <div>
-        <p>UNKNOWN STATE</p>
-      </div>
-    );
-  }
-
-  renderAuthorMetric(label, iconUrl) {
-    let style = {};
-    if (iconUrl != null) {
-      style.backgroundImage = `url(${iconUrl})`;
-    }
+  renderAuthorMetric(label, iconUrl, singleMetric = false) {
     return (
       <Metric
+        single={singleMetric}
         label={label}
         value={
-          <div className="author" style={style} />
+          <ScalableImage className="author" src={iconUrl} />
         }
       />
     );
@@ -90,7 +77,7 @@ export default class SonkinsWidget extends AbstractWidget {
     return (
       <div>
         <FlipComponent>
-          {this.renderAuthorMetric("BUILDING", avatar.url)}
+          {this.renderAuthorMetric("BUILDING", avatar.url, true)}
           <CircularProgressBar
             value={this.props.progress}
             textForValue={(value) => `${value}%`}
@@ -102,17 +89,13 @@ export default class SonkinsWidget extends AbstractWidget {
   }
 
   renderBuildFail(avatar) {
-    return (
-      <div>
-        {this.renderAuthorMetric("BUILD FAILURE", avatar.url)}
-      </div>
-    );
+    return this.renderAuthorMetric("BUILD FAILURE", avatar.url, true);
   }
 
   renderBuildSuccess() {
     const { lines, coverage, violations } = this.props;
     return (
-      <div>
+      <div className="metrics">
         {this.renderAuthorMetric("Last build")}
         <Metric
           label="Lines"
@@ -144,50 +127,9 @@ export default class SonkinsWidget extends AbstractWidget {
       case "BUILDING":
       case "REBUILDING":
         return this.renderBuilding(avatar);
-      case "UNKNOWN":
-      case "FAILURE":
-      case "UNSTABLE":
-        return this.renderBuildFail(avatar);
-      case "ABORTED":
       default:
-        return this.renderOnBuildUnknown();
+        return this.renderBuildFail(avatar);
     }
   }
 
 }
-
-
-
-
-
-
-/*
-
-textForValue={textForValue}
-      classForValue={(val) => ThresholdConfig.get(this.props.thresholds.memoryUsage, val)}
-      displayValuePosition={displayValuePosition}
-
-
-      <LinearProgressBar
-        label="Memory"
-        value={85}
-        textForValue={(value) => `Coverage: ${value}%`}
-      />
-
-
-
-
-
-
-<div className="metric image">
-        <div>
-          <div className="value">
-            <img
-              draggable="false"
-              src={avatar.url}
-            />
-          </div>
-          <div className="name">Last build</div>
-        </div>
-      </div>
- */

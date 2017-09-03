@@ -3,7 +3,6 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.sprint {
-
   header {
     span {
       vertical-align: middle;
@@ -17,19 +16,13 @@
       }
     }
   }
-
-  article {
-    .progress-bar {
-      .trail {
-        stroke: $color-title;
-      }
-      .path {
-        stroke: $color-text-sprint;
-      }
-      text {
-        fill: $color-title;
-      }
-    }
-  }
-
 }
+
+.widget.sprint.height-xxs article,
+.widget.sprint.height-xs article,
+.widget.sprint.height-sm article,
+.widget.sprint.height-md article,
+.widget.sprint.height-lg article {
+  padding: 1em;
+}
+

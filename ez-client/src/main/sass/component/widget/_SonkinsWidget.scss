@@ -2,33 +2,20 @@
 /* SONKINS WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@mixin defineBuildAuthor($authorImageSize) {
-  .author {
-    @extend %icon;
-    width: $authorImageSize;
-    height: $authorImageSize;
-  }
-  &.SUCCESS .author {
-    @include svgMaskIcon($authorImageSize, $color-good, 'thumb.svg');
-  }
-}
-
-// MOBILE FIRST
 .widget.sonkins {
-  @include defineBuildAuthor(30px);
 
   article > div {
     .progress-bar {
       .trail {
-        stroke: $color-black;
-        background: $color-black;
+        stroke: $color-sonkins-progress-bar-trail;
+        background: $color-sonkins-progress-bar-trail;
       }
       .path {
-        stroke: $color-building;
-        background: $color-building !important;
+        stroke: $color-sonkins-progress-bar-path;
+        background: $color-sonkins-progress-bar-path;
       }
       text {
-        fill: $color-building;
+        fill: $color-sonkins-progress-bar-text;
       }
       &.linear {
         align-self: center;
@@ -37,22 +24,19 @@
     }
   }
 
-  &.FAILURE {
-    @include infiniteBgColorChange($color-bg-widget, $color-bad, 8s);
-    font-weight: bold;
-    .metric {
-      width: 100% !important;
-      img {
-        height: 10rem;
-      }
-    }
+  &.success .author {
+    @include svgMask($color-good, $image-sonkins-build-success);
   }
 
-  &.BUILDING, &.REBUILDING {
+  &.failure {
+    @include infiniteBgColorChange($color-bg-widget, $color-bad, 8s);
+    font-weight: bold;
+  }
+
+  &.building, &.rebuilding {
     @include infiniteFlipping(10s);
     font-weight: bold;
     article {
-      @include infiniteBlinking(2s, 0.3);
       > div {  // wrapper only on building
         display: flex;
         flex-grow: 1;
@@ -61,6 +45,7 @@
         display: flex;
         flex-grow: 1;
         .face {
+          padding: 1em;
           display: flex;
         }
       }
@@ -68,41 +53,9 @@
   }
 }
 
-// DESKTOP
-.widget.sonkins.desktop {
-  @include defineBuildAuthor(45px);
-
-  &.REBUILDING, &.BUILDING {
-    article {
-      .metric {
-        display: flex;
-        align-self: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        flex-grow: 1;
-        > div {
-          height: auto;
-          align-self: center;
-        }
-        img {
-          height: 10rem;
-        }
-      }
-    }
-  }
-
-  // No need to display avatar on very small height
-  &.REBUILDING.height-xxxs, &.BUILDING.height-xxxs {
-    img {
-      display: none;
-    }
-  }
-
-  &.height-xxxs {
-    img {
-      height: 3.5rem;
-    }
+// We display an horizontal progress bar on small height
+.height-xxxs {
+  &.widget.sonkins.desktop {
     .flip-container {
       display: none;
     }
@@ -112,3 +65,14 @@
   }
 }
 
+.height-xxs, .height-xs, .height-sm, .height-md, .height-lg {
+  &.widget.sonkins.failure article {
+    padding: 1.5em;
+  }
+}
+
+.height-xxxs {
+  &.widget.sonkins article {
+    padding-bottom: 0;
+  }
+}

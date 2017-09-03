@@ -33,23 +33,23 @@ class Menu extends React.Component {
     return (
       <BurgerMenu>
         <h1>
-          <i className="icon ez-logo"></i>
+          <i className="logo-icon"></i>
           <span>ez-Dashing</span>
         </h1>
         <a className="menu-item" onClick={this.resetLayout.bind(this)} href="#">
-          <i className="icon layout"/>
+          <i className="layout-icon"/>
           <span>Reset layout</span>
         </a>
         <a className="menu-item" onClick={this.resetTheme.bind(this)} href="#">
-          <i className="icon theme"/>
+          <i className="theme-icon"/>
           <span>Reset theme</span>
         </a>
         <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")} href="#">
-          <i className="icon theme"/>
+          <i className="theme-icon"/>
           <span>Set black Theme</span>
         </a>
         <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")} href="#">
-          <i className="icon theme"/>
+          <i className="theme-icon"/>
           <span>Set default Theme</span>
         </a>
       </BurgerMenu>
