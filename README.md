@@ -97,7 +97,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Add a menu__ to control user settings (localStorage)
 - [ ] __Improve the build process__ Especially the sh/docker part
 - [ ] __DataSource Template__ DataSources should allow variables (not only global)
-- [ ] __Dashing theme__ Add a dashing-like theme (aka Smashing now)
+- [x] __Dashing theme__ Add a dashing-like theme (aka Smashing now)
 - [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
 - [ ] __Use Docker compose__
