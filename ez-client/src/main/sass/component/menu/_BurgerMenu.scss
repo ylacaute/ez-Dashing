@@ -5,7 +5,6 @@
   height: 30px;
   left: 36px;
   bottom: 36px;
-
   .bm-burger-bars {
     background: $color-burger-menu-burger-button;
   }
@@ -13,13 +12,10 @@
 
 .bm-menu {
   background: $color-burger-menu-bg;
-  //font-size: 1.15em;
   .bm-item-list {
     h1 {
       margin: 0 auto;
       padding: 2em 1em;
-      color: #eee;
-
       .logo-icon {
         @include image($image-app-logo);
         display: inline-block;
@@ -54,11 +50,9 @@
 .bm-cross-button {
   height: 24px;
   width: 24px;
-
   .bm-cross {
     background: $color-burger-menu-cross-button;
   }
-
 }
 
 .bm-overlay {

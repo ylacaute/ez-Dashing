@@ -18,11 +18,9 @@
   }
 }
 
-.widget.sprint.height-xxs article,
-.widget.sprint.height-xs article,
-.widget.sprint.height-sm article,
-.widget.sprint.height-md article,
-.widget.sprint.height-lg article {
-  padding: 1em;
+.height-xxs, .height-xs, .height-sm, .height-md, .height-lg {
+  &.widget.sprint article {
+    padding: 1em;
+  }
 }
 
