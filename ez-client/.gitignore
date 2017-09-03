@@ -112,5 +112,5 @@ fabric.properties
 assets
 *~
 package-lock.json
+src/main/toolBox
 
-src/main/toolbox
