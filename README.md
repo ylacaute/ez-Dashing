@@ -93,7 +93,8 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 
 ## Global backlog
-- [ ] __Save widget position__ With the localstorage
+- [x] __Save widget position__ (localStorage)
+- [x] __Add a menu__ to control user settings (localStorage)
 - [ ] __Improve the build process__ Especially the sh/docker part
 - [ ] __DataSource Template__ DataSources should allow variables (not only global)
 - [ ] __Dashing theme__ Add a dashing-like theme (aka Smashing now)
