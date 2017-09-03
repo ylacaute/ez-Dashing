@@ -88,7 +88,7 @@ export default class BugWidget extends AbstractWidget {
 
   renderEmptyBug() {
     return (
-      <ScalableImage className="emptyBugIcon" src={this.props.noBugIcon}/>
+      <ScalableImage className="no-bug-image"/>
     )
   }
 

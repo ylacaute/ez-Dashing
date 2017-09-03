@@ -23,8 +23,7 @@ export default class SonkinsWidget extends AbstractWidget {
     progress: PropTypes.number,
     lines: PropTypes.number,
     coverage: PropTypes.number,
-    violations: PropTypes.number,
-    goodBuildUrl: PropTypes.string
+    violations: PropTypes.number
   };
 
   static defaultProps = {
@@ -35,8 +34,7 @@ export default class SonkinsWidget extends AbstractWidget {
     progress: 0,
     lines: 0,
     coverage: 0,
-    violations: 0,
-    goodBuildUrl: "/img/good.png"
+    violations: 0
   };
 
   /**
@@ -74,12 +72,15 @@ export default class SonkinsWidget extends AbstractWidget {
   }
 
   renderAuthorMetric(label, iconUrl) {
-    const url = iconUrl != null ? iconUrl : this.props.goodBuildUrl;
+    let style = {};
+    if (iconUrl != null) {
+      style.backgroundImage = `url(${iconUrl})`;
+    }
     return (
       <Metric
         label={label}
         value={
-          <img draggable="false" src={url} />
+          <div className="author" style={style} />
         }
       />
     );

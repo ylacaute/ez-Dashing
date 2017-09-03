@@ -3,6 +3,7 @@
   "/api/consumer/jira-bug-inProgress-p0-p1" : "/bugInProgressP0P1",
   "/api/consumer/jira-bug-todo-p2-p3" : "/bugTodoP2P3",
   "/api/consumer/jira-bug-inProgress-p2-p3" : "/bugInProgressP2P3",
+  "/api/consumer/jira-bug-noBug" : "/noBug",
   "/api/consumer/jira-story-closed?sprintId=272" : "/storyClosed",
   "/api/consumer/jira-story-ready?sprintId=272" : "/storyReady",
   "/api/consumer/jira-sprint-active" : "/currentSprint",

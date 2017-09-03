@@ -37,6 +37,10 @@
     @extend %flexColumn;
     flex-grow: 1;
     padding: $padding-widget-content;
+
+    .error-image {
+      @include svgMask($color-bad, 'error.svg');
+    }
   }
 
   footer {
@@ -48,3 +52,4 @@
 .widget.desktop article{
   font-size: $font-size-widget-article-desktop;
 }
+

@@ -356,5 +356,12 @@
         "originBoardId": 124
       }
     ]
+  },
+  "noBug": {
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 0,
+    "issues": []
   }
 }

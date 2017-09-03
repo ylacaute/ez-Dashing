@@ -44,3 +44,9 @@
   mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
   -webkit-mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
 }
+
+@mixin svgMask($bg-color, $svgFile) {
+  background-color: $bg-color;
+  mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
+  -webkit-mask: url('#{$image-path}/#{$svgFile}') no-repeat 50% 50%;
+}

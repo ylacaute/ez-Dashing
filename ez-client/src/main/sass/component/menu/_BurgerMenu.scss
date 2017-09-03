@@ -25,7 +25,7 @@
 
       .icon.ez-logo {
         @extend %icon;
-        background-image: url('#{$image-path}/ezLogo.png');
+        background-image: url('#{$image-path}/tech/ezLogo.png');
         display: inline-block;
         width: 100px;
         height: 50px;
@@ -68,7 +68,8 @@
 
 // ICON DEFINITIONS
 .menu-item .icon.layout {
-  @include svgMaskIcon(16px, $color-burger-menu-item, 'layout.svg');
+  //@include svgMaskIcon(16px, $color-burger-menu-item, 'layout.svg');
+  @include svgMaskIcon(16px, $color-burger-menu-item, 'thumb.svg');
 }
 
 .menu-item .icon.theme {

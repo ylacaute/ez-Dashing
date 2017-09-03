@@ -11,26 +11,31 @@ export default class ScalableImage extends React.Component {
     className: ""
   };
 
+  wrapperBaseStyle = {
+    display: "flex",
+    flexGrow: 1,
+    height: "100%",
+  };
+
+  imgBaseStyle = {
+    width: "100%",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "50% 50%"
+  };
+
   render() {
-    let wrapperStyle = {
-      display: "flex",
-      flexGrow: 1,
-      height: "100%",
-    };
-    let imgStyle =  {
-      width: "100%",
-      objectFit: "contain"
+    let imgStyle = this.props.src == null ? this.imgBaseStyle : {
+      ...this.imgBaseStyle,
+      backgroundImage: `url(${this.props.src})`
     };
     return (
-      <div className={`scalable-image ${this.props.className}`} style={wrapperStyle}>
-        <img
+      <div className="scalable-image-wrapper" style={this.wrapperBaseStyle}>
+        <div
+          className={this.props.className}
           style={imgStyle}
-          draggable="false"
-          src={this.props.src}
-          alt={this.props.alt}
         />
       </div>
     );
   }
-
 }

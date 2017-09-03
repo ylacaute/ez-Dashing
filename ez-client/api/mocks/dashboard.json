@@ -122,6 +122,19 @@
                 "sprintId"
               ]
             }]
+          },
+          {
+            "id": "jira-bug-noBug",
+            "path": "...",
+            "mapping": {
+              "array:todoBugs": {
+                "jsonPath": "$.issues",
+                "mapping": {
+                  "string:key": "$.key",
+                  "string:priority": "$.fields.priority.name"
+                }
+              }
+            }
           }
         ]
       },
@@ -215,6 +228,13 @@
         "type": "SprintWidget",
         "dataSource" : [
           "jira-sprint-active"
+        ]
+      },
+      {
+        "type": "BugWidget",
+        "title": "bugs sample",
+        "dataSource": [
+          "jira-bug-noBug"
         ]
       },
       {

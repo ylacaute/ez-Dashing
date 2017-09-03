@@ -42,8 +42,11 @@
         }
       }
     }
-    .emptyBugIcon {
+    .scalable-image-wrapper {
       padding: 15%;
+      .no-bug-image {
+        @include svgMask($color-good, 'correct.svg');
+      }
     }
   }
 }

@@ -109,7 +109,7 @@ export default class AbstractWidget extends React.Component {
           </h1>
         </header>
         <article>
-          <ScalableImage src="/img/error.png"/>
+          <ScalableImage className="error-image"/>
           <p>{name}</p>
           <p>{message}</p>
         </article>
