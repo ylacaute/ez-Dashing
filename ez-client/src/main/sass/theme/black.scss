@@ -29,31 +29,31 @@ $color-title: $color-white !default;
 $color-spinner: $color-white !default;
 
 // COMPONENT TEXT COLOR
-$color-text-clock: $color-cyan !default;
-$color-text-sprint: $color-blue !default;
-$color-text-widget: $color-white !default;
-$color-text-widget-header: $color-title !default;
-$color-text-widget-sub-title: $color-gray-light !default;
+$color-widget-clock-text: $color-cyan !default;
+$color-widget-sprint-text: $color-blue !default;
+$color-widget-text: $color-white !default;
+$color-widget-header-text: $color-title !default;
+$color-widget-sub-title-text: $color-gray-light !default;
 
 // BACKGROUND COMPONENT COLOR
-$color-bg-grid: $color-base !default;
-$color-bg-grid-placeholder: $color-white-half-opacity;
-$color-bg-widget: $color-black !default;
-$color-bg-widget-header: $color-black !default;
-$color-bg-widget-footer: $color-black !default;
+$color-grid-bg: $color-base !default;
+$color-grid-bg-placeholder: $color-white-half-opacity;
+$color-widget-bg: $color-black !default;
+$color-widget-header-bg: $color-black !default;
+$color-widget-footer-bg: $color-black !default;
 
 // Sonkins states
 $ez-sonkins-header-bg-good: none;
 $ez-sonkins-header-text-good: $color-good;
 $ez-sonkins-header-bg-bad: $color-bad;
-$ez-sonkins-header-text-bad: $color-bg-grid;
+$ez-sonkins-header-text-bad: $color-grid-bg;
 $ez-sonkins-header-bg-building: $color-average;
-$ez-sonkins-header-text-building: $color-bg-grid;
+$ez-sonkins-header-text-building: $color-grid-bg;
 
-$color-chart-burndown-tick: rgba(0, 0, 0, 0.2) !default;
-$color-chart-burndown-label: #fff !default;
-$color-chart-burndown-line-velocity-ref: $color-cyan !default;
-$color-chart-burndown-line-velocity-cur: white !default;
+$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-widget-burndown-label: #fff !default;
+$color-widget-burndown-line-velocity-ref: $color-cyan !default;
+$color-widget-burndown-line-velocity-cur: white !default;
 
 $color-metric-name: $color-white !default;
 
@@ -70,3 +70,7 @@ $image-bug-empty: 'thumb.svg' !default;
 
 @import '../main';
 
+// EFFECT
+.widget.sonkins.failure {
+  @include infiniteBgColorChange($color-widget-bg, $color-bad, 8s);
+}

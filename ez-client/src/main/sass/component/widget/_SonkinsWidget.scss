@@ -3,19 +3,19 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.sonkins {
-
+  background-color: $color-widget-sonkins-bg;
   article > div {
     .progress-bar {
       .trail {
-        stroke: $color-sonkins-progress-bar-trail;
-        background: $color-sonkins-progress-bar-trail;
+        stroke: $color-widget-sonkins-progress-bar-trail;
+        background: $color-widget-sonkins-progress-bar-trail;
       }
       .path {
-        stroke: $color-sonkins-progress-bar-path;
-        background: $color-sonkins-progress-bar-path;
+        stroke: $color-widget-sonkins-progress-bar-path;
+        background: $color-widget-sonkins-progress-bar-path;
       }
       text {
-        fill: $color-sonkins-progress-bar-text;
+        fill: $color-widget-sonkins-progress-bar-text;
       }
       &.linear {
         align-self: center;
@@ -29,7 +29,6 @@
   }
 
   &.failure {
-    @include infiniteBgColorChange($color-bg-widget, $color-bad, 8s);
     font-weight: bold;
   }
 

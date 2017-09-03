@@ -3,12 +3,13 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.sprint {
+  background-color: $color-widget-sprint-bg;
   header {
     span {
       vertical-align: middle;
     }
     strong {
-      color: $color-text-sprint;
+      color: $color-widget-sprint-text;
       vertical-align: middle;
       font-size: 150%;
       &::before {

@@ -28,56 +28,68 @@ $color-good: $color-green !default;
 $color-title: $color-white !default;
 $color-spinner: $color-white !default;
 
-// COMPONENT TEXT COLOR
-$color-text-clock: $color-cyan !default;
-$color-text-sprint: $color-blue !default;
-$color-text-widget: $color-white !default;
-$color-text-widget-header: $color-title !default;
-$color-text-widget-sub-title: $color-gray-light !default;
+// GRID
+$color-grid-bg: $color-black !default;
+$color-grid-bg-placeholder: $color-white-half-opacity !default;
 
-// BACKGROUND COMPONENT COLOR
-$color-bg-grid: $color-black !default;
-$color-bg-grid-placeholder: $color-white-half-opacity;
-$color-bg-widget: $color-blue-dark !default;
-$color-bg-widget-header: $color-black-half-opacity !default;
-$color-bg-widget-footer: $color-black-half-opacity !default;
-
+// PROGRESS BAR
 $color-progress-bar-trail: $color-black-half-opacity !default;
-$color-progress-bar-path: $color-text-sprint !default;
+$color-progress-bar-path: $color-blue !default;
 $color-progress-bar-text: $color-title !default;
 
-$color-chart-burndown-tick: rgba(0, 0, 0, 0.2) !default;
-$color-chart-burndown-label: #fff !default;
-$color-chart-burndown-line-velocity-ref: $color-green !default;
-$color-chart-burndown-line-velocity-cur: white !default;
-
+// METRICS
 $color-metric-name: $color-text !default;
+$color-metric-neutral: $color-cyan !default;
+$color-metric-good: $color-good !default;
+$color-metric-average: $color-average !default;
+$color-metric-bad: $color-bad !default;
 
+// BURGER MENU
 $color-burger-menu-bg: $color-blue-dark !default;
 $color-burger-menu-burger-button: $color-blue-dark !default;
 $color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
 $color-burger-menu-cross-button: $color-text !default;
 $color-burger-menu-item: $color-text !default;
 
-$color-sonkins-progress-bar-trail: $color-black-half-opacity !default;
-$color-sonkins-progress-bar-path: $color-building !default;
-$color-sonkins-progress-bar-text: $color-building !default;
+// WIDGET
+$color-widget-bg: $color-blue-dark !default;
+$color-widget-text: $color-white !default;
+$color-widget-header-text: $color-title !default;
+$color-widget-header-bg: $color-black-half-opacity !default;
+$color-widget-sub-title-text: $color-gray-light !default;
+$color-widget-footer-bg: $color-black-half-opacity !default;
 
-$color-metric-neutral: $color-cyan;
-$color-metric-good: $color-good;
-$color-metric-average: $color-average;
-$color-metric-bad: $color-bad;
+// CLOCK
+$color-widget-clock-text: $color-cyan !default;
+$color-widget-clock-bg: none !default;
+
+// SPRINT
+$color-widget-sprint-text: $color-blue !default;
+$color-widget-sprint-bg: none !default;
+
+// BUG
+$color-widget-bug-bg: none !default;
+$color-widget-bug-todo: $color-red !default;
+$color-widget-bug-progress: $color-black-half-opacity !default;
+
+// SONKINS
+$color-widget-sonkins-bg: none !default;
+$color-widget-sonkins-progress-bar-trail: $color-black-half-opacity !default;
+$color-widget-sonkins-progress-bar-path: $color-building !default;
+$color-widget-sonkins-progress-bar-text: $color-building !default;
+
+// BURNDOWN
+$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-widget-burndown-label: #fff !default;
+$color-widget-burndown-line-velocity-ref: $color-green !default;
+$color-widget-burndown-line-velocity-cur: white !default;
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-// GENERIC PADDING
 $padding-content: 1rem !default;
-
-// COMPONENT PADDING
 $padding-widget-content: $padding-content !default;
-
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -91,6 +103,7 @@ $image-bug-todo: 'rightArrow.svg' !default;
 $image-burger-menu-layout: 'layout.svg' !default;
 $image-burger-menu-theme: 'painterPalette.svg' !default;
 $image-sonkins-build-success: 'thumb.svg' !default;
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing KNACSS configuration

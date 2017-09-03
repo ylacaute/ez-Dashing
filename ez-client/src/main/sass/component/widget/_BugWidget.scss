@@ -3,7 +3,7 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.bug {
-
+  background-color: $color-widget-bug-bg;
   header {
     span {
       vertical-align: middle;
@@ -27,10 +27,10 @@
         display: inline-block;
         margin-right: 1rem;
         &.todo {
-          @include svgMaskIcon(16px, $color-red, $image-bug-todo);
+          @include svgMaskIcon(16px, $color-widget-bug-todo, $image-bug-todo);
         }
         &.progress {
-          @include svgMaskIcon(16px, $color-black-half-opacity, $image-bug-todo);
+          @include svgMaskIcon(16px, $color-widget-bug-progress, $image-bug-todo);
         }
       }
     }

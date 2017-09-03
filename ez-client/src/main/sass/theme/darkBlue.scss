@@ -1,21 +1,21 @@
 
 // General
-$color-bg-grid: #050607;
-$color-bg-widget: #0d1117;
+$color-grid-bg: #050607;
+$color-widget-bg: #0d1117;
 $color-good: #7ad627;
 $color-bad: #d41717;
 $color-average: #e7a71e;
 
 // Widgets
-$color-bg-widget-header: rgba(33, 33, 33, 0.5);
+$color-widget-header-bg: rgba(33, 33, 33, 0.5);
 
 // Sonkins states
 $ez-sonkins-header-bg-good: none;
 $ez-sonkins-header-text-good: $color-good;
 $ez-sonkins-header-bg-bad: $color-bad;
-$ez-sonkins-header-text-bad: $color-bg-grid;
+$ez-sonkins-header-text-bad: $color-grid-bg;
 $ez-sonkins-header-bg-building: $color-average;
-$ez-sonkins-header-text-building: $color-bg-grid;
+$ez-sonkins-header-text-building: $color-grid-bg;
 
 @import '../main';
 

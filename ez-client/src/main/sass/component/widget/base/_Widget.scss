@@ -4,15 +4,15 @@
 
 .widget {
   @extend %flexColumn;
-  color: $color-text-widget;
-  background-color: $color-bg-widget;
+  color: $color-widget-text;
+  background-color: $color-widget-bg;
   height: 100%;
   text-align: center;
 
   header {
     @extend %flexColumn;
-    color: $color-text-widget-header;
-    background-color: $color-bg-widget-header;
+    color: $color-widget-header-text;
+    background-color: $color-widget-header-bg;
     height: 4rem;
     min-height: 4rem;
 
@@ -27,7 +27,7 @@
       }
       strong {
         display: flex;
-        color: $color-text-widget-sub-title;
+        color: $color-widget-sub-title-text;
         font-size: $font-size-widget-sub-title;
       }
     }
@@ -44,7 +44,7 @@
   }
 
   footer {
-    background-color: $color-bg-widget-footer;
+    background-color: $color-widget-footer-bg;
   }
 
 }

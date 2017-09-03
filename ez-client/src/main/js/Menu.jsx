@@ -44,13 +44,17 @@ class Menu extends React.Component {
           <i className="theme-icon"/>
           <span>Reset theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")} href="#">
-          <i className="theme-icon"/>
-          <span>Set black Theme</span>
-        </a>
         <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")} href="#">
           <i className="theme-icon"/>
-          <span>Set default Theme</span>
+          <span>Set Default Theme</span>
+        </a>
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")} href="#">
+          <i className="theme-icon"/>
+          <span>Set Black Theme</span>
+        </a>
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "dashing")} href="#">
+          <i className="theme-icon"/>
+          <span>Set Dashing Theme</span>
         </a>
       </BurgerMenu>
     );
