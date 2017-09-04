@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Getter
@@ -30,6 +31,7 @@ public class DashboardConfiguration {
 
   String content;
   List<DataSource> dataSources;
+  Map<String, String> env;
 
   public DashboardConfiguration(String content) {
     this.content = content;
@@ -42,6 +44,15 @@ public class DashboardConfiguration {
               .read("$.dataSources", new TypeRef<List<DataSource>>(){});
     }
     return dataSources;
+  }
+
+  public Map<String, String> getEnv() {
+    if (this.env == null) {
+      this.env = JsonPath
+              .parse(content)
+              .read("$.env");
+    }
+    return env;
   }
 
   public Optional<DataSource> getDataSource(String queryId) {

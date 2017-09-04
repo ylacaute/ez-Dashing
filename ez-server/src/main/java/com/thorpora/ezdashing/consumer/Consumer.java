@@ -17,6 +17,7 @@
 package com.thorpora.ezdashing.consumer;
 
 import com.thorpora.ezdashing.dashboard.model.Credentials;
+import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import feign.Feign;
 import feign.Logger;
@@ -34,8 +35,10 @@ public class Consumer {
 
     private APIConsumer apiConsumer;
     private DataSource dataSource;
+    private DashboardConfiguration dashboardProperties;
 
-    public Consumer(DataSource dataSource) {
+    public Consumer(DashboardConfiguration dashboardProperties, DataSource dataSource) {
+        this.dashboardProperties = dashboardProperties;
         this.dataSource = dataSource;
         Credentials cred = dataSource.getCredentials();
         Feign.Builder builder = Feign.builder();
@@ -56,7 +59,11 @@ public class Consumer {
                 .findFirst()
                 .get()
                 .getPath();
-        fullQuery = replaceVariables(fullQuery, params);
+
+        Map<String, String> variables = new HashMap<>();
+        variables.putAll(dashboardProperties.getEnv());
+        variables.putAll(params);
+        fullQuery = replaceVariables(fullQuery, variables);
         String[] pathAndQueryParams = fullQuery.split("\\?");
         String path = pathAndQueryParams[0];
         Map<String, String> paramsMap = getQueryParamsAsMap(pathAndQueryParams[1]);

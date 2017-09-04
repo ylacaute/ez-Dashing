@@ -50,7 +50,7 @@ public class ConsumerRegistry {
             throw new ConsumerException("consumer " + queryId + " doesn't exist in dashboard.json");
         }
         DataSource ds = dataSource.get();
-        Consumer consumer = new Consumer(ds);
+        Consumer consumer = new Consumer(dashboardProperties, ds);
 
         for (DataSourceQuery query : ds.getQueries()) {
             consumers.put(query.getId(), consumer);
