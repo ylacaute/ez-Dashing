@@ -201,6 +201,8 @@
       "type": "BurndownChartWidget",
       "title": "BURNDOWN",
       "dataSource" : [
+        "jira-story-closed",
+        "jira-story-ready",
         "jira-sprint-active"
       ]
     },
