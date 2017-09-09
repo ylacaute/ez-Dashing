@@ -16,43 +16,59 @@
  */
 package com.thorpora.ezdashing.dashboard.model;
 
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.TypeRef;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.thorpora.ezdashing.utils.FailFast.checkIsTrue;
+import static com.thorpora.ezdashing.utils.JsonUtils.*;
+import static lombok.AccessLevel.PRIVATE;
+
+@Slf4j
+@FieldDefaults(level = PRIVATE)
 @Getter
 @Setter
 public class DashboardConfiguration {
 
-  String content;
-  List<DataSource> dataSources;
-  Map<String, String> env;
+  File file;
+  JsonNode rootNode;
 
-  public DashboardConfiguration(String content) {
-    this.content = content;
+  public DashboardConfiguration(File file) {
+    this.rootNode = readValue(file, JsonNode.class);
+    this.file = file;
+  }
+
+  public void save() {
+    writeValue(file, rootNode);
+  }
+
+  public void save(File file) {
+    writeValue(file, rootNode);
+  }
+
+  public String getAsString() {
+    return writeValueAsString(rootNode);
   }
 
   public List<DataSource> getDataSources() {
-    if (this.dataSources == null) {
-      this.dataSources = JsonPath
-              .parse(content)
-              .read("$.dataSources", new TypeRef<List<DataSource>>(){});
-    }
-    return dataSources;
+    return readValue(rootNode.get("dataSources"), new TypeReference<List<DataSource>>() {});
   }
 
   public Map<String, String> getEnv() {
-    if (this.env == null) {
-      this.env = JsonPath
-              .parse(content)
-              .read("$.env");
-    }
-    return env;
+    return readValue(rootNode.get("env"), new TypeReference<Map<String, String>>() {});
+  }
+
+  public List<Widget> getWidgets() {
+    return readValue(rootNode.get("widgets"), new TypeReference<List<Widget>>() {});
   }
 
   public Optional<DataSource> getDataSource(String queryId) {
@@ -63,5 +79,21 @@ public class DashboardConfiguration {
     }
     return Optional.empty();
   }
+
+  public void updateWidget(String widgetId, Map<String, String> fields) {
+    JsonNode widgets = rootNode.get("widgets");
+    checkIsTrue(widgets.isArray(), "Configuration error, widgets should be an array");
+
+    for (final JsonNode widget : widgets) {
+      if (widget.has("id") && widgetId.equals(widget.get("id").asText())) {
+        ObjectNode on = (ObjectNode)widget;
+        log.info("Updating widgetId={} with fields={}", widgetId, fields);
+        fields.keySet().forEach(k -> on.put(k, fields.get(k)));
+        return;
+      }
+    }
+    log.warn("Unable to update widgetId={} because not found in configuration", widgetId);
+  }
+
 
 }

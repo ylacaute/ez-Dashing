@@ -18,12 +18,15 @@ package com.thorpora.ezdashing.dashboard;
 
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Slf4j
-@RequestMapping("/api/dashboard")
+@RequestMapping(value = "/api/dashboard",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 public class DashboardController {
 
@@ -33,10 +36,21 @@ public class DashboardController {
         this.dashboardProperties = dashboardProperties;
     }
 
-    @GetMapping("/config")
+    @GetMapping(value = "/config")
     public String getDashboardConfig() {
         log.info("GET /api/dashboard/config");
-        return dashboardProperties.getContent();
+        return dashboardProperties.getAsString();
     }
 
+    /**
+     * Currently, only String fields of widgets can be saved
+     */
+    @PatchMapping(value = "/config/widgets/{widgetId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void patchDashboardConfig(
+            @PathVariable String widgetId,
+            @RequestBody Map<String, String> fields) {
+        log.info("GET /config/widgets/{} with body={}", widgetId, fields);
+        dashboardProperties.updateWidget(widgetId, fields);
+        dashboardProperties.save();
+    }
 }

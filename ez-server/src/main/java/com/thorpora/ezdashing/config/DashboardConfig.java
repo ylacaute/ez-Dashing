@@ -16,25 +16,35 @@
  */
 package com.thorpora.ezdashing.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thorpora.ezdashing.dashboard.DashboardLoader;
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+import java.io.File;
 
 @Configuration
 public class DashboardConfig {
 
-    @Bean
-    public DashboardLoader dashboardLoader() {
-        return new DashboardLoader();
-    }
+    private static final String FILENAME = "dashboard.json";
 
     @Bean
-    public DashboardConfiguration dashboardConfiguration(
-            DashboardLoader dashboardLoader,
-            ObjectMapper objectMapper) {
-        return dashboardLoader.load(objectMapper);
+    public DashboardConfiguration dashboardConfiguration(Environment env) {
+        return new DashboardConfiguration(getConfigFile(env));
     }
 
+    /**
+     * We assume the dashboard.json configuration file is always in the same directory as the
+     * application.properties, even if its location is defined with "spring.config.location".
+     */
+    private File getConfigFile(Environment env) {
+        String externalConfigLocation = env.getProperty("spring.config.location");
+        if (externalConfigLocation != null && !externalConfigLocation.isEmpty()) {
+            String path = externalConfigLocation
+                    .substring(0, externalConfigLocation.lastIndexOf('/'))
+                    .replace("file:", "");
+            return new File(path + "/" + FILENAME);
+        }
+        return new File(this.getClass().getClassLoader().getResource(FILENAME).getFile());
+    }
 }
