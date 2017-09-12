@@ -1,3 +1,6 @@
+import Logger from 'utils/Logger';
+
+const logger = Logger.getLogger("AvatarConfig");
 
 export default class AvatarConfig {
   static get = (name, avatars) => {
@@ -11,7 +14,7 @@ export default class AvatarConfig {
           }
         }
       } catch(ex) {
-        console.log("Invalid avatar configuration pattern, details : ", ex);
+        logger.error("Invalid avatar configuration pattern, details : ", ex);
       }
     }
     if (resultAvatar == null) {

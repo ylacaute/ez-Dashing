@@ -1,7 +1,8 @@
 import Logger from 'utils/Logger';
-import GridEvent from 'component/grid/GridEvent';
+import { GridEvent } from 'redux/event/GridEvent';
 import { DataSourceEvent } from 'service/datasource/DataSourceService';
-import { SetupEvent } from 'service/setup/SetupService';
+import { SetupEvent } from 'redux/event/SetupEvent';
+import { WidgetEvent } from 'redux/event/WidgetEvent';
 
 const logger = Logger.getLogger("WidgetReducer");
 const initialState = {};
@@ -112,6 +113,16 @@ export default function(state = initialState, action) {
       });
       break;
 
+    /**
+     * When a widget is updated (server confirmed the update), we update the corresponding widget state
+     */
+    case WidgetEvent.UpdateConfigSuccess:
+      logger.debug("UpdateConfigSuccess (id={})", action.widgetId);
+      newState[action.widgetId] = {
+        ...state[action.widgetId],
+        ...action.payload
+      };
+      break;
 
     default:
       return state;

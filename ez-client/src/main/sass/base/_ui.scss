@@ -1,0 +1,42 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* PURE UI CLASSES (FORM)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.message {
+  margin-bottom: 1.5rem;
+}
+
+.message.info {
+  color: $color-good;
+}
+
+.message.warn {
+  color: $color-average;
+}
+
+.message.error {
+  color: $color-bad;
+  background-color: $color-bad-opacity;
+  border: 1px solid $color-bad;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+form {
+
+  * {
+    display: block;
+    width: 100%;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  input, select {
+    height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+
+}

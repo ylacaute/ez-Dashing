@@ -16,7 +16,10 @@ export default class AbstractWidget extends React.Component {
     title: PropTypes.string,
     subTitle: PropTypes.string,
     className: PropTypes.string,
-    sizeInfo: PropTypes.object
+    sizeInfo: PropTypes.object,
+    editable: PropTypes.bool,
+    showModal: PropTypes.func,
+    updateConfig: PropTypes.func
   };
 
   static defaultProps = {
@@ -25,6 +28,7 @@ export default class AbstractWidget extends React.Component {
     subTitle: null,
     className: "",
     sizeInfo: {},
+    editable: false
   };
 
   /**
@@ -80,6 +84,22 @@ export default class AbstractWidget extends React.Component {
       this.props.sizeInfo.hBreakpointClass];
   }
 
+  onEditClick() {
+    if (this.props.showModal == null) {
+      logger.warn("showModal prop func is not defined but a widget try to display an edition modal window");
+    } else {
+      this.props.showModal(this.getWidgetEditModal());
+    }
+  }
+
+  /**
+   * When editable, each widget have to define their edition modal window
+   */
+  getWidgetEditModal() {
+    logger.warn("The Widget id={} has not implemented the getWidgetEditModal method !", this.props.id);
+    return null;
+  }
+
   /**
    * Render method of a widget in error. This method must be safe and independent in order to be sure
    * to not generate another exception.
@@ -126,6 +146,12 @@ export default class AbstractWidget extends React.Component {
         <div className="cube1"></div>
         <div className="cube2"></div>
       </div>
+    );
+  }
+
+  renderEditable() {
+    return this.props.editable != true ? null : (
+      <span className="edit-icon" onClick={this.onEditClick.bind(this)}></span>
     );
   }
 
@@ -196,6 +222,7 @@ export default class AbstractWidget extends React.Component {
 
     return (
       <section className={classnames(this.getWidgetClassNames())}>
+        {this.renderEditable()}
         {this.renderHeaderWrapper()}
         <article className="content">
           {content}

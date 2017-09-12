@@ -15,6 +15,8 @@ $color-green: #73ab40 !default;
 $color-orange: #db8240 !default;
 $color-yellow: #dcae41 !default;
 $color-red: #c65555 !default;
+$color-red-light-opacity: rgba(198, 85, 85, 0.2);
+
 $color-white: #eee !default;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
 
@@ -22,6 +24,7 @@ $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
 $color-text: $color-white !default;
 $color-average: $color-orange !default;
 $color-bad: $color-red !default;
+$color-bad-opacity: $color-red-light-opacity !default;
 $color-base: $color-gray-light !default;
 $color-building: $color-yellow !default;
 $color-good: $color-green !default;
@@ -58,6 +61,7 @@ $color-widget-header-text: $color-title !default;
 $color-widget-header-bg: $color-black-half-opacity !default;
 $color-widget-sub-title-text: $color-gray-light !default;
 $color-widget-footer-bg: $color-black-half-opacity !default;
+$color-widget-edit-icon: #111 !default;
 
 // CLOCK
 $color-widget-clock-text: $color-cyan !default;
@@ -84,6 +88,11 @@ $color-widget-burndown-label: #fff !default;
 $color-widget-burndown-line-velocity-ref: $color-green !default;
 $color-widget-burndown-line-velocity-cur: white !default;
 
+// TEXT
+$color-widget-text-good-icon: $color-green !default;
+$color-widget-text-info-icon: $color-blue !default;
+$color-widget-text-warn-icon: $color-yellow !default;
+$color-widget-text-danger-icon: $color-red !default;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
@@ -98,12 +107,16 @@ $padding-widget-content: $padding-content !default;
 $image-path: '/img' !default;
 $image-app-logo: 'tech/ezLogo.png' !default;
 $image-error: 'error.svg' !default;
+$image-edit: 'pen.svg' !default;
 $image-bug-empty: 'correct.svg' !default;
 $image-bug-todo: 'rightArrow.svg' !default;
 $image-burger-menu-layout: 'layout.svg' !default;
 $image-burger-menu-theme: 'painterPalette.svg' !default;
 $image-sonkins-build-success: 'thumb.svg' !default;
-
+$image-good: 'happyFace.svg' !default;
+$image-info: 'info.svg' !default;
+$image-warn: 'warn.svg' !default;
+$image-danger: 'bomb.svg' !default;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing KNACSS configuration

@@ -89,7 +89,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __jenkinsMonitoringWidget__ (widget not migrating yet from ez-Dashing 0.1.0)
 - [x] __TeamWidget__ (name and logo)
 - [ ] __PullRequestWidget__ (Gitlab, Github)
-- [ ] __TextWidget__ (scrolling text / carousel)
+- [x] __TextWidget__ (editable text, update server config)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 
 ## Global backlog

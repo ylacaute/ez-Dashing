@@ -26,12 +26,11 @@ export default class ScalableImage extends React.Component {
   };
 
   render() {
-    let imgStyle = this.props.src == null ? this.imgBaseStyle : {
-      ...this.imgBaseStyle,
+    let imgStyle = this.props.src == null ? {} : {
       backgroundImage: `url(${this.props.src})`
     };
     return (
-      <div className="scalable-image-wrapper" style={this.wrapperBaseStyle}>
+      <div className="scalable-image-wrapper" >
         <div
           className={this.props.className}
           style={imgStyle}

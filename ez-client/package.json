@@ -18,15 +18,19 @@
     "serve": "node_modules/.bin/http-server dist"
   },
   "keywords": [
-    "webpack",
-    "webpack 3",
+    "free",
+    "dashboard",
+    "ez-dashing",
+    "scrum",
+    "agile",
     "react",
+    "redux",
+    "webpack",
     "livereload",
     "hot-reload",
-    "redux",
     "json-server",
-    "mocha",
-    "chai react-spinkit: ^3.0.0 chartist: ^0.11.0"
+    "spring-boot",
+    "mocha"
   ],
   "dependencies": {
     "eases": "^1.0.8",
@@ -39,6 +43,7 @@
     "react-grid-layout": "^0.14.7",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
+    "rodal": "^1.5.5",
     "victory": "^0.21.5"
   },
   "devDependencies": {

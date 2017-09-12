@@ -30,7 +30,6 @@ export default class GridLayoutService {
   }
 
   onGridLayoutChange(action) {
-    logger.info("ON GRID LAYOUT CHANGE !", action);
     localStorage.setItem(LAYOUT_KEY, JSON.stringify(action.payload.allLayouts));
   }
 

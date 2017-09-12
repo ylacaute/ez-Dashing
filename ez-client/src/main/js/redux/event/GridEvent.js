@@ -1,8 +1,12 @@
 
-import GridEvent from 'component/grid/GridEvent';
+const GridEvent = {
+  ItemResized: "GRID_ITEM_RESIZED",
+  Ready: "GRID_READY",
+  LayoutChange: "GRID_LAYOUT_CHANGE",
+  UpdateLayouts: "GRID_UPDATE_LAYOUTS"
+};
 
 const GridEventCreator = {
-
   onLayoutChange : (currentLayout, allLayouts) => {
     return {
       type: GridEvent.LayoutChange,
@@ -12,7 +16,6 @@ const GridEventCreator = {
       }
     }
   },
-
   onElementResized : (widgetId, sizeInfo) => {
     return {
       type: GridEvent.ItemResized,
@@ -20,14 +23,15 @@ const GridEventCreator = {
       payload: sizeInfo
     }
   },
-
   onGridReady : (widgetIds) => {
     return {
       type: GridEvent.Ready,
       widgetIds: widgetIds
     }
   }
-
 };
 
-export default GridEventCreator;
+export {
+  GridEvent,
+  GridEventCreator
+};

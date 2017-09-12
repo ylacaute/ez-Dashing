@@ -1,419 +1,366 @@
 {
-  "env": {
-    "jiraBoardId": "124"
+  "env" : {
+    "jiraBoardId" : "124"
   },
-  "server": {
-    "dataSourcePath": "/api/consumer/"
+  "server" : {
+    "dataSourcePath" : "/api/consumer/"
   },
-  "dataSources": [
-    {
-      "baseUrl": "https://issues.net",
-      "credentials": {
-        "userName": "test",
-        "password": "test"
-      },
-      "refresh": 120,
-      "queries": [
-        {
-          "id": "jira-sprint-active",
-          "path": "/rest/agile/1.0/board/${jiraBoardId}/sprint?state=active",
-          "mapping": {
-            "sprintId": "$.values[0].id",
-            "sprintName": "$.values[0].name",
-            "date:sprintStartDate": "$.values[0].startDate",
-            "date:sprintEndDate": "$.values[0].endDate"
+  "dataSources" : [ {
+    "baseUrl" : "https://issues.net",
+    "credentials" : {
+      "userName" : "test",
+      "password" : "test"
+    },
+    "refresh" : 120,
+    "queries" : [ {
+      "id" : "jira-sprint-active",
+      "path" : "/rest/agile/1.0/board/${jiraBoardId}/sprint?state=active",
+      "mapping" : {
+        "sprintId" : "$.values[0].id",
+        "sprintName" : "$.values[0].name",
+        "date:sprintStartDate" : "$.values[0].startDate",
+        "date:sprintEndDate" : "$.values[0].endDate"
+      }
+    }, {
+      "id" : "jira-bug-todo-p0-p1",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+      "mapping" : {
+        "array:todoBugs" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "string:priority" : "$.fields.priority.name"
           }
-        },
-        {
-          "id": "jira-bug-todo-p0-p1",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
-          "mapping": {
-            "array:todoBugs": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "string:priority": "$.fields.priority.name"
-              }
-            }
-          }
-        },
-        {
-          "id": "jira-bug-inProgress-p0-p1",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
-          "mapping": {
-            "array:inProgressBugs": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "string:priority": "$.fields.priority.name"
-              }
-            }
-          }
-        },
-        {
-          "id": "jira-bug-todo-p2-p3",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
-          "mapping": {
-            "array:todoBugs": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "string:priority": "$.fields.priority.name"
-              }
-            }
-          }
-        },
-        {
-          "id": "jira-bug-inProgress-p2-p3",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
-          "mapping": {
-            "array:inProgressBugs": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "string:priority": "$.fields.priority.name"
-              }
-            }
-          }
-        },
-        {
-          "id": "jira-story-closed",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
-          "mapping": {
-            "array:closedIssues": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "int:storyPoints": "$.fields.customfield_11111",
-                "regexp:int:sprintNumber": {
-                  "jsonPath": "$.fields.customfield_11103",
-                  "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
-                  "matchIndex": 2,
-                  "ignoreException": true
-                },
-                "date:resolutionDate": "$.fields.resolutiondate"
-              }
-            }
-          },
-          "dependencies": [{
-            "dataSource": "jira-sprint-active",
-            "params": [
-              "sprintId"
-            ]
-          }]
-        },
-        {
-          "id": "jira-story-ready",
-          "path": "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11103,customfield_11111&maxResults=100",
-          "mapping": {
-            "array:readyIssues": {
-              "jsonPath": "$.issues",
-              "mapping": {
-                "string:key": "$.key",
-                "int:storyPoints": "$.fields.customfield_11111",
-                "regexp:int:sprintNumber": {
-                  "jsonPath": "$.fields.customfield_11103",
-                  "regexp": "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
-                  "matchIndex": 2,
-                  "ignoreException": true
-                }
-              }
-            }
-          },
-          "dependencies": [{
-            "dataSource": "jira-sprint-active",
-            "params": [
-              "sprintId"
-            ]
-          }]
         }
-      ]
-    },
-    {
-      "baseUrl": "https://sonarcloud.io",
-      "credentials": {
-        "userName": "",
-        "password": ""
-      },
-      "refresh": 120,
-      "mapping": {
-        "int:lines": "$.component.measures[?(@.metric == 'lines')].value",
-        "int:coverage": "$.component.measures[?(@.metric == 'coverage')].value",
-        "int:violations": "$.component.measures[?(@.metric == 'violations')].value"
-      },
-      "queries": [
-        {
-          "id": "sonar-stats-systemA",
-          "path": "/api/measures/component?componentKey=org.starchartlabs.lockdown:lockdown&metricKeys=coverage,lines,violations&format=json"
-        },
-        {
-          "id": "sonar-stats-systemB",
-          "path": "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations&format=json"
+      }
+    }, {
+      "id" : "jira-bug-inProgress-p0-p1",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+      "mapping" : {
+        "array:inProgressBugs" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "string:priority" : "$.fields.priority.name"
+          }
         }
-      ]
-    },
-    {
-      "baseUrl": "https://builds.apache.org",
-      "credentials": {
-        "userName": "",
-        "password": ""
-      },
-      "refresh": 120,
-      "mapping": {
-        "bool:building": "$.building",
-        "int:progress": "$.executor.progress",
-        "string:status": "$.result",
-        "string:author": "$.changeSet.items[-1:].author.fullName"
-      },
-      "queries": [
-        {
-          "id": "jenkins-lastBuild-systemA",
-            "path": "/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1"
-        },
-        {
-          "id": "jenkins-lastBuild-systemB",
-          "path": "/job/Solr-reference-guide-7.0/911/api/json?pretty=true&depth=1"
-        },
-        {
-          "id": "jenkins-lastBuild-systemC",
-          "path": "/job/yetus-java/525/api/json?pretty=true&depth=1"
+      }
+    }, {
+      "id" : "jira-bug-todo-p2-p3",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+      "mapping" : {
+        "array:todoBugs" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "string:priority" : "$.fields.priority.name"
+          }
         }
-      ]
-    }
-  ],
-  "widgets": [
-    {
-      "type": "HelloWorldWidget",
-      "title": "HELLO WORLD",
-      "enabled": false
+      }
+    }, {
+      "id" : "jira-bug-inProgress-p2-p3",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+      "mapping" : {
+        "array:inProgressBugs" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "string:priority" : "$.fields.priority.name"
+          }
+        }
+      }
+    }, {
+      "id" : "jira-story-closed",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+      "mapping" : {
+        "array:closedIssues" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "int:storyPoints" : "$.fields.customfield_11111",
+            "regexp:int:sprintNumber" : {
+              "jsonPath" : "$.fields.customfield_11103",
+              "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+              "matchIndex" : 2,
+              "ignoreException" : true
+            },
+            "date:resolutionDate" : "$.fields.resolutiondate"
+          }
+        }
+      },
+      "dependencies" : [ {
+        "dataSource" : "jira-sprint-active",
+        "params" : [ "sprintId" ]
+      } ]
+    }, {
+      "id" : "jira-story-ready",
+      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11103,customfield_11111&maxResults=100",
+      "mapping" : {
+        "array:readyIssues" : {
+          "jsonPath" : "$.issues",
+          "mapping" : {
+            "string:key" : "$.key",
+            "int:storyPoints" : "$.fields.customfield_11111",
+            "regexp:int:sprintNumber" : {
+              "jsonPath" : "$.fields.customfield_11103",
+              "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
+              "matchIndex" : 2,
+              "ignoreException" : true
+            }
+          }
+        }
+      },
+      "dependencies" : [ {
+        "dataSource" : "jira-sprint-active",
+        "params" : [ "sprintId" ]
+      } ]
+    } ]
+  }, {
+    "baseUrl" : "https://sonarcloud.io",
+    "credentials" : {
+      "userName" : "",
+      "password" : ""
     },
-    {
-      "type": "HelloErrorWidget",
-      "title": "HELLO ERROR",
-      "enabled": false
+    "refresh" : 120,
+    "mapping" : {
+      "int:lines" : "$.component.measures[?(@.metric == 'lines')].value",
+      "int:coverage" : "$.component.measures[?(@.metric == 'coverage')].value",
+      "int:violations" : "$.component.measures[?(@.metric == 'violations')].value"
     },
-    {
-      "type": "HelloGraphWidget",
-      "title": "HELLO GRAPH",
-      "enabled": false
+    "queries" : [ {
+      "id" : "sonar-stats-systemA",
+      "path" : "/api/measures/component?componentKey=org.starchartlabs.lockdown:lockdown&metricKeys=coverage,lines,violations&format=json"
+    }, {
+      "id" : "sonar-stats-systemB",
+      "path" : "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations&format=json"
+    } ]
+  }, {
+    "baseUrl" : "https://builds.apache.org",
+    "credentials" : {
+      "userName" : "",
+      "password" : ""
     },
-    {
-      "type": "BurndownChartWidget",
-      "title": "BURNDOWN",
-      "dataSource" : [
-        "jira-story-closed",
-        "jira-story-ready",
-        "jira-sprint-active"
-      ]
+    "refresh" : 120,
+    "mapping" : {
+      "bool:building" : "$.building",
+      "int:progress" : "$.executor.progress",
+      "string:status" : "$.result",
+      "string:author" : "$.changeSet.items[-1:].author.fullName"
     },
-    {
-      "type": "TeamWidget",
-      "enabled": true
+    "queries" : [ {
+      "id" : "jenkins-lastBuild-systemA",
+      "path" : "/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1"
+    }, {
+      "id" : "jenkins-lastBuild-systemB",
+      "path" : "/job/Solr-reference-guide-7.0/911/api/json?pretty=true&depth=1"
+    }, {
+      "id" : "jenkins-lastBuild-systemC",
+      "path" : "/job/yetus-java/525/api/json?pretty=true&depth=1"
+    } ]
+  } ],
+  "widgets" : [ {
+    "type" : "HelloWorldWidget",
+    "title" : "HELLO WORLD",
+    "enabled" : false
+  }, {
+    "type" : "HelloErrorWidget",
+    "title" : "HELLO ERROR",
+    "enabled" : false
+  }, {
+    "type" : "HelloGraphWidget",
+    "title" : "HELLO GRAPH",
+    "enabled" : false
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_01",
+    "text" : "Good job guys !! You rox !!",
+    "textType" : "good",
+    "editable" : true
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_02",
+    "text" : "That is an information",
+    "textType" : "info",
+    "editable" : true
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_03",
+    "text" : "OMG GUYS !!! You did a fucking shit !",
+    "textType" : "danger",
+    "editable" : true
+  }, {
+    "type" : "TextWidget",
+    "text" : "You can't edit this one cause you didn't define an id for your widget in config",
+    "textType" : "warn",
+    "editable" : true
+  }, {
+    "type" : "BurndownChartWidget",
+    "title" : "BURNDOWN",
+    "dataSource" : [ "jira-story-closed", "jira-story-ready", "jira-sprint-active" ]
+  }, {
+    "type" : "TeamWidget",
+    "enabled" : true
+  }, {
+    "type" : "ClockWidget",
+    "UTCOffset" : 2,
+    "enabled" : true
+  }, {
+    "type" : "SprintWidget",
+    "dataSource" : [ "jira-sprint-active" ]
+  }, {
+    "type" : "BugWidget",
+    "title" : "BUGS",
+    "dataSource" : [ "jira-bug-todo-p2-p3", "jira-bug-inProgress-p2-p3" ]
+  }, {
+    "type" : "BugWidget",
+    "title" : "URGENT BUGS",
+    "dataSource" : [ "jira-bug-todo-p0-p1", "jira-bug-inProgress-p0-p1" ]
+  }, {
+    "type" : "SonarWidget",
+    "title" : "Sonar A",
+    "dataSource" : [ "sonar-stats-systemA" ],
+    "enabled" : false
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM A",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemA", "sonar-stats-systemA" ],
+    "enabled" : true
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM B",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemB", "sonar-stats-systemB" ],
+    "enabled" : true
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM C",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemA", "sonar-stats-systemA" ],
+    "enabled" : true
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM D",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemB", "sonar-stats-systemB" ],
+    "enabled" : true
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM E",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemA", "sonar-stats-systemA" ],
+    "enabled" : true
+  }, {
+    "type" : "SonkinsWidget",
+    "title" : "SYSTEM F",
+    "branch" : "master",
+    "dataSource" : [ "jenkins-lastBuild-systemB", "sonar-stats-systemB" ],
+    "enabled" : true
+  } ],
+  "avatars" : [ {
+    "displayName" : "Epithor",
+    "jenkinsAuthorPattern" : ".*epi",
+    "url" : "/img/avatars/epi.png"
+  }, {
+    "displayName" : "Pénelope",
+    "jenkinsAuthorPattern" : ".*Pénelope.*",
+    "url" : "/img/avatars/Penelope.png"
+  }, {
+    "displayName" : "Marc",
+    "jenkinsAuthorPattern" : "jenkins",
+    "url" : "/img/avatars/jenkins.png"
+  } ],
+  "thresholds" : {
+    "coverage" : {
+      "good" : 64,
+      "avg" : 55,
+      "bad" : 0
     },
-    {
-      "type": "ClockWidget",
-      "UTCOffset": 2,
-      "enabled": true
+    "violations" : {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
     },
-    {
-      "type": "SprintWidget",
-      "dataSource" : [
-        "jira-sprint-active"
-      ]
+    "bugs" : {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
     },
-    {
-      "type": "BugWidget",
-      "title": "BUGS",
-      "dataSource": [
-        "jira-bug-todo-p2-p3",
-        "jira-bug-inProgress-p2-p3"
-      ]
+    "memoryUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
     },
-    {
-      "type": "BugWidget",
-      "title": "URGENT BUGS",
-      "dataSource": [
-        "jira-bug-todo-p0-p1",
-        "jira-bug-inProgress-p0-p1"
-      ]
+    "cpuUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
     },
-    {
-      "type": "SonarWidget",
-      "title": "Sonar A",
-      "dataSource": [
-        "sonar-stats-systemA"
-      ],
-      "enabled": false
+    "fileDescriptorUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
     },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM A",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemA",
-        "sonar-stats-systemA"
-      ],
-      "enabled": true
-    },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM B",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemB",
-        "sonar-stats-systemB"
-      ],
-      "enabled": true
-    },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM C",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemA",
-        "sonar-stats-systemA"
-      ],
-      "enabled": true
-    },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM D",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemB",
-        "sonar-stats-systemB"
-      ],
-      "enabled": true
-    },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM E",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemA",
-        "sonar-stats-systemA"
-      ],
-      "enabled": true
-    },
-    {
-      "type": "SonkinsWidget",
-      "title": "SYSTEM F",
-      "branch": "master",
-      "dataSource": [
-        "jenkins-lastBuild-systemB",
-        "sonar-stats-systemB"
-      ],
-      "enabled": true
-    }
-  ],
-  "avatars": [
-    {
-      "displayName": "Epithor",
-      "jenkinsAuthorPattern": ".*epi",
-      "url": "/img/avatars/epi.png"
-    },
-    {
-      "displayName": "Pénelope",
-      "jenkinsAuthorPattern": ".*Pénelope.*",
-      "url": "/img/avatars/Penelope.png"
-    },
-    {
-      "displayName": "Marc",
-      "jenkinsAuthorPattern": "jenkins",
-      "url": "/img/avatars/jenkins.png"
-    }
-  ],
-  "thresholds": {
-    "coverage": {
-      "good": 64,
-      "avg": 55,
-      "bad": 0
-    },
-    "violations": {
-      "bad": 10,
-      "avg": 1,
-      "good": 0
-    },
-    "bugs": {
-      "bad": 10,
-      "avg": 1,
-      "good": 0
-    },
-    "memoryUsage": {
-      "bad": 80,
-      "avg": 70,
-      "good": 0
-    },
-    "cpuUsage": {
-      "bad": 80,
-      "avg": 70,
-      "good": 0
-    },
-    "fileDescriptorUsage": {
-      "bad": 80,
-      "avg": 70,
-      "good": 0
-    },
-    "freeDiskSpaceInTemp": {
-      "good": 40,
-      "avg": 20,
-      "bad": 0
+    "freeDiskSpaceInTemp" : {
+      "good" : 40,
+      "avg" : 20,
+      "bad" : 0
     }
   },
-  "grid": {
-    "itemBreakpoints": {
-      "width": {
-        "lg": 1200,
-        "md": 996,
-        "sm": 768,
-        "xs": 480,
-        "xxs": 240,
-        "xxxs": 0
+  "grid" : {
+    "itemBreakpoints" : {
+      "width" : {
+        "lg" : 1200,
+        "md" : 996,
+        "sm" : 768,
+        "xs" : 480,
+        "xxs" : 240,
+        "xxxs" : 0
       },
-      "height": {
-        "lg": 800,
-        "md": 600,
-        "sm": 400,
-        "xs": 280,
-        "xxs": 140,
-        "xxxs": 0
+      "height" : {
+        "lg" : 800,
+        "md" : 600,
+        "sm" : 400,
+        "xs" : 280,
+        "xxs" : 140,
+        "xxxs" : 0
       }
     },
-    "itemBreakpoints2": {
-      "width": {
-        "lg": 1200,
-        "md": 996,
-        "sm": 768,
-        "xs": 480,
-        "xxs": 240,
-        "xxxs": 0
+    "itemBreakpoints2" : {
+      "width" : {
+        "lg" : 1200,
+        "md" : 996,
+        "sm" : 768,
+        "xs" : 480,
+        "xxs" : 240,
+        "xxxs" : 0
       },
-      "height": {
-        "lg": 800,
-        "md": 600,
-        "sm": 400,
-        "xs": 280,
-        "xxs": 140,
-        "xxxs": 0
+      "height" : {
+        "lg" : 800,
+        "md" : 600,
+        "sm" : 400,
+        "xs" : 280,
+        "xxs" : 140,
+        "xxxs" : 0
       }
     },
-    "breakpoints": {
-      "lg": 1200,
-      "md": 996,
-      "sm": 768,
-      "xs": 480,
-      "xxs": 0
+    "breakpoints" : {
+      "lg" : 1200,
+      "md" : 996,
+      "sm" : 768,
+      "xs" : 480,
+      "xxs" : 0
     },
-    "cols": {
-      "lg": 7,
-      "md": 4,
-      "sm": 4,
-      "xs": 2,
-      "xxs": 1
+    "cols" : {
+      "lg" : 7,
+      "md" : 4,
+      "sm" : 4,
+      "xs" : 2,
+      "xxs" : 1
     },
-    "layouts": {},
-    "rowHeight": 122,
-    "widget_w": 1,
-    "widget_h": 1
+    "layouts" : { },
+    "rowHeight" : 122,
+    "widget_w" : 1,
+    "widget_h" : 1
   }
 }

@@ -19,6 +19,7 @@ package com.thorpora.ezdashing.dashboard.model;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.thorpora.ezdashing.exception.InvalidServerConfiguration;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -92,8 +93,9 @@ public class DashboardConfiguration {
         return;
       }
     }
-    log.warn("Unable to update widgetId={} because not found in configuration", widgetId);
+    throw new InvalidServerConfiguration(String
+            .format("Unable to update widgetId=%s because not found in configuration. " +
+                    "In order to edit a widget, you must explicitly set an unique id in the dashboard.json configuration file.", widgetId));
   }
-
 
 }

@@ -1,21 +1,30 @@
 import React from 'react';
-import { HelloWorldWidget, HelloErrorWidget, HelloGraphWidget } from 'component/widget/sample';
+import { bindActionCreators  } from 'redux';
+
+import BugWidget from 'component/widget/bug';
+import BurndownChartWidget from 'component/widget/burndown';
 import ClockWidget from 'component/widget/clock';
-import BugWidget from 'component/widget/jira';
-import { SprintWidget, BurndownChartWidget } from 'component/widget/sprint';
-import TeamWidget from 'component/widget/team';
+import JenkinsWidget from 'component/widget/jenkins';
+import { HelloWorldWidget, HelloErrorWidget, HelloGraphWidget } from 'component/widget/sample';
 import SonarWidget from 'component/widget/sonar';
 import SonkinsWidget from 'component/widget/sonkins';
-import JenkinsWidget from 'component/widget/jenkins';
+import SprintWidget from 'component/widget/sprint';
+import TeamWidget from 'component/widget/team';
+import TextWidget from 'component/widget/text';
+
 import Logger from "utils/Logger";
+import { ModalEventCreator } from 'redux/event/ModalEvent';
 
 const logger = Logger.getLogger("WidgetFactory");
 
 export default class WidgetFactory {
 
-  static create = (widgetConfiguration) => {
+  static create = (widgetConfiguration, dispatch) => {
     let Component;
-    let props = {};
+    let modalEvents = bindActionCreators(ModalEventCreator, dispatch);
+    let props = {
+      showModal: modalEvents.showModal
+    };
 
     switch (widgetConfiguration.type) {
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
@@ -29,6 +38,7 @@ export default class WidgetFactory {
       case "SonarWidget": Component = SonarWidget; break;
       case "SonkinsWidget": Component = SonkinsWidget; break;
       case "JenkinsWidget": Component = JenkinsWidget; break;
+      case "TextWidget": Component = TextWidget; break;
       default:
         logger.error("A widget can't be loaded because its type '{}' is unknown.", widgetConfiguration.type);
         Component = HelloErrorWidget;
@@ -49,11 +59,11 @@ export default class WidgetFactory {
   /**
    * Generate React widget components
    */
-  static createAllWidgets(dashboardConfig) {
+  static createAllWidgets(dashboardConfig, dispatch) {
     return dashboardConfig.widgets
       .filter(elt => elt.enabled != false)
       .map((widgetConfig) => {
-        return WidgetFactory.create(widgetConfig);
+        return WidgetFactory.create(widgetConfig, dispatch);
       });
   }
 

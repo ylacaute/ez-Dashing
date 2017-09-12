@@ -1,0 +1,33 @@
+
+
+.rodal-dialog {
+  padding: 0px;
+  width: 40% !important;
+  height: 35% !important;
+  min-width: 350px;
+  min-height: 350px;
+
+  header {
+    padding: 15px;
+    border-bottom: 1px solid #222;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  article {
+    padding: 15px;
+  }
+
+  footer {
+    button {
+      float: right;
+      margin-left: 15px;
+    }
+    padding: 15px;
+    border-top: 1px solid #222;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}

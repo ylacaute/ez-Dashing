@@ -1,0 +1,17 @@
+
+
+.scalable-image-wrapper {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+
+  > div {
+    width: 100%;
+    background: no-repeat 50% 50%;
+    background-size: contain;
+  }
+}
+
+

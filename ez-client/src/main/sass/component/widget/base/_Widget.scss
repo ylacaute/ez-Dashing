@@ -47,6 +47,17 @@
     background-color: $color-widget-footer-bg;
   }
 
+  .edit-icon {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    @include svgMaskIcon(20px, $color-widget-edit-icon, $image-edit);
+  }
+
 }
 
 .widget.desktop article{

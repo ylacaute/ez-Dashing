@@ -1,4 +1,4 @@
-import MenuEvent from 'MenuEvent';
+import { MenuEvent } from 'redux/event/MenuEvent';
 import ThemeService from 'service/theme/ThemeService';
 
 const themeMiddleware = themeService => store => next => action => {

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
-import ScalableImage from 'component/scalable/ScalableImage.jsx';
+import React from "react";
+import PropTypes from "prop-types";
+import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
+import ScalableImage from "component/scalable/ScalableImage.jsx";
 
 export default class TeamWidget extends AbstractWidget {
 
@@ -10,7 +10,7 @@ export default class TeamWidget extends AbstractWidget {
   };
 
   static defaultProps = {
-    logoUrl: '/img/tech/ezLogo.png'
+    logoUrl: "/img/tech/ezLogo.png"
   };
 
   renderContent() {

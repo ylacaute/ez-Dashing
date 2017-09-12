@@ -11,6 +11,7 @@
 @import "node_modules/knacss/sass/library/base";
 @import 'base/layouts';
 @import 'base/base';
+@import 'base/ui';
 
 // Utils
 @import 'utils/icons';
@@ -21,6 +22,8 @@
 @import 'component/chart/CircularProgressBar';
 @import 'component/chart/LinearProgressBar';
 @import 'component/menu/BurgerMenu';
+@import 'component/scalable/ScalableImage';
+@import 'component/modal/Modal';
 
 // Widgets components
 @import 'component/widget/base/Widget';
@@ -34,7 +37,7 @@
 @import 'component/widget/SonarWidget';
 @import 'component/widget/SonkinsWidget';
 @import 'component/widget/JenkinsMonitoringWidget';
-
+@import 'component/widget/TextWidget';
 
 @include enableCubeSpinner();
 

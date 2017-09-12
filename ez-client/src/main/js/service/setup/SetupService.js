@@ -4,9 +4,11 @@ import CrashReporterMiddleware from "redux/middleware/CrashReporter";
 import DataSourceMiddleware from "redux/middleware/DataSourceMiddleware";
 import GridMiddleware from "redux/middleware/GridMiddleware";
 import ThemeMiddleware from "redux/middleware/ThemeMiddleware";
+import WidgetMiddleware from "redux/middleware/WidgetMiddleware";
 import StartupReducer from "redux/reducer/StartupReducer";
 import DataSourceReducer from "redux/reducer/DataSourceReducer";
 import WidgetReducer from "redux/reducer/WidgetReducer";
+import ModalReducer from "redux/reducer/ModalReducer";
 import GridReducer from "redux/reducer/GridReducer";
 import RestClient from "utils/RestClient";
 import WidgetFactory from "service/setup/WidgetFactory";
@@ -15,18 +17,13 @@ import Logger from "utils/Logger";
 import ConfigExtender from "service/setup/ConfigExtender";
 import ThemeService from "service/theme/ThemeService";
 import GridLayoutService from "service/grid/GridLayoutService";
+import WidgetService from "service/widget/WidgetService";
+import { SetupEvent } from "redux/event/SetupEvent";
+import Constants from "Constant";
 
 const logger = Logger.getLogger("StartupService");
 
-export const SetupEvent = {
-  ConfigLoadSuccess: "CONFIG_LOAD_SUCCESS"
-};
-
 export default class SetupService {
-
-  getServerConfigPath() {
-    return "/api/dashboard/config";
-  };
 
   /**
    * If the initial state depends on the configuration it can be initialized here
@@ -48,17 +45,19 @@ export default class SetupService {
       startup: StartupReducer,
       dataSource: DataSourceReducer,
       widget: WidgetReducer,
-      grid: GridReducer
+      grid: GridReducer,
+      modal: ModalReducer
     });
   };
 
-  createMiddlewares(dataSourceService, gridLayoutService, themeService) {
+  createMiddlewares(dataSourceService, gridLayoutService, themeService, widgetService) {
     return applyMiddleware(
       LoggerMiddleware,
       CrashReporterMiddleware,
       DataSourceMiddleware(dataSourceService),
       GridMiddleware(gridLayoutService),
-      ThemeMiddleware(themeService)
+      ThemeMiddleware(themeService),
+      WidgetMiddleware(widgetService)
     );
   };
 
@@ -66,8 +65,7 @@ export default class SetupService {
    * Load server dashboard configuration
    */
   getDashboardConfig(callback) {
-    const path = this.getServerConfigPath();
-    RestClient.get(path, callback, exception => {
+    RestClient.get(Constants.DASHBOARD_CONFIG_PATH, callback, exception => {
       logger.error("Error during application initialization, details:", exception);
     });
   };
@@ -83,18 +81,20 @@ export default class SetupService {
       const dataSourceService = new DataSourceService(cfg);
       const gridLayoutService = new GridLayoutService(cfg);
       const themeService = new ThemeService(cfg);
+      const widgetService = new WidgetService(cfg);
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(cfg),
-        this.createMiddlewares(dataSourceService, gridLayoutService, themeService)
+        this.createMiddlewares(dataSourceService, gridLayoutService, themeService, widgetService)
       );
       gridLayoutService.setStore(store);
       dataSourceService.setStore(store);
+      widgetService.setStore(store);
       store.dispatch({
         type: SetupEvent.ConfigLoadSuccess,
         dataSources: dataSourceService.getDataSources(),
         dashboardConfig: cfg,
-        widgetComponents: WidgetFactory.createAllWidgets(cfg)
+        widgetComponents: WidgetFactory.createAllWidgets(cfg, store.dispatch)
       });
       themeService.loadTheme();
       callback(store);

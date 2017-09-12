@@ -27,8 +27,8 @@ let commonConfig = {
       './js/main.jsx'
     ],
     vendor: [
-      "eases", "jsonpath", "moment", "react", "react-animated-number",
-      "react-dom", "react-grid-layout",  "victory"],
+      "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
+      "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "victory"],
     blackTheme: "./sass/theme/black.scss",
     darkBlueTheme: "./sass/theme/darkBlue.scss",
     dashingTheme: "./sass/theme/dashing.scss",

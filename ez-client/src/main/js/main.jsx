@@ -5,10 +5,10 @@ import Application from './Application.jsx'
 import SetupService from 'service/setup/SetupService';
 import Logger from 'utils/Logger';
 
-import ReactGridLayoutStyle from "react-grid-layout/css/styles.css";
-import ReactGridResizableStyle from "react-resizable/css/styles.css";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
+import 'rodal/lib/rodal.css';
 
-// Logger configuration
 Logger.ENABLE_COLOR = true;
 Logger.setRootLevel(Logger.Level.DEBUG);
 Logger.Level = {
@@ -21,10 +21,12 @@ Logger.Level = {
 Logger.setLevel("WidgetReducer", Logger.Level.INFO);
 Logger.setLevel("DataSourceReducer", Logger.Level.INFO);
 Logger.setLevel("StartupReducer", Logger.Level.INFO);
+Logger.setLevel("ModalReducer", Logger.Level.INFO);
 Logger.setLevel("RestClient", Logger.Level.INFO);
 Logger.setLevel("DataSourceService", Logger.Level.INFO);
 Logger.setLevel("StartupService", Logger.Level.INFO);
 Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
+Logger.setLevel("WidgetService", Logger.Level.INFO);
 
 const setupService = new SetupService();
 

@@ -1,6 +1,6 @@
 import Logger from 'utils/Logger';
 import { DataSourceEvent } from 'service/datasource/DataSourceService';
-import { SetupEvent } from 'service/setup/SetupService';
+import { SetupEvent } from 'redux/event/SetupEvent';
 
 const logger = Logger.getLogger("DataSourceReducer");
 const initialState = {};

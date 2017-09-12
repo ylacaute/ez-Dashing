@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from "victory";
-import VelocityCalculator from "component/widget/sprint/VelocityCalculator";
+import VelocityCalculator from "component/widget/burndown/VelocityCalculator";
 
 export default class BurndownChartWidget extends AbstractWidget {
 

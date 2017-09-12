@@ -43,7 +43,7 @@ public class ErrorController extends AbstractErrorController {
 
     private static final boolean LOG_SERVLET_ERRORS = true;
     private static final boolean INCLUDE_STACK_TRACE_IN_DTO = false;
-    private static final boolean DEFAULT_SILENT_EXCEPTION = true;
+    private static final boolean DEFAULT_SILENT_EXCEPTION = false;
     private static final HttpStatus DEFAULT_STATUS_EXCEPTION = HttpStatus.INTERNAL_SERVER_ERROR;
 
     private ErrorLogger errorLogger;

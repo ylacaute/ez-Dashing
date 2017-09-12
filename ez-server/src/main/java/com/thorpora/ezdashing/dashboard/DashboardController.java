@@ -24,9 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Slf4j
-@RequestMapping(value = "/api/dashboard",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/dashboard")
 @RestController
 public class DashboardController {
 
@@ -36,7 +34,9 @@ public class DashboardController {
         this.dashboardProperties = dashboardProperties;
     }
 
-    @GetMapping(value = "/config")
+    @GetMapping(value = "/config",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public String getDashboardConfig() {
         log.info("GET /api/dashboard/config");
         return dashboardProperties.getAsString();
@@ -45,11 +45,11 @@ public class DashboardController {
     /**
      * Currently, only String fields of widgets can be saved
      */
-    @PatchMapping(value = "/config/widgets/{widgetId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/config/widgets/{widgetId}")
     public void patchDashboardConfig(
             @PathVariable String widgetId,
             @RequestBody Map<String, String> fields) {
-        log.info("GET /config/widgets/{} with body={}", widgetId, fields);
+        log.info("PATCH /config/widgets/{} with body={}", widgetId, fields);
         dashboardProperties.updateWidget(widgetId, fields);
         dashboardProperties.save();
     }

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
-import BugWidget from "component/widget/jira/BugWidget.jsx";
+import TextWidget from "component/widget/text/TextWidget.jsx";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -8,5 +8,5 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(BugWidget)
+export default connect(mapStateToProps)(TextWidget)
 

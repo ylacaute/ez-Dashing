@@ -207,8 +207,32 @@
         "enabled": false
       },
       {
+        "type": "TextWidget",
+        "text": "This is an editable good message",
+        "textType": "good",
+        "editable": true
+      },
+      {
+        "type": "TextWidget",
+        "text": "This is an editable info message",
+        "textType": "info",
+        "editable": true
+      },
+      {
+        "type": "TextWidget",
+        "text": "This is an editable warn message",
+        "textType": "warn",
+        "editable": true
+      },
+      {
+        "type": "TextWidget",
+        "text": "This is an editable danger message",
+        "textType": "danger",
+        "editable": true
+      },
+      {
         "type": "BurndownChartWidget",
-        "title": "BURNDOWN (SprintId=${jiraBoardId})",
+        "title": "BURNDOWN",
         "dataSource": [
           "jira-story-closed",
           "jira-story-ready",

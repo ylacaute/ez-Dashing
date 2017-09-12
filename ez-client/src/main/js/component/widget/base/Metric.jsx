@@ -13,7 +13,8 @@ export default class Metric extends React.Component {
     value: PropTypes.node,
     formatValue: PropTypes.func,
     animated: PropTypes.bool,
-    thresholds: PropTypes.object
+    thresholds: PropTypes.object,
+    single: PropTypes.bool
   };
 
   static defaultProps = {
@@ -22,7 +23,8 @@ export default class Metric extends React.Component {
     value: {},
     formatValue: n => n,
     animated: true,
-    thresholds: null
+    thresholds: null,
+    single: false
   };
 
   renderValue(value, formatValue) {
@@ -49,11 +51,11 @@ export default class Metric extends React.Component {
   }
 
   render() {
-    const { className, label, value, formatValue, thresholds } = this.props;
+    const { className, label, value, formatValue, thresholds, single } = this.props;
 
     return (
-      <div className={cn("metric", className, ThresholdConfig.get(thresholds, value))}>
-        <div>
+      <div className={cn("metric-wrapper", single ? "single" : null)}>
+        <div className={cn("metric", className, ThresholdConfig.get(thresholds, value))}>
           {this.renderValue(value, formatValue)}
           <div className="name">{label}</div>
         </div>
