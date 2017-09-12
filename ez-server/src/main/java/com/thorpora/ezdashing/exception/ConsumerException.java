@@ -14,8 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thorpora.ezdashing.consumer;
+package com.thorpora.ezdashing.exception;
 
+import com.thorpora.ezdashing.core.error.ExceptionLog;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+@ExceptionLog(stackTrace = false)
 public class ConsumerException extends RuntimeException {
 
     public ConsumerException(String message) {

@@ -48,8 +48,9 @@ public class Consumer {
                     cred.getPassword()));
         }
         this.apiConsumer = builder
+                .retryer(new FeignRetryer())
                 .logger(new Slf4jLogger(Consumer.class))
-                .logLevel(Logger.Level.BASIC)
+                .logLevel(Logger.Level.NONE)
                 .target(APIConsumer.class, dataSource.getBaseUrl());
     }
 

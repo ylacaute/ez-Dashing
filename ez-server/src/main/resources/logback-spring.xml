@@ -4,7 +4,7 @@
   <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
   <springProfile name="default">
-    <logger name="com.thorpora" level="DEBUG" additivity="false">
+    <logger name="com.thorpora" level="INFO" additivity="false">
       <appender-ref ref="CONSOLE" />
       <appender-ref ref="FILE" />
     </logger>

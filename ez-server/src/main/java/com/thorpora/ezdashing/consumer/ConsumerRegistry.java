@@ -20,6 +20,7 @@ package com.thorpora.ezdashing.consumer;
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import com.thorpora.ezdashing.dashboard.model.DataSourceQuery;
+import com.thorpora.ezdashing.exception.ConsumerException;
 
 import java.util.HashMap;
 import java.util.Optional;
