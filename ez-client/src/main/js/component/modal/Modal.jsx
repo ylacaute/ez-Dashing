@@ -13,12 +13,10 @@ const ModalType = {
 class Modal extends React.Component {
 
   static propTypes = {
-    hideModal: PropTypes.func.isRequired,
     content: PropTypes.node,
     visible: PropTypes.bool,
     title: PropTypes.node,
     onOk: PropTypes.func,
-    onApply: PropTypes.func,
     onCancel: PropTypes.func,
     errorMessage: PropTypes.string,
     modalType: PropTypes.PropTypes.oneOf([ModalType.Ok, ModalType.OkCancel])
@@ -29,7 +27,6 @@ class Modal extends React.Component {
     visible: false,
     title: null,
     onOk: null,
-    onApply: null,
     onCancel: null,
     errorMessage: "",
     modalType: ModalType.onOk

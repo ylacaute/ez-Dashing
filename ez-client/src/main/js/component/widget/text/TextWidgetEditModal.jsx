@@ -5,22 +5,19 @@ import PropTypes from 'prop-types';
 import { Modal, ModalType } from 'component/modal/Modal.jsx';
 import { WidgetEventCreator } from 'redux/event/WidgetEvent';
 import { ModalEventCreator } from 'redux/event/ModalEvent';
+import UUID from 'utils/UUID.js';
 
 class TextWidgetEditModal extends Modal {
 
   static propTypes = {
     widgetId: PropTypes.string.isRequired,
     textType: PropTypes.oneOf(["none", "good", "info", "warn", "danger"]),
-    text: PropTypes.string,
-    onError: PropTypes.bool,
-    visible: PropTypes.bool
+    text: PropTypes.string
   };
 
   static defaultProps = {
     textType: "none",
     text: "",
-    onError: false,
-    visible: false,
     modalType: ModalType.OkCancel,
     title: "TextWidget edit"
   };
@@ -37,7 +34,7 @@ class TextWidgetEditModal extends Modal {
     });
   }
 
-  generateSelectOptions(initialValue) {
+  generateSelectOptions() {
     let result = [];
     let options = [
       { value: 'none', label: 'None' },
@@ -48,7 +45,9 @@ class TextWidgetEditModal extends Modal {
     ];
     options.forEach(opt => {
       result.push(
-        <option value={opt.value} selected={initialValue == opt.value}>{opt.label}</option>
+        <option key={UUID.random()} value={opt.value}>
+          {opt.label}
+        </option>
       );
     });
     return result;
@@ -60,19 +59,19 @@ class TextWidgetEditModal extends Modal {
         <label htmlFor="widgetTextType">
           Type
         </label>
-        <select key={`select_${this.props.widgetId}`} name="widgetTextType">
-          {this.generateSelectOptions(this.props.textType)}
+        <select key={UUID.random()}
+                name="widgetTextType"
+                defaultValue={this.props.textType}>
+          {this.generateSelectOptions()}
         </select>
         <label htmlFor="widgetText">
           Text
         </label>
-        <input
-          type="text"
-          name="widgetText"
-          key={this.props.widgetId}
-          defaultValue={this.props.text}
-          >
-        </input>
+        <input key={UUID.random()}
+               type="text"
+               name="widgetText"
+               defaultValue={this.props.text}
+        />
       </form>
     )
   }
