@@ -22,13 +22,15 @@ let parseJsonResponse = response => {
 let handleHTTPResponse = (requestId, response, options, path, jsonResponse) => {
   logger.info("RESPONSE[id={}] {} - {} {}", requestId, response.status, options.method, path);
   if (!response.ok) {
-    let message = "Unknown error";
+    let message;
     if (response.status === 504) {
       message = "Unable to contact the API server, is your server started ?";
     } else if (response.status >= 500) {
       message = "Internal server error";
-    } else if (jsonResponse.cause != null && jsonResponse.cause.message != null) {
-      message = jsonResponse.cause.message;
+    } else if (jsonResponse.message != null) {
+      message = jsonResponse.message;
+    } else {
+      message = response.statusText
     }
     throw new RestException(message, jsonResponse);
   }

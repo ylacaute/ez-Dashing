@@ -36,19 +36,19 @@ class Menu extends React.Component {
           <i className="logo-icon"></i>
           <span>ez-Dashing</span>
         </h1>
-        <a className="menu-item" onClick={this.resetLayout.bind(this)} href="#">
+        <a className="menu-item" onClick={this.resetLayout.bind(this)}>
           <i className="layout-icon"/>
           <span>Reset layout</span>
         </a>
-        <a className="menu-item" onClick={this.resetTheme.bind(this)} href="#">
+        <a className="menu-item" onClick={this.resetTheme.bind(this)}>
           <i className="theme-icon"/>
           <span>Reset theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")} href="#">
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")}>
           <i className="theme-icon"/>
           <span>Set Default Theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")} href="#">
+        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")}>
           <i className="theme-icon"/>
           <span>Set Black Theme</span>
         </a>

@@ -11,6 +11,7 @@ import SonkinsWidget from 'component/widget/sonkins';
 import SprintWidget from 'component/widget/sprint';
 import TeamWidget from 'component/widget/team';
 import TextWidget from 'component/widget/text';
+import MoodWidget from 'component/widget/mood';
 
 import Logger from "utils/Logger";
 import { ModalEventCreator } from 'redux/event/ModalEvent';
@@ -39,6 +40,7 @@ export default class WidgetFactory {
       case "SonkinsWidget": Component = SonkinsWidget; break;
       case "JenkinsWidget": Component = JenkinsWidget; break;
       case "TextWidget": Component = TextWidget; break;
+      case "MoodWidget": Component = MoodWidget; break;
       default:
         logger.error("A widget can't be loaded because its type '{}' is unknown.", widgetConfiguration.type);
         Component = HelloErrorWidget;

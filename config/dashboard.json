@@ -194,6 +194,13 @@
     "textType" : "warn",
     "editable" : true
   }, {
+    "type" : "MoodWidget",
+    "id" : "MoodWidget_01",
+    "title" : "Team Mood",
+    "mood" : "average",
+    "enabled" : true,
+    "editable" : true
+  }, {
     "type" : "BurndownChartWidget",
     "title" : "BURNDOWN",
     "dataSource" : [ "jira-story-closed", "jira-story-ready", "jira-sprint-active" ]

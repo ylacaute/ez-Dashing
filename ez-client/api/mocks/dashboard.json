@@ -231,6 +231,13 @@
         "editable": true
       },
       {
+        "type": "MoodWidget",
+        "title": "Team Mood",
+        "mood": "average",
+        "enabled": true,
+        "editable": true
+      },
+      {
         "type": "BurndownChartWidget",
         "title": "BURNDOWN",
         "dataSource": [

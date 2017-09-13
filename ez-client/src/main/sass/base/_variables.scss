@@ -94,6 +94,14 @@ $color-widget-text-info-icon: $color-blue !default;
 $color-widget-text-warn-icon: $color-yellow !default;
 $color-widget-text-danger-icon: $color-red !default;
 
+// MOOD
+$color-widget-mood-good-icon: $color-green !default;
+$color-widget-mood-average-icon: $color-yellow !default;
+$color-widget-mood-bad-icon: $color-red !default;
+$image-widget-mood-good-icon: 'happyFace.svg' !default;
+$image-widget-mood-average-icon: 'neutralFace.svg' !default;
+$image-widget-mood-bad-icon: 'unhappyFace.svg' !default;
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

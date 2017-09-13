@@ -91,19 +91,25 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __PullRequestWidget__ (Gitlab, Github)
 - [x] __TextWidget__ (editable text, update server config)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
+- [x] __MoodWidget__ (editable team mood)
 
 ## Global backlog
-- [x] __Save widget position__ (localStorage)
-- [x] __Add a menu__ to control user settings (localStorage)
-- [ ] __Improve the build process__ Especially the sh/docker part
-- [ ] __DataSource Template__ DataSources should allow variables (not only global)
-- [x] __Dashing theme__ Add a dashing-like theme (aka Smashing now)
+- [x] __Save widget position__ users can save/reset widget position in the localStorage
+- [x] __Add a menu__ a menu allow to control the localStorage user settings
+- [x] __Dashing theme__ add a dashing-like theme, even if ugly
+- [ ] __Improve Startup__ break the "startup" state tree
+- [ ] __Improve the build process__ especially the sh/docker part
+- [ ] __DataSource Template__ dataSources should allow variables (not only global)
+- [ ] __Improve WidgetFactory__ type declaration should be automatic 
 - [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
+- [ ] __Improve RestClient__ improve error management
 - [ ] __Use Docker compose__
 - [ ] __Fix React warning__  wrong way for minify/uglify for prod
 - [ ] __Use Travis-CI__
-- [ ] __Dynamic widget__ idealy, make pure json configurable widget 
+- [ ] __Improve Sonkins Widget__ sonar metrics should be parameterizable
+- [ ] __Use WebSockets__ instead of reloading config periodically
+- [ ] __Dynamic widget__ ideally, make pure json configurable widget 
 
 ## Build the application
 

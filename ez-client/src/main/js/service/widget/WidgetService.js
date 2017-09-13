@@ -38,7 +38,7 @@ export default class WidgetService {
       const result = {
         type: WidgetEvent.UpdateConfigFailed,
         widgetId: action.widgetId,
-        payload: exception.cause.message
+        payload: exception.message
       };
       logger.debug("Dispatching error on widget config update:", result);
       this.store.dispatch(result);
