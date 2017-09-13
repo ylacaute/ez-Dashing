@@ -173,8 +173,8 @@
   }, {
     "type" : "TextWidget",
     "id" : "TextWidget_01",
-    "text" : "Good job guys !! You rox !!",
-    "textType" : "good",
+    "text" : "HELLO CHROME :)",
+    "textType" : "info",
     "editable" : true
   }, {
     "type" : "TextWidget",

@@ -48,7 +48,7 @@ let handleHTTPError = (error, errorCallback) => {
 
 let jsonFetch = (path, options, callback, errorCallback) => {
   const requestId = ++requestIdCounter;
-  logger.debug("REQUEST[id={}] - {}:", requestId, path, options);
+  logger.info("REQUEST[id={}] - {}:", requestId, path, options);
   let url = window.location.origin + path;
   fetch(url, {
     headers: defaultHeaders,

@@ -1,6 +1,6 @@
 import Logger from 'utils/Logger';
 import { GridEvent } from 'redux/event/GridEvent';
-import { DataSourceEvent } from 'service/datasource/DataSourceService';
+import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 import { SetupEvent } from 'redux/event/SetupEvent';
 import { WidgetEvent } from 'redux/event/WidgetEvent';
 
@@ -122,6 +122,16 @@ export default function(state = initialState, action) {
         ...state[action.widgetId],
         ...action.payload
       };
+      break;
+
+    case WidgetEvent.UpdateAll:
+      logger.debug("UpdateAll", action.payload);
+      action.payload.forEach(widgetConfig => {
+        newState[widgetConfig.id] = {
+          ...state[widgetConfig.id],
+          ...widgetConfig
+        };
+      });
       break;
 
     default:

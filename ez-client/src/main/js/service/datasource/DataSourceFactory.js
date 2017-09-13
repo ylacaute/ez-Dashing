@@ -1,3 +1,4 @@
+import Constants from "Constant";
 
 /**
  * This factory create dataSources from a configuration. Indeed, the configuration has a user friendly format
@@ -9,12 +10,6 @@
  * Please not that DataSource are NOT components: they are pure properties.
  */
 export default class DataSourceFactory {
-
-  /**
-   * If no refresh has been specified in configuration for a dataSource query,
-   * this default value is used, in seconds.
-   */
-  static DEFAULT_REFRESH = 60;
 
   /**
    * Create all dataSources. These dataSources are initialized as NOT loaded: a dataSource is loaded when
@@ -31,7 +26,7 @@ export default class DataSourceFactory {
           baseUrl: dsConfig.baseUrl,
           credentials: dsConfig.credentials,
           path: queryConfig.path,
-          refresh: queryConfig.refresh || dsConfig.refresh || DataSourceFactory.DEFAULT_REFRESH,
+          refresh: queryConfig.refresh || dsConfig.refresh || Constants.DEFAULT_DATA_SOURCE_REFRESH,
           mapping: queryConfig.mapping || dsConfig.mapping || {},
           dependencies: queryConfig.dependencies || []
         })

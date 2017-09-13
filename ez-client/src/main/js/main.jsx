@@ -22,11 +22,12 @@ Logger.setLevel("WidgetReducer", Logger.Level.INFO);
 Logger.setLevel("DataSourceReducer", Logger.Level.INFO);
 Logger.setLevel("StartupReducer", Logger.Level.INFO);
 Logger.setLevel("ModalReducer", Logger.Level.INFO);
-Logger.setLevel("RestClient", Logger.Level.INFO);
+Logger.setLevel("RestClient", Logger.Level.WARN);
 Logger.setLevel("DataSourceService", Logger.Level.INFO);
 Logger.setLevel("StartupService", Logger.Level.INFO);
 Logger.setLevel("LoggerMiddleware", Logger.Level.WARN);
 Logger.setLevel("WidgetService", Logger.Level.INFO);
+Logger.setLevel("ConfigExtender", Logger.Level.WARN);
 
 const setupService = new SetupService();
 

@@ -3,12 +3,10 @@ import URLUtils from "utils/URLUtils";
 import Logger from "utils/Logger";
 import JsonMapper from 'utils//JsonMapper';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
+import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 
 const logger = Logger.getLogger("DataSourceService");
 
-export const DataSourceEvent = {
-  DataSourceRefreshed: "DATA_SOURCE_REFRESHED"
-};
 
 export default class DataSourceService {
 

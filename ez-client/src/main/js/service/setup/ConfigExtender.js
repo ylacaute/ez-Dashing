@@ -28,7 +28,7 @@ export default class ConfigExtender {
    * Can return a new instance of the configuration or a modified instance of the mutable arg, that means
    * you MUST use the returned object in all cases.
    */
-  static extendsConfig(dashboardConfig) {
+  static extendsConfig(dashboardConfig, loadGrid = true) {
     if (dashboardConfig.env == null) {
       dashboardConfig.env = {};
     } else {
@@ -57,11 +57,13 @@ export default class ConfigExtender {
         widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
       }
       if (widgetConfig.id == null) {
-        widgetConfig.id = "w_" + index;
+        widgetConfig.id = "wid_" + index;
       }
       widgetConfig.key = widgetConfig.id;
     });
-    GridLayoutService.loadGridLayout(dashboardConfig);
+    if (loadGrid) {
+      GridLayoutService.loadGridLayout(dashboardConfig);
+    }
     logger.info("Extended config:", dashboardConfig);
     return dashboardConfig;
   }

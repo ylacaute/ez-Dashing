@@ -1,5 +1,5 @@
 import Logger from 'utils/Logger';
-import { DataSourceEvent } from 'service/datasource/DataSourceService';
+import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 import { SetupEvent } from 'redux/event/SetupEvent';
 
 const logger = Logger.getLogger("DataSourceReducer");

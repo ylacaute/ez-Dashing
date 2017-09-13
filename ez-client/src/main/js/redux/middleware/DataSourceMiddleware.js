@@ -1,4 +1,4 @@
-import { DataSourceEvent } from 'service/datasource/DataSourceService';
+import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 
 const dataSourceMiddleware = dataSourceService => store => next => action => {
 
