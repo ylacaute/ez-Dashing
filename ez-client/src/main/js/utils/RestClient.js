@@ -10,15 +10,12 @@ defaultHeaders.append("Accept", "application/json");
 defaultHeaders.append("Content-Type", "application/json");
 
 let parseJsonResponse = response => {
-  if (response.headers.get("Content-Length") == 0) {
-    return {
-      response: response,
-      jsonResponse: {}
-    };
-  }
   return response.json().then(jsonResponse => ({
     response: response,
     jsonResponse: jsonResponse
+  })).catch(error => ({
+    response: response,
+    jsonResponse: {}
   }));
 };
 
