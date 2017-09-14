@@ -45,11 +45,20 @@ let handleHTTPError = (error, errorCallback) => {
   }
 };
 
+let getBaseUrl = (path) => {
+  let baseUrl = window.location.origin + window.location.pathname;
+  if (path.charAt(0) == "/") {
+    baseUrl += path.slice(1);
+  } else {
+    baseUrl += path;
+  }
+  return baseUrl;
+};
+
 let jsonFetch = (path, options, callback, errorCallback) => {
   const requestId = ++requestIdCounter;
   logger.info("REQUEST[id={}] - {}:", requestId, path, options);
-  let url = window.location.origin + path;
-  fetch(url, {
+  fetch(getBaseUrl(path), {
     headers: defaultHeaders,
     ...options
   })
