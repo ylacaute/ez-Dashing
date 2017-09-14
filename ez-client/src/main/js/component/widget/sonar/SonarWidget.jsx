@@ -13,7 +13,7 @@ export default class SonarWidget extends AbstractWidget {
   };
 
   static defaultProps = {
-    logoUrl: '/img/logo.png',
+    logoUrl: 'img/logo.png',
     lines: 0,
     coverage: 0,
     violations: 0

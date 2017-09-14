@@ -22,7 +22,7 @@ export default class BugWidget extends AbstractWidget {
   static defaultProps = {
     inProgressBugs: [],
     todoBugs: [],
-    noBugIcon: "/img/good.png"
+    noBugIcon: "img/good.png"
   };
 
   getWidgetClassNames() {

@@ -41,7 +41,8 @@ let commonConfig = {
     modules: [
       LIB_DIR,
       JS_DIR,
-      SASS_DIR
+      SASS_DIR,
+      RESOURCES_DIR
     ]
   },
 
@@ -104,11 +105,25 @@ let commonConfig = {
       },
       {
         test: /\.(css|sass|scss)$/,
-        //exclude: /(node_modules)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+          use: [{
+            loader: 'css-loader',
+            options: { url: false }
+          }, {
+            loader: 'sass-loader'
+          }]
         })
+      }, {
+        test: /\.(png|svg)$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'file-loader?name=img/[name].[ext]',
+          options: {
+            // No file emitted because ExtractTextPlugin already copy these files
+            emitFile: false
+          }
+        }]
       }
     ]
   },
