@@ -390,7 +390,7 @@
       "lg" : [ {
         "w" : 1,
         "h" : 2,
-        "x" : 2,
+        "x" : 0,
         "y" : 0,
         "i" : "TextWidget_01",
         "moved" : false,
@@ -398,23 +398,23 @@
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 4,
+        "x" : 1,
         "y" : 0,
         "i" : "TextWidget_02",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
-        "x" : 1,
-        "y" : 6,
+        "w" : 1,
+        "h" : 2,
+        "x" : 2,
+        "y" : 0,
         "i" : "TextWidget_03",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
-        "x" : 5,
+        "w" : 1,
+        "h" : 2,
+        "x" : 3,
         "y" : 0,
         "i" : "wid_6",
         "moved" : false,
@@ -423,31 +423,31 @@
         "w" : 1,
         "h" : 2,
         "x" : 4,
-        "y" : 2,
+        "y" : 0,
         "i" : "MoodWidget_01",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 3,
+        "w" : 2,
         "h" : 4,
-        "x" : 0,
+        "x" : 2,
         "y" : 2,
         "i" : "wid_8",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
+        "h" : 2,
+        "x" : 6,
         "y" : 0,
         "i" : "wid_9",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
+        "h" : 2,
         "x" : 0,
-        "y" : 1,
+        "y" : 2,
         "i" : "wid_10",
         "moved" : false,
         "static" : false
@@ -455,39 +455,39 @@
         "w" : 1,
         "h" : 2,
         "x" : 1,
-        "y" : 0,
+        "y" : 2,
         "i" : "wid_11",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 3,
-        "y" : 0,
+        "x" : 4,
+        "y" : 2,
         "i" : "wid_12",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 3,
-        "y" : 2,
+        "x" : 4,
+        "y" : 4,
         "i" : "wid_13",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
-        "x" : 5,
-        "y" : 6,
+        "w" : 1,
+        "h" : 2,
+        "x" : 6,
+        "y" : 2,
         "i" : "wid_15",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
+        "w" : 1,
+        "h" : 2,
         "x" : 5,
-        "y" : 2,
+        "y" : 0,
         "i" : "wid_16",
         "moved" : false,
         "static" : false
@@ -495,56 +495,56 @@
         "w" : 2,
         "h" : 1,
         "x" : 5,
-        "y" : 1,
+        "y" : 4,
         "i" : "wid_17",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
-        "x" : 5,
-        "y" : 3,
+        "w" : 1,
+        "h" : 2,
+        "x" : 0,
+        "y" : 4,
         "i" : "wid_18",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
-        "x" : 5,
+        "w" : 1,
+        "h" : 2,
+        "x" : 1,
         "y" : 4,
         "i" : "wid_19",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
-        "h" : 1,
+        "w" : 1,
+        "h" : 2,
         "x" : 5,
-        "y" : 5,
+        "y" : 2,
         "i" : "wid_20",
         "moved" : false,
         "static" : false
       } ],
       "md" : [ {
         "w" : 1,
-        "h" : 1,
+        "h" : 2,
         "x" : 0,
-        "y" : 1,
+        "y" : 0,
         "i" : "TextWidget_01",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 2,
+        "h" : 2,
+        "x" : 1,
+        "y" : 0,
         "i" : "TextWidget_02",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 3,
+        "h" : 2,
+        "x" : 2,
+        "y" : 0,
         "i" : "TextWidget_03",
         "moved" : false,
         "static" : false
@@ -558,17 +558,17 @@
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
+        "h" : 2,
         "x" : 0,
-        "y" : 4,
+        "y" : 2,
         "i" : "MoodWidget_01",
         "moved" : false,
         "static" : false
       }, {
-        "w" : 2,
+        "w" : 1,
         "h" : 2,
         "x" : 1,
-        "y" : 0,
+        "y" : 2,
         "i" : "wid_8",
         "moved" : false,
         "static" : false
@@ -592,7 +592,7 @@
         "w" : 1,
         "h" : 2,
         "x" : 0,
-        "y" : 5,
+        "y" : 4,
         "i" : "wid_11",
         "moved" : false,
         "static" : false
@@ -600,7 +600,7 @@
         "w" : 1,
         "h" : 2,
         "x" : 1,
-        "y" : 2,
+        "y" : 4,
         "i" : "wid_12",
         "moved" : false,
         "static" : false
@@ -614,9 +614,9 @@
         "static" : false
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 9,
+        "h" : 2,
+        "x" : 3,
+        "y" : 4,
         "i" : "wid_15",
         "moved" : false,
         "static" : false
@@ -624,7 +624,7 @@
         "w" : 1,
         "h" : 2,
         "x" : 0,
-        "y" : 7,
+        "y" : 6,
         "i" : "wid_16",
         "moved" : false,
         "static" : false
@@ -632,7 +632,7 @@
         "w" : 1,
         "h" : 2,
         "x" : 1,
-        "y" : 4,
+        "y" : 6,
         "i" : "wid_17",
         "moved" : false,
         "static" : false
@@ -648,14 +648,14 @@
         "w" : 1,
         "h" : 2,
         "x" : 3,
-        "y" : 4,
+        "y" : 6,
         "i" : "wid_19",
         "moved" : false,
         "static" : false
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 2,
+        "x" : 0,
         "y" : 8,
         "i" : "wid_20",
         "moved" : false,
@@ -663,157 +663,123 @@
       } ],
       "sm" : [ {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 0,
+        "h" : 2,
         "i" : "TextWidget_01",
-        "moved" : false,
-        "static" : false
+        "x" : 0,
+        "y" : 0
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 1,
+        "h" : 2,
         "i" : "TextWidget_02",
-        "moved" : false,
-        "static" : false
+        "x" : 1,
+        "y" : 0
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 2,
+        "h" : 2,
         "i" : "TextWidget_03",
-        "moved" : false,
-        "static" : false
+        "x" : 2,
+        "y" : 0
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 3,
-        "y" : 0,
         "i" : "wid_6",
-        "moved" : false,
-        "static" : false
+        "x" : 3,
+        "y" : 0
       }, {
         "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 3,
+        "h" : 2,
         "i" : "MoodWidget_01",
-        "moved" : false,
-        "static" : false
+        "x" : 0,
+        "y" : 1
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 1,
-        "y" : 0,
         "i" : "wid_8",
-        "moved" : false,
-        "static" : false
+        "x" : 1,
+        "y" : 1
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 2,
-        "y" : 0,
         "i" : "wid_9",
-        "moved" : false,
-        "static" : false
+        "x" : 2,
+        "y" : 1
       }, {
         "w" : 1,
         "h" : 2,
-        "x" : 3,
-        "y" : 2,
         "i" : "wid_10",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 0,
-        "y" : 4,
-        "i" : "wid_11",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 1,
-        "y" : 2,
-        "i" : "wid_12",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 2,
-        "y" : 2,
-        "i" : "wid_13",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 1,
-        "x" : 0,
-        "y" : 6,
-        "i" : "wid_15",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 0,
-        "y" : 7,
-        "i" : "wid_16",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 1,
-        "y" : 4,
-        "i" : "wid_17",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "x" : 2,
-        "y" : 4,
-        "i" : "wid_18",
-        "moved" : false,
-        "static" : false
-      }, {
-        "w" : 1,
-        "h" : 2,
         "x" : 3,
-        "y" : 4,
-        "i" : "wid_19",
-        "moved" : false,
-        "static" : false
+        "y" : 1
       }, {
         "w" : 1,
         "h" : 2,
+        "i" : "wid_11",
         "x" : 0,
-        "y" : 9,
+        "y" : 2
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_12",
+        "x" : 1,
+        "y" : 2
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_13",
+        "x" : 2,
+        "y" : 2
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_15",
+        "x" : 3,
+        "y" : 2
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_16",
+        "x" : 0,
+        "y" : 3
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_17",
+        "x" : 1,
+        "y" : 3
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_18",
+        "x" : 2,
+        "y" : 3
+      }, {
+        "w" : 1,
+        "h" : 2,
+        "i" : "wid_19",
+        "x" : 3,
+        "y" : 3
+      }, {
+        "w" : 1,
+        "h" : 2,
         "i" : "wid_20",
-        "moved" : false,
-        "static" : false
+        "x" : 0,
+        "y" : 4
       } ],
       "xs" : [ {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_3",
+        "i" : "TextWidget_01",
         "x" : 0,
         "y" : 0
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_4",
+        "i" : "TextWidget_02",
         "x" : 1,
         "y" : 0
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_5",
+        "i" : "TextWidget_03",
         "x" : 0,
         "y" : 1
       }, {
@@ -825,7 +791,7 @@
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_7",
+        "i" : "MoodWidget_01",
         "x" : 0,
         "y" : 2
       }, {
@@ -867,7 +833,7 @@
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_14",
+        "i" : "wid_15",
         "x" : 1,
         "y" : 5
       }, {
@@ -899,30 +865,24 @@
         "h" : 2,
         "i" : "wid_20",
         "x" : 0,
-        "y" : 8
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "i" : "wid_21",
-        "x" : 1,
         "y" : 8
       } ],
       "xxs" : [ {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_3",
+        "i" : "TextWidget_01",
         "x" : 0,
         "y" : 0
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_4",
+        "i" : "TextWidget_02",
         "x" : 0,
         "y" : 1
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_5",
+        "i" : "TextWidget_03",
         "x" : 0,
         "y" : 2
       }, {
@@ -934,7 +894,7 @@
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_7",
+        "i" : "MoodWidget_01",
         "x" : 0,
         "y" : 4
       }, {
@@ -976,7 +936,7 @@
       }, {
         "w" : 1,
         "h" : 2,
-        "i" : "wid_14",
+        "i" : "wid_15",
         "x" : 0,
         "y" : 11
       }, {
@@ -1009,12 +969,6 @@
         "i" : "wid_20",
         "x" : 0,
         "y" : 16
-      }, {
-        "w" : 1,
-        "h" : 2,
-        "i" : "wid_21",
-        "x" : 0,
-        "y" : 17
       } ]
     }
   }
