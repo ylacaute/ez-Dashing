@@ -38,7 +38,7 @@ public class DashboardController {
 
     @GetMapping(value = "/config", produces = APPLICATION_JSON_VALUE)
     public String getDashboardConfig() {
-        log.info("GET /api/dashboard/config");
+        log.trace("GET /api/dashboard/config");
         return dashboardProperties.getAsString();
     }
 
@@ -49,14 +49,14 @@ public class DashboardController {
     public void patchWidget(
             @PathVariable String widgetId,
             @RequestBody Map<String, String> fields) {
-        log.info("PATCH /config/widgets/{} with body={}", widgetId, fields);
+        log.trace("PATCH /config/widgets/{} with body={}", widgetId, fields);
         dashboardProperties.updateWidget(widgetId, fields);
         dashboardProperties.save();
     }
 
     @PatchMapping(value = "/config/grid/layout", consumes = APPLICATION_JSON_VALUE)
     public void patchGridLayout(@RequestBody Map<String, Object> fields) {
-        log.info("PATCH /config/grid/layout with body={}", fields);
+        log.trace("PATCH /config/grid/layout with body={}", fields);
         dashboardProperties.updateGridLayout(fields);
         dashboardProperties.save();
     }
