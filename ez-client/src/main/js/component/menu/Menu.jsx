@@ -6,6 +6,7 @@ class Menu extends React.Component {
 
   static propTypes = {
     resetLayout: PropTypes.func.isRequired,
+    saveLayout: PropTypes.func.isRequired,
     resetTheme: PropTypes.func.isRequired,
     changeTheme: PropTypes.func.isRequired
   };
@@ -17,6 +18,11 @@ class Menu extends React.Component {
   resetLayout(event) {
     event.preventDefault();
     this.props.resetLayout();
+  }
+
+  saveLayout() {
+    event.preventDefault();
+    this.props.saveLayout();
   }
 
   resetTheme(event) {
@@ -38,7 +44,11 @@ class Menu extends React.Component {
         </h1>
         <a className="menu-item" onClick={this.resetLayout.bind(this)}>
           <i className="layout-icon"/>
-          <span>Reset layout</span>
+          <span>Reload layout from server</span>
+        </a>
+        <a className="menu-item" onClick={this.saveLayout.bind(this)}>
+          <i className="layout-icon"/>
+          <span>Save layout on server</span>
         </a>
         <a className="menu-item" onClick={this.resetTheme.bind(this)}>
           <i className="theme-icon"/>

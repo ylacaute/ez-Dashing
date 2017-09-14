@@ -18,5 +18,6 @@
   "/api/dashboard/config/widgets/wid_4": "/widgets",
   "/api/dashboard/config/widgets/wid_5": "/widgets",
   "/api/dashboard/config/widgets/wid_6": "/widgets",
-  "/api/dashboard/config/widgets/wid_7": "/widgets"
+  "/api/dashboard/config/widgets/wid_7": "/widgets",
+  "/api/dashboard/config/grid/layout" : "/gridLayout"
 }

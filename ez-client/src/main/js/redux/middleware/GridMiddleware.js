@@ -11,6 +11,10 @@ const gridMiddleware = gridService => store => next => action => {
     gridService.resetLayout();
   }
 
+  if (action.type === MenuEvent.SaveLayout) {
+    gridService.saveLayout();
+  }
+
   return next(action);
 };
 

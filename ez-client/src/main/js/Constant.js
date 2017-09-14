@@ -19,6 +19,11 @@ export default class Constants {
   static DASHBOARD_CONFIG_PATH = "/api/dashboard/config";
 
   /**
+   * Path to update the grid layouts in the server configuration file.
+   */
+  static UPDATE_GRID_LAYOUTS_PATH = "/api/dashboard/config/grid/layout";
+
+  /**
    * Path to update a widget in the server configuration file. This update is a PATCH and currently
    * only fields of type String can be updated.
    */

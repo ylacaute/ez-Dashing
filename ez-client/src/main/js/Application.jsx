@@ -28,6 +28,7 @@ class Application extends React.Component {
       <div>
         <Menu
           resetLayout={this.props.menuEvents.resetLayout}
+          saveLayout={this.props.menuEvents.saveLayout}
           resetTheme={this.props.menuEvents.resetTheme}
           changeTheme={this.props.menuEvents.changeTheme}
         />

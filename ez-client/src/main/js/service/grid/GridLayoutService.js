@@ -1,6 +1,9 @@
 import Logger from "utils/Logger";
 import ObjectUtils from "utils/ObjectUtils";
 import GridLayoutGenerator from "service/setup/GridLayoutGenerator";
+import RestClient from "utils/RestClient";
+import Constants from "Constant";
+import { GridEvent } from "redux/event/GridEvent";
 
 const logger = Logger.getLogger("GridLayoutService");
 
@@ -32,6 +35,26 @@ export default class GridLayoutService {
   onGridLayoutChange(action) {
     localStorage.setItem(LAYOUT_KEY, JSON.stringify(action.payload.allLayouts));
   }
+
+  saveLayout() {
+    let layouts = this.store.getState().grid.layouts;
+    logger.info("update grid layouts: ", layouts);
+
+    RestClient.patch(Constants.UPDATE_GRID_LAYOUTS_PATH, layouts, () => {
+      logger.info("Grid layout saved successfully");
+      // const result = {
+      //   type: GridEvent.UpdateGridLayouts,
+      //   payload: action.payload
+      // };
+      //logger.debug("Dispatching updated widget config:", result);
+      //this.store.dispatch(result);
+    }, exception => {
+      logger.error("Error during grid layout update, details:", exception);
+    });
+
+  }
+
+
 
   /**
    * Try to load the grid layout configuration in this order:

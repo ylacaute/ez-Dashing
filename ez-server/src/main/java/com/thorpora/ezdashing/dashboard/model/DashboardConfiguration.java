@@ -18,6 +18,7 @@ package com.thorpora.ezdashing.dashboard.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thorpora.ezdashing.exception.InvalidServerConfiguration;
 import lombok.Getter;
@@ -98,4 +99,10 @@ public class DashboardConfiguration {
                     "In order to edit a widget, you must explicitly set an unique id in the dashboard.json configuration file.", widgetId));
   }
 
+  public void updateGridLayout(Map<String, Object> fields) {
+    log.info("Updating grid layout");
+    ObjectNode grid = (ObjectNode)rootNode.get("grid");
+    JsonNode layoutNode = new ObjectMapper().valueToTree(fields);
+    grid.set("layouts", layoutNode);
+  }
 }
