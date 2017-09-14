@@ -3,14 +3,11 @@
     "jiraBoardId" : "124"
   },
   "server" : {
-    "dataSourcePath" : "/api/consumer/"
+    "dataSourcePath" : "/api/consumer/",
+    "now" : "2017-09-10T17:28:03.000+0200"
   },
   "dataSources" : [ {
-    "baseUrl" : "https://issues.net",
-    "credentials" : {
-      "userName" : "test",
-      "password" : "test"
-    },
+    "baseUrl" : "https://demo.qotilabs.com",
     "refresh" : 120,
     "queries" : [ {
       "id" : "jira-sprint-active",
@@ -20,10 +17,17 @@
         "sprintName" : "$.values[0].name",
         "date:sprintStartDate" : "$.values[0].startDate",
         "date:sprintEndDate" : "$.values[0].endDate"
+      },
+      "defaultResponse": {
+        "sprintId" : "1",
+        "sprintName" : "Sprint 1",
+        "sprintNumber" : 1,
+        "sprintStartDate" : "2017-01-20",
+        "sprintEndDate" : "2017-12-20"
       }
     }, {
       "id" : "jira-bug-todo-p0-p1",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+      "path" : "/rest/api/2/search?jql=type = \"Bug\" and status = \"IN PROGRESS\" and (priority = \"Medium\" OR priority = \"Highest\" )&fields=priority",
       "mapping" : {
         "array:todoBugs" : {
           "jsonPath" : "$.issues",
@@ -35,7 +39,7 @@
       }
     }, {
       "id" : "jira-bug-inProgress-p0-p1",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P0 - Très Haute\" OR priority = \"P1 - Haute\" )&fields=priority",
+      "path" : "/rest/api/2/search?jql=type = \"Bug\" and status = Open and (priority = \"Medium\" OR priority = \"Highest\" )&fields=priority",
       "mapping" : {
         "array:inProgressBugs" : {
           "jsonPath" : "$.issues",
@@ -47,7 +51,7 @@
       }
     }, {
       "id" : "jira-bug-todo-p2-p3",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = Prêt OR status = Ouvert) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+      "path" : "/rest/api/2/search?jql=type = \"Bug\" and status = \"IN PROGRESS\" and (priority = \"Low\" OR priority = \"Lowest\" )&fields=priority",
       "mapping" : {
         "array:todoBugs" : {
           "jsonPath" : "$.issues",
@@ -59,7 +63,7 @@
       }
     }, {
       "id" : "jira-bug-inProgress-p2-p3",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND type = \"Anomalie d'Implémentation\" and (status = \"En cours\" OR status = \"Demande d'infos\" OR status = Analyse) and (priority = \"P2 - Moyenne\" OR priority = \"P3 - Faible\")&fields=priority",
+      "path" : "/rest/api/2/search?jql=type = \"Bug\" and status = Open and (priority = \"Low\" OR priority = \"Lowest\" )&fields=priority",
       "mapping" : {
         "array:inProgressBugs" : {
           "jsonPath" : "$.issues",
@@ -71,15 +75,15 @@
       }
     }, {
       "id" : "jira-story-closed",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = fermé and sprint = ${sprintId}&fields=customfield_11103,customfield_11111,resolutiondate&maxResults=100",
+      "path" : "/rest/api/2/search?jql=type = Improvement AND status = CLOSED&fields=customfield_10002,customfield_10004,resolutiondate&maxResults=100",
       "mapping" : {
         "array:closedIssues" : {
           "jsonPath" : "$.issues",
           "mapping" : {
             "string:key" : "$.key",
-            "int:storyPoints" : "$.fields.customfield_11111",
+            "int:storyPoints" : "$.fields.customfield_10002",
             "regexp:int:sprintNumber" : {
-              "jsonPath" : "$.fields.customfield_11103",
+              "jsonPath" : "$.fields.customfield_10004",
               "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
               "matchIndex" : 2,
               "ignoreException" : true
@@ -87,33 +91,25 @@
             "date:resolutionDate" : "$.fields.resolutiondate"
           }
         }
-      },
-      "dependencies" : [ {
-        "dataSource" : "jira-sprint-active",
-        "params" : [ "sprintId" ]
-      } ]
+      }
     }, {
       "id" : "jira-story-ready",
-      "path" : "/rest/api/2/search?jql=\"Feature Team\" = GAZ AND (type = \"Récit fonctionnel\" OR type = \"Récit technique\") AND status = Prêt and sprint = ${sprintId}&fields=customfield_11103,customfield_11111&maxResults=100",
+      "path" : "/rest/api/2/search?jql=type = Improvement AND status = OPEN&fields=customfield_10002,customfield_10004&maxResults=200",
       "mapping" : {
         "array:readyIssues" : {
           "jsonPath" : "$.issues",
           "mapping" : {
             "string:key" : "$.key",
-            "int:storyPoints" : "$.fields.customfield_11111",
+            "int:storyPoints" : "$.fields.customfield_10002",
             "regexp:int:sprintNumber" : {
-              "jsonPath" : "$.fields.customfield_11103",
+              "jsonPath" : "$.fields.customfield_10004",
               "regexp" : "(.*)name=Sprint[ ]([0-9]+)[ ](.*)",
               "matchIndex" : 2,
               "ignoreException" : true
             }
           }
         }
-      },
-      "dependencies" : [ {
-        "dataSource" : "jira-sprint-active",
-        "params" : [ "sprintId" ]
-      } ]
+      }
     } ]
   }, {
     "baseUrl" : "https://sonarcloud.io",
@@ -133,6 +129,18 @@
     }, {
       "id" : "sonar-stats-systemB",
       "path" : "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations&format=json"
+    }, {
+      "id" : "sonar-stats-systemC",
+      "path" : "/api/measures/component?componentKey=com.opentext.ia:infoarchive-sdk&metricKeys=coverage,lines,violations&format=json"
+    }, {
+      "id" : "sonar-stats-systemD",
+      "path" : "/api/measures/component?componentKey=atlasboard&metricKeys=coverage,lines,violations&format=json"
+    }, {
+      "id" : "sonar-stats-systemE",
+      "path" : "/api/measures/component?componentKey=io.legaldocml:legaldocml&metricKeys=coverage,lines,violations&format=json"
+    }, {
+      "id" : "sonar-stats-systemF",
+      "path" : "/api/measures/component?componentKey=de.schrieveslaach.effective-nlp-application-development:feature-test-nlp-models&metricKeys=coverage,lines,violations&format=json"
     } ]
   }, {
     "baseUrl" : "https://builds.apache.org",
@@ -152,10 +160,19 @@
       "path" : "/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemB",
-      "path" : "/job/Solr-reference-guide-7.0/911/api/json?pretty=true&depth=1"
+      "path" : "/job/Solr-reference-guide-7.0/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemC",
-      "path" : "/job/yetus-java/525/api/json?pretty=true&depth=1"
+      "path" : "/job/Allura-rat/lastBuild/api/json?pretty=true&depth=1"
+    }, {
+      "id" : "jenkins-lastBuild-systemD",
+      "path" : "/job/incubator-trafficcontrol-docs/lastBuild/api/json?pretty=true&depth=1"
+    }, {
+      "id" : "jenkins-lastBuild-systemE",
+      "path" : "/job/Solr-reference-guide-7.x/lastBuild/api/json?pretty=true&depth=1"
+    }, {
+      "id" : "jenkins-lastBuild-systemF",
+      "path" : "/job/kafka-pr-jdk9-scala2.12/lastBuild/api/json?pretty=true&depth=1"
     } ]
   } ],
   "widgets" : [ {
@@ -174,7 +191,7 @@
     "type" : "TextWidget",
     "id" : "TextWidget_01",
     "text" : "HELLO CHROME :)",
-    "textType" : "info",
+    "textType" : "good",
     "editable" : true
   }, {
     "type" : "TextWidget",
@@ -197,7 +214,7 @@
     "type" : "MoodWidget",
     "id" : "MoodWidget_01",
     "title" : "Team Mood",
-    "mood" : "average",
+    "mood" : "good",
     "enabled" : true,
     "editable" : true
   }, {
@@ -243,25 +260,25 @@
     "type" : "SonkinsWidget",
     "title" : "SYSTEM C",
     "branch" : "master",
-    "dataSource" : [ "jenkins-lastBuild-systemA", "sonar-stats-systemA" ],
+    "dataSource" : [ "jenkins-lastBuild-systemC", "sonar-stats-systemC" ],
     "enabled" : true
   }, {
     "type" : "SonkinsWidget",
     "title" : "SYSTEM D",
     "branch" : "master",
-    "dataSource" : [ "jenkins-lastBuild-systemB", "sonar-stats-systemB" ],
+    "dataSource" : [ "jenkins-lastBuild-systemD", "sonar-stats-systemD" ],
     "enabled" : true
   }, {
     "type" : "SonkinsWidget",
     "title" : "SYSTEM E",
     "branch" : "master",
-    "dataSource" : [ "jenkins-lastBuild-systemA", "sonar-stats-systemA" ],
+    "dataSource" : [ "jenkins-lastBuild-systemE", "sonar-stats-systemE" ],
     "enabled" : true
   }, {
     "type" : "SonkinsWidget",
     "title" : "SYSTEM F",
     "branch" : "master",
-    "dataSource" : [ "jenkins-lastBuild-systemB", "sonar-stats-systemB" ],
+    "dataSource" : [ "jenkins-lastBuild-systemF", "sonar-stats-systemF" ],
     "enabled" : true
   } ],
   "avatars" : [ {

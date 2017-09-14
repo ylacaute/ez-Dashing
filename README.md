@@ -94,6 +94,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __MoodWidget__ (editable team mood)
 
 ## Global backlog
+- [x] __Provide online demo__
 - [x] __Save widget position__ users can save/reset widget position in the localStorage
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly

@@ -2,6 +2,7 @@ import RestClient from "utils/RestClient";
 import URLUtils from "utils/URLUtils";
 import Logger from "utils/Logger";
 import JsonMapper from 'utils//JsonMapper';
+import TypeUtils from 'utils//TypeUtils';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
 import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 
@@ -17,6 +18,7 @@ export default class DataSourceService {
   constructor(dashboardConfig) {
     this.dashboardConfig = dashboardConfig;
     this.dataSources = DataSourceFactory.create(dashboardConfig.dataSources);
+    logger.debug("Aoplication dataSources:", this.dataSources);
     this.initializeResfreshTimers();
   };
 
@@ -56,6 +58,25 @@ export default class DataSourceService {
       this.store.dispatch(result);
     }, error => {
       logger.error("Unable to refresh dataSource, details:", error);
+      if (ds.defaultResponse != null) {
+        logger.warn("Using defaultResponse of the dataSource. DON'T USE THIS IN PRODUCTION.");
+        const result = {
+          type: DataSourceEvent.DataSourceRefreshed,
+          lastUpdate: new Date(),
+          dataSourceId: ds.id,
+          widgetIdsListening: this.getWidgetIdsListening(ds.id),
+          payload: {
+            sprintId : ds.defaultResponse.sprintId,
+            sprintName : ds.defaultResponse.sprintName,
+            sprintNumber : ds.defaultResponse.sprintNumber,
+            sprintStartDate : TypeUtils.convert(ds.defaultResponse.sprintStartDate, "date"),
+            sprintEndDate : TypeUtils.convert(ds.defaultResponse.sprintEndDate, "date")
+          }
+        };
+        logger.debug("Dispatching refreshed dataSource:", result);
+        this.store.dispatch(result);
+      }
+
     });
   };
 

@@ -28,7 +28,8 @@ export default class DataSourceFactory {
           path: queryConfig.path,
           refresh: queryConfig.refresh || dsConfig.refresh || Constants.DEFAULT_DATA_SOURCE_REFRESH,
           mapping: queryConfig.mapping || dsConfig.mapping || {},
-          dependencies: queryConfig.dependencies || []
+          dependencies: queryConfig.dependencies || [],
+          defaultResponse: queryConfig.defaultResponse
         })
       })
     });

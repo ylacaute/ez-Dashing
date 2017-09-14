@@ -28,7 +28,7 @@
     @include svgMask($color-good, $image-sonkins-build-success);
   }
 
-  &.failure {
+  &.failure, &.unstable, &.unknown {
     font-weight: bold;
   }
 
@@ -65,8 +65,12 @@
 }
 
 .height-xxs, .height-xs, .height-sm, .height-md, .height-lg {
-  &.widget.sonkins.failure article {
-    padding: 1.5em;
+  .widget.sonkins.failure,
+  .widget.sonkins.unstable,
+  .widget.sonkins.unknown {
+    article {
+      padding: 1.5em;
+    }
   }
 }
 

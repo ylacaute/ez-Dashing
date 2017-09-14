@@ -20,6 +20,8 @@ import GridLayoutService from "service/grid/GridLayoutService";
 import WidgetService from "service/widget/WidgetService";
 import { SetupEvent } from "redux/event/SetupEvent";
 import Constants from "Constant";
+import DateService from "service/date/DateService";
+import TypeUtils from 'utils//TypeUtils';
 
 const logger = Logger.getLogger("StartupService");
 
@@ -43,7 +45,7 @@ export default class SetupService {
   createReducers() {
     return combineReducers({
       startup: StartupReducer,
-      dataSource: DataSourceReducer,
+      dataSources: DataSourceReducer,
       widget: WidgetReducer,
       grid: GridReducer,
       modal: ModalReducer
@@ -82,6 +84,9 @@ export default class SetupService {
       const gridLayoutService = new GridLayoutService(cfg);
       const themeService = new ThemeService(cfg);
       const widgetService = new WidgetService(cfg);
+
+      DateService.FIXED_DATE = TypeUtils.convert(cfg.server.now, "date");
+
       const store = createStore(
         this.createReducers(),
         this.generateInitialState(cfg),

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import CircularProgressBar from "component/chart/CircularProgressBar.jsx";
 import DateUtils from 'utils/DateUtils';
+import DateService from "service/date/DateService";
 
 export default class SprintWidget extends AbstractWidget {
 
@@ -19,8 +20,8 @@ export default class SprintWidget extends AbstractWidget {
     sprintId: "-",
     sprintName: "-",
     sprintNumber: 0,
-    sprintStartDate: new Date(),
-    sprintEndDate: new Date(),
+    sprintStartDate: DateService.now(),
+    sprintEndDate: DateService.now(),
   };
 
   renderHeader() {
@@ -34,7 +35,7 @@ export default class SprintWidget extends AbstractWidget {
 
   renderContent() {
     const { sprintStartDate, sprintEndDate } = this.props;
-    const now = new Date();
+    const now = DateService.now();
     const sprintDuration = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
     const progress = daysLeft / sprintDuration * 100;

@@ -72,6 +72,7 @@ $image-bug-empty: 'thumb.svg' !default;
 @import '../main';
 
 // EFFECT
+.widget.sonkins.unstable,
 .widget.sonkins.failure {
   @include infiniteBgColorChange($color-widget-bg, $color-bad, 8s);
 }

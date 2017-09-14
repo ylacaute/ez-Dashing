@@ -111,6 +111,7 @@ export default function(state = initialState, action) {
           ]
         }
       });
+      logger.trace("New state: ", newState);
       break;
 
     /**
@@ -124,6 +125,9 @@ export default function(state = initialState, action) {
       };
       break;
 
+    /**
+     *
+     */
     case WidgetEvent.UpdateAll:
       logger.debug("UpdateAll", action.payload);
       action.payload.forEach(widgetConfig => {

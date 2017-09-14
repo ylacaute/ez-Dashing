@@ -3,7 +3,7 @@ import { DataSourceEvent } from 'redux/event/DataSourceEvent';
 import { SetupEvent } from 'redux/event/SetupEvent';
 
 const logger = Logger.getLogger("DataSourceReducer");
-const initialState = {};
+const initialState = [];
 
 const findById = (dataSources, id) => {
   return dataSources.find(ds => ds.id == id);
@@ -20,9 +20,7 @@ const indexOfId = (dataSources, id) => {
  */
 export default function dataSourceReducer(state = initialState, action) {
 
-  let newState = {
-    ...state
-  };
+  let newState;
 
   switch (action.type) {
 
@@ -34,7 +32,7 @@ export default function dataSourceReducer(state = initialState, action) {
      */
     case SetupEvent.ConfigLoadSuccess:
       logger.debug("ConfigLoadSuccess");
-      newState.dataSources = action.dataSources;
+      newState = action.dataSources;
       break;
 
 
@@ -42,13 +40,12 @@ export default function dataSourceReducer(state = initialState, action) {
      * When a dataSource is refreshed, we mark it as loaded.
      */
     case DataSourceEvent.DataSourceRefreshed:
-      logger.debug("DataSourceRefreshed");
-      const { dataSources } = state;
+      const dataSources = state;
       const { dataSourceId } = action;
-      const dataSourceToUpdate = findById(state.dataSources, dataSourceId);
-      const dataSourceToUpdateIndex = indexOfId(state.dataSources, dataSourceId);
+      const dataSourceToUpdate = findById(state, dataSourceId);
+      const dataSourceToUpdateIndex = indexOfId(state, dataSourceId);
 
-      newState.dataSources = [
+      newState = [
         ...dataSources.slice(0, dataSourceToUpdateIndex),
         {
           ...dataSourceToUpdate,

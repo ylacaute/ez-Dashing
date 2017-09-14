@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import DateService from "service/date/DateService";
 
 export default class ClockWidget extends AbstractWidget {
 
@@ -29,7 +30,7 @@ export default class ClockWidget extends AbstractWidget {
   }
 
   getClockData() {
-    let now = new Date();
+    let now = DateService.now();
     let hours = now.getUTCHours() + this.props.UTCOffset;
     let minutes = now.getUTCMinutes();
     let seconds = now.getUTCSeconds();

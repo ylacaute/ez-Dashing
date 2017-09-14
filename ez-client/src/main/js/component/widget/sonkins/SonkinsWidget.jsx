@@ -39,7 +39,9 @@ export default class SonkinsWidget extends AbstractWidget {
    * Indeed sometimes jenkins returns a null status when building and set a building boolean to true.
    */
   getStatus() {
-    return this.props.building ? "BUILDING" : this.props.status;
+    return this.props.building ? "BUILDING" :
+      this.props.status != null ? this.props.status :
+        "UNKNOWN";
   }
 
   getWidgetClassNames() {

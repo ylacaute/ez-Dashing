@@ -4,7 +4,8 @@
       "jiraBoardId": "124"
     },
     "server": {
-      "dataSourcePath": "/api/consumer/"
+      "dataSourcePath": "/api/consumer/",
+      "now": "2017-08-20T17:28:03.000+0200"
     },
     "theme": "black",
     "dataSources": [
