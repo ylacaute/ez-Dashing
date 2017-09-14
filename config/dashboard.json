@@ -191,21 +191,21 @@
   }, {
     "type" : "TextWidget",
     "id" : "TextWidget_01",
-    "text" : "HELLO CHROME :)",
+    "text" : "Data displayed in this dashboard come from random online projects :  demo.qotilabs.com for JIRA, sonarcloud.io for SONAR and builds.apache.org for JENKINS. \"now\" has been changed to 2017/09/10 for this demo.",
+    "textType" : "info",
+    "editable" : false
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_02",
+    "text" : "This is the only widget you can edit.",
     "textType" : "good",
     "editable" : true
   }, {
     "type" : "TextWidget",
-    "id" : "TextWidget_02",
-    "text" : "That is an information",
-    "textType" : "info",
-    "editable" : true
-  }, {
-    "type" : "TextWidget",
     "id" : "TextWidget_03",
-    "text" : "Sorry, but Firefox sux !",
+    "text" : "Sorry Firefox sux... Use Chrome !",
     "textType" : "danger",
-    "editable" : true
+    "editable" : false
   }, {
     "type" : "TextWidget",
     "text" : "You can't edit this one because you didn't define a widget id in the config.",
