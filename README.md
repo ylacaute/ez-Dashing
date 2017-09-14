@@ -16,7 +16,7 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 
 ## Online
 
-Go on [http://demo.thorpora.fr/ez-dashing](http://demo.thorpora.fr/ez-dashing)
+Go on [http://demo.thorpora.fr/ez-dashing/](http://demo.thorpora.fr/ez-dashing/)
 
 ## From Docker Hub
 ```sh
