@@ -125,18 +125,21 @@ You define an [server.properties](/config/server.properties) server configuratio
  - Maven 3
 
 ### Development
-__Start the mocked API__ (mock the backend)
-```sh
-npm run api
-```
 __Start the dev server (hot reload)__
 ```sh
 npm run dev
 ```
-__Build the back end__
+__Start the mocked API__ (mock the backend)
 ```sh
-mvn package
+npm run api
 ```
+__Start the back-end server__ (dev)
+```sh
+./mvnw spring-boot:run -Dspring.config.location=file:/yout/path/to/server.properties -Dspring.profiles.active=dev
+```
+ - Profile dev: logs are in DEBUG.
+ - Profile prod: logs are in INFO and only in ez-dashing.log (not in console), in the same directory as the configuration.
+ - On dashboard.json change: you need to restart the server.
 
 ### Production
 __Build front and back-end from script__
