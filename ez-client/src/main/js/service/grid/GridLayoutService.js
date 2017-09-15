@@ -27,13 +27,13 @@ export default class GridLayoutService {
 
   resetLayout() {
     logger.info("Reset dashboard layout from localStorage and reload layout from configuration");
-    //localStorage.clear();
     localStorage.removeItem(LAYOUT_KEY);
     location.reload(true);
   }
 
   onGridLayoutChange(action) {
     localStorage.setItem(LAYOUT_KEY, JSON.stringify(action.payload.allLayouts));
+    console.log("ACTION PAYLOAD : ", action.payload);
   }
 
   saveLayout() {

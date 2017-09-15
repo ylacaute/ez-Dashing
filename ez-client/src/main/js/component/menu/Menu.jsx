@@ -15,24 +15,25 @@ class Menu extends React.Component {
     super(props);
   };
 
-  resetLayout(event) {
-    event.preventDefault();
+  resetLayout() {
     this.props.resetLayout();
   }
 
   saveLayout() {
-    event.preventDefault();
     this.props.saveLayout();
   }
 
-  resetTheme(event) {
-    event.preventDefault();
+  resetTheme() {
     this.props.resetTheme();
   }
 
-  changeTheme(event, themeName) {
-    event.preventDefault();
+  changeTheme(themeName) {
     this.props.changeTheme(themeName);
+  }
+
+  resetLocalStorage() {
+    localStorage.clear();
+    location.reload(true);
   }
 
   render() {
@@ -54,17 +55,21 @@ class Menu extends React.Component {
           <i className="theme-icon"/>
           <span>Reset theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "default")}>
+        <a className="menu-item" onClick={(e) => this.changeTheme("default")}>
           <i className="theme-icon"/>
           <span>Set Default Theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "black")}>
+        <a className="menu-item" onClick={(e) => this.changeTheme("black")}>
           <i className="theme-icon"/>
           <span>Set Black Theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme(e, "dashing")} href="#">
+        <a className="menu-item" onClick={(e) => this.changeTheme("dashing")} href="#">
           <i className="theme-icon"/>
           <span>Set Dashing Theme</span>
+        </a>
+        <a className="menu-item" onClick={this.resetLocalStorage.bind(this)}>
+          <i className="layout-icon"/>
+          <span>Reload all (server config)</span>
         </a>
       </BurgerMenu>
     );
