@@ -96,6 +96,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __TextWidget__ (editable text, update server config)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 - [x] __MoodWidget__ (editable team mood)
+- [ ] __RadioWidget__ (shared music from server)
 
 ## Global backlog
 - [x] __Provide online demo__
