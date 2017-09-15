@@ -135,7 +135,7 @@ npm run api
 ```
 __Start the back-end server__ (dev)
 ```sh
-./mvnw spring-boot:run -Dspring.config.location=file:/yout/path/to/server.properties -Dspring.profiles.active=dev
+./mvnw spring-boot:run -Dspring.config.location=file:/your/path/to/server.properties -Dspring.profiles.active=dev
 ```
  - Profile dev: logs are in DEBUG.
  - Profile prod: logs are in INFO and only in ez-dashing.log (not in console), in the same directory as the configuration.
@@ -150,6 +150,7 @@ __Run the server__
 ```bashsh
 ./ez.sh start-prod <CONFIG_DIRECTORY>
 ```
+You should have no reason to start server like that, please use Docker for production.
 In order to verify that everything is ok, you can use the config directory of this project, linked to public online sonar and jenkins server.
 
 More options in __ez.sh__
