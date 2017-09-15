@@ -13,11 +13,11 @@ FROM frolvlad/alpine-oraclejdk8:slim
 MAINTAINER Yannick Lacaute <yannick.lacaute@gmail.com>
 
 COPY ez-server/target/classes /usr/src/app/classes
-COPY ez-server/target/ez-dashing-0.0.1-SNAPSHOT.jar /usr/src/app/ez-dashing-0.0.1-SNAPSHOT.jar
+COPY ez-server/target/ez-dashing-0.1.0-SNAPSHOT.jar /usr/src/app/ez-dashing-0.1.0-SNAPSHOT.jar
 WORKDIR /usr/src/app/
 
 ENV JAVA_OPTS=""
 
 EXPOSE 8080
 
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=file:/ez-config/server.properties -jar ez-dashing-0.0.1-SNAPSHOT.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=file:/ez-config/server.properties -Dlogging.file=/ez-config/ez-dashing.log -jar ez-dashing-0.1.0-SNAPSHOT.jar" ]
