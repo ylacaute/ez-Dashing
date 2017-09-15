@@ -5,7 +5,7 @@ export default class Constants {
    * Because some widgets are editable and can change the server configuration, we need to periodically
    * refresh the dashboard configuration, in seconds.
    */
-  static DASHBOARD_CONFIG_REFRESH = 5;
+  static DASHBOARD_CONFIG_REFRESH = 30;
 
   /**
    * If no refresh has been specified in configuration for a dataSource query,
