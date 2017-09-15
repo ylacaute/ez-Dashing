@@ -18,6 +18,7 @@ package com.thorpora.ezdashing.core;
 
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +30,22 @@ import org.springframework.core.env.Environment;
 import java.util.Arrays;
 import java.util.List;
 
-@Profile("production")
+@Slf4j
+@Profile("prod")
 public class StartupListener {
-
-    private final static Logger logger = LoggerFactory.getLogger(StartupListener.class);
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private DashboardConfiguration dashboardConfig;
 
     @EventListener(ContextRefreshedEvent.class)
     public void devContextRefreshedEvent() {
         List<DataSource> ds = dashboardConfig.getDataSources();
         for (int i = 0; i < ds.size(); i++) {
-            logger.info("DataSource[{}]: baseUrl set to {}", i, ds.get(i).getBaseUrl());
+            log.info("DataSource[{}]: baseUrl set to {}", i, ds.get(i).getBaseUrl());
         }
-    }
-
-    @Autowired
-    private DashboardConfiguration dashboardConfig;
-
-    private boolean isProduction() {
-        return Arrays.stream(env.getActiveProfiles()).anyMatch(p -> p.equals("prod"));
     }
 
 }

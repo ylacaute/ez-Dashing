@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+  <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+  <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
 
-  <springProfile name="default">
-    <logger name="com.thorpora" level="INFO" additivity="false">
-      <appender-ref ref="CONSOLE" />
+  <springProfile name="prod">
+    <root level="INFO">
       <appender-ref ref="FILE" />
-    </logger>
+    </root>
   </springProfile>
 
-  <springProfile name="production">
-    <logger name="com.thorpora" level="INFO" additivity="false">
+  <springProfile name="dev">
+    <root level="INFO">
       <appender-ref ref="FILE" />
-    </logger>
+      <appender-ref ref="CONSOLE" />
+    </root>
   </springProfile>
 
 </configuration>

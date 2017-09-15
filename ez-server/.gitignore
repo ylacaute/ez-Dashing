@@ -23,4 +23,4 @@ dist/
 nbdist/
 .nb-gradle/
 
-out.log
+ez-dashing.log
