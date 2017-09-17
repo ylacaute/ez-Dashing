@@ -3,74 +3,73 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // BASE COLOR
-$color-base: #151515 !default;
-$color-black: #212121 !default;
-$color-black-darker: #1E1E1E !default;
-$color-blue: #2268ae !default;
-$color-blue-dark: #30353c !default;
-$color-cyan: #2e9bdc !default;
-$color-gray: #999 !default;
-$color-gray-light: #aaa !default;
+$color-base: #151515;
+$color-black: #212121;
+$color-black-darker: #1E1E1E;
+$color-blue: #2268ae;
+$color-blue-dark: #30353c;
+$color-cyan: #2e9bdc;
+$color-gray: #999;
+$color-gray-light: #aaa;
 $color-green: #88b250;
-$color-orange: #e56d3b !default;
+$color-orange: #e56d3b;
 $color-yellow: #cd852d;
 $color-red: #ae3240;
 $color-red-light-opacity: rgba(174, 50, 64, 0.4);
-$color-white: #eee !default;
-$color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
+$color-white: #eee;
+$color-white-half-opacity: rgba(255, 255, 255, 0.5);
 
 
 // GENERIC TEXT COLOR
-$color-average: $color-orange !default;
-$color-bad: $color-red !default;
-$color-base: $color-gray-light !default;
-$color-building: $color-yellow !default;
-$color-good: $color-green !default;
-$color-title: $color-white !default;
-$color-spinner: $color-white !default;
+$color-average: $color-orange;
+$color-bad: $color-red;
+$color-building: $color-yellow;
+$color-good: $color-green;
+$color-title: $color-white;
+$color-spinner: $color-white;
 
 // GRID
-$color-grid-bg: $color-base !default;
+$color-grid-bg: $color-base;
 $color-grid-bg-placeholder: $color-white-half-opacity;
 
 // PROGRESS BAR
-$color-progress-bar-trail: #2a2a2a !default;
+$color-progress-bar-trail: #2a2a2a;
 
 // METRICS
-$color-metric-name: $color-white !default;
+$color-metric-name: $color-white;
 
 // BURGER MENU
 $color-burger-menu-bg: #222;
-$color-burger-menu-burger-button: #222 !default;
-$color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
-$color-burger-menu-cross-button: $color-red !default;
-$color-burger-menu-item: $color-white !default;
+$color-burger-menu-burger-button: #222;
+$color-burger-menu-overlay: rgba(0, 0, 0, 0.3);
+$color-burger-menu-cross-button: $color-red;
+$color-burger-menu-item: $color-white;
 
 // WIDGET
-$color-widget-bg: $color-black !default;
-$color-widget-text: $color-white !default;
-$color-widget-header-bg: $color-black !default;
-$color-widget-header-text: $color-title !default;
-$color-widget-sub-title-text: $color-gray-light !default;
-$color-widget-footer-bg: $color-black !default;
-$color-widget-edit-icon: $color-black !default;
+$color-widget-bg: $color-black;
+$color-widget-text: $color-white;
+$color-widget-header-bg: transparent;
+$color-widget-header-text: $color-title;
+$color-widget-sub-title-text: $color-gray-light;
+$color-widget-footer-bg: $color-black;
+$color-widget-edit-icon: $color-black;
 
 // CLOCK
-$color-widget-clock-text: $color-cyan !default;
+$color-widget-clock-text: $color-cyan;
 
 // SPRINT
-$color-widget-sprint-text: $color-blue !default;
+$color-widget-sprint-text: $color-blue;
 
 // BUG
 
 // SONKINS
-$color-widget-sonkins-progress-bar-trail: #2a2a2a !default;
+$color-widget-sonkins-progress-bar-trail: #2a2a2a;
 
 // BURNDOWN
-$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
-$color-widget-burndown-label: #fff !default;
-$color-widget-burndown-line-velocity-ref: $color-cyan !default;
-$color-widget-burndown-line-velocity-cur: white !default;
+$color-widget-burndown-tick: rgba(0, 0, 0, 0.2);
+$color-widget-burndown-label: #fff;
+$color-widget-burndown-line-velocity-ref: $color-cyan;
+$color-widget-burndown-line-velocity-cur: white;
 
 // TEXT
 

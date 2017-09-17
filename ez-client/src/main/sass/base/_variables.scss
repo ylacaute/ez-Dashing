@@ -16,7 +16,7 @@ $color-green: #88b250 !default;
 $color-orange: #db8240 !default;
 $color-yellow: #dcae41 !default;
 $color-red: #c65555 !default;
-$color-red-light-opacity: rgba(198, 85, 85, 0.2);
+$color-red-light-opacity: rgba(198, 85, 85, 0.2) !default;
 $color-white: #eee !default;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
 
@@ -25,7 +25,6 @@ $color-text: $color-white !default;
 $color-average: $color-orange !default;
 $color-bad: $color-red !default;
 $color-bad-opacity: $color-red-light-opacity !default;
-$color-base: $color-gray-light !default;
 $color-building: $color-yellow !default;
 $color-good: $color-green !default;
 $color-title: $color-white !default;
