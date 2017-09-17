@@ -12,7 +12,7 @@ DOCKER_IMG_LATEST_TAG="ez-dashing:latest"
 DOCKER_IMG_SOURCES_TAG="ez-dashing:sources"
 DOCKER_IMG_SOURCES_OS_TAG="ez-dashing:os"
 
-VERSION=0.0.1-SNAPSHOT
+VERSION=0.1.0-SNAPSHOT
 
 function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
@@ -115,7 +115,9 @@ function startProduction {
     exit 1
   fi
 
-  java -jar ./ez-server/target/ez-dashing-${VERSION}.jar --spring.config.location=file:${configPath}/server.properties $@
+  java -jar ./ez-server/target/ez-dashing-${VERSION}.jar \
+    --spring.config.location=file:${configPath}/server.properties \
+    --logging.file=${configPath}/ez-dashing.log  $@
   #java -jar ez-dashing-0.0.1-SNAPSHOT.jar --spring.config.location=file:/home/epi/prog/ez-Dashing/ez-config/server.properties
 }
 
