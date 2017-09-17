@@ -29,45 +29,55 @@ $color-good: $color-green !default;
 $color-title: $color-white !default;
 $color-spinner: $color-white !default;
 
-// COMPONENT TEXT COLOR
-$color-widget-clock-text: $color-cyan !default;
-$color-widget-sprint-text: $color-blue !default;
-$color-widget-text: $color-white !default;
-$color-widget-header-text: $color-title !default;
-$color-widget-sub-title-text: $color-gray-light !default;
-
-// BACKGROUND COMPONENT COLOR
+// GRID
 $color-grid-bg: $color-base !default;
 $color-grid-bg-placeholder: $color-white-half-opacity;
-$color-widget-bg: $color-black !default;
-$color-widget-header-bg: $color-black !default;
-$color-widget-footer-bg: $color-black !default;
 
-// Sonkins states
-$ez-sonkins-header-bg-good: none;
-$ez-sonkins-header-text-good: $color-good;
-$ez-sonkins-header-bg-bad: $color-bad;
-$ez-sonkins-header-text-bad: $color-grid-bg;
-$ez-sonkins-header-bg-building: $color-average;
-$ez-sonkins-header-text-building: $color-grid-bg;
+// PROGRESS BAR
+$color-progress-bar-trail: #2a2a2a !default;
 
-$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
-$color-widget-burndown-label: #fff !default;
-$color-widget-burndown-line-velocity-ref: $color-cyan !default;
-$color-widget-burndown-line-velocity-cur: white !default;
-
+// METRICS
 $color-metric-name: $color-white !default;
 
+// BURGER MENU
 $color-burger-menu-bg: #222;
 $color-burger-menu-burger-button: #222 !default;
 $color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
 $color-burger-menu-cross-button: $color-red !default;
 $color-burger-menu-item: $color-white !default;
 
-$color-sonkins-progress-bar-trail: #2a2a2a !default;
-$color-progress-bar-trail: #2a2a2a !default;
+// WIDGET
+$color-widget-bg: $color-black !default;
+$color-widget-text: $color-white !default;
+$color-widget-header-bg: $color-black !default;
+$color-widget-header-text: $color-title !default;
+$color-widget-sub-title-text: $color-gray-light !default;
+$color-widget-footer-bg: $color-black !default;
+$color-widget-edit-icon: $color-black !default;
 
-$image-bug-empty: 'thumb.svg' !default;
+// CLOCK
+$color-widget-clock-text: $color-cyan !default;
+
+// SPRINT
+$color-widget-sprint-text: $color-blue !default;
+
+// BUG
+
+// SONKINS
+$color-widget-sonkins-progress-bar-trail: #2a2a2a !default;
+
+// BURNDOWN
+$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-widget-burndown-label: #fff !default;
+$color-widget-burndown-line-velocity-ref: $color-cyan !default;
+$color-widget-burndown-line-velocity-cur: white !default;
+
+// TEXT
+
+// MOOD
+
+
+
 
 @import '../main';
 
