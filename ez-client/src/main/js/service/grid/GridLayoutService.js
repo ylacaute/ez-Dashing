@@ -33,7 +33,6 @@ export default class GridLayoutService {
 
   onGridLayoutChange(action) {
     localStorage.setItem(LAYOUT_KEY, JSON.stringify(action.payload.allLayouts));
-    console.log("ACTION PAYLOAD : ", action.payload);
   }
 
   saveLayout() {

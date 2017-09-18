@@ -28,6 +28,5 @@ export default function GridReducer(state = initialState, action) {
       return state
   }
 
-  console.log("FUCKING NEW GRID STATE:" , newState);
   return newState;
 }
