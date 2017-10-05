@@ -352,6 +352,11 @@
           "sonar-stats-systemB"
         ],
         "enabled": true
+      },
+      {
+        "type": "VelocityWidget",
+        "title": "VELOCITY",
+        "velocity": [ 45, 55, 60 ]
       }
     ],
     "avatars": [

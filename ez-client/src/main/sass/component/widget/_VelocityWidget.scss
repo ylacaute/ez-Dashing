@@ -1,0 +1,20 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* VELOCITY WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.velocity article {
+  font-size: 400%;
+}
+
+.height-xxs {
+  &.widget.velocity article {
+    font-size: 1000%;
+  }
+}
+
+.height-xs, .height-sm, .height-md, .height-lg {
+  &.widget.velocity article {
+    font-size: 1300%;
+  }
+}
+
