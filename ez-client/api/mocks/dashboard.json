@@ -298,8 +298,7 @@
         "title": "SYSTEM A",
         "branch": "master",
         "dataSource": [
-          "jenkins-lastBuild-systemA",
-          "sonar-stats-systemA"
+          "jenkins-lastBuild-systemA"
         ],
         "enabled": true
       },

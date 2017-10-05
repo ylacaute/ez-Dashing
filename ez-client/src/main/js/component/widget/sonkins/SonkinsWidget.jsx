@@ -29,9 +29,9 @@ export default class SonkinsWidget extends AbstractWidget {
     branch: "master",
     building: false,
     progress: 0,
-    lines: 0,
-    coverage: 0,
-    violations: 0
+    lines: null,
+    coverage: null,
+    violations: null
   };
 
   /**
@@ -90,27 +90,27 @@ export default class SonkinsWidget extends AbstractWidget {
     return this.renderAuthorMetric("BUILD FAILURE", avatar.url, true);
   }
 
+  renderMetric(label, value, thresholds, formatValue) {
+    if (value == null)
+      return null;
+    return (
+      <Metric
+        label={label}
+        value={value}
+        thresholds={thresholds}
+        formatValue={formatValue}
+      />
+    )
+  }
+
   renderBuildSuccess() {
     const { lines, coverage, violations } = this.props;
     return (
       <div className="metrics">
         {this.renderAuthorMetric("Last build")}
-        <Metric
-          label="Lines"
-          value={lines}
-          formatValue={n => `${parseInt(n / 1000)}k`}
-        />
-        <Metric
-          label="Violations"
-          value={violations}
-          thresholds={this.props.thresholds.violations}
-        />
-        <Metric
-          label="Coverage"
-          value={coverage}
-          formatValue={n => `${n}%`}
-          thresholds={this.props.thresholds.coverage}
-        />
+        {this.renderMetric("Line", lines, null, n => `${parseInt(n / 1000)}k`)}
+        {this.renderMetric("Violations", violations, this.props.thresholds.violations, n => n)}
+        {this.renderMetric("Coverage", coverage, this.props.thresholds.coverage, n => `${n}%`)}
       </div>
     );
   }
