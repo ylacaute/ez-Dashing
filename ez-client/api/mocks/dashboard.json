@@ -1,6 +1,7 @@
 {
   "dashboard": {
     "env": {
+      "dashboardId": "sample",
       "jiraBoardId": "124"
     },
     "server": {

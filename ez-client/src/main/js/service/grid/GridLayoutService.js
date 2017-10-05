@@ -7,7 +7,7 @@ import { GridEvent } from "redux/event/GridEvent";
 
 const logger = Logger.getLogger("GridLayoutService");
 
-const LAYOUT_KEY = "EZ_LAYOUT_KEY_6";
+const LAYOUT_KEY_SUFFIX = "EZ_LAYOUT_KEY_6";
 
 export default class GridLayoutService {
 
@@ -25,14 +25,18 @@ export default class GridLayoutService {
     this.store = store;
   }
 
+  static getLSKey(dashboardConfig) {
+    return dashboardConfig.dashboardId + LAYOUT_KEY_SUFFIX;
+  }
+
   resetLayout() {
     logger.info("Reset dashboard layout from localStorage and reload layout from configuration");
-    localStorage.removeItem(LAYOUT_KEY);
+    localStorage.removeItem(GridLayoutService.getLSKey(this.dashboardConfig));
     location.reload(true);
   }
 
   onGridLayoutChange(action) {
-    localStorage.setItem(LAYOUT_KEY, JSON.stringify(action.payload.allLayouts));
+    localStorage.setItem(GridLayoutService.getLSKey(this.dashboardConfig), JSON.stringify(action.payload.allLayouts));
   }
 
   saveLayout() {
@@ -53,8 +57,6 @@ export default class GridLayoutService {
 
   }
 
-
-
   /**
    * Try to load the grid layout configuration in this order:
    *  - from local storage first
@@ -63,7 +65,7 @@ export default class GridLayoutService {
    */
   static loadGridLayout(dashboardConfig) {
 
-    let layout = localStorage.getItem(LAYOUT_KEY);
+    let layout = localStorage.getItem(GridLayoutService.getLSKey(dashboardConfig));
     if (layout != null) {
       dashboardConfig.grid.layouts = JSON.parse(layout);
       logger.info("Use the grid layout defined in the local storage");
