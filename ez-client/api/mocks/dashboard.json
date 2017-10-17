@@ -355,8 +355,19 @@
       },
       {
         "type": "VelocityWidget",
-        "title": "VELOCITY",
-        "velocity": [ 45, 55, 60 ]
+        "title": "TEAM VELOCITY",
+        "velocity": [ 999, 2550, 989, 10, 20, 30 ],
+        "dataSource": [
+          "jira-story-closed",
+          "jira-story-ready",
+          "jira-sprint-active"
+        ]
+      },
+      {
+        "type": "FiabilityWidget",
+        "title": "TEAM FIABILITY",
+        "lastSprintSaved" : 5,
+        "fiability": [ 55, 85, 100, 90, 95, 92]
       }
     ],
     "avatars": [

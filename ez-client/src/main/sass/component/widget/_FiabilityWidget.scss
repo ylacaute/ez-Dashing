@@ -1,20 +1,20 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* VELOCITY WIDGET
+/* FIABILITY WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.widget.velocity article {
+.widget.fiability article {
   font-size: 300%;
-  color: $color-widget-velocity-text;
+  color: $color-widget-fiability-text;
 }
 
 .height-xxs {
-  &.widget.velocity article {
+  &.widget.fiability article {
     font-size: 700%;
   }
 }
 
 .height-xs, .height-sm, .height-md, .height-lg {
-  &.widget.velocity article {
+  &.widget.fiability article {
     font-size: 1000%;
   }
 }

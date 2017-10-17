@@ -26,3 +26,4 @@ nbdist/
 out.log*
 config/ez-dashing.log
 config/private
+npm-debug.log

@@ -81,5 +81,23 @@ describe("DateUtils", () => {
     assert.equal(result[2].toString(), "Mon Jul 03 2017 00:00:00 GMT+0200 (CEST)");
   });
 
+  it("equalsAtDay() should return true cause date exactly equals", () => {
+      let date1 = new Date(2017, 6, 1, 1, 1, 1);
+      let date2 = new Date(2017, 6, 1, 1, 1, 1);
+      assert.equal(DateUtils.equalsAtDay(date1, date2), true);
+  });
+
+  it("equalsAtDay() should return true cause date equals at day (only minutes are différents)", () => {
+      let date1 = new Date(2017, 6, 1, 1, 1, 1);
+      let date2 = new Date(2017, 6, 1, 1, 10, 1);
+      assert.equal(DateUtils.equalsAtDay(date1, date2), true);
+  });
+
+  it("equalsAtDay() should return false cause different", () => {
+      let date1 = new Date(2017, 6, 1, 1, 1, 1);
+      let date2 = new Date(2017, 6, 2, 1, 1, 1);
+      assert.equal(DateUtils.equalsAtDay(date1, date2), false);
+  });
+
 });
 

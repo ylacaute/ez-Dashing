@@ -69,4 +69,8 @@ export default class DateUtils {
     return result;
   }
 
+  static equalsAtDay(date1, date2) {
+      return DateUtils.formatDDMMYY(date1) == DateUtils.formatDDMMYY(date2);
+  }
+
 }
