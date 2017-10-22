@@ -17,13 +17,23 @@
 package com.thorpora.ezdashing.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.IntStream;
+
+import static com.thorpora.ezdashing.utils.PatchOperation.INSERT_OR_ADD;
+import static java.util.Arrays.stream;
 
 public class JsonUtils {
 
@@ -32,6 +42,44 @@ public class JsonUtils {
     public static void setMapper(ObjectMapper mapper) {
         JsonUtils.mapper = mapper;
     }
+
+    public static void patchNode(ObjectNode nodeToUpdate, Map<String, Object> newFields) {
+        newFields.keySet().forEach(fieldName -> patchNode(
+                INSERT_OR_ADD,
+                nodeToUpdate,
+                fieldName,
+                newFields.get(fieldName)));
+    }
+
+    public static void patchNode(PatchOperation op, ObjectNode nodeToUpdate, String fieldName, Object fieldValue)  {
+        if (op != INSERT_OR_ADD) {
+            throw new JsonException("Only ADD operation is supported in json patch for now");
+        }
+        if (fieldValue instanceof Collection) {
+            ArrayNode arrayNode = nodeToUpdate.withArray(fieldName);
+            addCollectionToArrayNode(arrayNode, (Collection<?>) fieldValue);
+        } else if (fieldValue.getClass().isArray()) {
+            ArrayNode arrayNode = nodeToUpdate.withArray(fieldName);
+            addObjectToArrayNode(arrayNode, fieldValue);
+        } else {
+            nodeToUpdate.put(fieldName, fieldValue.toString());
+        }
+    }
+
+    public static ObjectNode valueToTree(Object object) {
+        return mapper.valueToTree(object);
+    }
+
+    public static <T> T treeToValue(TreeNode treeNode, Class<T> valueType) {
+        try {
+            return mapper.treeToValue(treeNode, valueType);
+        } catch (IOException ex) {
+            throw new JsonException("Invalid treeNode/valueType", ex);
+        }
+
+    }
+
+
 
     public static String format(String inlineJson) {
         try {
@@ -82,11 +130,23 @@ public class JsonUtils {
         }
     }
 
-    public static String writeValueAsString(JsonNode node) {
+    public static <T> T fromJson(String value, Class<T> objectClass) {
+        try {
+            return mapper.readValue(value, objectClass);
+        } catch (IOException ex) {
+            throw new JsonException("Error during toJson from jsonNode", ex);
+        }
+    }
+
+    public static String toJson(Object object) {
+       return toJson(mapper.valueToTree(object));
+    }
+
+    public static String toJson(JsonNode node) {
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node);
         } catch (JsonProcessingException ex) {
-            throw new JsonException("Error during writeValueAsString from jsonNode", ex);
+            throw new JsonException("Error during toJson from jsonNode", ex);
         }
     }
 
@@ -98,6 +158,50 @@ public class JsonUtils {
         }
     }
 
+    private static void addCollectionToArrayNode(ArrayNode arrayNode, Collection<?> objects) {
+        objects.forEach(value -> addObjectToArrayNode(arrayNode, value));
+    }
+
+    private static void addObjectToArrayNode(ArrayNode arrayNode, Object object) {
+        if (object instanceof Integer) {
+            arrayNode.add((int) object);
+        } else if (object instanceof Float) {
+            arrayNode.add((float) object);
+        } else if (object instanceof String) {
+            arrayNode.add((String) object);
+        } else if (object instanceof Double) {
+            arrayNode.add((double) object);
+        } else if (object instanceof Long) {
+            arrayNode.add((long) object);
+        } else if (object instanceof Boolean) {
+            arrayNode.add((boolean) object);
+        } else if (object instanceof BigDecimal) {
+            arrayNode.add((BigDecimal) object);
+        } else if (object instanceof JsonNode) {
+            arrayNode.add((JsonNode) object);
+        } else if (object instanceof byte[]) {
+            arrayNode.add((byte[]) object);
+        } else if (object instanceof int[]) {
+            stream((int[]) object).forEach(value -> addObjectToArrayNode(arrayNode, value));
+        } else if (object instanceof double[]) {
+            stream((double[]) object).forEach(value -> addObjectToArrayNode(arrayNode, value));
+        } else if (object instanceof long[]) {
+            stream((long[]) object).forEach(value -> addObjectToArrayNode(arrayNode, value));
+        } else if (object instanceof boolean[]) {
+            boolean[] array = (boolean[]) object;
+            IntStream.range(0, array.length).forEach(value -> addObjectToArrayNode(arrayNode, value));
+        } else if (object instanceof Object[]) {
+            stream((Object[]) object).forEach(value -> addObjectToArrayNode(arrayNode, value));
+        } else {
+            throw new JsonException(String.format("Unable to patch, unsupported type: %s", object.getClass()));
+        }
+    }
+}
+
+
+enum PatchOperation {
+    INSERT_OR_REPLACE,
+    INSERT_OR_ADD
 }
 
 class JsonException extends RuntimeException {

@@ -19,20 +19,22 @@ package com.thorpora.ezdashing.dashboard.model;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thorpora.ezdashing.exception.InvalidServerConfiguration;
+import com.thorpora.ezdashing.utils.JsonUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.thorpora.ezdashing.utils.FailFast.checkIsTrue;
 import static com.thorpora.ezdashing.utils.JsonUtils.*;
+import static java.util.stream.StreamSupport.stream;
 import static lombok.AccessLevel.PRIVATE;
 
 @Slf4j
@@ -58,7 +60,7 @@ public class DashboardConfiguration {
   }
 
   public String getAsString() {
-    return writeValueAsString(rootNode);
+    return toJson(rootNode);
   }
 
   public List<DataSource> getDataSources() {
@@ -70,7 +72,10 @@ public class DashboardConfiguration {
   }
 
   public List<Widget> getWidgets() {
-    return readValue(rootNode.get("widgets"), new TypeReference<List<Widget>>() {});
+    ArrayNode widgets = (ArrayNode)rootNode.get("widgets");
+    return stream(widgets.spliterator(), false)
+            .map(Widget::new)
+            .collect(Collectors.toList());
   }
 
   public Optional<DataSource> getDataSource(String queryId) {
@@ -82,15 +87,14 @@ public class DashboardConfiguration {
     return Optional.empty();
   }
 
-  public void updateWidget(String widgetId, Map<String, String> fields) {
+  public void updateWidget(String widgetId, Map<String, Object> fields) {
     JsonNode widgets = rootNode.get("widgets");
     checkIsTrue(widgets.isArray(), "Configuration error, widgets should be an array");
 
     for (final JsonNode widget : widgets) {
       if (widget.has("id") && widgetId.equals(widget.get("id").asText())) {
-        ObjectNode on = (ObjectNode)widget;
         log.info("Updating widgetId={} with fields={}", widgetId, fields);
-        fields.keySet().forEach(k -> on.put(k, fields.get(k)));
+        JsonUtils.patchNode((ObjectNode)widget, fields);
         return;
       }
     }

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-import static com.thorpora.ezdashing.utils.JsonUtils.writeValueAsString;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
@@ -48,7 +47,7 @@ public class DashboardController {
     @PatchMapping(value = "/config/widgets/{widgetId}", consumes = APPLICATION_JSON_VALUE)
     public void patchWidget(
             @PathVariable String widgetId,
-            @RequestBody Map<String, String> fields) {
+            @RequestBody Map<String, Object> fields) {
         log.trace("PATCH /config/widgets/{} with body={}", widgetId, fields);
         dashboardProperties.updateWidget(widgetId, fields);
         dashboardProperties.save();

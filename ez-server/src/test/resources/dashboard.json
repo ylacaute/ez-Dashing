@@ -197,6 +197,12 @@
       "enabled": false
     },
     {
+      "id": "velocityUniqueId",
+      "type": "VelocityWidget",
+      "title": "TEAM VELOCITY",
+      "velocity": [ 999, 2550, 989, 10, 20, 30 ]
+    },
+    {
       "type": "HelloErrorWidget",
       "title": "HELLO ERROR",
       "enabled": false
