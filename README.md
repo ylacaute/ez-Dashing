@@ -1,3 +1,5 @@
+[![Build Status](http://jk.thorpora.fr/buildStatus/icon?job=ez-dashing-master)](http://jk.thorpora.fr/job/ez-dashing-master/)
+
 # <img src="/ez-client/src/main/resources/img/tech/ezLogo.png" width="100" alt="ez-Dashing"> ez-Dashing
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development. I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
