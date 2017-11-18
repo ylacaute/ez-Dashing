@@ -26,7 +26,7 @@ function banner {
 function createDockerDemo {
   banner "CREATING EZ-DASHING DEMO DOCKER IMAGE"
   cd ${PROJECT_DIR}
-  sudo docker build -t ${DOCKER_IMG_DEMO_TAG} -f docker/demo/Dockerfile .
+  docker build -t ${DOCKER_IMG_DEMO_TAG} -f docker/demo/Dockerfile .
 }
 function pushDockerDemo {
   banner "PUSHINING EZ-DASHING DEMO DOCKER IMAGE"
