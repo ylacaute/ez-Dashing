@@ -86,13 +86,13 @@ describe("TypeUtils", () => {
   it("convert() should convert to date a non standard formatted date: Sat Aug 19 2017 16:58:34 GMT+0200 (CEST)", () => {
     assert.equal(
       TypeUtils.convert("Sat Aug 19 2017 16:58:34 GMT+0200 (CEST)", "date").getTime(),
-      new Date(2017, 7, 19, 16, 58, 34).getTime());
+      new Date("Sat Aug 19 2017 16:58:34 GMT+0200 (CEST)").getTime());
   });
 
   it("convert() should convert to date a ISO 8601 formatted date: 2017-07-12T17:28:03.000+0200", () => {
     assert.equal(
       TypeUtils.convert("2017-07-12T17:28:03.000+0200", "date").getTime(),
-      new Date(2017, 6, 12, 17, 28, 3).getTime());
+      1499873283000);
   });
 
   it("convert() should convert to date a simplified ISO 8601 formatted date: 2017-07-12", () => {

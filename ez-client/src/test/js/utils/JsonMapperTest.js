@@ -30,7 +30,7 @@ describe("JsonMapper", () => {
     let result = JsonMapper.mapProperties(mapping, json);
     assert.equal(
       result.myDate.getTime(),
-      new Date(2017, 6, 12, 17, 28, 3).getTime());
+      new Date("Wed Jul 12 2017 17:28:03 GMT+0200 (CEST)").getTime());
   });
 
   it("mapProperties() should map a regexp from a string", () => {

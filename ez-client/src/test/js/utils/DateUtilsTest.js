@@ -76,9 +76,9 @@ describe("DateUtils", () => {
     let end = new Date(2017, 6, 3);
     let result = DateUtils.getAllDatesBetween(start, end, true);
     assert.equal(result.length, 3);
-    assert.equal(result[0].toString(), "Sat Jul 01 2017 00:00:00 GMT+0200 (CEST)");
-    assert.equal(result[1].toString(), "Sun Jul 02 2017 00:00:00 GMT+0200 (CEST)");
-    assert.equal(result[2].toString(), "Mon Jul 03 2017 00:00:00 GMT+0200 (CEST)");
+    assert.equal(result[0].getTime(), new Date(2017, 6, 1, 0, 0, 0).getTime());
+    assert.equal(result[1].getTime(), new Date(2017, 6, 2, 0, 0, 0).getTime());
+    assert.equal(result[2].getTime(), new Date(2017, 6, 3, 0, 0, 0).getTime());
   });
 
   it("equalsAtDay() should return true cause date exactly equals", () => {
@@ -87,7 +87,7 @@ describe("DateUtils", () => {
       assert.equal(DateUtils.equalsAtDay(date1, date2), true);
   });
 
-  it("equalsAtDay() should return true cause date equals at day (only minutes are différents)", () => {
+  it("equalsAtDay() should return true cause date equals at day (only minutes are different)", () => {
       let date1 = new Date(2017, 6, 1, 1, 1, 1);
       let date2 = new Date(2017, 6, 1, 1, 10, 1);
       assert.equal(DateUtils.equalsAtDay(date1, date2), true);
