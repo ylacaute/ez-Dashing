@@ -107,6 +107,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Save widget position__ users can save/reset widget position in the localStorage
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
+- [x] __Add Jenkins pipeline__
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __Improve the build process__ especially the sh/docker part
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
@@ -116,7 +117,6 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [ ] __Improve RestClient__ improve error management
 - [ ] __Use Docker compose__
 - [ ] __Fix React warning__  wrong way for minify/uglify for prod
-- [ ] __Use Travis-CI__
 - [ ] __Improve Sonkins Widget__ sonar metrics should be parameterizable
 - [ ] __Use WebSockets__ instead of reloading config periodically
 - [ ] __Dynamic widget__ ideally, make pure json configurable widget 
