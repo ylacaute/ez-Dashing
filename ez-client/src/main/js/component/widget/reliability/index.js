@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
-import FiabilityWidget from "component/widget/fiability/FiabilityWidget.jsx";
+import ReliabilityWidget from "component/widget/reliability/ReliabilityWidget.jsx";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -8,5 +8,5 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(FiabilityWidget)
+export default connect(mapStateToProps)(ReliabilityWidget)
 

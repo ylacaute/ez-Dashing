@@ -21,7 +21,7 @@ export default class WidgetService {
   }
 
   updateConfig(action) {
-    logger.info("update widget id={}", action.widgetId);
+    logger.info("update widget id={} with fields:", action.widgetId, action.payload);
     let path = StringUtils.format(Constants.UPDATE_WIDGET_PATH, action.widgetId);
 
     RestClient.patch(path, action.payload, () => {

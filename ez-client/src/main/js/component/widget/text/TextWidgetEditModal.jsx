@@ -28,7 +28,7 @@ class TextWidgetEditModal extends Modal {
 
   onOk() {
     let formData = new FormData(document.getElementById("textWidgetEditForm"));
-    this.props.widgetEvents.updateConfig(this.props.widgetId, {
+    this.props.widgetEvents.updateWidgetConfig(this.props.widgetId, {
       text: formData.get('widgetText'),
       textType: formData.get('widgetTextType'),
     });

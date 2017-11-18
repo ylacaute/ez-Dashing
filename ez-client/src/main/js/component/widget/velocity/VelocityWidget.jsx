@@ -1,72 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import AbstractSprintWidget from 'component/widget/base/AbstractSprintWidget.jsx';
 import DateService from "service/date/DateService";
-import VelocityCalculator from "component/widget/burndown/VelocityCalculator";
-import DateUtils from "utils/DateUtils";
 import ArrayUtils from "utils/ArrayUtils";
+import Logger from 'utils/Logger';
 
-export default class VelocityWidget extends AbstractWidget {
+const logger = Logger.getLogger("VelocityWidget");
+
+/**
+ * This widget as two purpose: display the velocity average of the team and emit an event with the
+ * current velocity at the end of sprint (last day of sprint -1 hour). This event must be handled
+ * in order to save this new velocity value in the configuration file.
+ */
+export default class VelocityWidget extends AbstractSprintWidget {
 
   static propTypes = {
-    velocity: PropTypes.array,
-    sprintId: PropTypes.string.isRequired,
-    sprintName: PropTypes.string.isRequired,
-    sprintNumber: PropTypes.number.isRequired,
-    sprintStartDate: PropTypes.instanceOf(Date).isRequired,
-    sprintEndDate: PropTypes.instanceOf(Date).isRequired,
-    closedIssues: PropTypes.array.isRequired,
-    readyIssues: PropTypes.array.isRequired
+    velocityHistory: PropTypes.array.isRequired,
+    valueCountForAverage: PropTypes.number,
+    lastSprintId: PropTypes.number.isRequired
   };
 
   static defaultProps = {
-    velocity: [ 0 ],
-    sprintId: "-",
-    sprintName: "-",
-    sprintNumber: 0,
-    sprintStartDate: DateService.now(),
-    sprintEndDate: DateService.now(),
-    closedIssues: [],
-    readyIssues: [],
+    velocityHistory: [],
+    valueCountForAverage: 3,
+    lastSprintId: 0
   };
 
-  computeVelocityAverage() {
-    let { velocity } = this.props;
-    let lastValues = ArrayUtils.lasts(velocity, 3);
-    console.log("lastValues (velo): ", lastValues);
-    let sum = lastValues.reduce((sum, value) => sum + value, 0);
-    return Math.floor(sum / lastValues.length);
-  }
-
-  computeFiabilityAverage(velocityAverage) {
-    return Math.floor(velocityAverage.currentVelocity / velocityAverage.plannedVelocity * 100);
-  }
-
-  isLastDayOfSprint() {
-    return DateUtils.equalsAtDay(DateService.now(), this.props.sprintEndDate);
-  }
-
-  computeVelocity() {
-    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
-    const allSprintIssues = closedIssues.concat(readyIssues);
+  /**
+   * We compute the current velocity (usually at end of sprint) and add this velocity to a new history array.
+   * This array is saved in the widget configuration file.
+   */
+  updateVelocityHistory() {
     const now = DateService.now();
-    const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
-    return {
-      currentVelocity: velocity.currentVelocity[velocity.currentVelocity.length - 1].storyPoints,
-      plannedVelocity: velocity.plannedVelocity[0].storyPoints,
+    const curVelo = this.computeVelocity(now).currentVelocity;
+    const newVelocityHistory = [...this.props.velocityHistory, curVelo];
+
+    logger.info("Updating velocityArray by adding the current sprint velocity={}", curVelo);
+    this.props.updateWidgetConfig(this.props.id, {
+      velocityHistory: newVelocityHistory
+    });
+  }
+
+  onEndOfSprint() {
+    if (this.props.lastSprintId != this.props.sprintId) {
+      this.updateVelocityHistory();
+    } else {
+      logger.info("Velocity already up to date (lastSprintId={}, sprintId={})",
+        this.props.lastSprintId,
+        this.props.sprintId)
     }
   }
 
   renderContent() {
-    const velocity = this.computeVelocity();
-    const velocityAverage  = this.computeVelocityAverage();
-    const fiabilityAverage = this.computeFiabilityAverage(velocityAverage);
-    const isLastDayOfSprint = this.isLastDayOfSprint();
+    const velocityAverage  = ArrayUtils.computeAverage(
+      this.props.velocityHistory,
+      this.props.valueCountForAverage);
 
-    console.log("===> velocity", velocity);
-    console.log("===> velocityAverage", velocityAverage);
-    console.log("===> fiabilityAverage", fiabilityAverage);
-    console.log("===> isLastDayOfSprint", isLastDayOfSprint);
     return (
       <div>
         <div>{velocityAverage}</div>

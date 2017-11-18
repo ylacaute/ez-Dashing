@@ -19,7 +19,7 @@ export default class AbstractWidget extends React.Component {
     sizeInfo: PropTypes.object,
     editable: PropTypes.bool,
     showModal: PropTypes.func,
-    updateConfig: PropTypes.func
+    updateWidgetConfig: PropTypes.func
   };
 
   static defaultProps = {

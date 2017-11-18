@@ -90,9 +90,11 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __ClockWidget__
 - [x] __BugWidget__
 - [x] __SonkinsWidget__ (Jenkins + Sonar metrics)
-- [x] __SprintWidget__
+- [x] __SprintWidget__ (current sprint status)
 - [x] __BurndownChartWidget__
-- [ ] __jenkinsMonitoringWidget__ (widget not migrating yet from ez-Dashing 0.1.0)
+- [x] __VelocityWidget__ (team velocity average on last sprints)
+- [x] __ReliabilityWidget__ (team reliability average on last sprints)
+- [ ] __jenkinsMonitoringWidget__ (widget not migrating yet)
 - [x] __TeamWidget__ (name and logo)
 - [ ] __PullRequestWidget__ (Gitlab, Github)
 - [x] __TextWidget__ (editable text, update server config)

@@ -7,7 +7,7 @@ const WidgetEvent = {
 };
 
 const WidgetEventCreator = {
-  updateConfig: (widgetId, fields) => {
+  updateWidgetConfig: (widgetId, fields) => {
     return {
       type: WidgetEvent.UpdateConfigRequest,
       widgetId: widgetId,

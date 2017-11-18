@@ -19,5 +19,7 @@
   "/api/dashboard/config/widgets/wid_5": "/widgets",
   "/api/dashboard/config/widgets/wid_6": "/widgets",
   "/api/dashboard/config/widgets/wid_7": "/widgets",
+  "/api/dashboard/config/widgets/velocityWidget": "/widgets",
+  "/api/dashboard/config/widgets/reliabilityWidget": "/widgets",
   "/api/dashboard/config/grid/layout" : "/gridLayout"
 }

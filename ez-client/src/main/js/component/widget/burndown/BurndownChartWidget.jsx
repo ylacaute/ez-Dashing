@@ -1,32 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
+import AbstractSprintWidget from "component/widget/base/AbstractSprintWidget.jsx";
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from "victory";
-import VelocityCalculator from "component/widget/burndown/VelocityCalculator";
+import VelocityCalculator from "utils/VelocityCalculator";
 import DateService from "service/date/DateService";
 
-export default class BurndownChartWidget extends AbstractWidget {
+export default class BurndownChartWidget extends AbstractSprintWidget {
 
   static propTypes = {
-    sprintId: PropTypes.string.isRequired,
-    sprintName: PropTypes.string.isRequired,
-    sprintNumber: PropTypes.number.isRequired,
-    sprintStartDate: PropTypes.instanceOf(Date).isRequired,
-    sprintEndDate: PropTypes.instanceOf(Date).isRequired,
-    closedIssues: PropTypes.array.isRequired,
-    readyIssues: PropTypes.array.isRequired,
     dateTickCount: PropTypes.number
   };
 
   static defaultProps = {
     title: "BURNDOWN CHART",
-    sprintId: "-",
-    sprintName: "-",
-    sprintNumber: 0,
-    sprintStartDate: DateService.now(),
-    sprintEndDate: DateService.now(),
-    closedIssues: [],
-    readyIssues: [],
     dateTickCount: 10
   };
 

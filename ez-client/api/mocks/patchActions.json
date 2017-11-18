@@ -1,8 +1,8 @@
 {
   "widgets": {
-    "text": "we don't care about this result"
+    "text": "MOCK WIDGET PATCH RESPONSE"
   },
   "gridLayout": {
-    "text": "we don't care about this result"
+    "text": "MOCK GRID LAYOUT PATCH RESPONSE"
   }
 }

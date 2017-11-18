@@ -25,7 +25,7 @@ class MoodWidgetEditModal extends Modal {
 
   onOk() {
     let formData = new FormData(document.getElementById("moodWidgetEditForm"));
-    this.props.widgetEvents.updateConfig(this.props.widgetId, {
+    this.props.widgetEvents.updateWidgetConfig(this.props.widgetId, {
       mood: formData.get('widgetMood')
     });
   }

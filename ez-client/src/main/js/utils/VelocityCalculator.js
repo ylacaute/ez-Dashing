@@ -79,11 +79,16 @@ export default class VelocityCalculator {
 
   static calculate(now, sprintStartDate, sprintEndDate, allSprintIssues) {
     const dates = DateUtils.getAllDatesBetween(sprintStartDate, sprintEndDate, true);
-    logger.info("Burndown info: sprintStartDate={}, sprintEndDate={}, allSprintIssues:", sprintStartDate, sprintEndDate, allSprintIssues);
+    logger.info("Velocity computation: sprintStartDate={}, sprintEndDate={}, allSprintIssues:",
+      sprintStartDate,
+      sprintEndDate,
+      allSprintIssues);
     return {
       plannedVelocity: VelocityCalculator.calculatePlannedVelocity(dates, allSprintIssues),
       currentVelocity: VelocityCalculator.calculateVelocity(now, dates, allSprintIssues)
     }
   }
+
+
 
 }
