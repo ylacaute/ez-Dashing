@@ -1,7 +1,9 @@
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ez-Dashing Maven build Dockerfile #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 FROM maven:3.5-jdk-8
 
-LABEL maintainer "YANNICK LACAUTE"
+LABEL maintainer "Yannick Lacaute <yannick.lacaute@gmail.com>"
 
 ARG uid=1000
 ARG gid=1000

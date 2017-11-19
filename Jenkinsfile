@@ -97,10 +97,11 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
+            sh 'ls -lh ez-client'
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:demo", "-f docker/demo/Dockerfile .")
               ezDemoImage.inside {
-                sh 'echo "Tests passed"'
+                sh 'ls -lh'
               }
               ezDemoImage.push "demo"
             }
@@ -119,10 +120,11 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
+            sh 'ls -lh ez-server/target'
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:latest", "-f docker/latest/Dockerfile .")
               ezDemoImage.inside {
-                sh 'echo "Tests passed"'
+                sh 'ls -lh'
               }
               ezDemoImage.push "latest"
             }

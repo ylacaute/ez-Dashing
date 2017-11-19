@@ -1,7 +1,6 @@
-
 FROM node:8-stretch
 
-LABEL maintainer "YANNICK LACAUTE"
+LABEL maintainer "Yannick Lacaute <yannick.lacaute@gmail.com>"
 
 # As this container is build by the jenkins pipeline, permission of checkouted files
 # will be jenkins, so we need to keep this user inside our new container.
