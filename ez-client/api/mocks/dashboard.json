@@ -369,7 +369,7 @@
         "id": "reliabilityWidget",
         "type": "ReliabilityWidget",
         "title": "TEAM RELIABILITY",
-        "lastSprintSaved" : 5,
+        "lastSprintId" : 5,
         "reliabilityHistory": [ 80, 90, 100 ],
         "dataSource": [
           "jira-story-closed",

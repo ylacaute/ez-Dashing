@@ -51,7 +51,7 @@ __Please note that your config directory:__
 
 **DEPRECATED**
 
-If you need ez-Dashing in production but without Docker, you will have to package manually it. 
+If you need ez-Dashing in production but without Docker, you will have to package it manually. 
 
 ```sh
 # BUILD FOR PRODUCTION

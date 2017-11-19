@@ -37,6 +37,7 @@ export default class VelocityWidget extends AbstractSprintWidget {
 
     logger.info("Updating velocityArray by adding the current sprint velocity={}", curVelo);
     this.props.updateWidgetConfig(this.props.id, {
+      lastSprintId: this.props.sprintId,
       velocityHistory: newVelocityHistory
     });
   }

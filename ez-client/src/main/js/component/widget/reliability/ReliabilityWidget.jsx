@@ -37,6 +37,7 @@ export default class ReliabilityWidget extends AbstractSprintWidget {
 
     logger.info("Updating reliabilityArray by adding the current sprint reliability={}", curRel);
     this.props.updateWidgetConfig(this.props.id, {
+      lastSprintId: this.props.sprintId,
       reliabilityHistory: newReliabilityHistory
     });
   }
