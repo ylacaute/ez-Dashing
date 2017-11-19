@@ -1,43 +1,44 @@
-// DOCKER PIPELINE DOC: https://jenkins.io/doc/book/pipeline/syntax/#agent
+// Project: ez-Dashing
+// Version: CURRENT-SNAPSHOT (no release yet)
+// Author: Yannick Lacaute
 
 pipeline {
   agent any
   parameters {
-//    string(
-//        name: 'PERSON',
-//        defaultValue: 'Mr Jenkins',
-//        description: 'Who should I say hello to?')
-//    choice(
-//        name: 'RUN_SERVER_TESTS',
-//        choices: 'NO\nYES',
-//        description: 'For faster pipeline, servers can be disabled')
     booleanParam(
-        name: 'RUN_CLIENT_TESTS',
-        defaultValue: false,
-        description: 'For faster pipeline, client tests can be disabled')
+        name: 'RUN_CLIENT',
+        defaultValue: true,
+        description: 'Enable or not client tests and packaging')
     booleanParam(
-            name: 'RUN_SERVER_TESTS',
-            defaultValue: false,
-            description: 'For faster pipeline, server tests can be disabled')
+        name: 'RUN_SERVER',
+        defaultValue: true,
+        description: 'Enable or not server tests and packaging')
+    booleanParam(
+        name: 'RUN_DOCKER_DEMO',
+        defaultValue: true,
+        description: 'Enable or not the build + push of the Docker demo image')
+    booleanParam(
+        name: 'RUN_DOCKER_OFFICIAL',
+        defaultValue: true,
+        description: 'Enable or not the build + push of the Docker official ez-Dashing image')
+    string(
+        name: 'DOCKER_REGISTRY_URL',
+        defaultValue: 'https://index.docker.io/v1/',
+        description: 'Registry where images have to be pushed')
+    string(
+        name: 'DOCKER_CREDENTIALS',
+        defaultValue: 'dockerHubCredentialsId',
+        description: 'Credentials ID defined in Jenkins to connect to the Docker Registry')
   }
 
   stages {
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // DEBUG STAGE: DISPLAY PIPELINE INFO
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    stage('DEBUG') {
-      steps {
-        sh 'printenv'
-      }
-    }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // CLIENTS TESTS: NPM INSTALL && NPM TESTS
+    // CLIENTS TESTS: NPM INSTALL && NPM RUN TESTS
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     stage('CLIENTS TESTS') {
       when {
-        expression { return params.RUN_CLIENT_TESTS }
+        expression { return params.RUN_CLIENT }
       }
       agent {
         dockerfile {
@@ -48,11 +49,16 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-          banner 'NPM INSTALL'
           displayEnv(["whoami", "pwd", "uname -a", "node --version"])
+
+          banner 'INSTALL'
           sh 'cd ez-client && npm install'
-          banner 'NPM TEST'
-          sh 'cd ez-client && npm test'
+          banner 'TEST'
+          sh 'cd ez-client && npm run test'
+          banner 'PACKAGE'
+          sh 'cd ez-client && npm run package'
+          banner 'DEPLOY'
+          sh 'cd ez-client && npm run deploy'
         }
       }
     }
@@ -62,7 +68,7 @@ pipeline {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     stage('SERVER TESTS') {
       when {
-        expression { return params.RUN_SERVER_TESTS }
+        expression { return params.RUN_SERVER }
       }
       agent {
         dockerfile {
@@ -73,77 +79,74 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-          banner 'MVN VERIFY'
           displayEnv(["whoami", "pwd", "uname -a", "mvn --version"])
+
+          banner 'PACKAGE'
           sh 'cd ez-server && mvn clean package -U'
         }
       }
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // DOCKER: IMAGE BUILD
+    // DOCKER DEMO IMAGE: BUILD AND PUSH LATEST
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    stage('DOCKER BUILD') {
+    stage('DOCKER DEMO IMAGE') {
+      when {
+        expression { return params.RUN_CLIENT && params.RUN_DOCKER_DEMO }
+      }
       steps {
         ansiColor('xterm') {
-          echo "BUILD DEMO IMAGE"
           script {
-            def ezDemoImage = docker.build("ylacaute/ez-dashing:demo", "-f docker/demo/Dockerfile .")
-            ezDemoImage.push
-
-
-            //sh 'git rev-parse HEAD > .rev'
-            //rev = readFile('.rev').trim()
-
-            //docker.tag
-            //docker.login
-            //image.push("${env.BUILD_NUMBER}")
-
-            //image.push 'latest'
-
-            //echo 'publish ok'
-//            app.inside {
-//              sh 'echo "Tests passed"'
-//            }
-            //withDockerRegistry([credentialsId: 'dockerHubCredentialsId', url: "https://<my-docker-registry>/"]) {
-              // we give the image the same version as the .war package
-
-//              image.push()
-  //          }
-
-            echo 'test ok'
+            docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
+              def ezDemoImage = docker.build("ylacaute/ez-dashing:demo", "-f docker/demo/Dockerfile .")
+              ezDemoImage.inside {
+                sh 'echo "Tests passed"'
+              }
+              ezDemoImage.push "demo"
+            }
           }
         }
       }
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // PUBLISH
+    // DOCKER DEMO IMAGE: BUILD AND PUSH LATEST
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    stage('PUBLISH') {
+    stage('DOCKER OFFICIAL IMAGE') {
+      when {
+        expression { return params.RUN_CLIENT && params.RUN_SERVER && params.RUN_DOCKER_OFFICIAL }
+      }
       steps {
         ansiColor('xterm') {
-          echo "TODO: PUBLISH"
+          script {
+            docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
+              def ezDemoImage = docker.build("ylacaute/ez-dashing:latest", "-f docker/latest/Dockerfile .")
+              ezDemoImage.inside {
+                sh 'echo "Tests passed"'
+              }
+              ezDemoImage.push "latest"
+            }
+          }
         }
       }
     }
   }
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // POST PIPELINE EXECUTION
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   post {
     always {
-      echo 'This will always run'
+      echo 'Cleaning Pipeline'
     }
     success {
-      echo 'This will run only if successful'
+      echo 'Good job bro !! Everything is ok :)'
     }
     failure {
-      echo 'This will run only if failed'
+      echo 'Holy crap...'
     }
     unstable {
-      echo 'This will run only if the run was marked as unstable'
-    }
-    changed {
-      echo 'This will run only if the state of the Pipeline has changed'
-      echo 'For example, if the Pipeline was previously failing but is now successful'
+      echo 'Unstable crap...'
     }
   }
 }
@@ -169,5 +172,6 @@ def banner(message) {
 }
 
 
+// DOCKER PIPELINE DOC: https://jenkins.io/doc/book/pipeline/syntax/#agent
 // MEMO
 // Dockerfile options: additionalBuildArgs, args, customWorkspace, dir, filename, label, registryCredentialsId, registryUrl, reuseNode

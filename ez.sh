@@ -12,7 +12,9 @@ DOCKER_IMG_LATEST_TAG="ez-dashing:latest"
 DOCKER_IMG_SOURCES_TAG="ez-dashing:sources"
 DOCKER_IMG_SOURCES_OS_TAG="ez-dashing:os"
 
-VERSION=0.1.0-SNAPSHOT
+VERSION=CURRENT-SNAPSHOT
+
+
 
 function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
@@ -80,14 +82,8 @@ function buildProduction {
   banner "PRODUCTION BUILD"
   cd ${FRONT_DIR}
   echo "Building front for production, please wait..."
-  if [[ "$1" == "debug" ]]; then
-    shift
-    echo "DEBUG ON (no minify/uglify)"
-    npm run build-dev
-  else
-    echo "DEBUG OFF (minify/uglify)"
-    npm run prod
-  fi
+  npm run package
+
   echo "Deploy front assets to the Spring Boot server"
   mkdir -p ${SERVER_ASSETS_DIR}
   #npm run deploy "$SERVER_ASSETS_DIR"
