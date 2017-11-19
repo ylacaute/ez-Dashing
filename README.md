@@ -18,24 +18,18 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 
 ## Online
 
+The online demo shows a running dashboard (production build) configured to consume online public API (without authentication).
 Go on [http://demo.thorpora.fr/ez-dashing/](http://demo.thorpora.fr/ez-dashing/)
 
 ## From Docker Hub
+
+The docker demo show a running dashboard (development build) configured to consume a mocked API. This demo is
+more complete because there are mocks for everything.
 ```sh
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
 Go on [http://localhost:8081](http://localhost:8081)
-
-## From sources
-You need download dependencies first in the client directory
-```sh
-npm i 
-```
-And then use the ez script
-```sh
-./ez.sh start-demo
-```
-Go on [http://localhost:8081](http://localhost:8081)
+The first screenshots below is exactly what you should see.
 
 # Production
 
@@ -52,9 +46,23 @@ __Please note that your config directory:__
  - MUST contains 'server.properties' and 'dashboard.json' (check samples config in project)
 
 ## From sources
+
+**DEPRECATED**
+If you need ez-Dashing in production but without Docker, you will have to package manually. 
+
 ```sh
-./ez.sh start-prod /YOUR/CONFIG/DIR
+# BUILD FOR PRODUCTION
+./ez.sh build-prod /YOUR/CONFIG/DIR
+
+# START FOR PRODUCTION (LOCAL)
+./ez.sh start-prod <dir>
+
+# More option here
+./ez.sh -h
+
+# If this not satisfy your needs, you will maybe will have to create scripts by yourself.
 ```
+**But keep in mind you should have no reason to start server like that, please use Docker for production.**
 
 # Documentation
 
@@ -97,7 +105,8 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
-- [ ] __PullRequestWidget__ (first Gitlab, nice to have Github)
+- [ ] __PullRequestWidget__ (Gitlab)
+- [ ] __PullRequestWidget__ (Github)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
 - [ ] __jenkinsMonitoringWidget__ (widget not migrating yet)
 - [ ] __RadioWidget__ (shared music from server)
@@ -108,17 +117,17 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
 - [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
+- [ ] __Release management__ stop work in SNAPSHOT and do the first release
 - [ ] __Improve Startup__ break the "startup" state tree
-- [ ] __Improve the build process__ especially the sh/docker part
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
 - [ ] __Improve WidgetFactory__ type declaration should be automatic 
 - [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
 - [ ] __Improve RestClient__ improve error management
-- [ ] __Use Docker compose__
 - [ ] __Fix React warning__  wrong way for minify/uglify for prod
 - [ ] __Improve Sonkins Widget__ sonar metrics should be parameterizable
 - [ ] __Use WebSockets__ instead of reloading config periodically
+- [ ] __Use Docker compose__ do we really need docker-compose ?
 - [ ] __Dynamic widget__ ideally, make pure json configurable widget 
 
 ## Build the application
@@ -129,14 +138,23 @@ You define an [server.properties](/config/server.properties) server configuratio
  - Maven 3
 
 ### Development
+
+Most of the time, you will work with front end only. So your best option is to start a mocked API and start the dev server.
+
 __Start the dev server (hot reload)__
 ```sh
-npm run dev
+npm run serve
 ```
+ - Hot reload is working for any kind of change (js, sass, html...) 
+
 __Start the mocked API__ (mock the backend)
 ```sh
 npm run api
 ```
+ - On mocks change: you need to restart the mocked API
+
+If you want to verify all the chain without mocks, just turn off the mocked API and start the back-end
+
 __Start the back-end server__ (dev)
 ```sh
 ./mvnw spring-boot:run -Dspring.config.location=file:/your/path/to/server.properties -Dspring.profiles.active=dev
@@ -145,22 +163,6 @@ __Start the back-end server__ (dev)
  - Profile prod: logs are in INFO and only in ez-dashing.log (not in console), in the same directory as the configuration.
  - On dashboard.json change: you need to restart the server.
 
-### Production
-__Build front and back-end from script__
-```sh
-./ez.sh build-prod
-```
-__Run the server__ 
-```bashsh
-./ez.sh start-prod <CONFIG_DIRECTORY>
-```
-You should have no reason to start server like that, please use Docker for production.
-In order to verify that everything is ok, you can use the config directory of this project, linked to public online sonar and jenkins server.
-
-More options in __ez.sh__
-```sh
-./ez.sh -h
-```
 
 ## Browser compatibility: 
  - __Chromium__ : good
