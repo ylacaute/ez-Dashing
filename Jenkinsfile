@@ -34,9 +34,9 @@ pipeline {
   stages {
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // CLIENTS TESTS: NPM INSTALL && NPM RUN TESTS
+    // CLIENT: NPM INSTALL, TESTS, PACKAGE, DEPLOY TO SERVER
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    stage('CLIENTS TESTS') {
+    stage('CLIENT') {
       when {
         expression { return params.RUN_CLIENT }
       }
@@ -64,9 +64,9 @@ pipeline {
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // SERVER TESTS: MVN CLEAN VERIFY
+    // SERVER: MVN CLEAN PACKAGE
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    stage('SERVER TESTS') {
+    stage('SERVER') {
       when {
         expression { return params.RUN_SERVER }
       }
