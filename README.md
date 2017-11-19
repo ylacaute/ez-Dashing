@@ -94,12 +94,12 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __BurndownChartWidget__
 - [x] __VelocityWidget__ (team velocity average on last sprints)
 - [x] __ReliabilityWidget__ (team reliability average on last sprints)
-- [ ] __jenkinsMonitoringWidget__ (widget not migrating yet)
 - [x] __TeamWidget__ (name and logo)
-- [ ] __PullRequestWidget__ (Gitlab, Github)
 - [x] __TextWidget__ (editable text, update server config)
-- [ ] __MediaWidget__ (Insert images, videos, sounds)
 - [x] __MoodWidget__ (editable team mood)
+- [ ] __PullRequestWidget__ (first Gitlab, nice to have Github)
+- [ ] __MediaWidget__ (Insert images, videos, sounds)
+- [ ] __jenkinsMonitoringWidget__ (widget not migrating yet)
 - [ ] __RadioWidget__ (shared music from server)
 
 ## Global backlog
@@ -107,7 +107,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Save widget position__ users can save/reset widget position in the localStorage
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
-- [x] __Add Jenkins pipeline__
+- [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __Improve the build process__ especially the sh/docker part
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
