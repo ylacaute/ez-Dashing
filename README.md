@@ -28,8 +28,10 @@ more complete because there are mocks for everything.
 ```sh
 docker run --rm -it -p 8081:8081 --name ez-demo -t ylacaute/ez-dashing:demo
 ```
-Go on [http://localhost:8081](http://localhost:8081)
 The first screenshots below is exactly what you should see.
+
+Go on [http://localhost:8081](http://localhost:8081)
+
 
 # Production
 
@@ -43,25 +45,27 @@ Go on [http://localhost:8080](http://localhost:8080)
 
 __Please note that your config directory:__
  - MUST be in absolute path for Docker
- - MUST contains 'server.properties' and 'dashboard.json' (check samples config in project)
+ - MUST contains 'server.properties' and 'dashboard.json' (check sample config directory in the project)
 
 ## From sources
 
 **DEPRECATED**
-If you need ez-Dashing in production but without Docker, you will have to package manually. 
+
+If you need ez-Dashing in production but without Docker, you will have to package manually it. 
 
 ```sh
 # BUILD FOR PRODUCTION
-./ez.sh build-prod /YOUR/CONFIG/DIR
+./ez.sh build-prod
 
 # START FOR PRODUCTION (LOCAL)
 ./ez.sh start-prod <dir>
 
-# More option here
+# More options here
 ./ez.sh -h
-
-# If this not satisfy your needs, you will maybe will have to create scripts by yourself.
 ```
+
+If this not satisfy your needs, you will maybe have to create scripts by yourself.
+
 **But keep in mind you should have no reason to start server like that, please use Docker for production.**
 
 # Documentation
@@ -69,7 +73,7 @@ If you need ez-Dashing in production but without Docker, you will have to packag
 ## Overview
 
 ### Front configuration
-You define a [dashboard.json](/config/dashboard.json) configuration file, composed of the sections below:
+Define a [dashboard.json](/config/dashboard.json) configuration file, composed of the sections below:
  - **env:** global variables which can be used anywhere in the configuration
  - **server:** server config, you currently can't touch this part
  - **theme:** choose your favorite theme ("default", "black", etc)
@@ -83,7 +87,7 @@ You define a [dashboard.json](/config/dashboard.json) configuration file, compos
 You define an [server.properties](/config/server.properties) server configuration file:
  - **empty by default:** this file must exist but can stay empty. It allow you override the default Spring boot configuration.
 
-### The workflow
+### Workflow
  - DataSources are regularly refreshed. When refreshed, REST responses are mapped to properties depending your configuration
  - Properties are then injected into the application state 
  - Widgets are dumb components with properties defined in the configuration and the mapped properties of the dataSources they listen to 
@@ -91,17 +95,17 @@ You define an [server.properties](/config/server.properties) server configuratio
 
 ### Why dataSources ?
  - User have a total control of REST requests and how data are mapped to the application
- - No more REST client dependencies : you build your own !
+ - No more REST client dependencies : you build your own
  - One dataSource can serve many components (no request duplication) 
 
 ## Widgets backlog
-- [x] __ClockWidget__
-- [x] __BugWidget__
+- [x] __ClockWidget__ (current date)
+- [x] __BugWidget__ (Jira)
 - [x] __SonkinsWidget__ (Jenkins + Sonar metrics)
 - [x] __SprintWidget__ (current sprint status)
-- [x] __BurndownChartWidget__
-- [x] __VelocityWidget__ (team velocity average on last sprints)
-- [x] __ReliabilityWidget__ (team reliability average on last sprints)
+- [x] __BurndownChartWidget__ (graphical scrum burndown chart)
+- [x] __VelocityWidget__ (team velocity average on last sprints, update config at end of sprint)
+- [x] __ReliabilityWidget__ (team reliability average on last sprints, update config at end of sprint)
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
@@ -117,18 +121,18 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
 - [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
-- [ ] __Release management__ stop work in SNAPSHOT and do the first release
+- [ ] __Release management__ stop working in SNAPSHOT and do the first release
+- [ ] __Add documentation__ 
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
 - [ ] __Improve WidgetFactory__ type declaration should be automatic 
-- [ ] __Add documentation__ 
 - [ ] __Improve unit tests__
 - [ ] __Improve RestClient__ improve error management
 - [ ] __Fix React warning__  wrong way for minify/uglify for prod
 - [ ] __Improve Sonkins Widget__ sonar metrics should be parameterizable
+- [ ] __Dynamic widget__ ideally, make pure json configurable widget 
 - [ ] __Use WebSockets__ instead of reloading config periodically
 - [ ] __Use Docker compose__ do we really need docker-compose ?
-- [ ] __Dynamic widget__ ideally, make pure json configurable widget 
 
 ## Build the application
 
@@ -139,30 +143,28 @@ You define an [server.properties](/config/server.properties) server configuratio
 
 ### Development
 
-Most of the time, you will work with front end only. So your best option is to start a mocked API and start the dev server.
+Most of the time, you will work with front-end only. So your best option is to start a mocked API and start the dev server.
 
 __Start the dev server (hot reload)__
 ```sh
 npm run serve
 ```
- - Hot reload is working for any kind of change (js, sass, html...) 
+ - **Hot reload**: works for any kind of front sources change (js, sass, html...) 
 
 __Start the mocked API__ (mock the backend)
 ```sh
 npm run api
 ```
- - On mocks change: you need to restart the mocked API
-
-If you want to verify all the chain without mocks, just turn off the mocked API and start the back-end
+ - **On mocks change (ez-client/api/mocks)**: you need to restart the mocked API
+ - **Verify all the chain without mocks**: turn off the mocked API and start the back-end
 
 __Start the back-end server__ (dev)
 ```sh
 ./mvnw spring-boot:run -Dspring.config.location=file:/your/path/to/server.properties -Dspring.profiles.active=dev
 ```
- - Profile dev: logs are in DEBUG.
- - Profile prod: logs are in INFO and only in ez-dashing.log (not in console), in the same directory as the configuration.
- - On dashboard.json change: you need to restart the server.
-
+ - **Profile dev**: logs are in DEBUG.
+ - **Profile prod**: logs are in INFO and only in ez-dashing.log (not in console), in the same directory as the configuration.
+ - **On dashboard.json change**: you need to restart the server.
 
 ## Browser compatibility: 
  - __Chromium__ : good
