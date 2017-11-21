@@ -4,7 +4,9 @@
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development. I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
 
-WARNING: I am currently testing the Jenkins pipeline in order to build docker images. They maybe not valid until I suppress this warning.
+=========================================
+**WARNING: I am currently testing the Jenkins pipeline in order to build docker images. They maybe not valid until I suppress this warning.**
+=========================================
 
 **Guidelines**
 
