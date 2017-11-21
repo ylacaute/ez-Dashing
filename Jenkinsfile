@@ -21,17 +21,54 @@ pipeline {
         name: 'RUN_DOCKER_OFFICIAL',
         defaultValue: true,
         description: 'Enable or not the build + push of the Docker official ez-Dashing image')
+    booleanParam(
+        name: 'RELEASE',
+        defaultValue: false,
+        description: 'Check to build a release, version will be tagged')
+    string(
+        name: 'VERSION',
+        defaultValue: '',
+        description: 'Version of the release build (semver pattern). Example: 1.0.0')
+    string(
+        name: 'CHANGELOG',
+        defaultValue: '',
+        description: 'ChangeLog describe the git tag of the release. Must no be empty when you build a release')
     string(
         name: 'DOCKER_REGISTRY_URL',
         defaultValue: 'https://index.docker.io/v1/',
-        description: 'Registry where images have to be pushed')
+        description: 'Registry where images have to be pushed (Default: Docker Hub)')
     string(
         name: 'DOCKER_CREDENTIALS',
         defaultValue: 'dockerHubCredentialsId',
         description: 'Credentials ID defined in Jenkins to connect to the Docker Registry')
+    string(
+        name: 'GITHUB_CREDENTIALS',
+        defaultValue: 'githubCredentialsId',
+        description: 'Credentials ID defined in Jenkins to connect to GitHub')
+  }
+  environment {
+    STATIC_DIR = "ez-server/target/classes/static"
   }
 
   stages {
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // INIT
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    stage('INIT') {
+      steps {
+        script {
+          banner "STAGE: INIT"
+          if (params.RELEASE) {
+            if (params.VERSION.equals("")) {
+              error "Unable to build a release without specifying a Version"
+            } else if (params.CHANGELOG.equals("")) {
+              error "Unable to build a release without specifying a ChangeLog message"
+            }
+          }
+        }
+      }
+    }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // CLIENT: NPM INSTALL, TESTS, PACKAGE, DEPLOY TO SERVER
@@ -49,6 +86,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
+          banner "STAGE: CLIENT"
           displayEnv(["whoami", "pwd", "uname -a", "node --version"])
 
           banner 'INSTALL'
@@ -57,8 +95,6 @@ pipeline {
           sh 'cd ez-client && npm run test'
           banner 'PACKAGE'
           sh 'cd ez-client && npm run package'
-          banner 'DEPLOY'
-          sh 'cd ez-client && npm run deploy'
         }
       }
     }
@@ -79,10 +115,14 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
+          banner "STAGE: SERVER"
           displayEnv(["whoami", "pwd", "uname -a", "mvn --version"])
 
+          sh 'cd ez-server && mvn clean'
+          sh "mkdir -p ${STATIC_DIR} && cp -R ez-client/dist/* ${STATIC_DIR}"
+
           banner 'PACKAGE'
-          sh 'cd ez-server && mvn clean package -U'
+          sh 'cd ez-server && mvn package -U'
         }
       }
     }
@@ -97,7 +137,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
-            sh 'ls -lh ez-client'
+            banner "STAGE: DOCKER DEMO IMAGE"
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:demo", "-f docker/demo/Dockerfile .")
               ezDemoImage.inside {
@@ -120,13 +160,45 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
-            sh 'ls -lh ez-server/target'
+            banner "STAGE: DOCKER OFFICIAL IMAGE"
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:latest", "-f docker/latest/Dockerfile .")
               ezDemoImage.inside {
                 sh 'ls -lh'
               }
               ezDemoImage.push "latest"
+              if (params.RELEASE) {
+                ezDemoImage.push "${VERSION}"
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // RELEASE TAG
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    stage('RELEASE TAG') {
+      when {
+        expression { return params.RELEASE }
+      }
+      steps {
+        ansiColor('xterm') {
+          script {
+            banner "STAGE: RELEASE TAG"
+            cmd "git tag -d ${params.VERSION} || true"
+            sh "git tag -a ${params.VERSION} -m '${params.CHANGELOG}'"
+
+            withCredentials([[
+                 $class: 'UsernamePasswordMultiBinding',
+                 credentialsId: params.GITHUB_CREDENTIALS,
+                 usernameVariable: 'GIT_USER',
+                 passwordVariable: 'GIT_PWD']]) {
+
+              def origin = "https://${GIT_USER}:${GIT_PWD}@github.com/ylacaute/ez-Dashing.git"
+              sh 'echo uname=$GIT_USER pwd=$GIT_PWD'
+              sh "git push ${origin} --tags"
             }
           }
         }
@@ -140,15 +212,17 @@ pipeline {
   post {
     always {
       echo 'Cleaning Pipeline'
+      // Clean all stopped containers, unused networks, dangling images and cache
+      sh "docker system prune -f"
     }
     success {
-      echo 'Good job bro !! Everything is ok :)'
+      sh "cowsay -f /usr/share/cowsay/cows/gnu.cow Niiiice !"
     }
     failure {
-      echo 'Holy crap...'
+      sh "cowsay -f /usr/share/cowsay/cows/dragon-and-cow.cow BUILD FAILED !"
     }
     unstable {
-      echo 'Unstable crap...'
+      sh "cowsay -f /usr/share/cowsay/cows/dragon.cow That is NOT stable !"
     }
   }
 }
@@ -170,9 +244,12 @@ def cmd(command) {
 }
 
 def banner(message) {
-  sh "banner '${message}'"
+  sh "cowsay '${message}'"
 }
 
+beginStage(message) {
+  sh "cowsay -f /usr/share/cowsay/cows/stegosaurus.cow ${message}"
+}
 
 // DOCKER PIPELINE DOC: https://jenkins.io/doc/book/pipeline/syntax/#agent
 // MEMO

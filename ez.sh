@@ -57,6 +57,9 @@ function pushDockerLatest {
 function buildProduction {
   banner "PRODUCTION BUILD"
   echo "WARN: Please prefer Jenkins to build for production"
+  echo "Clean the backend"
+  cd ${BACK_DIR}
+  mvn clean
   cd ${FRONT_DIR}
   echo "Building front for production, please wait..."
   npm run package
@@ -64,7 +67,7 @@ function buildProduction {
   npm run deploy
   cd ${BACK_DIR}
   echo "Packaging back for production, please wait..."
-  mvn clean package
+  mvn package
 }
 
 # --------------------------------------------------------------------------- #
