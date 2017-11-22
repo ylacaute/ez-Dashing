@@ -58,7 +58,7 @@ pipeline {
     stage('INIT') {
       steps {
         script {
-          beginStage("INIT")
+          beginStage "INIT"
           if (params.RELEASE) {
             if (params.VERSION.equals("")) {
               error "Unable to build a release without specifying a Version"
@@ -86,7 +86,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-          beginStage("CLIENT")
+          beginStage "CLIENT"
           displayEnv(["whoami", "pwd", "uname -a", "node --version"])
 
           banner 'INSTALL'
@@ -115,7 +115,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-          beginStage("SERVER")
+          beginStage "SERVER"
           displayEnv(["whoami", "pwd", "uname -a", "mvn --version"])
 
           sh 'cd ez-server && mvn clean'
@@ -137,7 +137,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
-            beginStage("DOCKER DEMO IMAGE")
+            beginStage "DOCKER DEMO IMAGE"
 
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:demo", "-f docker/demo/Dockerfile .")
@@ -161,7 +161,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
-            beginStage("DOCKER OFFICIAL IMAGE")
+            beginStage "DOCKER OFFICIAL IMAGE"
 
             docker.withRegistry(params.DOCKER_REGISTRY_URL, params.DOCKER_CREDENTIALS) {
               def ezDemoImage = docker.build("ylacaute/ez-dashing:latest", "-f docker/latest/Dockerfile .")
@@ -188,7 +188,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           script {
-            beginStage("RELEASE TAG")
+            beginStage "RELEASE TAG"
 
             withCredentials([[
                  $class: 'UsernamePasswordMultiBinding',
@@ -248,7 +248,7 @@ def banner(message) {
   sh "cowsay '${message}'"
 }
 
-beginStage(message) {
+def beginStage(message) {
   sh "cowsay -f /usr/share/cowsay/cows/stegosaurus.cow 'STAGE: ${message}'"
 }
 
