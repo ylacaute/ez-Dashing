@@ -4,10 +4,6 @@
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development team. The project is very young but in active development. I contribute to this project during my free time, I am aware that many things could be improved. Feel free to contribute !
 
-=========================================
-**WARNING: I am currently testing the Jenkins pipeline in order to build docker images. They maybe not valid until I suppress this warning.**
-=========================================
-
 **Guidelines**
 
  - Responsive
@@ -22,7 +18,7 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development team.
 
 ## Online
 
-The online demo shows a running dashboard (production build) configured to consume online public API (without authentication).
+The online demo shows a running dashboard (release 1.0.0) configured to consume online public API (without authentication).
 Go on [http://demo.thorpora.fr/ez-dashing/](http://demo.thorpora.fr/ez-dashing/)
 
 ## From Docker Hub
@@ -125,7 +121,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Add a menu__ a menu allow to control the localStorage user settings
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
 - [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
-- [ ] __Release management__ stop working in SNAPSHOT and do the first release
+- [x] __Release management__ release 1.0.0 is out !
 - [ ] __Add documentation__ 
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
