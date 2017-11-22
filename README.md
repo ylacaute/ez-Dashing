@@ -39,7 +39,7 @@ You can directly start to use __ez-Dashing__ by pulling the production docker im
 
 ## From Docker Hub
 ```sh
-docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:latest
+docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:1.0.0
 ```
 Go on [http://localhost:8080](http://localhost:8080)
 
