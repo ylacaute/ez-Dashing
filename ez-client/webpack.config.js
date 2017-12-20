@@ -33,7 +33,8 @@ let commonConfig = {
     darkBlueTheme: "./sass/theme/darkBlue.scss",
     dashingTheme: "./sass/theme/dashing.scss",
     defaultTheme: "./sass/theme/default.scss",
-    neonTheme: "./sass/theme/neon.scss"
+    neonTheme: "./sass/theme/neon.scss",
+    snowTheme: "./sass/theme/snow.scss"
   },
 
   // Directories where to search to resolve imports
@@ -83,7 +84,7 @@ let commonConfig = {
       template: TEMPLATE_DIR + '/index.ejs',
       inject: 'body',
       // Don't inject css into the html template in order to manage them dynamically
-      excludeChunks: [ "blackTheme", "darkBlueTheme", "dashingTheme", "defaultTheme", "neonTheme"]
+      excludeChunks: [ "blackTheme", "darkBlueTheme", "dashingTheme", "defaultTheme", "neonTheme", "snowTheme"]
     })
   ],
   module: {
