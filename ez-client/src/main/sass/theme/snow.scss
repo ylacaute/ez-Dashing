@@ -7,7 +7,7 @@
 }
 
 .react-grid-item:before {
-  background: url("/img/misc/snow.png") repeat-x;
+  background: url('#{$image-path}/misc/snow.png') repeat-x;
   display: block;
   content: " ";
   height: 15px;
@@ -48,21 +48,21 @@
   transform: translate3d(0, -100%, 0);
   animation: snow linear infinite;
   &.foreground {
-    background-image: url('/img/misc/snow-large.png');
+    background-image: url('#{$image-path}/misc/snow-large.png');
     animation-duration: $foreground-speed;
     &.layered {
       animation-delay: $foreground-speed/2;
     }
   }
   &.middleground {
-    background-image: url('/img/misc/snow-medium.png');
+    background-image: url('#{$image-path}/misc/snow-medium.png');
     animation-duration: $middleground-speed;
     &.layered {
       animation-delay: $middleground-speed/2;
     }
   }
   &.background {
-    background-image: url('/img/misc/snow-small.png');
+    background-image: url('#{$image-path}/misc/snow-small.png');
     animation-duration: $background-speed;
     &.layered {
       animation-delay: $background-speed/2
