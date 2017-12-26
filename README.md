@@ -167,11 +167,8 @@ __Start the back-end server__ (dev)
  - **On dashboard.json change**: you need to restart the server.
 
 ## Browser compatibility: 
- - __Chromium__ : good
- - __Firefox__ : average 
-   - SVG mask is not implemented yet in FF despite it is W3C compliant
-   - Performance problem with React Grid Layout
-   - Bug on flex display
+ - __Chromium__ : good (only last version tested)
+ - __Firefox__ : good (only last version tested)
  - __Safari__ : not tested
  - __Internet Explorer__ not tested
 
