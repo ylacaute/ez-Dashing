@@ -2,6 +2,16 @@
 /* BURNDOWN CHART WIDGET
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+.widget.burndownchart article > div {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 2rem;
+  padding-bottom: 3rem;
+}
+
 // Victory chart framework is sadly opiniotated about inline styles, that's why we must use !important
 // to customize chart in SASS instead of 'victory theme' which are JS based file.
 .widget.burndownchart svg {

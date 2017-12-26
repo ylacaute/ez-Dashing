@@ -41,10 +41,12 @@ export default class SprintWidget extends AbstractWidget {
     const progress = daysLeft / sprintDuration * 100;
 
     return (
+      <div>
         <CircularProgressBar
           value={progress}
           displayValue={daysLeft}
           label="days left"/>
+      </div>
     );
   }
 

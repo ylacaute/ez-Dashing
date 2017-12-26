@@ -27,6 +27,7 @@
       align-items: center;
 
       .scalable-image-wrapper {
+        align-items: center;
         width: 30%;
       }
       p {
@@ -41,7 +42,7 @@
 }
 
 // Do not display icon on small size
-.width-xxxs.height-xxxs, .width-xxs.height-xxxs {
+.width-xxxs, .width-xxs.height-xxxs {
   &.widget.text article .scalable-image-wrapper {
     display: none;
   }

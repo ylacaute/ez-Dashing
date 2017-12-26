@@ -3,19 +3,24 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.reliability article {
-  font-size: 300%;
+  font-size: 800%;
   color: $color-widget-reliability-text;
 }
 
-.height-xxs {
+.width-xxxs {
   &.widget.reliability article {
-    font-size: 700%;
+    font-size: 400%;
   }
 }
 
-.height-xs, .height-sm, .height-md, .height-lg {
+.width-xxs {
   &.widget.reliability article {
-    font-size: 1000%;
+    font-size: 600%;
   }
 }
 
+.height-xxxs {
+  &.widget.reliability article {
+    font-size: 250%;
+  }
+}

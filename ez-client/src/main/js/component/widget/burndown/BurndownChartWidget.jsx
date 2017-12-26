@@ -44,34 +44,36 @@ export default class BurndownChartWidget extends AbstractSprintWidget {
     }
     const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
     return (
-      <VictoryChart
-        width={1000}
-        height={500}
-        domainPadding={1}>
-        <VictoryAxis
-          tickValues={this.getTickValues(this.props.dateTickCount, velocity.plannedVelocity)}
-          tickFormat={(x, i) => x}
-        />
-        <VictoryAxis
-          dependentAxis
-          tickFormat={(x) => (`${x} SP`)}
-        />
-        <VictoryArea
-          data={velocity.plannedVelocity}
-          x="date"
-          y="storyPoints"
-        />
-        <VictoryLine
-          data={velocity.plannedVelocity}
-          x="date"
-          y="storyPoints"
-        />
-        <VictoryLine
-          data={velocity.currentVelocity}
-          x="date"
-          y="storyPoints"
-        />
-      </VictoryChart>
+      <div>
+        <VictoryChart
+          width={1000}
+          height={500}
+          domainPadding={1}>
+          <VictoryAxis
+            tickValues={this.getTickValues(this.props.dateTickCount, velocity.plannedVelocity)}
+            tickFormat={(x, i) => x}
+          />
+          <VictoryAxis
+            dependentAxis
+            tickFormat={(x) => (`${x} SP`)}
+          />
+          <VictoryArea
+            data={velocity.plannedVelocity}
+            x="date"
+            y="storyPoints"
+          />
+          <VictoryLine
+            data={velocity.plannedVelocity}
+            x="date"
+            y="storyPoints"
+          />
+          <VictoryLine
+            data={velocity.currentVelocity}
+            x="date"
+            y="storyPoints"
+          />
+        </VictoryChart>
+      </div>
     );
   }
 

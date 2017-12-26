@@ -3,19 +3,25 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .widget.velocity article {
-  font-size: 300%;
+  font-size: 900%;
   color: $color-widget-velocity-text;
 }
 
-.height-xxs {
+
+.width-xxxs {
+  &.widget.velocity article {
+    font-size: 500%;
+  }
+}
+
+.width-xxs {
   &.widget.velocity article {
     font-size: 700%;
   }
 }
 
-.height-xs, .height-sm, .height-md, .height-lg {
+.height-xxxs {
   &.widget.velocity article {
-    font-size: 1000%;
+    font-size: 350%;
   }
 }
-
