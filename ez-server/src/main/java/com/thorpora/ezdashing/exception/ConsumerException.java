@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 @ExceptionLog(stackTrace = false)
-public class ConsumerException extends RuntimeException {
+public class ConsumerException extends ApplicationException {
 
     public ConsumerException(String message) {
         super(message);

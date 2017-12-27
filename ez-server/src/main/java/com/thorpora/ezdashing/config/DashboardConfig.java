@@ -17,6 +17,8 @@
 package com.thorpora.ezdashing.config;
 
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
+import com.thorpora.ezdashing.exception.DashboardConfigNotFound;
+import com.thorpora.ezdashing.exception.MissingApplicationArgumentException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -41,10 +43,14 @@ public class DashboardConfig {
         String externalConfigLocation = env.getProperty("spring.config.location");
         if (externalConfigLocation != null && !externalConfigLocation.isEmpty()) {
             String path = externalConfigLocation
-                    .substring(0, externalConfigLocation.lastIndexOf('/'))
+                    .replaceAll("/$", "")
                     .replace("file:", "");
-            return new File(path + "/" + FILENAME);
+            File file = new File(path + "/" + FILENAME);
+            if (!file.exists()) {
+                throw new DashboardConfigNotFound(String.format("File '%s' does not exist.", file));
+            }
+            return file;
         }
-        return new File(this.getClass().getClassLoader().getResource(FILENAME).getFile());
+        throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
     }
 }

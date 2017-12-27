@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.thorpora.ezdashing.exception.InvalidServerConfiguration;
+import com.thorpora.ezdashing.exception.InvalidServerConfigurationException;
 import com.thorpora.ezdashing.utils.JsonUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -98,7 +98,7 @@ public class DashboardConfiguration {
         return;
       }
     }
-    throw new InvalidServerConfiguration(String
+    throw new InvalidServerConfigurationException(String
             .format("Unable to update widgetId=%s because not found in configuration. " +
                     "In order to edit a widget, you must explicitly set an unique id in the dashboard.json configuration file.", widgetId));
   }

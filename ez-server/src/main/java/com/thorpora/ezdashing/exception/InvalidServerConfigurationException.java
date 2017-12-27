@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 @ExceptionLog(stackTrace = false)
-public class InvalidServerConfiguration extends RuntimeException {
+public class InvalidServerConfigurationException extends ApplicationException {
 
-  public InvalidServerConfiguration(String message) {
+  public InvalidServerConfigurationException(String message) {
     super(message);
   }
 
