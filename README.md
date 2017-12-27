@@ -122,6 +122,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
 - [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
 - [x] __Release management__ release 1.0.0 is out !
+- [ ] __Better logging__ front & back
 - [ ] __Add documentation__ 
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
