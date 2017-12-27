@@ -1,5 +1,6 @@
 package com.thorpora.ezdashing.utils;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thorpora.ezdashing.TestTag;
 import org.assertj.core.api.Assertions;
@@ -8,12 +9,17 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static com.thorpora.ezdashing.TestTag.ADVANCED_UNIT_TEST;
 import static com.thorpora.ezdashing.TestTag.BASE_UNIT_TEST;
 import static com.thorpora.ezdashing.utils.JsonUtils.*;
 import static com.thorpora.ezdashing.utils.PatchOperation.INSERT_OR_ADD;
+import static com.thorpora.ezdashing.utils.PatchOperation.INSERT_OR_REPLACE;
 import static java.util.Arrays.asList;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class JsonUtilsTest {
 
@@ -29,7 +35,42 @@ class JsonUtilsTest {
     SampleBean readBean = fromJson(beanAsString, SampleBean.class);
 
     // THEN
-    Assertions.assertThat(readBean).isEqualToComparingFieldByField(readBean);
+    assertThat(readBean).isEqualToComparingFieldByField(readBean);
+  }
+
+  @Test
+  @Tag(BASE_UNIT_TEST)
+  @DisplayName("Patch a jsonNode with a new string field")
+  public void pathNodeWithNewStringField() {
+    // GIVEN
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    String newFieldName = "hello";
+    String newFieldValue = "world";
+
+    // WHEN
+    patchNode(INSERT_OR_ADD, jsonNode, newFieldName, newFieldValue);
+
+    // THEN
+    assertThat(jsonNode.has(newFieldName)).isTrue();
+    assertThat(jsonNode.get(newFieldName).asText()).isEqualTo(newFieldValue);
+  }
+
+  @Test
+  @Tag(BASE_UNIT_TEST)
+  @DisplayName("Patch a jsonNode with a new string field")
+  public void pathNodeWithNewStringListField() {
+    // GIVEN
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    String newFieldName = "hello";
+    List<String> newFieldValue = Collections.singletonList("world");
+
+    // WHEN
+    patchNode(INSERT_OR_ADD, jsonNode, newFieldName, newFieldValue);
+
+    // THEN
+    assertThat(jsonNode.has(newFieldName)).isTrue();
+    ArrayNode arrayNode = (ArrayNode) jsonNode.get(newFieldName);
+    assertThat(arrayNode.get(0).asText()).isEqualTo(newFieldValue.get(0));
   }
 
   @Test
@@ -45,7 +86,57 @@ class JsonUtilsTest {
 
     // THEN
     SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
-    Assertions.assertThat(result.getName()).isEqualTo(newName);
+    assertThat(result.getName()).isEqualTo(newName);
+  }
+
+  @Test
+  @Tag(BASE_UNIT_TEST)
+  @DisplayName("Patch a jsonNode array by adding a string to a string list field")
+  public void pathNodeByAddingStringToListStringField() {
+    // GIVEN
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    String newValue = "4";
+
+    // WHEN
+    patchNode(INSERT_OR_ADD, jsonNode, "stringListValues", newValue);
+
+    // THEN
+    SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
+    assertThat(result.getStringListValues()).containsExactly("1", "2", "3", "4");
+  }
+
+  @Test
+  @Tag(BASE_UNIT_TEST)
+  @DisplayName("Patch a jsonNode array by ADDING a list of String to a string list field")
+  public void pathNodeWithAddOperationOnStringList() {
+    // GIVEN
+    PatchOperation operation = INSERT_OR_ADD;
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    List<String> newValues = Collections.singletonList("4");
+
+    // WHEN
+    patchNode(operation, jsonNode, "stringListValues", newValues);
+
+    // THEN
+    SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
+    assertThat(result.getStringListValues()).containsExactly("1", "2", "3", "4");
+  }
+
+  @Test
+  @Tag(BASE_UNIT_TEST)
+  @DisplayName("Patch a jsonNode array by REPLACING a list of String by a new one")
+  public void pathNodeWithReplaceOperationOnStringList() {
+    // GIVEN
+    PatchOperation operation = INSERT_OR_REPLACE;
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    List<String> newValues = Collections.singletonList("4");
+
+    // WHEN
+    patchNode(operation, jsonNode, "stringListValues", newValues);
+
+    // THEN
+    SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
+    assertThat(result.getStringListValues()).containsExactly("4");
   }
 
   @Test
@@ -61,7 +152,7 @@ class JsonUtilsTest {
 
     // THEN
     SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
-    Assertions.assertThat(result.getIntValues()).containsExactly(1, 2, 3, 4);
+    assertThat(result.getIntValues()).containsExactly(1, 2, 3, 4);
   }
 
   @Test
@@ -77,7 +168,7 @@ class JsonUtilsTest {
 
     // THEN
     SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
-    Assertions.assertThat(result.getObjectValues()).containsExactly(1, 2, 3, 4);
+    assertThat(result.getObjectValues()).containsExactly(1, 2, 3, 4);
   }
 
   @Test
@@ -93,23 +184,50 @@ class JsonUtilsTest {
 
     // THEN
     SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
-    Assertions.assertThat(result.getIntListValues()).containsExactly(1, 2, 3, 4);
+    assertThat(result.getIntListValues()).containsExactly(1, 2, 3, 4);
   }
 
   @Test
-  @Tag(BASE_UNIT_TEST)
-  @DisplayName("Patch a jsonNode array by adding strings from a List to an array field")
-  public void pathNodeWithAddOperationOnStringList() {
+  @Tag(ADVANCED_UNIT_TEST)
+  @DisplayName("Patch a jsonNode by adding integers from a List to an array field")
+  public void pathNodeWithMapWithDefaultReplaceOperation() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
-    List<String> newValues = Collections.singletonList("4");
+    List<Integer> newIntValues = Collections.singletonList(4);
+    String newNameValue = "new";
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", newNameValue);
+    map.put("intListValues", newIntValues);
 
     // WHEN
-    patchNode(INSERT_OR_ADD, jsonNode, "stringListValues", newValues);
+    patchNode(jsonNode, map);
 
     // THEN
     SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
-    Assertions.assertThat(result.getStringListValues()).containsExactly("1", "2", "3", "4");
+    assertThat(result.getIntListValues()).containsExactly(4);
+    assertThat(result.getName()).isEqualTo(newNameValue);
+  }
+
+
+  @Test
+  @Tag(ADVANCED_UNIT_TEST)
+  @DisplayName("Patch a jsonNode by adding integers from a List to an array field")
+  public void pathNodeWithMap() {
+    // GIVEN
+    ObjectNode jsonNode = valueToTree(createDefaultBean());
+    List<Integer> newIntValues = Collections.singletonList(42);
+    String newNameValue = "Bob";
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", newNameValue);
+    map.put("intListValues", newIntValues);
+
+    // WHEN
+    patchNode(INSERT_OR_ADD, jsonNode, map);
+
+    // THEN
+    SampleBean result = JsonUtils.treeToValue(jsonNode, SampleBean.class);
+    assertThat(result.getIntListValues()).containsExactly(1, 2, 3, 42);
+    assertThat(result.getName()).isEqualTo(newNameValue);
   }
 
   private SampleBean createDefaultBean() {
