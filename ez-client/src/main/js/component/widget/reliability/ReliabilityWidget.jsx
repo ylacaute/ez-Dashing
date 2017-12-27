@@ -17,13 +17,13 @@ export default class ReliabilityWidget extends AbstractSprintWidget {
   static propTypes = {
     reliabilityHistory: PropTypes.array.isRequired,
     valueCountForAverage: PropTypes.number,
-    lastSprintId: PropTypes.number.isRequired
+    lastSprintId: PropTypes.string.isRequired
   };
 
   static defaultProps = {
     reliabilityHistory: [],
     valueCountForAverage: 3,
-    lastSprintId: 0
+    lastSprintId: "-"
   };
 
   /**

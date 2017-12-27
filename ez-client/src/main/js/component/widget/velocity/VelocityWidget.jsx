@@ -8,7 +8,7 @@ import Logger from 'utils/Logger';
 const logger = Logger.getLogger("VelocityWidget");
 
 /**
- * This widget as two purpose: display the velocity average of the team and emit an event with the
+ * This widget display the velocity average of the team and emit an event with the
  * current velocity at the end of sprint (last day of sprint -1 hour). This event must be handled
  * in order to save this new velocity value in the configuration file.
  */
@@ -17,13 +17,13 @@ export default class VelocityWidget extends AbstractSprintWidget {
   static propTypes = {
     velocityHistory: PropTypes.array.isRequired,
     valueCountForAverage: PropTypes.number,
-    lastSprintId: PropTypes.number.isRequired
+    lastSprintId: PropTypes.string.isRequired
   };
 
   static defaultProps = {
     velocityHistory: [],
     valueCountForAverage: 3,
-    lastSprintId: 0
+    lastSprintId: "-"
   };
 
   /**
