@@ -4,7 +4,6 @@ import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
 import DateService from "service/date/DateService";
 import VelocityCalculator from "utils/VelocityCalculator";
 import DateUtils from "utils/DateUtils";
-
 import Logger from 'utils/Logger';
 
 const logger = Logger.getLogger("SprintWidget");
@@ -38,13 +37,17 @@ export default class AbstractSprintWidget extends AbstractWidget {
     }, 3600 * 1000); // every hour
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
   /**
    * If the current date is the last day of the sprint, between 23:00 and 23:59, the will call
    * onEndOfSprint method that sub widgets can override.
    */
   checkEndOfSprint() {
     const now = DateService.now();
-    if (this.isLastDayOfSprint(now)) {
+    if (this.isLastDayOfSprint(now) && now.getHours() === 23) {
       logger.info("End of Sprint detected (now={})", now);
       this.onEndOfSprint();
     }
@@ -57,10 +60,10 @@ export default class AbstractSprintWidget extends AbstractWidget {
   }
 
   /**
-   * Return true it we are at the last day of the Sprint, between 23:00 and 23:59
+   * Return true it we are at the last day of the Sprint
    */
   isLastDayOfSprint(now) {
-    return DateUtils.equalsAtDay(now, this.props.sprintEndDate) && now.getHours().equals(23)
+    return DateUtils.equalsAtDay(now, this.props.sprintEndDate);
   }
 
   computeVelocity(now) {

@@ -16,7 +16,13 @@ function spDoneAtDate(date, allSprintIssues) {
 
 function getSprintStoryPoints(allSprintIssues) {
   let totalStoryPoints = 0;
-  allSprintIssues.forEach(issue => totalStoryPoints += issue.storyPoints);
+  allSprintIssues.forEach(issue => {
+    if (!issue.hasOwnProperty("storyPoints")) {
+      logger.warn("No storyPoints defined for issue ", issue);
+    } else {
+      totalStoryPoints += issue.storyPoints;
+    }
+  });
   return totalStoryPoints;
 }
 

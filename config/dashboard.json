@@ -4,7 +4,7 @@
   },
   "server" : {
     "dataSourcePath" : "/api/consumer/",
-    "now" : "2017-12-27T23:28:03.000+0200"
+    "now" : "2017-12-20T23:28:03.000+0100"
   },
   "theme" : "black",
   "dataSources" : [ {
@@ -284,9 +284,16 @@
   }, {
     "id" : "velocityWidget",
     "type" : "VelocityWidget",
-    "title" : "TEAM VELOCITY",
+    "title" : "VELOCITY",
     "lastSprintId" : "10",
     "velocityHistory" : [ 999, 2550, 989, 10, 20, 30, 94 ],
+    "dataSource" : [ "jira-story-closed", "jira-story-ready", "jira-sprint-active" ]
+  }, {
+    "id" : "reliabilityWidget",
+    "type" : "ReliabilityWidget",
+    "title" : "RELIABILITY",
+    "lastSprintId" : "10",
+    "reliabilityHistory" : [ 32 ],
     "dataSource" : [ "jira-story-closed", "jira-story-ready", "jira-sprint-active" ]
   } ],
   "avatars" : [ {
