@@ -51,6 +51,7 @@ public class DashboardConfig {
             }
             return file;
         }
-        throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
+        return new File(this.getClass().getClassLoader().getResource(FILENAME).getFile());
+        //throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
     }
 }

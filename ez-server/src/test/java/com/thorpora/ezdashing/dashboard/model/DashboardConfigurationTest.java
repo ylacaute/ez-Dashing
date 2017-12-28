@@ -99,7 +99,7 @@ public class DashboardConfigurationTest {
             .findFirst();
     assertThat(updatedWidget).isPresent();
     assertThat(updatedWidget.get().getAsIntList("velocity"))
-            .containsExactly(999, 2550, 989, 10, 20, 30, 0, 1);
+            .containsExactly(0, 1);
   }
 
 }

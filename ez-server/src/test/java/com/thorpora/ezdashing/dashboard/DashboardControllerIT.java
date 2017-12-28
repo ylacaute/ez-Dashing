@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.thorpora.ezdashing.TestTag.BASE_IT;
 import static com.thorpora.ezdashing.TestTag.STORY_IT;
+import static java.util.Collections.singletonList;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -110,6 +112,6 @@ class DashboardControllerIT extends AbstractIT {
               .statusCode(SC_OK)
               .contentType(ContentType.JSON)
               .body("widgets.find {it.id == 'velocityUniqueId'}.velocity",
-                      equalTo(Arrays.asList(999, 2550, 989, 10, 20, 30, 42)));
+                      equalTo(singletonList(42)));
   }
 }
