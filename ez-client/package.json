@@ -1,7 +1,7 @@
 {
   "name": "ez-client",
   "title": "es-Dashing client",
-  "version": "latest",
+  "version": "1.1.0",
   "description": "Another free dashboard tool",
   "author": "Yannick Lacaute",
   "license": "Apache-2.0",
