@@ -8,12 +8,13 @@
 # Note that '/tmp/ez-config' is your local directory containg configuration files. This directory
 # must be in lower case and should contains 'server.properties' and 'dashboard.json'.
 
-FROM frolvlad/alpine-oraclejdk8:slim
+# DEBIAN STRETCH + JDK
+FROM openjdk:8-jdk
 
 LABEL maintainer "Yannick Lacaute <yannick.lacaute@gmail.com>"
 
-ARG uid=1000
-ARG gid=1000
+ARG uid=2042
+ARG gid=2042
 ARG VERSION="CURRENT-SNAPSHOT"
 
 COPY ez-server/target/classes /usr/src/app/classes
