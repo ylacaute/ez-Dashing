@@ -1,5 +1,4 @@
 // Project: ez-Dashing
-// Version: CURRENT-SNAPSHOT (no release yet)
 // Author: Yannick Lacaute
 
 pipeline {
@@ -48,6 +47,8 @@ pipeline {
   }
   environment {
     STATIC_DIR = "ez-server/target/classes/static"
+    DEV_BRANCH = "master"
+    RELEASE_BRANCh_PREFIX = "release-"
   }
 
   stages {
@@ -60,10 +61,16 @@ pipeline {
         script {
           beginStage "INIT"
           if (params.RELEASE) {
-            if (params.VERSION.equals("")) {
+            // Check error argument
+            if (params.VERSION == "") {
               error "Unable to build a release without specifying a Version"
-            } else if (params.CHANGELOG.equals("")) {
+            } else if (params.CHANGELOG == "") {
               error "Unable to build a release without specifying a ChangeLog message"
+            }
+
+            // If we are on master, we need to create a new release branch
+            if (params.GIT_BRANCH == DEV_BRANCH) {
+              sh 'git checkout -b ${RELEASE_BRANCh_PREFIX}${VERSION}'
             }
           }
         }
@@ -118,11 +125,18 @@ pipeline {
           beginStage "SERVER"
           displayEnv(["whoami", "pwd", "uname -a", "mvn --version"])
 
+          banner 'CLEAN'
           sh 'cd ez-server && mvn clean'
           sh "mkdir -p ${STATIC_DIR} && cp -R ez-client/dist/* ${STATIC_DIR}"
 
+          banner 'TESTS'
+          sh 'cd ez-server && mvn verify -U'
+
+          banner 'UPDATE POM TO ${VERSION}'
+          sh 'mvn versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false'
+
           banner 'PACKAGE'
-          sh 'cd ez-server && mvn package -U'
+          sh 'cd ez-server && mvn package -DskipTests'
         }
       }
     }
@@ -189,6 +203,8 @@ pipeline {
         ansiColor('xterm') {
           script {
             beginStage "RELEASE TAG"
+
+            sh "updateVersion.sh ${params.VERSION}"
 
             withCredentials([[
                  $class: 'UsernamePasswordMultiBinding',

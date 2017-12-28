@@ -1,18 +1,53 @@
 #!/bin/bash
 
+# Load generic functions
+. utils.sh
+
+
 PREVIOUS_DIR="$(pwd)"
-PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+PROJECT_DIR="$(getScriptDirectory)"
 FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 FRONT_BUILD_DIR="$FRONT_DIR/dist"
+
 DOCKER_IMG_DEMO_TAG="ez-dashing:demo"
 DOCKER_IMG_LATEST_TAG="ez-dashing:latest"
+
 VERSION=CURRENT-SNAPSHOT
+
 
 function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
   echo "* $1"
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
+}
+
+# --------------------------------------------------------------------------- #
+# VERSION UPDATE FUNCTIONS
+# --------------------------------------------------------------------------- #
+function updatePackageJsonVersion() {
+  local version=${1}
+  local clientDirectory=${2}
+  cd ${clientDirectory}
+  sed -i "s/\(.*\)\(version\)\(.*\)\"\(.*\)\"\(.*\)/\1\2\3\"${version}\"\5/" package.json
+  cd -
+}
+function updatePomVersion() {
+  local version=${1}
+  local serverDirectory=${2}
+  cd ${serverDirectory}
+  mvn versions:set -DnewVersion=${version} -DgenerateBackupPoms=false
+  cd -
+}
+function updateProjectVersion() {
+  local version=${1}
+  local frontDirectory=${2}
+  local backDirectory=${2}
+
+
+  updatePackageJsonVersion ${version} ${frontDirectory}
+  //updatePomVersion ${version} ${backDirectory}
 }
 
 # --------------------------------------------------------------------------- #
@@ -75,7 +110,7 @@ function buildProduction {
 # --------------------------------------------------------------------------- #
 function startProduction {
   banner "STARTING EZ-DASHING FOR PRODUCTION"
-  echo "DEPRECATED: You should have no reason to use this."
+  warn "DEPRECATED: You should have no reason to use this."
   cd ${PROJECT_DIR}
   for arg in $@; do
     echo "* Argument: $arg"
@@ -83,7 +118,7 @@ function startProduction {
   local configPath=${1}
   shift
   if [[ "$configPath" == "" ]]; then
-    echo "Directory missing !"
+    echo "Config directory missing !"
     usage
     exit 1
   fi
@@ -93,18 +128,6 @@ function startProduction {
     --logging.file=${configPath}/ez-dashing.log  $@
 }
 
-# --------------------------------------------------------------------------- #
-# START DEV
-# --------------------------------------------------------------------------- #
-function startDev {
-  banner "STARTING EZ-DASHING FOR DEMO"
-  cd ${FRONT_DIR}
-  echo "Starting the mock API, please wait..."
-  npm run api &
-  echo "Starting the front app, please wait..."
-  sleep 2
-  npm run serve
-}
 
 function usage {
   echo
@@ -114,13 +137,11 @@ function usage {
   echo
   echo "Commands:"
   echo
-  echo "  start-dev              start the dev (serve with hot-reload plugged to a mocked api)"
+  echo "  build-prod             build all for production"
   echo "  start-prod <dir>       start the server in production mode"
   echo "    <dir> must be your config directory which:"
   echo "    * must have 'server.properties' and 'dashboard.json' inside"
   echo "    * must be in absolute when using Docker"
-  echo "  build-prod             build all for production"
-  echo "  build-prod debug       build all for production (no minify/uglify)"
   echo "  build-docker-demo      Build the demo docker image"
   echo "  build-docker-latest    Build the prod docker image"
   echo "  build-docker-sources   experimental, don't work"
@@ -134,15 +155,19 @@ function main {
   shift
   case ${command} in
 
-    # DEMO FROM FRONT ONLY
-    start-demo)
-      startDemo;;
-
     # PROD FROM ALL SOURCES
     build-prod)
       buildProduction;;
     start-prod)
       startProduction $@;;
+
+    # UPDATE PROJECT VERSION
+    update-version)
+      local version=${1}
+      if [[ "${version}" == "" ]]; then
+        echo "No version specified."
+      fi
+      updateProjectVersion "${1}" "${FRONT_DIR}" "${BACK_DIR}";;
 
     # BUILD DOCKER IMAGES
     build-docker-demo)
@@ -160,6 +185,8 @@ function main {
       usage
   esac
 }
+
+info "Project directory: ${PROJECT_DIR}"
 
 main $@
 
