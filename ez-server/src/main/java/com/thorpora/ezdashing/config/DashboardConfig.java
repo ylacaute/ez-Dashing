@@ -40,12 +40,14 @@ public class DashboardConfig {
     /**
      * We assume the dashboard.json configuration file is always in the same directory as the
      * application.properties, even if its location is defined with "spring.config.location".
+     *
+     * Remember that spring.config.location is the FULL PATH, including the properties filename.
      */
     private File getConfigFile(Environment env) {
         String externalConfigLocation = env.getProperty("spring.config.location");
         if (externalConfigLocation != null && !externalConfigLocation.isEmpty()) {
             String path = externalConfigLocation
-                    .replaceAll("/$", "")
+                    .substring(0, externalConfigLocation.lastIndexOf('/'))
                     .replace("file:", "");
             File file = new File(path + "/" + FILENAME);
             if (!file.exists()) {
