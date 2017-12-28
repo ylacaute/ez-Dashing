@@ -132,9 +132,6 @@ pipeline {
           banner 'TESTS'
           sh 'cd ez-server && mvn verify -U'
 
-          banner 'UPDATE POM TO ${VERSION}'
-          sh 'mvn versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false'
-
           banner 'PACKAGE'
           sh 'cd ez-server && mvn package -DskipTests'
         }
