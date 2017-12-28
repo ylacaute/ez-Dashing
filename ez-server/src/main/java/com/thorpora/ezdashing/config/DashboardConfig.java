@@ -21,14 +21,16 @@ import com.thorpora.ezdashing.exception.DashboardConfigNotFound;
 import com.thorpora.ezdashing.exception.MissingApplicationArgumentException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
 import java.io.File;
 
+@Profile({"prod", "dev"})
 @Configuration
 public class DashboardConfig {
 
-    private static final String FILENAME = "dashboard.json";
+    public static final String FILENAME = "dashboard.json";
 
     @Bean
     public DashboardConfiguration dashboardConfiguration(Environment env) {
@@ -51,7 +53,6 @@ public class DashboardConfig {
             }
             return file;
         }
-        return new File(this.getClass().getClassLoader().getResource(FILENAME).getFile());
-        //throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
+        throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
     }
 }
