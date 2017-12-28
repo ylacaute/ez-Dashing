@@ -3,7 +3,6 @@
 # Load generic functions
 . utils.sh
 
-
 PREVIOUS_DIR="$(pwd)"
 
 PROJECT_DIR="$(getScriptDirectory)"
@@ -21,33 +20,6 @@ function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
   echo "* $1"
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
-}
-
-# --------------------------------------------------------------------------- #
-# VERSION UPDATE FUNCTIONS
-# --------------------------------------------------------------------------- #
-function updatePackageJsonVersion() {
-  local version=${1}
-  local clientDirectory=${2}
-  cd ${clientDirectory}
-  sed -i "s/\(.*\)\(version\)\(.*\)\"\(.*\)\"\(.*\)/\1\2\3\"${version}\"\5/" package.json
-  cd -
-}
-function updatePomVersion() {
-  local version=${1}
-  local serverDirectory=${2}
-  cd ${serverDirectory}
-  mvn versions:set -DnewVersion=${version} -DgenerateBackupPoms=false
-  cd -
-}
-function updateProjectVersion() {
-  local version=${1}
-  local frontDirectory=${2}
-  local backDirectory=${2}
-
-
-  updatePackageJsonVersion ${version} ${frontDirectory}
-  //updatePomVersion ${version} ${backDirectory}
 }
 
 # --------------------------------------------------------------------------- #
