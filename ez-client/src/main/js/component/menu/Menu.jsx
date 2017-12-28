@@ -63,9 +63,13 @@ class Menu extends React.Component {
           <i className="theme-icon"/>
           <span>Set Black Theme</span>
         </a>
-        <a className="menu-item" onClick={(e) => this.changeTheme("dashing")} href="#">
+        <a className="menu-item" onClick={(e) => this.changeTheme("dashing")}>
           <i className="theme-icon"/>
           <span>Set Dashing Theme</span>
+        </a>
+        <a className="menu-item" onClick={(e) => this.changeTheme("snow")}>
+          <i className="theme-icon"/>
+          <span>Snow Theme</span>
         </a>
         <a className="menu-item" onClick={this.resetLocalStorage.bind(this)}>
           <i className="layout-icon"/>
