@@ -133,14 +133,6 @@ function main {
     start-prod)
       startProduction $@;;
 
-    # UPDATE PROJECT VERSION
-    update-version)
-      local version=${1}
-      if [[ "${version}" == "" ]]; then
-        echo "No version specified."
-      fi
-      updateProjectVersion "${1}" "${FRONT_DIR}" "${BACK_DIR}";;
-
     # BUILD DOCKER IMAGES
     build-docker-demo)
       createDockerDemo;;
