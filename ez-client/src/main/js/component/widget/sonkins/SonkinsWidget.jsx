@@ -18,9 +18,9 @@ export default class SonkinsWidget extends AbstractWidget {
     building: PropTypes.bool,
     branch: PropTypes.string,
     progress: PropTypes.number,
-    lines: PropTypes.number,
-    coverage: PropTypes.number,
-    violations: PropTypes.number
+    lines: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    coverage: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    violations: PropTypes.oneOf([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
@@ -108,7 +108,7 @@ export default class SonkinsWidget extends AbstractWidget {
     return (
       <div className="metrics">
         {this.renderAuthorMetric("Last build")}
-        {this.renderMetric("Line", lines, null, n => `${parseInt(n / 1000)}k`)}
+        {this.renderMetric("Line", lines, null, n => `${parseInt(Number(n) / 1000)}k`)}
         {this.renderMetric("Violations", violations, this.props.thresholds.violations, n => n)}
         {this.renderMetric("Coverage", coverage, this.props.thresholds.coverage, n => `${n}%`)}
       </div>
