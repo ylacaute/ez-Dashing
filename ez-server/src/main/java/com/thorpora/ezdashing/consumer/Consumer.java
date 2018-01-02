@@ -66,7 +66,7 @@ public class Consumer {
         variables.putAll(params);
         fullQuery = replaceVariables(fullQuery, variables);
         String[] pathAndQueryParams = fullQuery.split("\\?");
-        String path = pathAndQueryParams[0];
+        String path = pathAndQueryParams[0].replaceFirst("^/", "");
         Map<String, String> paramsMap = getQueryParamsAsMap(pathAndQueryParams[1]);
         return apiConsumer.query(path, paramsMap);
     }
