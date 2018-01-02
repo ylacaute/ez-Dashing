@@ -7,9 +7,9 @@ export default class SonarWidget extends AbstractWidget {
 
   static propTypes = {
     logoUrl: PropTypes.string,
-    lines: PropTypes.number,
-    coverage: PropTypes.number,
-    violations: PropTypes.number
+    lines: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    coverage: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    violations: PropTypes.oneOf([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class SonarWidget extends AbstractWidget {
         <Metric
           label="Lines"
           value={lines}
-          formatValue={n => `${parseInt(n / 1000)}k`}
+          formatValue={n => `${parseInt(Number(n) / 1000)}k`}
         />
         <Metric
           label="Violations"
