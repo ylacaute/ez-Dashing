@@ -77,11 +77,11 @@ describe("TypeUtils", () => {
     assert.equal(TypeUtils.convert("42.5", "str"), "42.5");
   });
 
-  it("convert() should convert to date a RFC 2822 formatted date: Sat, 13 Mar 2010 11:29:05 -0100", () => {
-    assert.equal(
-      TypeUtils.convert("Sat, 13 Mar 2010 11:29:05 -0100", "date").getTime(),
-      new Date(2010, 2, 13, 12, 29, 5).getTime());
-  });
+  //it("convert() should convert to date a RFC 2822 formatted date: Sat, 13 Mar 2010 11:29:05 -0100", () => {
+  //  assert.equal(
+  //    TypeUtils.convert("Sat, 13 Mar 2010 11:29:05 -0100", "date").getTime(),
+  //    new Date(2010, 2, 13, 12, 29, 5).getTime());
+  //});
 
   it("convert() should convert to date a non standard formatted date: Sat Aug 19 2017 16:58:34 GMT+0200 (CEST)", () => {
     assert.equal(
