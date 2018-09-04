@@ -1,4 +1,4 @@
-[![Build Status](http://jk.thorpora.fr/buildStatus/icon?job=ez-dashing/master)](http://jk.thorpora.fr/job/ez-dashing/job/master/)
+#[![Build Status](http://jk.thorpora.fr/buildStatus/icon?job=ez-dashing/master)](http://jk.thorpora.fr/job/ez-dashing/job/master/)
 
 # <img src="/ez-client/src/main/resources/img/tech/ezLogo.png" width="100" alt="ez-Dashing"> ez-Dashing
 
