@@ -1,11 +1,11 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const IS_DEV = (process.env.NODE_ENV === 'dev');
+const IS_DEV = (process.env.NODE_ENV === 'development');
 const BUILD_DIR = path.join(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src/main');
 const JS_DIR = SRC_DIR + "/js";
@@ -14,7 +14,9 @@ const RESOURCES_DIR = SRC_DIR + "/resources";
 const TEMPLATE_DIR = SRC_DIR + "/template";
 const LIB_DIR = 'node_modules';
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Common Webpack configuration for production or development
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let commonConfig = {
 
   // Context directory for sources (entries are defined with relative path from there)
@@ -23,9 +25,9 @@ let commonConfig = {
   // Source entries to compile
   entry: {
     app: [
-      'react-hot-loader/patch',
+      //'react-hot-loader/patch',
       './js/main.jsx'
-    ],
+    ].filter(Boolean),
     vendor: [
       "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
       "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "victory"],
@@ -47,6 +49,13 @@ let commonConfig = {
     ]
   },
 
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     name: false,
+  //   }
+  // },
+
   // Plugins extensions
   plugins: [
 
@@ -58,23 +67,33 @@ let commonConfig = {
       IS_DEV: IS_DEV,
     }),
 
+    //new webpack.HotModuleReplacementPlugin(),
+
     // Extract css in a file
-    new ExtractTextPlugin({
+    // new ExtractTextPlugin({
+    //   filename: "css/[name].css",
+    //   allChunks: true
+    // }),
+
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
       filename: "css/[name].css",
-      allChunks: true
+      chunkFilename: 'css/[name].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
 
     // Copy resources directory to the output
     new CopyWebpackPlugin([{
-      from: RESOURCES_DIR
+      from: RESOURCES_DIR, to: BUILD_DIR
     }]),
 
     // Extract vendor libs to have a clear separation with the application
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor'],
-      filename: '[name].js',
-      minChunks: 2,
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   names: ['vendor'],
+    //   filename: '[name].js',
+    //   minChunks: 2,
+    // }),
 
     // Generate the index.html from a template
     new HtmlWebpackPlugin({
@@ -84,7 +103,7 @@ let commonConfig = {
       template: TEMPLATE_DIR + '/index.ejs',
       inject: 'body',
       // Don't inject css into the html template in order to manage them dynamically
-      excludeChunks: [ "blackTheme", "darkBlueTheme", "dashingTheme", "defaultTheme", "neonTheme", "snowTheme"]
+      excludeChunks: [ "blackTheme", "darkBlueTheme", "dashingTheme", "defaultTheme", "neonTheme", "snowTheme" ]
     })
   ],
   module: {
@@ -95,26 +114,43 @@ let commonConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: ["es2015", "react"],
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react" ],
             plugins: [
-              "react-hot-loader/babel",      // react hot reload
-              "transform-class-properties",  // static
-              "transform-object-rest-spread" // use of '...' for properties
+              //"react-hot-loader/babel",      // react hot reload
+              "@babel/plugin-proposal-class-properties",  // static
+              "@babel/plugin-proposal-object-rest-spread" // use of '...' for properties
             ]
           },
         }]
       },
       {
         test: /\.(css|sass|scss)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
+        use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: '../',
+              //hmr: process.env.NODE_ENV === 'development',
+            },
+          }, {
             loader: 'css-loader',
             options: { url: false }
           }, {
             loader: 'sass-loader'
-          }]
-        })
+          }
+        ],
+        // use: ExtractTextPlugin.extract({
+        //   fallback: 'style-loader',
+        //   use: [{
+        //     loader: 'css-loader',
+        //     options: { url: false }
+        //   }, {
+        //     loader: 'sass-loader'
+        //   }]
+        // })
       }, {
         test: /\.(png|svg)$/,
         exclude: /node_modules/,
@@ -135,7 +171,12 @@ let commonConfig = {
   }
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// DEV CONFIG
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let devConfig = {
+
+  mode: 'development',
 
   // generated code only (no source-map for faster build)
   devtool: 'eval',
@@ -153,7 +194,9 @@ let devConfig = {
       "/api": {
         target: "http://localhost:8080"
       }
-    }
+    },
+    open: true,
+    //hot: true
   },
 
   watchOptions: {
@@ -164,7 +207,12 @@ let devConfig = {
 
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// PROD CONFIG
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let prodConfig = {
+
+  mode: 'production',
 
   // generated code and source-map (slower build)
   devtool: 'cheap-module-source-map',
@@ -178,7 +226,12 @@ let prodConfig = {
   plugins: commonConfig.plugins.concat([
 
     // Force to remove the build directory before each production build
-    new CleanWebpackPlugin([BUILD_DIR])
+    new CleanWebpackPlugin({
+      verbose: true,
+      cleanStaleWebpackAssets: false,
+      protectWebpackAssets: false,
+      cleanOnceBeforeBuildPatterns: [BUILD_DIR]
+    })
   ])
 };
 

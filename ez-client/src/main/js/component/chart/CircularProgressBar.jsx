@@ -41,11 +41,11 @@ export default class CircularProgressBar extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      value: nextProps.value,
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     value: nextProps.value,
+  //   });
+  // }
 
   componentWillUnmount() {
     clearTimeout(this.initialTimeout);

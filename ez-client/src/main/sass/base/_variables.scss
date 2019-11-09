@@ -133,7 +133,40 @@ $image-danger: 'bomb.svg' !default;
 /* ez-Dashing KNACSS configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// MOBILE FONT SIZE
+// Font sizes (1.6rem value is "16px" equivalent)
+$font-size-base : 1.6rem !default;
+$font-sizes: (
+  base: (
+    mobile  : 1rem,
+    desktop : $font-size-base
+  ),
+  h1: (
+    mobile  : 1.8rem,
+    desktop : 1.8rem
+  ),
+  h2: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h3: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h4: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h5: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h6: (
+    mobile  : 1rem,
+    desktop : 1rem
+  )
+) !default;
+
+
 $base-font-size : 1.4rem !default;
 $line-height    : 1.4 !default;
 $h1-size        : 1.8rem !default;
@@ -158,6 +191,6 @@ $font-size-widget-sub-title: $h2-size-l !default;
 $font-size-widget-article-desktop: 120% !default;
 
 // font stacks
-//$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !default; // system font stack
+$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !default; // system font stack
 //$font-stack-headings  : sans-serif !default; // headings font
 //$font-stack-monospace : consolas, courier, monospace !default; // monospace font

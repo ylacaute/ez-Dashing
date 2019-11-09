@@ -5,10 +5,10 @@
 @import "node_modules/knacss/sass/_config/variables";
 
 // BASE
-@import "node_modules/knacss/sass/_config/breakpoints";
+//@import "~node_modules/knacss/sass/_config/breakpoints";
 @import "node_modules/knacss/sass/_config/mixins";
-@import "node_modules/knacss/sass/_vendor/normalize";
-@import "node_modules/knacss/sass/library/base";
+@import "node_modules/knacss/sass/_vendor/reboot";
+@import "node_modules/knacss/sass/_library/base";
 @import 'base/layouts';
 @import 'base/base';
 @import 'base/ui';

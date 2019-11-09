@@ -21,9 +21,9 @@ export default class LinearProgressBar extends React.Component {
     this.updateState(this.props);
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.updateState(nextProps);
-  };
+  // componentWillReceiveProps(nextProps) {
+  //   this.updateState(nextProps);
+  // };
 
   updateState() {
     this.setState({
