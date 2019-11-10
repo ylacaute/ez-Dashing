@@ -10,7 +10,7 @@ const findById = (dataSources, id) => {
 };
 
 const indexOfId = (dataSources, id) => {
-  const ds = dataSources.find(ds => ds.id == id);
+  const ds = findById(dataSources, id);
   return dataSources.indexOf(ds);
 };
 

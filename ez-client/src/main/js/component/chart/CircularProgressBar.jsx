@@ -4,22 +4,23 @@ import PropTypes from 'prop-types';
 export default class CircularProgressBar extends React.Component {
 
   static propTypes = {
+    label: PropTypes.string,
     value: PropTypes.number.isRequired,
     strokeWidth: PropTypes.number,
     initialAnimation: PropTypes.bool,
     classForValue: PropTypes.func,
     textForValue: PropTypes.func,
-    displayValue: PropTypes.number,
+    displayValue: PropTypes.number
   };
 
   static defaultProps = {
-    displayValue: null,
     label: '',
     value: 0,
     strokeWidth: 3,
     initialAnimation: true,
+    classForValue: (value, displayValue) => '',
     textForValue: (value) => `${value}`,
-    classForValue: (value, displayValue) => ''
+    displayValue: null
   };
 
   constructor(props) {
@@ -41,6 +42,11 @@ export default class CircularProgressBar extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+      return {
+        value: props.value,
+      };
+  }
   // componentWillReceiveProps(nextProps) {
   //   this.setState({
   //     value: nextProps.value,

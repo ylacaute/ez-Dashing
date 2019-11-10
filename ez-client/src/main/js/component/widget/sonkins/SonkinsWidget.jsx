@@ -1,27 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
 import AvatarConfig from "config/AvatarConfig";
 import Metric from "component/widget/base/Metric.jsx";
 import FlipComponent from "component/effect/FlipComponent.jsx";
 import CircularProgressBar from 'component/chart/CircularProgressBar.jsx'
 import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
+import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
+import Widget from "component/widget/base/Widget.jsx";
+import cn from 'classnames';
 
-export default class SonkinsWidget extends AbstractWidget {
 
-  static propTypes = {
+export default class SonkinsWidget extends React.Component {
+
+  static propTypes = Object.assign({
     status: PropTypes.oneOf([
       "FAILURE", "UNSTABLE", "REBUILDING", "BUILDING", "ABORTED", "SUCCESS", "UNKNOWN"
     ]),
     author: PropTypes.string,
     building: PropTypes.bool,
-    branch: PropTypes.string,
+    branch: PropTypes.string.isRequired,
     progress: PropTypes.number,
     lines: PropTypes.number,
     coverage: PropTypes.number,
-    violations: PropTypes.number
-  };
+    violations: PropTypes.number,
+  }, Widget.propTypes);
 
   static defaultProps = {
     status: "UNKNOWN",
@@ -29,34 +33,16 @@ export default class SonkinsWidget extends AbstractWidget {
     branch: "master",
     building: false,
     progress: 0,
-    lines: null,
-    coverage: null,
-    violations: null
   };
 
   /**
-   * Return the real status of Jenkins.
-   * Indeed sometimes jenkins returns a null status when building and set a building boolean to true.
+   * Get the real status of Jenkins. A trick is necessary as sometimes jenkins returns
+   * a null status when building but set a building field to true.
    */
-  getStatus() {
+  getJenkinsStatus() {
     return this.props.building ? "BUILDING" :
       this.props.status != null ? this.props.status :
         "UNKNOWN";
-  }
-
-  getWidgetClassNames() {
-    return super
-      .getWidgetClassNames()
-      .concat(this.getStatus().toLowerCase());
-  }
-
-  renderHeader() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <strong>{this.props.branch}</strong>
-      </div>
-    )
   }
 
   renderAuthorMetric(label, iconUrl, singleMetric = false) {
@@ -104,30 +90,46 @@ export default class SonkinsWidget extends AbstractWidget {
   }
 
   renderBuildSuccess() {
-    const { lines, coverage, violations } = this.props;
+    const { lines, coverage, violations, thresholds } = this.props;
     return (
       <div className="metrics">
         {this.renderAuthorMetric("Last build")}
         {this.renderMetric("Line", lines, null, n => `${parseInt(n / 1000)}k`)}
-        {this.renderMetric("Violations", violations, this.props.thresholds.violations, n => n)}
-        {this.renderMetric("Coverage", coverage, this.props.thresholds.coverage, n => `${n}%`)}
+        {this.renderMetric("Violations", violations, thresholds.violations, n => n)}
+        {this.renderMetric("Coverage", coverage, thresholds.coverage, n => `${n}%`)}
       </div>
     );
   }
 
-  renderContent() {
-    const { author, avatars } = this.props;
+  render() {
+    const { className, author, avatars } = this.props;
     const avatar = AvatarConfig.get(author, avatars);
+    const classNames = cn(className, this.getJenkinsStatus().toLowerCase());
+    let content;
 
-    switch (this.getStatus()) {
+    switch (this.getJenkinsStatus()) {
       case "SUCCESS":
-        return this.renderBuildSuccess();
+        content = this.renderBuildSuccess();
+        break;
       case "BUILDING":
       case "REBUILDING":
-        return this.renderBuilding(avatar);
+        content = this.renderBuilding(avatar);
+        break;
       default:
-        return this.renderBuildFail(avatar);
+        content = this.renderBuildFail(avatar);
+        break;
     }
+    return (
+      <Widget {...this.props} className={classNames}>
+        <WidgetHeader
+          title={this.props.title}
+          subTitle={this.props.branch}
+        />
+        <WidgetContent>
+          {content}
+        </WidgetContent>
+      </Widget>
+    )
   }
 
 }

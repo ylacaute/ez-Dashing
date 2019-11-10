@@ -10,29 +10,30 @@
   text-align: center;
 
   header {
-    @extend %flexColumn;
+    @extend %flexRow;
     color: $color-widget-header-text;
     background-color: $color-widget-header-bg;
     height: 4rem;
     min-height: 4rem;
-
-    // If there is a div, we are displaying a subTitle
-    div {
-      @extend %flexRow;
-      justify-content: space-between;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      h1 {
-        display: flex;
-      }
-      strong {
-        display: flex;
-        color: $color-widget-sub-title-text;
-        font-size: $font-size-widget-sub-title;
-      }
+    padding: 1rem;
+    align-items: center;
+    h1 {
+      display: flex;
+      align-items: center;
+    }
+    h2 {
+      display: flex;
+      justify-content: flex-end;
+      flex-grow: 1;
+      color: $color-widget-sub-title-text;
+      font-size: $font-size-widget-sub-title;
+    }
+    strong {
+      font-size: 180%;
+      margin-right: 1rem;
+      margin-left: 1rem;
     }
   }
-
   article {
     @extend %flexColumn;
     flex-grow: 1;
@@ -42,7 +43,6 @@
       @include svgMask($color-bad, $image-error);
     }
   }
-
   footer {
     background-color: $color-widget-footer-bg;
   }
@@ -60,7 +60,7 @@
 
 }
 
-.widget.desktop article{
-  font-size: $font-size-widget-article-desktop;
-}
+//.widget.desktop article{
+//  font-size: $font-size-widget-article-desktop;
+//}
 

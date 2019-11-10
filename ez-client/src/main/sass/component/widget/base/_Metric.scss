@@ -2,28 +2,34 @@
 /* METRIC
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// metrics
-.metric .value {
-  color: $color-metric-neutral;
+.metrics {
+  flex-grow: 1;
 }
-.metric.good .value {
-  color: $color-metric-good;
-}
-.metric.avg .value {
-  color: $color-metric-average;
-}
-.metric.bad .value {
-  color: $color-metric-bad;
+.metric {
+  .value {
+    color: $color-metric-neutral;
+  }
+  .name {
+    color: $color-metric-name;
+  }
+  &.good .value {
+    color: $color-metric-good;
+  }
+  &.avg .value {
+    color: $color-metric-average;
+  }
+  &.bad .value {
+    color: $color-metric-bad;
+  }
 }
 
-.metric .name {
-  color: $color-metric-name;
-}
-
-// Default layout : 2 metrics per line, each metric have a value above its label
+// DEFAULT LAYOUT
+//  - 2 metrics per line
+//  - Each metric have a value above its label
 .metric-wrapper {
   display: inline-block;
   width: 50%;
+  height: 50%;
   overflow: hidden;
   .metric {
     display: flex;
@@ -31,30 +37,30 @@
     height: 100%;
     .value {
       display: flex;
+      flex-grow: 1;
       font-size: 190%;
       justify-content: center;
-      align-items: flex-end;
-      //height: 50px;
       position: relative;
-      top: 8px;
+      align-items: center;
       .scalable-image-wrapper {
         position: relative;
-        top: -8px;
       }
     }
     .name {
       display: flex;
-      //font-size: 120%;
       justify-content: center;
     }
   }
 }
 
-// For a single metric, we need to adapt the size
+// SPECIAL LAYOUT FOR SINGLE METRIC
+// - A single metric displayed, taking all the place
+.width-xxxs.height-xxxs .metric-wrapper,
 .metric-wrapper.single {
   @extend %flexColumn;
   flex-grow: 1;
   width: 100%;
+  height: 100%;
   .metric {
     flex-grow: 1;
     align-items: center;
@@ -62,47 +68,51 @@
       flex-direction: column;
       flex-grow: 1;
       width: 100%;
+      height: 100%;
     }
     .name {
       padding-top: 1em;
     }
   }
 }
-// For a single metric, when height is very small, it is nicer to display the metric in a row
-.height-xxxs .metric-wrapper.single {
+// When height is very small, it is nicer to display the metric in a row
+.height-xxxs.width-xxxs .metric-wrapper,
+.height-xxxs.width-xxs .metric-wrapper {
+  width: 100%;
+  height: 100%;
   .metric {
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     .value {
-      flex-grow: 0;
-      width: 20%;
+      flex-grow: 1;
+      padding-bottom: 10px;
+      font-size: 150% !important;
     }
     .name {
       padding-top: 0em;
+      flex-grow: 1;
+      align-items: center;
     }
   }
-}
-// For a single metric, when heigh and width are very small, we need give more space to the value
-.height-xxxs.width-xxxs .metric-wrapper.single .metric .value,
-.height-xxxs.width-xxs .metric-wrapper.single .metric .value {
-  width: 25%;
 }
 
 // For larger layout, there are 4 metrics per line and font is bigger
 .width-xs, .width-sm, .width-md, .width-lg {
   .metric-wrapper:not(.single) {
     width: 25%;
+    height: 100%;
     .value {
-      font-size: 300%;
+      font-size: 400%;
+    }
+    .name {
+      font-size: 120%;
     }
   }
 }
 
-.height-xxxs {
-  .metric-wrapper:not(.single) .metric .value {
-    font-size: 190%;
-    height: 35px;
-  }
+// We override default behaviour to reduce font-size if height is small
+.height-xxxs .metric-wrapper .metric .value {
+  font-size: 150%;
 }
 
 // For low high layout, only the first metric is displayed

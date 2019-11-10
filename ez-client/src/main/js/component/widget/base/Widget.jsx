@@ -4,36 +4,43 @@ import classnames from 'classnames';
 import ObjectUtils from 'utils/ObjectUtils';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
 import Logger from 'utils/Logger';
+import CubeSpinnerLoader from "component/loader/CubeSpinnerLoader.jsx";
 
-const logger = Logger.getLogger("AbstractWidget");
+const logger = Logger.getLogger("Widget");
 
-export default class AbstractWidget extends React.Component {
+export default class Widget extends React.Component {
 
   static widgetClassName = 'widget';
 
   static propTypes = {
+    className: PropTypes.string,
     loaded: PropTypes.bool,
     title: PropTypes.string,
     subTitle: PropTypes.string,
-    className: PropTypes.string,
     sizeInfo: PropTypes.object,
     editable: PropTypes.bool,
-    showModal: PropTypes.func,
-    updateWidgetConfig: PropTypes.func
+    createEditModal: PropTypes.func,
+    showModal: PropTypes.func.isRequired,
+    updateWidgetConfig: PropTypes.func,
+    children: PropTypes.node
   };
 
   static defaultProps = {
+    className: "",
     loaded: false,
     title: null,
     subTitle: null,
-    className: "",
     sizeInfo: {},
-    editable: false
+    editable: false,
+    createEditModal: null,
+    updateWidgetConfig: null,
+    children: null,
+    loader: <CubeSpinnerLoader/>
   };
 
   /**
-   * All widgets MUST call this function in order to retrieve from the new redux state all common
-   * widgets properties.
+   * All widgets MUST call this function in order to retrieve from the
+   * new redux state all common widgets properties.
    */
   static mapCommonWidgetProps = (state, ownProps) => {
     return {
@@ -57,9 +64,9 @@ export default class AbstractWidget extends React.Component {
     this.setState({ hasError: true });
   }
 
-
   /**
-   * Return true if all the dataSources on the widget depend are loaded, return false otherwise.
+   * Return true if all the dataSources on which the widget depend are loaded,
+   * return false otherwise.
    */
   isDataSourcesLoaded() {
     let loaded = true;
@@ -72,32 +79,25 @@ export default class AbstractWidget extends React.Component {
   }
 
   /**
-   * Generate the widget CSS class names as an array. Using an array ease the overrides of this method by calling a
-   * concat on super.getWidgetClassNames(). Also thanks to the module 'classnames' which accept arrays as argument
-   * to generate the final CSS class string.
+   * Generate the widget CSS class names as an array. Using an array ease the overrides of
+   * this method by calling a concat on super.getWidgetClassNames(). Also thanks to the
+   * module 'classnames' which accept arrays as argument to generate the final CSS class string.
    */
   getWidgetClassNames() {
     return [
-      AbstractWidget.widgetClassName,
+      Widget.widgetClassName,
       this.props.className,
       this.props.sizeInfo.wBreakpointClass,
       this.props.sizeInfo.hBreakpointClass];
   }
 
-  onEditClick() {
-    if (this.props.showModal == null) {
-      logger.warn("showModal prop func is not defined but a widget try to display an edition modal window");
+  handleEditClick() {
+    const { id, createEditModal, showModal} = this.props;
+    if (createEditModal == null) {
+      logger.error("The Widget id={} is mark as editable but the func createEditModal has not been defined.", id);
     } else {
-      this.props.showModal(this.getWidgetEditModal());
+      showModal(createEditModal());
     }
-  }
-
-  /**
-   * When editable, each widget have to define their edition modal window
-   */
-  getWidgetEditModal() {
-    logger.warn("The Widget id={} has not implemented the getWidgetEditModal method !", this.props.id);
-    return null;
   }
 
   /**
@@ -122,7 +122,7 @@ export default class AbstractWidget extends React.Component {
       title = this.props.title;
 
     return (
-      <section className={classnames(AbstractWidget.widgetClassName, 'error')}>
+      <section className={classnames(Widget.widgetClassName, 'error')}>
         <header>
           <h1>
             {title}
@@ -138,96 +138,29 @@ export default class AbstractWidget extends React.Component {
   }
 
   /**
-   * Display a nice spinner during the widget load
-   */
-  renderLoading() {
-    return (
-      <div className="cubeSpinner">
-        <div className="cube1"></div>
-        <div className="cube2"></div>
-      </div>
-    );
-  }
-
-  renderEditable() {
-    return this.props.editable != true ? null : (
-      <span className="edit-icon" onClick={this.onEditClick.bind(this)}></span>
-    );
-  }
-
-  /**
-   * No widget content by default. Any widget has to override it.
-   */
-  renderContent() {
-    logger.warn("A Widget has not implemented the renderContent method");
-    return null;
-  }
-
-  /**
-   * Simple Header by default, with h1 tag
-   */
-  renderHeader() {
-    return (
-      <h1>{this.props.title}</h1>
-    )
-  }
-
-  /**
-   * A widget header have to be wrapped with a header tag
-   */
-  renderHeaderWrapper() {
-    if (this.props.title == null) {
-      return null;
-    }
-    return (
-      <header>
-        {this.renderHeader()}
-      </header>
-    )
-  }
-
-  /**
-   * No footer by default
-   */
-  renderFooter() {
-    return null;
-  }
-
-  /**
-   * A widget footer have to be wrapped with a footer tag
-   */
-  renderFooterWrapper() {
-    return (
-      <footer>
-        {this.renderFooter()}
-      </footer>
-    )
-  }
-
-  /**
    * Main render function, should not be override
    */
   render() {
+    const { editable } = this.props;
+
     if (this.state.hasError == true)
       return this.renderError();
     if (this.props.loaded != true)
-      return this.renderLoading();
+      return this.props.loader;
 
     let content;
     if (!this.isDataSourcesLoaded()) {
-      content = this.renderLoading();
+      content = this.props.loader;
     } else {
-      content = this.renderContent();
+      content = this.props.children;
     }
 
     return (
       <section className={classnames(this.getWidgetClassNames())}>
-        {this.renderEditable()}
-        {this.renderHeaderWrapper()}
-        <article className="content">
-          {content}
-        </article>
-        {this.renderFooterWrapper()}
+        {editable &&
+          <span className="edit-icon" onClick={this.handleEditClick.bind(this)} />
+        }
+        {content}
       </section>
     );
   }

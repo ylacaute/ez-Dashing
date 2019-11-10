@@ -1,20 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AbstractSprintWidget from "component/widget/base/AbstractSprintWidget.jsx";
+import Widget from "component/widget/base/Widget.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from "victory";
 import VelocityCalculator from "utils/VelocityCalculator";
 import DateService from "service/date/DateService";
 
-export default class BurndownChartWidget extends AbstractSprintWidget {
+export default class BurndownChartWidget extends React.Component {
 
-  static propTypes = {
-    dateTickCount: PropTypes.number
-  };
+  static propTypes = Object.assign({
+    dateTickCount: PropTypes.number,
+    sprintId: PropTypes.string.isRequired,
+    sprintName: PropTypes.string.isRequired,
+    sprintNumber: PropTypes.number.isRequired,
+    sprintStartDate: PropTypes.instanceOf(Date).isRequired,
+    sprintEndDate: PropTypes.instanceOf(Date).isRequired,
+    closedIssues: PropTypes.array.isRequired,
+    readyIssues: PropTypes.array.isRequired
+  }, Widget.propTypes);
 
   static defaultProps = {
     title: "BURNDOWN CHART",
-    dateTickCount: 10
+    dateTickCount: 10,
+    sprintId: "-",
+    sprintName: "-",
+    sprintNumber: 0,
+    sprintStartDate: DateService.now(),
+    sprintEndDate: DateService.now(),
+    closedIssues: [],
+    readyIssues: []
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
 
   getTickValues(wantedValuesCount, dataArray) {
     let result = [];
@@ -29,52 +49,61 @@ export default class BurndownChartWidget extends AbstractSprintWidget {
     return result;
   }
 
-  renderContent() {
-    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
-    const now = DateService.now();
+  static getDerivedStateFromProps(props, state) {
+    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = props;
     const allSprintIssues = closedIssues.concat(readyIssues);
     if (allSprintIssues.length == 0) {
-      this.setState({
+      return {
         hasError: true,
         error: {
           name: "No JIRA issues",
           message: "Please verify your request configuration"
         }
-      });
+      };
     }
+    return state;
+  }
+
+  render() {
+    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
+    const now = DateService.now();
+    const allSprintIssues = closedIssues.concat(readyIssues);
     const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
+
     return (
-      <div>
-        <VictoryChart
-          width={1000}
-          height={500}
-          domainPadding={1}>
-          <VictoryAxis
-            tickValues={this.getTickValues(this.props.dateTickCount, velocity.plannedVelocity)}
-            tickFormat={(x, i) => x}
-          />
-          <VictoryAxis
-            dependentAxis
-            tickFormat={(x) => (`${x} SP`)}
-          />
-          <VictoryArea
-            data={velocity.plannedVelocity}
-            x="date"
-            y="storyPoints"
-          />
-          <VictoryLine
-            data={velocity.plannedVelocity}
-            x="date"
-            y="storyPoints"
-          />
-          <VictoryLine
-            data={velocity.currentVelocity}
-            x="date"
-            y="storyPoints"
-          />
-        </VictoryChart>
-      </div>
-    );
+      <Widget {...this.props}>
+        <WidgetContent>
+          <VictoryChart
+            width={1000}
+            height={500}
+            domainPadding={1}>
+            <VictoryAxis
+              tickValues={this.getTickValues(this.props.dateTickCount, velocity.plannedVelocity)}
+              tickFormat={(x, i) => x}
+            />
+            <VictoryAxis
+              dependentAxis
+              tickFormat={(x) => (`${x} SP`)}
+            />
+            <VictoryArea
+              data={velocity.plannedVelocity}
+              x="date"
+              y="storyPoints"
+            />
+            <VictoryLine
+              data={velocity.plannedVelocity}
+              x="date"
+              y="storyPoints"
+            />
+            <VictoryLine
+              data={velocity.currentVelocity}
+              x="date"
+              y="storyPoints"
+            />
+          </VictoryChart>
+        </WidgetContent>
+      </Widget>
+    )
   }
 
 

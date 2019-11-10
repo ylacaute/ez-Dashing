@@ -10,14 +10,12 @@
     }
     strong {
       color: $color-good;
-      vertical-align: middle;
-      font-size: 180%;
     }
   }
 
   article {
     text-align: left;
-    font-size: 120%;
+    font-size: 130%;
     ul {
       list-style: none;
       margin-left: 0;
@@ -26,6 +24,8 @@
       li .icon {
         display: inline-block;
         margin-right: 1rem;
+        width: 32px;
+        height: 32px;
         &.todo {
           @include svgMaskIcon(16px, $color-widget-bug-todo, $image-bug-todo);
         }
@@ -59,34 +59,9 @@
 .height-xxs.widget.bug article ul li:nth-child(n+6) {
   display: none;
 }
-.height-xs.widget.bug article ul li:nth-child(n+11) {
+.height-xs.widget.bug article ul li:nth-child(n+9) {
   display: none;
 }
-
-// Responsive widget styles: font and icon size
-// --------------------------------------------
-.width-xxs {
-  &.widget.bug article {
-    font-size: 150%;
-    ul li .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
-}
-
-.width-xs, .width-sm, .width-md, .width-lg {
-  &.widget.bug article {
-    font-size: 200%;
-    ul li .icon {
-      width: 32px;
-      height: 32px;
-    }
-  }
-}
-
-.height-xxs, .height-xs, .height-sm, .height-md, .height-lg {
-  &.widget.bug.empty article {
-    padding: 40px;
-  }
+.height-sm.widget.bug article ul li:nth-child(n+12) {
+  display: none;
 }

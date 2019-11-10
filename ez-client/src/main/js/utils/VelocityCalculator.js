@@ -65,18 +65,18 @@ export default class VelocityCalculator {
     return plannedVelocity;
   }
 
-  static calculateVelocity(now, dates, allSprintIssues) {
+  static calculateVelocity(now, days, allSprintIssues) {
     let totalStoryPoints = getSprintStoryPoints(allSprintIssues);
 
     let velocity = [];
     let spDone = 0;
-    for (let i = 0; i < dates.length; i++) {
-      if (dates[i] >= now) {
+    for (let i = 0; i < days.length; i++) {
+      if (days[i] >= now) {
         break;
       }
-      spDone = spDone + spDoneAtDate(dates[i], allSprintIssues);
+      spDone = spDone + spDoneAtDate(days[i], allSprintIssues);
       velocity.push({
-        date: DateUtils.formatDDMM(dates[i]),
+        date: DateUtils.formatDDMM(days[i]),
         storyPoints: totalStoryPoints - spDone
       });
     }
@@ -84,14 +84,14 @@ export default class VelocityCalculator {
   }
 
   static calculate(now, sprintStartDate, sprintEndDate, allSprintIssues) {
-    const dates = DateUtils.getAllDatesBetween(sprintStartDate, sprintEndDate, true);
-    logger.info("Velocity computation: sprintStartDate={}, sprintEndDate={}, allSprintIssues:",
+    logger.info("Calculate velocity: sprintStartDate={}, sprintEndDate={}, allSprintIssues:",
       sprintStartDate,
       sprintEndDate,
       allSprintIssues);
+    const days = DateUtils.getAllDatesBetween(sprintStartDate, sprintEndDate, true);
     return {
-      plannedVelocity: VelocityCalculator.calculatePlannedVelocity(dates, allSprintIssues),
-      currentVelocity: VelocityCalculator.calculateVelocity(now, dates, allSprintIssues)
+      plannedVelocity: VelocityCalculator.calculatePlannedVelocity(days, allSprintIssues),
+      currentVelocity: VelocityCalculator.calculateVelocity(now, days, allSprintIssues)
     }
   }
 

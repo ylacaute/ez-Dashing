@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import Widget from "component/widget/base/Widget.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
 import DateService from "service/date/DateService";
 
-export default class ClockWidget extends AbstractWidget {
+export default class ClockWidget extends React.Component {
 
-  static propTypes = {
+  static propTypes = Object.assign({
     UTCOffset: PropTypes.number
-  };
+  }, Widget.propTypes);
 
   static defaultProps = {
     UTCOffset: 2
@@ -47,14 +48,17 @@ export default class ClockWidget extends AbstractWidget {
     };
   }
 
-  renderContent() {
+  render() {
     const { date, hours, minutes, seconds } = this.state;
+
     return (
-      <div>
-        <p>{date}</p>
-        <p>{hours}:{minutes}:{seconds}</p>
-      </div>
-    );
+      <Widget {...this.props}>
+        <WidgetContent>
+          <p>{date}</p>
+          <p>{hours}:{minutes}:{seconds}</p>
+        </WidgetContent>
+      </Widget>
+    )
   }
 
 }

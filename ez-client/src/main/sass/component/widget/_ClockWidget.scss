@@ -5,9 +5,7 @@
 .widget.clock {
   background-color: $color-widget-clock-bg;
   color: $color-widget-clock-text;
-  font-size: 140%;
   font-weight: bold;
-  //font-family: 'Orbitron';
 }
 
 // Responsive style depending on the dynamic widget size
@@ -16,7 +14,7 @@
     font-size: 250%;
   }
   &.width-xs, &.width-sm, &.width-md, &.width-lg {
-    font-size: 400%;
+    font-size: 350%;
   }
   &.height-xxxs {
     p:nth-child(2) {

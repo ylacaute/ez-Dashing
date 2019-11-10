@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Widget from "component/widget/base/Widget.jsx";
-import HelloGraphWidget from "component/widget/sample/graph/HelloGraphWidget.jsx";
+import ImageWidget from "component/widget/image/ImageWidget.jsx";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -8,5 +8,5 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(HelloGraphWidget);
+export default connect(mapStateToProps)(ImageWidget)
 

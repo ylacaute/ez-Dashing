@@ -1,5 +1,7 @@
 import React from 'react';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import Widget from "component/widget/base/Widget.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
+import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
 import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from 'victory';
 
 const plannedVelocity = [
@@ -36,7 +38,7 @@ const currentVelocity = [
 ];
 
 
-export default class HelloGraphWidget extends AbstractWidget {
+export default class HelloGraphWidget extends React.Component {
 
   constructor(props) {
     super(props);
@@ -46,39 +48,44 @@ export default class HelloGraphWidget extends AbstractWidget {
     //setInterval(() => {this.setState({inc: this.state.inc + 10})}, 2000);
   }
 
-  renderContent() {
+  render() {
     return (
-        <VictoryChart
-          width={1000}
-          height={500}
-          domainPadding={1}>
-          <VictoryAxis
-            tickValues={[1, 3, 5, 7, 9, 11, 13, 15, 17]}
-            tickFormat={(x, i) => x}
-          />
-          <VictoryAxis
-            dependentAxis
-            tickFormat={(x) => (`${x} SP`)}
-          />
-          <VictoryArea
-            data={plannedVelocity}
-            x="date"
-            y="storyPoints"
-          />
-          <VictoryLine
-            data={plannedVelocity}
-            x="date"
-            y="storyPoints"
-          />
+      <Widget {...this.props}>
+        <WidgetHeader title={this.props.title} />
+        <WidgetContent>
+          <VictoryChart
+            width={1000}
+            height={500}
+            domainPadding={1}>
+            <VictoryAxis
+              tickValues={[1, 3, 5, 7, 9, 11, 13, 15, 17]}
+              tickFormat={(x, i) => x}
+            />
+            <VictoryAxis
+              dependentAxis
+              tickFormat={(x) => (`${x} SP`)}
+            />
+            <VictoryArea
+              data={plannedVelocity}
+              x="date"
+              y="storyPoints"
+            />
+            <VictoryLine
+              data={plannedVelocity}
+              x="date"
+              y="storyPoints"
+            />
 
-          <VictoryLine
-            className="currentVelocity"
-            data={currentVelocity}
-            x="date"
-            y="storyPoints"
-          />
-        </VictoryChart>
-
+            <VictoryLine
+              className="currentVelocity"
+              data={currentVelocity}
+              x="date"
+              y="storyPoints"
+            />
+          </VictoryChart>
+        </WidgetContent>
+      </Widget>
     );
   }
+
 };

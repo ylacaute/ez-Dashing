@@ -1,41 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractWidget from 'component/widget/base/AbstractWidget.jsx';
+import Widget from "component/widget/base/Widget.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
 import TextWidgetEditModal from 'component/widget/text/TextWidgetEditModal.jsx';
 
-export default class TextWidget extends AbstractWidget {
+export default class TextWidget extends React.Component {
 
-  static propTypes = {
+  static propTypes = Object.assign({
     text: PropTypes.string,
     textType: PropTypes.oneOf(["none", "good", "info", "warn", "danger"]),
     iconUrl: PropTypes.string
-  };
+  }, Widget.propTypes);
 
   static defaultProps = {
     text: "",
     textType: "none",
-    iconUrl: null,
+    iconUrl: null
   };
 
-  getWidgetEditModal() {
+  createEditModal() {
     const { id, text, textType } = this.props;
     return <TextWidgetEditModal widgetId={id} text={text} textType={textType}/>;
   }
 
-  renderIcon() {
-    return this.props.textType == "none" ? null : (
-      <ScalableImage className="text-icon"/>
-    );
-  }
-
-  renderContent() {
+  render() {
+    const { textType } = this.props;
     return (
-      <div className={this.props.textType}>
-        {this.renderIcon()}
-        <p>{this.props.text}</p>
-      </div>
-    );
+      <Widget {...this.props} createEditModal={this.createEditModal.bind(this)}>
+        <WidgetContent>
+          <div className={this.props.textType}>
+            { textType != "none" &&
+              <ScalableImage className="text-icon"/>
+            }
+            <p>{this.props.text}</p>
+          </div>
+        </WidgetContent>
+      </Widget>
+    )
   }
 
 }

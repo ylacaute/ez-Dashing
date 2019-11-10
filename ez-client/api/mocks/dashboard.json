@@ -206,7 +206,7 @@
       {
         "type": "HelloGraphWidget",
         "title": "HELLO GRAPH",
-        "enabled": false
+        "enabled": true
       },
       {
         "type": "TextWidget",
@@ -249,7 +249,7 @@
         ]
       },
       {
-        "type": "TeamWidget",
+        "type": "ImageWidget",
         "enabled": true
       },
       {
@@ -357,7 +357,7 @@
         "id": "velocityWidget",
         "type": "VelocityWidget",
         "title": "TEAM VELOCITY",
-        "lastSprintId" : "10",
+        "lastSavedSprintId" : "9",
         "velocityHistory": [ 999, 2550, 989, 10, 20, 30 ],
         "dataSource": [
           "jira-story-closed",
@@ -369,7 +369,7 @@
         "id": "reliabilityWidget",
         "type": "ReliabilityWidget",
         "title": "TEAM RELIABILITY",
-        "lastSprintId" : "5",
+        "lastSavedSprintId" : "5",
         "reliabilityHistory": [ 80, 90, 100 ],
         "dataSource": [
           "jira-story-closed",

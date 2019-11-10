@@ -4,7 +4,7 @@
 
 .widget.sonkins {
   background-color: $color-widget-sonkins-bg;
-  article > div {
+  article {
     .progress-bar {
       .trail {
         stroke: $color-widget-sonkins-progress-bar-trail;

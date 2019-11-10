@@ -10,8 +10,6 @@
     }
     strong {
       color: $color-widget-sprint-text;
-      vertical-align: middle;
-      font-size: 150%;
       &::before {
         content: ' #';
       }

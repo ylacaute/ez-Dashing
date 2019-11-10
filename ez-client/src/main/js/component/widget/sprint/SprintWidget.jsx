@@ -1,19 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AbstractWidget from "component/widget/base/AbstractWidget.jsx";
+import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import WidgetContent from "component/widget/base/WidgetContent.jsx";
+import Widget from "component/widget/base/Widget.jsx";
 import CircularProgressBar from "component/chart/CircularProgressBar.jsx";
 import DateUtils from 'utils/DateUtils';
 import DateService from "service/date/DateService";
+import Logger from 'utils/Logger';
 
-export default class SprintWidget extends AbstractWidget {
+const logger = Logger.getLogger("SprintWidget");
 
-  static propTypes = {
+export default class SprintWidget extends React.Component {
+
+  static propTypes = Object.assign({
     sprintId: PropTypes.string.isRequired,
     sprintName: PropTypes.string.isRequired,
     sprintNumber: PropTypes.number.isRequired,
     sprintStartDate: PropTypes.instanceOf(Date).isRequired,
     sprintEndDate: PropTypes.instanceOf(Date).isRequired,
-  };
+  }, Widget.propTypes);
 
   static defaultProps = {
     title: "SPRINT",
@@ -24,30 +29,31 @@ export default class SprintWidget extends AbstractWidget {
     sprintEndDate: DateService.now(),
   };
 
-  renderHeader() {
-    return (
-      <h1>
-        <span>{this.props.title}</span>
-        <strong>{this.props.sprintNumber}</strong>
-      </h1>
-    )
-  }
-
-  renderContent() {
-    const { sprintStartDate, sprintEndDate } = this.props;
+  render() {
+    const { className, title, sprintNumber, sprintStartDate, sprintEndDate } = this.props;
     const now = DateService.now();
     const sprintDuration = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
     const progress = daysLeft / sprintDuration * 100;
 
+    logger.info("Spring widget: sprintEndDate={}, sprintDuration={}, progress={}, daysLeft={}", sprintEndDate, sprintDuration, progress, daysLeft);
+
     return (
-      <div>
-        <CircularProgressBar
-          value={progress}
-          displayValue={daysLeft}
-          label="days left"/>
-      </div>
-    );
+      <Widget {...this.props} className={className}>
+        <WidgetHeader>
+          <h1>
+            <span>{title}</span>
+            <strong>{sprintNumber}</strong>
+          </h1>
+        </WidgetHeader>
+        <WidgetContent>
+          <CircularProgressBar
+            value={progress}
+            displayValue={daysLeft}
+            label="days left"/>
+        </WidgetContent>
+      </Widget>
+    )
   }
 
 }
