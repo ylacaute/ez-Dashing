@@ -296,7 +296,7 @@ export default class HelloGraphLineWidget extends React.Component {
           <ResponsiveLine
             theme={darkChartTheme}
             data={data}
-            margin={{ top: 50, right: 110, bottom: 80, left: 60 }}
+            margin={{ top: 50, right: 50, bottom: 80, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
             xFormat={(v) => `${v}`}

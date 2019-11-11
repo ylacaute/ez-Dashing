@@ -30,7 +30,7 @@ let commonConfig = {
     ].filter(Boolean),
     vendor: [
       "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
-      "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "@nivo/line", "@nivo/pie"],
+      "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "@nivo/line", "@nivo/pie", "@nivo/bar"],
     blackTheme: "./sass/theme/black.scss",
     darkBlueTheme: "./sass/theme/darkBlue.scss",
     dashingTheme: "./sass/theme/dashing.scss",
@@ -142,15 +142,6 @@ let commonConfig = {
             loader: 'sass-loader'
           }
         ],
-        // use: ExtractTextPlugin.extract({
-        //   fallback: 'style-loader',
-        //   use: [{
-        //     loader: 'css-loader',
-        //     options: { url: false }
-        //   }, {
-        //     loader: 'sass-loader'
-        //   }]
-        // })
       }, {
         test: /\.(png|svg)$/,
         exclude: /node_modules/,
@@ -165,9 +156,17 @@ let commonConfig = {
     ]
   },
 
-  // https://github.com/webpack-contrib/css-loader/issues/447
+  // Some libraries import Node modules but don't use them in the browser.
+  // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
-    fs: 'empty'
+    module: 'empty',
+    dgram: 'empty',
+    dns: 'mock',
+    fs: 'empty',
+    http2: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
   }
 };
 

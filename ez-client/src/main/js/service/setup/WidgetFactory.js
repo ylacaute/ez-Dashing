@@ -8,6 +8,7 @@ import HelloWorldWidget from 'component/widget/sample/hello';
 import HelloErrorWidget from 'component/widget/sample/error';
 import HelloGraphLineWidget from 'component/widget/sample/graph/line';
 import HelloGraphPieWidget from 'component/widget/sample/graph/pie';
+import HelloGraphBarWidget from 'component/widget/sample/graph/bar';
 import SonkinsWidget from 'component/widget/sonkins';
 import SprintWidget from 'component/widget/sprint';
 import ImageWidget from 'component/widget/image';
@@ -37,6 +38,7 @@ export default class WidgetFactory {
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
       case "HelloGraphLineWidget": Component = HelloGraphLineWidget; break;
       case "HelloGraphPieWidget": Component = HelloGraphPieWidget; break;
+      case "HelloGraphBarWidget": Component = HelloGraphBarWidget; break;
       case "HelloErrorWidget": Component = HelloErrorWidget; break;
       case "ClockWidget": Component = ClockWidget; break;
       case "BugWidget": Component = BugWidget; break;

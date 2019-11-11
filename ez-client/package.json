@@ -34,6 +34,7 @@
     "mocha"
   ],
   "dependencies": {
+    "@nivo/bar": "^0.59.2",
     "@nivo/line": "^0.59.3",
     "@nivo/pie": "^0.59.1",
     "eases": "^1.0.8",

@@ -204,6 +204,11 @@
         "enabled": false
       },
       {
+        "type": "HelloGraphBarWidget",
+        "title": "HELLO BAR GRAPH",
+        "enabled": true
+      },
+      {
         "type": "HelloGraphLineWidget",
         "title": "HELLO LINE GRAPH",
         "enabled": true
