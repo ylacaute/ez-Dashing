@@ -32,11 +32,12 @@ export default class SprintWidget extends React.Component {
   render() {
     const { className, title, sprintNumber, sprintStartDate, sprintEndDate } = this.props;
     const now = DateService.now();
-    const sprintDuration = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
+    const sprintDurationInDays = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
-    const progress = daysLeft / sprintDuration * 100;
-
-    logger.info("Spring widget: sprintEndDate={}, sprintDuration={}, progress={}, daysLeft={}", sprintEndDate, sprintDuration, progress, daysLeft);
+    const progress = daysLeft / sprintDurationInDays * 100;
+    logger.debug("Spring widget: " +
+      "now={}, sprintEndDate={}, sprintDurationInDays={}, progress={}, daysLeft={}",
+      now, sprintEndDate, sprintDurationInDays, progress, daysLeft);
 
     return (
       <Widget {...this.props} className={className}>

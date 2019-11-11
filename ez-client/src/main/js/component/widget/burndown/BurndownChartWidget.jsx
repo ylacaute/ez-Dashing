@@ -2,9 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 import Widget from "component/widget/base/Widget.jsx";
 import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import { VictoryChart, VictoryArea, VictoryLine, VictoryAxis } from "victory";
+import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
 import VelocityCalculator from "utils/VelocityCalculator";
 import DateService from "service/date/DateService";
+import {ResponsiveLine} from "@nivo/line";
+import Logger from 'utils/Logger';
+import {darkChartTheme} from "theme/DarkChartTheme";
+
+const yAxisFormatter = (value, idx) => {
+  return `${value} SP`
+};
+
+const xAxisFormatter = (value, idx) => {
+  return value;
+};
+
+const toChartValues = (val) => ({
+  x: val.date,
+  y: val.storyPoints
+});
+
+const logger = Logger.getLogger("BurndownChartWidget");
 
 export default class BurndownChartWidget extends React.Component {
 
@@ -36,19 +54,6 @@ export default class BurndownChartWidget extends React.Component {
     this.state = {}
   }
 
-  getTickValues(wantedValuesCount, dataArray) {
-    let result = [];
-    let step = Math.round(dataArray.length / wantedValuesCount);
-    result.push(1);
-    for (let i = 1; i < dataArray.length - step; i++) {
-      if (i % step == 0) {
-        result.push(i + 1);
-      }
-    }
-    result.push(dataArray.length);
-    return result;
-  }
-
   static getDerivedStateFromProps(props, state) {
     const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = props;
     const allSprintIssues = closedIssues.concat(readyIssues);
@@ -69,38 +74,86 @@ export default class BurndownChartWidget extends React.Component {
     const now = DateService.now();
     const allSprintIssues = closedIssues.concat(readyIssues);
     const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
+    const velocityData = [{
+      "id": "Planned Velocity",
+      "color": "white",
+      "enableArea": false,
+      "data": velocity.plannedVelocity.map(toChartValues)
+    }, {
+      "id": "Current Velocity",
+      "color": "#2e9bdc",
+      "data": velocity.currentVelocity.map(toChartValues)
+    }];
+
+    logger.info("velocityData :", velocityData);
 
     return (
       <Widget {...this.props}>
+        <WidgetHeader title={this.props.title} />
         <WidgetContent>
-          <VictoryChart
-            width={1000}
-            height={500}
-            domainPadding={1}>
-            <VictoryAxis
-              tickValues={this.getTickValues(this.props.dateTickCount, velocity.plannedVelocity)}
-              tickFormat={(x, i) => x}
-            />
-            <VictoryAxis
-              dependentAxis
-              tickFormat={(x) => (`${x} SP`)}
-            />
-            <VictoryArea
-              data={velocity.plannedVelocity}
-              x="date"
-              y="storyPoints"
-            />
-            <VictoryLine
-              data={velocity.plannedVelocity}
-              x="date"
-              y="storyPoints"
-            />
-            <VictoryLine
-              data={velocity.currentVelocity}
-              x="date"
-              y="storyPoints"
-            />
-          </VictoryChart>
+          <ResponsiveLine
+            theme={darkChartTheme}
+            data={velocityData}
+            margin={{ top: 50, right: 30, bottom: 60, left: 60 }}
+            xScale={{ type: 'point' }}
+            yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
+            xFormat={(v) => `${v}`}
+            yFormat={(v) => `${v}`}
+            curve="cardinal"
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              orient: 'bottom',
+              tickSize: 10,
+              tickPadding: 5,
+              tickRotation: 45,
+              legend: '',
+              legendOffset: 60,
+              legendPosition: 'middle',
+              format: xAxisFormatter
+            }}
+            axisLeft={{
+              orient: 'left',
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: '',
+              legendOffset: -40,
+              legendPosition: 'middle',
+              format: yAxisFormatter
+            }}
+            //colors={{ scheme: 'nivo' }}
+            colors={d => d.color}
+            borderColor={{ from: 'color', modifiers: [[ 'darker', 0.2 ]] }}
+            lineWidth={1}
+            pointSize={3}
+            pointColor={{ theme: 'background' }}
+            pointBorderWidth={2}
+            pointBorderColor={{ from: 'serieColor' }}
+            pointLabel="y"
+            pointLabelYOffset={-12}
+            enableArea={true}
+            areaOpacity={0.05}
+            useMesh={true}
+            legends={[
+              {
+                color: '#F00',
+                anchor: 'top-right',
+                direction: 'row',
+                justify: false,
+                translateX: -20,
+                translateY: -40,
+                itemsSpacing: 40,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: '#FF0'
+              }
+            ]}
+          />
         </WidgetContent>
       </Widget>
     )

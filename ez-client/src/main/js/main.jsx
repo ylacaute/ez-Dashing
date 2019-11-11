@@ -31,7 +31,6 @@ Logger.setLevel("ConfigExtender", Logger.Level.WARN);
 Logger.setLevel("VelocityCalculator", Logger.Level.WARN);
 Logger.setLevel("SprintWidget", Logger.Level.WARN);
 
-
 const setupService = new SetupService();
 
 setupService.initialize(store => {

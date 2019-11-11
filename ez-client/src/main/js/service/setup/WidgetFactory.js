@@ -6,7 +6,8 @@ import BurndownChartWidget from 'component/widget/burndown';
 import ClockWidget from 'component/widget/clock';
 import HelloWorldWidget from 'component/widget/sample/hello';
 import HelloErrorWidget from 'component/widget/sample/error';
-import HelloGraphWidget from 'component/widget/sample/graph';
+import HelloGraphLineWidget from 'component/widget/sample/graph/line';
+import HelloGraphPieWidget from 'component/widget/sample/graph/pie';
 import SonkinsWidget from 'component/widget/sonkins';
 import SprintWidget from 'component/widget/sprint';
 import ImageWidget from 'component/widget/image';
@@ -34,7 +35,8 @@ export default class WidgetFactory {
 
     switch (widgetConfiguration.type) {
       case "HelloWorldWidget": Component = HelloWorldWidget; break;
-      case "HelloGraphWidget": Component = HelloGraphWidget; break;
+      case "HelloGraphLineWidget": Component = HelloGraphLineWidget; break;
+      case "HelloGraphPieWidget": Component = HelloGraphPieWidget; break;
       case "HelloErrorWidget": Component = HelloErrorWidget; break;
       case "ClockWidget": Component = ClockWidget; break;
       case "BugWidget": Component = BugWidget; break;

@@ -6,7 +6,7 @@
     },
     "server": {
       "dataSourcePath": "/api/consumer/",
-      "now": "2017-08-30T23:10:00.000+02:00"
+      "now": "2017-08-28T23:10:00.000+02:00"
     },
     "theme": "snow",
     "dataSources": [
@@ -204,8 +204,13 @@
         "enabled": false
       },
       {
-        "type": "HelloGraphWidget",
-        "title": "HELLO GRAPH",
+        "type": "HelloGraphLineWidget",
+        "title": "HELLO LINE GRAPH",
+        "enabled": true
+      },
+      {
+        "type": "HelloGraphPieWidget",
+        "title": "HELLO PIE GRAPH",
         "enabled": true
       },
       {
