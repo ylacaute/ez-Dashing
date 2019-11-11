@@ -107,6 +107,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
+- [x] __HipTestWidget__ (test-run report)
 - [ ] __PullRequestWidget__ (Gitlab)
 - [ ] __PullRequestWidget__ (Github)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
@@ -176,10 +177,12 @@ __ez-Dashing__ is licensed under the [Apache 2 license](/LICENSE).
 
 # Screenshots
 
-![Screenshot](/ez-client/screenshot.png)
+![Screenshot](/doc/img/screenshot1.png)
 
-![Screenshot](/ez-client/screenshot2.png)
+![Screenshot](/doc/img/screenshot2.png)
 
-![Screenshot](/ez-client/screenshot3.png)
+![Screenshot](/doc/img/screenshot3.png)
 
-![Screenshot](/ez-client/screenshot4.png)
+![Screenshot](/doc/img/screenshot4.png)
+
+![Screenshot](/doc/img/screenshot5.png)
