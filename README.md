@@ -107,7 +107,7 @@ You define an [server.properties](/config/server.properties) server configuratio
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
-- [x] __HipTestWidget__ (test-run report)
+- [ ] __HipTestWidget__ (test-run report)
 - [ ] __PullRequestWidget__ (Gitlab)
 - [ ] __PullRequestWidget__ (Github)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
