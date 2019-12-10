@@ -1,0 +1,78 @@
+/**
+ * Inspired from https://codepen.io/thebabydino/pen/goYYrN
+ */
+
+$color-thumb: #fff;
+$color-track: #ccc;
+$color-progress: #2e9bdc;
+$track-width: 100%;
+$track-height: .25em;
+$thumb-width: 2em;
+$thumb-height: 1em;
+$thumb-radius: 0;
+
+@mixin track() {
+  box-sizing: border-box;
+  border: none;
+  width: $track-width;
+  height: $track-height;
+  background: $color-track 0/var(--sx) 100% no-repeat linear-gradient($color-progress, $color-progress);
+}
+
+@mixin fill() {
+  height: $track-height;
+  background: $color-progress
+}
+
+@mixin thumb() {
+  box-sizing: border-box;
+  width: $thumb-width;
+  height: $thumb-height;
+  border-radius: $thumb-radius;
+  border: 1px solid #ccc;
+  background: linear-gradient(#eee, #aaa);
+  position: relative;
+}
+
+[type='range'] {
+  &:focus {
+    outline: 0;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+  }
+  &, &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--val) - var(--min))/var(--range));
+  --sx: calc(.5*#{$thumb-width} + var(--ratio)*(100% - #{$thumb-width}));
+  margin: 0;
+  padding: 0;
+  width: $track-width;
+  height: $thumb-height;
+  background: transparent;
+
+  // TRACK
+  &::-webkit-slider-runnable-track { @include track }
+  &::-moz-range-track { @include track }
+  &::-ms-track { @include track }
+
+  // PROGRESS
+  &::-moz-range-progress { @include fill }
+  &::-ms-fill-lower { @include fill }
+
+  // THUMB
+  &::-webkit-slider-thumb {
+    margin-top: .5*($track-height - $thumb-height);
+    @include thumb
+  }
+  &::-moz-range-thumb { @include thumb }
+  &::-ms-thumb {
+    margin-top: 0;
+    @include thumb
+  }
+
+  // OTHER
+  &::-ms-tooltip { display: none }
+}

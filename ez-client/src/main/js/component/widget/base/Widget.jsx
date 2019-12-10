@@ -19,7 +19,7 @@ export default class Widget extends React.Component {
     subTitle: PropTypes.string,
     sizeInfo: PropTypes.object,
     editable: PropTypes.bool,
-    createEditModal: PropTypes.func,
+    editModal: PropTypes.func,
     showModal: PropTypes.func.isRequired,
     updateWidgetConfig: PropTypes.func,
     children: PropTypes.node
@@ -32,7 +32,7 @@ export default class Widget extends React.Component {
     subTitle: null,
     sizeInfo: {},
     editable: false,
-    createEditModal: null,
+    editModal: null,
     updateWidgetConfig: null,
     children: null,
     loader: <CubeSpinnerLoader/>
@@ -92,11 +92,11 @@ export default class Widget extends React.Component {
   }
 
   handleEditClick() {
-    const { id, createEditModal, showModal} = this.props;
-    if (createEditModal == null) {
-      logger.error("The Widget id={} is mark as editable but the func createEditModal has not been defined.", id);
+    const { id, editModal, showModal} = this.props;
+    if (editModal == null) {
+      logger.error("The Widget id={} is mark as editable but the func editModal has not been defined.", id);
     } else {
-      showModal(createEditModal());
+      showModal(editModal());
     }
   }
 
@@ -143,9 +143,9 @@ export default class Widget extends React.Component {
   render() {
     const { editable } = this.props;
 
-    if (this.state.hasError == true)
+    if (this.state.hasError === true)
       return this.renderError();
-    if (this.props.loaded != true)
+    if (this.props.loaded !== true)
       return this.props.loader;
 
     let content;

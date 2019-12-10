@@ -1,0 +1,53 @@
+// Include only what is needed, we keep the same import order than fontawesome
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts' !default;
+@import '~@fortawesome/fontawesome-free/scss/variables';
+@import '~@fortawesome/fontawesome-free/scss/mixins';
+@import '~@fortawesome/fontawesome-free/scss/core';
+@import '~@fortawesome/fontawesome-free/scss/larger';
+@import '~@fortawesome/fontawesome-free/scss/fixed-width';
+@import '~@fortawesome/fontawesome-free/scss/list';
+@import '~@fortawesome/fontawesome-free/scss/bordered-pulled';
+@import '~@fortawesome/fontawesome-free/scss/animated';
+@import '~@fortawesome/fontawesome-free/scss/rotated-flipped';
+@import '~@fortawesome/fontawesome-free/scss/stacked';
+
+// Instead of importing everything with @import '~@fortawesome/fontawesome-free/scss/icons';
+// We import only needed icons
+.#{$fa-css-prefix}-angle-right:before {
+  content: fa-content($fa-var-angle-right);
+}
+
+.#{$fa-css-prefix}-angle-left:before {
+  content: fa-content($fa-var-angle-left);
+}
+
+.#{$fa-css-prefix}-bars:before {
+  content: fa-content($fa-var-bars);
+}
+
+.#{$fa-css-prefix}-archive:before {
+  content: fa-content($fa-var-archive);
+}
+
+@import '~@fortawesome/fontawesome-free/scss/screen-reader';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+// We are free to expose icon build with something else than FA !
+// This is the default icon theme
+.icon {
+  @extend .fa;
+
+  &.directory { @extend .fa-angle-right }
+  &.next { @extend .fa-angle-right }
+  &.prev { @extend .fa-angle-left }
+  &.bars { @extend .fa-bars }
+  &.box { @extend .fa-archive }
+  &.top-menu-toggler {@extend .fa-bars }
+
+  &.large {
+    font-size: 300%;
+  }
+  &.small {
+    font-size: 50%;
+  }
+}

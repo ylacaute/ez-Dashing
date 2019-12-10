@@ -46,7 +46,8 @@ let commonConfig = {
       JS_DIR,
       SASS_DIR,
       RESOURCES_DIR
-    ]
+    ],
+    extensions: ['.js', '.jsx']
   },
 
   // optimization: {
@@ -188,6 +189,7 @@ let devConfig = {
   },
 
   devServer: {
+    contentBase: path.resolve('resources'),
     host: '0.0.0.0',
     proxy: {
       "/api": {

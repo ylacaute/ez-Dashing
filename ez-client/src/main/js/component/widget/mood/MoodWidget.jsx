@@ -17,7 +17,7 @@ export default class MoodWidget extends React.Component {
     mood: "good",
   };
 
-  createEditModal() {
+  getEditModal() {
     const { id, mood } = this.props;
     return <MoodWidgetEditModal widgetId={id} mood={mood}/>;
   }
@@ -28,7 +28,7 @@ export default class MoodWidget extends React.Component {
     return (
       <Widget {...this.props}
               className={className}
-              createEditModal={this.createEditModal.bind(this)}>
+              editModal={this.getEditModal.bind(this)}>
         <WidgetContent>
           <ScalableImage className="icon"/>
         </WidgetContent>

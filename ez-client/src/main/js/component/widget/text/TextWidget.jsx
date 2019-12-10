@@ -19,7 +19,7 @@ export default class TextWidget extends React.Component {
     iconUrl: null
   };
 
-  createEditModal() {
+  getEditModal() {
     const { id, text, textType } = this.props;
     return <TextWidgetEditModal widgetId={id} text={text} textType={textType}/>;
   }
@@ -27,7 +27,7 @@ export default class TextWidget extends React.Component {
   render() {
     const { textType } = this.props;
     return (
-      <Widget {...this.props} createEditModal={this.createEditModal.bind(this)}>
+      <Widget {...this.props} editModal={this.getEditModal.bind(this)}>
         <WidgetContent>
           <div className={this.props.textType}>
             { textType != "none" &&

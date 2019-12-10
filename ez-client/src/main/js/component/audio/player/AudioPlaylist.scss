@@ -1,0 +1,27 @@
+
+.audio-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+  overflow: auto;
+
+  .playlist-item {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 5px;
+    min-height: 30px;
+    cursor: pointer;
+    &.selected {
+      font-weight: bold;
+    }
+    .icon {
+      padding-right: 5px;
+    }
+  }
+}
+
+.audio-playlist.hidden {
+  display: none;
+}

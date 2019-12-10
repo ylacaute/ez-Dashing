@@ -219,6 +219,11 @@
     "enabled" : true,
     "editable" : true
   }, {
+    "type" : "AudioPlayerWidget",
+    "title" : "Audio Player",
+    "enabled" : true,
+    "editable": true
+  }, {
     "type" : "BurndownChartWidget",
     "title" : "BURNDOWN",
     "dataSource" : [ "jira-story-closed", "jira-story-ready", "jira-sprint-active" ]

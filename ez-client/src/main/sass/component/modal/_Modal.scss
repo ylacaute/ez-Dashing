@@ -6,8 +6,11 @@
   height: 35% !important;
   min-width: 350px;
   min-height: 350px;
+  display: flex;
+  flex-direction: column;
 
   header {
+    display: flex;
     padding: 15px;
     border-bottom: 1px solid #222;
     font-weight: bold;
@@ -15,19 +18,22 @@
   }
 
   article {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
     padding: 15px;
+    height: 100%;
   }
 
   footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    border-top: 1px solid #222;
     button {
       float: right;
       margin-left: 15px;
     }
-    padding: 15px;
-    border-top: 1px solid #222;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
   }
 }

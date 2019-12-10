@@ -1,0 +1,30 @@
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+
+  .control-item {
+    margin-left: 10px;
+    outline: none;
+
+    span {
+      margin-left: 5px;
+    }
+    &.active {
+      background-color: #bbb;
+    }
+
+    &.play-pause {
+      height: 40px;
+      width: 40px;
+    }
+    &.stop, &.step-forward, &.remove-files, &.random {
+      margin-left: 0;
+    }
+  }
+
+  .audio-volume {
+    margin-left: 10px;
+  }
+}

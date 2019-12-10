@@ -1,0 +1,30 @@
+
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .player-info {
+    display: flex;
+    //height: 50px;
+    //min-height: 50px;
+    margin-bottom: 20px;
+    align-items: center;
+
+    .current-time, .total-time {
+      width: 80px;
+    }
+  }
+
+  .audio-track {
+    width: 100%;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .audio-playlist {
+    margin-top: 20px;
+  }
+}

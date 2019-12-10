@@ -30,6 +30,8 @@ Logger.setLevel("WidgetService", Logger.Level.INFO);
 Logger.setLevel("ConfigExtender", Logger.Level.WARN);
 Logger.setLevel("VelocityCalculator", Logger.Level.WARN);
 Logger.setLevel("SprintWidget", Logger.Level.WARN);
+Logger.setLevel("AudioPlayer", Logger.Level.TRACE);
+Logger.setLevel("AudioPlayerPlaylistModal", Logger.Level.TRACE);
 
 const setupService = new SetupService();
 

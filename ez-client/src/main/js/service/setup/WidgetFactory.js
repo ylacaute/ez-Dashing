@@ -16,6 +16,7 @@ import TextWidget from 'component/widget/text';
 import MoodWidget from 'component/widget/mood';
 import VelocityWidget from 'component/widget/velocity';
 import ReliabilityWidget from 'component/widget/reliability';
+import AudioPlayerWidget from 'component/widget/audio';
 
 import Logger from "utils/Logger";
 import { WidgetEventCreator } from 'redux/event/WidgetEvent';
@@ -50,6 +51,7 @@ export default class WidgetFactory {
       case "MoodWidget": Component = MoodWidget; break;
       case "VelocityWidget": Component = VelocityWidget; break;
       case "ReliabilityWidget": Component = ReliabilityWidget; break;
+      case "AudioPlayerWidget": Component = AudioPlayerWidget; break;
       default:
         logger.error("A widget can't be loaded because its type '{}' is unknown.", widgetConfiguration.type);
         Component = HelloErrorWidget;

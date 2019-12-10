@@ -1,6 +1,11 @@
 
 export default class ObjectUtils {
 
+  static isObject(value) {
+    return value !== null && typeof value === 'object';
+  }
+
+
   /**
    * Return true the argument is null or empty
    */

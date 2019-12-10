@@ -386,6 +386,11 @@
           "jira-story-ready",
           "jira-sprint-active"
         ]
+      }, {
+        "id" : "audioPlayerWidget",
+        "type" : "AudioPlayerWidget",
+        "title" : "Audio Player",
+        "editable": true
       }
     ],
     "avatars": [

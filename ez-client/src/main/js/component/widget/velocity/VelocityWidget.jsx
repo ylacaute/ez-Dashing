@@ -56,7 +56,7 @@ export default class VelocityWidget extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.lastSavedSprintId != props.sprintId) {
-      logger.info("NEED TO UPDATE CONFIG");
+      logger.info(`NEED TO UPDATE CONFIG, props.lastSavedSprintId=${props.lastSavedSprintId}, props.sprintId=${props.sprintId}`);
     }
     return state;
   }
