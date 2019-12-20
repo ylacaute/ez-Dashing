@@ -1,0 +1,21 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# DEFAULT SPRINT BOOT PROD CONFIGURATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+spring:
+  application:
+    name: ez-Dashing
+  profiles:
+    active: prod
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: WARN
+    com.thorpora.part: INFO

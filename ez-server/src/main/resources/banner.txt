@@ -3,10 +3,10 @@ ${AnsiColor.BRIGHT_CYAN}
  |______  ____/ ___ |     \ |_____| |______ |_____|   |   | \  | |  ____
  |______ /_____     |_____/ |     | ______| |     | __|__ |  \_| |_____|
 
-        ${AnsiColor.BRIGHT_WHITE}${spring.application.name} ${AnsiColor.BLUE}${application.formatted-version}
+        ${AnsiColor.DEFAULT}${spring.application.name} ${AnsiColor.BLUE}${application.formatted-version}
 
-        ${AnsiColor.BRIGHT_WHITE}Spring Boot Framework ${AnsiColor.BLUE}${spring-boot.formatted-version}
+        ${AnsiColor.DEFAULT}Spring Boot Framework${AnsiColor.BLUE}${spring-boot.formatted-version}
 
-        ${AnsiColor.BRIGHT_WHITE}Active profiles ${AnsiColor.BLUE}${spring.profiles.active}
+        ${AnsiColor.DEFAULT}Active profiles ${AnsiColor.BLUE}${spring.profiles.active}
 
  ${AnsiColor.DEFAULT}

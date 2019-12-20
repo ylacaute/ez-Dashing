@@ -1,0 +1,16 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# SPRINT BOOT TEST CONFIGURATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+http:
+  mappers:
+    json-pretty-print: true
+
+spring:
+  config:
+    additional-location: "classpath:"
+
+logging:
+  level:
+    root: INFO
+    com.thorpora.part: DEBUG
+

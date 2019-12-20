@@ -13,7 +13,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 @Getter
 @Setter
-public class SampleBean {
+class SampleBean {
 
   String name;
 

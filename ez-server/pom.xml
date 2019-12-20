@@ -2,43 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.thorpora</groupId>
-  <artifactId>ez-dashing</artifactId>
-  <version>CURRENT-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>ez-dashing</name>
-  <description>Another free dashboard tool</description>
+  <artifactId>ez-server</artifactId>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.3.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <artifactId>ez-dashing</artifactId>
+    <groupId>com.thorpora</groupId>
+    <version>CURRENT-SNAPSHOT</version>
   </parent>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-    <lombok.version>1.16.16</lombok.version>
-    <commons-lang3.version>3.5</commons-lang3.version>
-    <feign.version>9.5.0</feign.version>
+    <lombok.version>1.18.10</lombok.version>
+    <commons-lang3.version>3.9</commons-lang3.version>
+    <feign.version>10.7.0</feign.version>
     <json-path.version>2.4.0</json-path.version>
-    <junit-jupiter.version>5.0.0-M4</junit-jupiter.version>
-    <junit-platform-runner.version>1.0.0-M4</junit-platform-runner.version>
-    <spring-test-junit5.version>1.0.0.M4</spring-test-junit5.version>
-    <rest-assured.version>3.0.3</rest-assured.version>
-    <assertj-core.version>3.7.0</assertj-core.version>
+    <rest-assured.version>4.1.2</rest-assured.version>
+    <assertj-core.version>3.14.0</assertj-core.version>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-  </repositories>
 
   <dependencies>
 
@@ -84,43 +63,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit-jupiter.version}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit-jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-runner</artifactId>
-      <version>${junit-platform-runner.version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.github.sbrannen</groupId>
-      <artifactId>spring-test-junit5</artifactId>
-      <version>${spring-test-junit5.version}</version>
-      <scope>test</scope>
-      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>io.rest-assured</groupId>
@@ -134,7 +76,6 @@
       <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
@@ -143,18 +84,111 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.0.0-M2</version>
-          </dependency>
-        </dependencies>
-      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+
+          <!-- BUILD THE FRONTEND FOR PRODUCTION -->
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>1.6</version>
+            <configuration>
+              <workingDirectory>${project.parent.basedir}/ez-client</workingDirectory>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v10.16.0</nodeVersion>
+                  <npmVersion>6.4.1</npmVersion>
+                </configuration>
+                <phase>generate-resources</phase>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>generate-resources</phase>
+              </execution>
+              <execution>
+                <id>npm run package</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <arguments>run package</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- COPY FRONTEND BUILD TO STATIC DIR -->
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.parent.basedir}/ez-client/dist/</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- HOT RELOAD: START 'NPM RUN WATCH' IN FRONTEND THEN START BACKEND WITH THIS PROFILE -->
+      <id>watch</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <profiles>
+                <profile>dev</profile>
+              </profiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+
+  </profiles>
 
 </project>

@@ -15,8 +15,7 @@
     "serve": "NODE_ENV=development webpack-dev-server --progress --port 8081",
     "api": "babel-node --presets @babel/preset-env ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8080",
     "package-dev": "NODE_ENV=development webpack",
-    "package": "NODE_ENV=prod webpack",
-    "deploy": "mkdir -p ../ez-server/target/classes/static && cp -R dist/* ../ez-server/target/classes/static"
+    "package": "NODE_ENV=prod webpack"
   },
   "keywords": [
     "free",

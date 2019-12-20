@@ -217,7 +217,7 @@ let prodConfig = {
   devtool: 'cheap-module-source-map',
 
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     path: BUILD_DIR
   },
 

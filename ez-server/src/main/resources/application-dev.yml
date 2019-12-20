@@ -1,0 +1,11 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# SPRINT BOOT DEV CONFIGURATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+spring:
+  config:
+    additional-location: "@project.parent.basedir@/config/local/"
+
+logging:
+  level:
+    root: WARN
+    com.thorpora.part: INFO

@@ -1,0 +1,148 @@
+{
+  "env" : {
+    "jiraBoardId" : "124"
+  },
+  "server" : {
+    "dataSourcePath" : "/api/consumer/",
+    "now" : "2017-12-20T23:28:03.000+0100"
+  },
+  "theme" : "black",
+  "dataSources" : [],
+  "widgets" : [ {
+    "type" : "HelloWorldWidget",
+    "title" : "HELLO WORLD",
+    "enabled" : false
+  }, {
+    "type" : "HelloErrorWidget",
+    "title" : "HELLO ERROR",
+    "enabled" : false
+  }, {
+    "type" : "HelloGraphWidget",
+    "title" : "HELLO GRAPH",
+    "enabled" : false
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_01",
+    "text" : "Data displayed in this dashboard come from random online projects :  demo.qotilabs.com for JIRA, sonarcloud.io for SONAR and builds.apache.org for JENKINS. \"now\" has been changed to 2017/09/10 for this demo.",
+    "textType" : "info",
+    "editable" : false
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_02",
+    "text" : "This is the only widget you can edit.",
+    "textType" : "good",
+    "editable" : true
+  }, {
+    "type" : "TextWidget",
+    "id" : "TextWidget_03",
+    "text" : "Sorry Firefox sux... Use Chrome !",
+    "textType" : "danger",
+    "editable" : false
+  }, {
+    "type" : "TextWidget",
+    "text" : "You can't edit this one because you didn't define a widget id in the config.",
+    "textType" : "warn",
+    "editable" : true
+  }, {
+    "type" : "MoodWidget",
+    "id" : "MoodWidget_01",
+    "title" : "Team Mood",
+    "mood" : "good",
+    "enabled" : true,
+    "editable" : true
+  }, {
+    "type" : "TeamWidget",
+    "enabled" : true
+  }, {
+    "type" : "ClockWidget",
+    "UTCOffset" : 2,
+    "enabled" : true
+  } ],
+  "avatars" : [ {
+    "displayName" : "Epithor",
+    "jenkinsAuthorPattern" : ".*epi",
+    "url" : "/img/avatars/epi.png"
+  }, {
+    "displayName" : "Pénelope",
+    "jenkinsAuthorPattern" : ".*Pénelope.*",
+    "url" : "/img/avatars/Penelope.png"
+  }, {
+    "displayName" : "Marc",
+    "jenkinsAuthorPattern" : "jenkins",
+    "url" : "/img/avatars/jenkins.png"
+  } ],
+  "thresholds" : {
+    "coverage" : {
+      "good" : 64,
+      "avg" : 55,
+      "bad" : 0
+    },
+    "violations" : {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
+    },
+    "bugs" : {
+      "bad" : 10,
+      "avg" : 1,
+      "good" : 0
+    },
+    "memoryUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "cpuUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "fileDescriptorUsage" : {
+      "bad" : 80,
+      "avg" : 70,
+      "good" : 0
+    },
+    "freeDiskSpaceInTemp" : {
+      "good" : 40,
+      "avg" : 20,
+      "bad" : 0
+    }
+  },
+  "grid" : {
+    "itemBreakpoints" : {
+      "width" : {
+        "lg" : 1200,
+        "md" : 996,
+        "sm" : 768,
+        "xs" : 480,
+        "xxs" : 240,
+        "xxxs" : 0
+      },
+      "height" : {
+        "lg" : 800,
+        "md" : 600,
+        "sm" : 400,
+        "xs" : 280,
+        "xxs" : 140,
+        "xxxs" : 0
+      }
+    },
+    "breakpoints" : {
+      "lg" : 1200,
+      "md" : 996,
+      "sm" : 768,
+      "xs" : 480,
+      "xxs" : 0
+    },
+    "cols" : {
+      "lg" : 7,
+      "md" : 4,
+      "sm" : 4,
+      "xs" : 2,
+      "xxs" : 1
+    },
+    "rowHeight" : 122,
+    "widget_w" : 1,
+    "widget_h" : 1
+  }
+}

@@ -2,8 +2,6 @@ package com.thorpora.ezdashing.utils;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.thorpora.ezdashing.TestTag;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -26,7 +24,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Verify base serialization behaviour")
-  public void verifyBaseSerializationBehaviour() {
+  void verifyBaseSerializationBehaviour() {
     // GIVEN
     SampleBean defaultBean = createDefaultBean();
 
@@ -41,7 +39,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode with a new string field")
-  public void pathNodeWithNewStringField() {
+  void pathNodeWithNewStringField() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     String newFieldName = "hello";
@@ -58,7 +56,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode with a new string field")
-  public void pathNodeWithNewStringListField() {
+  void pathNodeWithNewStringListField() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     String newFieldName = "hello";
@@ -76,7 +74,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode by updating a String field")
-  public void pathNodeWithStringUpdate() {
+  void pathNodeWithStringUpdate() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     String newName = "newName";
@@ -92,7 +90,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode array by adding a string to a string list field")
-  public void pathNodeByAddingStringToListStringField() {
+  void pathNodeByAddingStringToListStringField() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     String newValue = "4";
@@ -108,7 +106,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode array by ADDING a list of String to a string list field")
-  public void pathNodeWithAddOperationOnStringList() {
+  void pathNodeWithAddOperationOnStringList() {
     // GIVEN
     PatchOperation operation = INSERT_OR_ADD;
     ObjectNode jsonNode = valueToTree(createDefaultBean());
@@ -125,7 +123,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode array by REPLACING a list of String by a new one")
-  public void pathNodeWithReplaceOperationOnStringList() {
+  void pathNodeWithReplaceOperationOnStringList() {
     // GIVEN
     PatchOperation operation = INSERT_OR_REPLACE;
     ObjectNode jsonNode = valueToTree(createDefaultBean());
@@ -142,7 +140,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode by adding a int value to an array field")
-  public void pathNodeWithArrayAdd() {
+  void pathNodeWithArrayAdd() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     int[] newInts = {4};
@@ -158,7 +156,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode by adding a int value to an array field (but with an Object as dynamic type)")
-  public void pathNodeWithAddOperationOnObjectList() {
+  void pathNodeWithAddOperationOnObjectList() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     Object[] newObjects = {4};
@@ -174,7 +172,7 @@ class JsonUtilsTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Patch a jsonNode by adding integers from a List to an array field")
-  public void pathNodeWithAddOperationOnIntegerList() {
+  void pathNodeWithAddOperationOnIntegerList() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     List<Integer> newValues = Collections.singletonList(4);
@@ -190,7 +188,7 @@ class JsonUtilsTest {
   @Test
   @Tag(ADVANCED_UNIT_TEST)
   @DisplayName("Patch a jsonNode by adding integers from a List to an array field")
-  public void pathNodeWithMapWithDefaultReplaceOperation() {
+  void pathNodeWithMapWithDefaultReplaceOperation() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     List<Integer> newIntValues = Collections.singletonList(4);
@@ -212,7 +210,7 @@ class JsonUtilsTest {
   @Test
   @Tag(ADVANCED_UNIT_TEST)
   @DisplayName("Patch a jsonNode by adding integers from a List to an array field")
-  public void pathNodeWithMap() {
+  void pathNodeWithMap() {
     // GIVEN
     ObjectNode jsonNode = valueToTree(createDefaultBean());
     List<Integer> newIntValues = Collections.singletonList(42);

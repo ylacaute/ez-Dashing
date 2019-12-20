@@ -25,9 +25,8 @@ import org.springframework.context.annotation.Configuration;
 public class ConsumerConfig {
 
     @Bean
-    public ConsumerRegistry ConsumerRegistry(DashboardConfiguration dashboardProperties) {
-        return new ConsumerRegistry(dashboardProperties);
+    public ConsumerRegistry ConsumerRegistry(DashboardConfiguration dashboardConfiguration) {
+        return new ConsumerRegistry(dashboardConfiguration);
     }
-
 
 }

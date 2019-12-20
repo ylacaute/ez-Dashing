@@ -2,8 +2,8 @@ package com.thorpora.ezdashing.dashboard;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -17,7 +17,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
 @Import(ContextIT.class)
-
 public class AbstractIT {
 
   @LocalServerPort

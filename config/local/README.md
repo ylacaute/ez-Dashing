@@ -1,0 +1,1 @@
+Sample config, without any datasource

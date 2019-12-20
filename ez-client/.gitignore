@@ -113,4 +113,5 @@ assets
 *~
 package-lock.json
 src/main/toolBox
+node
 

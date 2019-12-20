@@ -19,7 +19,7 @@ public class StartupFailureAnalyzer extends AbstractFailureAnalyzer<ApplicationE
     private String getDescription(ApplicationException ex) {
         StringWriter description = new StringWriter();
         PrintWriter printer = new PrintWriter(description);
-        printer.println("There is a configuration problem with your Spring Boot configuration. ");
+        printer.println("There is a configuration problem with your Spring Boot application.");
         if (ex instanceof MissingApplicationArgumentException) {
             printer.println("You must start the application with some parameters.");
         } else if (ex instanceof DashboardConfigNotFound) {
@@ -35,10 +35,13 @@ public class StartupFailureAnalyzer extends AbstractFailureAnalyzer<ApplicationE
         printer.printf("Please verify your configuration. ");
         if (ex instanceof MissingApplicationArgumentException ||
                 ex instanceof DashboardConfigNotFound) {
-            printer.printf("You must start the application with -Dspring.config.location");
-            printer.println();
-            printer.println("Example : -Dspring.config.location=/home/user/ezDashingConfig");
-            printer.println("The given directory must contains 'dashboard.json' and the application.properties'");
+            printer.println("" +
+                    "You must start the application by giving a valid 'spring.config.additional-location' property.\n" +
+                    "Example argument: \n" +
+                    "  -Dspring-boot.run.jvmArguments=\"-Dspring.config.additional-location=/home/user/ezconfig\"\n" +
+                    "The given directory must contains 'dashboard.json'. If you want to override spring " +
+                    "properties, you just have to create the 'application.yml' file inside the specified " +
+                    "directory above.");
         }
         return action.toString();
     }

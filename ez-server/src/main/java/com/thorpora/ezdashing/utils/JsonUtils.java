@@ -138,7 +138,7 @@ public class JsonUtils {
 
     public static <T> T readValue(JsonNode node, TypeReference typeRef) {
         try {
-            return defaultMapper.readValue(defaultMapper.treeAsTokens(node), typeRef);
+            return (T)defaultMapper.readValue(defaultMapper.treeAsTokens(node), typeRef);
         } catch (IOException ex) {
             throw new JsonException("Error during readValue from jsonNode", ex);
         }

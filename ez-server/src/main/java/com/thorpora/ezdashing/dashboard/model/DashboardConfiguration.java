@@ -29,10 +29,12 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.thorpora.ezdashing.utils.FailFast.checkIsTrue;
+import static com.thorpora.ezdashing.utils.FailFast.requireTrue;
 import static com.thorpora.ezdashing.utils.JsonUtils.*;
 import static java.util.stream.StreamSupport.stream;
 import static lombok.AccessLevel.PRIVATE;
@@ -89,7 +91,7 @@ public class DashboardConfiguration {
 
   public void updateWidget(String widgetId, Map<String, Object> fields) {
     JsonNode widgets = rootNode.get("widgets");
-    checkIsTrue(widgets.isArray(), "Configuration error, widgets should be an array");
+    requireTrue(widgets.isArray(), "Configuration error, widgets should be an array");
 
     for (final JsonNode widget : widgets) {
       if (widget.has("id") && widgetId.equals(widget.get("id").asText())) {

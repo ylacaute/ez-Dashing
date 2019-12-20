@@ -16,7 +16,7 @@ import static com.thorpora.ezdashing.TestTag.BASE_UNIT_TEST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-public class DashboardConfigurationTest {
+class DashboardConfigurationTest {
 
   private static final ClassLoader classLoader = DashboardConfigurationTest.class.getClassLoader();
   private static final String DASHBOARD_JSON = "dashboard.json";
@@ -27,7 +27,7 @@ public class DashboardConfigurationTest {
    * We use a temp save file in order to not alter the dashboard.json file for other tests
    */
   @BeforeAll
-  public static void beforeAll() throws IOException {
+  static void beforeAll() throws IOException {
     file = new File(classLoader.getResource(DASHBOARD_JSON).getFile());
     savedFile = File.createTempFile(DASHBOARD_JSON, ".tmp");
     savedFile.deleteOnExit();
@@ -36,7 +36,7 @@ public class DashboardConfigurationTest {
   @Test
   @Tag(BASE_UNIT_TEST)
   @DisplayName("Construct a Dashboard configuration from a valid json file")
-  public void verifyValidJsonLoad() {
+  void verifyValidJsonLoad() {
     // WHEN
     DashboardConfiguration cfg = new DashboardConfiguration(file);
 
@@ -50,7 +50,7 @@ public class DashboardConfigurationTest {
   @Test
   @Tag(ADVANCED_UNIT_TEST)
   @DisplayName("Load config, modify a widget title, save config, reload with modifications")
-  public void verifyReadWriteConfiguration() throws IOException {
+  void verifyReadWriteConfiguration() throws IOException {
     // GIVEN
     String widgetId = "sampleUniqueId";
     String newWidgetTitle = "new Title !!!";
@@ -77,7 +77,7 @@ public class DashboardConfigurationTest {
   @Test
   @Tag(ADVANCED_UNIT_TEST)
   @DisplayName("Load config, modify a widget int array, save config, reload with modifications")
-  public void verifyReadWriteConfiguration2() throws IOException {
+  void verifyReadWriteConfiguration2() throws IOException {
     // GIVEN
     String widgetId = "velocityUniqueId";
     int[] integerArray = {0, 1};

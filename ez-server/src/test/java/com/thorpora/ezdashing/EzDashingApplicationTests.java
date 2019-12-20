@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class EzDashingApplicationTests {
+class EzDashingApplicationTests {
 
 	@Autowired
 	private DashboardConfiguration dashboardConfig;
 
 	@Test
-	public void contextLoads() {
+	void contextLoads() {
 		assertThat(dashboardConfig).isNotNull();
 		List<DataSource> ds = dashboardConfig.getDataSources();
 		assertThat(ds).hasSize(3);

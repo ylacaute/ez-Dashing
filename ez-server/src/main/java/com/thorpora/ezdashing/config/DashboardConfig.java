@@ -19,18 +19,24 @@ package com.thorpora.ezdashing.config;
 import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
 import com.thorpora.ezdashing.exception.DashboardConfigNotFound;
 import com.thorpora.ezdashing.exception.MissingApplicationArgumentException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
-@Profile({"prod", "dev"})
+import static java.io.File.separator;
+import static java.lang.String.format;
+import static org.springframework.util.ResourceUtils.getFile;
+
+@Slf4j
 @Configuration
 public class DashboardConfig {
 
-    public static final String FILENAME = "dashboard.json";
+    private static final String FILENAME = "dashboard.json";
+    private static final String LOCATION_PROP_KEY = "spring.config.additional-location";
 
     @Bean
     public DashboardConfiguration dashboardConfiguration(Environment env) {
@@ -38,23 +44,25 @@ public class DashboardConfig {
     }
 
     /**
-     * We assume the dashboard.json configuration file is always in the same directory as the
-     * application.properties, even if its location is defined with "spring.config.location".
-     *
-     * Remember that spring.config.location is the FULL PATH, including the properties filename.
+     * We assume the dashboard.json configuration file is always in the same directory as the application.yml.
      */
     private File getConfigFile(Environment env) {
-        String externalConfigLocation = env.getProperty("spring.config.location");
-        if (externalConfigLocation != null && !externalConfigLocation.isEmpty()) {
-            String path = externalConfigLocation
-                    .substring(0, externalConfigLocation.lastIndexOf('/'))
-                    .replace("file:", "");
-            File file = new File(path + "/" + FILENAME);
+        String location = env.getProperty(LOCATION_PROP_KEY);
+        log.debug("{} is set to '{}'", LOCATION_PROP_KEY, location);
+        if (location == null || location.isEmpty()) {
+            throw new MissingApplicationArgumentException(format("No arg '%s' defined", LOCATION_PROP_KEY));
+        }
+        try {
+            File file = getFile(location + FILENAME);
             if (!file.exists()) {
-                throw new DashboardConfigNotFound(String.format("File '%s' does not exist.", file));
+                throw new DashboardConfigNotFound(format(
+                        "Unable to locate the dashboard configuration from location '%s'", location));
             }
             return file;
+        } catch (FileNotFoundException ex) {
+            throw new DashboardConfigNotFound(format(
+                    "Unable to locate the dashboard configuration from location '%s'", location));
         }
-        throw new MissingApplicationArgumentException("No arg 'spring.config.location' defined");
     }
+
 }

@@ -10,8 +10,8 @@ FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 FRONT_BUILD_DIR="$FRONT_DIR/dist"
 
-DOCKER_IMG_DEMO_TAG="ez-dashing:demo"
-DOCKER_IMG_LATEST_TAG="ez-dashing:latest"
+DOCKER_IMG_DEMO_TAG="ylacaute/ez-dashing:demo"
+DOCKER_IMG_LATEST_TAG="ylacaute/ez-dashing:latest"
 
 VERSION=CURRENT-SNAPSHOT
 
@@ -33,9 +33,9 @@ function createDockerDemo {
 }
 function pushDockerDemo {
   banner "PUSHINING EZ-DASHING DEMO DOCKER IMAGE"
-  docker tag ${DOCKER_IMG_DEMO_TAG} ylacaute/${DOCKER_IMG_DEMO_TAG}
+  docker tag ${DOCKER_IMG_DEMO_TAG} ${DOCKER_IMG_DEMO_TAG}
   docker login
-  docker push ylacaute/${DOCKER_IMG_DEMO_TAG}
+  docker push ${DOCKER_IMG_DEMO_TAG}
 }
 
 # --------------------------------------------------------------------------- #
@@ -45,17 +45,17 @@ function createDockerLatest {
   banner "CREATING EZ-DASHING LATEST DOCKER IMAGE (PROD)"
   echo "WARN: Please prefer Jenkins to build images"
   echo
-  echo "/!\ Be sure to have started a build-prod before ! /!\ "
+  warn "Be sure to have started a build-prod before !"
   echo
   cd ${PROJECT_DIR}
-  sudo docker build -t ${DOCKER_IMG_LATEST_TAG} -f docker/latest/Dockerfile .
+  sudo docker build -t ${DOCKER_IMG_LATEST_TAG} -f docker/official/Dockerfile .
 }
 function pushDockerLatest {
   banner "PUSHING EZ-DASHING DEMO DOCKER IMAGE"
   echo "WARN: Please prefer Jenkins to build images"
-  docker tag ${DOCKER_IMG_LATEST_TAG} ylacaute/${DOCKER_IMG_LATEST_TAG}
+  docker tag ${DOCKER_IMG_LATEST_TAG} ${DOCKER_IMG_LATEST_TAG}
   docker login
-  docker push ylacaute/${DOCKER_IMG_LATEST_TAG}
+  docker push ${DOCKER_IMG_LATEST_TAG}
 }
 
 # --------------------------------------------------------------------------- #
@@ -64,17 +64,7 @@ function pushDockerLatest {
 function buildProduction {
   banner "PRODUCTION BUILD"
   echo "WARN: Please prefer Jenkins to build for production"
-  echo "Clean the backend"
-  cd ${BACK_DIR}
-  mvn clean
-  cd ${FRONT_DIR}
-  echo "Building front for production, please wait..."
-  npm run package
-  echo "Deploy front assets to the Spring Boot server"
-  npm run deploy
-  cd ${BACK_DIR}
-  echo "Packaging back for production, please wait..."
-  mvn package
+  mvn clean package -P prod
 }
 
 # --------------------------------------------------------------------------- #
@@ -87,17 +77,19 @@ function startProduction {
   for arg in $@; do
     echo "* Argument: $arg"
   done
+  echo "No more argument"
   local configPath=${1}
   shift
   if [[ "$configPath" == "" ]]; then
     echo "Config directory missing !"
     usage
     exit 1
+  else
+    echo "Config directory set to ${configPath}"
   fi
 
-  java -jar ./ez-server/target/ez-dashing-${VERSION}.jar \
-    --spring.config.location=file:${configPath}/server.properties \
-    --logging.file=${configPath}/ez-dashing.log  $@
+  java -jar ./ez-server/target/ez-server-CURRENT-SNAPSHOT.jar \
+    -Dspring.config.additional-location=${configPath} $@
 }
 
 
@@ -105,7 +97,7 @@ function usage {
   echo
   echo "USAGE: ez.sh COMMAND"
   echo
-  echo "DEPRECATED: all this script is DEPRECATED. You should never use it."
+  echo "DEPRECATED: all this script is DEPRECATED. You should never use it, unless you are a developer and you know what you are doing !"
   echo
   echo "Commands:"
   echo
@@ -116,7 +108,6 @@ function usage {
   echo "    * must be in absolute when using Docker"
   echo "  build-docker-demo      Build the demo docker image"
   echo "  build-docker-latest    Build the prod docker image"
-  echo "  build-docker-sources   experimental, don't work"
   echo "  push-docker-demo       Push demo image to Docker Hub"
   echo "  push-docker-latest     Push latest image to Docker Hub"
   echo
@@ -127,7 +118,7 @@ function main {
   shift
   case ${command} in
 
-    # PROD FROM ALL SOURCES
+    # BUILD APP
     build-prod)
       buildProduction;;
     start-prod)

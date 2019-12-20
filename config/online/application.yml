@@ -1,0 +1,7 @@
+
+logging:
+  file:
+    name: ez-dashing.log
+  level:
+    root: INFO
+    com.thorpora: DEBUG

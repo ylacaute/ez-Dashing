@@ -1,5 +1,4 @@
-// Project: ez-Dashing
-// Author: Yannick Lacaute
+// This pipeline is out of date and will be reviewed soon
 
 pipeline {
   agent any
