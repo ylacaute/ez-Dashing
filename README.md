@@ -47,7 +47,7 @@ You can directly start to use __ez-Dashing__ by pulling the production docker im
 
 ## From Docker Hub
 ```sh
-docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:1.0.0
+docker run --rm -itp 8080:8080 --name ez-dashing -v /ABSOLUTE/PATH/TO/CONFIG/DIR:/ez-config  ylacaute/ez-dashing:1.2.0
 ```
 Go on [http://localhost:8080](http://localhost:8080)
 
@@ -85,7 +85,7 @@ Available versions (docker tag):
 
 __New release__
 
-Let's support we want release the version 1.3.0.
+Let's suppose we want to release the version 1.3.0.
 ```sh
 
 # Create the branch
@@ -101,8 +101,7 @@ git checkout -b 1.3
 ./ez.sh push-docker-image 1.3.0
 
 # Git tag
-
-
+git tag -a v1.3.0 -m "Release 1.3.0"
 ```
 
 
