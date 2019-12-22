@@ -8,7 +8,7 @@
   <parent>
     <artifactId>ez-dashing</artifactId>
     <groupId>com.thorpora</groupId>
-    <version>CURRENT-SNAPSHOT</version>
+    <version>${revision}</version>
   </parent>
 
 </project>

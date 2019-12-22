@@ -10,8 +10,7 @@ FRONT_DIR="$PROJECT_DIR/ez-client"
 BACK_DIR="$PROJECT_DIR/ez-server"
 FRONT_BUILD_DIR="$FRONT_DIR/dist"
 
-DOCKER_IMG_DEMO_TAG="ylacaute/ez-dashing:demo"
-DOCKER_IMG_LATEST_TAG="ylacaute/ez-dashing:latest"
+DOCKER_BASE_TAG="ylacaute/ez-dashing"
 
 VERSION=CURRENT-SNAPSHOT
 
@@ -22,49 +21,53 @@ function banner {
   echo "* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *"
 }
 
-# --------------------------------------------------------------------------- #
-# DOCKER DEMO
-# --------------------------------------------------------------------------- #
-function createDockerDemo {
-  banner "CREATING EZ-DASHING DEMO DOCKER IMAGE"
-  echo "WARN: Please prefer Jenkins to build images"
-  cd ${PROJECT_DIR}
-  docker build -t ${DOCKER_IMG_DEMO_TAG} -f docker/demo/Dockerfile .
-}
-function pushDockerDemo {
-  banner "PUSHINING EZ-DASHING DEMO DOCKER IMAGE"
-  docker tag ${DOCKER_IMG_DEMO_TAG} ${DOCKER_IMG_DEMO_TAG}
-  docker login
-  docker push ${DOCKER_IMG_DEMO_TAG}
-}
-
-# --------------------------------------------------------------------------- #
-# DOCKER LATEST
-# --------------------------------------------------------------------------- #
-function createDockerLatest {
-  banner "CREATING EZ-DASHING LATEST DOCKER IMAGE (PROD)"
-  echo "WARN: Please prefer Jenkins to build images"
-  echo
-  warn "Be sure to have started a build-prod before !"
-  echo
-  cd ${PROJECT_DIR}
-  sudo docker build -t ${DOCKER_IMG_LATEST_TAG} -f docker/official/Dockerfile .
-}
-function pushDockerLatest {
-  banner "PUSHING EZ-DASHING DEMO DOCKER IMAGE"
-  echo "WARN: Please prefer Jenkins to build images"
-  docker tag ${DOCKER_IMG_LATEST_TAG} ${DOCKER_IMG_LATEST_TAG}
-  docker login
-  docker push ${DOCKER_IMG_LATEST_TAG}
-}
-
-# --------------------------------------------------------------------------- #
-# BUILD PROD
-# --------------------------------------------------------------------------- #
 function buildProduction {
-  banner "PRODUCTION BUILD"
-  echo "WARN: Please prefer Jenkins to build for production"
-  mvn clean package -P prod
+  local version=${1}
+  local revision=""
+
+  warn "Please prefer Jenkins to build for production"
+  echo
+
+  if [[ -z ${version} ]]; then
+    version="latest"
+  else
+    revision="-Drevision=${version}"
+  fi
+  banner "Build the application with version ${version}"
+  cd ${BACK_DIR}
+  mvn ${revision} clean package -P prod
+}
+
+function createDockerImage {
+  local version=${1}
+  local dockerfilePath=docker/official/Dockerfile
+
+  warn "Please prefer Jenkins to build images and make sure to have build the app before this step"
+  echo
+
+  if [[ ${version} = "demo" ]]; then
+    dockerfilePath=docker/demo/Dockerfile
+  elif [[ -z ${version} ]]; then
+    version="latest"
+  fi
+
+  banner "Creating ez-Dashing ${version} docker image"
+  cd ${PROJECT_DIR}
+  sudo docker build --build-arg VERSION=${version} -t ${DOCKER_BASE_TAG}:${version} -f ${dockerfilePath} .
+}
+
+function pushDockerImage {
+  local version=$1
+
+  if [[ -z ${version} ]]; then
+    version="latest"
+  fi
+  banner "Pushing ez-Dashing ${version} docker image"
+  echo
+  # docker tag ${DOCKER_BASE_TAG}${version} ${DOCKER_BASE_TAG}${version}
+  cd ${PROJECT_DIR}
+  docker login
+  docker push ${DOCKER_BASE_TAG}:${version}
 }
 
 # --------------------------------------------------------------------------- #
@@ -92,52 +95,65 @@ function startProduction {
     -Dspring.config.additional-location=${configPath} $@
 }
 
+usageTitle() {
+  echo -e "\n${Red}${1}${RCol}"
+}
+usageSubTitle() {
+  local main=${1}
+  local args=${2}
 
+  echo -en "${Cya}${1}${RCol} "
+  echo -e "${Gre}${2}${RCol}"
+}
 function usage {
+  local cmd=$1
+  usageTitle "USAGE: ${cmd} COMMAND"
   echo
-  echo "USAGE: ez.sh COMMAND"
+  warn "Do not use this script unless you are a developer and you know what you are doing !"
+
+  usageTitle "COMMANDS"
+  usageSubTitle "  build-prod" "[version]"
+  echo "    build all for production with the given version."
+  echo "    When no version is specified, use latest."
+  usageSubTitle "  start-prod" "<dir>"
+  echo "    start the server in production mode <dir> must be your config directory"
+  echo "    and must contains 'dashboard.json' inside"
+  usageSubTitle "  create-docker-image" "[version]"
+  echo "    Build a image with the specified version. A build must have been done"
+  echo "    with this version before."
+  echo "    When no version is specified, use latest."
+  usageSubTitle "  push-docker-image" "[version]"
+  echo "    Push the image with the given version to Docker Hub."
+  echo "    When no version is specified, use latest."
   echo
-  echo "DEPRECATED: all this script is DEPRECATED. You should never use it, unless you are a developer and you know what you are doing !"
-  echo
-  echo "Commands:"
-  echo
-  echo "  build-prod             build all for production"
-  echo "  start-prod <dir>       start the server in production mode"
-  echo "    <dir> must be your config directory which:"
-  echo "    * must have 'server.properties' and 'dashboard.json' inside"
-  echo "    * must be in absolute when using Docker"
-  echo "  build-docker-demo      Build the demo docker image"
-  echo "  build-docker-latest    Build the prod docker image"
-  echo "  push-docker-demo       Push demo image to Docker Hub"
-  echo "  push-docker-latest     Push latest image to Docker Hub"
-  echo
+  usageTitle "SAMPLES"
+  usageSubTitle "  Build and push the ez-Dashing latest image:"
+  echo "    ez.sh build-prod"
+  echo "    ez.sh create-docker-image"
+  echo "    ez.sh push-docker-image"
+  usageSubTitle "  Build and push the ez-Dashing demo image:"
+  echo "    ez.sh create-docker-image demo"
+  echo "    ez.sh push-docker-image demo"
+  usageSubTitle "  Build and push the ez-Dashing 1.2.3 image:"
+  echo "    ez.sh build-prod 1.2.3"
+  echo "    ez.sh create-docker-image 1.2.3"
+  echo "    ez.sh push-docker-image 1.2.3"
 }
 
 function main {
   local command=${1}
   shift
   case ${command} in
-
-    # BUILD APP
     build-prod)
-      buildProduction;;
+      buildProduction $@;;
     start-prod)
       startProduction $@;;
-
-    # BUILD DOCKER IMAGES
-    build-docker-demo)
-      createDockerDemo;;
-    build-docker-latest)
-      createDockerLatest;;
-
-    # PUSH DOCKER IMAGES
-    push-docker-demo)
-      pushDockerDemo;;
-    push-docker-latest)
-      pushDockerLatest;;
-
+    create-docker-image)
+      createDockerImage $@;;
+    push-docker-image)
+      pushDockerImage $@;;
     *)
-      usage
+      usage ${0}
   esac
 }
 

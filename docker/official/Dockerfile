@@ -14,7 +14,7 @@ LABEL maintainer="Yannick Lacaute <yannick.lacaute@gmail.com>"
 
 ARG uid=2042
 ARG gid=2042
-ARG VERSION="CURRENT-SNAPSHOT"
+ARG VERSION="latest"
 ENV JAVA_OPTS=""
 
 #COPY ez-server/target/classes /usr/src/app/classes

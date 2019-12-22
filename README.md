@@ -76,6 +76,36 @@ __But keep in mind you should have no reason to start server like that, please u
 
 # Documentation
 
+Available versions (docker tag):
+- latest - December 2019
+- 1.2.0 - December 2019
+- demo - December 2019
+
+## Release process
+
+__New release__
+
+Let's support we want release the version 1.3.0.
+```sh
+
+# Create the branch
+git checkout -b 1.3
+
+# Build the app
+./ez.sh build-prod 1.3.0
+
+# Build the docker image
+./ez.sh create-docker-image 1.3.0
+
+# Push the docker image
+./ez.sh push-docker-image 1.3.0
+
+# Git tag
+
+
+```
+
+
 ## Overview
 
 ### Front configuration
