@@ -23,8 +23,10 @@ __Tech Stack__
 
 ## Online
 
-I disabled the previous online demo based on real public API because those API are out of date, as the result the
- online demo is now only the frontend started with mocked API, like in development.  
+The online demo shows a running dashboard (release 1.2.0) configured to consume online public API (without
+ authentication). Some API are maybe out of date as the consequence the widgets are loading infinitely.
+ For example, it seems it is not possible to call demo.qotilabs.com without authentitfication anymore, or maybe 
+ we should update the dashboard config.
 
 Go on [http://demo.thorpora.fr/ez-dashing/](http://demo.thorpora.fr/ez-dashing/)
 

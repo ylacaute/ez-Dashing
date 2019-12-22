@@ -70,6 +70,16 @@ function pushDockerImage {
   docker push ${DOCKER_BASE_TAG}:${version}
 }
 
+function release {
+  local version=$1
+
+  set -e
+  buildProduction ${version}
+  createDockerImage ${version}
+  pushDockerImage ${version}
+  set +e
+}
+
 # --------------------------------------------------------------------------- #
 # START PROD
 # --------------------------------------------------------------------------- #
@@ -125,6 +135,9 @@ function usage {
   usageSubTitle "  push-docker-image" "[version]"
   echo "    Push the image with the given version to Docker Hub."
   echo "    When no version is specified, use latest."
+  usageSubTitle "  release" "[version]"
+  echo "    Build, create and push the docker image with the given version."
+  echo "    When no version is specified, use latest."
   echo
   usageTitle "SAMPLES"
   usageSubTitle "  Build and push the ez-Dashing latest image:"
@@ -152,6 +165,8 @@ function main {
       createDockerImage $@;;
     push-docker-image)
       pushDockerImage $@;;
+    release)
+      release $@;;
     *)
       usage ${0}
   esac

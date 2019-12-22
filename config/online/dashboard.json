@@ -126,22 +126,22 @@
     },
     "queries" : [ {
       "id" : "sonar-stats-systemA",
-      "path" : "/api/measures/component?componentKey=org.starchartlabs.lockdown:lockdown&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=org.starchartlabs.lockdown:lockdown&metricKeys=coverage,lines,violations"
     }, {
       "id" : "sonar-stats-systemB",
-      "path" : "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=org.github.Kitteh6660:Corruption-of-Champions-Mod&metricKeys=coverage,lines,violations"
     }, {
       "id" : "sonar-stats-systemC",
-      "path" : "/api/measures/component?componentKey=com.opentext.ia:infoarchive-sdk&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=com.opentext.ia:infoarchive-sdk&metricKeys=coverage,lines,violations"
     }, {
       "id" : "sonar-stats-systemD",
-      "path" : "/api/measures/component?componentKey=atlasboard&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=simgrid_simgrid&metricKeys=coverage,lines,violations"
     }, {
       "id" : "sonar-stats-systemE",
-      "path" : "/api/measures/component?componentKey=io.legaldocml:legaldocml&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=io.legaldocml:legaldocml&metricKeys=coverage,lines,violations"
     }, {
       "id" : "sonar-stats-systemF",
-      "path" : "/api/measures/component?componentKey=de.schrieveslaach.effective-nlp-application-development:feature-test-nlp-models&metricKeys=coverage,lines,violations&format=json"
+      "path" : "/api/measures/component?componentKey=monica&metricKeys=coverage,lines,violations"
     } ]
   }, {
     "baseUrl" : "https://builds.apache.org",
@@ -158,22 +158,22 @@
     },
     "queries" : [ {
       "id" : "jenkins-lastBuild-systemA",
-      "path" : "/job/HBase-Flaky-Tests/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/camel-quarkus-pr/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemB",
-      "path" : "/job/Solr-reference-guide-7.0/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/heron-website/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemC",
-      "path" : "/job/Allura-rat/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/ActiveMQ-Java8/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemD",
-      "path" : "/job/incubator-trafficcontrol-docs/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/netbeans-linux-jdk11/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemE",
-      "path" : "/job/Solr-reference-guide-7.x/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/ActiveMQ-Trunk-Deploy/lastBuild/api/json?pretty=true&depth=1"
     }, {
       "id" : "jenkins-lastBuild-systemF",
-      "path" : "/job/kafka-pr-jdk9-scala2.12/lastBuild/api/json?pretty=true&depth=1"
+      "path" : "/job/Ivy-tests-ubuntu/lastBuild/api/json?pretty=true&depth=1"
     } ]
   } ],
   "widgets" : [ {

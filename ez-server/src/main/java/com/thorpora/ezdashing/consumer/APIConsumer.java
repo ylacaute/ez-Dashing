@@ -24,7 +24,7 @@ import java.util.Map;
 
 public interface APIConsumer {
 
-    @RequestLine("GET /{path}?")
+    @RequestLine("GET /{path}")
     String query(@Param("path") String path, @QueryMap Map<String, String> params);
 
 }
