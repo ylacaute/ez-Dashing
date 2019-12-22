@@ -203,7 +203,7 @@
   }, {
     "type" : "TextWidget",
     "id" : "TextWidget_03",
-    "text" : "Sorry Firefox sux... Use Chrome !",
+    "text" : "Works nice on Firefox, and Chrome ! No idea for the rest",
     "textType" : "danger",
     "editable" : false
   }, {
