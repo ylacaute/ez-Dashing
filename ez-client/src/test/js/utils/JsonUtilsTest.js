@@ -1,5 +1,4 @@
 import JsonUtils from "utils/JsonUtils";
-import { assert } from "chai";
 
 describe("JsonUtils", () => {
 
@@ -11,7 +10,7 @@ describe("JsonUtils", () => {
       var1: "value"
     };
     let result = JsonUtils.replaceVars(inputJson, vars);
-    assert.equal(JSON.stringify(result), JSON.stringify(inputJson));
+    expect(JSON.stringify(result)).toStrictEqual(JSON.stringify(inputJson));
   });
 
   it("replaceVars() should replace property value and propery name", () => {
@@ -39,7 +38,7 @@ describe("JsonUtils", () => {
       }]
     };
     let result = JsonUtils.replaceVars(inputJson, vars);
-    assert.equal(JSON.stringify(result), JSON.stringify(expectedJson));
+    expect(JSON.stringify(result)).toStrictEqual(JSON.stringify(expectedJson));
   });
 
 

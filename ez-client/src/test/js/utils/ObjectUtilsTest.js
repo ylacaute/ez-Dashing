@@ -1,48 +1,47 @@
 import ObjectUtils from "utils/ObjectUtils";
-import { assert } from "chai";
 
 describe("ObjectUtils", () => {
 
   it("isNullOrEmpty() should return true on null object", () => {
     let nullObj = null;
-    assert.equal(ObjectUtils.isNullOrEmpty(nullObj), true);
+    expect(ObjectUtils.isNullOrEmpty(nullObj)).toStrictEqual(true);
   });
 
   it("isNullOrEmpty() should return true on empty object", () => {
     let emptyObj = {};
-    assert.equal(ObjectUtils.isNullOrEmpty(emptyObj), true);
+    expect(ObjectUtils.isNullOrEmpty(emptyObj)).toStrictEqual(true);
   });
 
   it("isNullOrEmpty() should return true on empty array", () => {
     let emptyArray = [];
-    assert.equal(ObjectUtils.isNullOrEmpty(emptyArray), true);
+    expect(ObjectUtils.isNullOrEmpty(emptyArray)).toStrictEqual(true);
   });
 
   it("isNullOrEmpty() should return false on object with properties", () => {
     let obj = { hello: "world" };
-    assert.equal(ObjectUtils.isNullOrEmpty(obj), false);
+    expect(ObjectUtils.isNullOrEmpty(obj)).toStrictEqual(false);
   });
 
   it("isNullOrEmpty() should return false on array with elements", () => {
     let array = ["Hello"];
-    assert.equal(ObjectUtils.isNullOrEmpty(array), false);
+    expect(ObjectUtils.isNullOrEmpty(array)).toStrictEqual(false);
   });
 
   it("typeOf() should return String", () => {
     let obj = "Hello";
-    assert.equal(ObjectUtils.typeOf(obj), "String");
+    expect(ObjectUtils.typeOf(obj)).toStrictEqual("String");
   });
 
   it("typeOf() should return Array", () => {
     let array = [];
-    assert.equal(ObjectUtils.typeOf(array), "Array");
+    expect(ObjectUtils.typeOf(array)).toStrictEqual("Array");
   });
 
   it("typeOf() should return user defined type", () => {
     let SampleClass = () => {
     };
     let instance = new SampleClass();
-    assert.equal(ObjectUtils.typeOf(instance), "SampleClass");
+    expect(ObjectUtils.typeOf(instance)).toStrictEqual("SampleClass");
   });
 
 });

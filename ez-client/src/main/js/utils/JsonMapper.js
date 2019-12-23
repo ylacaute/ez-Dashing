@@ -25,7 +25,7 @@ function splitTypeAndName(propertyName) {
  */
 function mapSimpleType(propType, jsonPathQuery, jsonResponse) {
   let jsonPathValue = JSONPath.query(jsonResponse, jsonPathQuery);
-  if (propType != "array") {
+  if (propType !== "array") {
     jsonPathValue = TypeUtils.convert(jsonPathValue[0], propType);
   }
   return jsonPathValue;

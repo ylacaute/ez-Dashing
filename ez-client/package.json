@@ -10,26 +10,25 @@
     "url": "https://ylacaute@github.com/ylacaute/ez-Dashing.git"
   },
   "scripts": {
-    "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start --single-run ",
+    "test": "NODE_ENV=test jest",
     "serve": "NODE_ENV=development webpack-dev-server --progress --port 8081",
     "api": "babel-node --presets @babel/preset-env ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8080",
     "package-dev": "NODE_ENV=development webpack",
     "package": "NODE_ENV=prod webpack"
   },
   "keywords": [
-    "free",
-    "dashboard",
     "ez-dashing",
-    "scrum",
+    "free",
     "agile",
+    "dashboard",
+    "scrum",
     "react",
     "redux",
     "webpack",
-    "livereload",
     "hot-reload",
     "json-server",
     "spring-boot",
-    "mocha"
+    "jest"
   ],
   "dependencies": {
     "@nivo/bar": "^0.59.2",
@@ -45,6 +44,7 @@
     "react-grid-layout": "^0.17.1",
     "react-redux": "^7.1.3",
     "redux": "^4.0.4",
+    "request": "^2.88.0",
     "rodal": "^1.7.0"
   },
   "devDependencies": {
@@ -58,7 +58,6 @@
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "chai": "^4.2.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.5",
@@ -67,19 +66,10 @@
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
-    "istanbul": "^0.4.5",
-    "istanbul-instrumenter-loader": "^3.0.1",
+    "jest": "^24.9.0",
     "json-server": "^0.15.1",
-    "karma": "^4.4.1",
-    "karma-coverage": "^2.0.1",
-    "karma-mocha": "^1.3.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-spec-reporter": "0.0.32",
-    "karma-webpack": "^4.0.2",
     "knacss": "^7.1.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "mocha": "^6.2.2",
-    "mocha-loader": "^3.0.0",
     "node-sass": "^4.13.0",
     "nodemon": "^1.19.4",
     "phantomjs-polyfill": "0.0.2",
@@ -90,5 +80,45 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
+  },
+  "jest": {
+    "verbose": true,
+    "bail": 1,
+    "moduleDirectories": [
+      "node_modules",
+      "src/main/js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/test/**/*Test.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/main/**/*.{js,jsx}"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
+    ],
+    "moduleFileExtensions": [
+      "json",
+      "js",
+      "jsx",
+      "node"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
   }
 }

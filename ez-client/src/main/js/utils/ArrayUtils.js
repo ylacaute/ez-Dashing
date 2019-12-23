@@ -24,7 +24,7 @@ export default class ArrayUtils {
     }
     let lastValues = ArrayUtils.lasts(valuesArray, lastValuesCount);
     let sum = lastValues.reduce((sum, value) => sum + value, 0);
-    if (lastValues.length != 0) {
+    if (lastValues.length !== 0) {
       average = Math.floor(sum / lastValues.length);
     }
     return average;

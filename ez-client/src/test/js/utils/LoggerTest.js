@@ -1,5 +1,4 @@
 import Logger from "utils/Logger";
-import { assert } from "chai";
 
 describe("Logger", () => {
 
@@ -7,7 +6,7 @@ describe("Logger", () => {
 
   it("getLogger() without args should return the root Logger", () => {
     let logger = Logger.getLogger();
-    assert.equal(logger.name, Logger.ROOT_LOGGER_NAME);
+    expect(logger.name).toStrictEqual(Logger.ROOT_LOGGER_NAME);
   });
 
   it("log with Root logger set as INFO", () => {
@@ -20,11 +19,11 @@ describe("Logger", () => {
     let warn = logger.warn("This is warn");
     let error = logger.error("This is error");
 
-    assert.equal(trace, null);
-    assert.equal(debug, null);
-    assert.equal(info, "[INFO] This is info");
-    assert.equal(warn, "[WARN] This is warn");
-    assert.equal(error, "[ERROR] This is error");
+    expect(trace).toStrictEqual(null);
+    expect(debug).toStrictEqual(null);
+    expect(info).toStrictEqual("[INFO] This is info");
+    expect(warn).toStrictEqual("[WARN] This is warn");
+    expect(error).toStrictEqual("[ERROR] This is error");
   });
 
   it("log with Root logger set as WARN", () => {
@@ -34,14 +33,14 @@ describe("Logger", () => {
     let trace = logger.trace("Should be ignored");
     let debug = logger.debug("Should be ignored");
     let info = logger.info("Should be ignored");
-    let warn = logger.warn("This is warn");
+    let warn = logger.warn("This is another warn");
     let error = logger.error("This is error");
 
-    assert.equal(trace, null);
-    assert.equal(debug, null);
-    assert.equal(info, null);
-    assert.equal(warn, "[WARN] This is warn");
-    assert.equal(error, "[ERROR] This is error");
+    expect(trace).toStrictEqual(null);
+    expect(debug).toStrictEqual(null);
+    expect(info).toStrictEqual( null);
+    expect(warn).toStrictEqual("[WARN] This is another warn");
+    expect(error).toStrictEqual("[ERROR] This is error");
   });
 
 
@@ -51,7 +50,7 @@ describe("Logger", () => {
     let logger = Logger.getLogger("Sample");
     let msg = logger.info("Hello World");
 
-    assert.equal(msg, "[INFO] Sample: Hello World");
+    expect(msg).toStrictEqual("[INFO] Sample: Hello World");
   });
 
   it("debug() with a logger name but with rootLevel set to INFO", () => {
@@ -60,7 +59,7 @@ describe("Logger", () => {
     let logger = Logger.getLogger("Sample");
     let msg = logger.debug("Hello World");
 
-    assert.equal(msg, null);
+    expect(msg).toStrictEqual(null);
   });
 
   it("info() with a logger name and a specific level", () => {
@@ -74,11 +73,11 @@ describe("Logger", () => {
     let warn = logger.warn("warn");
     let error = logger.error("error");
 
-    assert.equal(trace, "[TRACE] Sample: trace");
-    assert.equal(debug, "[DEBUG] Sample: debug");
-    assert.equal(info, "[INFO] Sample: info");
-    assert.equal(warn, "[WARN] Sample: warn");
-    assert.equal(error, "[ERROR] Sample: error");
+    expect(trace).toStrictEqual("[TRACE] Sample: trace");
+    expect(debug).toStrictEqual("[DEBUG] Sample: debug");
+    expect(info).toStrictEqual("[INFO] Sample: info");
+    expect(warn).toStrictEqual("[WARN] Sample: warn");
+    expect(error).toStrictEqual("[ERROR] Sample: error");
   });
 
   it("info() with one parameter", () => {
@@ -88,7 +87,7 @@ describe("Logger", () => {
 
     let trace = logger.trace("Hello {}", "World");
 
-    assert.equal(trace, "[TRACE] Sample: Hello World");
+    expect(trace).toStrictEqual("[TRACE] Sample: Hello World");
   });
 
   it("info() with two parameters", () => {
@@ -98,7 +97,7 @@ describe("Logger", () => {
 
     let trace = logger.trace("{}Hello {}", "=>", "World");
 
-    assert.equal(trace, "[TRACE] Sample: =>Hello World");
+    expect(trace).toStrictEqual("[TRACE] Sample: =>Hello World");
   });
 });
 

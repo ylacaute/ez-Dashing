@@ -105,6 +105,7 @@
               <workingDirectory>${project.parent.basedir}/ez-client</workingDirectory>
             </configuration>
             <executions>
+
               <execution>
                 <id>install node and npm</id>
                 <goals>
@@ -116,6 +117,7 @@
                 </configuration>
                 <phase>generate-resources</phase>
               </execution>
+
               <execution>
                 <id>npm install</id>
                 <goals>
@@ -123,12 +125,24 @@
                 </goals>
                 <phase>generate-resources</phase>
               </execution>
+
+              <execution>
+                <id>npm test</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>test</phase>
+                <configuration>
+                  <arguments>run test</arguments>
+                </configuration>
+              </execution>
+
               <execution>
                 <id>npm run package</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
-                <phase>generate-resources</phase>
+                <phase>package</phase>
                 <configuration>
                   <arguments>run package</arguments>
                 </configuration>

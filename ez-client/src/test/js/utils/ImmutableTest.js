@@ -1,4 +1,3 @@
-import { assert } from "chai";
 
 describe("ImmutableTest", () => {
 
@@ -22,14 +21,14 @@ describe("ImmutableTest", () => {
       ["jira#todo"]: newJiraTodo
     };
 
-    assert.equal(initialState["jira#todo"].total, 42);
-    assert.equal(initialState["jira#inProgress"].total, 10);
-    assert.equal(newState["jira#todo"].total, 100);
-    assert.equal(newState["jira#inProgress"].total, 10);
+    expect(initialState["jira#todo"].total).toStrictEqual(42);
+    expect(initialState["jira#inProgress"].total).toStrictEqual(10);
+    expect(newState["jira#todo"].total).toStrictEqual(100);
+    expect(newState["jira#inProgress"].total).toStrictEqual(10);
 
-    assert.equal(initialState.jenkins, newState.jenkins);
-    assert.notEqual(initialState, newState);
-    assert.notEqual(initialState["jira#todo"], newState["jira#todo"]);
+    expect(initialState.jenkins).toStrictEqual(newState.jenkins);
+    expect(initialState).not.toStrictEqual(newState);
+    expect(initialState["jira#todo"]).not.toStrictEqual(newState["jira#todo"]);
   });
 
 
@@ -54,13 +53,11 @@ describe("ImmutableTest", () => {
       ["jira"]: newJira
     };
 
-    assert.equal(initialState.jira, null);
-    assert.equal(initialState.jenkins.inProgress.total, 10);
-    assert.equal(newState.jira.todo.total, 100);
-    assert.equal(newState.jenkins.inProgress.total, 10);
-
-    assert.equal(initialState.jenkins, newState.jenkins);
-
+    expect(initialState.jira).toStrictEqual(undefined);
+    expect(initialState.jenkins.inProgress.total).toStrictEqual(10);
+    expect(newState.jira.todo.total).toStrictEqual(100);
+    expect(newState.jenkins.inProgress.total).toStrictEqual(10);
+    expect(initialState.jenkins).toStrictEqual(newState.jenkins);
   });
 
 
@@ -79,8 +76,8 @@ describe("ImmutableTest", () => {
       ["jira"]: newJira
     };
 
-    assert.equal(initialState.jira, null);
-    assert.equal(newState.jira.todo.total, 100);
+    expect(initialState.jira).toStrictEqual(undefined);
+    expect(newState.jira.todo.total).toStrictEqual(100);
   });
 
 });

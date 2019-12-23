@@ -1,5 +1,4 @@
 import JSONPath from "jsonpath";
-import { assert } from "chai";
 
 describe("JsonPATH", () => {
 
@@ -23,7 +22,7 @@ describe("JsonPATH", () => {
       }
     };
     let result = JSONPath.query(json, "$.component.measures[?(@.metric == 'lines')].value");
-    assert.equal(result[0], 128);
+    expect(result[0]).toStrictEqual("128");
   });
 
   it("query() should return good values from a jenkins response", () => {
@@ -228,8 +227,8 @@ describe("JsonPATH", () => {
     };
     let result = JSONPath.query(json, "$.result", 1);
     let lastAuthor = JSONPath.query(json, "$.changeSet.items[-1:].author.fullName", 1);
-    assert.equal(result, "SUCCESS");
-    assert.equal(lastAuthor[0], "jenkins3");
+    expect(result[0]).toStrictEqual("SUCCESS");
+    expect(lastAuthor[0]).toStrictEqual("jenkins3");
   });
 
 });

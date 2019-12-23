@@ -244,6 +244,11 @@ __Solution:__ You must first run maven to compile and do it again each time you 
 mvn compile
 ```
 
+__Error:__ When building the application, we can see that front logs are marked in ERROR by Maven (even if all tests
+ are passing)
+__Solution__ This is not a real but [a known Jest bug](https://github.com/facebook/jest/issues/5064), Jest writes
+ on stderr instead of stdout, as the result Maven mark them on error. 
+
 ## Browser compatibility: 
  - __Chromium__ : good (only last version tested)
  - __Firefox__ : good (only last version tested)
