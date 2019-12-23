@@ -12,7 +12,7 @@ export default class ImageWidget extends React.Component {
   }, Widget.propTypes);
 
   static defaultProps = {
-    logoUrl: "img/tech/ezLogo.png"
+    logoUrl: "img/tech/ezLogo_512.png"
   };
 
   render() {

@@ -1,4 +1,4 @@
-# <img src="/ez-client/src/main/resources/img/tech/ezLogo.png" width="100" alt="ez-Dashing"> ez-Dashing
+# <img src="/ez-client/src/main/resources/img/tech/ezLogo_512.png" width="100" alt="ez-Dashing"> ez-Dashing
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development teams. The project is still in 
  development but already usable for production. I am aware that many things could be improved, feel free to contribute !

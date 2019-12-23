@@ -1,0 +1,20 @@
+{
+  "short_name": "ez-Dashing",
+  "name": "ez-Dashing, yet another free agile dashboard",
+  "icons": [
+    {
+      "src": "/img/tech/ezLogo_64.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/tech/ezLogo_512.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
