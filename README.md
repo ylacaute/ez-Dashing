@@ -140,7 +140,7 @@ You can define a server configuration file [application.yml](/config/local/appli
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
-- [ ] __AudioPlayerWidget__
+- [ ] __AudioPlayerWidget__ (WIP, client side ok, todo: shared server folder)
 - [ ] __HipTestWidget__ (test-run report)
 - [ ] __PullRequestWidget__ (Gitlab)
 - [ ] __PullRequestWidget__ (Github)
