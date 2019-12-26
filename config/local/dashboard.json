@@ -8,7 +8,11 @@
   },
   "theme" : "black",
   "dataSources" : [],
-  "widgets" : [ {
+  "widgets" : [{
+    "type" : "HelloWorldWidget",
+    "title" : "HELLO WORLD",
+    "enabled" : false
+  }, {
     "type" : "HelloWorldWidget",
     "title" : "HELLO WORLD",
     "enabled" : false

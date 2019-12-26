@@ -1,8 +1,8 @@
 import React from 'react';
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
-import WidgetFooter from "component/widget/base/WidgetFooter.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import Widget from "component/widget/base/Widget.jsx";
+import WidgetHeader from "component/widget/base/WidgetHeader";
+import WidgetFooter from "component/widget/base/WidgetFooter";
+import WidgetContent from "component/widget/base/WidgetContent";
+import Widget from "component/widget/base/Widget";
 import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
 
 export default class HelloWorldWidget extends React.Component {

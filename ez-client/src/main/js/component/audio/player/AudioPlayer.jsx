@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Logger from 'utils/Logger';
 import './AudioPlayer.scss';
 import cn from "classnames";
-import AudioPlaylist from "./AudioPlaylist.jsx";
-import AudioControls from "./AudioControls.jsx";
-import AudioVolume from "./AudioVolume.jsx";
+import AudioPlaylist from "./AudioPlaylist";
+import AudioControls from "./AudioControls";
+import AudioVolume from "./AudioVolume";
 import InputRange from "component/range/InputRange";
 import MathUtils from "utils/MathUtils";
 

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import ObjectUtils from 'utils/ObjectUtils';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
 import Logger from 'utils/Logger';
-import CubeSpinnerLoader from "component/loader/CubeSpinnerLoader.jsx";
+import CubeSpinnerLoader from "component/loader/CubeSpinnerLoader";
 
 const logger = Logger.getLogger("Widget");
 

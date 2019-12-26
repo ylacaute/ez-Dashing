@@ -1,7 +1,7 @@
 import React from 'react';
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
+import WidgetHeader from "component/widget/base/WidgetHeader";
 import { ResponsiveLine } from '@nivo/line'
 import { darkChartTheme } from "theme/DarkChartTheme";
 
@@ -286,7 +286,7 @@ const xAxisFormatter = (value, idx) => {
   return value;
 };
 
-export default class HelloGraphLineWidget extends React.Component {
+export default class HelloLineChartWidget extends React.Component {
 
   render() {
     return (

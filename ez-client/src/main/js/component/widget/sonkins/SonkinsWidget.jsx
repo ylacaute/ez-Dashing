@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AvatarConfig from "config/AvatarConfig";
-import Metric from "component/widget/base/Metric.jsx";
-import FlipComponent from "component/effect/FlipComponent.jsx";
+import Metric from "component/widget/base/Metric";
+import FlipComponent from "component/effect/FlipComponent";
 import CircularProgressBar from 'component/chart/CircularProgressBar.jsx'
 import LinearProgressBar from 'component/chart/LinearProgressBar.jsx';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import Widget from "component/widget/base/Widget.jsx";
+import WidgetHeader from "component/widget/base/WidgetHeader";
+import WidgetContent from "component/widget/base/WidgetContent";
+import Widget from "component/widget/base/Widget";
 import cn from 'classnames';
 
 

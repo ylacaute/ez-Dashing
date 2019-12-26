@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
+import WidgetHeader from "component/widget/base/WidgetHeader";
 import ThresholdConfig from "config/ThresholdConfig";
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
 import cn from "classnames";
@@ -34,7 +34,7 @@ export default class BugWidget extends React.Component {
       .concat(ThresholdConfig.get(
         this.props.thresholds.bugs,
         this.getTotal()))
-      .concat(this.getTotal() == 0 ? "empty" : "")
+      .concat(this.getTotal() === 0 ? "empty" : "")
   }
 
   getTotal() {
@@ -61,7 +61,7 @@ export default class BugWidget extends React.Component {
   }
 
   renderContent() {
-    if (this.getTotal() == 0) {
+    if (this.getTotal() === 0) {
       return this.renderEmptyBug();
     }
     const todoIssuesKeys = this.getKeys(this.props.todoBugs);

@@ -72,18 +72,48 @@ __But keep in mind you should have no reason to start server like that, please u
 
 # Documentation
 
-Available versions (docker tag):
-- latest - December 2019
-- 1.2.0 - December 2019
-- demo - December 2019
+## Available versions
+
+Here are the available docker images:
+- ylacaute/ez-Dashing:latest (December 2019)
+- ylacaute/ez-Dashing:1.2.0 (December 2019)
+- ylacaute/ez-Dashing:demo (December 2019)
+
+## Opinionated application design
+
+### No container directory
+I always wanted to say to Dan Abramov: "Hey, you did a fantastic job with React, but I disagree with your components
+ versus containers folders. This separation is done for bad because technical reasons, not for semantic reasons." I
+  am glad to note that, since hooks, Dan does not suggest splitting folders like this anymore but only a component
+   directory.
+ 
+In ez-Dashing, hooks are not (yet) used and only widgets are connected components, the connection is done
+ automatically in the WidgetFactory.
+
+### Use CSS for style
+
+I should write an article on that, when it come to theming, there are so many things to speak about... Anyway I don't
+ like the trend and prefer to keep the standard and historical rules :
+ - CSS is for theming
+ - HTML and JS are for content
+ - Accept small limitations
+ - Embrace standardization
+
+I consider these new way of doing (CSS module, JS theming, inline style) as the biggest mistake these past few
+ years in frontend world. Really, using inline style to customize your application, or to build components library, is
+  the worse thing we can do as a frontend developer.
 
 ## Release process
 
 __New release__
 
-Let's suppose we want to release the version 1.3.0.
-```sh
+This application do not use maven release plugin. The main reason is because no jar are published, but this plugin is
+ not CI friendly anyway. Since Maven 3 we can use ${revision} in version which bring simplicity. See [this good
+  article](https://techluminary.com/discard-maven-release-plugin-with-a-new-approach/).
 
+Sample to release ez-Dashing version 1.3.0:
+
+```sh
 # Create the branch
 git checkout -b 1.3
 
@@ -101,9 +131,9 @@ git tag -a v1.3.0 -m "Release 1.3.0"
 ```
 
 
-## Overview
 
-### Front configuration
+
+## Front configuration
 Define a [dashboard.json](/config/online/dashboard.json) configuration file, composed of the sections below:
  - __env:__ global variables which can be used anywhere in the configuration
  - __server:__ server config, you should have no reason to use that in production
@@ -114,11 +144,11 @@ Define a [dashboard.json](/config/online/dashboard.json) configuration file, com
  - __thresholds:__ define the thresholds values which will impact the CSS rules 
  - __grid:__ mainly responsive configuration parameters of the grid
 
-### Server configuration
+## Server configuration
 You can define a server configuration file [application.yml](/config/local/application.yml) to override Spring
  Boot configuration. However, this file is not mandatory.
 
-### Workflow
+## Workflow
  - DataSources are regularly refreshed. When refreshed, REST responses are mapped to properties depending your configuration
  - Properties are then injected into the application state 
  - Widgets are dumb components with properties defined in the configuration and the mapped properties of the dataSources they listen to 
@@ -248,6 +278,9 @@ __Error:__ When building the application, we can see that front logs are marked 
  are passing)
 __Solution__ This is not a real but [a known Jest bug](https://github.com/facebook/jest/issues/5064), Jest writes
  on stderr instead of stdout, as the result Maven mark them on error. 
+
+__Error:__ Error: <rect> attribute height: A negative value is not valid.
+__Solution:__ Just resize chart widget, when the widget is too small, it can generated negative values.
 
 ## Browser compatibility: 
  - __Chromium__ : good (only last version tested)

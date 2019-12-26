@@ -1,10 +1,10 @@
 import React from 'react';
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import AudioPlayerPlaylistModal from 'component/widget/audio/AudioPlayerPlaylistModal.jsx';
+import Widget from "component/widget/base/Widget";
+import WidgetHeader from "component/widget/base/WidgetHeader";
+import WidgetContent from "component/widget/base/WidgetContent";
 import AudioPlayer from "component/audio/player";
 
+import AudioPlayerPlaylistModal from './AudioPlayerPlaylistModal';
 import './AudioPlayerWidget.scss'
 
 export default class AudioPlayerWidget extends React.Component {

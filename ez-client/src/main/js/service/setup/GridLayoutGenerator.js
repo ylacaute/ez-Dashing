@@ -9,7 +9,7 @@ let generateSingle = (nbCols, configuration) => {
 
   for (let i = 0; i < widgetConfigs.length; i++) {
     let widgetConfig = widgetConfigs[i];
-    if (widgetConfig.enabled == false)
+    if (widgetConfig.enabled === false)
       continue;
     let widgetGridConfig = Object.assign({}, defaultProps, {
       i: widgetConfig.key,

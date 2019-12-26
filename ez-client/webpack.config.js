@@ -120,7 +120,11 @@ let commonConfig = {
               "@babel/preset-react" ],
             plugins: [
               //"react-hot-loader/babel",      // react hot reload
+              // "syntax-dynamic-import",
+              "@babel/plugin-syntax-dynamic-import",
               "@babel/plugin-proposal-class-properties",  // static
+              // "@babel/plugin-proposal-export-default-from",
+              // "@babel/plugin-transform-runtime",
               "@babel/plugin-proposal-object-rest-spread" // use of '...' for properties
             ]
           },

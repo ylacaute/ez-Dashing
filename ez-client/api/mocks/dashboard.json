@@ -204,17 +204,17 @@
         "enabled": false
       },
       {
-        "type": "HelloGraphBarWidget",
+        "type": "HelloBarChartWidget",
         "title": "HELLO BAR GRAPH",
         "enabled": true
       },
       {
-        "type": "HelloGraphLineWidget",
+        "type": "HelloLineChartWidget",
         "title": "HELLO LINE GRAPH",
         "enabled": true
       },
       {
-        "type": "HelloGraphPieWidget",
+        "type": "HelloPieChartWidget",
         "title": "HELLO PIE GRAPH",
         "enabled": true
       },
@@ -250,7 +250,7 @@
         "editable": true
       },
       {
-        "type": "BurndownChartWidget",
+        "type": "BurndownWidget",
         "title": "BURNDOWN",
         "dataSource": [
           "jira-story-closed",

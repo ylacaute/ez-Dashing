@@ -1,7 +1,7 @@
 import React from 'react';
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
+import WidgetHeader from "component/widget/base/WidgetHeader";
 import { ResponsivePie } from '@nivo/pie'
 import { darkChartTheme } from "theme/DarkChartTheme";
 
@@ -28,7 +28,7 @@ const data = [
   }
 ];
 
-export default class HelloGraphPieWidget extends React.Component {
+export default class HelloPieChartWidget extends React.Component {
 
   render() {
     return (

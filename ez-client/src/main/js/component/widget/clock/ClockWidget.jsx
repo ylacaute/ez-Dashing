@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
 import DateService from "service/date/DateService";
 
 export default class ClockWidget extends React.Component {

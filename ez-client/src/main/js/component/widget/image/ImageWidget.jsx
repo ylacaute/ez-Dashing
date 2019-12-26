@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import ScalableImage from "component/scalable/ScalableImage.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
+import ScalableImage from "component/scalable/ScalableImage";
 import cn from "classnames";
 
 export default class ImageWidget extends React.Component {

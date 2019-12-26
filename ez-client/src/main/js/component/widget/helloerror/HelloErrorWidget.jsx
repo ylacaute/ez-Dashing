@@ -1,6 +1,6 @@
 import React from 'react';
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
 
 
 export default class HelloErrorWidget extends React.Component {

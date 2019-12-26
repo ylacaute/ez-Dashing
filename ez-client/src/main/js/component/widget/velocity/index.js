@@ -1,12 +1,3 @@
-import { connect } from "react-redux";
-import Widget from "component/widget/base/Widget.jsx";
-import VelocityWidget from "component/widget/velocity/VelocityWidget.jsx";
+import VelocityWidget from "./VelocityWidget";
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...Widget.mapCommonWidgetProps(state, ownProps)
-  };
-};
-
-export default connect(mapStateToProps)(VelocityWidget)
-
+export default VelocityWidget;

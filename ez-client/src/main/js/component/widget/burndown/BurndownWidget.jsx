@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Widget from "component/widget/base/Widget.jsx";
-import WidgetContent from "component/widget/base/WidgetContent.jsx";
-import WidgetHeader from "component/widget/base/WidgetHeader.jsx";
+import Widget from "component/widget/base/Widget";
+import WidgetContent from "component/widget/base/WidgetContent";
+import WidgetHeader from "component/widget/base/WidgetHeader";
 import VelocityCalculator from "utils/VelocityCalculator";
 import DateService from "service/date/DateService";
 import {ResponsiveLine} from "@nivo/line";
@@ -24,7 +24,7 @@ const toChartValues = (val) => ({
 
 const logger = Logger.getLogger("BurndownChartWidget");
 
-export default class BurndownChartWidget extends React.Component {
+export default class BurndownWidget extends React.Component {
 
   static propTypes = Object.assign({
     dateTickCount: PropTypes.number,
@@ -57,7 +57,7 @@ export default class BurndownChartWidget extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = props;
     const allSprintIssues = closedIssues.concat(readyIssues);
-    if (allSprintIssues.length == 0) {
+    if (allSprintIssues.length === 0) {
       return {
         hasError: true,
         error: {
