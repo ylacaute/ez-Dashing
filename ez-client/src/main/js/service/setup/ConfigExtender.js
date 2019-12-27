@@ -29,43 +29,33 @@ export default class ConfigExtender {
    * you MUST use the returned object in all cases.
    */
   static extendsConfig(dashboardConfig, loadGrid = true) {
-    if (!dashboardConfig.env) {
-      dashboardConfig.env = {};
-    } else {
-      dashboardConfig = JsonUtils.replaceVars(dashboardConfig, dashboardConfig.env);
-    }
-    if (!dashboardConfig.theme) {
-      dashboardConfig.theme = "default";
-    }
-    if (!dashboardConfig.thresholds) {
-      dashboardConfig.thresholds = {};
-    }
-    if (!dashboardConfig.avatars) {
-      dashboardConfig.avatars = {};
-    }
-    dashboardConfig.widgets.forEach((widgetConfig, index) => {
-      if (!widgetConfig.avatars) {
-        widgetConfig.avatars = dashboardConfig.avatars;
-      }
-      if (!widgetConfig.thresholds) {
-        widgetConfig.thresholds = dashboardConfig.thresholds;
-      }
-      if (!widgetConfig.dataSource) {
-        widgetConfig.dataSource = [];
-      }
-      if (!widgetConfig.className) {
-        widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
-      }
-      if (!widgetConfig.id) {
-        widgetConfig.id = "wid_" + index;
-      }
-      widgetConfig.key = widgetConfig.id;
+    const extendedCfg = Object.assign({}, dashboardConfig, {
+      theme: dashboardConfig.theme || "default",
+      thresholds: dashboardConfig.thresholds || {},
+      avatars: dashboardConfig.avatars || {},
+      env: !dashboardConfig.env ? {} :
+        JsonUtils.replaceVars(dashboardConfig, dashboardConfig.env),
+      widgets: ConfigExtender.extendsWidgetConfig(dashboardConfig)
     });
     if (loadGrid) {
-      GridLayoutService.loadGridLayout(dashboardConfig);
+      GridLayoutService.loadGridLayout(extendedCfg);
     }
-    logger.info("Extended config:", dashboardConfig);
-    return dashboardConfig;
+    logger.info("Extended config:", extendedCfg);
+    return extendedCfg;
+  }
+
+  static extendsWidgetConfig(dashboardConfig) {
+    return dashboardConfig.widgets.map((widgetConfig, index) => {
+      const id = widgetConfig.id || "wid_" + index;
+      return Object.assign({}, widgetConfig, {
+        id: id,
+        key: id,
+        avatars: widgetConfig.avatars || dashboardConfig.avatars,
+        thresholds: widgetConfig.thresholds || dashboardConfig.thresholds,
+        dataSource: widgetConfig.dataSource || [],
+        className: widgetConfig.className || widgetConfig.type.toLowerCase().replace("widget", "")
+      });
+    });
   }
 
 }

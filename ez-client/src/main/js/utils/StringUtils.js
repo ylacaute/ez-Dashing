@@ -16,7 +16,7 @@ export default class StringUtils {
 
   /**
    * Format a String with parameter. Each '{}' will be replaced by arguments.
-   * Arguments can be give separately or within a single array argument.
+   * Arguments can be given separately or within a single array argument.
    */
   static format = function() {
     if (arguments.length === 0) {
