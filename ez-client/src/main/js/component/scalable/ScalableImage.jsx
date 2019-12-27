@@ -26,7 +26,7 @@ export default class ScalableImage extends React.Component {
   };
 
   render() {
-    let imgStyle = this.props.src == null ? {} : {
+    let imgStyle = !this.props.src ? {} : {
       backgroundImage: `url(${this.props.src})`
     };
     return (

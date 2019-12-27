@@ -19,16 +19,17 @@ export default class DataSourceService {
     this.dashboardConfig = dashboardConfig;
     this.dataSources = DataSourceFactory.create(dashboardConfig.dataSources);
     logger.debug("Aoplication dataSources:", this.dataSources);
-    this.initializeResfreshTimers();
+    this.initializeRefreshTimers();
   };
 
   /**
    * Initialize timers for each dataSources in order to have an scheduled refresh.
    */
-  initializeResfreshTimers() {
+  initializeRefreshTimers() {
     this.timers = {};
     this.dataSources.forEach(ds => {
-      if (ds.dependencies == 0) {
+      console.log("ds.dependencies : ", ds.dependencies);
+      if (ds.dependencies.length === 0) {
         this.timers[ds.id] = setInterval(() => {
           this.refreshDataSource(ds);
         }, ds.refresh * 1000);
@@ -81,7 +82,7 @@ export default class DataSourceService {
   };
 
   mapProperties(ds, jsonResponse) {
-    if (ds.mapping == null) {
+    if (!ds.mapping) {
       throw {
         name: "Invalid dataSource configuration",
         message: "You must define a mapping for query " + ds.id
@@ -138,15 +139,14 @@ export default class DataSourceService {
     const dsRefreshedId = action.dataSourceId;
 
     this.dataSources.forEach(ds => {
-      const dsDenpendency = ds.dependencies.find(d => d.dataSource == dsRefreshedId);
-      if (dsDenpendency == null) {
-        return
+      const dsDenpendency = ds.dependencies.find(d => d.dataSource === dsRefreshedId);
+      if (dsDenpendency) {
+        // We found a dataSource which contains a dependency equals to the refreshed dataSource
+        ds.queryParams = {};
+        dsDenpendency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
+        logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
+        this.refreshDataSource(ds);
       }
-      // We found a dataSource which contains a dependency equals to the refreshed dataSource
-      ds.queryParams = {};
-      dsDenpendency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
-      logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
-      this.refreshDataSource(ds);
     });
   }
 

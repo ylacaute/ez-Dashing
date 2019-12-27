@@ -8,7 +8,7 @@ export default class StringUtils {
    * Count the number of occurrences of a string in another string
    */
   static countSubString(input, strToCount) {
-    if (input == null || strToCount == null) {
+    if (!input || !strToCount) {
       return 0;
     }
     return (input.match(new RegExp(strToCount, 'g')) || []).length;
@@ -19,7 +19,7 @@ export default class StringUtils {
    * Arguments can be give separately or within a single array argument.
    */
   static format = function() {
-    if (arguments.length == 0) {
+    if (arguments.length === 0) {
       return "";
     }
     let formatted = Array.prototype.shift.call(arguments);

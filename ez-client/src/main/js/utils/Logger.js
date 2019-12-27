@@ -35,7 +35,7 @@ export default class Logger {
   }
 
   static getLogger(loggerName) {
-    if (loggerName == null) {
+    if (!loggerName) {
       return new Logger(Logger.ROOT_LOGGER_NAME);
     }
     return new Logger(loggerName);
@@ -105,7 +105,7 @@ export default class Logger {
     let formattedMessage = StringUtils.format(message, argsArray);
     let log;
 
-    if (this.name == Logger.ROOT_LOGGER_NAME) {
+    if (this.name === Logger.ROOT_LOGGER_NAME) {
       log = StringUtils.format("[{}] {}", msgLevel[1], formattedMessage);
     } else {
       log = StringUtils.format("[{}] {}: {}", msgLevel[1], this.name, formattedMessage);

@@ -20,7 +20,7 @@ export default class WidgetFactory {
     const widgetEvents = bindActionCreators(WidgetEventCreator, dispatch);
     const modalEvents = bindActionCreators(ModalEventCreator, dispatch);
     const normalizedType = widgetConfiguration.type.toLowerCase().replace("widget", "");
-    logger.debug("Creating component '{}'", normalizedType);
+    logger.debug("Creating component '{}' with config: ", normalizedType, widgetConfiguration);
     const Component = lazy(() => import("component/widget/" + normalizedType));
     const props = {
       showModal: modalEvents.showModal,

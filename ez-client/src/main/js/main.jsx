@@ -32,7 +32,7 @@ Logger.setLevel("VelocityCalculator", Logger.Level.WARN);
 Logger.setLevel("SprintWidget", Logger.Level.WARN);
 Logger.setLevel("AudioPlayer", Logger.Level.INFO);
 Logger.setLevel("AudioPlayerPlaylistModal", Logger.Level.INFO);
-Logger.setLevel("WidgetFactory", Logger.Level.INFO);
+Logger.setLevel("WidgetFactory", Logger.Level.DEBUG);
 
 const setupService = new SetupService();
 

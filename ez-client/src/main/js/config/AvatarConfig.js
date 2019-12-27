@@ -17,7 +17,7 @@ export default class AvatarConfig {
         logger.error("Invalid avatar configuration pattern, details : ", ex);
       }
     }
-    if (resultAvatar == null) {
+    if (!resultAvatar) {
       resultAvatar = {
         displayName: name,
         url: "img/avatars/anonymous.png"

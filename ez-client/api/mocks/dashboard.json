@@ -216,7 +216,7 @@
       {
         "type": "HelloPieChartWidget",
         "title": "HELLO PIE GRAPH",
-        "enabled": true
+        "enabled": false
       },
       {
         "type": "TextWidget",

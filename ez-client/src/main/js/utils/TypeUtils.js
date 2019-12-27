@@ -17,7 +17,7 @@ export default class TypeUtils {
   static convert = (obj, typeAsString) => {
     let result;
 
-    if (obj == null) {
+    if (!obj) {
       return null;
     }
 
@@ -28,7 +28,7 @@ export default class TypeUtils {
         break;
       case "bool":
       case "boolean":
-        result = (obj == true || obj == "true" || obj == "True");
+        result = (obj === true || obj === "true" || obj === "True");
         break;
       case "int":
       case "integer":

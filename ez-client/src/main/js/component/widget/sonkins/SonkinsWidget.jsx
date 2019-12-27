@@ -77,7 +77,7 @@ export default class SonkinsWidget extends React.Component {
   }
 
   renderMetric(label, value, thresholds, formatValue) {
-    if (value == null)
+    if (!value)
       return null;
     return (
       <Metric

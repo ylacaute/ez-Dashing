@@ -72,7 +72,7 @@ function mapRegexp(propType, mappingDefinition, json) {
     return TypeUtils.convert(matchingString, propType);
 
   } catch (e) {
-    if (mappingDefinition.ignoreException == true) {
+    if (mappingDefinition.ignoreException) {
       return null;
     }
     throw e;

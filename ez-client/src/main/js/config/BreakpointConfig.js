@@ -18,7 +18,7 @@ export default class WidgetBreakpointConfig {
         }
       }
     }
-    if (result == (WidgetBreakpointConfig.WIDTH + "xxxs")) {
+    if (result === (WidgetBreakpointConfig.WIDTH + "xxxs")) {
       result += WidgetBreakpointConfig.MOBILE;
     } else {
       result += WidgetBreakpointConfig.DESKTOP;

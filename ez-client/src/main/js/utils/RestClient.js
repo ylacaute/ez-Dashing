@@ -47,7 +47,7 @@ let handleHTTPError = (error, errorCallback) => {
 
 let getBaseUrl = (path) => {
   let baseUrl = window.location.origin + window.location.pathname;
-  if (path.charAt(0) == "/") {
+  if (path.charAt(0) === "/") {
     baseUrl += path.slice(1);
   } else {
     baseUrl += path;

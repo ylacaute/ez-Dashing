@@ -9,11 +9,11 @@ const initialState = {};
 
 
 const findById = (dataSources, id) => {
-  return dataSources.find(ds => ds.id == id);
+  return dataSources.find(ds => ds.id === id);
 };
 
 const indexOfId = (dataSources, id) => {
-  const ds = dataSources.find(ds => ds.id == id);
+  const ds = dataSources.find(ds => ds.id === id);
   return dataSources.indexOf(ds);
 };
 

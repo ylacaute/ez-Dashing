@@ -91,7 +91,7 @@ export default class BugWidget extends React.Component {
     const className = cn(
       this.props.className,
       ThresholdConfig.get(this.props.thresholds.bugs, this.getTotal()),
-      this.getTotal() == 0 ? "empty" : ""
+      this.getTotal() === 0 ? "empty" : ""
     );
 
     return (

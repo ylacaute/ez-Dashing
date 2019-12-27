@@ -29,34 +29,34 @@ export default class ConfigExtender {
    * you MUST use the returned object in all cases.
    */
   static extendsConfig(dashboardConfig, loadGrid = true) {
-    if (dashboardConfig.env == null) {
+    if (!dashboardConfig.env) {
       dashboardConfig.env = {};
     } else {
       dashboardConfig = JsonUtils.replaceVars(dashboardConfig, dashboardConfig.env);
     }
-    if (dashboardConfig.theme == null) {
+    if (!dashboardConfig.theme) {
       dashboardConfig.theme = "default";
     }
-    if (dashboardConfig.thresholds == null) {
+    if (!dashboardConfig.thresholds) {
       dashboardConfig.thresholds = {};
     }
-    if (dashboardConfig.avatars == null) {
+    if (!dashboardConfig.avatars) {
       dashboardConfig.avatars = {};
     }
     dashboardConfig.widgets.forEach((widgetConfig, index) => {
-      if (widgetConfig.avatars == null) {
+      if (!widgetConfig.avatars) {
         widgetConfig.avatars = dashboardConfig.avatars;
       }
-      if (widgetConfig.thresholds == null) {
+      if (!widgetConfig.thresholds) {
         widgetConfig.thresholds = dashboardConfig.thresholds;
       }
-      if (widgetConfig.dataSource == null) {
+      if (!widgetConfig.dataSource) {
         widgetConfig.dataSource = [];
       }
-      if (widgetConfig.className == null) {
+      if (!widgetConfig.className) {
         widgetConfig.className = widgetConfig.type.toLowerCase().replace("widget", "");
       }
-      if (widgetConfig.id == null) {
+      if (!widgetConfig.id) {
         widgetConfig.id = "wid_" + index;
       }
       widgetConfig.key = widgetConfig.id;

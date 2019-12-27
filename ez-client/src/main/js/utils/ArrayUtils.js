@@ -19,7 +19,7 @@ export default class ArrayUtils {
   static computeAverage(valuesArray, lastValuesCount = null) {
     let average = 0;
 
-    if (lastValuesCount == null) {
+    if (!lastValuesCount) {
       lastValuesCount = valuesArray.length;
     }
     let lastValues = ArrayUtils.lasts(valuesArray, lastValuesCount);

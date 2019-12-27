@@ -353,7 +353,7 @@ class AudioPlayer extends React.Component {
     const formattedTime = this.formatTime(currentTime);
     const formattedDuration = this.formatTime(duration);
     const progressMaxValue = isNaN(duration) || duration === 0 ? 1 : duration;
-    const rangeDisabled = files.length == 0;
+    const rangeDisabled = files.length === 0;
 
     return (
       <div className={classNames}>

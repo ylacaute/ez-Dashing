@@ -7,7 +7,7 @@ function spDoneAtDate(date, allSprintIssues) {
   let result = 0;
   let resolved = allSprintIssues
     .filter(issue => issue.resolutionDate != null)
-    .filter(issue => DateUtils.formatDDMMYY(issue.resolutionDate) == DateUtils.formatDDMMYY(date));
+    .filter(issue => DateUtils.formatDDMMYY(issue.resolutionDate) === DateUtils.formatDDMMYY(date));
   resolved.forEach(issue => {
     result += issue.storyPoints;
   });

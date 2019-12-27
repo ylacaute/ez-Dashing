@@ -34,7 +34,7 @@ export default class ThemeService {
   static setTheme(themeName) {
     logger.info("Set '{}' theme ", themeName);
     let linkDom = document.getElementById(LINK_DOM_ID);
-    if (linkDom == null) {
+    if (!linkDom) {
       linkDom = document.createElement("link");
       linkDom.id = LINK_DOM_ID;
       linkDom.rel = "stylesheet";
