@@ -1,0 +1,26 @@
+.github-icon {
+  width: 80px;
+  height: 80px;
+}
+.github-icon:hover .github-icon_svg__octo-arm {
+  animation: tail 0.8s infinite linear;
+}
+.github-icon-wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+@keyframes tail {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

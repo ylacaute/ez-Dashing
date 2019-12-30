@@ -1,7 +1,8 @@
 # <img src="/ez-client/src/main/resources/img/tech/ezLogo_512.png" width="100" alt="ez-Dashing"> ez-Dashing
 
 __ez-Dashing__ is a customizable free dashboard tool for agile development teams. The project is still in 
- development but already usable for production. I am aware that many things could be improved, feel free to contribute !
+ development but already usable for production. I am aware that many things could be improved, feel free 
+ to contribute !
 
 __Guidelines__
 
@@ -11,7 +12,13 @@ __Guidelines__
  
 __Tech Stack__
 
-<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" title="React 16" width="50px"/><img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" title="Redux 4" width="50px"/><img src="/ez-client/src/main/resources/img/tech/sass.png" alt="SASS" title="SASS" width="50px"/><img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" title="Webpack 4" width="50px"/><img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" title="Spring boot 2.2" width="50px"/><img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" title="Maven 3" width="50px"/><img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" title="Docker" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" title="React 16" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" title="Redux 4" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/sass.png" alt="SASS" title="SASS" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" title="Webpack 4" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" title="Spring boot 2.2" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" title="Maven 3" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" title="Docker" width="50px"/>
 
 # Demo
 
@@ -72,6 +79,11 @@ __But keep in mind you should have no reason to start server like that, please u
 
 # Documentation
 
+The documentation web site can be started with the command below (WIP).
+```sh
+npm run doc
+```
+
 ## Available versions
 
 Here are the available docker images:
@@ -83,25 +95,25 @@ Here are the available docker images:
 
 ### No container directory
 I always wanted to say to Dan Abramov: "Hey, you did a fantastic job with React, but I disagree with your components
- versus containers folders. This separation is done for bad because technical reasons, not for semantic reasons." I
-  am glad to note that, since hooks, Dan does not suggest splitting folders like this anymore but only a component
-   directory.
+versus containers folders. This separation is done for bad because technical reasons, not for semantic reasons." 
+I am glad to note that, since hooks, Dan does not suggest anymore to split folders like this but only a single 
+component directory instead.
  
-In ez-Dashing, hooks are not (yet) used and only widgets are connected components, the connection is done
- automatically in the WidgetFactory.
+In ez-Dashing, hooks are not (yet) used and only widgets are connected components (redux), the connection is done 
+automatically in the WidgetFactory.
 
 ### Use CSS for style
 
-I should write an article on that, when it come to theming, there are so many things to speak about... Anyway I don't
- like the trend and prefer to keep the standard and historical rules :
+I should write an article on that, when it come to theming, there are so many things to speak about, but to resume: I
+am not a big fan of the trend and prefer to keep the standard and historical rules:
  - CSS is for theming
  - HTML and JS are for content
  - Accept small limitations
  - Embrace standardization
 
-I consider these new way of doing (CSS module, JS theming, inline style) as the biggest mistake these past few
- years in frontend world. Really, using inline style to customize your application, or to build components library, is
-  the worse thing we can do as a frontend developer.
+I consider those new ways of doing (CSS module, JS theming, inline style) as a major conception mistake of these 
+past few years in frontend world. Really, using **inline style** to customize an application, or worse, to 
+build a "closed" components library, is the worse we could do.
 
 ## Release process
 
@@ -129,8 +141,6 @@ git checkout -b 1.3
 # Git tag
 git tag -a v1.3.0 -m "Release 1.3.0"
 ```
-
-
 
 
 ## Front configuration

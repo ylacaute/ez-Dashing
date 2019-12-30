@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logger from 'utils/Logger';
-import './AudioPlayer.scss';
 import cn from "classnames";
 import AudioPlaylist from "./AudioPlaylist";
 import AudioControls from "./AudioControls";
 import AudioVolume from "./AudioVolume";
 import InputRange from "component/range/InputRange";
 import MathUtils from "utils/MathUtils";
+
+import './AudioPlayer.scss';
 
 const logger = Logger.getLogger("AudioPlayer");
 

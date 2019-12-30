@@ -2,56 +2,112 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ObjectUtils from 'utils/ObjectUtils';
+import DataSourceService from 'service/datasource/DataSourceService';
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
-import Logger from 'utils/Logger';
 import CubeSpinnerLoader from "component/loader/CubeSpinnerLoader";
+import Logger from 'utils/Logger';
+import UUID from "utils/UUID";
 
 const logger = Logger.getLogger("Widget");
 
 export default class Widget extends React.Component {
 
-  static widgetClassName = 'widget';
+  static WIDGET_CLASS_NAME = 'widget';
 
   static propTypes = {
+    /**
+     * Widget id, must be unique inside a given dashboard configuration. The id automatically generated
+     * when loading the dashboard config but can be override.
+     * If no id is given, a random UUID is generated.
+     */
+    id: PropTypes.string,
+    /**
+     * ClassName of the widget. The classname is automatically generated from the "type" field
+     * in the dashboard configuration.
+     */
     className: PropTypes.string,
-    loaded: PropTypes.bool,
-    title: PropTypes.string,
-    subTitle: PropTypes.string,
-    sizeInfo: PropTypes.object,
+    /**
+     * Widget DataSources
+     */
+    dataSource: PropTypes.array,
+    /**
+     * If editable, an edit icon appears on the widget. When you defined a Widget as editable, you
+     * have also to define the editModal property.
+     */
     editable: PropTypes.bool,
+    /**
+     * When editable, this property is required. It defines the Component to show in modal window
+     */
     editModal: PropTypes.func,
-    showModal: PropTypes.func.isRequired,
+    /**
+     * Represent the real content of the widget. It can be anything but Two object should be used here:
+     * <code>WidgetHeader</code> and <code>WidgetContent</code> in order to have immediate result.
+     */
+    children: PropTypes.node,
+    /**
+     * Loader displayed inside the Widget content during loading. The Widget is loaded when
+     * all its dataSources are loaded.
+     */
+    loader: PropTypes.node,
+    /**
+     * Technical properties for responsive breakpoint
+     */
+    sizeInfo: PropTypes.shape({
+      wBreakpointClass: PropTypes.string,
+      hBreakpointClass: PropTypes.string,
+    }),
+    /**
+     * Technical properties: showModal is called when the user click on the edit icon. This function
+     *
+     * @param {modal} component - React's component to display in a windows modal
+     * @returns {void}
+     */
+    showModal: PropTypes.func,
+    /**
+     * Technical properties for updating widgets
+     */
     updateWidgetConfig: PropTypes.func,
-    children: PropTypes.node
   };
 
   static defaultProps = {
+    id: UUID.random(),
     className: "",
-    loaded: false,
-    title: null,
-    subTitle: null,
-    sizeInfo: {},
+    dataSource: [],
     editable: false,
     editModal: null,
-    updateWidgetConfig: null,
     children: null,
-    loader: <CubeSpinnerLoader/>
+    loader: <CubeSpinnerLoader/>,
+    sizeInfo: {
+      wBreakpointClass: "",
+      hBreakpointClass: "",
+    },
+    showModal: () => {},
+    updateWidgetConfig: () => {},
   };
 
   /**
    * All widgets MUST call this function in order to retrieve from the
-   * new redux state all common widgets properties.
+   * new redux state all common widget properties.
    */
-  static mapCommonWidgetProps = (state, ownProps) => {
+  static mapCommonWidgetProps(state, ownProps) {
     return {
       ...state.widget[ownProps.id]
     }
   };
 
+  static getDerivedStateFromProps(props, state) {
+    const loaded = DataSourceService.areAllDataSourcesLoaded(props.dataSource);
+    logger.debug("Widget id={} loaded: {}", props.id, loaded);
+    return {
+      loaded: loaded
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      hasError: false
+      hasError: false,
+      loaded: false
     }
   }
 
@@ -61,21 +117,7 @@ export default class Widget extends React.Component {
    * trigger a new rendering in safe-mode (see renderError).
    */
   componentDidCatch(error, info) {
-    this.setState({ hasError: true });
-  }
-
-  /**
-   * Return true if all the dataSources on which the widget depend are loaded,
-   * return false otherwise.
-   */
-  isDataSourcesLoaded() {
-    let loaded = true;
-    this.props.dataSource.forEach(ds => {
-      if (ds.loaded === false) {
-        loaded = false;
-      }
-    });
-    return loaded;
+    this.setState({hasError: true});
   }
 
   /**
@@ -85,14 +127,14 @@ export default class Widget extends React.Component {
    */
   getWidgetClassNames() {
     return [
-      Widget.widgetClassName,
+      Widget.WIDGET_CLASS_NAME,
       this.props.className,
       this.props.sizeInfo.wBreakpointClass,
       this.props.sizeInfo.hBreakpointClass];
   }
 
   handleEditClick() {
-    const { id, editModal, showModal} = this.props;
+    const {id, editModal, showModal} = this.props;
     if (!editModal) {
       logger.error("The Widget id={} is mark as editable but the func editModal has not been defined.", id);
     } else {
@@ -105,27 +147,27 @@ export default class Widget extends React.Component {
    * to not generate another exception.
    */
   renderError(error) {
-    let title = 'Unknown widget';
+    let id = 'Unknown widget id';
     let name = 'Unknown error';
     let message = 'Please check your configuration';
     if (error != null) {
-      if (error.name != null) name = error.name;
-      if (error.message != null) message = error.message;
-    } else if (this.props.error != null) {
-      if (this.props.error.name != null) name = this.props.error.name;
-      if (this.props.error.message != null) message = this.props.error.message;
-    } else if (this.state.error != null) {
-      if (this.state.error.name != null) name = this.state.error.name;
-      if (this.state.error.message != null) message = this.state.error.message;
+      if (error.name) name = error.name;
+      if (error.message) message = error.message;
+    } else if (this.props.error) {
+      if (this.props.error.name) name = this.props.error.name;
+      if (this.props.error.message) message = this.props.error.message;
+    } else if (this.state.error) {
+      if (this.state.error.name) name = this.state.error.name;
+      if (this.state.error.message) message = this.state.error.message;
     }
-    if (!ObjectUtils.isNullOrEmpty(this.props.title))
-      title = this.props.title;
+    if (!ObjectUtils.isNullOrEmpty(this.props.id))
+      id = this.props.id;
 
     return (
-      <section className={classnames(Widget.widgetClassName, 'error')}>
+      <section className={classnames(Widget.WIDGET_CLASS_NAME, 'error')}>
         <header>
           <h1>
-            {title}
+            Widget id: {id}
           </h1>
         </header>
         <article>
@@ -141,15 +183,13 @@ export default class Widget extends React.Component {
    * Main render function, should not be override
    */
   render() {
-    const { editable } = this.props;
-
-    if (this.state.hasError === true)
-      return this.renderError();
-    if (this.props.loaded !== true)
-      return this.props.loader;
-
+    const {loaded} = this.state;
+    const {editable} = this.props;
     let content;
-    if (!this.isDataSourcesLoaded()) {
+
+    if (this.state.hasError)
+      return this.renderError();
+    if (!loaded) {
       content = this.props.loader;
     } else {
       content = this.props.children;
@@ -158,7 +198,7 @@ export default class Widget extends React.Component {
     return (
       <section className={classnames(this.getWidgetClassNames())}>
         {editable &&
-          <span className="edit-icon" onClick={this.handleEditClick.bind(this)} />
+          <span className="edit-icon" onClick={this.handleEditClick.bind(this)}/>
         }
         {content}
       </section>

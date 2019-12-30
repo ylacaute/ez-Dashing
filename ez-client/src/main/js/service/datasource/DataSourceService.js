@@ -1,15 +1,29 @@
 import RestClient from "utils/RestClient";
 import URLUtils from "utils/URLUtils";
 import Logger from "utils/Logger";
-import JsonMapper from 'utils//JsonMapper';
-import TypeUtils from 'utils//TypeUtils';
+import JsonMapper from 'utils/JsonMapper';
+import TypeUtils from 'utils/TypeUtils';
 import DataSourceFactory from 'service/datasource/DataSourceFactory';
-import { DataSourceEvent } from 'redux/event/DataSourceEvent';
+import {DataSourceEvent} from 'redux/event/DataSourceEvent';
 
 const logger = Logger.getLogger("DataSourceService");
 
 
 export default class DataSourceService {
+
+  /**
+   * Return true if all the dataSources on which the widget depend are loaded,
+   * return false otherwise.
+   */
+  static areAllDataSourcesLoaded(dataSources) {
+    let loaded = true;
+    dataSources.forEach(ds => {
+      if (ds.loaded === false) {
+        loaded = false;
+      }
+    });
+    return loaded;
+  }
 
   /**
    * Get the full loaded dashboard configuration as argument.
@@ -67,11 +81,11 @@ export default class DataSourceService {
           dataSourceId: ds.id,
           widgetIdsListening: this.getWidgetIdsListening(ds.id),
           payload: {
-            sprintId : ds.defaultResponse.sprintId,
-            sprintName : ds.defaultResponse.sprintName,
-            sprintNumber : ds.defaultResponse.sprintNumber,
-            sprintStartDate : TypeUtils.convert(ds.defaultResponse.sprintStartDate, "date"),
-            sprintEndDate : TypeUtils.convert(ds.defaultResponse.sprintEndDate, "date")
+            sprintId: ds.defaultResponse.sprintId,
+            sprintName: ds.defaultResponse.sprintName,
+            sprintNumber: ds.defaultResponse.sprintNumber,
+            sprintStartDate: TypeUtils.convert(ds.defaultResponse.sprintStartDate, "date"),
+            sprintEndDate: TypeUtils.convert(ds.defaultResponse.sprintEndDate, "date")
           }
         };
         logger.debug("Dispatching refreshed dataSource:", result);
@@ -139,11 +153,11 @@ export default class DataSourceService {
     const dsRefreshedId = action.dataSourceId;
 
     this.dataSources.forEach(ds => {
-      const dsDenpendency = ds.dependencies.find(d => d.dataSource === dsRefreshedId);
-      if (dsDenpendency) {
+      const dsDependency = ds.dependencies.find(d => d.dataSource === dsRefreshedId);
+      if (dsDependency) {
         // We found a dataSource which contains a dependency equals to the refreshed dataSource
         ds.queryParams = {};
-        dsDenpendency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
+        dsDependency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
         logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
         this.refreshDataSource(ds);
       }

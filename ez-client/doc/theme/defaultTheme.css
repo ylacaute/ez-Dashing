@@ -1,0 +1,101 @@
+/* GENERAL */
+* {
+  outline: none;
+}
+
+html,
+body {
+  font-family: "Calibre", Arial, Helvetica, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1.sbdocs-h1 {
+  color: #1d96be;
+}
+
+h2.sbdocs-h2 {
+  color: #cd568c;
+}
+
+p.sbdocs, a {
+  color: #ddd !important;
+  font-size: 1.6rem !important;
+}
+
+a {
+  color: #b1cef6 !important;
+}
+a:hover {
+  text-decoration: underline !important;
+}
+
+
+/* CONTENT BLOCK */
+/*div.sbdocs.sbdocs-content > div:nth-of-type(2) > div {*/
+div.sbdocs-preview {
+  box-shadow: 0 0 2px #111;
+  border-radius: 6px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* PROPS BLOCK */
+table.docblock-propstable {
+  box-shadow: 0 0 2px #111;
+  border-radius: 6px !important;
+}
+
+/* DETAILS>SUMMARY BLOCK */
+details {
+  background: #333;
+  color: white;
+  outline: none;
+  padding: 10px;
+  border-radius: 6px !important;
+}
+summary {
+  outline: none;
+  cursor: pointer;
+}
+
+/* PROPS */
+table.docblock-propstable {
+  background-color: #141413 !important;
+  background-color: #1e1e1e !important;
+}
+table.docblock-propstable tbody {
+  box-shadow: none !important;
+}
+/* PROPS HEADER */
+table.docblock-propstable thead tr th {
+  color: #1d96be !important;
+}
+/* PROPS COLUMN NAME */
+table.docblock-propstable tbody td:first-of-type {
+  color: #eee !important;
+}
+/* PROPS COLUMN DESCRIPTION */
+table.docblock-propstable tbody td:nth-of-type(2) {
+  color: #eee !important;
+}
+/* PROPS COLUMN DESCRIPTION > Type */
+table.docblock-propstable tbody td:nth-of-type(2) div:nth-of-type(2),
+table.docblock-propstable tbody td:nth-of-type(2) code {
+  color: #888 !important;
+  font-weight: bold;
+}
+/* PROPS COLUMN VALUE + EXPANDABLE (OBJECT VALUES)  */
+table.docblock-propstable tbody td:nth-of-type(3),
+table.docblock-propstable tbody tr td .sbdocs-expandable {
+  /*color: #eee !important;*/
+  color: #888 !important;
+  font-weight: bold;
+}
+table.docblock-propstable tbody tr td {
+  background-color: transparent !important;
+}
+table.docblock-propstable thead tr th,
+table.docblock-propstable tbody tr td {
+  font-size: 1.5rem !important;
+}
+

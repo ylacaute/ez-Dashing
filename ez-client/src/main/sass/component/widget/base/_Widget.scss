@@ -4,9 +4,11 @@
 
 .widget {
   @extend %flexColumn;
+  position: relative;
   color: $color-widget-text;
   background-color: $color-widget-bg;
   height: 100%;
+  min-height: 80px;
   text-align: center;
 
   header {

@@ -7,8 +7,6 @@ import ThresholdConfig from "config/ThresholdConfig";
 import ScalableImage from 'component/scalable/ScalableImage.jsx';
 import cn from "classnames";
 
-const MAX_DISPLAYABLE_ISSUES = 10;
-
 export default class BugWidget extends React.Component {
 
   /**
@@ -19,12 +17,28 @@ export default class BugWidget extends React.Component {
   static propTypes = Object.assign({
     inProgressBugs: PropTypes.array,
     todoBugs: PropTypes.array,
-    noBugIcon: PropTypes.string
+    noBugIcon: PropTypes.string,
+    thresholds: PropTypes.shape({
+      bugs: PropTypes.shape({
+        bad: PropTypes.number,
+        avg: PropTypes.number,
+        good: PropTypes.number,
+      })
+    }),
+    maxDisplayableIssues: PropTypes.number,
   }, Widget.propTypes);
 
   static defaultProps = {
     inProgressBugs: [],
     todoBugs: [],
+    thresholds: {
+      bugs: {
+        bad: 10,
+        avg: 1,
+        good: 0,
+      }
+    },
+    maxDisplayableIssues: 10,
     noBugIcon: "img/good.png"
   };
 
@@ -45,7 +59,7 @@ export default class BugWidget extends React.Component {
    * Return the issues with MAX_DISPLAYABLE_ISSUES items at max.
    */
   getWithMaxItems(array) {
-    const max = Math.min(array.length, MAX_DISPLAYABLE_ISSUES);
+    const max = Math.min(array.length, this.props.maxDisplayableIssues);
     return array.slice(0, max);
   }
 
@@ -108,3 +122,5 @@ export default class BugWidget extends React.Component {
   }
 
 }
+
+

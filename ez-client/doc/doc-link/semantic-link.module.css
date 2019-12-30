@@ -1,0 +1,10 @@
+.icon {
+    width: 80px;
+    height: 80px;
+}
+
+.iconWrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

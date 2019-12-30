@@ -157,6 +157,12 @@ let commonConfig = {
             emitFile: false
           }
         }]
+      }, {
+        test: /\.mdx?$/,
+        use: [
+          'babel-loader',
+          '@mdx-js/loader'
+        ]
       }
     ]
   },

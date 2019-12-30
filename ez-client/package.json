@@ -10,11 +10,13 @@
     "url": "https://ylacaute@github.com/ylacaute/ez-Dashing.git"
   },
   "scripts": {
+    "doc": "start-storybook -s ./src/main/resources -p 6006 -c doc",
+    "api": "babel-node --presets @babel/preset-env ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8080",
     "test": "NODE_ENV=test jest",
     "serve": "NODE_ENV=development webpack-dev-server --progress --port 8081",
-    "api": "babel-node --presets @babel/preset-env ./node_modules/.bin/json-server api/db.js --routes api/routes.json --port 8080",
+    "package": "NODE_ENV=prod webpack",
     "package-dev": "NODE_ENV=development webpack",
-    "package": "NODE_ENV=prod webpack"
+    "package-storybook": "build-storybook"
   },
   "keywords": [
     "ez-dashing",
@@ -41,6 +43,7 @@
     "@nivo/bar": "^0.59.2",
     "@nivo/line": "^0.59.3",
     "@nivo/pie": "^0.59.1",
+    "@storybook/addon-centered": "^5.2.8",
     "eases": "^1.0.8",
     "jsonpath": "^1.0.2",
     "moment": "^2.24.0",
@@ -67,6 +70,15 @@
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "@mdx-js/loader": "^1.5.3",
+    "@storybook/addon-actions": "^5.3.0-beta.31",
+    "@storybook/addon-console": "1.2.1",
+    "@storybook/addon-design-assets": "^5.3.0-beta.31",
+    "@storybook/addon-docs": "^5.3.0-beta.31",
+    "@storybook/addon-knobs": "^5.3.0-beta.31",
+    "@storybook/addon-links": "^5.3.0-beta.31",
+    "@storybook/react": "^5.3.0-beta.31",
+    "@svgr/webpack": "^5.0.1",
     "ajv": "^6.10.2",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",

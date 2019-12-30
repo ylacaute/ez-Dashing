@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logger from 'utils/Logger';
-import './AudioPlaylist.scss';
 import cn from "classnames";
 import Icon from 'component/icon'
+
+import './AudioPlaylist.scss';
 
 const logger = Logger.getLogger("AudioPlaylist");
 

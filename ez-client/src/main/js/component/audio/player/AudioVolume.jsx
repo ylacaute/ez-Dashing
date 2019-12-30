@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logger from 'utils/Logger';
-import './AudioVolume.scss';
 import InputRange from "component/range/InputRange";
-import cn from "classnames";
+
+import './AudioVolume.scss';
 
 const logger = Logger.getLogger("AudioVolume");
 
