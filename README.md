@@ -85,30 +85,6 @@ Here are the available docker images:
 - ylacaute/ez-Dashing:1.2.0 (December 2019)
 - ylacaute/ez-Dashing:demo (December 2019)
 
-## Opinionated application design
-
-### No container directory
-I always wanted to say to Dan Abramov: "Hey, you did a fantastic job with React, but I disagree with your components
-versus containers folders. This separation is done for bad because technical reasons, not for semantic reasons." 
-I am glad to note that, since hooks, Dan does not suggest anymore to split folders like this but only a single 
-component directory instead.
- 
-In ez-Dashing, hooks are not (yet) used and only widgets are connected components (redux), the connection is done 
-automatically in the WidgetFactory.
-
-### Use CSS for style
-
-I should write an article on that, when it come to theming, there are so many things to speak about, but to resume: I
-am not a big fan of the trend and prefer to keep the standard and historical rules:
- - CSS is for theming
- - HTML and JS are for content
- - Accept small limitations
- - Embrace standardization
-
-I consider those new ways of doing (CSS module, JS theming, inline style) as a major conception mistake of these 
-past few years in frontend world. Really, using **inline style** to customize an application, or worse, to 
-build a "closed" components library, is the worse we could do.
-
 ## Release process
 
 __New release__
