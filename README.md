@@ -262,6 +262,7 @@ __Solution__ This is not a real but [a known Jest bug](https://github.com/facebo
  on stderr instead of stdout, as the result Maven mark them on error. 
 
 __Error:__ Error: <rect> attribute height: A negative value is not valid.
+ 
 __Solution:__ Just resize chart widget, when the widget is too small, it can generated negative values.
 
 
