@@ -12,13 +12,7 @@ __Guidelines__
  
 __Tech Stack__
 
-<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" title="React 16" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" title="Redux 4" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/sass.png" alt="SASS" title="SASS" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" title="Webpack 4" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" title="Spring boot 2.2" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" title="Maven 3" width="50px"/>
-<img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" title="Docker" width="50px"/>
+<img src="/ez-client/src/main/resources/img/tech/react.png" alt="React" title="React 16" width="50px"/><img src="/ez-client/src/main/resources/img/tech/redux.png" alt="Redux" title="Redux 4" width="50px"/><img src="/ez-client/src/main/resources/img/tech/sass.png" alt="SASS" title="SASS" width="50px"/><img src="/ez-client/src/main/resources/img/tech/webpack.png" alt="Webpack" title="Webpack 4" width="50px"/><img src="/ez-client/src/main/resources/img/tech/springboot.png" alt="Spring boot" title="Spring boot 2.2" width="50px"/><img src="/ez-client/src/main/resources/img/tech/maven.png" alt="Maven" title="Maven 3" width="50px"/><img src="/ez-client/src/main/resources/img/tech/docker.png" alt="Docker" title="Docker" width="50px"/>
 
 # Demo
 
