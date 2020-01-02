@@ -248,6 +248,7 @@ __Error:__ Application does not start
 ```
 Caused by: java.io.FileNotFoundException: @project.parent.basedir@/config/local/dashboard.json
 ```
+
 __Solution:__ You must first run maven to compile and do it again each time you modify the application.yml config
  because maven is in charge to generate some keys, @project.parent.basedir@ in this case.
 ```sh
@@ -256,11 +257,13 @@ mvn compile
 
 __Error:__ When building the application, we can see that front logs are marked in ERROR by Maven (even if all tests
  are passing)
+ 
 __Solution__ This is not a real but [a known Jest bug](https://github.com/facebook/jest/issues/5064), Jest writes
  on stderr instead of stdout, as the result Maven mark them on error. 
 
 __Error:__ Error: <rect> attribute height: A negative value is not valid.
 __Solution:__ Just resize chart widget, when the widget is too small, it can generated negative values.
+
 
 ## Browser compatibility: 
  - __Chromium__ : good (only last version tested)
