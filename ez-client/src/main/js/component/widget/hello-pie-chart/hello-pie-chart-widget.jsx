@@ -28,7 +28,7 @@ const data = [
   }
 ];
 
-export default class HelloPieChartWidget extends React.Component {
+export default class HelloPieChartWidget extends React.PureComponent {
 
   render() {
     return (

@@ -13,7 +13,7 @@ import cn from 'classnames';
 
 import "./sonkins-widget.scss";
 
-export default class SonkinsWidget extends React.Component {
+export default class SonkinsWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     status: PropTypes.oneOf([

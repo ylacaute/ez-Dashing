@@ -16,7 +16,7 @@ const PlaylistItem = ({name, selected, idx, handleItemDoubleClick}) => (
   </div>
 );
 
-class AudioPlaylist extends React.Component {
+class AudioPlaylist extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

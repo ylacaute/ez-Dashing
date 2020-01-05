@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import "./circular-progress-bar.scss"
 
-export default class CircularProgressBar extends React.Component {
+export default class CircularProgressBar extends React.PureComponent {
 
   static propTypes = {
     label: PropTypes.string,

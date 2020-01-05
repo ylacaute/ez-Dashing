@@ -14,7 +14,7 @@ const logger = Logger.getLogger("AudioPlayer");
 
 const addHeadingZero = num => (num > 9 ? num.toString() : `0${num}`);
 
-class AudioPlayer extends React.Component {
+class AudioPlayer extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

@@ -6,7 +6,7 @@ import DateService from "service/date/date-service";
 
 import "./clock-widget.scss";
 
-export default class ClockWidget extends React.Component {
+export default class ClockWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     UTCOffset: PropTypes.number

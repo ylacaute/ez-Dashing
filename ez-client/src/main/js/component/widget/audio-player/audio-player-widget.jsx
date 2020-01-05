@@ -8,7 +8,7 @@ import AudioPlayerPlaylistModal from './audio-player-playlist-modal';
 
 import "./audio-player-widget.scss";
 
-export default class AudioPlayerWidget extends React.Component {
+export default class AudioPlayerWidget extends React.PureComponent {
 
   static propTypes = {
     /**

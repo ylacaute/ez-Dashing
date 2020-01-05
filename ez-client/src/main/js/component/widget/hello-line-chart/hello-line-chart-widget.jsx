@@ -288,7 +288,7 @@ const xAxisFormatter = (value, idx) => {
   return value;
 };
 
-export default class HelloLineChartWidget extends React.Component {
+export default class HelloLineChartWidget extends React.PureComponent {
 
   render() {
     return (

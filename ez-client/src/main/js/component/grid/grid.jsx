@@ -8,7 +8,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 import "./grid.scss"
 
-export default class Grid extends React.Component {
+export default class Grid extends React.PureComponent {
 
   static propTypes = {
     onElementResized: PropTypes.func,

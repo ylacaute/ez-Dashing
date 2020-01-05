@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-export default class WidgetFooter extends React.Component {
+export default class WidgetFooter extends React.PureComponent {
 
   static propTypes = {
     classNames: PropTypes.string,

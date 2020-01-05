@@ -7,7 +7,7 @@ import "./audio-volume.scss";
 
 const logger = Logger.getLogger("AudioVolume");
 
-class AudioVolume extends React.Component {
+class AudioVolume extends React.PureComponent {
 
   static propTypes = {
     volume: PropTypes.number,

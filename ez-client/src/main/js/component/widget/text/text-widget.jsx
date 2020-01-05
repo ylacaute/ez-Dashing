@@ -7,7 +7,7 @@ import TextWidgetEditModal from './text-widget-edit-modal';
 
 import "./text-widget.scss";
 
-export default class TextWidget extends React.Component {
+export default class TextWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     text: PropTypes.string,

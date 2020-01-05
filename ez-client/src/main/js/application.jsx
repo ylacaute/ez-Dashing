@@ -9,7 +9,7 @@ import Grid from 'component/grid';
 import Menu from './component/menu';
 import ModalContainer from 'component/modal/modal-container';
 
-class Application extends React.Component {
+class Application extends React.PureComponent {
 
   static propTypes = {
     gridEvents: PropTypes.object.isRequired,

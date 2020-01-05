@@ -5,7 +5,7 @@ import WidgetContent from "component/widget/base/widget-content";
 import ScalableImage from "component/scalable/image";
 import cn from "classnames";
 
-export default class ImageWidget extends React.Component {
+export default class ImageWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     logoUrl: PropTypes.string

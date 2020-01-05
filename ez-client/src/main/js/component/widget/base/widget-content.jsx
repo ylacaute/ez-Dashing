@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default class WidgetContent extends React.Component {
+export default class WidgetContent extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

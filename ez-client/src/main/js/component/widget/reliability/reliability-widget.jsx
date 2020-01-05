@@ -20,7 +20,7 @@ const logger = Logger.getLogger("ReliabilityWidget");
  * /!\ DO NOT USE THIS WIDGET, NOT WORKING, WILL BE RECODED
  *
  */
-export default class ReliabilityWidget extends React.Component {
+export default class ReliabilityWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     reliabilityHistory: PropTypes.array.isRequired,

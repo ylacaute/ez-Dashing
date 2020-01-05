@@ -7,7 +7,7 @@ import LinearProgressBar from 'component/chart/progress-bar/linear';
 
 import "./hello-world-widget.scss";
 
-export default class HelloWorldWidget extends React.Component {
+export default class HelloWorldWidget extends React.PureComponent {
 
   constructor(props) {
     super(props);

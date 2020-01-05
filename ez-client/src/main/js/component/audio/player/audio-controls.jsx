@@ -20,7 +20,7 @@ const AudioButton = ({ label, iconName, className, active, onClick, displayLabel
   </button>
 );
 
-class AudioControls extends React.Component {
+class AudioControls extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

@@ -12,7 +12,7 @@ const ModalType = {
   OkCancel: "OK_CANCEL_TYPE"
 };
 
-class Modal extends React.Component {
+class Modal extends React.PureComponent {
 
   static propTypes = {
     content: PropTypes.node,

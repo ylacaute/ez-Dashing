@@ -6,7 +6,7 @@ import WidgetContent from "component/widget/base/widget-content";
 
 import "./error-widget.scss";
 
-export default class ErrorWidget extends React.Component {
+export default class ErrorWidget extends React.PureComponent {
 
   static propTypes = {
     //...Widget.propTypes,

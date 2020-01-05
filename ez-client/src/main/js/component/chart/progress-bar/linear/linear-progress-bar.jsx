@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./linear-progress-bar.scss"
 
-export default class LinearProgressBar extends React.Component {
+export default class LinearProgressBar extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

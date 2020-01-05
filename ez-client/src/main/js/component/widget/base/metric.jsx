@@ -7,7 +7,7 @@ import AnimatedNumber from 'react-animated-number';
 
 import "./metric.scss"
 
-export default class Metric extends React.Component {
+export default class Metric extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

@@ -13,7 +13,7 @@ import "./widget.scss";
 
 const logger = Logger.getLogger("Widget");
 
-export default class Widget extends React.Component {
+export default class Widget extends React.PureComponent {
 
   static WIDGET_CLASS_NAME = 'widget';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import "./scalable-image.scss";
 
-export default class ScalableImage extends React.Component {
+export default class ScalableImage extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string

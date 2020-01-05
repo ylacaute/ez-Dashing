@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default class WidgetHeader extends React.Component {
+export default class WidgetHeader extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

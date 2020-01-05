@@ -24,7 +24,7 @@ const logger = Logger.getLogger("VelocityWidget");
  *
  * /rest/greenhopper/1.0/rapid/charts/velocity?rapidViewId=[INSERT AGILE BOARD ID]&sprintId=[INSERT SPRINT ID]
  */
-export default class VelocityWidget extends React.Component {
+export default class VelocityWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     velocityHistory: PropTypes.array.isRequired,

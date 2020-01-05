@@ -31,7 +31,7 @@ const data = [
   }
 ];
 
-export default class HelloBarChartWidget extends React.Component {
+export default class HelloBarChartWidget extends React.PureComponent {
 
   render() {
     return (

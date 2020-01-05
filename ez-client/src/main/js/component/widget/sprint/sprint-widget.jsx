@@ -12,7 +12,7 @@ import "./sprint-widget.scss";
 
 const logger = Logger.getLogger("SprintWidget");
 
-export default class SprintWidget extends React.Component {
+export default class SprintWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     sprintId: PropTypes.string.isRequired,

@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import "./input-range.scss";
 
-class InputRange extends React.Component {
+class InputRange extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./flip-effect.scss";
 
-export default class FlipEffect extends React.Component {
+export default class FlipEffect extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,

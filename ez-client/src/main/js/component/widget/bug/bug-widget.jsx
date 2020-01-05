@@ -9,7 +9,7 @@ import cn from "classnames";
 
 import "./bug-widget.scss";
 
-export default class BugWidget extends React.Component {
+export default class BugWidget extends React.PureComponent {
 
   /**
    *  "issuesKeys" and "total" properties came from a dataSource, configured in the dashboard configuration.

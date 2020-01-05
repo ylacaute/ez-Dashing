@@ -26,7 +26,7 @@ const toChartValues = (val) => ({
 
 const logger = Logger.getLogger("BurndownChartWidget");
 
-export default class BurndownWidget extends React.Component {
+export default class BurndownWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     dateTickCount: PropTypes.number,

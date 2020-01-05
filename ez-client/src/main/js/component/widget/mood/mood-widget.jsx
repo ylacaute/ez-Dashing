@@ -9,7 +9,7 @@ import Moods from './Moods';
 
 import "./mood-widget.scss"
 
-export default class MoodWidget extends React.Component {
+export default class MoodWidget extends React.PureComponent {
 
   static propTypes = Object.assign({
     mood: PropTypes.oneOf(Moods),

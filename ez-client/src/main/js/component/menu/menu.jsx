@@ -4,7 +4,7 @@ import { slide as BurgerMenu } from 'react-burger-menu';
 
 import "./menu.scss"
 
-class Menu extends React.Component {
+class Menu extends React.PureComponent {
 
   static propTypes = {
     resetLayout: PropTypes.func.isRequired,
