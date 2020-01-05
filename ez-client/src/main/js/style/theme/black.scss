@@ -1,87 +1,75 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ez-Dashing black color theme
+/* ez-Dashing black theme
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+:root {
+  // BASE COLOR
+  --color-black: #212121;
+  --color-black-darker: #1E1E1E;
+  --color-blue: #2268ae;
+  --color-blue-dark: #30353c;
+  --color-cyan: #2e9bdc;
+  --color-gray: #999;
+  --color-gray-light: #aaa;
+  --color-green: #88b250;
+  --color-orange: #e56d3b;
+  --color-yellow: #cd852d;
+  --color-red: #ae3240;
+  --color-red-light-opacity: rgba(174, 50, 64, 0.4);
+  --color-white: #eee;
+  --color-white-half-opacity: rgba(255, 255, 255, 0.5);
 
-// BASE COLOR
-$color-base: #151515;
-$color-black: #212121;
-$color-black-darker: #1E1E1E;
-$color-blue: #2268ae;
-$color-blue-dark: #30353c;
-$color-cyan: #2e9bdc;
-$color-gray: #999;
-$color-gray-light: #aaa;
-$color-green: #88b250;
-$color-orange: #e56d3b;
-$color-yellow: #cd852d;
-$color-red: #ae3240;
-$color-red-light-opacity: rgba(174, 50, 64, 0.4);
-$color-white: #eee;
-$color-white-half-opacity: rgba(255, 255, 255, 0.5);
+  // GENERIC TEXT COLOR
+  --color-average: var(--color-orange);
+  --color-bad: var(--color-red);
+  --color-building: var(--color-yellow);
+  --color-good: var(--color-green);
+  --color-title: var(--color-white);
+  --color-spinner: var(--color-white);
 
+  // GRID
+  --color-grid-bg-placeholder: var(--color-white-half-opacity);
 
-// GENERIC TEXT COLOR
-$color-average: $color-orange;
-$color-bad: $color-red;
-$color-building: $color-yellow;
-$color-good: $color-green;
-$color-title: $color-white;
-$color-spinner: $color-white;
+  // PROGRESS BAR
+  --color-progress-bar-trail: #2a2a2a;
 
-// GRID
-$color-grid-bg: $color-base;
-$color-grid-bg-placeholder: $color-white-half-opacity;
+  // METRICS
+  --color-metric-name: var(--color-white);
 
-// PROGRESS BAR
-$color-progress-bar-trail: #2a2a2a;
+  // BURGER MENU
+  --color-burger-menu-bg: #222;
+  --color-burger-menu-burger-button: #444;
+  --color-burger-menu-overlay: rgba(0, 0, 0, 0.3);
+  --color-burger-menu-cross-button: var(--color-red);
+  --color-burger-menu-item: var(--color-white);
 
-// METRICS
-$color-metric-name: $color-white;
+  // WIDGETS
+  --color-widget-bg: var(--color-black);
+  --color-widget-text: var(--color-white);
+  --color-widget-header-bg: transparent;
+  --color-widget-header-text: var(--color-white);
+  --color-widget-sub-title-text: var(--color-gray-light);
+  --color-widget-footer-bg: var(--color-black);
+  --color-widget-edit-icon: #111;
 
-// BURGER MENU
-$color-burger-menu-bg: #222;
-$color-burger-menu-burger-button: #222;
-$color-burger-menu-overlay: rgba(0, 0, 0, 0.3);
-$color-burger-menu-cross-button: $color-red;
-$color-burger-menu-item: $color-white;
+  // CLOCK
+  --color-widget-clock-text: var(--color-cyan);
 
-// WIDGET
-$color-widget-bg: $color-black;
-$color-widget-text: $color-white;
-$color-widget-header-bg: transparent;
-$color-widget-header-text: $color-title;
-$color-widget-sub-title-text: $color-gray-light;
-$color-widget-footer-bg: $color-black;
-$color-widget-edit-icon: #111;
+  // SPRINT
+  --color-widget-sprint-text: var(--color-blue);
 
-// CLOCK
-$color-widget-clock-text: $color-cyan;
+  // BUG
 
-// SPRINT
-$color-widget-sprint-text: $color-blue;
+  // SONKINS
+  --color-widget-sonkins-progress-bar-trail: #2a2a2a;
 
-// BUG
+  // BURNDOWN
+  --color-widget-burndown-tick: rgba(0, 0, 0, 0.2);
+  --color-widget-burndown-label: #fff;
+  --color-widget-burndown-line-velocity-ref: var(--color-cyan);
+  --color-widget-burndown-line-velocity-cur: white;
 
-// SONKINS
-$color-widget-sonkins-progress-bar-trail: #2a2a2a;
+  // TEXT
 
-// BURNDOWN
-$color-widget-burndown-tick: rgba(0, 0, 0, 0.2);
-$color-widget-burndown-label: #fff;
-$color-widget-burndown-line-velocity-ref: $color-cyan;
-$color-widget-burndown-line-velocity-cur: white;
+  // MOOD
 
-// TEXT
-
-// MOOD
-
-
-
-
-@import '../main';
-
-// EFFECT
-.widget.sonkins.unstable,
-.widget.sonkins.failure {
-  @include infiniteBgColorChange($color-widget-bg, $color-bad, 8s);
 }

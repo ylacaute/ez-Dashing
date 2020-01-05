@@ -19,7 +19,7 @@ h2.sbdocs-h2 {
 
 p.sbdocs, a {
   color: #ddd !important;
-  font-size: 1.6rem !important;
+  /*font-size: 1.6rem !important;*/
 }
 
 a {
@@ -60,7 +60,6 @@ summary {
 
 /* PROPS */
 table.docblock-propstable {
-  background-color: #141413 !important;
   background-color: #1e1e1e !important;
 }
 table.docblock-propstable tbody {
@@ -96,6 +95,19 @@ table.docblock-propstable tbody tr td {
 }
 table.docblock-propstable thead tr th,
 table.docblock-propstable tbody tr td {
-  font-size: 1.5rem !important;
+ /*font-size: 1.5rem !important;*/
 }
 
+/* Define a font-size for widget because everything is in rem */
+.widget {
+  font-size: 12px !important;
+}
+.widget header {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  padding: 0 !important;
+}
+.widget h1 {
+  font-size: 1rem !important;
+  margin: 0;
+}

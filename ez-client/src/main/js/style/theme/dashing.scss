@@ -1,36 +1,42 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing ugly and unfinished dashing theme
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+:root {
+  // BASE COLOR
+  --color-white: #eee;
+  --color-sonkins: #8cb53e;
+  --color-jira: #31b0a9;
+  --color-clock: #a23472;
+  --color-red: #a51918;
+  --color-blue: #34608f;
+  --color-grid-bg: #222;
+  --color-widget-bg: transparent;
 
-$color-white: #eee;
-$color-sonkins: #8cb53e;
-$color-jira: #31b0a9;
-$color-clock: #a23472;
-$color-red: #a51918;
-$color-blue: #34608f;
+  // METRIC & THRESHOLD
+  --color-metric-neutral: var(--color-white);
+  --color-good: var(--color-white);
+  --color-bad: var(--color-white);
+  --color-average: var(--color-white);
 
-$color-grid-bg: #222;
-$color-widget-bg: transparent;
+  // PROGRESS BAR
+  --color-progress-bar-path: var(--color-white);
 
-$color-metric-neutral: $color-white;
-$color-good: $color-white;
-$color-bad: $color-white;
-$color-average: $color-white;
-
-$color-progress-bar-path: $color-white;
-
-$color-widget-header-bg: transparent;
-$color-widget-sonkins-bg: $color-sonkins;
-$color-widget-sonkins-progress-bar-path: $color-white;
-$color-widget-sonkins-progress-bar-text: $color-white;
-$color-widget-bug-bg: $color-jira;
-$color-widget-bug-todo: $color-white;
-$color-widget-bug-progress: transparent;
-$color-widget-clock-bg: $color-clock;
-$color-widget-clock-text: $color-white;
-$color-widget-sub-title-text: $color-white;
-$color-widget-sprint-text: $color-white;
-$color-widget-sprint-bg: $color-blue;
-
-@import '../main';
+  // WIDGET
+  --color-widget-header-bg: transparent;
+  --color-widget-sonkins-bg: var(--color-sonkins);
+  --color-widget-sonkins-progress-bar-path: var(--color-white);
+  --color-widget-sonkins-progress-bar-text: var(--color-white);
+  --color-widget-bug-bg: var(--color-jira);
+  --color-widget-bug-todo: var(--color-white);
+  --color-widget-bug-progress: transparent;
+  --color-widget-clock-bg: var(--color-clock);
+  --color-widget-clock-text: var(--color-white);
+  --color-widget-sub-title-text: var(--color-white);
+  --color-widget-sprint-text: var(--color-white);
+  --color-widget-sprint-bg: var(--color-blue);
+}
 
 .widget.sonkins.failure {
-  background: $color-red;
+  background: var(--color-red);
 }
+

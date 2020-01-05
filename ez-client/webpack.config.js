@@ -9,7 +9,7 @@ const IS_DEV = (process.env.NODE_ENV === 'development');
 const BUILD_DIR = path.join(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src/main');
 const JS_DIR = SRC_DIR + "/js";
-const STYLE_DIR = SRC_DIR + "/style";
+const STYLE_DIR = SRC_DIR + "/js/style";
 const RESOURCES_DIR = SRC_DIR + "/resources";
 const TEMPLATE_DIR = SRC_DIR + "/template";
 const LIB_DIR = 'node_modules';
@@ -35,10 +35,12 @@ let commonConfig = {
       //'react-hot-loader/patch', // require.resolve('webpack/hot/dev-server'),
       './js/main.jsx'
     ].filter(Boolean),
-    // vendor: [
-    //   "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
-    //   "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "@nivo/line", "@nivo/pie", "@nivo/bar"],
-    defaultTheme: "./js/style/theme/default.scss",
+    defaultTheme: STYLE_DIR + "/theme/default.scss",
+    blackTheme: STYLE_DIR + "/theme/black.scss",
+    darkBlueTheme: STYLE_DIR + "/theme/dark-blue.scss",
+    dashingTheme: STYLE_DIR + "/theme/dashing.scss",
+    neonTheme: STYLE_DIR + "/theme/neon.scss",
+    snowTheme: STYLE_DIR + "/theme/snow.scss"
   },
 
   // Directories where to search to resolve imports

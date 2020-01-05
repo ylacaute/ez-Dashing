@@ -8,6 +8,7 @@ import { MenuEventCreator } from 'redux/event/menu-event';
 import Grid from 'component/grid';
 import Menu from './component/menu';
 import ModalContainer from 'component/modal/modal-container';
+import SnowEffect from "component/effect/snow";
 
 class Application extends React.PureComponent {
 
@@ -26,6 +27,7 @@ class Application extends React.PureComponent {
     }
     return (
       <div>
+        <SnowEffect />
         <Menu
           resetLayout={this.props.menuEvents.resetLayout}
           saveLayout={this.props.menuEvents.saveLayout}

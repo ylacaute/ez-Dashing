@@ -14,4 +14,4 @@ import '@storybook/addon-links/register';
 import '@storybook/addon-design-assets/register';
 
 // Show stories source in the addon panel
-import '@storybook/addon-storysource/register';
+// import '@storybook/addon-storysource/register';

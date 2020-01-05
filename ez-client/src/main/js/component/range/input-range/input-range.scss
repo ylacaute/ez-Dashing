@@ -2,33 +2,33 @@
  * Inspired from https://codepen.io/thebabydino/pen/goYYrN
  */
 
-$color-thumb: #fff;
-$color-track: #ccc;
-$color-progress: #2e9bdc;
-$track-width: 100%;
-$track-height: .25em;
-$thumb-width: 2em;
-$thumb-height: 1em;
-$thumb-radius: 0;
+$input-range-track-width: 100% !default;
+$input-range-track-height: .25em  !default;
+$input-range-thumb-width: 2em !default;
+$input-range-thumb-height: 1em !default;
+$input-range-thumb-color: #fff !default;
+$input-range-track-color: #ccc !default;;
+$input-range-progress-color: #2e9bdc !default;
+$input-range-thumb-radius: 0 !default;
 
 @mixin track() {
   box-sizing: border-box;
   border: none;
-  width: $track-width;
-  height: $track-height;
-  background: $color-track 0/var(--sx) 100% no-repeat linear-gradient($color-progress, $color-progress);
+  width: $input-range-track-width;
+  height: $input-range-track-height;
+  background: $input-range-track-color 0/var(--sx) 100% no-repeat linear-gradient($input-range-progress-color, $input-range-progress-color);
 }
 
 @mixin fill() {
-  height: $track-height;
-  background: $color-progress
+  height: $input-range-track-height;
+  background: $input-range-progress-color
 }
 
 @mixin thumb() {
   box-sizing: border-box;
-  width: $thumb-width;
-  height: $thumb-height;
-  border-radius: $thumb-radius;
+  width: $input-range-thumb-width;
+  height: $input-range-thumb-height;
+  border-radius: $input-range-thumb-radius;
   border: 1px solid #ccc;
   background: linear-gradient(#eee, #aaa);
   position: relative;
@@ -46,11 +46,11 @@ $thumb-radius: 0;
   }
   --range: calc(var(--max) - var(--min));
   --ratio: calc((var(--val) - var(--min))/var(--range));
-  --sx: calc(.5*#{$thumb-width} + var(--ratio)*(100% - #{$thumb-width}));
+  --sx: calc(.5*#{$input-range-thumb-width} + var(--ratio)*(100% - #{$input-range-thumb-width}));
   margin: 0;
   padding: 0;
-  width: $track-width;
-  height: $thumb-height;
+  width: $input-range-track-width;
+  height: $input-range-thumb-height;
   background: transparent;
 
   // TRACK
@@ -64,7 +64,7 @@ $thumb-radius: 0;
 
   // THUMB
   &::-webkit-slider-thumb {
-    margin-top: .5*($track-height - $thumb-height);
+    margin-top: .5*($input-range-track-height - $input-range-thumb-height);
     @include thumb
   }
   &::-moz-range-thumb { @include thumb }

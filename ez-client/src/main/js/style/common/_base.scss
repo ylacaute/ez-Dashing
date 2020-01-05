@@ -54,5 +54,9 @@ form {
 }
 
 button {
-  background-color: var(--color-bg-button, $color-bg-button);
+  background-color: $color-bg-button;
+}
+
+div, a, button, h1, h2, h3, h4, h5, label, input, select, form, option, section, article, header, footer, details {
+  outline: none !important;
 }

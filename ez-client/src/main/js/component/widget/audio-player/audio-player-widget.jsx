@@ -22,6 +22,7 @@ export default class AudioPlayerWidget extends React.PureComponent {
   };
 
   static defaultProps = {
+    title: "Audio Player"
   };
 
   getEditModal() {

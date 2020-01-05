@@ -3,7 +3,6 @@ module.exports = {
     modules: [
       "node_modules",
       "src/main/js",
-      "src/main/sass",
       "src/main/resources",
       "doc"
     ]

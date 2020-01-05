@@ -23,10 +23,6 @@ export default class LinearProgressBar extends React.PureComponent {
     this.updateState(this.props);
   };
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.updateState(nextProps);
-  // };
-
   updateState() {
     this.setState({
       percent: this.props.percent

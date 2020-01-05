@@ -14,7 +14,8 @@ import '@storybook/addon-console';
 import ezTheme from './theme/defaultTheme';
 
 // Dashboard theme
-import "../src/main/sass/theme/default.scss";
+//import "../src/main/js/style/common/_index.scss";
+import "../src/main/js/style/theme/default.scss";
 
 addParameters({
   options: {

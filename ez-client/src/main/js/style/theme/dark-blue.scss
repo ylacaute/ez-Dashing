@@ -1,21 +1,23 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing dark blue theme
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+:root {
+  // BASE COLOR
+  --color-grid-bg: #050607;
+  --color-widget-bg: #0d1117;
+  --color-good: #7ad627;
+  --color-bad: #d41717;
+  --color-average: #e7a71e;
 
-// General
-$color-grid-bg: #050607;
-$color-widget-bg: #0d1117;
-$color-good: #7ad627;
-$color-bad: #d41717;
-$color-average: #e7a71e;
+  // WIDGETS
+  --color-widget-header-bg: rgba(33, 33, 33, 0.5);
 
-// Widgets
-$color-widget-header-bg: rgba(33, 33, 33, 0.5);
+  // SONKINS STATES
+  --ez-sonkins-header-bg-good: none;
+  --ez-sonkins-header-text-good: var(--color-good);
+  --ez-sonkins-header-bg-bad: var(--color-bad);
+  --ez-sonkins-header-text-bad: var(--color-grid-bg);
+  --ez-sonkins-header-bg-building: var(--color-average);
+  --ez-sonkins-header-text-building: var(--color-grid-bg);
 
-// Sonkins states
-$ez-sonkins-header-bg-good: none;
-$ez-sonkins-header-text-good: $color-good;
-$ez-sonkins-header-bg-bad: $color-bad;
-$ez-sonkins-header-text-bad: $color-grid-bg;
-$ez-sonkins-header-bg-building: $color-average;
-$ez-sonkins-header-text-building: $color-grid-bg;
-
-@import '../main';
-
+}

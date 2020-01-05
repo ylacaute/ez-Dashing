@@ -1,11 +1,9 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing snow theme for christmas
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@import '../common';
 
-@import '../main';
-
-// EFFECT
-.widget.sonkins.failure {
-  @include infiniteBgColorChange($color-widget-bg, $color-bad, 8s);
-}
-
+// ENABLE SNOW ON EACH WIDGET HEADER
 .react-grid-item:before {
   background: url('#{$image-path}/misc/snow.png') repeat-x;
   display: block;
@@ -13,68 +11,15 @@
   height: 15px;
   width: 100%;
   position: absolute;
+  z-index: 1;
 }
 
-/**
- *  SNOW CREDITS : Justin Patrick Schwinghamer
- *  https://codepen.io/jpschwinghamer/pen/QwwbgO
- */
+// ENABLE SNOW
 .snow-container {
-  position: absolute;
-  top:0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  z-index: 2;
-  pointer-events: none;
-  background-color: transparent;
-}
-
-.snow {
-  $foreground-speed: 15s;
-  $middleground-speed: 20s;
-  $background-speed: 30s;
   display: block;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  transform: translate3d(0, -100%, 0);
-  animation: snow linear infinite;
-  &.foreground {
-    background-image: url('#{$image-path}/misc/snow-large.png');
-    animation-duration: $foreground-speed;
-    &.layered {
-      animation-delay: $foreground-speed/2;
-    }
-  }
-  &.middleground {
-    background-image: url('#{$image-path}/misc/snow-medium.png');
-    animation-duration: $middleground-speed;
-    &.layered {
-      animation-delay: $middleground-speed/2;
-    }
-  }
-  &.background {
-    background-image: url('#{$image-path}/misc/snow-small.png');
-    animation-duration: $background-speed;
-    &.layered {
-      animation-delay: $background-speed/2
-    }
-  }
 }
 
-@keyframes snow {
-  0% {
-    transform: translate3d(0, -100%, 0)
-  }
-  100% {
-    transform: translate3d(15%,100%,0)
-  }
+// EFFECT
+.widget.sonkins.failure {
+  @include infiniteBgColorChange($color-widget-bg, $color-bad, 8s);
 }

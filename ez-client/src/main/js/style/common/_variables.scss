@@ -2,142 +2,147 @@
 /* ez-Dashing color configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// BASE COLOR
-$color-base: #aaa !default;
-$color-black: #242424 !default;
-$color-black-half-opacity: rgba(33, 33, 33, 0.5) !default;
-$color-blue: #2268ae !default;
-$color-blue-dark: #30353c !default;
-$color-blue-dark: #24282d !default;
-$color-cyan: #36afb3 !default;
-$color-gray: #999 !default;
-$color-gray-light: #aaa !default;
-$color-green: #88b250 !default;
-$color-orange: #db8240 !default;
-$color-yellow: #dcae41 !default;
-$color-red: #c65555 !default;
-$color-red-light-opacity: rgba(198, 85, 85, 0.2) !default;
-$color-white: #eee !default;
-$color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
+// BASE COLORS
+$color-black: #242424;
+$color-black-half-opacity: rgba(33, 33, 33, 0.5);
+$color-blue: #2268ae;
+$color-blue-dark: #30353c;
+$color-blue-dark: #24282d;
+$color-cyan: #36afb3;
+$color-gray: #999;
+$color-gray-light: #aaa;
+$color-green: #88b250;
+$color-orange: #db8240;
+$color-yellow: #dcae41;
+$color-red: #c65555;
+$color-red-light-opacity: rgba(198, 85, 85, 0.2);
+$color-white: #eee;
+$color-white-half-opacity: rgba(255, 255, 255, 0.5);
 
 // BASE UI
-$color-bg-button: $color-blue !default;
+$color-bg-button: var(--color-bg-button, #ddd);
 
 // GENERIC TEXT COLOR
-$color-text: $color-white !default;
-$color-average: $color-orange !default;
-$color-bad: $color-red !default;
-$color-bad-opacity: $color-red-light-opacity !default;
-$color-building: $color-yellow !default;
-$color-good: $color-green !default;
-$color-title: $color-white !default;
-$color-spinner: $color-white !default;
+$color-text: var(--color-text, $color-white);
+$color-average: var(--color-average, $color-orange);
+$color-bad: var(--color-bad, $color-red);
+$color-bad-opacity: var(--color-bad-opacity, $color-red-light-opacity);
+$color-building: var(--color-building, $color-yellow);
+$color-good: var(--color-good, $color-green);
+$color-title: var(--color-title, $color-white);
+$color-spinner: var(--color-spinner, $color-white);
 
 // GRID
-$color-grid-bg: $color-black !default;
-$color-grid-bg-placeholder: $color-white-half-opacity !default;
+$color-grid-bg: var(--color-grid-bg, $color-black);
+$color-grid-bg-placeholder: var(--color-grid-bg-placeholder,$color-white-half-opacity);
+
+// INPUT RANGE
+$input-range-thumb-color: var(--input-range-thumb-color, #fff);
+$input-range-track-color: var(--input-range-track-color, #ccc);
+$input-range-progress-color: var(--input-range-progress-color, #2e9bdc);
+$input-range-thumb-radius: var(--input-range-thumb-radius, 0);
 
 // PROGRESS BAR
-$color-progress-bar-trail: $color-black-half-opacity !default;
-$color-progress-bar-path: $color-blue !default;
-$color-progress-bar-text: $color-title !default;
+$color-progress-bar-trail: var(--color-progress-bar-trail,$color-black-half-opacity);
+$color-progress-bar-path: var(--color-progress-bar-path,$color-blue);
+$color-progress-bar-text: var(--color-progress-bar-text, $color-title);
 
 // METRICS
-$color-metric-name: $color-text !default;
-$color-metric-neutral: $color-cyan !default;
-$color-metric-good: $color-good !default;
-$color-metric-average: $color-average !default;
-$color-metric-bad: $color-bad !default;
+$color-metric-name: var(--color-metric-name,$color-text);
+$color-metric-neutral: var(--color-metric-neutral,$color-cyan);
+$color-metric-good: var(--color-metric-good,$color-good);
+$color-metric-average: var(--color-metric-average,$color-average);
+$color-metric-bad: var(--color-metric-bad,$color-bad);
 
 // BURGER MENU
-$color-burger-menu-bg: $color-blue-dark !default;
-$color-burger-menu-burger-button: $color-blue-dark !default;
-$color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
-$color-burger-menu-cross-button: $color-text !default;
-$color-burger-menu-item: $color-text !default;
+$color-burger-menu-bg: var(--color-burger-menu-bg,$color-blue-dark);
+$color-burger-menu-burger-button: var(--color-burger-menu-burger-button, #111);
+$color-burger-menu-overlay: var(--color-burger-menu-,rgba(0, 0, 0, 0.3));
+$color-burger-menu-cross-button: var(--color-burger-menu-cross-button,$color-text);
+$color-burger-menu-item: var(--color-burger-menu-item,$color-text);
 
 // WIDGET
-$color-widget-bg: $color-blue-dark !default;
-$color-widget-text: $color-white !default;
-$color-widget-header-text: $color-title !default;
-$color-widget-header-bg: $color-black-half-opacity !default;
-$color-widget-sub-title-text: $color-gray-light !default;
-$color-widget-footer-bg: $color-black-half-opacity !default;
-$color-widget-edit-icon: $color-black !default;
+$color-widget-bg: var(--color-widget-bg,$color-blue-dark);
+$color-widget-text: var(--color-widget-text,$color-white);
+$color-widget-header-text: var(--color-widget-header-text, $color-title);
+$color-widget-header-bg: var(--color-widget-header-bg,$color-black-half-opacity);
+$color-widget-sub-title-text: var(--color-widget-sub-title-text,$color-gray-light);
+$color-widget-footer-bg: var(--color-widget-footer-bg,$color-black-half-opacity);
+$color-widget-edit-icon: var(--color-widget-edit-icon, #1b1b1b);
 
 // CLOCK
-$color-widget-clock-text: $color-cyan !default;
-$color-widget-clock-bg: none !default;
+$color-widget-clock-bg: var(--color-widget-clock-bg,$color-widget-bg);
+$color-widget-clock-text: var(--color-widget-clock-text,$color-cyan);
 
 // SPRINT
-$color-widget-sprint-text: $color-blue !default;
-$color-widget-sprint-bg: none !default;
+$color-widget-sprint-bg: var(--color-widget-sprint-bg,$color-widget-bg);
+$color-widget-sprint-text: var(--color-widget-sprint-text,$color-blue);
 
 // BUG
-$color-widget-bug-bg: none !default;
-$color-widget-bug-todo: $color-red !default;
-$color-widget-bug-progress: $color-black-half-opacity !default;
+$color-widget-bug-bg: var(--color-widget-bug-bg, $color-widget-bg);
+$color-widget-bug-todo: var(--color-widget-bug-todo,$color-red);
+$color-widget-bug-progress: var(--color-widget-bug-progress,$color-black-half-opacity);
 
 // SONKINS
-$color-widget-sonkins-bg: none !default;
-$color-widget-sonkins-progress-bar-trail: $color-black-half-opacity !default;
-$color-widget-sonkins-progress-bar-path: $color-building !default;
-$color-widget-sonkins-progress-bar-text: $color-building !default;
+$color-widget-sonkins-bg: var(--color-widget-sonkins-bg, $color-widget-bg);
+$color-widget-sonkins-progress-bar-trail: var(--color-widget-sonkins-progress-bar-trail,$color-black-half-opacity);
+$color-widget-sonkins-progress-bar-path: var(--color-widget-sonkins-progress-bar-path,$color-building);
+$color-widget-sonkins-progress-bar-text: var(--color-widget-sonkins-progress-bar-text,$color-building);
 
 // BURNDOWN
-$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
-$color-widget-burndown-label: #fff !default;
-$color-widget-burndown-line-velocity-ref: $color-cyan !default;
-$color-widget-burndown-line-velocity-cur: white !default;
+$color-widget-burndown-tick: var(--color-widget-burndown-tick,rgba(0, 0, 0, 0.2));
+$color-widget-burndown-label: var(--color-widget-burndown-label,#fff);
+$color-widget-burndown-line-velocity-ref: var(--color-widget-burndown-line-velocity-ref,$color-cyan);
+$color-widget-burndown-line-velocity-cur: var(--color-widget-burndown-line-velocity-cur,white);
 
 // TEXT
-$color-widget-text-good-icon: $color-green !default;
-$color-widget-text-info-icon: $color-blue !default;
-$color-widget-text-warn-icon: $color-yellow !default;
-$color-widget-text-danger-icon: $color-red !default;
+$color-widget-text-good-icon: var(--color-widget-text-good-icon,$color-green);
+$color-widget-text-info-icon: var(--color-widget-text-info-icon,$color-blue);
+$color-widget-text-warn-icon: var(--color-widget-text-warn-icon,$color-yellow);
+$color-widget-text-danger-icon: var(--color-widget-text-danger-icon,$color-red);
 
 // MOOD
-$color-widget-mood-good-icon: $color-green !default;
-$color-widget-mood-average-icon: $color-yellow !default;
-$color-widget-mood-bad-icon: $color-red !default;
-$image-widget-mood-good-icon: 'happyFace.svg' !default;
-$image-widget-mood-average-icon: 'neutralFace.svg' !default;
-$image-widget-mood-bad-icon: 'unhappyFace.svg' !default;
+$color-widget-mood-good-icon: var(--color-widget-mood-good-icon,$color-green);
+$color-widget-mood-average-icon: var(--color-widget-mood-average,$color-yellow);
+$color-widget-mood-bad-icon: var(--color-widget-mood-bad-icon,$color-red);
+$image-widget-mood-good-icon: 'happyFace.svg';
+$image-widget-mood-average-icon: 'neutralFace.svg';
+$image-widget-mood-bad-icon: 'unhappyFace.svg';
 
 // VELOCITY & RELIABILITY
-$color-widget-velocity-text: $color-cyan !default;
-$color-widget-reliability-text: $color-cyan !default;
+$color-widget-velocity-text: var(--color-widget-velocity-text, $color-cyan);
+$color-widget-reliability-text: var(--color-widget-reliability-text, $color-cyan);
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing padding configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$padding-content: 1rem !default;
-$padding-widget-content: $padding-content !default;
+$padding-content: 1rem;
+$padding-widget-content: $padding-content;
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing image configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-$image-path: '/img' !default;
-$image-app-logo: 'tech/ezLogo_512.png' !default;
-$image-error: 'error.svg' !default;
-$image-edit: 'pen.svg' !default;
-$image-bug-empty: 'thumb.svg' !default;
-$image-bug-todo: 'rightArrow.svg' !default;
-$image-burger-menu-layout: 'layout.svg' !default;
-$image-burger-menu-theme: 'painterPalette.svg' !default;
-$image-sonkins-build-success: 'thumb.svg' !default;
-$image-good: 'happyFace.svg' !default;
-$image-info: 'info.svg' !default;
-$image-warn: 'warn.svg' !default;
-$image-danger: 'bomb.svg' !default;
+$image-path: '/img';
+$image-app-logo: 'tech/ezLogo_512.png';
+$image-error: 'error.svg';
+$image-edit: 'pen.svg';
+$image-bug-empty: 'thumb.svg';
+$image-bug-todo: 'rightArrow.svg';
+$image-burger-menu-layout: 'layout.svg';
+$image-burger-menu-theme: 'painterPalette.svg';
+$image-sonkins-build-success: 'thumb.svg';
+$image-good: 'happyFace.svg';
+$image-info: 'info.svg';
+$image-warn: 'warn.svg';
+$image-danger: 'bomb.svg';
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ez-Dashing KNACSS configuration
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // Font sizes (1.6rem value is "16px" equivalent)
-$font-size-base : 1.6rem !default;
+$font-size-base : 1.6rem;
 $font-sizes: (
   base: (
     mobile  : 1rem,
@@ -167,33 +172,33 @@ $font-sizes: (
     mobile  : 1rem,
     desktop : 1rem
   )
-) !default;
+);
 
 
-$base-font-size : 1.4rem !default;
-$line-height    : 1.4 !default;
-$h1-size        : 1.8rem !default;
-$h2-size        : 1.6rem !default;
-$h3-size        : 1.4rem !default;
-$h4-size        : 1.4rem !default;
-$h5-size        : 1.4rem !default;
-$h6-size        : 1.4rem !default;
+$base-font-size : 1.4rem;
+$line-height    : 1.4;
+$h1-size        : 1.8rem;
+$h2-size        : 1.6rem;
+$h3-size        : 1.4rem;
+$h4-size        : 1.4rem;
+$h5-size        : 1.4rem;
+$h6-size        : 1.4rem;
 
 // DESKTOP FONT SIZE
-$base-font-size-l : 1.4 rem !default;
-$line-height-l    : 1.5 !default;
-$h1-size-l        : 1.8rem !default;
-$h2-size-l        : 1.6rem !default;
-$h3-size-l        : 1.4rem !default;
-$h4-size-l        : 1.4rem !default;
-$h5-size-l        : 1.4rem !default;
-$h6-size-l        : 1.4rem !default;
+$base-font-size-l : 1.4 rem;
+$line-height-l    : 1.5;
+$h1-size-l        : 1.8rem;
+$h2-size-l        : 1.6rem;
+$h3-size-l        : 1.4rem;
+$h4-size-l        : 1.4rem;
+$h5-size-l        : 1.4rem;
+$h6-size-l        : 1.4rem;
 
 
-$font-size-widget-sub-title: $h2-size-l !default;
-$font-size-widget-article-desktop: 120% !default;
+$font-size-widget-sub-title: $h2-size-l;
+$font-size-widget-article-desktop: 120%;
 
 // font stacks
-$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !default; // system font stack
-//$font-stack-headings  : sans-serif !default; // headings font
-//$font-stack-monospace : consolas, courier, monospace !default; // monospace font
+$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; // system font stack
+//$font-stack-headings  : sans-serif; // headings font
+//$font-stack-monospace : consolas, courier, monospace; // monospace font
