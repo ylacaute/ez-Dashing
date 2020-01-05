@@ -1,3 +1,3 @@
-import BurndownChartWidget from "./BurndownWidget";
+import BurndownChartWidget from "./burndown-widget";
 
 export default BurndownChartWidget;

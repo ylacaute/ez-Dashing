@@ -1,0 +1,83 @@
+@import "../../../style/common";
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* SONKINS WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.sonkins {
+  background-color: $color-widget-sonkins-bg;
+  article {
+    .progress-bar {
+      .trail {
+        stroke: $color-widget-sonkins-progress-bar-trail;
+        background: $color-widget-sonkins-progress-bar-trail;
+      }
+      .path {
+        stroke: $color-widget-sonkins-progress-bar-path;
+        background: $color-widget-sonkins-progress-bar-path;
+      }
+      text {
+        fill: $color-widget-sonkins-progress-bar-text;
+      }
+      &.linear {
+        align-self: center;
+        display: none;
+      }
+    }
+  }
+
+  &.success .author {
+    @include svgMask($color-good, $image-sonkins-build-success);
+  }
+
+  &.failure, &.unstable, &.unknown {
+    font-weight: bold;
+  }
+
+  &.building, &.rebuilding {
+    //@include infiniteFlipping(10s);
+    font-weight: bold;
+    article {
+      > div {  // wrapper only on building
+        display: flex;
+        flex-grow: 1;
+      }
+      .flip-container {
+        display: flex;
+        flex-grow: 1;
+        .face {
+          padding: 1em;
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+// We display an horizontal progress bar on small height
+.height-xxxs {
+  &.widget.sonkins.desktop {
+    .flip-container {
+      display: none;
+    }
+    .progress-bar.linear {
+      display: flex;
+    }
+  }
+}
+
+.height-xxs, .height-xs, .height-sm, .height-md, .height-lg {
+  .widget.sonkins.failure,
+  .widget.sonkins.unstable,
+  .widget.sonkins.unknown {
+    article {
+      padding: 1.5em;
+    }
+  }
+}
+
+.height-xxxs {
+  &.widget.sonkins article {
+    padding-bottom: 0;
+  }
+}

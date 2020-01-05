@@ -1,0 +1,199 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing color configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// BASE COLOR
+$color-base: #aaa !default;
+$color-black: #242424 !default;
+$color-black-half-opacity: rgba(33, 33, 33, 0.5) !default;
+$color-blue: #2268ae !default;
+$color-blue-dark: #30353c !default;
+$color-blue-dark: #24282d !default;
+$color-cyan: #36afb3 !default;
+$color-gray: #999 !default;
+$color-gray-light: #aaa !default;
+$color-green: #88b250 !default;
+$color-orange: #db8240 !default;
+$color-yellow: #dcae41 !default;
+$color-red: #c65555 !default;
+$color-red-light-opacity: rgba(198, 85, 85, 0.2) !default;
+$color-white: #eee !default;
+$color-white-half-opacity: rgba(255, 255, 255, 0.5) !default;
+
+// BASE UI
+$color-bg-button: $color-blue !default;
+
+// GENERIC TEXT COLOR
+$color-text: $color-white !default;
+$color-average: $color-orange !default;
+$color-bad: $color-red !default;
+$color-bad-opacity: $color-red-light-opacity !default;
+$color-building: $color-yellow !default;
+$color-good: $color-green !default;
+$color-title: $color-white !default;
+$color-spinner: $color-white !default;
+
+// GRID
+$color-grid-bg: $color-black !default;
+$color-grid-bg-placeholder: $color-white-half-opacity !default;
+
+// PROGRESS BAR
+$color-progress-bar-trail: $color-black-half-opacity !default;
+$color-progress-bar-path: $color-blue !default;
+$color-progress-bar-text: $color-title !default;
+
+// METRICS
+$color-metric-name: $color-text !default;
+$color-metric-neutral: $color-cyan !default;
+$color-metric-good: $color-good !default;
+$color-metric-average: $color-average !default;
+$color-metric-bad: $color-bad !default;
+
+// BURGER MENU
+$color-burger-menu-bg: $color-blue-dark !default;
+$color-burger-menu-burger-button: $color-blue-dark !default;
+$color-burger-menu-overlay: rgba(0, 0, 0, 0.3) !default;
+$color-burger-menu-cross-button: $color-text !default;
+$color-burger-menu-item: $color-text !default;
+
+// WIDGET
+$color-widget-bg: $color-blue-dark !default;
+$color-widget-text: $color-white !default;
+$color-widget-header-text: $color-title !default;
+$color-widget-header-bg: $color-black-half-opacity !default;
+$color-widget-sub-title-text: $color-gray-light !default;
+$color-widget-footer-bg: $color-black-half-opacity !default;
+$color-widget-edit-icon: $color-black !default;
+
+// CLOCK
+$color-widget-clock-text: $color-cyan !default;
+$color-widget-clock-bg: none !default;
+
+// SPRINT
+$color-widget-sprint-text: $color-blue !default;
+$color-widget-sprint-bg: none !default;
+
+// BUG
+$color-widget-bug-bg: none !default;
+$color-widget-bug-todo: $color-red !default;
+$color-widget-bug-progress: $color-black-half-opacity !default;
+
+// SONKINS
+$color-widget-sonkins-bg: none !default;
+$color-widget-sonkins-progress-bar-trail: $color-black-half-opacity !default;
+$color-widget-sonkins-progress-bar-path: $color-building !default;
+$color-widget-sonkins-progress-bar-text: $color-building !default;
+
+// BURNDOWN
+$color-widget-burndown-tick: rgba(0, 0, 0, 0.2) !default;
+$color-widget-burndown-label: #fff !default;
+$color-widget-burndown-line-velocity-ref: $color-cyan !default;
+$color-widget-burndown-line-velocity-cur: white !default;
+
+// TEXT
+$color-widget-text-good-icon: $color-green !default;
+$color-widget-text-info-icon: $color-blue !default;
+$color-widget-text-warn-icon: $color-yellow !default;
+$color-widget-text-danger-icon: $color-red !default;
+
+// MOOD
+$color-widget-mood-good-icon: $color-green !default;
+$color-widget-mood-average-icon: $color-yellow !default;
+$color-widget-mood-bad-icon: $color-red !default;
+$image-widget-mood-good-icon: 'happyFace.svg' !default;
+$image-widget-mood-average-icon: 'neutralFace.svg' !default;
+$image-widget-mood-bad-icon: 'unhappyFace.svg' !default;
+
+// VELOCITY & RELIABILITY
+$color-widget-velocity-text: $color-cyan !default;
+$color-widget-reliability-text: $color-cyan !default;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing padding configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$padding-content: 1rem !default;
+$padding-widget-content: $padding-content !default;
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing image configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+$image-path: '/img' !default;
+$image-app-logo: 'tech/ezLogo_512.png' !default;
+$image-error: 'error.svg' !default;
+$image-edit: 'pen.svg' !default;
+$image-bug-empty: 'thumb.svg' !default;
+$image-bug-todo: 'rightArrow.svg' !default;
+$image-burger-menu-layout: 'layout.svg' !default;
+$image-burger-menu-theme: 'painterPalette.svg' !default;
+$image-sonkins-build-success: 'thumb.svg' !default;
+$image-good: 'happyFace.svg' !default;
+$image-info: 'info.svg' !default;
+$image-warn: 'warn.svg' !default;
+$image-danger: 'bomb.svg' !default;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ez-Dashing KNACSS configuration
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// Font sizes (1.6rem value is "16px" equivalent)
+$font-size-base : 1.6rem !default;
+$font-sizes: (
+  base: (
+    mobile  : 1rem,
+    desktop : $font-size-base
+  ),
+  h1: (
+    mobile  : 1.8rem,
+    desktop : 1.8rem
+  ),
+  h2: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h3: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h4: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h5: (
+    mobile  : 1rem,
+    desktop : 1rem
+  ),
+  h6: (
+    mobile  : 1rem,
+    desktop : 1rem
+  )
+) !default;
+
+
+$base-font-size : 1.4rem !default;
+$line-height    : 1.4 !default;
+$h1-size        : 1.8rem !default;
+$h2-size        : 1.6rem !default;
+$h3-size        : 1.4rem !default;
+$h4-size        : 1.4rem !default;
+$h5-size        : 1.4rem !default;
+$h6-size        : 1.4rem !default;
+
+// DESKTOP FONT SIZE
+$base-font-size-l : 1.4 rem !default;
+$line-height-l    : 1.5 !default;
+$h1-size-l        : 1.8rem !default;
+$h2-size-l        : 1.6rem !default;
+$h3-size-l        : 1.4rem !default;
+$h4-size-l        : 1.4rem !default;
+$h5-size-l        : 1.4rem !default;
+$h6-size-l        : 1.4rem !default;
+
+
+$font-size-widget-sub-title: $h2-size-l !default;
+$font-size-widget-article-desktop: 120% !default;
+
+// font stacks
+$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !default; // system font stack
+//$font-stack-headings  : sans-serif !default; // headings font
+//$font-stack-monospace : consolas, courier, monospace !default; // monospace font

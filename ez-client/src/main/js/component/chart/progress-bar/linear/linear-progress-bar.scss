@@ -1,0 +1,24 @@
+@import "../../../../style/common";
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* LINEAR PROGRESS BAR
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.linear.progress-bar {
+  position: relative;
+  width: 100%;
+  transition: all 400ms;
+
+  .trail {
+    width: 100%;
+    height: 10px;
+    background: $color-progress-bar-trail;
+  }
+
+  .path {
+    position: absolute;
+    height: 10px;
+    background: $color-progress-bar-path;
+    transition: all 200ms ease;
+  }
+}

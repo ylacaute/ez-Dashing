@@ -1,16 +1,16 @@
-import URLUtils from "utils/URLUtils";
+import UrlUtils from "utils/URLUtils";
 
 describe("URLUtils", () => {
 
   it("serializeAsQueryParams() should return empty when null arg", () => {
     let obj = null;
-    let result = URLUtils.serializeAsQueryParams(obj);
+    let result = UrlUtils.serializeAsQueryParams(obj);
     expect(result).toStrictEqual("");
   });
 
   it("serializeAsQueryParams() should return empty when empty arg", () => {
     let obj = {};
-    let result = URLUtils.serializeAsQueryParams(obj);
+    let result = UrlUtils.serializeAsQueryParams(obj);
     expect(result).toStrictEqual("");
   });
 
@@ -18,7 +18,7 @@ describe("URLUtils", () => {
     let obj = {
       hello: "world"
     };
-    let result = URLUtils.serializeAsQueryParams(obj);
+    let result = UrlUtils.serializeAsQueryParams(obj);
     expect(result).toStrictEqual("?hello=world");
   });
 
@@ -27,7 +27,7 @@ describe("URLUtils", () => {
       hello: "world",
       foo: "bar"
     };
-    let result = URLUtils.serializeAsQueryParams(obj);
+    let result = UrlUtils.serializeAsQueryParams(obj);
     expect(result).toStrictEqual("?hello=world&foo=bar");
   });
 

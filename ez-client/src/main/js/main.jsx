@@ -1,13 +1,14 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import Application from './Application.jsx'
-import SetupService from 'service/setup/SetupService';
-import Logger from 'utils/Logger';
+import Application from './application'
+import SetupService from 'service/setup/setup-service';
+import Logger from 'utils/logger';
 
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import 'rodal/lib/rodal.css';
+import "main.scss";
 
 Logger.ENABLE_COLOR = true;
 Logger.setRootLevel(Logger.Level.DEBUG);
@@ -32,7 +33,8 @@ Logger.setLevel("VelocityCalculator", Logger.Level.WARN);
 Logger.setLevel("SprintWidget", Logger.Level.WARN);
 Logger.setLevel("AudioPlayer", Logger.Level.INFO);
 Logger.setLevel("AudioPlayerPlaylistModal", Logger.Level.INFO);
-Logger.setLevel("WidgetFactory", Logger.Level.DEBUG);
+Logger.setLevel("WidgetFactory", Logger.Level.INFO);
+Logger.setLevel("Widget", Logger.Level.INFO);
 
 const setupService = new SetupService();
 

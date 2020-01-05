@@ -1,3 +1,3 @@
-import ReliabilityWidget from "./ReliabilityWidget";
+import ReliabilityWidget from "./reliability-widget";
 
 export default ReliabilityWidget;

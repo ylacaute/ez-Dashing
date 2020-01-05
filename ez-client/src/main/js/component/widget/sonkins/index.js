@@ -1,3 +1,3 @@
-import SonkinsWidget from "./SonkinsWidget";
+import SonkinsWidget from "./sonkins-widget";
 
 export default SonkinsWidget;

@@ -1,3 +1,3 @@
-import BugWidget from "./BugWidget";
+import BugWidget from "./bug-widget";
 
 export default BugWidget;

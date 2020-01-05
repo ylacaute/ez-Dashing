@@ -1,0 +1,24 @@
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+// INFINITE BLINKING EFFECT
+//
+//  Sample usage:
+//    @include infiniteBlinking(2s, 0.3);
+//
+//  Note: we generate a frameId in otder
+//
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@mixin infiniteBlinking($duration, $min-opacity) {
+  $min-opacity: 0.3 !default;
+  $frameId: unique-id();
+
+  @keyframes blinker#{$frameId} {
+    0% {opacity: 1.0}
+    50% {opacity: $min-opacity}
+    100% {opacity: 1.0}
+  }
+
+  animation: $duration blinker#{$frameId} linear infinite;
+}
+

@@ -9,10 +9,17 @@ const IS_DEV = (process.env.NODE_ENV === 'development');
 const BUILD_DIR = path.join(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src/main');
 const JS_DIR = SRC_DIR + "/js";
-const SASS_DIR = SRC_DIR + "/sass";
+const STYLE_DIR = SRC_DIR + "/style";
 const RESOURCES_DIR = SRC_DIR + "/resources";
 const TEMPLATE_DIR = SRC_DIR + "/template";
 const LIB_DIR = 'node_modules';
+
+// blackTheme: "./js/style/theme/black.scss",
+// darkBlueTheme: "./js/style/theme/darkBlue.scss",
+// dashingTheme: "./js/style/theme/dashing.scss",
+// defaultTheme: "./js/style/theme/default.scss",
+// neonTheme: "./js/style/theme/neon.scss",
+// snowTheme: "./js/style/theme/snow.scss"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Common Webpack configuration for production or development
@@ -25,18 +32,13 @@ let commonConfig = {
   // Source entries to compile
   entry: {
     app: [
-      //'react-hot-loader/patch',
+      //'react-hot-loader/patch', // require.resolve('webpack/hot/dev-server'),
       './js/main.jsx'
     ].filter(Boolean),
-    vendor: [
-      "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
-      "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "@nivo/line", "@nivo/pie", "@nivo/bar"],
-    blackTheme: "./sass/theme/black.scss",
-    darkBlueTheme: "./sass/theme/darkBlue.scss",
-    dashingTheme: "./sass/theme/dashing.scss",
-    defaultTheme: "./sass/theme/default.scss",
-    neonTheme: "./sass/theme/neon.scss",
-    snowTheme: "./sass/theme/snow.scss"
+    // vendor: [
+    //   "eases", "jsonpath", "moment", "react", "react-animated-number", "react-burger-menu",
+    //   "react-dom", "react-grid-layout", "react-redux", "redux", "rodal", "@nivo/line", "@nivo/pie", "@nivo/bar"],
+    defaultTheme: "./js/style/theme/default.scss",
   },
 
   // Directories where to search to resolve imports
@@ -44,18 +46,23 @@ let commonConfig = {
     modules: [
       LIB_DIR,
       JS_DIR,
-      SASS_DIR,
+      STYLE_DIR,
       RESOURCES_DIR
     ],
     extensions: ['.js', '.jsx']
   },
 
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     name: false,
-  //   }
-  // },
+  output: {
+    filename: '[name].[hash].js',
+  },
+
+  optimization: {
+    namedChunks: true,
+    splitChunks: {
+      // Default is 30000 (30Ko), increase it to 500Ko
+      minSize: 5000,
+    }
+  },
 
   // Plugins extensions
   plugins: [
@@ -70,12 +77,6 @@ let commonConfig = {
 
     //new webpack.HotModuleReplacementPlugin(),
 
-    // Extract css in a file
-    // new ExtractTextPlugin({
-    //   filename: "css/[name].css",
-    //   allChunks: true
-    // }),
-
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
@@ -88,13 +89,6 @@ let commonConfig = {
     new CopyWebpackPlugin([{
       from: RESOURCES_DIR, to: BUILD_DIR
     }]),
-
-    // Extract vendor libs to have a clear separation with the application
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['vendor'],
-    //   filename: '[name].js',
-    //   minChunks: 2,
-    // }),
 
     // Generate the index.html from a template
     new HtmlWebpackPlugin({
@@ -132,15 +126,18 @@ let commonConfig = {
       },
       {
         test: /\.(css|sass|scss)$/,
-        use: [{
+        use: [
+//          'style-loader',
+          {
             loader: MiniCssExtractPlugin.loader,
             options: {
               // you can specify a publicPath here
               // by default it uses publicPath in webpackOptions.output
               publicPath: '../',
               //hmr: process.env.NODE_ENV === 'development',
-            },
-          }, {
+            }
+          },
+          {
             loader: 'css-loader',
             options: { url: false }
           }, {
@@ -195,7 +192,8 @@ let devConfig = {
     pathinfo: true,
     publicPath: '/',
     filename: '[name].js',
-    path: BUILD_DIR
+    path: BUILD_DIR,
+    chunkFilename: '[name].chunk.js'
   },
 
   devServer: {

@@ -1,0 +1,15 @@
+
+.widget.error {
+  text-align: left;
+  color: #c65555;
+
+  summary {
+    outline: none;
+  }
+  details {
+    overflow: auto;
+    height: 100%;
+
+  }
+
+}

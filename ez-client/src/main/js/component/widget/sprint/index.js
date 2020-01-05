@@ -1,3 +1,3 @@
-import SprintWidget from "./SprintWidget";
+import SprintWidget from "./sprint-widget";
 
 export default SprintWidget;

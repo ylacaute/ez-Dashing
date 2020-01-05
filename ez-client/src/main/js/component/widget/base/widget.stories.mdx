@@ -1,0 +1,137 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import Widget from "./widget";
+import WidgetHeader from "./widget-header";
+import WidgetContent from "./widget-content";
+
+<Meta 
+  title="Components|Widget/Widget" 
+  component={Widget}
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/base/widget.jsx"
+  }}
+/>
+
+<Anchor storyId="components-widget-widget--default-story" />
+
+# Widget
+
+This is a the common Widget component. All Widget are composed with it.
+
+## Props
+
+All Widgets inherit from these properties.
+
+<Props of={Widget} />
+
+## Usage
+
+### Default
+
+A default Widget, with a header and paragraph as content.
+
+<Preview>
+  <Story 
+    name="default"
+    parameters={{
+      layout: "widget"
+    }}
+  >
+    <Widget>
+      <WidgetHeader title="Widget Header"/>
+      <WidgetContent>
+        <span>Text content</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
+### Loading
+
+A loading widget, waiting all dataSources are loaded.
+
+<Preview>
+  <Story 
+    name="loading"
+    parameters={{
+      layout: "widget",
+      info: [
+        "A fake and not loaded dataSource is set to the widget to see it in a loading state.",
+        "Even if set, the header is not displayed during loading."
+      ]
+    }}
+  >
+    <Widget dataSource={[{loaded: false}]}>
+      <WidgetHeader title="Widget Header"/>
+      <WidgetContent>
+        <span>Text content</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
+### Widget without header
+
+<Preview>
+  <Story 
+    name="noheader"    
+    parameters={{
+      layout: "widget"
+    }}
+  >
+    <Widget>
+      <WidgetContent>
+        <span>Only a text content</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
+### Editable widget
+
+<Preview>
+  <Story 
+    name="editable"    
+    parameters={{
+      layout: "widget",
+      info: [ 
+        "When editable, an icon appears on top right widget corner.",
+        "Widgets are not editable by default."]
+    }}
+  >
+    <Widget
+      editable={true}
+      editModal={() => console.log("Open edit modal windows")}
+    >
+      <WidgetHeader title="Editable widget"/>
+      <WidgetContent>
+        <span>Look at the top right corner</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
+<Story 
+    name="knobs"
+    decorators={[withKnobs]}
+    parameters={{    
+      layout: "widget",
+      docs: {
+        disable: true        
+      }
+    }}
+  >
+    <Widget
+      id={text("id", "sampleId")}
+      key={text("key", "sampleId")}
+      title={text("title", "Play with me (Canvas tab)")}
+      loader={text("loader", "<p>Widget loading...</p>")}
+      dataSource={array("datasource", [])}
+    >
+      <WidgetHeader title="Knobs Widget"/>
+      <WidgetContent>
+        <span>Simple text</span>
+      </WidgetContent>
+    </Widget>
+</Story>
+

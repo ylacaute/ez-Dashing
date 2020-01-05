@@ -194,63 +194,58 @@
     ],
     "widgets": [
       {
-        "type": "HelloWorldWidget",
+        "type": "hello-world",
         "title": "HELLO WORLD",
         "enabled": false
       },
       {
-        "type": "HelloErrorWidget",
-        "title": "HELLO ERROR",
-        "enabled": false
-      },
-      {
-        "type": "HelloBarChartWidget",
+        "type": "hello-bar-chart",
         "title": "HELLO BAR GRAPH",
         "enabled": true
       },
       {
-        "type": "HelloLineChartWidget",
+        "type": "hello-line-chart",
         "title": "HELLO LINE GRAPH",
         "enabled": true
       },
       {
-        "type": "HelloPieChartWidget",
+        "type": "hello-pie-chart",
         "title": "HELLO PIE GRAPH",
         "enabled": false
       },
       {
-        "type": "TextWidget",
+        "type": "text",
         "text": "This is an editable good message",
         "textType": "good",
         "editable": true
       },
       {
-        "type": "TextWidget",
+        "type": "text",
         "text": "This is an editable info message",
         "textType": "info",
         "editable": true
       },
       {
-        "type": "TextWidget",
+        "type": "text",
         "text": "This is an editable warn message",
         "textType": "warn",
         "editable": true
       },
       {
-        "type": "TextWidget",
+        "type": "text",
         "text": "This is an editable danger message",
         "textType": "danger",
         "editable": true
       },
       {
-        "type": "MoodWidget",
+        "type": "mood",
         "title": "Team Mood",
         "mood": "average",
         "enabled": true,
         "editable": true
       },
       {
-        "type": "BurndownWidget",
+        "type": "burndown",
         "title": "BURNDOWN",
         "dataSource": [
           "jira-story-closed",
@@ -259,29 +254,29 @@
         ]
       },
       {
-        "type": "ImageWidget",
+        "type": "image",
         "enabled": true
       },
       {
-        "type": "ClockWidget",
+        "type": "clock",
         "UTCOffset": 2,
         "enabled": true
       },
       {
-        "type": "SprintWidget",
+        "type": "sprint",
         "dataSource" : [
           "jira-sprint-active"
         ]
       },
       {
-        "type": "BugWidget",
+        "type": "bug",
         "title": "bugs sample",
         "dataSource": [
           "jira-bug-noBug"
         ]
       },
       {
-        "type": "BugWidget",
+        "type": "bug",
         "title": "BUGS",
         "dataSource": [
           "jira-bug-todo-p2-p3",
@@ -289,7 +284,7 @@
         ]
       },
       {
-        "type": "BugWidget",
+        "type": "bug",
         "title": "URGENT BUGS",
         "dataSource": [
           "jira-bug-todo-p0-p1",
@@ -297,7 +292,7 @@
         ]
       },
       {
-        "type": "SonarWidget",
+        "type": "sonar",
         "title": "Sonar A",
         "dataSource": [
           "sonar-stats-systemA"
@@ -305,7 +300,7 @@
         "enabled": false
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM A",
         "branch": "master",
         "dataSource": [
@@ -314,7 +309,7 @@
         "enabled": true
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM B",
         "branch": "master",
         "dataSource": [
@@ -324,7 +319,7 @@
         "enabled": true
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM C",
         "branch": "master",
         "dataSource": [
@@ -334,7 +329,7 @@
         "enabled": true
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM D",
         "branch": "master",
         "dataSource": [
@@ -344,7 +339,7 @@
         "enabled": true
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM E",
         "branch": "master",
         "dataSource": [
@@ -354,7 +349,7 @@
         "enabled": true
       },
       {
-        "type": "SonkinsWidget",
+        "type": "sonkins",
         "title": "SYSTEM F",
         "branch": "master",
         "dataSource": [
@@ -365,7 +360,7 @@
       },
       {
         "id": "velocityWidget",
-        "type": "VelocityWidget",
+        "type": "velocity",
         "title": "TEAM VELOCITY",
         "lastSavedSprintId" : "9",
         "velocityHistory": [ 999, 2550, 989, 10, 20, 30 ],
@@ -377,7 +372,7 @@
       },
       {
         "id": "reliabilityWidget",
-        "type": "ReliabilityWidget",
+        "type": "reliability",
         "title": "TEAM RELIABILITY",
         "lastSavedSprintId" : "5",
         "reliabilityHistory": [ 80, 90, 100 ],
@@ -387,8 +382,7 @@
           "jira-sprint-active"
         ]
       }, {
-        "id" : "audioPlayerWidget",
-        "type" : "AudioPlayerWidget",
+        "type" : "audio-player",
         "title" : "Audio Player",
         "editable": true
       }

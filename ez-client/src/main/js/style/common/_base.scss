@@ -1,0 +1,58 @@
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* PURE UI CLASSES (FORM)
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.message {
+  margin-bottom: 1.5rem;
+}
+
+.message.info {
+  color: $color-good;
+}
+
+.message.warn {
+  color: $color-average;
+}
+
+.message.error {
+  color: $color-bad;
+  background-color: $color-bad-opacity;
+  border: 1px solid $color-bad;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+select, option {
+  text-transform: capitalize;
+}
+
+a {
+  cursor: pointer;
+}
+
+form {
+
+  * {
+    display: block;
+    width: 100%;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  input, select {
+    height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+}
+
+button {
+  background-color: var(--color-bg-button, $color-bg-button);
+}

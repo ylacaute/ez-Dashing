@@ -1,0 +1,20 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+// INFINITE BACKGROUND COLOR CHANGE (2 colors)
+//
+//  Sample usage:
+//    @include infiniteBgColorChange(red, back, 3s);
+//
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@mixin infiniteBgColorChange($initialColor, $secondColor, $delay) {
+  $frameId: unique-id();
+
+  @keyframes bgColorChangeFrames#{$frameId} {
+    0% {background:$initialColor}
+    50% {background:$secondColor}
+    100% {background:$initialColor}
+  }
+  animation:bgColorChangeFrames#{$frameId} $delay infinite;
+}
+
+

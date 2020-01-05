@@ -1,3 +1,3 @@
-import VelocityWidget from "./VelocityWidget";
+import VelocityWidget from "./velocity-widget";
 
 export default VelocityWidget;

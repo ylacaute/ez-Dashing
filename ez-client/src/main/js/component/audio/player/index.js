@@ -1,3 +1,3 @@
-import AudioPlayer from "component/audio/player/AudioPlayer";
+import AudioPlayer from "./audio-player";
 
 export default AudioPlayer;

@@ -1,0 +1,28 @@
+@import "../../../style/common";
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* RELIABILITY WIDGET
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.widget.reliability article {
+  font-size: 800%;
+  color: $color-widget-reliability-text;
+}
+
+.width-xxxs {
+  &.widget.reliability article {
+    font-size: 400%;
+  }
+}
+
+.width-xxs {
+  &.widget.reliability article {
+    font-size: 600%;
+  }
+}
+
+.height-xxxs {
+  &.widget.reliability article {
+    font-size: 250%;
+  }
+}

@@ -1,3 +1,3 @@
-import MoodWidget from "./MoodWidget";
+import MoodWidget from "./mood-widget";
 
 export default MoodWidget;

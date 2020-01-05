@@ -1,0 +1,10 @@
+@import "../../style/common";
+
+html, body > section, .react-grid-layout {
+  background-color: $color-grid-bg;
+}
+
+.react-grid-placeholder {
+  background-color: $color-grid-bg-placeholder !important;
+}
+

@@ -1,0 +1,63 @@
+@import "../../style/common";
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  bottom: 36px;
+  .bm-burger-bars {
+    background: $color-burger-menu-burger-button;
+  }
+}
+
+.bm-menu {
+  background: $color-burger-menu-bg;
+  .bm-item-list {
+    h1 {
+      margin: 0 auto;
+      padding: 2em 1em;
+      .logo-icon {
+        @include image($image-app-logo);
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        vertical-align: middle;
+      }
+    }
+    .menu-item {
+      padding: 1em;
+      color: $color-burger-menu-item;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      i {
+        margin-right: 1em;
+      }
+      .layout-icon {
+        @include svgMaskIcon(16px, $color-burger-menu-item, $image-burger-menu-layout);
+      }
+      .theme-icon {
+        @include svgMaskIcon(16px, $color-burger-menu-item, $image-burger-menu-theme);
+      }
+    }
+    .menu-item:hover {
+      background: rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  .bm-cross {
+    background: $color-burger-menu-cross-button;
+  }
+}
+
+.bm-overlay {
+  background: $color-burger-menu-overlay;
+}
+
+
