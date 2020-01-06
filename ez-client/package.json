@@ -137,6 +137,9 @@
       "node"
     ]
   },
+  "@babel/syntax-dynamic-import": "Used to transform import() in promise",
+  "@babel/plugin-proposal-class-properties": "Used for static",
+  "@babel/plugin-proposal-object-rest-spread": "Used for ... notation",
   "babel": {
     "presets": [
       "@babel/preset-env",

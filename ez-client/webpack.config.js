@@ -95,34 +95,18 @@ let commonConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react" ],
-            plugins: [
-              //"react-hot-loader/babel",      // react hot reload
-              "@babel/syntax-dynamic-import", // used to transform import() in promise
-              "@babel/plugin-proposal-class-properties",  // static
-              // "@babel/plugin-proposal-export-default-from",
-              // "@babel/plugin-transform-runtime",
-              "@babel/plugin-proposal-object-rest-spread" // use of '...' for properties
-            ]
-          },
-        }]
+        use: ['babel-loader']
       },
       {
         test: /\.(css|sass|scss)$/,
         use: [
-//          'style-loader',
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
               // you can specify a publicPath here
               // by default it uses publicPath in webpackOptions.output
               publicPath: '../',
-              //hmr: process.env.NODE_ENV === 'development',
+              // hmr: process.env.NODE_ENV === 'development',
             }
           },
           {
@@ -138,7 +122,7 @@ let commonConfig = {
         use: [{
           loader: 'file-loader?name=img/[name].[ext]',
           options: {
-            // No file emitted because ExtractTextPlugin already copy these files
+            // No file emitted because CopyWebpackPlugin already copy those files
             emitFile: false
           }
         }]
