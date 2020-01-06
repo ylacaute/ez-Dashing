@@ -1,9 +1,10 @@
-
-
 let generateSingle = (nbCols, configuration) => {
   let widgetConfigs = configuration.widgets;
   let layout = [];
-  let defaultProps = { w:1, h:2 };
+  let defaultProps = {
+    w: 1,
+    h: 2
+  };
   let xCounter = 0;
   let yCounter = 0;
 

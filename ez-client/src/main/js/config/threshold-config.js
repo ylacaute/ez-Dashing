@@ -1,4 +1,3 @@
-
 export default class ThresholdConfig {
 
   static get = (thresholds, value) => {

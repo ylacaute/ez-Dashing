@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import BreakpointConfig from 'config/breakpoint-config';
 import WindowUtils from 'utils/window-utils';
+import "./grid.scss"
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-import "./grid.scss"
 
 export default class Grid extends React.PureComponent {
 
@@ -60,7 +59,7 @@ export default class Grid extends React.PureComponent {
   }
 
   getSizeInfo(domId) {
-    const { offsetWidth, offsetHeight } = document.getElementById(domId);
+    const {offsetWidth, offsetHeight} = document.getElementById(domId);
     return {
       wBreakpointClass: this.getWidthClass(offsetWidth),
       hBreakpointClass: this.getHeightClass(offsetHeight),
@@ -90,7 +89,7 @@ export default class Grid extends React.PureComponent {
   }
 
   render() {
-    const { layouts, breakpoints, cols, rowHeight } = this.props.config;
+    const {layouts, breakpoints, cols, rowHeight} = this.props.config;
     return (
       <div>
         <ResponsiveReactGridLayout

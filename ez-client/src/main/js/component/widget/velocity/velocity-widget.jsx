@@ -76,7 +76,7 @@ export default class VelocityWidget extends React.PureComponent {
    * This array is saved in the widget configuration file.
    */
   updateVelocityHistory() {
-    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
+    const {sprintStartDate, sprintEndDate, closedIssues, readyIssues} = this.props;
     const now = DateService.now();
     const allSprintIssues = closedIssues.concat(readyIssues);
     const curVelocity = this.computeVelocity(
@@ -106,7 +106,7 @@ export default class VelocityWidget extends React.PureComponent {
 
   render() {
     const classNames = cn("velocity", this.props.className);
-    const velocityAverage  = ArrayUtils.computeAverage(
+    const velocityAverage = ArrayUtils.computeAverage(
       this.props.velocityHistory,
       this.props.valueCountForAverage);
 

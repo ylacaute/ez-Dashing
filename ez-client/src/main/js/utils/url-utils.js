@@ -1,4 +1,3 @@
-
 export default class UrlUtils {
 
   static serializeAsQueryParams(obj) {

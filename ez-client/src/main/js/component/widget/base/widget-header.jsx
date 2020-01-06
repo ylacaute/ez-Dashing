@@ -22,14 +22,13 @@ export default class WidgetHeader extends React.PureComponent {
     return (
       <header className={className}>
         {title &&
-          <h1>{title}</h1>
+        <h1>{title}</h1>
         }
         {subTitle &&
-          <h2>{subTitle}</h2>
+        <h2>{subTitle}</h2>
         }
         {this.props.children}
       </header>
     )
   }
-
 }

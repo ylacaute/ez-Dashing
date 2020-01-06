@@ -1,4 +1,3 @@
-
 export const darkChartTheme = {
   background: 'transparent',
   fontFamily: 'sans-serif',

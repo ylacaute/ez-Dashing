@@ -15,9 +15,11 @@
   &.width-xxs {
     font-size: 250%;
   }
+
   &.width-xs, &.width-sm, &.width-md, &.width-lg {
     font-size: 350%;
   }
+
   &.height-xxxs {
     p:nth-child(2) {
       display: none;

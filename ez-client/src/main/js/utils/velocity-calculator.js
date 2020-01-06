@@ -57,7 +57,7 @@ export default class VelocityCalculator {
       if (dayIndex > dates.length - 1) {
         dayIndex = dates.length - 1;
       }
-      for (let i = dayIndex; i < plannedVelocity.length; i ++) {
+      for (let i = dayIndex; i < plannedVelocity.length; i++) {
         plannedVelocity[i].storyPoints -= issue.storyPoints;
       }
       dayOffset += nbDays;
@@ -94,7 +94,6 @@ export default class VelocityCalculator {
       currentVelocity: VelocityCalculator.calculateVelocity(now, days, allSprintIssues)
     }
   }
-
 
 
 }

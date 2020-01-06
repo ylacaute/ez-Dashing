@@ -52,7 +52,7 @@ export default class SonkinsWidget extends React.PureComponent {
         single={singleMetric}
         label={label}
         value={
-          <ScalableImage className="author" src={iconUrl} />
+          <ScalableImage className="author" src={iconUrl}/>
         }
       />
     );
@@ -91,7 +91,7 @@ export default class SonkinsWidget extends React.PureComponent {
   }
 
   renderBuildSuccess() {
-    const { lines, coverage, violations, thresholds } = this.props;
+    const {lines, coverage, violations, thresholds} = this.props;
     return (
       <div className="metrics">
         {this.renderAuthorMetric("Last build")}
@@ -103,7 +103,7 @@ export default class SonkinsWidget extends React.PureComponent {
   }
 
   render() {
-    const { className, author, avatars } = this.props;
+    const {className, author, avatars} = this.props;
     const avatar = AvatarConfig.get(author, avatars);
     const classNames = cn("sonkins", className, this.getJenkinsStatus().toLowerCase());
     let content;

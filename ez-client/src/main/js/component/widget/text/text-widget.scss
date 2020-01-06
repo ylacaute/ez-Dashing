@@ -7,12 +7,15 @@
 .widget.text article .good .text-icon {
   @include svgMaskIcon(70px, $color-widget-text-good-icon, $image-good);
 }
+
 .widget.text article .info .text-icon {
   @include svgMaskIcon(70px, $color-widget-text-info-icon, $image-info);
 }
+
 .widget.text article .warn .text-icon {
   @include svgMaskIcon(70px, $color-widget-text-warn-icon, $image-warn);
 }
+
 .widget.text article .danger .text-icon {
   @include svgMaskIcon(70px, $color-widget-text-danger-icon, $image-danger);
 }
@@ -33,6 +36,7 @@
         width: 30%;
         height: auto;
       }
+
       p {
         width: 100%;
         display: flex;
@@ -55,6 +59,7 @@
   &.widget.text article {
     > div {
       @extend %flexColumn;
+
       .scalable-image-wrapper {
         width: 100%;
         align-items: center;
@@ -78,6 +83,7 @@
 .width-sm {
   &.widget.text article {
     font-size: 200%;
+
     .scalable-image-wrapper {
       width: 20%;
     }
@@ -87,6 +93,7 @@
 .width-md, .width-lg {
   &.widget.text article {
     font-size: 250%;
+
     .scalable-image-wrapper {
       width: 20%;
     }

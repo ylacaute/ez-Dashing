@@ -1,4 +1,3 @@
-
 const ModalEvent = {
   ShowModal: "SHOW_MODAL",
   HideModal: "HIDE_MODAL"

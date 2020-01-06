@@ -44,7 +44,7 @@ export default class Metric extends React.PureComponent {
                         className="value"
                         stepPrecision={2}
                         value={value}
-                        style={{transition: '0.8s ease-out' }}
+                        style={{transition: '0.8s ease-out'}}
                         duration={500}
                         formatValue={formatFunc}/>
       )
@@ -53,7 +53,7 @@ export default class Metric extends React.PureComponent {
   }
 
   render() {
-    const { className, label, value, formatValue, thresholds, single } = this.props;
+    const {className, label, value, formatValue, thresholds, single} = this.props;
 
     return (
       <div className={cn("metric-wrapper", single ? "single" : null)}>

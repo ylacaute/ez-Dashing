@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import LoggerMiddleware from "redux/middleware/logger-middleware";
 import CrashReporterMiddleware from "redux/middleware/crash-reporter";
 import DataSourceMiddleware from "redux/middleware/datasource-middleware";
@@ -18,7 +18,7 @@ import ConfigExtender from "service/setup/config-extender";
 import ThemeService from "service/theme/theme-service";
 import GridLayoutService from "service/grid/grid-layout-service";
 import WidgetService from "service/widget/widget-service";
-import { SetupEvent } from "redux/event/setup-event";
+import {SetupEvent} from "redux/event/setup-event";
 import Constants from "constant";
 import DateService from "service/date/date-service";
 import TypeUtils from 'utils/type-utils';

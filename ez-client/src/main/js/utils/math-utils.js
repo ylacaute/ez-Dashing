@@ -1,4 +1,3 @@
-
 export default class MathUtils {
 
   static randomInt(max) {

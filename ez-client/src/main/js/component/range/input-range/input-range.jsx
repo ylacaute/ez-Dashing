@@ -55,7 +55,7 @@ class InputRange extends React.PureComponent {
   }
 
   render() {
-    const { className, disabled, value, step, minValue, maxValue } = this.props;
+    const {className, disabled, value, step, minValue, maxValue} = this.props;
     const rangeDisabled = disabled ? "disabled" : "";
 
     const style = {

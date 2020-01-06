@@ -1,6 +1,6 @@
 import Logger from 'utils/logger';
-import { ModalEvent } from 'redux/event/modal-event';
-import { WidgetEvent } from 'redux/event/widget-event';
+import {ModalEvent} from 'redux/event/modal-event';
+import {WidgetEvent} from 'redux/event/widget-event';
 
 const logger = Logger.getLogger("ModalReducer");
 

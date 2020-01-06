@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ObjectUtils from 'utils/object-utils';
 import DatasourceService from 'service/datasource/datasource-service';
-import ScalableImage from 'component/scalable/image';
 import CubeSpinnerLoader from "component/loader/cube-spinner";
 import Uuid from "utils/uuid";
 import WidgetError from "component/widget/error-widget";
@@ -88,6 +86,14 @@ export default class Widget extends React.PureComponent {
     updateWidgetConfig: () => {},
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasError: false,
+      loaded: false
+    }
+  }
+
   /**
    * All widgets MUST call this function in order to retrieve from the
    * new redux state all common widget properties.
@@ -103,14 +109,6 @@ export default class Widget extends React.PureComponent {
     logger.debug("Widget id={} loaded: {}", props.id, loaded);
     return {
       loaded: loaded
-    }
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasError: false,
-      loaded: false
     }
   }
 
@@ -160,7 +158,7 @@ export default class Widget extends React.PureComponent {
     return (
       <section className={classnames(this.getWidgetClassNames())}>
         {editable &&
-          <span className="edit-icon" onClick={this.handleEditClick.bind(this)}/>
+        <span className="edit-icon" onClick={this.handleEditClick.bind(this)}/>
         }
         {content}
       </section>

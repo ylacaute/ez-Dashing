@@ -1,4 +1,3 @@
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 // INFINITE BLINKING EFFECT
 //
@@ -14,9 +13,15 @@
   $frameId: unique-id();
 
   @keyframes blinker#{$frameId} {
-    0% {opacity: 1.0}
-    50% {opacity: $min-opacity}
-    100% {opacity: 1.0}
+    0% {
+      opacity: 1.0
+    }
+    50% {
+      opacity: $min-opacity
+    }
+    100% {
+      opacity: 1.0
+    }
   }
 
   animation: $duration blinker#{$frameId} linear infinite;

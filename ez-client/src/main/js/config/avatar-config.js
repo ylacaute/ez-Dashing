@@ -13,7 +13,7 @@ export default class AvatarConfig {
             break;
           }
         }
-      } catch(ex) {
+      } catch (ex) {
         logger.error("Invalid avatar configuration pattern, details : ", ex);
       }
     }

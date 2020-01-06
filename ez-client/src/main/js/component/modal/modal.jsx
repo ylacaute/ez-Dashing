@@ -69,23 +69,23 @@ class Modal extends React.PureComponent {
 
   render() {
     return (
-        <Rodal
-            showCloseButton={false}
-            visible={this.props.visible}
-            onClose={this.onCancel.bind(this)}>
+      <Rodal
+        showCloseButton={false}
+        visible={this.props.visible}
+        onClose={this.onCancel.bind(this)}>
 
-            <header>
-              {this.props.title}
-            </header>
-            <article>
-              {this.renderErrorMessage()}
-              {this.renderContent()}
-            </article>
-            <footer>
-              {this.renderFooter()}
-            </footer>
+        <header>
+          {this.props.title}
+        </header>
+        <article>
+          {this.renderErrorMessage()}
+          {this.renderContent()}
+        </article>
+        <footer>
+          {this.renderFooter()}
+        </footer>
 
-        </Rodal>
+      </Rodal>
     );
   }
 }

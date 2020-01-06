@@ -7,15 +7,18 @@ div.rendered-react-keyed-file-browser {
   div.action-bar input[type="search"] {
     font-size: 1.4rem;
   }
+
   div.action-bar ul.item-actions {
     display: flex;
     font-size: 1.4rem;
     min-width: 0;
   }
+
   div.files table th,
   div.files table td {
     font-size: 1.4rem;
   }
+
   svg[data-icon] {
     margin-right: 3px;
   }

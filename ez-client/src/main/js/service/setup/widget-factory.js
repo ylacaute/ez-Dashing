@@ -1,8 +1,8 @@
-import React, { lazy, Suspense } from 'react';
-import { bindActionCreators  } from 'redux';
+import React, {lazy, Suspense} from 'react';
+import {bindActionCreators} from 'redux';
 import Widget from "component/widget/base/widget";
-import { WidgetEventCreator } from 'redux/event/widget-event';
-import { ModalEventCreator } from 'redux/event/modal-event';
+import {WidgetEventCreator} from 'redux/event/widget-event';
+import {ModalEventCreator} from 'redux/event/modal-event';
 import {connect} from "react-redux";
 import WidgetErrorBoundary from "component/widget/base/widget-error-boundary";
 import Logger from "utils/logger";
@@ -24,7 +24,7 @@ export default class WidgetFactory {
     logger.debug("Creating component '{}' with config: ", normalizedType, widgetConfiguration);
     const Component = lazy(() => new Promise((resolve, reject) => {
       import("component/widget/" + normalizedType)
-        .then(result => resolve(result.default ? result : { default: result }))
+        .then(result => resolve(result.default ? result : {default: result}))
         .catch(reject);
     }));
     const props = {
@@ -34,13 +34,13 @@ export default class WidgetFactory {
     const ConnectedComponent = connect(mapStateToProps)(Component);
 
     return (
-        <div id={widgetConfiguration.key} key={widgetConfiguration.key}>
-          <WidgetErrorBoundary widgetConfiguration={widgetConfiguration}>
-            <Suspense fallback={<div>Loading...</div>}>
-              <ConnectedComponent {...widgetConfiguration} {...props}/>
-            </Suspense>
-          </WidgetErrorBoundary>
-        </div>
+      <div id={widgetConfiguration.key} key={widgetConfiguration.key}>
+        <WidgetErrorBoundary widgetConfiguration={widgetConfiguration}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ConnectedComponent {...widgetConfiguration} {...props}/>
+          </Suspense>
+        </WidgetErrorBoundary>
+      </div>
     );
   };
 
@@ -49,10 +49,10 @@ export default class WidgetFactory {
    */
   static createAllWidgets(dashboardConfig, dispatch) {
     return dashboardConfig.widgets
-      .filter(elt => elt.enabled !== false)
-      .map((widgetConfig) => {
-        return WidgetFactory.create(widgetConfig, dispatch);
-      });
+                          .filter(elt => elt.enabled !== false)
+                          .map((widgetConfig) => {
+                            return WidgetFactory.create(widgetConfig, dispatch);
+                          });
   }
 
 }

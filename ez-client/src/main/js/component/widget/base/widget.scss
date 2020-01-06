@@ -21,10 +21,12 @@
     min-height: 4rem;
     padding: 1rem;
     align-items: center;
+
     h1 {
       display: flex;
       align-items: center;
     }
+
     h2 {
       display: flex;
       justify-content: flex-end;
@@ -32,12 +34,14 @@
       color: $color-widget-sub-title-text;
       font-size: $font-size-widget-sub-title;
     }
+
     strong {
       font-size: 180%;
       margin-right: 1rem;
       margin-left: 1rem;
     }
   }
+
   article {
     @extend %flexColumn;
     flex-grow: 1;
@@ -48,6 +52,7 @@
       @include svgMask($color-bad, $image-error);
     }
   }
+
   footer {
     background-color: $color-widget-footer-bg;
   }

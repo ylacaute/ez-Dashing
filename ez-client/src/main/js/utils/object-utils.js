@@ -1,4 +1,3 @@
-
 export default class ObjectUtils {
 
   static isObject(value) {

@@ -32,6 +32,12 @@ export default class CircularProgressBar extends React.PureComponent {
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      value: props.value,
+    };
+  }
+
   componentDidMount() {
     if (this.props.initialAnimation) {
       this.initialTimeout = setTimeout(() => {
@@ -43,17 +49,6 @@ export default class CircularProgressBar extends React.PureComponent {
       }, 200);
     }
   }
-
-  static getDerivedStateFromProps(props, state) {
-      return {
-        value: props.value,
-      };
-  }
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     value: nextProps.value,
-  //   });
-  // }
 
   componentWillUnmount() {
     clearTimeout(this.initialTimeout);
@@ -77,7 +72,7 @@ export default class CircularProgressBar extends React.PureComponent {
     `;
     const displayValue = this.props.displayValue != null ? this.props.displayValue
       : this.props.textForValue(this.state.value);
-    const displayValueY = (this.props.label != null && this.props.label != '') ? 45 : 53;
+    const displayValueY = (this.props.label && this.props.label !== '') ? 45 : 53;
 
     return (
       <div className="progress-bar-wrapper">

@@ -8,14 +8,14 @@ import "./audio-controls.scss";
 
 const logger = Logger.getLogger("AudioControls");
 
-const AudioButton = ({ label, iconName, className, active, onClick, displayLabels }) => (
+const AudioButton = ({label, iconName, className, active, onClick, displayLabels}) => (
   <button
-      className={cn("control-item", className, {active})}
-      onMouseDown={(e) => e.stopPropagation()}
-      onClick={onClick}>
+    className={cn("control-item", className, {active})}
+    onMouseDown={(e) => e.stopPropagation()}
+    onClick={onClick}>
     <Icon name={iconName}/>
     {displayLabels &&
-      <span>{label}</span>
+    <span>{label}</span>
     }
   </button>
 );
@@ -33,10 +33,10 @@ class AudioControls extends React.PureComponent {
   };
 
   render() {
-    const { className, controls, children } = this.props;
+    const {className, controls, children} = this.props;
     const classNames = cn("audio-controls", className);
     const items = controls.map((item, idx) => (
-        <AudioButton key={idx} {...item} />
+      <AudioButton key={idx} {...item} />
     ));
     return (
       <div className={classNames}>

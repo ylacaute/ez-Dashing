@@ -21,5 +21,4 @@ export default class WidgetContent extends React.PureComponent {
       </article>
     )
   }
-
 }

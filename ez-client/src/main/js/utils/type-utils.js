@@ -6,11 +6,11 @@ export default class TypeUtils {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
 
-  static isInt(n){
+  static isInt(n) {
     return Number(n) === n && n % 1 === 0;
   }
 
-  static isFloat(n){
+  static isFloat(n) {
     return Number(n) === n && n % 1 !== 0;
   }
 

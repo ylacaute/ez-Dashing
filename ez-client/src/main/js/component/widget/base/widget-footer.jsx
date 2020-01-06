@@ -23,5 +23,4 @@ export default class WidgetFooter extends React.PureComponent {
       </footer>
     )
   }
-
 }

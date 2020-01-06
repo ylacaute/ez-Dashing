@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { bindActionCreators  } from 'redux';
+import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalType } from 'component/modal';
-import { WidgetEventCreator } from 'redux/event/widget-event';
-import { ModalEventCreator } from 'redux/event/modal-event';
+import {Modal, ModalType} from 'component/modal';
+import {WidgetEventCreator} from 'redux/event/widget-event';
+import {ModalEventCreator} from 'redux/event/modal-event';
 import FileBrowser from "react-keyed-file-browser";
 import Moment from "moment";
 import {Icon} from 'component/ui'
@@ -97,7 +97,7 @@ class AudioPlayerPlaylistModal extends Modal {
     logger.trace("handleFileSelected, event:", event);
     event.preventDefault();
 
-    if (!event.target || !event.target.files || !event.target.files.length ) {
+    if (!event.target || !event.target.files || !event.target.files.length) {
       return null;
     }
     const fileList = [...event.target.files];
@@ -106,11 +106,11 @@ class AudioPlayerPlaylistModal extends Modal {
     let blob = window.URL || window.webkitURL;
 
     const mappedFileList = fileList.map(file => ({
-        file: file,
-        fileURL: blob.createObjectURL(file),
-        key : file.name,
-        modified: file.lastModified,
-        size: file.size
+      file: file,
+      fileURL: blob.createObjectURL(file),
+      key: file.name,
+      modified: file.lastModified,
+      size: file.size
     }));
 
     logger.trace("handleFileSelected, mappedFileList ", mappedFileList);

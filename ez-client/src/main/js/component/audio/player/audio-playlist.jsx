@@ -9,7 +9,7 @@ import "./audio-playlist.scss";
 const logger = Logger.getLogger("AudioPlaylist");
 
 const PlaylistItem = ({name, selected, idx, handleItemDoubleClick}) => (
-  <div className={cn("playlist-item", { 'selected': selected })}
+  <div className={cn("playlist-item", {'selected': selected})}
        onDoubleClick={() => handleItemDoubleClick(idx)}>
     <Icon name="file"/>
     <span>{name}</span>
@@ -32,20 +32,19 @@ class AudioPlaylist extends React.PureComponent {
     selectedIndex: -1
   };
 
-  state = {
-  };
+  state = {};
 
   render() {
-    const { className, files, selectedIndex, handleItemDoubleClick, hidden } = this.props;
+    const {className, files, selectedIndex, handleItemDoubleClick, hidden} = this.props;
     const classNames = cn("audio-playlist", className, {hidden});
     const items = files.map((item, idx) => (
-        <PlaylistItem
-          key={idx}
-          selected={idx === selectedIndex}
-          idx={idx}
-          handleItemDoubleClick={handleItemDoubleClick}
-          {...item}
-        />
+      <PlaylistItem
+        key={idx}
+        selected={idx === selectedIndex}
+        idx={idx}
+        handleItemDoubleClick={handleItemDoubleClick}
+        {...item}
+      />
     ));
 
     return (

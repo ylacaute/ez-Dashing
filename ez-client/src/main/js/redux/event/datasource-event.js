@@ -1,11 +1,8 @@
-
 const DatasourceEvent = {
   DataSourceRefreshed: "DATA_SOURCE_REFRESHED"
 };
 
-const DataSourceEventCreator = {
-
-};
+const DataSourceEventCreator = {};
 
 export {
   DatasourceEvent,

@@ -1,4 +1,3 @@
-
 export default class DateService {
 
   static FIXED_DATE = null;

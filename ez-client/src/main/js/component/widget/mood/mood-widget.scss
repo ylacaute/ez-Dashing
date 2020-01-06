@@ -13,9 +13,11 @@
 .widget.mood.good .icon {
   @include svgMask($color-widget-mood-good-icon, $image-widget-mood-good-icon);
 }
+
 .widget.mood.average .icon {
   @include svgMask($color-widget-mood-average-icon, $image-widget-mood-average-icon);
 }
+
 .widget.mood.bad .icon {
   @include svgMask($color-widget-mood-bad-icon, $image-widget-mood-bad-icon);
 }

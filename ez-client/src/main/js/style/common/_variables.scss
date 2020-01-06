@@ -34,7 +34,7 @@ $color-spinner: var(--color-spinner, $color-white);
 
 // GRID
 $color-grid-bg: var(--color-grid-bg, $color-black);
-$color-grid-bg-placeholder: var(--color-grid-bg-placeholder,$color-white-half-opacity);
+$color-grid-bg-placeholder: var(--color-grid-bg-placeholder, $color-white-half-opacity);
 
 // INPUT RANGE
 $input-range-thumb-color: var(--input-range-thumb-color, #fff);
@@ -43,68 +43,68 @@ $input-range-progress-color: var(--input-range-progress-color, #2e9bdc);
 $input-range-thumb-radius: var(--input-range-thumb-radius, 0);
 
 // PROGRESS BAR
-$color-progress-bar-trail: var(--color-progress-bar-trail,$color-black-half-opacity);
-$color-progress-bar-path: var(--color-progress-bar-path,$color-blue);
+$color-progress-bar-trail: var(--color-progress-bar-trail, $color-black-half-opacity);
+$color-progress-bar-path: var(--color-progress-bar-path, $color-blue);
 $color-progress-bar-text: var(--color-progress-bar-text, $color-title);
 
 // METRICS
-$color-metric-name: var(--color-metric-name,$color-text);
-$color-metric-neutral: var(--color-metric-neutral,$color-cyan);
-$color-metric-good: var(--color-metric-good,$color-good);
-$color-metric-average: var(--color-metric-average,$color-average);
-$color-metric-bad: var(--color-metric-bad,$color-bad);
+$color-metric-name: var(--color-metric-name, $color-text);
+$color-metric-neutral: var(--color-metric-neutral, $color-cyan);
+$color-metric-good: var(--color-metric-good, $color-good);
+$color-metric-average: var(--color-metric-average, $color-average);
+$color-metric-bad: var(--color-metric-bad, $color-bad);
 
 // BURGER MENU
-$color-burger-menu-bg: var(--color-burger-menu-bg,$color-blue-dark);
+$color-burger-menu-bg: var(--color-burger-menu-bg, $color-blue-dark);
 $color-burger-menu-burger-button: var(--color-burger-menu-burger-button, #111);
-$color-burger-menu-overlay: var(--color-burger-menu-,rgba(0, 0, 0, 0.3));
-$color-burger-menu-cross-button: var(--color-burger-menu-cross-button,$color-text);
-$color-burger-menu-item: var(--color-burger-menu-item,$color-text);
+$color-burger-menu-overlay: var(--color-burger-menu-, rgba(0, 0, 0, 0.3));
+$color-burger-menu-cross-button: var(--color-burger-menu-cross-button, $color-text);
+$color-burger-menu-item: var(--color-burger-menu-item, $color-text);
 
 // WIDGET
-$color-widget-bg: var(--color-widget-bg,$color-blue-dark);
-$color-widget-text: var(--color-widget-text,$color-white);
+$color-widget-bg: var(--color-widget-bg, $color-blue-dark);
+$color-widget-text: var(--color-widget-text, $color-white);
 $color-widget-header-text: var(--color-widget-header-text, $color-title);
-$color-widget-header-bg: var(--color-widget-header-bg,$color-black-half-opacity);
-$color-widget-sub-title-text: var(--color-widget-sub-title-text,$color-gray-light);
-$color-widget-footer-bg: var(--color-widget-footer-bg,$color-black-half-opacity);
+$color-widget-header-bg: var(--color-widget-header-bg, $color-black-half-opacity);
+$color-widget-sub-title-text: var(--color-widget-sub-title-text, $color-gray-light);
+$color-widget-footer-bg: var(--color-widget-footer-bg, $color-black-half-opacity);
 $color-widget-edit-icon: var(--color-widget-edit-icon, #1b1b1b);
 
 // CLOCK
-$color-widget-clock-bg: var(--color-widget-clock-bg,$color-widget-bg);
-$color-widget-clock-text: var(--color-widget-clock-text,$color-cyan);
+$color-widget-clock-bg: var(--color-widget-clock-bg, $color-widget-bg);
+$color-widget-clock-text: var(--color-widget-clock-text, $color-cyan);
 
 // SPRINT
-$color-widget-sprint-bg: var(--color-widget-sprint-bg,$color-widget-bg);
-$color-widget-sprint-text: var(--color-widget-sprint-text,$color-blue);
+$color-widget-sprint-bg: var(--color-widget-sprint-bg, $color-widget-bg);
+$color-widget-sprint-text: var(--color-widget-sprint-text, $color-blue);
 
 // BUG
 $color-widget-bug-bg: var(--color-widget-bug-bg, $color-widget-bg);
-$color-widget-bug-todo: var(--color-widget-bug-todo,$color-red);
-$color-widget-bug-progress: var(--color-widget-bug-progress,$color-black-half-opacity);
+$color-widget-bug-todo: var(--color-widget-bug-todo, $color-red);
+$color-widget-bug-progress: var(--color-widget-bug-progress, $color-black-half-opacity);
 
 // SONKINS
 $color-widget-sonkins-bg: var(--color-widget-sonkins-bg, $color-widget-bg);
-$color-widget-sonkins-progress-bar-trail: var(--color-widget-sonkins-progress-bar-trail,$color-black-half-opacity);
-$color-widget-sonkins-progress-bar-path: var(--color-widget-sonkins-progress-bar-path,$color-building);
-$color-widget-sonkins-progress-bar-text: var(--color-widget-sonkins-progress-bar-text,$color-building);
+$color-widget-sonkins-progress-bar-trail: var(--color-widget-sonkins-progress-bar-trail, $color-black-half-opacity);
+$color-widget-sonkins-progress-bar-path: var(--color-widget-sonkins-progress-bar-path, $color-building);
+$color-widget-sonkins-progress-bar-text: var(--color-widget-sonkins-progress-bar-text, $color-building);
 
 // BURNDOWN
-$color-widget-burndown-tick: var(--color-widget-burndown-tick,rgba(0, 0, 0, 0.2));
-$color-widget-burndown-label: var(--color-widget-burndown-label,#fff);
-$color-widget-burndown-line-velocity-ref: var(--color-widget-burndown-line-velocity-ref,$color-cyan);
-$color-widget-burndown-line-velocity-cur: var(--color-widget-burndown-line-velocity-cur,white);
+$color-widget-burndown-tick: var(--color-widget-burndown-tick, rgba(0, 0, 0, 0.2));
+$color-widget-burndown-label: var(--color-widget-burndown-label, #fff);
+$color-widget-burndown-line-velocity-ref: var(--color-widget-burndown-line-velocity-ref, $color-cyan);
+$color-widget-burndown-line-velocity-cur: var(--color-widget-burndown-line-velocity-cur, white);
 
 // TEXT
-$color-widget-text-good-icon: var(--color-widget-text-good-icon,$color-green);
-$color-widget-text-info-icon: var(--color-widget-text-info-icon,$color-blue);
-$color-widget-text-warn-icon: var(--color-widget-text-warn-icon,$color-yellow);
-$color-widget-text-danger-icon: var(--color-widget-text-danger-icon,$color-red);
+$color-widget-text-good-icon: var(--color-widget-text-good-icon, $color-green);
+$color-widget-text-info-icon: var(--color-widget-text-info-icon, $color-blue);
+$color-widget-text-warn-icon: var(--color-widget-text-warn-icon, $color-yellow);
+$color-widget-text-danger-icon: var(--color-widget-text-danger-icon, $color-red);
 
 // MOOD
-$color-widget-mood-good-icon: var(--color-widget-mood-good-icon,$color-green);
-$color-widget-mood-average-icon: var(--color-widget-mood-average,$color-yellow);
-$color-widget-mood-bad-icon: var(--color-widget-mood-bad-icon,$color-red);
+$color-widget-mood-good-icon: var(--color-widget-mood-good-icon, $color-green);
+$color-widget-mood-average-icon: var(--color-widget-mood-average, $color-yellow);
+$color-widget-mood-bad-icon: var(--color-widget-mood-bad-icon, $color-red);
 $image-widget-mood-good-icon: 'happyFace.svg';
 $image-widget-mood-average-icon: 'neutralFace.svg';
 $image-widget-mood-bad-icon: 'unhappyFace.svg';
@@ -142,63 +142,63 @@ $image-danger: 'bomb.svg';
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // Font sizes (1.6rem value is "16px" equivalent)
-$font-size-base : 1.6rem;
+$font-size-base: 1.6rem;
 $font-sizes: (
-  base: (
-    mobile  : 1rem,
-    desktop : $font-size-base
-  ),
-  h1: (
-    mobile  : 1.8rem,
-    desktop : 1.8rem
-  ),
-  h2: (
-    mobile  : 1rem,
-    desktop : 1rem
-  ),
-  h3: (
-    mobile  : 1rem,
-    desktop : 1rem
-  ),
-  h4: (
-    mobile  : 1rem,
-    desktop : 1rem
-  ),
-  h5: (
-    mobile  : 1rem,
-    desktop : 1rem
-  ),
-  h6: (
-    mobile  : 1rem,
-    desktop : 1rem
-  )
+        base: (
+                mobile : 1rem,
+                desktop : $font-size-base
+        ),
+        h1: (
+                mobile : 1.8rem,
+                desktop : 1.8rem
+        ),
+        h2: (
+                mobile : 1rem,
+                desktop : 1rem
+        ),
+        h3: (
+                mobile : 1rem,
+                desktop : 1rem
+        ),
+        h4: (
+                mobile : 1rem,
+                desktop : 1rem
+        ),
+        h5: (
+                mobile : 1rem,
+                desktop : 1rem
+        ),
+        h6: (
+                mobile : 1rem,
+                desktop : 1rem
+        )
 );
 
 
-$base-font-size : 1.4rem;
-$line-height    : 1.4;
-$h1-size        : 1.8rem;
-$h2-size        : 1.6rem;
-$h3-size        : 1.4rem;
-$h4-size        : 1.4rem;
-$h5-size        : 1.4rem;
-$h6-size        : 1.4rem;
+$base-font-size: 1.4rem;
+$line-height: 1.4;
+$h1-size: 1.8rem;
+$h2-size: 1.6rem;
+$h3-size: 1.4rem;
+$h4-size: 1.4rem;
+$h5-size: 1.4rem;
+$h6-size: 1.4rem;
 
 // DESKTOP FONT SIZE
-$base-font-size-l : 1.4 rem;
-$line-height-l    : 1.5;
-$h1-size-l        : 1.8rem;
-$h2-size-l        : 1.6rem;
-$h3-size-l        : 1.4rem;
-$h4-size-l        : 1.4rem;
-$h5-size-l        : 1.4rem;
-$h6-size-l        : 1.4rem;
+$base-font-size-l: 1.4rem;
+$line-height-l: 1.5;
+$h1-size-l: 1.8rem;
+$h2-size-l: 1.6rem;
+$h3-size-l: 1.4rem;
+$h4-size-l: 1.4rem;
+$h5-size-l: 1.4rem;
+$h6-size-l: 1.4rem;
 
 
 $font-size-widget-sub-title: $h2-size-l;
 $font-size-widget-article-desktop: 120%;
 
 // font stacks
-$font-stack-common    : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; // system font stack
+$font-stack-common: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; // system font stack
 //$font-stack-headings  : sans-serif; // headings font
 //$font-stack-monospace : consolas, courier, monospace; // monospace font

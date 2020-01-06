@@ -2,8 +2,8 @@ import React from 'react';
 import Widget from "component/widget/base/widget";
 import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
-import { ResponsiveLine } from '@nivo/line'
-import { darkChartTheme } from "style/theme/dark-chart-theme";
+import {ResponsiveLine} from '@nivo/line'
+import {darkChartTheme} from "style/theme/dark-chart-theme";
 import cn from "classnames";
 
 import "./hello-line-chart-widget.scss"
@@ -299,14 +299,24 @@ export default class HelloLineChartWidget extends React.PureComponent {
         className={classNames}
         {...this.props}
       >
-        <WidgetHeader title={this.props.title} />
+        <WidgetHeader title={this.props.title}/>
         <WidgetContent>
           <ResponsiveLine
             theme={darkChartTheme}
             data={data}
-            margin={{ top: 50, right: 50, bottom: 80, left: 60 }}
-            xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
+            margin={{
+              top: 50,
+              right: 50,
+              bottom: 80,
+              left: 60
+            }}
+            xScale={{type: 'point'}}
+            yScale={{
+              type: 'linear',
+              stacked: false,
+              min: 0,
+              max: 'auto'
+            }}
             xFormat={(v) => `${v}`}
             yFormat={(v) => `${v}`}
             curve="cardinal"
@@ -332,14 +342,17 @@ export default class HelloLineChartWidget extends React.PureComponent {
               legendPosition: 'middle',
               format: yAxisFormatter
             }}
-            colors={{ scheme: 'nivo' }}
+            colors={{scheme: 'nivo'}}
             //colors={d => d.color}
-            borderColor={{ from: 'color', modifiers: [[ 'darker', 0.2 ]] }}
+            borderColor={{
+              from: 'color',
+              modifiers: [['darker', 0.2]]
+            }}
             lineWidth={1}
             pointSize={3}
-            pointColor={{ theme: 'background' }}
+            pointColor={{theme: 'background'}}
             pointBorderWidth={2}
-            pointBorderColor={{ from: 'serieColor' }}
+            pointBorderColor={{from: 'serieColor'}}
             pointLabel="y"
             pointLabelYOffset={-12}
             enableArea={true}

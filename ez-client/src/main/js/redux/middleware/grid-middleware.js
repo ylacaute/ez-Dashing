@@ -1,5 +1,5 @@
-import { GridEvent } from 'redux/event/grid-event';
-import { MenuEvent } from 'redux/event/menu-event';
+import {GridEvent} from 'redux/event/grid-event';
+import {MenuEvent} from 'redux/event/menu-event';
 
 const gridMiddleware = gridService => store => next => action => {
 

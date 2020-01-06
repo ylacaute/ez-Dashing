@@ -70,7 +70,7 @@ export default class DateUtils {
   }
 
   static equalsAtDay(date1, date2) {
-      return DateUtils.formatDDMMYY(date1) === DateUtils.formatDDMMYY(date2);
+    return DateUtils.formatDDMMYY(date1) === DateUtils.formatDDMMYY(date2);
   }
 
 }

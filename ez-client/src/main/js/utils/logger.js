@@ -18,6 +18,10 @@ export default class Logger {
     [Logger.ROOT_LOGGER_NAME]: Logger.Level.INFO
   };
 
+  constructor(loggerName) {
+    this.name = loggerName;
+  }
+
   static setLevel(loggerName, level) {
     Logger.LevelMap[loggerName] = level;
   }
@@ -40,10 +44,6 @@ export default class Logger {
     }
     return new Logger(loggerName);
   };
-
-  constructor(loggerName) {
-    this.name = loggerName;
-  }
 
   trace() {
     return this.consoleLog(Logger.Level.TRACE, arguments);

@@ -12,6 +12,17 @@ const logger = Logger.getLogger("DataSourceService");
 export default class DatasourceService {
 
   /**
+   * Get the full loaded dashboard configuration as argument.
+   * The created dataSources will be part of the state tree.
+   */
+  constructor(dashboardConfig) {
+    this.dashboardConfig = dashboardConfig;
+    this.dataSources = DatasourceFactory.create(dashboardConfig.dataSources);
+    logger.debug("Application dataSources:", this.dataSources);
+    this.initializeRefreshTimers();
+  };
+
+  /**
    * Return true if all the dataSources on which the widget depend are loaded,
    * return false otherwise.
    */
@@ -24,17 +35,6 @@ export default class DatasourceService {
     });
     return loaded;
   }
-
-  /**
-   * Get the full loaded dashboard configuration as argument.
-   * The created dataSources will be part of the state tree.
-   */
-  constructor(dashboardConfig) {
-    this.dashboardConfig = dashboardConfig;
-    this.dataSources = DatasourceFactory.create(dashboardConfig.dataSources);
-    logger.debug("Application dataSources:", this.dataSources);
-    this.initializeRefreshTimers();
-  };
 
   /**
    * Initialize timers for each datasources in order to have an scheduled refresh.

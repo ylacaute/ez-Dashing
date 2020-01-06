@@ -1,4 +1,3 @@
-
 const GridEvent = {
   ItemResized: "GRID_ITEM_RESIZED",
   Ready: "GRID_READY",
@@ -6,7 +5,7 @@ const GridEvent = {
 };
 
 const GridEventCreator = {
-  onLayoutChange : (currentLayout, allLayouts) => {
+  onLayoutChange: (currentLayout, allLayouts) => {
     return {
       type: GridEvent.LayoutChange,
       payload: {
@@ -15,14 +14,14 @@ const GridEventCreator = {
       }
     }
   },
-  onElementResized : (widgetId, sizeInfo) => {
+  onElementResized: (widgetId, sizeInfo) => {
     return {
       type: GridEvent.ItemResized,
       widgetId: widgetId,
       payload: sizeInfo
     }
   },
-  onGridReady : (widgetIds) => {
+  onGridReady: (widgetIds) => {
     return {
       type: GridEvent.Ready,
       widgetIds: widgetIds

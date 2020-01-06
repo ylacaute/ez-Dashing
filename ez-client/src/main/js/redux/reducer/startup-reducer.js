@@ -1,5 +1,5 @@
 import Logger from 'utils/logger';
-import { SetupEvent } from 'redux/event/setup-event';
+import {SetupEvent} from 'redux/event/setup-event';
 
 const logger = Logger.getLogger("StartupReducer");
 

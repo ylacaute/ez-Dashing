@@ -37,7 +37,7 @@ function mapSimpleType(propType, jsonPathQuery, jsonResponse) {
  * The mapping must contains jsonPath queries _relative_ to the currently build object
  */
 function mapObject(mappingDefinition, json) {
-  const { jsonPath, mapping } = mappingDefinition;
+  const {jsonPath, mapping} = mappingDefinition;
   const child = JSONPath.query(json, jsonPath)[0];
 
   return {
@@ -51,7 +51,7 @@ function mapObject(mappingDefinition, json) {
  * The mapping must contains jsonPath queries _relative_ to the currently build object
  */
 function mapArray(mappingDefinition, json) {
-  const { jsonPath, mapping } = mappingDefinition;
+  const {jsonPath, mapping} = mappingDefinition;
   const child = JSONPath.query(json, jsonPath)[0];
 
   return child.map(child => JsonMapper.mapProperties(mapping, child));
@@ -100,8 +100,8 @@ export default class JsonMapper {
   static mapProperties(mapping, jsonResponse) {
     let result = {};
     for (let propertyName in mapping) {
-      const { propType, propName } = splitTypeAndName(propertyName);
-      const mappingDefinition  = mapping[propertyName];
+      const {propType, propName} = splitTypeAndName(propertyName);
+      const mappingDefinition = mapping[propertyName];
 
       if (typeof mappingDefinition === "string") {
         result[propName] = mapSimpleType(propType, mappingDefinition, jsonResponse);

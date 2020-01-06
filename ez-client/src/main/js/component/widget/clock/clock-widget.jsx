@@ -38,7 +38,7 @@ export default class ClockWidget extends React.PureComponent {
     let hours = now.getUTCHours() + this.props.UTCOffset;
     let minutes = now.getUTCMinutes();
     let seconds = now.getUTCSeconds();
-    if (hours >= 24 ) hours -= 24;
+    if (hours >= 24) hours -= 24;
     if (hours < 0) hours += 12;
     if (hours < 10) hours = "0" + hours;
     if (minutes < 10) minutes = "0" + minutes;
@@ -52,7 +52,7 @@ export default class ClockWidget extends React.PureComponent {
   }
 
   render() {
-    const { date, hours, minutes, seconds } = this.state;
+    const {date, hours, minutes, seconds} = this.state;
     const classNames = cn("clock", this.props.className);
 
     return (

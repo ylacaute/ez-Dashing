@@ -10,7 +10,7 @@ import "./error-widget.scss";
 export default class ErrorWidget extends React.PureComponent {
 
   static propTypes = {
-    //...Widget.propTypes,
+    //...Widget.propTypes, // FIXME: Why we can't do that ?
     error: PropTypes.any,
     errorInfo: PropTypes.any
   };
@@ -31,22 +31,20 @@ export default class ErrorWidget extends React.PureComponent {
         editable={false}
         {...this.props}
       >
-        <WidgetHeader title={displayedTitle} />
+        <WidgetHeader title={displayedTitle}/>
         <WidgetContent>
-
-          <details style={{ whiteSpace: 'pre-wrap' }}>
+          <details style={{whiteSpace: 'pre-wrap'}}>
             <summary>
               The widgetId <strong>{id}</strong> has generated an error and can't be displayed.
               Please read the error details below.
             </summary>
             <br/>
             {error && error.toString()}
-            <br />
+            <br/>
             {errorInfo.componentStack}
           </details>
         </WidgetContent>
       </Widget>
     )
   }
-
 }

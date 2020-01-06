@@ -1,73 +1,7 @@
 @charset "UTF-8";
 
-
 @import "style/common/index";
 @import "~knacss/sass/_vendor/reboot";
 @import "~knacss/sass/_library/base";
 
 @import "style/common/base";
-
-//
-//
-//// BASE
-//@import "common/index";
-//
-//
-////@import "~node_modules/knacss/sass/_config/breakpoints";
-//@import "node_modules/knacss/sass/_config/mixins";
-//@import "node_modules/knacss/sass/_vendor/reboot";
-//@import "node_modules/knacss/sass/_library/base";
-//
-//
-//// Utils
-//
-//
-////* {
-////  outline: none !important;
-////}
-////form * {
-////  width: auto !important;
-////}
-//
-//// Components
-//@import '../component/audio/player';
-//@import '../component/chart/progress-bar/circular/circular-progress-bar';
-//@import '../component/chart/progress-bar/linear/linear-progress-bar';
-//@import '../component/effect/blink/blink';
-//@import '../component/effect/flip/flip';
-//@import '../component/grid/grid';
-//@import '../component/loader/cube-spinner-loader';
-////@import '../component/menu/burger-menu';
-//@import '../component/modal/modal';
-//@import '../component/range/InputRange/input-range';
-//@import '../component/scalable/scalable-image';
-//@import '../component/modal/modal';
-//
-//// Widgets components
-//@import '../component/widget/base/_widget';
-//@import '../component/widget/base/_metric';
-//@import '../component/widget/bug/bug-widget';
-//@import '../component/widget/burndown/burndown-chart-widget';
-//@import '../component/widget/clock/clock-widget';
-//@import '../component/widget/hellobarchart/hello-bar-chart-widget';
-//@import '../component/widget/hellolinechart/hello-line-chart-widget';
-//@import '../component/widget/helloworld/hello-world-widget';
-//@import '../component/widget/mood/mood-widget';
-//@import '../component/widget/reliability/reliability-widget';
-//@import '../component/widget/sonkins/sonkins-widget';
-//@import '../component/widget/sprint/sprint-widget';
-//@import '../component/widget/text/text-widget';
-//@import '../component/widget/velocity/velocity-widget';
-//
-//@include enableCubeSpinner();
-//
-////// As we don't want to use BluePrint icon, we include icon as button content.
-////// By default icons are on the left and need a margin right
-////.bp3-button-text .icon {
-////  display: inline;
-////  margin-right: 7px;
-////}
-////// We want to ensure the portal of BluePrint always go on top
-////.bp3-portal {
-////  z-index: 9999;
-////}

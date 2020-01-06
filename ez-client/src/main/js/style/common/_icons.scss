@@ -1,4 +1,3 @@
-
 @mixin image($bg-image) {
   background: url('#{$image-path}/#{$bg-image}') no-repeat center center;
   background-size: contain;

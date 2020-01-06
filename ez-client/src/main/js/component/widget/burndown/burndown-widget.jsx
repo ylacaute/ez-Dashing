@@ -58,7 +58,7 @@ export default class BurndownWidget extends React.PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = props;
+    const {sprintStartDate, sprintEndDate, closedIssues, readyIssues} = props;
     const allSprintIssues = closedIssues.concat(readyIssues);
     if (allSprintIssues.length === 0) {
       return {
@@ -73,7 +73,7 @@ export default class BurndownWidget extends React.PureComponent {
   }
 
   render() {
-    const { className, sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
+    const {className, sprintStartDate, sprintEndDate, closedIssues, readyIssues} = this.props;
     const classNames = cn("burndown", className);
     const now = DateService.now();
     const allSprintIssues = closedIssues.concat(readyIssues);
@@ -96,14 +96,24 @@ export default class BurndownWidget extends React.PureComponent {
         className={classNames}
         {...this.props}
       >
-        <WidgetHeader title={this.props.title} />
+        <WidgetHeader title={this.props.title}/>
         <WidgetContent>
           <ResponsiveLine
             theme={darkChartTheme}
             data={velocityData}
-            margin={{ top: 50, right: 30, bottom: 60, left: 60 }}
-            xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
+            margin={{
+              top: 50,
+              right: 30,
+              bottom: 60,
+              left: 60
+            }}
+            xScale={{type: 'point'}}
+            yScale={{
+              type: 'linear',
+              stacked: false,
+              min: 0,
+              max: 'auto'
+            }}
             xFormat={(v) => `${v}`}
             yFormat={(v) => `${v}`}
             curve="cardinal"
@@ -131,12 +141,15 @@ export default class BurndownWidget extends React.PureComponent {
             }}
             //colors={{ scheme: 'nivo' }}
             colors={d => d.color}
-            borderColor={{ from: 'color', modifiers: [[ 'darker', 0.2 ]] }}
+            borderColor={{
+              from: 'color',
+              modifiers: [['darker', 0.2]]
+            }}
             lineWidth={1}
             pointSize={3}
-            pointColor={{ theme: 'background' }}
+            pointColor={{theme: 'background'}}
             pointBorderWidth={2}
-            pointBorderColor={{ from: 'serieColor' }}
+            pointBorderColor={{from: 'serieColor'}}
             pointLabel="y"
             pointLabelYOffset={-12}
             enableArea={true}

@@ -20,8 +20,7 @@ class AudioPlayer extends React.PureComponent {
     className: PropTypes.string,
   };
 
-  static defaultProps = {
-  };
+  static defaultProps = {};
 
   state = {
     playing: false,
@@ -108,7 +107,7 @@ class AudioPlayer extends React.PureComponent {
   }
 
   getPrevFileIndex() {
-    const { playingIndex, files, options } = this.state;
+    const {playingIndex, files, options} = this.state;
     if (options.random) {
       return MathUtils.randomInt(files.length);
     }
@@ -118,7 +117,7 @@ class AudioPlayer extends React.PureComponent {
   }
 
   getNextFileIndex() {
-    const { playingIndex, files, options } = this.state;
+    const {playingIndex, files, options} = this.state;
     if (options.random) {
       return MathUtils.randomInt(files.length);
     }
@@ -128,17 +127,17 @@ class AudioPlayer extends React.PureComponent {
   }
 
   hasPrevFileIndex() {
-    const { playingIndex, options} = this.state;
-    return options.repeat || options.random || playingIndex > 0;
+    const {playingIndex, options} = this.state;
+    return options.repeat || options.random || playingIndex > 0;
   }
 
   hasNextFileIndex() {
-    const { playingIndex, files, options } = this.state;
-    return options.repeat || options.random || playingIndex < files.length - 1;
+    const {playingIndex, files, options} = this.state;
+    return options.repeat || options.random || playingIndex < files.length - 1;
   }
 
   play(playingIndex) {
-    const { files } = this.state;
+    const {files} = this.state;
     if (files.length > 0 && playingIndex >= 0 && playingIndex < files.length) {
       this.setState({
         playing: true,
@@ -224,7 +223,7 @@ class AudioPlayer extends React.PureComponent {
       this.pause();
     } else if (this.state.onPause) {
       this.unPause();
-    } else {
+    } else {
       this.play(this.state.playingIndex);
     }
   }
@@ -308,12 +307,12 @@ class AudioPlayer extends React.PureComponent {
 
   handleInputFileChange(event) {
     event.preventDefault();
-    if (!event.target || !event.target.files || !event.target.files.length ) {
+    if (!event.target || !event.target.files || !event.target.files.length) {
       return null;
     }
     const fileList = [...event.target.files];
     const mappedFileList = fileList.map(file => ({
-      name : file.name,
+      name: file.name,
       modified: file.lastModified,
       size: file.size,
       file: file
@@ -340,7 +339,7 @@ class AudioPlayer extends React.PureComponent {
     })
   }
 
-  handleInputRangeChange(value) {
+  handleInputRangeChange(value) {
     this.setState({
       progressValue: parseInt(value),
       currentTime: parseInt(value)
@@ -348,8 +347,8 @@ class AudioPlayer extends React.PureComponent {
   }
 
   render() {
-    const { files, playing, playingSrc, playingIndex, currentTime, duration, volume, options  } = this.state;
-    const { className } = this.props;
+    const {files, playing, playingSrc, playingIndex, currentTime, duration, volume, options} = this.state;
+    const {className} = this.props;
     const classNames = cn("audio-player", className);
     const formattedTime = this.formatTime(currentTime);
     const formattedDuration = this.formatTime(duration);

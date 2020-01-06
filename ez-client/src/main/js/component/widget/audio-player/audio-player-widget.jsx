@@ -43,7 +43,7 @@ export default class AudioPlayerWidget extends React.PureComponent {
       >
         <WidgetHeader title={title}/>
         <WidgetContent>
-          <AudioPlayer />
+          <AudioPlayer/>
         </WidgetContent>
       </Widget>
     )

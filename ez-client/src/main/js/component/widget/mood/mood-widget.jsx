@@ -20,7 +20,7 @@ export default class MoodWidget extends React.PureComponent {
   };
 
   getEditModal() {
-    const { id, mood } = this.props;
+    const {id, mood} = this.props;
     return <MoodWidgetEditModal widgetId={id} mood={mood}/>;
   }
 

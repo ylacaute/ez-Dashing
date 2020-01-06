@@ -33,7 +33,7 @@ export default class SprintWidget extends React.PureComponent {
   };
 
   render() {
-    const { className, title, sprintNumber, sprintStartDate, sprintEndDate } = this.props;
+    const {className, title, sprintNumber, sprintStartDate, sprintEndDate} = this.props;
     const classNames = cn("sprint", className);
     const now = DateService.now();
     const sprintDurationInDays = DateUtils.diffInDays(sprintStartDate, sprintEndDate);

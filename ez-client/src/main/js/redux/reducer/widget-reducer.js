@@ -1,8 +1,8 @@
 import Logger from 'utils/logger';
-import { GridEvent } from 'redux/event/grid-event';
-import { DatasourceEvent } from 'redux/event/datasource-event';
-import { SetupEvent } from 'redux/event/setup-event';
-import { WidgetEvent } from 'redux/event/widget-event';
+import {GridEvent} from 'redux/event/grid-event';
+import {DatasourceEvent} from 'redux/event/datasource-event';
+import {SetupEvent} from 'redux/event/setup-event';
+import {WidgetEvent} from 'redux/event/widget-event';
 
 const logger = Logger.getLogger("WidgetReducer");
 const initialState = {};
@@ -23,7 +23,7 @@ const indexOfId = (dataSources, id) => {
  * Note that in order to make Widgets as dump as possible, we give them the loaded property of each dataSources
  * they depend on. Thus, widgets only depend on this state tree part by default.
  */
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
 
   let newState = {
     ...state
@@ -91,7 +91,7 @@ export default function(state = initialState, action) {
      */
     case DatasourceEvent.DataSourceRefreshed:
       logger.debug("DataSourceRefreshed (id={})", action.dataSourceId);
-      const { dataSourceId } = action;
+      const {dataSourceId} = action;
       const properties = action.payload;
 
       action.widgetIdsListening.forEach(id => {

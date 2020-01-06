@@ -3,11 +3,12 @@
  */
 
 $input-range-track-width: 100% !default;
-$input-range-track-height: .25em  !default;
+$input-range-track-height: .25em !default;
 $input-range-thumb-width: 2em !default;
 $input-range-thumb-height: 1em !default;
 $input-range-thumb-color: #fff !default;
-$input-range-track-color: #ccc !default;;
+$input-range-track-color: #ccc !default;
+;
 $input-range-progress-color: #2e9bdc !default;
 $input-range-thumb-radius: 0 !default;
 
@@ -38,15 +39,18 @@ $input-range-thumb-radius: 0 !default;
   &:focus {
     outline: 0;
   }
+
   &::-moz-focus-outer {
     border: 0;
   }
+
   &, &::-webkit-slider-thumb {
     -webkit-appearance: none;
   }
+
   --range: calc(var(--max) - var(--min));
-  --ratio: calc((var(--val) - var(--min))/var(--range));
-  --sx: calc(.5*#{$input-range-thumb-width} + var(--ratio)*(100% - #{$input-range-thumb-width}));
+  --ratio: calc((var(--val) - var(--min)) / var(--range));
+  --sx: calc(.5 * #{$input-range-thumb-width} + var(--ratio) * (100% - #{$input-range-thumb-width}));
   margin: 0;
   padding: 0;
   width: $input-range-track-width;
@@ -54,25 +58,44 @@ $input-range-thumb-radius: 0 !default;
   background: transparent;
 
   // TRACK
-  &::-webkit-slider-runnable-track { @include track }
-  &::-moz-range-track { @include track }
-  &::-ms-track { @include track }
+  &::-webkit-slider-runnable-track {
+    @include track
+  }
+
+  &::-moz-range-track {
+    @include track
+  }
+
+  &::-ms-track {
+    @include track
+  }
 
   // PROGRESS
-  &::-moz-range-progress { @include fill }
-  &::-ms-fill-lower { @include fill }
+  &::-moz-range-progress {
+    @include fill
+  }
+
+  &::-ms-fill-lower {
+    @include fill
+  }
 
   // THUMB
   &::-webkit-slider-thumb {
     margin-top: .5*($input-range-track-height - $input-range-thumb-height);
     @include thumb
   }
-  &::-moz-range-thumb { @include thumb }
+
+  &::-moz-range-thumb {
+    @include thumb
+  }
+
   &::-ms-thumb {
     margin-top: 0;
     @include thumb
   }
 
   // OTHER
-  &::-ms-tooltip { display: none }
+  &::-ms-tooltip {
+    display: none
+  }
 }

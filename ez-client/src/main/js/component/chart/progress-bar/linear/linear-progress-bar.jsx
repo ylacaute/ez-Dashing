@@ -30,7 +30,7 @@ export default class LinearProgressBar extends React.PureComponent {
   };
 
   render() {
-    let { percent } = this.state;
+    let {percent} = this.state;
     percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
     const style = {
       width: `${percent}%`

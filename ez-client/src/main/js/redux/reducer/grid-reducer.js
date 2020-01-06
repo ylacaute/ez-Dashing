@@ -1,11 +1,10 @@
 import Logger from 'utils/logger';
-import { SetupEvent } from 'redux/event/setup-event';
-import { GridEvent } from 'redux/event/grid-event';
+import {SetupEvent} from 'redux/event/setup-event';
+import {GridEvent} from 'redux/event/grid-event';
 
 const logger = Logger.getLogger("GridReducer");
 
-const initialState = {
-};
+const initialState = {};
 
 export default function GridReducer(state = initialState, action) {
   let newState;

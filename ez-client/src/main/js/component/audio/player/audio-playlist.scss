@@ -14,9 +14,11 @@
     padding: 5px;
     min-height: 30px;
     cursor: pointer;
+
     &.selected {
       font-weight: bold;
     }
+
     .icon {
       padding-right: 5px;
     }

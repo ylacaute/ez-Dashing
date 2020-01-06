@@ -11,6 +11,7 @@
     span {
       margin-left: 5px;
     }
+
     &.active {
       background-color: #bbb;
     }
@@ -19,6 +20,7 @@
       height: 40px;
       width: 40px;
     }
+
     &.stop, &.step-forward, &.remove-files, &.random {
       margin-left: 0;
     }

@@ -19,7 +19,7 @@ class AudioVolume extends React.PureComponent {
   };
 
   render() {
-    const { volume, handleChange } = this.props;
+    const {volume, handleChange} = this.props;
 
     return (
       <div className="audio-volume">

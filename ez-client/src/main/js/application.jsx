@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators  } from 'redux';
-import { connect } from 'react-redux';
-import { GridEventCreator } from 'redux/event/grid-event';
-import { ModalEventCreator } from 'redux/event/modal-event';
-import { MenuEventCreator } from 'redux/event/menu-event';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {GridEventCreator} from 'redux/event/grid-event';
+import {ModalEventCreator} from 'redux/event/modal-event';
+import {MenuEventCreator} from 'redux/event/menu-event';
 import Grid from 'component/grid';
 import Menu from './component/menu';
 import ModalContainer from 'component/modal/modal-container';
@@ -27,7 +27,7 @@ class Application extends React.PureComponent {
     }
     return (
       <div>
-        <SnowEffect />
+        <SnowEffect/>
         <Menu
           resetLayout={this.props.menuEvents.resetLayout}
           saveLayout={this.props.menuEvents.saveLayout}

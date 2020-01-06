@@ -1,4 +1,3 @@
-
 const crashReporter = store => next => action => {
   try {
     return next(action)
@@ -6,11 +5,11 @@ const crashReporter = store => next => action => {
     console.error('Caught an exception!', err);
     // call Sentry for example :
     /*Raven.captureException(err, {
-      extra: {
-        action,
-        state: store.getState()
-      }
-    });*/
+     extra: {
+     action,
+     state: store.getState()
+     }
+     });*/
     throw err
   }
 };

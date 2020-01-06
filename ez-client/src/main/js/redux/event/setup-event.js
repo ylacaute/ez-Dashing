@@ -1,11 +1,8 @@
-
 const SetupEvent = {
   ConfigLoadSuccess: "CONFIG_LOAD_SUCCESS"
 };
 
-const SetupEventCreator = {
-
-};
+const SetupEventCreator = {};
 
 export {
   SetupEvent,

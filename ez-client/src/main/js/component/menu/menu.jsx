@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { slide as BurgerMenu } from 'react-burger-menu';
+import {slide as BurgerMenu} from 'react-burger-menu';
 
 import "./menu.scss"
 
@@ -42,7 +42,7 @@ class Menu extends React.PureComponent {
     return (
       <BurgerMenu>
         <h1>
-          <i className="logo-icon" />
+          <i className="logo-icon"/>
           <span>ez-Dashing</span>
         </h1>
         <a className="menu-item" onClick={this.resetLayout.bind(this)}>

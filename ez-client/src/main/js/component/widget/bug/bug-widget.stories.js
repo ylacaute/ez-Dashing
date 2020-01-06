@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import {object, text, array} from "@storybook/addon-knobs";
+import {array, object, text} from "@storybook/addon-knobs";
 
 import BugWidget from "./bug-widget";
 

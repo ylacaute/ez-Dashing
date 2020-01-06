@@ -1,4 +1,3 @@
-
 const MenuEvent = {
   ResetLayout: "MENU_RESET_LAYOUT",
   SaveLayout: "MENU_SAVE_LAYOUT",

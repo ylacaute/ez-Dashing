@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { bindActionCreators  } from 'redux';
+import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalType } from 'component/modal/modal';
-import { WidgetEventCreator } from 'redux/event/widget-event';
-import { ModalEventCreator } from 'redux/event/modal-event';
+import {Modal, ModalType} from 'component/modal/modal';
+import {WidgetEventCreator} from 'redux/event/widget-event';
+import {ModalEventCreator} from 'redux/event/modal-event';
 import Uuid from 'utils/uuid';
 
 class TextWidgetEditModal extends Modal {
@@ -37,11 +37,26 @@ class TextWidgetEditModal extends Modal {
   generateSelectOptions() {
     let result = [];
     let options = [
-      { value: 'none', label: 'None' },
-      { value: 'good', label: 'Good' },
-      { value: 'info', label: 'Info' },
-      { value: 'warn', label: 'Warn' },
-      { value: 'danger', label: 'Danger' }
+      {
+        value: 'none',
+        label: 'None'
+      },
+      {
+        value: 'good',
+        label: 'Good'
+      },
+      {
+        value: 'info',
+        label: 'Info'
+      },
+      {
+        value: 'warn',
+        label: 'Warn'
+      },
+      {
+        value: 'danger',
+        label: 'Danger'
+      }
     ];
     options.forEach(opt => {
       result.push(

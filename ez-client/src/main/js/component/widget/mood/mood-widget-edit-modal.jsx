@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { bindActionCreators  } from 'redux';
+import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalType } from 'component/modal/modal';
-import { WidgetEventCreator } from 'redux/event/widget-event';
-import { ModalEventCreator } from 'redux/event/modal-event';
+import {Modal} from 'component/modal/modal';
+import {WidgetEventCreator} from 'redux/event/widget-event';
+import {ModalEventCreator} from 'redux/event/modal-event';
 import Uuid from 'utils/uuid';
 import Moods from 'component/widget/mood/Moods';
 

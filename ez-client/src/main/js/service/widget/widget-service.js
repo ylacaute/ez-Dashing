@@ -1,7 +1,7 @@
 import Logger from "utils/logger";
 import RestClient from "utils/rest-client";
 import StringUtils from "utils/string-utils";
-import { WidgetEvent } from "redux/event/widget-event";
+import {WidgetEvent} from "redux/event/widget-event";
 import Constants from "constant";
 import ConfigExtender from "service/setup/config-extender";
 

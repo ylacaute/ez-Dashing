@@ -1,4 +1,3 @@
-
 export default class WidgetBreakpointConfig {
 
   static MOBILE = " mobile";

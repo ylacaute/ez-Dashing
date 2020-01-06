@@ -11,6 +11,22 @@ export default class ThemeService {
     this.dashboardConfig = dashboardConfig;
   };
 
+  static setTheme(themeName) {
+    logger.info("Set '{}' theme ", themeName);
+    let linkDom = document.getElementById(LINK_DOM_ID);
+    if (!linkDom) {
+      linkDom = document.createElement("link");
+      linkDom.id = LINK_DOM_ID;
+      linkDom.rel = "stylesheet";
+      linkDom.type = "text/css";
+      linkDom.href = "css/" + themeName + "Theme.css";
+      document.getElementsByTagName("head")[0].appendChild(linkDom)
+    } else {
+      linkDom.href = "css/" + themeName + "Theme.css";
+    }
+    localStorage.setItem(THEME_KEY, themeName);
+  }
+
   resetTheme() {
     localStorage.removeItem(THEME_KEY);
     ThemeService.setTheme(this.dashboardConfig.theme);
@@ -29,21 +45,5 @@ export default class ThemeService {
       logger.info("Use the theme defined in dashboard.json configuration");
       ThemeService.setTheme(this.dashboardConfig.theme);
     }
-  }
-
-  static setTheme(themeName) {
-    logger.info("Set '{}' theme ", themeName);
-    let linkDom = document.getElementById(LINK_DOM_ID);
-    if (!linkDom) {
-      linkDom = document.createElement("link");
-      linkDom.id = LINK_DOM_ID;
-      linkDom.rel = "stylesheet";
-      linkDom.type = "text/css";
-      linkDom.href = "css/" + themeName + "Theme.css";
-      document.getElementsByTagName("head")[0].appendChild(linkDom)
-    } else {
-      linkDom.href = "css/" + themeName + "Theme.css";
-    }
-    localStorage.setItem(THEME_KEY, themeName);
   }
 }

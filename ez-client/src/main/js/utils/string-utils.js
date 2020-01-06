@@ -1,6 +1,6 @@
 export default class StringUtils {
 
-  static capitalizeFirstLetter = (input) =>  {
+  static capitalizeFirstLetter = (input) => {
     return input.charAt(0).toUpperCase() + input.slice(1);
   };
 
@@ -18,7 +18,7 @@ export default class StringUtils {
    * Format a String with parameter. Each '{}' will be replaced by arguments.
    * Arguments can be given separately or within a single array argument.
    */
-  static format = function() {
+  static format = function () {
     if (arguments.length === 0) {
       return "";
     }

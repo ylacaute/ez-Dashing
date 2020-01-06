@@ -10,11 +10,17 @@
   $frameId: unique-id();
 
   @keyframes bgColorChangeFrames#{$frameId} {
-    0% {background:$initialColor}
-    50% {background:$secondColor}
-    100% {background:$initialColor}
+    0% {
+      background: $initialColor
+    }
+    50% {
+      background: $secondColor
+    }
+    100% {
+      background: $initialColor
+    }
   }
-  animation:bgColorChangeFrames#{$frameId} $delay infinite;
+  animation: bgColorChangeFrames#{$frameId} $delay infinite;
 }
 
 

@@ -9,7 +9,7 @@
 .snow-container {
   display: none;
   position: absolute;
-  top:0;
+  top: 0;
   bottom: 0;
   right: 0;
   left: 0;
@@ -35,23 +35,29 @@
   pointer-events: none;
   transform: translate3d(0, -100%, 0);
   animation: snow linear infinite;
+
   &.foreground {
     background-image: url('#{$image-path}/misc/snow-large.png');
     animation-duration: $foreground-speed;
+
     &.layered {
       animation-delay: $foreground-speed/2;
     }
   }
+
   &.middleground {
     background-image: url('#{$image-path}/misc/snow-medium.png');
     animation-duration: $middleground-speed;
+
     &.layered {
       animation-delay: $middleground-speed/2;
     }
   }
+
   &.background {
     background-image: url('#{$image-path}/misc/snow-small.png');
     animation-duration: $background-speed;
+
     &.layered {
       animation-delay: $background-speed/2
     }
@@ -63,7 +69,7 @@
     transform: translate3d(0, -100%, 0)
   }
   100% {
-    transform: translate3d(15%,100%,0)
+    transform: translate3d(15%, 100%, 0)
   }
 }
 

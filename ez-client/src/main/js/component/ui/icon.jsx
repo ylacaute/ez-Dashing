@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   faCheckSquare,
   faFile,
@@ -8,16 +8,16 @@ import {
   faFolder,
   faFolderOpen,
   faImage,
-  faPlay,
+  faList,
   faPause,
-  faStop,
+  faPlay,
+  faPlusSquare,
+  faRandom,
+  faRetweet,
   faStepBackward,
   faStepForward,
-  faPlusSquare,
+  faStop,
   faTrashAlt,
-  faRetweet,
-  faRandom,
-  faList,
   faVolumeMute,
   faVolumeUp,
 } from '@fortawesome/free-solid-svg-icons'

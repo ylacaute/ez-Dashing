@@ -1,6 +1,6 @@
 import Logger from 'utils/logger';
-import { DatasourceEvent } from 'redux/event/datasource-event';
-import { SetupEvent } from 'redux/event/setup-event';
+import {DatasourceEvent} from 'redux/event/datasource-event';
+import {SetupEvent} from 'redux/event/setup-event';
 
 const logger = Logger.getLogger("DataSourceReducer");
 const initialState = [];
@@ -41,7 +41,7 @@ export default function datasourceReducer(state = initialState, action) {
      */
     case DatasourceEvent.DataSourceRefreshed:
       const dataSources = state;
-      const { dataSourceId } = action;
+      const {dataSourceId} = action;
       const dataSourceToUpdate = findById(state, dataSourceId);
       const dataSourceToUpdateIndex = indexOfId(state, dataSourceId);
 

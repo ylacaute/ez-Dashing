@@ -7,19 +7,24 @@
 .metrics {
   flex-grow: 1;
 }
+
 .metric {
   .value {
     color: $color-metric-neutral;
   }
+
   .name {
     color: $color-metric-name;
   }
+
   &.good .value {
     color: $color-metric-good;
   }
+
   &.avg .value {
     color: $color-metric-average;
   }
+
   &.bad .value {
     color: $color-metric-bad;
   }
@@ -33,10 +38,12 @@
   width: 50%;
   height: 50%;
   overflow: hidden;
+
   .metric {
     display: flex;
     flex-direction: column;
     height: 100%;
+
     .value {
       display: flex;
       flex-grow: 1;
@@ -44,10 +51,12 @@
       justify-content: center;
       position: relative;
       align-items: center;
+
       .scalable-image-wrapper {
         position: relative;
       }
     }
+
     .name {
       display: flex;
       justify-content: center;
@@ -63,33 +72,40 @@
   flex-grow: 1;
   width: 100%;
   height: 100%;
+
   .metric {
     flex-grow: 1;
     align-items: center;
+
     .value {
       flex-direction: column;
       flex-grow: 1;
       width: 100%;
       height: 100%;
     }
+
     .name {
       padding-top: 1em;
     }
   }
 }
+
 // When height is very small, it is nicer to display the metric in a row
 .height-xxxs.width-xxxs .metric-wrapper,
 .height-xxxs.width-xxs .metric-wrapper {
   width: 100%;
   height: 100%;
+
   .metric {
     flex-direction: row;
     justify-content: center;
+
     .value {
       flex-grow: 1;
       padding-bottom: 10px;
       font-size: 150% !important;
     }
+
     .name {
       padding-top: 0em;
       flex-grow: 1;
@@ -103,9 +119,11 @@
   .metric-wrapper:not(.single) {
     width: 25%;
     height: 100%;
+
     .value {
       font-size: 400%;
     }
+
     .name {
       font-size: 120%;
     }

@@ -23,12 +23,12 @@ export default class TextWidget extends React.PureComponent {
   };
 
   getEditModal() {
-    const { id, text, textType } = this.props;
+    const {id, text, textType} = this.props;
     return <TextWidgetEditModal widgetId={id} text={text} textType={textType}/>;
   }
 
   render() {
-    const { className, textType } = this.props;
+    const {className, textType} = this.props;
     const classNames = cn("text", className);
 
     return (
@@ -39,8 +39,8 @@ export default class TextWidget extends React.PureComponent {
       >
         <WidgetContent>
           <div className={this.props.textType}>
-            { textType !== "none" &&
-              <ScalableImage className="text-icon"/>
+            {textType !== "none" &&
+            <ScalableImage className="text-icon"/>
             }
             <p>{this.props.text}</p>
           </div>

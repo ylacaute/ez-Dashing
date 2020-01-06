@@ -1,4 +1,3 @@
-
 const WidgetEvent = {
   UpdateConfigRequest: "UPDATE_WIDGET_CONFIG_REQUEST",
   UpdateConfigSuccess: "UPDATE_WIDGET_CONFIG_SUCCESS",

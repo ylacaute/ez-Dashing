@@ -32,7 +32,7 @@ export default class ScalableImage extends React.PureComponent {
       backgroundImage: `url(${this.props.src})`
     };
     return (
-      <div className="scalable-image-wrapper" >
+      <div className="scalable-image-wrapper">
         <div
           className={this.props.className}
           style={imgStyle}
