@@ -1,4 +1,4 @@
-import JsonMapper from "utils/JsonMapper";
+import JsonMapper from "utils/json-mapper";
 
 describe("JsonMapper", () => {
 

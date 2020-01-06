@@ -1,4 +1,4 @@
-import TypeUtils from "utils/TypeUtils";
+import TypeUtils from "utils/type-utils";
 
 describe("TypeUtils", () => {
 

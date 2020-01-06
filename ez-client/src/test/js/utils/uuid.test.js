@@ -1,4 +1,4 @@
-import Uuid from "utils/UUID";
+import Uuid from "utils/uuid";
 
 describe("UUID", () => {
 

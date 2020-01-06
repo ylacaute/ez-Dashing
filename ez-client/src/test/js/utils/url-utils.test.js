@@ -1,4 +1,4 @@
-import UrlUtils from "utils/URLUtils";
+import UrlUtils from "utils/url-utils";
 
 describe("URLUtils", () => {
 

@@ -115,7 +115,7 @@
       "src/main/js"
     ],
     "testMatch": [
-      "<rootDir>/src/test/**/*Test.js"
+      "<rootDir>/src/test/**/*.test.js"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [

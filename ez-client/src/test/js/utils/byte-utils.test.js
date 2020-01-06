@@ -1,4 +1,4 @@
-import ByteUtils from "utils/ByteUtils";
+import ByteUtils from "utils/byte-utils";
 
 
 describe("ByteUtils", () => {

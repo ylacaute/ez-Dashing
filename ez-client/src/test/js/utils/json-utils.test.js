@@ -1,4 +1,4 @@
-import JsonUtils from "utils/JsonUtils";
+import JsonUtils from "utils/json-utils";
 
 describe("JsonUtils", () => {
 

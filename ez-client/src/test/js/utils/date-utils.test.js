@@ -1,4 +1,4 @@
-import DateUtils from "utils/DateUtils";
+import DateUtils from "utils/date-utils";
 
 describe("DateUtils", () => {
 

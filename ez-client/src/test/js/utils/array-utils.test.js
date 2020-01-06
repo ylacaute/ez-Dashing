@@ -1,4 +1,4 @@
-import ArrayUtils from "utils/ArrayUtils.js";
+import ArrayUtils from "utils/array-utils";
 
 describe("ArrayUtils", () => {
 
