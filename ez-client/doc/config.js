@@ -13,8 +13,8 @@ import '@storybook/addon-console';
 // Storybook theme
 import ezTheme from './theme/defaultTheme';
 
-// Dashboard theme
-//import "../src/main/js/style/common/_index.scss";
+// Dashboard main css + dashbaord theme
+import "../src/main/js/main.scss";
 import "../src/main/js/style/theme/default.scss";
 
 addParameters({

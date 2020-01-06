@@ -4,6 +4,7 @@ import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
 import { ResponsiveBar } from '@nivo/bar'
 import { darkChartTheme } from "style/theme/dark-chart-theme";
+import cn from "classnames";
 
 import "./hello-bar-chart-widget.scss";
 
@@ -34,8 +35,13 @@ const data = [
 export default class HelloBarChartWidget extends React.PureComponent {
 
   render() {
+    const classNames = cn("hello-bar-chart", this.props.className);
+
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader title={this.props.title} />
         <WidgetContent>
           <ResponsiveBar

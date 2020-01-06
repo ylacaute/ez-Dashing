@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Widget from "component/widget/base/widget";
 import WidgetContent from "component/widget/base/widget-content";
 import DateService from "service/date/date-service";
+import cn from "classnames";
 
 import "./clock-widget.scss";
 
@@ -52,9 +53,13 @@ export default class ClockWidget extends React.PureComponent {
 
   render() {
     const { date, hours, minutes, seconds } = this.state;
+    const classNames = cn("clock", this.props.className);
 
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetContent>
           <p>{date}</p>
           <p>{hours}:{minutes}:{seconds}</p>

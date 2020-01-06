@@ -52,8 +52,7 @@ export default class ConfigExtender {
         key: id,
         avatars: widgetConfig.avatars || dashboardConfig.avatars,
         thresholds: widgetConfig.thresholds || dashboardConfig.thresholds,
-        dataSource: widgetConfig.dataSource || [],
-        className: widgetConfig.className || widgetConfig.type.toLowerCase().replace("widget", "")
+        dataSource: widgetConfig.dataSource || []
       });
     });
   }

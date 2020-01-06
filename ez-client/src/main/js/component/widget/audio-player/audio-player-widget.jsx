@@ -5,6 +5,7 @@ import WidgetHeader from "component/widget/base/widget-header";
 import WidgetContent from "component/widget/base/widget-content";
 import AudioPlayer from "component/audio/player";
 import AudioPlayerPlaylistModal from './audio-player-playlist-modal';
+import cn from "classnames";
 
 import "./audio-player-widget.scss";
 
@@ -31,9 +32,15 @@ export default class AudioPlayerWidget extends React.PureComponent {
   }
 
   render() {
-    const {title} = this.props;
+    const {className, title} = this.props;
+    const classNames = cn("audio-player", className);
+
     return (
-      <Widget {...this.props} editModal={this.getEditModal.bind(this)}>
+      <Widget
+        className={classNames}
+        editModal={this.getEditModal.bind(this)}
+        {...this.props}
+      >
         <WidgetHeader title={title}/>
         <WidgetContent>
           <AudioPlayer />

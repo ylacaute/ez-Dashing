@@ -75,16 +75,17 @@ export default class ReliabilityWidget extends React.PureComponent {
   }
 
   render() {
-    const className = cn(this.props.className);
+    const classNames = cn("reliability", this.props.className);
     const reliabilityAverage  = ArrayUtils.computeAverage(
       this.props.reliabilityHistory,
       this.props.valueCountForAverage);
 
     return (
-      <Widget {...this.props} className={className}>
-        <WidgetHeader
-          title={this.props.title}
-        />
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
+        <WidgetHeader title={this.props.title}/>
         <WidgetContent>
           <div>{reliabilityAverage}%</div>
         </WidgetContent>

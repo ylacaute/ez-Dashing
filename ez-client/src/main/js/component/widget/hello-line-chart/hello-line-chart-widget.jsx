@@ -4,6 +4,7 @@ import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
 import { ResponsiveLine } from '@nivo/line'
 import { darkChartTheme } from "style/theme/dark-chart-theme";
+import cn from "classnames";
 
 import "./hello-line-chart-widget.scss"
 
@@ -291,8 +292,13 @@ const xAxisFormatter = (value, idx) => {
 export default class HelloLineChartWidget extends React.PureComponent {
 
   render() {
+    const classNames = cn("hello-line-chart", this.props.className);
+
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader title={this.props.title} />
         <WidgetContent>
           <ResponsiveLine

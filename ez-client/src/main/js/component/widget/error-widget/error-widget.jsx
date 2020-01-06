@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Widget from "component/widget/base/widget";
 import WidgetHeader from "component/widget/base/widget-header";
 import WidgetContent from "component/widget/base/widget-content";
+import cn from "classnames";
 
 import "./error-widget.scss";
 
@@ -20,12 +21,16 @@ export default class ErrorWidget extends React.PureComponent {
   };
 
   render() {
-    const {id, title, error, errorInfo} = this.props;
-
+    const {className, id, title, error, errorInfo} = this.props;
+    const classNames = cn("error", className);
     const displayedTitle = title ? title : "Error widget";
 
     return (
-      <Widget {...this.props} className="error" editable={false}>
+      <Widget
+        className={classNames}
+        editable={false}
+        {...this.props}
+      >
         <WidgetHeader title={displayedTitle} />
         <WidgetContent>
 

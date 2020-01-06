@@ -16,10 +16,13 @@ export default class ImageWidget extends React.PureComponent {
   };
 
   render() {
-    const className = cn(this.props.className, this.props.mood);
+    const classNames = cn("image", this.props.className);
 
     return (
-      <Widget {...this.props} className={className}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetContent>
           <ScalableImage src={this.props.logoUrl}/>
         </WidgetContent>

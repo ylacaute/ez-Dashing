@@ -1,6 +1,6 @@
 import {create} from "@storybook/theming/create";
 
-import './defaultTheme.css';
+import './defaultTheme.scss';
 
 export default create({
   base: 'dark',

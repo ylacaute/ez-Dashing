@@ -8,6 +8,7 @@ import DateService from "service/date/date-service";
 import {ResponsiveLine} from "@nivo/line";
 import Logger from 'utils/logger';
 import {darkChartTheme} from "style/theme/dark-chart-theme";
+import cn from "classnames";
 
 import "./burndown-chart-widget.scss";
 
@@ -72,7 +73,8 @@ export default class BurndownWidget extends React.PureComponent {
   }
 
   render() {
-    const { sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
+    const { className, sprintStartDate, sprintEndDate, closedIssues, readyIssues } = this.props;
+    const classNames = cn("burndown", className);
     const now = DateService.now();
     const allSprintIssues = closedIssues.concat(readyIssues);
     const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
@@ -90,7 +92,10 @@ export default class BurndownWidget extends React.PureComponent {
     logger.info("velocityData :", velocityData);
 
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader title={this.props.title} />
         <WidgetContent>
           <ResponsiveLine

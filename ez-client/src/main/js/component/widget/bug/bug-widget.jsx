@@ -104,14 +104,18 @@ export default class BugWidget extends React.PureComponent {
   }
 
   render() {
-    const className = cn(
+    const classNames = cn(
+      "bug",
       this.props.className,
       ThresholdConfig.get(this.props.thresholds.bugs, this.getTotal()),
       this.getTotal() === 0 ? "empty" : ""
     );
 
     return (
-      <Widget {...this.props} className={className}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader>
           <strong>{this.getTotal()} </strong>
           <span>{this.props.title}</span>

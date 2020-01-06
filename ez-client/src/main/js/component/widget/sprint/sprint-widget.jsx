@@ -7,6 +7,7 @@ import CircularProgressBar from "component/chart/progress-bar/circular";
 import DateUtils from 'utils/date-utils';
 import DateService from "service/date/date-service";
 import Logger from 'utils/logger';
+import cn from "classnames";
 
 import "./sprint-widget.scss";
 
@@ -33,6 +34,7 @@ export default class SprintWidget extends React.PureComponent {
 
   render() {
     const { className, title, sprintNumber, sprintStartDate, sprintEndDate } = this.props;
+    const classNames = cn("sprint", className);
     const now = DateService.now();
     const sprintDurationInDays = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
@@ -42,7 +44,10 @@ export default class SprintWidget extends React.PureComponent {
       now, sprintEndDate, sprintDurationInDays, progress, daysLeft);
 
     return (
-      <Widget {...this.props} className={className}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader>
           <h1>
             <span>{title}</span>

@@ -4,6 +4,7 @@ import WidgetFooter from "component/widget/base/widget-footer";
 import WidgetContent from "component/widget/base/widget-content";
 import Widget from "component/widget/base/widget";
 import LinearProgressBar from 'component/chart/progress-bar/linear';
+import cn from "classnames";
 
 import "./hello-world-widget.scss";
 
@@ -18,8 +19,13 @@ export default class HelloWorldWidget extends React.PureComponent {
   }
 
   render() {
+    const classNames = cn("hello-world", this.props.className);
+
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader
           title={this.props.title}
         />

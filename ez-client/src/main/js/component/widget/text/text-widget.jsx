@@ -4,6 +4,7 @@ import Widget from "component/widget/base/widget";
 import WidgetContent from "component/widget/base/widget-content";
 import ScalableImage from 'component/scalable/image';
 import TextWidgetEditModal from './text-widget-edit-modal';
+import cn from "classnames";
 
 import "./text-widget.scss";
 
@@ -27,9 +28,15 @@ export default class TextWidget extends React.PureComponent {
   }
 
   render() {
-    const { textType } = this.props;
+    const { className, textType } = this.props;
+    const classNames = cn("text", className);
+
     return (
-      <Widget {...this.props} editModal={this.getEditModal.bind(this)}>
+      <Widget
+        className={classNames}
+        editModal={this.getEditModal.bind(this)}
+        {...this.props}
+      >
         <WidgetContent>
           <div className={this.props.textType}>
             { textType !== "none" &&

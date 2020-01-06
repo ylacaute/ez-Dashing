@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   resolve: {
     modules: [
@@ -12,7 +14,11 @@ module.exports = {
     rules: [
     {
       test: /\.(css|sass|scss)$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
+      use: [
+        "style-loader",
+        "css-loader",
+        "sass-loader"],
+      include: path.resolve(__dirname, '../'),
     },
     {
       test: /\.svg$/,

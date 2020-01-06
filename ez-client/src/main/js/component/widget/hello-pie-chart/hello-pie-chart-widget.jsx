@@ -4,6 +4,7 @@ import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
 import { ResponsivePie } from '@nivo/pie'
 import { darkChartTheme } from "style/theme/dark-chart-theme";
+import cn from "classnames";
 
 const data = [
   {
@@ -31,8 +32,13 @@ const data = [
 export default class HelloPieChartWidget extends React.PureComponent {
 
   render() {
+    const classNames = cn("hello-pie-chart", this.props.className);
+
     return (
-      <Widget {...this.props}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader title={this.props.title} />
         <WidgetContent>
           <ResponsivePie

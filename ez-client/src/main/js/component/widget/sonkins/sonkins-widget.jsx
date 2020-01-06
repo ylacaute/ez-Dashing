@@ -105,7 +105,7 @@ export default class SonkinsWidget extends React.PureComponent {
   render() {
     const { className, author, avatars } = this.props;
     const avatar = AvatarConfig.get(author, avatars);
-    const classNames = cn(className, this.getJenkinsStatus().toLowerCase());
+    const classNames = cn("sonkins", className, this.getJenkinsStatus().toLowerCase());
     let content;
 
     switch (this.getJenkinsStatus()) {
@@ -121,7 +121,10 @@ export default class SonkinsWidget extends React.PureComponent {
         break;
     }
     return (
-      <Widget {...this.props} className={classNames}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader
           title={this.props.title}
           subTitle={this.props.branch}

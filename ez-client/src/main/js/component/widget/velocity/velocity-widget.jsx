@@ -105,13 +105,16 @@ export default class VelocityWidget extends React.PureComponent {
   }
 
   render() {
-    const className = cn(this.props.className);
+    const classNames = cn("velocity", this.props.className);
     const velocityAverage  = ArrayUtils.computeAverage(
       this.props.velocityHistory,
       this.props.valueCountForAverage);
 
     return (
-      <Widget {...this.props} className={className}>
+      <Widget
+        className={classNames}
+        {...this.props}
+      >
         <WidgetHeader
           title={this.props.title}
         />
