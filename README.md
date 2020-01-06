@@ -145,13 +145,17 @@ You can define a server configuration file [application.yml](/config/local/appli
 - [x] __SonkinsWidget__ (Jenkins + Sonar metrics)
 - [x] __SprintWidget__ (current sprint status)
 - [x] __BurndownChartWidget__ (graphical scrum burndown chart)
-- [x] __VelocityWidget__ (team velocity average on last sprints, update config at end of sprint)
-- [x] __ReliabilityWidget__ (team reliability average on last sprints, update config at end of sprint)
+- [x] __VelocityWidget__ (team velocity average on last sprints, need to debug)
+- [x] __ReliabilityWidget__ (team reliability average on last sprints, need to debug)
 - [x] __TeamWidget__ (name and logo)
 - [x] __TextWidget__ (editable text, update server config)
 - [x] __MoodWidget__ (editable team mood)
-- [ ] __AudioPlayerWidget__ (WIP, client side ok, todo: shared server folder)
+- [x] __HelloBarChart__ (example widget)
+- [x] __HelloPieChart__ (example widget)
+- [x] __HelloLineChart__ (example widget)
+- [ ] __OpenshiftWidget__ (POD in error in a given env)
 - [ ] __HipTestWidget__ (test-run report)
+- [ ] __AudioPlayerWidget__ (WIP, client side ok, todo: shared server folder)
 - [ ] __PullRequestWidget__ (Gitlab)
 - [ ] __PullRequestWidget__ (Github)
 - [ ] __MediaWidget__ (Insert images, videos, sounds)
@@ -165,23 +169,21 @@ You can define a server configuration file [application.yml](/config/local/appli
 - [x] __Dashing theme__ add a dashing-like theme, even if ugly
 - [x] __Add Jenkins pipeline__ build on commit, front + back tests, push docker images 
 - [x] __Release management__ release 1.0.0 is out !
+- [x] __Improve WidgetFactory__ type declaration should be automatic 
+- [x] __Improve unit tests__
+- [ ] __Add documentation__ **WIP**
 - [ ] __OpenShift__ pipeline + dedicated podTemplate + deploymentConfig
 - [ ] __Better logging__ front & back
-- [ ] __Add documentation__ 
 - [ ] __Improve Startup__ break the "startup" state tree
 - [ ] __DataSource Template__ dataSources should allow variables (not only global)
-- [ ] __Improve WidgetFactory__ type declaration should be automatic 
-- [ ] __Improve unit tests__
 - [ ] __Improve RestClient__ improve error management
-- [ ] __Fix React warning__  wrong way for minify/uglify for prod
 - [ ] __Improve Sonkins Widget__ sonar metrics should be parameterizable
 - [ ] __Dynamic widget__ ideally, make pure json configurable widget !
-- [ ] __Use WebSockets__ instead of reloading config periodically, but do we really need that ?
 
 ## Build the application
 
 ### Requirements
- - Node 7
+ - Node 12
  - Java 8
  - Maven 3
 
