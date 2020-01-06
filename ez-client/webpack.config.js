@@ -14,13 +14,6 @@ const RESOURCES_DIR = SRC_DIR + "/resources";
 const TEMPLATE_DIR = SRC_DIR + "/template";
 const LIB_DIR = 'node_modules';
 
-// blackTheme: "./js/style/theme/black.scss",
-// darkBlueTheme: "./js/style/theme/darkBlue.scss",
-// dashingTheme: "./js/style/theme/dashing.scss",
-// defaultTheme: "./js/style/theme/default.scss",
-// neonTheme: "./js/style/theme/neon.scss",
-// snowTheme: "./js/style/theme/snow.scss"
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Common Webpack configuration for production or development
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,11 +52,7 @@ let commonConfig = {
   },
 
   optimization: {
-    namedChunks: true,
-    splitChunks: {
-      // Default is 30000 (30Ko), increase it to 500Ko
-      minSize: 5000,
-    }
+    namedChunks: true
   },
 
   // Plugins extensions
@@ -80,8 +69,6 @@ let commonConfig = {
     //new webpack.HotModuleReplacementPlugin(),
 
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // all options are optional
       filename: "css/[name].css",
       chunkFilename: 'css/[name].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
@@ -116,8 +103,7 @@ let commonConfig = {
               "@babel/preset-react" ],
             plugins: [
               //"react-hot-loader/babel",      // react hot reload
-              // "syntax-dynamic-import",
-              "@babel/syntax-dynamic-import",
+              "@babel/syntax-dynamic-import", // used to transform import() in promise
               "@babel/plugin-proposal-class-properties",  // static
               // "@babel/plugin-proposal-export-default-from",
               // "@babel/plugin-transform-runtime",
