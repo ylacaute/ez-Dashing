@@ -286,3 +286,5 @@ __ez-Dashing__ is licensed under the [Apache 2 license](/LICENSE).
 ![Screenshot](/doc/img/screenshot4.png)
 
 ![Screenshot](/doc/img/screenshot5.png)
+
+![Screenshot](/doc/img/screenshot6.png)
