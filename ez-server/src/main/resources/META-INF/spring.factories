@@ -1,2 +1,2 @@
 # Custom Failure Analyzer
-org.springframework.boot.diagnostics.FailureAnalyzer=com.thorpora.ezdashing.core.StartupFailureAnalyzer
+org.springframework.boot.diagnostics.FailureAnalyzer=com.thorpora.ezdashing.AppStartupFailureAnalyzer

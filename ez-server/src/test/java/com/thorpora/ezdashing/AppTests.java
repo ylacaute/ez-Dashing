@@ -1,6 +1,6 @@
 package com.thorpora.ezdashing;
 
-import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
+import com.thorpora.ezdashing.dashboard.model.Dashboard;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,10 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-class EzDashingApplicationTests {
+class AppTests {
 
 	@Autowired
-	private DashboardConfiguration dashboardConfig;
+	private Dashboard dashboardConfig;
 
 	@Test
 	void contextLoads() {

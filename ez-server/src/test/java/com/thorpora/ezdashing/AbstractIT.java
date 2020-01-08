@@ -1,4 +1,4 @@
-package com.thorpora.ezdashing.dashboard;
+package com.thorpora.ezdashing;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.extension.ExtendWith;

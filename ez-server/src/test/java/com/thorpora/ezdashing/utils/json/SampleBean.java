@@ -1,4 +1,4 @@
-package com.thorpora.ezdashing.utils;
+package com.thorpora.ezdashing.utils.json;
 
 import lombok.Getter;
 import lombok.Setter;

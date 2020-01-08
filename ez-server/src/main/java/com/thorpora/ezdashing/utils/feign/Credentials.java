@@ -1,10 +1,7 @@
-package com.thorpora.ezdashing.dashboard.model;
+package com.thorpora.ezdashing.utils.feign;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -15,10 +12,12 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DataSourceQuery {
+public class Credentials {
 
-  String id;
+  @NonNull
+  String userName;
 
-  String path;
+  @NonNull
+  String password;
 
 }

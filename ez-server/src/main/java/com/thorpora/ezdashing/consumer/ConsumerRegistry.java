@@ -1,57 +1,51 @@
-/**
- * Created by Yannick Lacaute on 17/06/17.
- * Copyright 2015-2016 the original author or authors.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.thorpora.ezdashing.consumer;
 
 
-import com.thorpora.ezdashing.dashboard.model.DashboardConfiguration;
+import com.thorpora.ezdashing.dashboard.model.Dashboard;
 import com.thorpora.ezdashing.dashboard.model.DataSource;
 import com.thorpora.ezdashing.dashboard.model.DataSourceQuery;
-import com.thorpora.ezdashing.exception.ConsumerException;
+import com.thorpora.ezdashing.exception.QueryConfigNotFound;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Optional;
 
+@Slf4j
+@AllArgsConstructor
 public class ConsumerRegistry {
 
-    private HashMap<String, Consumer> consumers = new HashMap<>();
-    private DashboardConfiguration dashboardProperties;
+    private ConsumerFactory consumerFactory;
+    private HashMap<String, Consumer> consumers;
+    private Dashboard dashboard;
 
-    public ConsumerRegistry(DashboardConfiguration dashboardProperties) {
-        this.dashboardProperties = dashboardProperties;
-    }
-
+    /**
+     * Return the registered consumer for the given queryId.
+     * If no consumer is registered for this query, register it on the fly on return it.
+     * All queries of the of the same dataSource share the same consumer.
+     */
     public Consumer getConsumer(String queryId) {
         Consumer consumer = consumers.get(queryId);
         if (consumer == null) {
+            log.debug("Registering a new consumer for queryId={}", queryId);
             consumer = register(queryId);
+        } else {
+            log.debug("Consumer found for queryId={}", queryId);
         }
         return consumer;
     }
 
     /**
-     * We register the same consumer for all queries of a DataSource
+     * Create a new registered consumer for the given queryId.
+     * All queries of the of the same dataSource share the same consumer.
      */
     public Consumer register(String queryId) {
-        Optional<DataSource> dataSource = dashboardProperties.getDataSource(queryId);
+        Optional<DataSource> dataSource = dashboard.getDataSourceByQueryId(queryId);
         if (!dataSource.isPresent()) {
-            throw new ConsumerException("consumer " + queryId + " doesn't exist in dashboard.json");
+            throw new QueryConfigNotFound("queryId " + queryId + " doesn't exist in dashboard.json");
         }
         DataSource ds = dataSource.get();
-        Consumer consumer = new Consumer(dashboardProperties, ds);
+        Consumer consumer = consumerFactory.create(dashboard.getEnv(), ds);
 
         for (DataSourceQuery query : ds.getQueries()) {
             consumers.put(query.getId(), consumer);

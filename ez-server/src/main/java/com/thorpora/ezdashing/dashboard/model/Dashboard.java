@@ -1,19 +1,3 @@
-/**
- * Created by Yannick Lacaute on 17/05/17.
- * Copyright 2015-2016 the original author or authors.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.thorpora.ezdashing.dashboard.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -22,46 +6,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thorpora.ezdashing.exception.InvalidServerConfigurationException;
-import com.thorpora.ezdashing.utils.JsonUtils;
-import lombok.Getter;
-import lombok.Setter;
+import com.thorpora.ezdashing.utils.json.JsonUtils;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.thorpora.ezdashing.utils.FailFast.requireTrue;
-import static com.thorpora.ezdashing.utils.JsonUtils.*;
+import static com.thorpora.ezdashing.utils.assertutils.FailFast.requireTrue;
+import static com.thorpora.ezdashing.utils.json.JsonUtils.readValue;
+import static com.thorpora.ezdashing.utils.json.JsonUtils.toJson;
 import static java.util.stream.StreamSupport.stream;
 import static lombok.AccessLevel.PRIVATE;
 
+/**
+ * The dashboard is mutable
+ */
 @Slf4j
+@Data
 @FieldDefaults(level = PRIVATE)
-@Getter
-@Setter
-public class DashboardConfiguration {
+@AllArgsConstructor
+public class Dashboard {
 
-  File file;
   JsonNode rootNode;
 
-  public DashboardConfiguration(File file) {
-    this.rootNode = readValue(file, JsonNode.class);
-    this.file = file;
-  }
-
-  public void save() {
-    writeValue(file, rootNode);
-  }
-
-  public void save(File file) {
-    writeValue(file, rootNode);
-  }
-
-  public String getAsString() {
+  public String asJson() {
     return toJson(rootNode);
   }
 
@@ -80,7 +53,7 @@ public class DashboardConfiguration {
             .collect(Collectors.toList());
   }
 
-  public Optional<DataSource> getDataSource(String queryId) {
+  public Optional<DataSource> getDataSourceByQueryId(String queryId) {
     for (DataSource ds : getDataSources()) {
       if (ds.getQueries().stream().anyMatch(q -> queryId.equals(q.getId()))) {
         return Optional.of(ds);
@@ -102,7 +75,8 @@ public class DashboardConfiguration {
     }
     throw new InvalidServerConfigurationException(String
             .format("Unable to update widgetId=%s because not found in configuration. " +
-                    "In order to edit a widget, you must explicitly set an unique id in the dashboard.json configuration file.", widgetId));
+                    "In order to edit a widget, you must explicitly set an unique id in " +
+                    "the dashboard.json configuration file.", widgetId));
   }
 
   public void updateGridLayout(Map<String, Object> fields) {

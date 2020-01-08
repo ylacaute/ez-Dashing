@@ -1,5 +1,6 @@
 package com.thorpora.ezdashing.dashboard;
 
+import com.thorpora.ezdashing.AbstractIT;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

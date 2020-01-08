@@ -6,9 +6,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @EnableConfigurationProperties
 @SpringBootApplication
-public class EzDashingApplication {
+public class App {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EzDashingApplication.class, args);
+		SpringApplication.run(App.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package com.thorpora.ezdashing.utils;
+package com.thorpora.ezdashing.utils.json;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -13,9 +13,9 @@ import java.util.Map;
 
 import static com.thorpora.ezdashing.TestTag.ADVANCED_UNIT_TEST;
 import static com.thorpora.ezdashing.TestTag.BASE_UNIT_TEST;
-import static com.thorpora.ezdashing.utils.JsonUtils.*;
-import static com.thorpora.ezdashing.utils.PatchOperation.INSERT_OR_ADD;
-import static com.thorpora.ezdashing.utils.PatchOperation.INSERT_OR_REPLACE;
+import static com.thorpora.ezdashing.utils.json.JsonUtils.*;
+import static com.thorpora.ezdashing.utils.json.PatchOperation.INSERT_OR_ADD;
+import static com.thorpora.ezdashing.utils.json.PatchOperation.INSERT_OR_REPLACE;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 

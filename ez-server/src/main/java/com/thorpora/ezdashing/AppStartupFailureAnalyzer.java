@@ -1,4 +1,4 @@
-package com.thorpora.ezdashing.core;
+package com.thorpora.ezdashing;
 
 import com.thorpora.ezdashing.exception.ApplicationException;
 import com.thorpora.ezdashing.exception.DashboardConfigNotFound;
@@ -9,7 +9,7 @@ import org.springframework.boot.diagnostics.FailureAnalysis;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class StartupFailureAnalyzer extends AbstractFailureAnalyzer<ApplicationException> {
+public class AppStartupFailureAnalyzer extends AbstractFailureAnalyzer<ApplicationException> {
 
     @Override
     protected FailureAnalysis analyze(Throwable throwable, ApplicationException cause) {
