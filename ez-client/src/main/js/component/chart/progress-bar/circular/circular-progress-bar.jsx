@@ -21,19 +21,15 @@ export default class CircularProgressBar extends React.PureComponent {
     label: '',
     value: 0,
     strokeWidth: 3,
-    initialAnimation: true,
     classForValue: (value, displayValue) => '',
     textForValue: (value) => `${value}`,
     displayValue: null,
     displayValueStyle: {}
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.initialAnimation ? 0 : props.value,
-    };
-  }
+  state = {
+    value: 0
+  };
 
   static getDerivedStateFromProps(props, state) {
     const {
@@ -47,6 +43,7 @@ export default class CircularProgressBar extends React.PureComponent {
     } = props;
     const radius = 50 - strokeWidth / 2;
     const diameter = Math.PI * 2 * radius;
+
     return {
       className: cn("progress-bar circular", className, classForValue(value, displayValue)),
       strokeWidth: strokeWidth,
@@ -67,20 +64,15 @@ export default class CircularProgressBar extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.initialAnimation) {
-      this.initialTimeout = setTimeout(() => {
-        this.requestAnimationFrame = window.requestAnimationFrame(() => {
-          this.setState({
-            value: this.props.value,
-          });
-        });
-      }, 200);
-    }
+    this.initialTimeout = setTimeout(() => {
+      this.setState({
+        value: this.props.value,
+      });
+    }, 200);
   }
 
   componentWillUnmount() {
     clearTimeout(this.initialTimeout);
-    window.cancelAnimationFrame(this.requestAnimationFrame);
   }
 
   render() {
