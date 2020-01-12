@@ -32,21 +32,38 @@ export default class SprintWidget extends React.PureComponent {
     sprintEndDate: DateService.now(),
   };
 
-  render() {
-    const {className, title, sprintNumber, sprintStartDate, sprintEndDate} = this.props;
-    const classNames = cn("sprint", className);
+  state = {
+    className: "",
+    progress: 0,
+    daysLeft: 0
+  };
+
+  static getDerivedStateFromProps(props) {
+    const {className, sprintStartDate, sprintEndDate} = props;
     const now = DateService.now();
     const sprintDurationInDays = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
     const progress = daysLeft === 0 ? 100 : daysLeft / sprintDurationInDays * 100;
-    logger.debug("Spring widget: " +
+
+    logger.warn("Spring widget: " +
       "now={}, sprintEndDate={}, sprintDurationInDays={}, progress={}, daysLeft={}",
       now, sprintEndDate, sprintDurationInDays, progress, daysLeft);
 
+    return {
+      className: cn("sprint", className),
+      progress: progress,
+      daysLeft: daysLeft,
+    }
+  }
+
+  render() {
+    const {title, sprintNumber} = this.props;
+    const {progress, daysLeft} = this.state;
+
     return (
       <Widget
-        className={classNames}
         {...this.props}
+        {...this.state}
       >
         <WidgetHeader>
           <h1>
@@ -56,7 +73,8 @@ export default class SprintWidget extends React.PureComponent {
         </WidgetHeader>
         <WidgetContent>
           <CircularProgressBar
-            value={progress}
+            value={100 - progress}
+            displayValue={daysLeft}
             label="days left"/>
         </WidgetContent>
       </Widget>
