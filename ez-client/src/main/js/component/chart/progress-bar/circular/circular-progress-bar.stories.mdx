@@ -1,0 +1,111 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import CircularProgressBar from "./circular-progress-bar";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Chart/ProgressBar/CircularProgressBar" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/chart/progress-bar/circular/circular-progress-bar.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-chart-progress-bar-circular-circular-progress-bar--default-story" />
+
+
+# CircularProgressBar
+
+## Props
+ 
+<Props of={CircularProgressBar} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+      layout: "widget"
+    }}>
+    <CircularProgressBar/>
+  </Story>
+</Preview>
+
+### Default (100%)
+
+<Preview>
+  <Story
+    name="default-100"
+    parameters={{
+      layout: "widget"
+    }}>
+    <CircularProgressBar value="100"/>
+  </Story>
+</Preview>
+
+### Custom renderer
+
+<Preview>
+  <Story
+    name="custom renderer"
+    parameters={{
+      layout: "widget"
+    }}>
+    <CircularProgressBar
+     value="100"
+     textForValue={(v) => `${v}%`}/>
+  </Story>
+</Preview>
+
+
+### Custom renderer
+
+<Preview>
+  <Story
+    name="with label"
+    parameters={{
+      layout: "widget"
+    }}>
+    <CircularProgressBar
+     value="30"
+     label="days left"/>
+  </Story>
+</Preview>
+
+### Override displayed value
+
+<Preview>
+  <Story
+    name="Override displayed value"
+    parameters={{
+      layout: "widget"
+    }}>
+    <CircularProgressBar
+      value="60"
+      displayValue="Some text"
+      displayValueStyle={{fontSize: "1.5rem"}}
+    />
+  </Story>
+</Preview>
+
+### Class for value
+
+<Preview>
+  <Story
+    name="Class for value"
+    parameters={{
+      layout: "widget",
+      info: [
+        "If you inspect the component, you will see your custom CSS class 'myClass'"
+      ]
+    }}>
+    <CircularProgressBar
+      value="60"
+      classForValue={(v) => "myClass"}
+    />
+  </Story>
+</Preview>
+

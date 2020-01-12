@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from "classnames";
 
 import "./circular-progress-bar.scss"
 
@@ -12,7 +13,8 @@ export default class CircularProgressBar extends React.PureComponent {
     initialAnimation: PropTypes.bool,
     classForValue: PropTypes.func,
     textForValue: PropTypes.func,
-    displayValue: PropTypes.number
+    displayValue: PropTypes.number,
+    displayValueStyle: PropTypes.any,
   };
 
   static defaultProps = {
@@ -22,7 +24,8 @@ export default class CircularProgressBar extends React.PureComponent {
     initialAnimation: true,
     classForValue: (value, displayValue) => '',
     textForValue: (value) => `${value}`,
-    displayValue: null
+    displayValue: null,
+    displayValueStyle: {}
   };
 
   constructor(props) {
@@ -33,8 +36,33 @@ export default class CircularProgressBar extends React.PureComponent {
   }
 
   static getDerivedStateFromProps(props, state) {
+    const {
+      className,
+      classForValue,
+      value,
+      displayValue,
+      strokeWidth,
+      textForValue,
+      label
+    } = props;
+    const radius = 50 - strokeWidth / 2;
+    const diameter = Math.PI * 2 * radius;
     return {
-      value: props.value,
+      className: cn("progress-bar circular", className, classForValue(value, displayValue)),
+      strokeWidth: strokeWidth,
+      radius: radius,
+      diameter: diameter,
+      progressStyle: {
+        strokeDasharray: `${diameter}px ${diameter}px`,
+        strokeDashoffset: `${((100 - state.value) / 100 * diameter)}px`,
+      },
+      pathDescription: `
+        M 50,50 m 0,-${radius}
+        a ${radius},${radius} 0 1 1 0,${2 * radius}
+        a ${radius},${radius} 0 1 1 0,-${2 * radius}
+      `,
+      displayValue: displayValue || textForValue(value),
+      displayValueY: (label && label !== '') ? 45 : 53
     };
   }
 
@@ -56,43 +84,35 @@ export default class CircularProgressBar extends React.PureComponent {
   }
 
   render() {
-    const classNames = `progress-bar circular ${this.props.className} 
-      ${this.props.classForValue(this.props.value, this.props.displayValue)}`;
-    const largerStrokeWidth = this.props.strokeWidth + 1.2;
-    const radius = (50 - largerStrokeWidth / 2);
-    const diameter = Math.PI * 2 * radius;
-    const progressStyle = {
-      strokeDasharray: `${diameter}px ${diameter}px`,
-      strokeDashoffset: `${((100 - this.state.value) / 100 * diameter)}px`,
-    };
-    const pathDescription = `
-      M 50,50 m 0,-${radius}
-      a ${radius},${radius} 0 1 1 0,${2 * radius}
-      a ${radius},${radius} 0 1 1 0,-${2 * radius}
-    `;
-    const displayValue = this.props.displayValue != null ? this.props.displayValue
-      : this.props.textForValue(this.state.value);
-    const displayValueY = (this.props.label && this.props.label !== '') ? 45 : 53;
+    const {label, displayValueStyle} = this.props;
+    const {
+      className,
+      strokeWidth,
+      pathDescription,
+      progressStyle,
+      displayValue,
+      displayValueY
+    } = this.state;
 
     return (
       <div className="progress-bar-wrapper">
-        <svg className={classNames} width="100%" viewBox="0 0 100 100">
+        <svg className={className} width="100%" viewBox="0 0 100 100">
           <path
             className="trail"
             d={pathDescription}
-            strokeWidth={this.props.strokeWidth}
+            strokeWidth={strokeWidth}
             fillOpacity={0}/>
           <path
             className="path"
             d={pathDescription}
-            strokeWidth={largerStrokeWidth}
+            strokeWidth={strokeWidth}
             fillOpacity={0}
             style={progressStyle}/>
-          <text className="display-value" x={50} y={displayValueY}>
+          <text className="display-value" x={50} y={displayValueY} style={displayValueStyle}>
             {displayValue}
           </text>
           <text className="label" x={50} y={70}>
-            {this.props.label}
+            {label}
           </text>
         </svg>
       </div>
