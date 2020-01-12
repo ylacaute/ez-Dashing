@@ -1,0 +1,38 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import ScalableImage from "./scalable-image";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Range/ScalableImage" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/scalable/image/scalable-image.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-scalable-image-scalable-image--default-story" />
+
+
+# ScalableImage
+
+## Props
+ 
+<Props of={ScalableImage} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+      layout: "widget",
+      info: [ "The image always take the maximum place keeping its original ratio." ]
+    }}>
+    <ScalableImage src="img/tech/ezLogo_512.png" />
+  </Story>
+</Preview>
+
+

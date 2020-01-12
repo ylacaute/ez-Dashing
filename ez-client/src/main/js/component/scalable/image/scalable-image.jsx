@@ -1,16 +1,23 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import cn from "classnames";
 
 import "./scalable-image.scss";
 
 export default class ScalableImage extends React.PureComponent {
 
   static propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    src: PropTypes.string
   };
 
   static defaultProps = {
-    className: ""
+    className: "",
+    src: null
+  };
+
+  state = {
+    imgStyle: {}
   };
 
   wrapperBaseStyle = {
@@ -27,14 +34,22 @@ export default class ScalableImage extends React.PureComponent {
     backgroundPosition: "50% 50%"
   };
 
+  static getDerivedStateFromProps(props) {
+    return {
+      className: cn(props.className),
+      imgStyle: !props.src ? {} : {
+        backgroundImage: `url(${props.src})`
+      }
+    }
+  };
+
   render() {
-    let imgStyle = !this.props.src ? {} : {
-      backgroundImage: `url(${this.props.src})`
-    };
+    const {className, imgStyle} = this.state;
+
     return (
       <div className="scalable-image-wrapper">
         <div
-          className={this.props.className}
+          className={className}
           style={imgStyle}
         />
       </div>
