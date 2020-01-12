@@ -4,6 +4,9 @@
 /* LINEAR PROGRESS BAR
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+$color-progress-bar-trail: #aaa !default;
+$color-progress-bar-path: #eee !default;
+
 .linear.progress-bar {
   position: relative;
   width: 100%;

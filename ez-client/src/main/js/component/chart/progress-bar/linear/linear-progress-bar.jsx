@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cn from "classnames";
 
 import "./linear-progress-bar.scss"
 
@@ -7,36 +8,37 @@ export default class LinearProgressBar extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
-    percent: PropTypes.number.isRequired
+    value: PropTypes.number.isRequired
   };
 
   static defaultProps = {
     className: "",
-    percent: 0
+    value: 0
   };
 
   state = {
-    percent: this.props.percent
+    className: "",
+    value: 0,
+    style: {}
   };
 
-  componentDidMount() {
-    this.updateState(this.props);
-  };
-
-  updateState() {
-    this.setState({
-      percent: this.props.percent
-    });
-  };
+  static getDerivedStateFromProps(props) {
+    const {value, className} = props;
+    const normalizedValue = value < 0 ? 0 : value > 100 ? 100 : value;
+    return {
+      className: cn("progress-bar linear trail", className),
+      value: normalizedValue,
+      style: {
+        width: `${normalizedValue}%`
+      }
+    }
+  }
 
   render() {
-    let {percent} = this.state;
-    percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
-    const style = {
-      width: `${percent}%`
-    };
+    const {className, style} = this.state;
+
     return (
-      <div className={"progress-bar linear trail " + this.props.className}>
+      <div className={className}>
         <div className="path" style={style}/>
         <div className="trail"/>
       </div>

@@ -1,0 +1,47 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import LinearProgressBar from "./linear-progress-bar";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Chart/ProgressBar/LinearProgressBar" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/chart/progress-bar/linear/linear-progress-bar.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-chart-progress-bar-linear-linear-progress-bar--default-story" />
+
+
+# LinearProgressBar
+
+## Props
+ 
+<Props of={LinearProgressBar} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+      layout: "widget"
+    }}>
+    <LinearProgressBar />
+  </Story>
+</Preview>
+
+### Default (80%)
+
+<Preview>
+  <Story
+    name="default-80"
+    parameters={{
+      layout: "widget"
+    }}>
+    <LinearProgressBar value={80} />
+  </Story>
+</Preview>
