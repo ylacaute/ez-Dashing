@@ -32,14 +32,24 @@ class AudioControls extends React.PureComponent {
     controls: []
   };
 
+  state = {
+    className: "",
+    items: []
+  };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      className: cn("audio-controls", props.className),
+      items: props.controls.map((item, idx) => <AudioButton key={idx} {...item} />)
+    };
+  }
+
   render() {
-    const {className, controls, children} = this.props;
-    const classNames = cn("audio-controls", className);
-    const items = controls.map((item, idx) => (
-      <AudioButton key={idx} {...item} />
-    ));
+    const {children} = this.props;
+    const {className, items} = this.state;
+
     return (
-      <div className={classNames}>
+      <div className={className}>
         {items}
         {children}
       </div>

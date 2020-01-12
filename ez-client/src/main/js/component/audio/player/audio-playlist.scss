@@ -1,4 +1,6 @@
 
+$color-audio-playlist-item: #eee !default;
+
 .audio-playlist {
   display: flex;
   flex-direction: column;
@@ -14,7 +16,7 @@
     padding: 5px;
     min-height: 30px;
     cursor: pointer;
-
+    color: $color-audio-playlist-item;
     &.selected {
       font-weight: bold;
     }

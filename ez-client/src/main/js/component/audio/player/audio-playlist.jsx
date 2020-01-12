@@ -32,11 +32,20 @@ class AudioPlaylist extends React.PureComponent {
     selectedIndex: -1
   };
 
-  state = {};
+  state = {
+    classname: ""
+  };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      className: cn("audio-playlist", props.className, props.hidden),
+    };
+  }
 
   render() {
-    const {className, files, selectedIndex, handleItemDoubleClick, hidden} = this.props;
-    const classNames = cn("audio-playlist", className, {hidden});
+    const {files, selectedIndex, handleItemDoubleClick} = this.props;
+    const {className} = this.state;
+
     const items = files.map((item, idx) => (
       <PlaylistItem
         key={idx}
@@ -48,7 +57,7 @@ class AudioPlaylist extends React.PureComponent {
     ));
 
     return (
-      <div className={classNames}>
+      <div className={className}>
         {items}
       </div>
     )

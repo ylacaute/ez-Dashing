@@ -74,6 +74,12 @@ class AudioPlayer extends React.PureComponent {
     this.handleAudioEnded = this.handleAudioEnded.bind(this);
   }
 
+  static getDerivedStateFromProps(props) {
+    return {
+      className: cn("audio-player", props.className),
+    };
+  }
+
   getAudioRef() {
     return this.audio.current;
   }
@@ -348,15 +354,14 @@ class AudioPlayer extends React.PureComponent {
 
   render() {
     const {files, playing, playingSrc, playingIndex, currentTime, duration, volume, options} = this.state;
-    const {className} = this.props;
-    const classNames = cn("audio-player", className);
+    const {className} = this.state;
     const formattedTime = this.formatTime(currentTime);
     const formattedDuration = this.formatTime(duration);
     const progressMaxValue = isNaN(duration) || duration === 0 ? 1 : duration;
     const rangeDisabled = files.length === 0;
 
     return (
-      <div className={classNames}>
+      <div className={className}>
         <audio
           src={playingSrc}
           ref={this.audio}

@@ -1,0 +1,34 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import AudioPlayer from "./audio-player";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Audio/AudioPlayer" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/audio/player/audio-player.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-audio-player-audio-player--default-story" />
+
+
+# AudioPlayer
+
+## Props
+ 
+<Props of={AudioPlayer} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+    }}>
+    <AudioPlayer/>
+  </Story>
+</Preview>
