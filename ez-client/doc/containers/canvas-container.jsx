@@ -41,7 +41,7 @@ export function CanvasContainer({story, context}) {
         {story}
       </div>
       {layout === "widget" &&
-        <p>This widget is wrapped in a 200x200px container.</p>
+        <p>This component is wrapped in a 200x200px container.</p>
       }
       <p>{infoMsg}</p>
       <p>{knobsMsg}</p>
