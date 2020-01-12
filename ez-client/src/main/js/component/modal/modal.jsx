@@ -21,7 +21,10 @@ class Modal extends React.PureComponent {
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
     errorMessage: PropTypes.string,
-    modalType: PropTypes.PropTypes.oneOf([ModalType.Ok, ModalType.OkCancel])
+    modalType: PropTypes.PropTypes.oneOf([
+      ModalType.Ok,
+      ModalType.OkCancel
+    ])
   };
 
   static defaultProps = {
@@ -48,12 +51,15 @@ class Modal extends React.PureComponent {
   }
 
   renderFooter() {
-    let okBtn = <button onClick={this.onOk.bind(this)} type="submit" type="primary">OK</button>;
+    let okBtn = <button onClick={this.onOk.bind(this)} type="submit">OK</button>;
     let cancelBtn = null;
 
     switch (this.props.modalType) {
+      case ModalType.Ok:
       case ModalType.OkCancel:
         cancelBtn = <button onClick={this.onCancel.bind(this)}>CANCEL</button>;
+        break;
+      default:
     }
     return (
       <div>
