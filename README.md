@@ -244,6 +244,15 @@ mvn package -P prod
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.config.additional-location=<YOUR_CONFIG_LOCATION>"
 ```
 
+### Code style
+
+For frontend development, this project use the AirBnb code style with few changes:
+- no spaces on braces for import and object destructuring
+- allow empty objects `{}` in a single line
+- try catch: no new line on catch
+
+You can use the [.editorconfig](/ez-client/.editorconfig) or the [CodingStyle.xml](/doc/CodingStyle.xml) in this project.
+
 # FAQ
 
 __Error:__ Application does not start

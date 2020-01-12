@@ -57,7 +57,9 @@ export default class GridLayoutService {
   }
 
   onGridLayoutChange(action) {
-    localStorage.setItem(GridLayoutService.getLSKey(this.dashboardConfig), JSON.stringify(action.payload.allLayouts));
+    localStorage.setItem(
+      GridLayoutService.getLSKey(this.dashboardConfig),
+      JSON.stringify(action.payload.allLayouts));
   }
 
   // FIXME

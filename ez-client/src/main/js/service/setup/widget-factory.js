@@ -45,10 +45,10 @@ export default class WidgetFactory {
    */
   static createAllWidgets(dashboardConfig, dispatch) {
     return dashboardConfig.widgets
-                          .filter(elt => elt.enabled !== false)
-                          .map((widgetConfig) => {
-                            return WidgetFactory.create(widgetConfig, dispatch);
-                          });
+      .filter(elt => elt.enabled !== false)
+      .map((widgetConfig) => {
+        return WidgetFactory.create(widgetConfig, dispatch);
+      });
   }
 
 }

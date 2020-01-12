@@ -70,7 +70,8 @@ class Modal extends React.PureComponent {
   }
 
   renderContent() {
-    logger.warn("You display a modal window without content: you must override renderContent() function.");
+    logger.warn(
+      "You display a modal window without content: you must override renderContent() function.");
   }
 
   render() {

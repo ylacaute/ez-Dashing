@@ -63,7 +63,12 @@ let jsonFetch = (path, options, callback, errorCallback) => {
     ...options
   })
     .then((response) => parseJsonResponse(response))
-    .then(({response, jsonResponse}) => handleHTTPResponse(requestId, response, options, path, jsonResponse))
+    .then(({response, jsonResponse}) => handleHTTPResponse(
+      requestId,
+      response,
+      options,
+      path,
+      jsonResponse))
     .then(callback)
     .catch(error => handleHTTPError(error, errorCallback));
 };

@@ -77,7 +77,11 @@ export default class BurndownWidget extends React.PureComponent {
     const classNames = cn("burndown", className);
     const now = DateService.now();
     const allSprintIssues = closedIssues.concat(readyIssues);
-    const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
+    const velocity = VelocityCalculator.calculate(
+      now,
+      sprintStartDate,
+      sprintEndDate,
+      allSprintIssues);
     const velocityData = [{
       "id": "Planned Velocity",
       "color": "white",

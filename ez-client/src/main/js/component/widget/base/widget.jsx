@@ -138,7 +138,9 @@ export default class Widget extends React.PureComponent {
   handleEditClick() {
     const {id, editModal, showModal} = this.props;
     if (!editModal) {
-      logger.error("The Widget id={} is mark as editable but the func editModal has not been defined.", id);
+      logger.error(
+        "The Widget id={} is mark as editable but the func editModal has not been defined.",
+        id);
     } else {
       showModal(editModal());
     }

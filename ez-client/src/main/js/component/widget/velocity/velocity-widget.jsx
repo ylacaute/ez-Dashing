@@ -64,7 +64,11 @@ export default class VelocityWidget extends React.PureComponent {
   }
 
   computeVelocity(now, sprintStartDate, sprintEndDate, allSprintIssues) {
-    const velocity = VelocityCalculator.calculate(now, sprintStartDate, sprintEndDate, allSprintIssues);
+    const velocity = VelocityCalculator.calculate(
+      now,
+      sprintStartDate,
+      sprintEndDate,
+      allSprintIssues);
     return {
       currentVelocity: velocity.currentVelocity[velocity.currentVelocity.length - 1].storyPoints,
       plannedVelocity: velocity.plannedVelocity[0].storyPoints,

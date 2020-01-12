@@ -157,7 +157,9 @@ export default class DatasourceService {
         // We found a dataSource which contains a dependency equals to the refreshed dataSource
         ds.queryParams = {};
         dsDependency.params.forEach(param => ds.queryParams[param] = action.payload[param]);
-        logger.debug("Refreshing the dataSource {} with a dependency, with params:", ds.id, ds.queryParams);
+        logger.debug("Refreshing the dataSource {} with a dependency, with params:",
+          ds.id,
+          ds.queryParams);
         this.refreshDataSource(ds);
       }
     });
