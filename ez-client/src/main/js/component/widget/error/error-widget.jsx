@@ -11,6 +11,7 @@ export default class ErrorWidget extends React.PureComponent {
 
   static propTypes = {
     //...Widget.propTypes, // FIXME: Why we can't do that ?
+    classname: PropTypes.string,
     error: PropTypes.any,
     errorInfo: PropTypes.any
   };
@@ -20,18 +21,36 @@ export default class ErrorWidget extends React.PureComponent {
     errorInfo: null
   };
 
+  state = {
+    classname: "",
+    title: "",
+    componentStack: ""
+  };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      className: cn("error", props.className),
+      title: props.title ? props.title : "Error widget",
+      error: props.error ? props.error.toString : "Unknown error",
+      componentStack: props.errorInfo
+        ? props.errorInfo.componentStack
+          ? props.errorInfo.componentStack
+          : props.errorInfo
+        : "no stack to display"
+    };
+  }
+
   render() {
-    const {className, id, title, error, errorInfo} = this.props;
-    const classNames = cn("error", className);
-    const displayedTitle = title ? title : "Error widget";
+    const {id, error} = this.props;
+    const {title, componentStack} = this.state;
 
     return (
       <Widget
-        className={classNames}
         editable={false}
         {...this.props}
+        {...this.state}
       >
-        <WidgetHeader title={displayedTitle}/>
+        <WidgetHeader title={title}/>
         <WidgetContent>
           <details style={{whiteSpace: 'pre-wrap'}}>
             <summary>
@@ -41,7 +60,7 @@ export default class ErrorWidget extends React.PureComponent {
             <br/>
             {error && error.toString()}
             <br/>
-            {errorInfo.componentStack}
+            {componentStack}
           </details>
         </WidgetContent>
       </Widget>

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import DatasourceService from 'service/datasource/datasource-service';
 import CubeSpinnerLoader from "component/loader/cube-spinner";
 import Uuid from "utils/uuid";
-import WidgetError from "component/widget/error-widget";
+import WidgetError from "component/widget/error";
 import Logger from 'utils/logger';
 
 import "./widget.scss";

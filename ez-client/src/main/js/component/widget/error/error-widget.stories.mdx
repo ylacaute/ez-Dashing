@@ -1,0 +1,37 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import ErrorWidget from "./error-widget";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Widget/Error" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/error/error-widget.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-widget-error-error-widget--default-story" />
+
+
+# ErrorWidget
+
+## Props
+ 
+<Props of={ErrorWidget} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+      layout: "widget",
+      info: [ "This component appears when a widget is on error (catch by the ErrorWidgetBoundary component)." ]
+    }}>
+    <ErrorWidget id="1" />
+  </Story>
+</Preview>
+

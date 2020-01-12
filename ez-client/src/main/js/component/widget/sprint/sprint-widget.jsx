@@ -38,7 +38,7 @@ export default class SprintWidget extends React.PureComponent {
     const now = DateService.now();
     const sprintDurationInDays = DateUtils.diffInDays(sprintStartDate, sprintEndDate);
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
-    const progress = daysLeft / sprintDurationInDays * 100;
+    const progress = daysLeft === 0 ? 100 : daysLeft / sprintDurationInDays * 100;
     logger.debug("Spring widget: " +
       "now={}, sprintEndDate={}, sprintDurationInDays={}, progress={}, daysLeft={}",
       now, sprintEndDate, sprintDurationInDays, progress, daysLeft);
@@ -57,7 +57,6 @@ export default class SprintWidget extends React.PureComponent {
         <WidgetContent>
           <CircularProgressBar
             value={progress}
-            displayValue={daysLeft}
             label="days left"/>
         </WidgetContent>
       </Widget>
