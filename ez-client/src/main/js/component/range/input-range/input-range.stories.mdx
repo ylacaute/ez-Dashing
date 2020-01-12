@@ -1,0 +1,96 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import InputRange from "./input-range";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { linkTo } from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Range/InputRange" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/range/input-range/input-range.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-range-input-range--default-story" />
+
+
+# InputRange
+
+## Props
+ 
+<Props of={InputRange} />
+
+## Usage
+
+### Default
+
+<Preview>
+  <Story
+    name="default"
+    parameters={{
+      layout: "widget"
+    }}>
+    <InputRange />
+  </Story>
+</Preview>
+
+### Classic
+
+<Preview>
+  <Story
+    name="classic"
+    parameters={{
+      layout: "widget"
+    }}>
+    <InputRange
+      defaultValue={40}
+      minValue={0}
+      maxValue={100}
+      step={1}
+    />
+  </Story>
+</Preview>
+
+### With value binding
+
+<Preview>
+  <Story
+    name="valueBinding"
+    parameters={{
+      layout:"widget",
+      info: [
+       "because we use the value field, the value is bind to the prop value, not the internal state value.",
+       "You can't move the range here because we don't update the value onChange"
+      ]
+    }}>
+    <InputRange 
+      value={4}
+      minValue={0}
+      maxValue={5}
+      step={1}
+    />
+  </Story>
+</Preview>
+
+### Disabled
+
+<Preview>
+  <Story
+    name="disabled"
+    parameters={{
+      layout:"widget",
+      info: [
+        "This range is disabled so you can't move it.",
+        "The component looks the same because no style has been configured for this use-case."
+      ]
+    }}>
+    <InputRange 
+      defaultValue={1}
+      minValue={0}
+      maxValue={5}
+      step={1}
+      disabled
+    />
+  </Story>
+</Preview>
+

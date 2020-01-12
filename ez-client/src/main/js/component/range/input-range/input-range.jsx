@@ -10,16 +10,20 @@ class InputRange extends React.PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.number,
+    defaultValue: PropTypes.number,
     step: PropTypes.number,
     minValue: PropTypes.number,
     maxValue: PropTypes.number,
     onStartDrag: PropTypes.func,
     onEndDrag: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
+    className: "",
     value: 0,
+    valueBind: false,
+    defaultValue: 0,
     step: 1,
     minValue: 0,
     maxValue: 10,
@@ -28,13 +32,33 @@ class InputRange extends React.PureComponent {
     onChange: () => {}
   };
 
+  state = {
+    value: -1
+  };
+
   constructor(props) {
     super(props);
     this.inputRangeDOM = React.createRef();
-    this.state = {
-      value: this.props.value
-    };
     this.track = React.createRef();
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const {className, disabled, defaultValue, value, minValue, maxValue} = props;
+    const valueBind = !!value;
+    const rangeValue = valueBind
+      ? value
+      : state.value === -1 ? defaultValue || 0 : state.value;
+    return {
+      value: rangeValue,
+      valueBind: valueBind,
+      className: cn("input-range", className),
+      disabled: disabled ? "disabled" : "",
+      style: {
+        "--min": minValue,
+        "--max": maxValue,
+        "--val": rangeValue,
+      }
+    }
   }
 
   handleMouseDown(event) {
@@ -48,25 +72,31 @@ class InputRange extends React.PureComponent {
   }
 
   handleChange(event) {
-    this.setState({
-      value: event.target.value
-    });
-    this.props.onChange(event.target.value);
+    const {minValue, maxValue} = this.props;
+    const {valueBind} = this.state;
+    const newValue = event.target.value;
+
+    if (!valueBind) {
+      this.setState({
+        value: newValue,
+        style: {
+          "--min": minValue,
+          "--max": maxValue,
+          "--val": newValue,
+        }
+      });
+    }
+    this.props.onChange(newValue);
   }
 
   render() {
-    const {className, disabled, value, step, minValue, maxValue} = this.props;
-    const rangeDisabled = disabled ? "disabled" : "";
+    const {step, minValue, maxValue} = this.props;
+    const {className, disabled, value, style} = this.state;
 
-    const style = {
-      "--min": minValue,
-      "--max": maxValue,
-      "--val": value,
-    };
     return (
       <input
-        className={cn("input-range", className)}
-        disabled={rangeDisabled}
+        className={className}
+        disabled={disabled}
         style={style}
         ref={this.inputRangeDOM}
         type="range"
