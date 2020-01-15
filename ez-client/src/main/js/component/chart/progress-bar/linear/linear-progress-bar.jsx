@@ -18,20 +18,42 @@ export default class LinearProgressBar extends React.PureComponent {
 
   state = {
     className: "",
+    firstLoad: true,
     value: 0,
-    style: {}
+    style: {
+      width: 0
+    }
   };
 
-  static getDerivedStateFromProps(props) {
+  /**
+   * In order to have a animation the first load, we use the componentDidMount to update
+   * the width with a timeout.
+   * We don't need this trick the next updates as there is CSS animation.
+   */
+  static getDerivedStateFromProps(props, state) {
     const {value, className} = props;
     const normalizedValue = value < 0 ? 0 : value > 100 ? 100 : value;
+
     return {
       className: cn("progress-bar linear trail", className),
+      firstLoad: false,
       value: normalizedValue,
       style: {
-        width: `${normalizedValue}%`
+        width: state.firstLoad ? 0 : `${normalizedValue}%`
       }
     }
+  }
+
+  componentDidMount() {
+    const {value} = this.state;
+    const timeout = setTimeout(() => {
+      this.setState({
+        style: {
+          width: `${value}%`
+        }
+      });
+      clearTimeout(timeout);
+    }, 200);
   }
 
   render() {

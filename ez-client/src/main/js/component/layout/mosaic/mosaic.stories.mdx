@@ -1,0 +1,189 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import Resizable from "Doc/resizable";
+import Mosaic from "./mosaic";
+import SampleItem from "./mosaic-item.demo";
+import Metric from "component/scalable/metric";
+import {array, object, text, withKnobs, number, select} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
+
+
+<Meta 
+  title="Components|Layout/Mosaic" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/layout/mosaic/mosaic.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-layout-mosaic-mosaic--default-story" />
+
+
+# Mosaic
+
+## Props
+ 
+<Props of={Mosaic} />
+
+## Usage
+
+### Dynamic
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="dynamic"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic className="demo">
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 5))
+            .fill(0).map((i, idx) => (
+                <SampleItem key={idx} />)
+            )
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>
+
+### Vertical layout (limit 4)
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="vertical-only"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic maxItemPerRow={1} className="demo">
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 6))
+            .fill(0).map((i, idx) => (
+                <SampleItem key={idx} />)
+            )
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Vertical layout (no breakpoints)
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="vertical-only-no-breakpoints"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic
+        className="demo"
+        maxItemPerRow={1}
+        maxRow={5}
+        enableBreakpoints={false}
+      >
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 6))
+            .fill(0).map((i, idx) => (
+                <SampleItem key={idx} />)
+            )
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Horizontal layout (limit 4)
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="horizontal-only"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic maxRow={1} className="demo">
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 4))
+            .fill(0).map((i, idx) => (
+                <SampleItem key={idx} />)
+            )
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Horizontal layout (limit 4)
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="square"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic maxRow={2} maxItemPerRow={2}  className="demo">
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 4))
+            .fill(0).map((i, idx) => (
+                <SampleItem key={idx} />)
+            )
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>
+
+### With ScalableTextImage
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="with-metric"
+    parameters={{
+      className: "widget",
+      width: "80%",
+      height: "80%",
+      info: "Play with container dimension and change the number of items !"
+    }}
+  >
+    <Resizable>
+      <Mosaic className="demo">
+        { new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 2))
+          .fill(0).map((i, idx) => (
+            <Metric
+              key={idx}
+              contentImageSrc="img/thumb.svg"
+              legend={`${idx}%`}
+            />
+          ))
+        }
+      </Mosaic>
+    </Resizable>
+  </Story>
+</Preview>

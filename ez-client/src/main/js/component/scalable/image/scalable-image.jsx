@@ -6,6 +6,11 @@ import "./scalable-image.scss";
 
 export default class ScalableImage extends React.PureComponent {
 
+  static ImageTypeClassName = {
+    DEFAULT: "default",
+    SVG: "svg"
+  };
+
   static propTypes = {
     className: PropTypes.string,
     src: PropTypes.string
@@ -20,26 +25,28 @@ export default class ScalableImage extends React.PureComponent {
     imgStyle: {}
   };
 
-  wrapperBaseStyle = {
-    display: "flex",
-    flexGrow: 1,
-    height: "100%",
-    width: "100%"
-  };
-
-  imgBaseStyle = {
-    width: "100%",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "50% 50%"
-  };
-
   static getDerivedStateFromProps(props) {
-    return {
-      className: cn(props.className),
-      imgStyle: !props.src ? {} : {
-        backgroundImage: `url(${props.src})`
+    const {src} = props;
+    let imageStyle = {};
+    let imgTypeClassName;
+
+    if (src) {
+      if (src.endsWith(".svg")) {
+        imgTypeClassName = ScalableImage.ImageTypeClassName.SVG;
+        imageStyle = {
+          WebkitMask: `url(${props.src}) no-repeat 50% 50%`,
+        }
+      } else {
+        imgTypeClassName = ScalableImage.ImageTypeClassName.DEFAULT;
+        imageStyle = {
+          backgroundImage: `url(${props.src})`
+        }
       }
+    }
+
+    return {
+      className: cn("scalable-image-wrapper", imgTypeClassName, props.className),
+      imgStyle: imageStyle
     }
   };
 
@@ -47,9 +54,9 @@ export default class ScalableImage extends React.PureComponent {
     const {className, imgStyle} = this.state;
 
     return (
-      <div className="scalable-image-wrapper">
+      <div className={className}>
         <div
-          className={className}
+          className="scalable-image"
           style={imgStyle}
         />
       </div>

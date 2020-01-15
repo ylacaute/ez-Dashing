@@ -33,9 +33,6 @@ A default Widget, with a header and paragraph as content.
 <Preview>
   <Story 
     name="default"
-    parameters={{
-      layout: "widget"
-    }}
   >
     <Widget>
       <WidgetHeader title="Widget Header"/>
@@ -54,11 +51,7 @@ A loading widget, waiting all dataSources are loaded.
   <Story 
     name="loading"
     parameters={{
-      layout: "widget",
-      info: [
-        "A fake and not loaded dataSource is set to the widget to see it in a loading state.",
-        "Even if set, the header is not displayed during loading."
-      ]
+      info: ""
     }}
   >
     <Widget dataSource={[{loaded: false}]}>
@@ -75,9 +68,6 @@ A loading widget, waiting all dataSources are loaded.
 <Preview>
   <Story 
     name="noheader"    
-    parameters={{
-      layout: "widget"
-    }}
   >
     <Widget>
       <WidgetContent>
@@ -93,10 +83,9 @@ A loading widget, waiting all dataSources are loaded.
   <Story 
     name="editable"    
     parameters={{
-      layout: "widget",
-      info: [ 
-        "When editable, an icon appears on top right widget corner.",
-        "Widgets are not editable by default."]
+      info:
+        "When editable, an icon appears on top right widget corner. <br/>" +
+        "Widgets are not editable by default.",
     }}
   >
     <Widget
@@ -111,11 +100,60 @@ A loading widget, waiting all dataSources are loaded.
   </Story>
 </Preview>
 
+### Widget with list layout
+
+<Preview>
+  <Story 
+    name="list-layout"    
+    parameters={{
+      info: "List layout widget"
+    }}
+  >
+    <Widget
+    >
+      <WidgetHeader title="List widget"/>
+      <WidgetContent layout="list">
+        <span>item 1</span>
+        <span>item 2</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
+
+### Widget with threshold configured
+
+<Preview>
+  <Story 
+    name="thresholds"    
+    parameters={{
+      info: ""
+    }}
+  >
+    <Widget
+      thresholds={{
+        good: 100,
+        avg: 50,
+        bad: 0
+      }}
+    >
+      <WidgetHeader title="Widget with thresholds"/>
+      <WidgetContent layout="list">
+        <span>100</span>
+        <span>80</span>
+        <span>60</span>
+        <span>40</span>
+        <span>20</span>
+        <span>0</span>
+      </WidgetContent>
+    </Widget>
+  </Story>
+</Preview>
+
 <Story 
     name="knobs"
     decorators={[withKnobs]}
     parameters={{    
-      layout: "widget",
       docs: {
         disable: true        
       }
@@ -126,7 +164,6 @@ A loading widget, waiting all dataSources are loaded.
       key={text("key", "sampleId")}
       title={text("title", "Play with me (Canvas tab)")}
       loader={text("loader", "<p>Widget loading...</p>")}
-      dataSource={array("datasource", [])}
     >
       <WidgetHeader title="Knobs Widget"/>
       <WidgetContent>

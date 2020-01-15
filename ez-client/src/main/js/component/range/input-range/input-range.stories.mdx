@@ -28,8 +28,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget small"
+    }}
+  >
     <InputRange />
   </Story>
 </Preview>
@@ -40,8 +41,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="classic"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget small"
+    }}
+  >
     <InputRange
       defaultValue={40}
       minValue={0}
@@ -57,11 +59,8 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="valueBinding"
     parameters={{
-      layout:"widget",
-      info: [
-       "because we use the value field, the value is bind to the prop value, not the internal state value.",
-       "You can't move the range here because we don't update the value onChange"
-      ]
+      className: "widget small",
+      info: "You can't move the range here because we don't update the value onChange <br/> because we use the value field, the value is bind to the prop value, not the internal state value."
     }}>
     <InputRange 
       value={4}
@@ -78,11 +77,8 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="disabled"
     parameters={{
-      layout:"widget",
-      info: [
-        "This range is disabled so you can't move it.",
-        "The component looks the same because no style has been configured for this use-case."
-      ]
+      className: "widget small",
+      info: "This range is disabled so you can't move it. <br/> The component looks the same because no style has been configured for this use-case."
     }}>
     <InputRange 
       defaultValue={1}

@@ -1,0 +1,37 @@
+import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import Metric from "./metric";
+
+
+<Meta 
+  title="Components|widget/base/Metric" 
+  component={Metric}
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/base/metric.jsx"
+  }}
+/>
+
+<Anchor storyId="components-widget-base-metric--default-story" />
+
+# Metric
+
+## Props
+
+<Props of={Metric} />
+
+## Usage
+
+### Number metric
+
+<Preview>
+  <Story 
+    name="default"
+    parameters={{
+    }}
+  >
+    <Metric
+      label="label"
+      value={10}
+    />
+  </Story>
+</Preview>

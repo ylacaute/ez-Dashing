@@ -1,11 +1,20 @@
 import React from 'react';
 import cn from "classnames";
-import {GithubLink} from "github-link";
+import {GithubLink} from "Doc/github-link";
+import ReactHtmlParser from 'react-html-parser';
 
-import "./canvas-container.css"
+import "./canvas-container.scss"
 
 export function CanvasContainer({story, context}) {
-  const {layout, info, docs} = context.parameters;
+  const {info, docs, className} = context.parameters;
+
+  const style = {};
+  if (context.parameters.width) {
+    style.width = context.parameters.width;
+  }
+  if (context.parameters.height) {
+    style.height = context.parameters.height;
+  }
   const queryParams = (new URL(document.location)).searchParams;
   const isDocs = queryParams.get("viewMode") === "docs";
   let infoMsg = null;
@@ -19,16 +28,7 @@ export function CanvasContainer({story, context}) {
   }
 
   if (info) {
-    infoMsg = info.map((line, idx) => {
-      return (
-        <span key={idx}>
-          {line} <br/>
-        </span>
-      );
-    });
-  }
-  if (docs && docs.disable === true) {
-    knobsMsg = "You can play with properties in the Knobs tab below.";
+    infoMsg = ReactHtmlParser(info);
   }
 
   /**
@@ -37,12 +37,12 @@ export function CanvasContainer({story, context}) {
   return (
     <div className="ez-canvas">
       <GithubLink filePath="/"/>
-      <div className={cn("ez-story-wrapper", layout)}>
+      <div
+        className={cn("ez-story-wrapper", className)}
+        style={style}
+      >
         {story}
       </div>
-      {layout === "widget" &&
-        <p>This component is wrapped in a 300x300px container.</p>
-      }
       <p>{infoMsg}</p>
       <p>{knobsMsg}</p>
     </div>

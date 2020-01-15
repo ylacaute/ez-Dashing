@@ -1,0 +1,65 @@
+@import "../../../style/common";
+
+$color-good: #88b250 !default;
+$color-average: #db8240 !default;
+$color-bad: #c65555 !default;
+$color-neutral: #2268ae !default;
+$padding-metric: 10px !default;
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  //padding: $padding-metric; // Hummmmm TODO
+
+  .metric-content {
+    display: flex;
+    flex-grow: 2;
+    height: 75%;
+  }
+  .metric-content:not(.single) {
+    padding-bottom: $padding-metric;
+  }
+  .metric-html-content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+  }
+  .metric-legend {
+    display: flex;
+    flex-grow: 1;
+    height: 25%;
+  }
+}
+
+
+@mixin threshold($color) {
+  color: $color;
+  fill: $color;
+  &.svg .scalable-image {
+    background-color: $color;
+  }
+}
+
+.threshold-good {
+  @include threshold($color-good);
+}
+
+.threshold-avg {
+  @include threshold($color-average);
+}
+
+.threshold-bad {
+  @include threshold($color-bad);
+}
+
+.threshold-neutral {
+  @include threshold($color-neutral);
+}
+
+
+

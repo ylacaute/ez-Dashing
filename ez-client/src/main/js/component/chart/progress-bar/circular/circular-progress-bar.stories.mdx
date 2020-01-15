@@ -1,6 +1,6 @@
 import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
 import CircularProgressBar from "./circular-progress-bar";
-import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { array, object, text, number, withKnobs } from "@storybook/addon-knobs";
 import { linkTo } from '@storybook/addon-links'
 
 <Meta 
@@ -28,8 +28,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <CircularProgressBar/>
   </Story>
 </Preview>
@@ -40,9 +41,10 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default-100"
     parameters={{
-      layout: "widget"
-    }}>
-    <CircularProgressBar value="100"/>
+      className: "widget"
+    }}
+  >
+    <CircularProgressBar value={100}/>
   </Story>
 </Preview>
 
@@ -52,10 +54,11 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="custom renderer"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <CircularProgressBar
-     value="100"
+     value={100}
      textForValue={(v) => `${v}%`}/>
   </Story>
 </Preview>
@@ -67,8 +70,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="with label"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <CircularProgressBar
      value={30}
      label="days left"/>
@@ -81,8 +85,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="Override displayed value"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <CircularProgressBar
       value="60"
       displayValue="Some text"
@@ -97,15 +102,28 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="Class for value"
     parameters={{
-      layout: "widget",
-      info: [
-        "If you inspect the component, you will see your custom CSS class 'myClass'"
-      ]
+      className: "widget",
+      info: "If you inspect the component, you will see your custom CSS class 'myClass'"
     }}>
     <CircularProgressBar
-      value="60"
+      value={60}
       classForValue={(v) => "myClass"}
     />
   </Story>
 </Preview>
 
+### Knobs
+
+<Preview>
+  <Story
+    name="knobs"
+    decorators={[withKnobs]}
+    parameters={{
+      className: "widget"
+    }}
+  >
+    <CircularProgressBar 
+      value={number("Value", 42)} 
+    />
+  </Story>
+</Preview>

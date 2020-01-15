@@ -8,6 +8,7 @@ const path = require('path');
 const IS_DEV = (process.env.NODE_ENV === 'development');
 const BUILD_DIR = path.join(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src/main');
+const DOC_DIR = SRC_DIR + "../doc/component/";
 const JS_DIR = SRC_DIR + "/js";
 const STYLE_DIR = SRC_DIR + "/js/style";
 const RESOURCES_DIR = SRC_DIR + "/resources";
@@ -44,6 +45,9 @@ let commonConfig = {
       STYLE_DIR,
       RESOURCES_DIR
     ],
+    alias: {
+      Doc: DOC_DIR,
+    },
     extensions: ['.js', '.jsx']
   },
 

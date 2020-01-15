@@ -12,7 +12,7 @@ export default class Metric extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     label: PropTypes.string,
-    value: PropTypes.node,
+    value: PropTypes.any,
     formatValue: PropTypes.func,
     animated: PropTypes.bool,
     thresholds: PropTypes.object,
@@ -29,37 +29,58 @@ export default class Metric extends React.PureComponent {
     single: false
   };
 
-  renderValue(value, formatValue) {
+  state = {
+    classNameWrapper: "",
+    className: "",
+    value: null
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const {className, value, formatValue, thresholds, single, animated} = props;
+
+    return {
+      classNameWrapper: cn("metric-wrapper", single ? "single" : null),
+      className: cn("metric", className, ThresholdConfig.get(thresholds, value)),
+      value: Metric.renderValue(value, formatValue, animated)
+    }
+  }
+
+
+  static renderValue(value, formatValue, animated) {
     const renderedValue = <div className="value">{value}</div>;
     const isFloat = TypeUtils.isFloat(value);
     const isInt = TypeUtils.isInt(value);
 
-    if (this.props.animated && (isFloat || isInt)) {
+    if (animated && (isFloat || isInt)) {
       let formatFunc = formatValue;
       if (isInt) {
         formatFunc = n => formatValue(parseInt(n));
       }
       return (
-        <AnimatedNumber component="div"
-                        className="value"
-                        stepPrecision={2}
-                        value={value}
-                        style={{transition: '0.8s ease-out'}}
-                        duration={500}
-                        formatValue={formatFunc}/>
+        <AnimatedNumber
+          component="div"
+          className="value"
+          stepPrecision={2}
+          value={value}
+          style={{transition: '0.8s ease-out'}}
+          duration={500}
+          formatValue={formatFunc}/>
       )
     }
     return renderedValue;
   }
 
   render() {
-    const {className, label, value, formatValue, thresholds, single} = this.props;
+    const {label} = this.props;
+    const {classNameWrapper, className, value} = this.state;
 
     return (
-      <div className={cn("metric-wrapper", single ? "single" : null)}>
-        <div className={cn("metric", className, ThresholdConfig.get(thresholds, value))}>
-          {this.renderValue(value, formatValue)}
-          <div className="name">{label}</div>
+      <div className={classNameWrapper}>
+        <div className={className}>
+          {value}
+          <div className="name">
+            {label}
+          </div>
         </div>
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GithubLink} from "github-link";
+import {GithubLink} from "Doc/github-link";
 
 /**
  * Doc Page Template

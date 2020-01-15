@@ -30,7 +30,7 @@ export default class Widget extends React.PureComponent {
     /**
      * Widget DataSources
      */
-    dataSource: PropTypes.array,
+    dataSources: PropTypes.array,
     /**
      * If editable, an edit icon appears on the widget. When you defined a Widget as editable, you
      * have also to define the editModal property.
@@ -68,12 +68,20 @@ export default class Widget extends React.PureComponent {
      * Technical properties for updating widgets
      */
     updateWidgetConfig: PropTypes.func,
+    /**
+     * Threshold which can change the content style by changing css classes
+     */
+    thresholds: PropTypes.shape({
+      good: PropTypes.number,
+      avg: PropTypes.number,
+      bad: PropTypes.number
+    }),
   };
 
   static defaultProps = {
     id: Uuid.random(),
     className: "",
-    dataSource: [],
+    dataSources: [],
     editable: false,
     editModal: null,
     children: null,
@@ -84,6 +92,7 @@ export default class Widget extends React.PureComponent {
     },
     showModal: () => {},
     updateWidgetConfig: () => {},
+    thresholds: null
   };
 
   constructor(props) {
@@ -105,7 +114,7 @@ export default class Widget extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(props, state) {
-    const loaded = DatasourceService.areAllDataSourcesLoaded(props.dataSource);
+    const loaded = DatasourceService.areAllDataSourcesLoaded(props.dataSources);
     logger.debug("Widget id={} loaded: {}", props.id, loaded);
     return {
       loaded: loaded
@@ -159,10 +168,12 @@ export default class Widget extends React.PureComponent {
     }
     return (
       <section className={classnames(this.getWidgetClassNames())}>
-        {editable &&
-        <span className="edit-icon" onClick={this.handleEditClick.bind(this)}/>
-        }
-        {content}
+        {/*<div className="widget-container">*/}
+          {editable &&
+          <span className="edit-icon" onClick={this.handleEditClick.bind(this)}/>
+          }
+          {content}
+        {/*</div>*/}
       </section>
     );
   }

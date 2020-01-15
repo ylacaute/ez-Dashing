@@ -28,14 +28,15 @@ export default class CircularProgressBar extends React.PureComponent {
   };
 
   state = {
+    firstLoad: true,
     value: 0
   };
 
   static getDerivedStateFromProps(props, state) {
+    const {firstLoad} = state;
     const {
       className,
       classForValue,
-      value,
       displayValue,
       strokeWidth,
       textForValue,
@@ -43,15 +44,16 @@ export default class CircularProgressBar extends React.PureComponent {
     } = props;
     const radius = 50 - strokeWidth / 2;
     const diameter = Math.PI * 2 * radius;
-
+    const value = firstLoad ? 0 : props.value;
     return {
+      firstLoad: false,
       className: cn("progress-bar circular", className, classForValue(value, displayValue)),
       strokeWidth: strokeWidth,
       radius: radius,
       diameter: diameter,
       progressStyle: {
         strokeDasharray: `${diameter}px ${diameter}px`,
-        strokeDashoffset: `${((100 - state.value) / 100 * diameter)}px`,
+        strokeDashoffset: `${((100 - value) / 100 * diameter)}px`,
       },
       pathDescription: `
         M 50,50 m 0,-${radius}
@@ -64,15 +66,13 @@ export default class CircularProgressBar extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.initialTimeout = setTimeout(() => {
+    const {value} = this.props;
+    const timeout = setTimeout(() => {
       this.setState({
-        value: this.props.value,
+        value: value,
       });
+      clearTimeout(timeout);
     }, 200);
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.initialTimeout);
   }
 
   render() {

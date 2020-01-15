@@ -5,7 +5,7 @@ import { customStorySort } from "./sort-stories";
 import {
   CanvasContainer as EzCanvasContainer,
   DocsContainer as EzDocsContainer
-} from "./containers";
+} from "Doc/containers";
 
 // Enable console in Action tab
 import '@storybook/addon-console';

@@ -10,6 +10,16 @@
   height: 100%;
   flex-direction: column;
   background-color: transparent;
+
+  .medium {
+    width: 550px;
+    height: 450px;
+  }
+  .small {
+    width: 300px;
+    height: 300px;
+  }
+
 }
 .ez-canvas > p {
   color: #888;
@@ -17,8 +27,4 @@
   margin-bottom: -50px;
   font-style: italic;
   text-align: center;
-}
-.ez-story-wrapper.widget {
-  width: 300px;
-  height: 300px;
 }

@@ -40,9 +40,9 @@ export default function (state = initialState, action) {
       const widgetConfigs = action.dashboardConfig.widgets;
 
       widgetConfigs.forEach(widgetConfig => {
-        let widgetDataSource = [];
-        widgetConfig.dataSource.forEach(dsId => {
-          widgetDataSource.push({
+        let widgetDataSources = [];
+        widgetConfig.dataSources.forEach(dsId => {
+          widgetDataSources.push({
             id: dsId,
             loaded: false
           });
@@ -50,7 +50,7 @@ export default function (state = initialState, action) {
         newState[widgetConfig.id] = {
           ...state[widgetConfig.id],
           ...widgetConfig,
-          dataSource: widgetDataSource
+          dataSources: widgetDataSources
         };
       });
       break;
@@ -95,19 +95,19 @@ export default function (state = initialState, action) {
       const properties = action.payload;
 
       action.widgetIdsListening.forEach(id => {
-        const dataSourceToUpdate = findById(state[id].dataSource, dataSourceId);
-        const dataSourceToUpdateIndex = indexOfId(state[id].dataSource, dataSourceId);
+        const dataSourceToUpdate = findById(state[id].dataSources, dataSourceId);
+        const dataSourceToUpdateIndex = indexOfId(state[id].dataSources, dataSourceId);
 
         newState[id] = {
           ...state[id],
           ...properties,
-          dataSource: [
-            ...newState[id].dataSource.slice(0, dataSourceToUpdateIndex),
+          dataSources: [
+            ...newState[id].dataSources.slice(0, dataSourceToUpdateIndex),
             {
               ...dataSourceToUpdate,
               loaded: true
             },
-            ...newState[id].dataSource.slice(dataSourceToUpdateIndex + 1)
+            ...newState[id].dataSources.slice(dataSourceToUpdateIndex + 1)
           ]
         }
       });

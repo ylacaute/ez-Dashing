@@ -2,6 +2,18 @@ import JSONPath from "jsonpath";
 
 describe("JsonPATH", () => {
 
+  it("query() should return an array", () => {
+    let json = {
+      fieldArray: [
+        { value: 1},
+        { value: 2},
+        { value: 3},
+      ]};
+    let result = JSONPath.query(json, "$.fieldArray[:].value");
+    console.log("result: ", result);
+    expect(result).toStrictEqual([1, 2, 3]);
+  });
+
   it("query() should return good values from sonar response", () => {
     let json = {
       "component": {

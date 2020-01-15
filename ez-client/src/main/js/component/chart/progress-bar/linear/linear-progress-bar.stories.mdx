@@ -1,6 +1,6 @@
 import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
 import LinearProgressBar from "./linear-progress-bar";
-import { array, object, text, withKnobs } from "@storybook/addon-knobs";
+import { array, object, text, withKnobs, number } from "@storybook/addon-knobs";
 import { linkTo } from '@storybook/addon-links'
 
 <Meta 
@@ -28,8 +28,9 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <LinearProgressBar />
   </Story>
 </Preview>
@@ -40,8 +41,27 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default-80"
     parameters={{
-      layout: "widget"
-    }}>
+      className: "widget"
+    }}
+  >
     <LinearProgressBar value={80} />
   </Story>
 </Preview>
+
+### Default (80%)
+
+<Preview>
+  <Story
+    name="knobs"
+    decorators={[withKnobs]}
+    parameters={{
+      className: "widget"
+    }}
+  >
+    <LinearProgressBar 
+      value={number("Value", 42)}
+    />
+  </Story>
+</Preview>
+
+      

@@ -1,4 +1,6 @@
 
+$color-bg-svg: white !default;
+
 .scalable-image-wrapper {
   display: flex;
   flex-grow: 1;
@@ -6,9 +8,13 @@
   width: 100%;
   justify-content: center;
 
-  > div {
+  .scalable-image {
     width: 100%;
     background: no-repeat 50% 50%;
     background-size: contain;
+  }
+
+  &.svg .scalable-image {
+    background-color: $color-bg-svg;
   }
 }

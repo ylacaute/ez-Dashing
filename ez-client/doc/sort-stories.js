@@ -1,7 +1,7 @@
 /**
  * Credits: https://github.com/gsoft-inc/sg-orbit
  */
-import { COMPONENTS_ROOT, INTRODUCTION_ROOT } from "./roots";
+import { COMPONENTS_ROOT, INTRODUCTION_ROOT, CONFIGURATION_ROOT } from "./roots";
 
 const PARSING_RESULTS_CACHE = {};
 
@@ -14,6 +14,10 @@ const ROOTS = {
         priority: 1,
         sortByKind: true
     },
+    [CONFIGURATION_ROOT.toLocaleLowerCase()]: {
+      priority: 2,
+      sortByKind: true
+   },
 };
 
 function parseStory(story) {

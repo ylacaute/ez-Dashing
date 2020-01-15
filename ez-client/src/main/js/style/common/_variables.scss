@@ -19,16 +19,26 @@ $color-red-light-opacity: rgba(198, 85, 85, 0.2);
 $color-white: #eee;
 $color-white-half-opacity: rgba(255, 255, 255, 0.5);
 
+// CATEGORIZED COLORS
+$color-neutral: var(--color-neutral, $color-white);
+$color-neutral-op: var(--color-neutral-op, $color-white-half-opacity);
+$color-good: var(--color-good, $color-green);
+$color-info: var(--color-info, $color-blue);
+$color-warn: var(--color-warn, $color-yellow);
+$color-danger: var(--color-danger, $color-red);
+$color-dark: var(--color-danger, $color-black);
+
 // BASE UI
 $color-bg-button: var(--color-bg-button, #ddd);
 
 // GENERIC TEXT COLOR
 $color-text: var(--color-text, $color-white);
+$color-good: var(--color-good, $color-green);
 $color-average: var(--color-average, $color-orange);
 $color-bad: var(--color-bad, $color-red);
+$color-neutral: var(--color-bad, $color-info);
 $color-bad-opacity: var(--color-bad-opacity, $color-red-light-opacity);
 $color-building: var(--color-building, $color-yellow);
-$color-good: var(--color-good, $color-green);
 $color-title: var(--color-title, $color-white);
 $color-spinner: var(--color-spinner, $color-white);
 

@@ -1,0 +1,273 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import Resizable from "Doc/resizable";
+import PureWidget from "./pure-widget";
+import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Widget/Pure" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/pure/pure-widget.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-widget-pure--default-story" />
+
+
+# Pure Widget
+
+This is a generic widget, highly configurable.
+
+## Props
+ 
+As all widgets, you can override <a onClick={linkTo('components-widget-widget--default-story')}>common widget 
+properties</a>.
+
+<Props of={PureWidget} />
+
+## Usage
+
+### Single value
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="single-value"
+    parameters={{
+      width: "80%",
+      height: "70%",
+      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      docs: {
+        disable: true        
+      }
+    }}>
+    <Resizable>
+      <PureWidget
+        title="Unique value"
+        layout="mosaic"
+        datasourceField={42}
+        content={[{
+          type: "metric",
+          value: "${datasourceField}"
+        }]}
+      />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Value with static text
+
+<Preview>
+  <Story
+    name="single-value-static-text"
+    parameters={{
+      width: "80%",
+      height: "70%",
+      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      docs: {
+        disable: true
+      }
+    }}
+  >
+    <Resizable>
+      <PureWidget
+        title="Unique value + static text"
+        layout="mosaic"
+        datasourceField1={100}
+        datasourceField2="Opened bugs"
+        datasourceField3="Release 2.42"
+        datasourceField4="Dev"
+        content={[{
+          type: "metric",
+          value: "${datasourceField1}"
+        }]}
+        thresholds={{
+          good: 100,
+          avg: 50,
+          bad: 0
+        }}
+        labels={[{
+          value: "${datasourceField4}",
+          style: {
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            fontSize: "2rem"
+          }
+        },{
+          value: "${datasourceField3}",
+          style: {
+            position: "absolute",
+            left: "10px",
+            top: "10px",
+            fontSize: "2rem"
+          }
+         },{
+           value: "${datasourceField2}",
+           style: {
+             position: "absolute",
+             left: "0",
+             right: "0",
+             bottom: "10px",
+             fontSize: "2rem"
+           }
+         }]}
+      />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+
+### Multiple thresholds
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="multiple-thresholds"
+    parameters={{
+      width: "80%",
+      height: "70%",
+      info: "Note that datasourceField prop would be the result of a datasource mapping.<br/>" +
+            "The HTML metric does not resize as SVG, so use HTML with caution.",
+      docs: {
+        disable: true
+      }
+    }}>
+    <Resizable width={350} height={400}>
+      <PureWidget
+        title="Multiple fields"
+        layout="mosaic"
+        datasourceField1={42}
+        datasourceField2="omg"
+        datasourceField3="Hello"
+        datasourceField4="World"
+        datasourceField5="Yeah !"
+        content={[{
+          type: "metric",
+          value: "<i>HTML</i>",
+          isHtml: true
+        },{
+          type: "metric",
+          value: "${datasourceField2}",
+          thresholds: {
+            good: "omg",
+            bad: "anythingElse",
+          }
+        },{
+          type: "metric",
+          value: "${datasourceField1}",
+          legend: "bugs",
+          thresholds: {
+            bad: 100,
+            avg: 10,
+            good: 0
+          }
+        },{
+          type: "metric",
+          content: "${datasourceField2}",
+          legend: "build",
+          contentImageSrc: "img/thumb.svg",
+          thresholds: {
+            good: "omg",
+            avg: "hum",
+            bad: "bad",
+          }
+        }]}
+      />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+
+
+
+### Vertical list
+
+<Preview>
+  <Story
+    name="vertical-list"
+    parameters={{
+      width: "80%",
+      height: "70%",
+      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      docs: {
+        disable: true
+      }
+    }}
+  >
+    <Resizable>
+      <PureWidget
+        title="List with scalable text"
+        layout={{
+          name: "mosaic",
+          maxItemPerRow: 1,
+          enableBreakpoints: false
+        }}
+        datasourceField1={[
+          {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
+          {val: "System-D"}, {val: "System-E"}
+        ]}
+        datasourceField2="Opened bugs"
+        datasourceField3="Release 2.42"
+        datasourceField4="Dev"
+        content={[{
+          type: "metric-list",
+          value: "${datasourceField1}"
+        }]}
+        content="$.datasourceField1[:].val"
+        contentType="metric"
+      />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+
+
+### String list
+
+<Preview>
+  <Story
+    name="vertical-list-threshold"
+    parameters={{
+      width: "80%",
+      height: "70%",
+      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      docs: {
+        disable: true
+      }
+    }}
+  >
+    <Resizable>
+      <PureWidget
+        title="List with threshold"
+        layout={{
+          name: "mosaic",
+          maxItemPerRow: 1,
+          maxDisplayableItems: 3,
+          enableBreakpoints: false
+        }}
+        datasourceField1={[
+          {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
+          {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
+        ]}
+        datasourceField2="Opened bugs"
+        datasourceField3="Release 2.42"
+        datasourceField4="Dev"
+        thresholds={{
+          good: 100,
+          avg: 50,
+          bad: 0
+        }}
+        content="$.datasourceField1[:].val"
+      />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+

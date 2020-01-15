@@ -45,7 +45,7 @@ export default class SprintWidget extends React.PureComponent {
     const daysLeft = DateUtils.diffInDays(now, sprintEndDate);
     const progress = daysLeft === 0 ? 100 : daysLeft / sprintDurationInDays * 100;
 
-    logger.warn("Spring widget: " +
+    logger.debug("Spring widget: " +
       "now={}, sprintEndDate={}, sprintDurationInDays={}, progress={}, daysLeft={}",
       now, sprintEndDate, sprintDurationInDays, progress, daysLeft);
 

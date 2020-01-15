@@ -33,26 +33,32 @@ properties</a>.
 ### Default
 
 <Preview>
-  <Story name="default">
+  <Story
+    name="default"
+    parameters={{
+      width: "500px",
+      height: "200px"
+    }}
+  >
     <AudioPlayerWidget/>
   </Story>
 </Preview>
 
 <Story 
-    name="knobs"
-    decorators={[withKnobs]}
-    parameters={{        
-        docs: {
-          disable: true        
-        }
-    }}
-  >
-    <AudioPlayerWidget
-      id={text("id", "sampleId")}
-      loader={text("loader", "<p>Widget loading...</p>")}
-      key={text("key", "sampleId")}
-      title={text("title", "Knobs AudioPlayer")}
-      dataSource={array("datasource", [])}
-    />
+  name="knobs"
+  decorators={[withKnobs]}
+  parameters={{
+    width: "500px",
+    height: "200px",
+    docs: {
+      disable: true
+    }
+  }}
+>
+  <AudioPlayerWidget
+    id={text("id", "sampleId")}
+    loader={text("loader", "<p>Widget loading...</p>")}
+    key={text("key", "sampleId")}
+    title={text("title", "Knobs AudioPlayer")}
+  />
 </Story>
-

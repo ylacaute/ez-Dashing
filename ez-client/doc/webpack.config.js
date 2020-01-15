@@ -5,9 +5,11 @@ module.exports = {
     modules: [
       "node_modules",
       "src/main/js",
-      "src/main/resources",
-      "doc"
-    ]
+      "src/main/resources"
+    ],
+    alias: {
+      Doc: path.resolve(__dirname, 'component/'),
+    }
   },
   plugins: [],
   module: {

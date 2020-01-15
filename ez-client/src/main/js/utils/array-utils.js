@@ -29,4 +29,16 @@ export default class ArrayUtils {
     return average;
   }
 
+
+  static splitToNArrays(inputArray, maxSize) { // 4e - 1
+    debugger;
+    if (!inputArray || inputArray.length === 0) {
+      return [];
+    }
+    let result = [inputArray.slice(0, maxSize)];
+    if (inputArray.length > maxSize) {
+      result.concat([ArrayUtils.splitToNArrays(inputArray.slice(maxSize), maxSize)]);
+    }
+    return result;
+  }
 }

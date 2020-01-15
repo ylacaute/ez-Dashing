@@ -1,10 +1,11 @@
-import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import Resizable from "Doc/resizable";
 import ScalableImage from "./scalable-image";
-import { array, object, text, withKnobs } from "@storybook/addon-knobs";
-import { linkTo } from '@storybook/addon-links'
+import {array, object, text, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
 
 <Meta 
-  title="Components|Range/ScalableImage" 
+  title="Components|Scalable/ScalableImage" 
   parameters={{
     githubLink: "/blob/master/ez-client/src/main/js/component/scalable/image/scalable-image.jsx"
   }}
@@ -22,17 +23,36 @@ import { linkTo } from '@storybook/addon-links'
 
 ## Usage
 
-### Default
+
+### Default (not svg)
 
 <Preview>
   <Story
+    decorators={[withKnobs]}
     name="default"
     parameters={{
-      layout: "widget",
-      info: [ "The image always take the maximum place keeping its original ratio." ]
+      className: "widget medium",
+      info: "Play with the container size !"
     }}>
-    <ScalableImage src="img/tech/ezLogo_512.png" />
+    <Resizable>
+      <ScalableImage src="img/tech/ezLogo_512.png" />
+    </Resizable>
   </Story>
 </Preview>
 
+### With svg
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="with-svg"
+    parameters={{
+      className: "widget medium",
+      info: "Play with the container size !"
+    }}>
+    <Resizable>
+      <ScalableImage src="img/happyFace.svg"/>
+    </Resizable>
+  </Story>
+</Preview>
 

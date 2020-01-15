@@ -47,6 +47,26 @@ export default class StringUtils {
     return template.replace(regex, (m, $1) => variables[$1] || m);
   }
 
+  /**
+   * Measure the text width in pixel
+   */
+  static measureText(input, fontSizePixel) {
+    let c = document.createElement("CANVAS");
+    let ctx = c.getContext("2d");
+    ctx.font = fontSizePixel + "px Arial";
+    return ctx.measureText(input).width;
+  }
+
+  /**
+   * 42000 become 42k
+   */
+  static formatKiloNumber(number) {
+      if (isNaN(number) || number < 1000) {
+        return number;
+      }
+      return (number / 1000.0) + "k";
+  }
+
 }
 
 

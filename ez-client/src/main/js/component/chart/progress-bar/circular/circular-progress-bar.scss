@@ -17,6 +17,7 @@ $color-progress-bar-text: #FFF !default;
 .progress-bar.circular {
   .path {
     transition: stroke-dashoffset 0.5s ease 0s;
+    //transition: all 500ms;
   }
 
   .display-value, .label {

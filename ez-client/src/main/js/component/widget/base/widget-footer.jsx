@@ -2,24 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
+import "./widget-footer.scss";
+
 export default class WidgetFooter extends React.PureComponent {
 
   static propTypes = {
-    classNames: PropTypes.string,
-    content: PropTypes.node,
+    className: PropTypes.string,
+    children: PropTypes.node,
   };
 
   static defaultProps = {
     className: '',
-    content: null
+    children: null
   };
 
   render() {
-    const {classNames, content} = this.props;
+    const {className, content} = this.props;
+    const classNames = cn("widget-footer", className);
 
     return (
-      <footer className={cn(classNames)}>
-        {content}
+      <footer className={classNames}>
+        {children}
       </footer>
     )
   }

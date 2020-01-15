@@ -1,0 +1,25 @@
+@import "../../../style/common";
+
+@mixin neutral() {
+  .neutral {
+    color: $color-neutral-op;
+  }
+}
+
+div, span {
+  @include neutral;
+
+  &.good {
+    color: $color-good;
+    @include neutral;
+  }
+  &.avg {
+    color: $color-warn;
+    @include neutral;
+  }
+  &.bad {
+    color: $color-danger;
+    @include neutral;
+  }
+}
+

@@ -126,7 +126,7 @@ export default class DatasourceService {
   getWidgetIdsListening(dataSourceId) {
     let result = [];
     this.dashboardConfig.widgets.forEach(widgetConfig => {
-      if (widgetConfig.dataSource.includes(dataSourceId)) {
+      if (widgetConfig.dataSources.includes(dataSourceId)) {
         result.push(widgetConfig.id);
       }
     });
@@ -152,7 +152,7 @@ export default class DatasourceService {
     const dsRefreshedId = action.dataSourceId;
 
     this.dataSources.forEach(ds => {
-      const dsDependency = ds.dependencies.find(d => d.dataSource === dsRefreshedId);
+      const dsDependency = ds.dependencies.find(d => d.dataSources === dsRefreshedId);
       if (dsDependency) {
         // We found a dataSource which contains a dependency equals to the refreshed dataSource
         ds.queryParams = {};

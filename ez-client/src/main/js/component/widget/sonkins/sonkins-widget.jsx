@@ -15,7 +15,8 @@ import "./sonkins-widget.scss";
 
 export default class SonkinsWidget extends React.PureComponent {
 
-  static propTypes = Object.assign({
+  static propTypes = {
+    ...Widget.propTypes,
     status: PropTypes.oneOf([
       "FAILURE", "UNSTABLE", "REBUILDING", "BUILDING", "ABORTED", "SUCCESS", "UNKNOWN"
     ]),
@@ -26,27 +27,61 @@ export default class SonkinsWidget extends React.PureComponent {
     lines: PropTypes.number,
     coverage: PropTypes.number,
     violations: PropTypes.number,
-  }, Widget.propTypes);
+  };
 
   static defaultProps = {
     status: "UNKNOWN",
     author: "",
-    branch: "master",
     building: false,
+    branch: "master",
     progress: 0,
+    lines: 0,
+    coverage: 0,
+    violations: 0
   };
+
+  state = {
+    avatar: "",
+  };
+
+  static getDerivedStateFromProps(props) {
+    const {className, author, avatars, status, building} = props;
+    const avatar = AvatarConfig.get(author, avatars);
+    const realStatus = SonkinsWidget.getJenkinsStatus(status, building);
+
+    let content;
+    switch (realStatus) {
+      case "SUCCESS":
+        content = SonkinsWidget.renderBuildSuccess(props);
+        break;
+      case "BUILDING":
+      case "REBUILDING":
+        content = SonkinsWidget.renderBuilding(props, avatar);
+        break;
+      default:
+        content = SonkinsWidget.renderBuildFail(avatar);
+        break;
+    }
+    return {
+      className: cn("sonkins", className, realStatus.toLowerCase()),
+      avatar: avatar,
+      content: content,
+    };
+  }
 
   /**
    * Get the real status of Jenkins. A trick is necessary as sometimes jenkins returns
    * a null status when building but set a building field to true.
    */
-  getJenkinsStatus() {
-    return this.props.building ? "BUILDING" :
-      this.props.status != null ? this.props.status :
-        "UNKNOWN";
+  static getJenkinsStatus(currentStatus, building) {
+    return building
+      ? "BUILDING"
+      : currentStatus
+        ? currentStatus
+        : "UNKNOWN";
   }
 
-  renderAuthorMetric(label, iconUrl, singleMetric = false) {
+  static renderAuthorMetric(label, iconUrl, singleMetric = false) {
     return (
       <Metric
         single={singleMetric}
@@ -58,26 +93,26 @@ export default class SonkinsWidget extends React.PureComponent {
     );
   }
 
-  renderBuilding(avatar) {
+  static renderBuilding(props, avatar) {
     return (
       <div>
         <Flip>
           {this.renderAuthorMetric("BUILDING", avatar.url, true)}
           <CircularProgressBar
-            value={this.props.progress}
+            value={props.progress}
             textForValue={(value) => `${value}%`}
           />
         </Flip>
-        <LinearProgressBar percent={this.props.progress}/>
+        <LinearProgressBar percent={props.progress}/>
       </div>
     );
   }
 
-  renderBuildFail(avatar) {
+  static renderBuildFail(avatar) {
     return this.renderAuthorMetric("BUILD FAILURE", avatar.url, true);
   }
 
-  renderMetric(label, value, thresholds, formatValue) {
+  static renderMetric(label, value, thresholds, formatValue) {
     if (!value)
       return null;
     return (
@@ -90,8 +125,8 @@ export default class SonkinsWidget extends React.PureComponent {
     )
   }
 
-  renderBuildSuccess() {
-    const {lines, coverage, violations, thresholds} = this.props;
+  static renderBuildSuccess(props) {
+    const {lines, coverage, violations, thresholds} = props;
     return (
       <div className="metrics">
         {this.renderAuthorMetric("Last build")}
@@ -103,26 +138,11 @@ export default class SonkinsWidget extends React.PureComponent {
   }
 
   render() {
-    const {className, author, avatars} = this.props;
-    const avatar = AvatarConfig.get(author, avatars);
-    const classNames = cn("sonkins", className, this.getJenkinsStatus().toLowerCase());
-    let content;
+    const {className, content} = this.state;
 
-    switch (this.getJenkinsStatus()) {
-      case "SUCCESS":
-        content = this.renderBuildSuccess();
-        break;
-      case "BUILDING":
-      case "REBUILDING":
-        content = this.renderBuilding(avatar);
-        break;
-      default:
-        content = this.renderBuildFail(avatar);
-        break;
-    }
     return (
       <Widget
-        className={classNames}
+        className={className}
         {...this.props}
       >
         <WidgetHeader

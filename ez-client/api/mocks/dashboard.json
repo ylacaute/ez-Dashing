@@ -100,7 +100,7 @@
               }
             },
             "dependencies": [{
-              "dataSource": "jira-sprint-active",
+              "dataSources": "jira-sprint-active",
               "params": [
                 "sprintId"
               ]
@@ -119,7 +119,7 @@
               }
             },
             "dependencies": [{
-              "dataSource": "jira-sprint-active",
+              "dataSources": "jira-sprint-active",
               "params": [
                 "sprintId"
               ]
@@ -247,7 +247,7 @@
       {
         "type": "burndown",
         "title": "BURNDOWN",
-        "dataSource": [
+        "dataSources": [
           "jira-story-closed",
           "jira-story-ready",
           "jira-sprint-active"
@@ -264,21 +264,21 @@
       },
       {
         "type": "sprint",
-        "dataSource" : [
+        "dataSources" : [
           "jira-sprint-active"
         ]
       },
       {
         "type": "bug",
         "title": "bugs sample",
-        "dataSource": [
+        "dataSources": [
           "jira-bug-noBug"
         ]
       },
       {
         "type": "bug",
         "title": "BUGS",
-        "dataSource": [
+        "dataSources": [
           "jira-bug-todo-p2-p3",
           "jira-bug-inProgress-p2-p3"
         ]
@@ -286,7 +286,7 @@
       {
         "type": "bug",
         "title": "URGENT BUGS",
-        "dataSource": [
+        "dataSources": [
           "jira-bug-todo-p0-p1",
           "jira-bug-inProgress-p0-p1"
         ]
@@ -294,7 +294,7 @@
       {
         "type": "sonar",
         "title": "Sonar A",
-        "dataSource": [
+        "dataSources": [
           "sonar-stats-systemA"
         ],
         "enabled": false
@@ -303,7 +303,7 @@
         "type": "sonkins",
         "title": "SYSTEM A",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemA"
         ],
         "enabled": true
@@ -312,7 +312,7 @@
         "type": "sonkins",
         "title": "SYSTEM B",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemB",
           "sonar-stats-systemB"
         ],
@@ -322,7 +322,7 @@
         "type": "sonkins",
         "title": "SYSTEM C",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemC",
           "sonar-stats-systemA"
         ],
@@ -332,7 +332,7 @@
         "type": "sonkins",
         "title": "SYSTEM D",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemA",
           "sonar-stats-systemB"
         ],
@@ -342,7 +342,7 @@
         "type": "sonkins",
         "title": "SYSTEM E",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemA",
           "sonar-stats-systemA"
         ],
@@ -352,7 +352,7 @@
         "type": "sonkins",
         "title": "SYSTEM F",
         "branch": "master",
-        "dataSource": [
+        "dataSources": [
           "jenkins-lastBuild-systemA",
           "sonar-stats-systemB"
         ],
@@ -364,7 +364,7 @@
         "title": "TEAM VELOCITY",
         "lastSavedSprintId" : "9",
         "velocityHistory": [ 999, 2550, 989, 10, 20, 30 ],
-        "dataSource": [
+        "dataSources": [
           "jira-story-closed",
           "jira-story-ready",
           "jira-sprint-active"
@@ -376,7 +376,7 @@
         "title": "TEAM RELIABILITY",
         "lastSavedSprintId" : "5",
         "reliabilityHistory": [ 80, 90, 100 ],
-        "dataSource": [
+        "dataSources": [
           "jira-story-closed",
           "jira-story-ready",
           "jira-sprint-active"
@@ -443,24 +443,6 @@
     },
     "grid": {
       "itemBreakpoints": {
-        "width": {
-          "lg": 1200,
-          "md": 996,
-          "sm": 768,
-          "xs": 480,
-          "xxs": 240,
-          "xxxs": 0
-        },
-        "height": {
-          "lg": 800,
-          "md": 600,
-          "sm": 400,
-          "xs": 280,
-          "xxs": 140,
-          "xxxs": 0
-        }
-      },
-      "itemBreakpoints2": {
         "width": {
           "lg": 1200,
           "md": 996,

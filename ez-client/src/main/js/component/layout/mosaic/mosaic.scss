@@ -1,0 +1,69 @@
+
+.mosaic {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .mosaic-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+}
+
+// WE DISPLAY A DIFFERENT NUMBER OF ROW DEPENDING THE HEIGHT CLASS
+// AND A DIFFERENT NUMBER OF ITEM IN A ROW DEPENDING THE WIDTH CLASS
+.mosaic.enableBreakpoints {
+
+  &.height-xs {
+    .mosaic-row:nth-child(n+2) {
+      display: none;
+    }
+  }
+
+  &.height-sm {
+    .mosaic-row:nth-child(n+3) {
+      display: none;
+    }
+  }
+
+  &.height-md {
+    .mosaic-row:nth-child(n+4) {
+      display: none;
+    }
+  }
+
+  &.height-lg {
+    .mosaic-row:nth-child(n+5) {
+      display: none;
+    }
+  }
+
+
+  &.width-xs {
+    .mosaic-item:nth-child(n+2) {
+      display: none;
+    }
+  }
+
+  &.width-sm {
+    .mosaic-item:nth-child(n+3) {
+      display: none;
+    }
+  }
+
+  &.width-md {
+    .mosaic-item:nth-child(n+4) {
+      display: none;
+    }
+  }
+
+  &.width-lg {
+    .mosaic-item:nth-child(n+5) {
+      display: none;
+    }
+  }
+}

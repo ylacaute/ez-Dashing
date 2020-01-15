@@ -1,0 +1,150 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import Resizable from "Doc/resizable";
+import ScalableText from "./scalable-text";
+import {array, object, text, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
+
+<Meta 
+  title="Components|Scalable/ScalableText" 
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/scalable/image/scalable-text.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-scalable-text-scalable-text--default-story" />
+
+
+# ScalableText
+
+## Props
+ 
+<Props of={ScalableText} />
+
+## Usage
+
+### One digit number
+
+<Preview>
+  <Story
+    name="one-digit"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="1" />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Two digit number
+
+<Preview>
+  <Story
+    name="two-digit"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="10" />
+    </Resizable>
+  </Story>
+</Preview>
+
+### One char
+
+<Preview>
+  <Story
+    name="one-char"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="a" />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Two char lower
+
+<Preview>
+  <Story
+    name="two-char-lower"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="ok" />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Two char upper
+
+<Preview>
+  <Story
+    name="two-char-upper"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="OK" />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### Long uppercase
+
+<Preview>
+  <Story
+    name="long-uppercase"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="SOME TEXT" />
+    </Resizable>
+  </Story>
+</Preview>
+
+### Long mixcase
+
+<Preview>
+  <Story
+    name="long-mixcase"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="A very LONG Text..." />
+    </Resizable>
+  </Story>
+</Preview>
+
+
+### More characters
+
+<Preview>
+  <Story
+    name="more-char"
+    parameters={{
+      className: "widget medium",
+      info: "The text always fit the max size of the container"
+    }}>
+    <Resizable>
+      <ScalableText text="150k" />
+    </Resizable>
+  </Story>
+</Preview>
+

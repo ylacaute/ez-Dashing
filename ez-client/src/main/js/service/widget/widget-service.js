@@ -56,7 +56,7 @@ export default class WidgetService {
 
     RestClient.get(Constants.DASHBOARD_CONFIG_PATH, (dashboardConfig) => {
       const cfg = ConfigExtender.extendsConfig(dashboardConfig, false);
-      cfg.widgets.forEach(w => delete w.dataSource);
+      cfg.widgets.forEach(w => delete w.dataSources);
       const result = {
         type: WidgetEvent.UpdateAll,
         payload: cfg.widgets,

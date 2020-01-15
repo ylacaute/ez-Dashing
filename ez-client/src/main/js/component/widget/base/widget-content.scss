@@ -1,0 +1,24 @@
+@import "../../../style/common";
+
+$padding-widget-content: 10px !default;
+
+article {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  flex-direction: column;
+  padding: $padding-widget-content;
+  height: 100%;
+  position: relative;
+
+  &.layout-default {
+    align-items: center;
+  }
+  &.layout-single {
+    font-size: 10rem;
+  }
+  &.layout-list {
+    font-size: 200%;
+  }
+
+}

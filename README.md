@@ -4,6 +4,9 @@ __ez-Dashing__ is a customizable free dashboard tool for agile development teams
  development but already usable for production. I am aware that many things could be improved, feel free 
  to contribute !
 
+/!\ Huge work still in progress, master is currently broken, only documentation (npm run doc) is available.
+I am currently doing a huge refactoring and try to create a pure json generic widget :)
+
 __Guidelines__
 
  - Responsive
@@ -23,7 +26,7 @@ The online demo shows a running dashboard (release 1.2.0) configured to consume 
  For example, it seems it is not possible to call demo.qotilabs.com without authentitfication anymore, or maybe 
  we should update the dashboard config.
 
-Go on [http://demo.thorpora.fr/ez-dashing/](http://demo.thorpora.fr/ez-dashing/)
+*The online demo is temporarily disabled.*
 
 ## From Docker Hub
 

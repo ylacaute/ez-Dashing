@@ -25,5 +25,4 @@ storiesOf('Widget|Bug', module)
       title={text("title", "Play with me (Canvas tab)")}
       loader={object("loader", <p>Widget loading...</p>)}
       showModal={() => {}}
-      dataSource={array("datasource", [])}
     />);
