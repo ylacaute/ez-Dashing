@@ -1,6 +1,5 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
 import ScalableMetric from "./scalable-metric";
-import Resizable from "Doc/resizable";
 import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
 import {linkTo} from '@storybook/addon-links'
 
@@ -34,19 +33,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      className="demo"
-      content="static"
-    />
-  </Resizable>
+  <ScalableMetric
+    className="demo"
+    content="static"
+  />
 </Story>
 
 
@@ -58,24 +53,20 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value={0}
-      content="dynamic"
-      thresholds={{
-        bad: 100,
-        avg: 10,
-        good: 0
-      }}
-    />
-  </Resizable>
+  <ScalableMetric
+    value={0}
+    content="dynamic"
+    thresholds={{
+      bad: 100,
+      avg: 10,
+      good: 0
+    }}
+  />
 </Story>
 
 
@@ -87,18 +78,14 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      contentImageSrc="img/thumb.svg"
-    />
-  </Resizable>
+  <ScalableMetric
+    contentImageSrc="img/thumb.svg"
+  />
 </Story>
 
 
@@ -111,24 +98,20 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value={0}
-      contentImageSrc="img/thumb.svg"
-      thresholds={{
-        bad: 100,
-        avg: 10,
-        good: 0
-      }}
-    />
-  </Resizable>
+  <ScalableMetric
+    value={0}
+    contentImageSrc="img/thumb.svg"
+    thresholds={{
+      bad: 100,
+      avg: 10,
+      good: 0
+    }}
+  />
 </Story>
 
 
@@ -141,19 +124,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value="1"
-      legend="lines"
-    />
-  </Resizable>
+  <ScalableMetric
+    value="1"
+    legend="lines"
+  />
 </Story>
 
 
@@ -165,19 +144,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value="42"
-      legend="bugs"
-    />
-  </Resizable>
+  <ScalableMetric
+    value="42"
+    legend="bugs"
+  />
 </Story>
 
 
@@ -188,19 +163,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      contentImageSrc="img/happyFace.svg"
-      legend="mood"
-    />
-  </Resizable>
+  <ScalableMetric
+    contentImageSrc="img/happyFace.svg"
+    legend="mood"
+  />
 </Story>
 
 
@@ -212,19 +183,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      contentImageSrc="img/thumb.svg"
-      legend="A long long long legend"
-    />
-  </Resizable>
+  <ScalableMetric
+    contentImageSrc="img/thumb.svg"
+    legend="A long long long legend"
+  />
 </Story>
 
 
@@ -236,24 +203,20 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     },
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value={select("Number", [0, 10, 50, 100, 200], 50)}
-      legend="Violations"
-      thresholds={{
-        bad: 100,
-        avg: 10,
-        good: 0
-      }}
-    />
-  </Resizable>
+  <ScalableMetric
+    value={select("Number", [0, 10, 50, 100, 200], 50)}
+    legend="Violations"
+    thresholds={{
+      bad: 100,
+      avg: 10,
+      good: 0
+    }}
+  />
 </Story>
 
 
@@ -265,24 +228,20 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     },
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value={select("Number", ["foo", "bar", "omg"], "omg")}
-      legend="Violations"
-      thresholds={{
-        bad: "foo",
-        avg: "bar",
-        good: "omg"
-      }}
-    />
-  </Resizable>
+  <ScalableMetric
+    value={select("Number", ["foo", "bar", "omg"], "omg")}
+    legend="Violations"
+    thresholds={{
+      bad: "foo",
+      avg: "bar",
+      good: "omg"
+    }}
+  />
 </Story>
 
 
@@ -294,25 +253,21 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     },
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value={select("Number", [0, 10, 50, 100, 200], 50)}
-      contentImageSrc="img/thumb.svg"
-      legend="A long legend"
-      thresholds={{
-        bad: 100,
-        avg: 10,
-        good: 0
-      }}
-    />
-  </Resizable>
+  <ScalableMetric
+    value={select("Number", [0, 10, 50, 100, 200], 50)}
+    contentImageSrc="img/thumb.svg"
+    legend="A long legend"
+    thresholds={{
+      bad: 100,
+      avg: 10,
+      good: 0
+    }}
+  />
 </Story>
 
 
@@ -324,19 +279,15 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value="100000"
-      legend="bugs"
-    />
-  </Resizable>
+  <ScalableMetric
+    value="100000"
+    legend="bugs"
+  />
 </Story>
 
 
@@ -348,20 +299,16 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value="99"
-      content="${value} bugs"
-      legend="release-2.42"
-    />
-  </Resizable>
+  <ScalableMetric
+    value="99"
+    content="${value} bugs"
+    legend="release-2.42"
+  />
 </Story>
 
 
@@ -373,18 +320,14 @@ import {linkTo} from '@storybook/addon-links'
   decorators={[withKnobs]}
   parameters={{
     className: "widget",
-    width: "550px",
-    height: "450px",
     docs: {
       disable: true
     }
   }}
 >
-  <Resizable>
-    <ScalableMetric
-      value="HTML"
-      content="<p><i>This is</i> <strong>${value}</strong></p>"
-      isHtml={true}
-    />
-  </Resizable>
+  <ScalableMetric
+    value="HTML"
+    content="<p><i>This is</i> <strong>${value}</strong></p>"
+    isHtml={true}
+  />
 </Story>

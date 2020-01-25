@@ -1,5 +1,4 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
-import Resizable from "Doc/resizable";
 import PureWidget from "./pure-widget";
 import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
 import {linkTo} from '@storybook/addon-links'
@@ -23,43 +22,39 @@ You can create this kind of widget only with a JSON configuration.
     decorators={[withKnobs]}
     name="sample-1"
     parameters={{
-      width: "80%",
-      height: "40%",
       info: ""
     }}>
-    <Resizable width={500} height={200}>
-      <PureWidget
-        title="Sonar metrics"
-        layout="mosaic"
-        dataSourceField1={42000}
-        dataSourceField2={112}
-        dataSourceField3={76}
-        content={[{
-          type: "metric",
-          value: "${dataSourceField1}",
-          legend: "lines"
-        },{
-          type: "metric",
-          value: "${dataSourceField2}",
-          legend: "violations",
-          thresholds: {
-            bad: 100,
-            avg: 10,
-            good: 0
-          }
-        },{
-           type: "metric",
-           value: "${dataSourceField3}",
-           content: "${value}%",
-           legend: "coverage",
-           thresholds: {
-             good: 75,
-             avg: 50,
-             bad: 0
-           }
-         }]}
-      />
-    </Resizable>
+    <PureWidget
+      title="Sonar metrics"
+      layout="mosaic"
+      dataSourceField1={42000}
+      dataSourceField2={112}
+      dataSourceField3={76}
+      content={[{
+        type: "metric",
+        value: "${dataSourceField1}",
+        legend: "lines"
+      },{
+        type: "metric",
+        value: "${dataSourceField2}",
+        legend: "violations",
+        thresholds: {
+          bad: 100,
+          avg: 10,
+          good: 0
+        }
+      },{
+         type: "metric",
+         value: "${dataSourceField3}",
+         content: "${value}%",
+         legend: "coverage",
+         thresholds: {
+           good: 75,
+           avg: 50,
+           bad: 0
+         }
+       }]}
+    />
   </Story>
 </Preview>
 
@@ -70,31 +65,27 @@ You can create this kind of widget only with a JSON configuration.
     decorators={[withKnobs]}
     name="sample-2"
     parameters={{
-      width: "80%",
-      height: "40%",
       info: ""
     }}>
-    <Resizable width={500} height={200}>
-      <PureWidget
-        title="Sonar metrics"
-        layout="mosaic"
-        dataSourceField1={42000}
-        dataSourceField2={112}
-        dataSourceField3={76}
-        content={[{
+    <PureWidget
+      title="Sonar metrics"
+      layout="mosaic"
+      dataSourceField1={42000}
+      dataSourceField2={112}
+      dataSourceField3={76}
+      content={[{
+        type: "metric",
+        content: "aaa<br/>bbb",
+        legend: "lines"
+      }]}
+      conditionalContent={{
+        condition: "",
+        content: {
           type: "metric",
-          content: "aaa<br/>bbb",
-          legend: "lines"
-        }]}
-        conditionalContent={{
-          condition: "",
-          content: {
-            type: "metric",
-            contentImageSrc: "img/happyFace.svg",
-            legend: "Everything fine !"
-          }
-        }}
-      />
-    </Resizable>
+          contentImageSrc: "img/happyFace.svg",
+          legend: "Everything fine !"
+        }
+      }}
+    />
   </Story>
 </Preview>

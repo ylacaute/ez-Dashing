@@ -143,7 +143,7 @@ export default class BurndownWidget extends React.PureComponent {
               legendPosition: 'middle',
               format: yAxisFormatter
             }}
-            //colors={{ scheme: 'nivo' }}
+            //colors={{scheme: 'nivo' }}
             colors={d => d.color}
             borderColor={{
               from: 'color',

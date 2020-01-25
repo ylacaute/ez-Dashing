@@ -1,7 +1,7 @@
-import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
 import CircularProgressBar from "./circular-progress-bar";
-import { array, object, text, number, withKnobs } from "@storybook/addon-knobs";
-import { linkTo } from '@storybook/addon-links'
+import {array, object, text, number, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Components|Chart/ProgressBar/CircularProgressBar" 
@@ -58,8 +58,9 @@ import { linkTo } from '@storybook/addon-links'
     }}
   >
     <CircularProgressBar
-     value={100}
-     textForValue={(v) => `${v}%`}/>
+      value={100}
+      textForValue={(v) => `${v}%`}
+    />
   </Story>
 </Preview>
 

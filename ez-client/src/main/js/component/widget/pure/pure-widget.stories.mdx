@@ -1,5 +1,4 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
-import Resizable from "Doc/resizable";
 import PureWidget from "./pure-widget";
 import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
 import {linkTo} from '@storybook/addon-links'
@@ -35,24 +34,21 @@ properties</a>.
     decorators={[withKnobs]}
     name="single-value"
     parameters={{
-      width: "80%",
-      height: "70%",
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
         disable: true        
       }
-    }}>
-    <Resizable>
-      <PureWidget
-        title="Unique value"
-        layout="mosaic"
-        datasourceField={42}
-        content={[{
-          type: "metric",
-          value: "${datasourceField}"
-        }]}
-      />
-    </Resizable>
+    }}
+  >
+    <PureWidget
+      title="Unique value"
+      layout="mosaic"
+      datasourceField={42}
+      content={[{
+        type: "metric",
+        value: "${datasourceField}"
+      }]}
+    />
   </Story>
 </Preview>
 
@@ -63,59 +59,55 @@ properties</a>.
   <Story
     name="single-value-static-text"
     parameters={{
-      width: "80%",
-      height: "70%",
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
         disable: true
       }
     }}
   >
-    <Resizable>
-      <PureWidget
-        title="Unique value + static text"
-        layout="mosaic"
-        datasourceField1={100}
-        datasourceField2="Opened bugs"
-        datasourceField3="Release 2.42"
-        datasourceField4="Dev"
-        content={[{
-          type: "metric",
-          value: "${datasourceField1}"
-        }]}
-        thresholds={{
-          good: 100,
-          avg: 50,
-          bad: 0
-        }}
-        labels={[{
-          value: "${datasourceField4}",
-          style: {
-            position: "absolute",
-            right: "10px",
-            top: "10px",
-            fontSize: "2rem"
-          }
-        },{
-          value: "${datasourceField3}",
-          style: {
-            position: "absolute",
-            left: "10px",
-            top: "10px",
-            fontSize: "2rem"
-          }
-         },{
-           value: "${datasourceField2}",
-           style: {
-             position: "absolute",
-             left: "0",
-             right: "0",
-             bottom: "10px",
-             fontSize: "2rem"
-           }
-         }]}
-      />
-    </Resizable>
+    <PureWidget
+      title="Unique value + static text"
+      layout="mosaic"
+      datasourceField1={100}
+      datasourceField2="Opened bugs"
+      datasourceField3="Release 2.42"
+      datasourceField4="Dev"
+      content={[{
+        type: "metric",
+        value: "${datasourceField1}"
+      }]}
+      thresholds={{
+        good: 100,
+        avg: 50,
+        bad: 0
+      }}
+      labels={[{
+        value: "${datasourceField4}",
+        style: {
+          position: "absolute",
+          right: "10px",
+          top: "10px",
+          fontSize: "2rem"
+        }
+      },{
+        value: "${datasourceField3}",
+        style: {
+          position: "absolute",
+          left: "10px",
+          top: "10px",
+          fontSize: "2rem"
+        }
+       },{
+         value: "${datasourceField2}",
+         style: {
+           position: "absolute",
+           left: "0",
+           right: "0",
+           bottom: "10px",
+           fontSize: "2rem"
+         }
+       }]}
+    />
   </Story>
 </Preview>
 
@@ -128,8 +120,6 @@ properties</a>.
     decorators={[withKnobs]}
     name="multiple-thresholds"
     parameters={{
-      width: "80%",
-      height: "70%",
       info: "Note that datasourceField prop would be the result of a datasource mapping.<br/>" +
             "The HTML metric does not resize as SVG, so use HTML with caution.",
       docs: {
@@ -191,37 +181,33 @@ properties</a>.
   <Story
     name="vertical-list"
     parameters={{
-      width: "80%",
-      height: "70%",
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
         disable: true
       }
     }}
   >
-    <Resizable>
-      <PureWidget
-        title="List with scalable text"
-        layout={{
-          name: "mosaic",
-          maxItemPerRow: 1,
-          enableBreakpoints: false
-        }}
-        datasourceField1={[
-          {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
-          {val: "System-D"}, {val: "System-E"}
-        ]}
-        datasourceField2="Opened bugs"
-        datasourceField3="Release 2.42"
-        datasourceField4="Dev"
-        content={[{
-          type: "metric-list",
-          value: "${datasourceField1}"
-        }]}
-        content="$.datasourceField1[:].val"
-        contentType="metric"
-      />
-    </Resizable>
+    <PureWidget
+      title="List with scalable text"
+      layout={{
+        name: "mosaic",
+        maxItemPerRow: 1,
+        enableBreakpoints: false
+      }}
+      datasourceField1={[
+        {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
+        {val: "System-D"}, {val: "System-E"}
+      ]}
+      datasourceField2="Opened bugs"
+      datasourceField3="Release 2.42"
+      datasourceField4="Dev"
+      content={[{
+        type: "metric-list",
+        value: "${datasourceField1}"
+      }]}
+      content="$.datasourceField1[:].val"
+      contentType="metric"
+    />
   </Story>
 </Preview>
 
@@ -234,38 +220,34 @@ properties</a>.
   <Story
     name="vertical-list-threshold"
     parameters={{
-      width: "80%",
-      height: "70%",
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
         disable: true
       }
     }}
   >
-    <Resizable>
-      <PureWidget
-        title="List with threshold"
-        layout={{
-          name: "mosaic",
-          maxItemPerRow: 1,
-          maxDisplayableItems: 3,
-          enableBreakpoints: false
-        }}
-        datasourceField1={[
-          {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
-          {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
-        ]}
-        datasourceField2="Opened bugs"
-        datasourceField3="Release 2.42"
-        datasourceField4="Dev"
-        thresholds={{
-          good: 100,
-          avg: 50,
-          bad: 0
-        }}
-        content="$.datasourceField1[:].val"
-      />
-    </Resizable>
+    <PureWidget
+      title="List with threshold"
+      layout={{
+        name: "mosaic",
+        maxItemPerRow: 1,
+        maxDisplayableItems: 3,
+        enableBreakpoints: false
+      }}
+      datasourceField1={[
+        {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
+        {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
+      ]}
+      datasourceField2="Opened bugs"
+      datasourceField3="Release 2.42"
+      datasourceField4="Dev"
+      thresholds={{
+        good: 100,
+        avg: 50,
+        bad: 0
+      }}
+      content="$.datasourceField1[:].val"
+    />
   </Story>
 </Preview>
 

@@ -1,7 +1,7 @@
-import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
 import ErrorWidget from "./error-widget";
-import { array, object, text, withKnobs } from "@storybook/addon-knobs";
-import { linkTo } from '@storybook/addon-links'
+import {array, object, text, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Components|Widget/Error" 
@@ -28,7 +28,6 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default"
     parameters={{
-      className: "widget small",
       info: "This component appears when a widget is on error (catch by the ErrorWidgetBoundary component)."
     }}>
     <ErrorWidget id="1" />

@@ -19,7 +19,7 @@ This tree is composed as below, in json-like format for better understanding. Th
     
   ],
   "widget": {
-    "dataSource": [{ 
+    "dataSource": [{
       "id" : "id",
       "loaded": false
     }],

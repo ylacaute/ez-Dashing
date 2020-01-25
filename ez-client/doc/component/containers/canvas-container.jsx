@@ -1,20 +1,11 @@
 import React from 'react';
-import cn from "classnames";
 import {GithubLink} from "Doc/github-link";
 import ReactHtmlParser from 'react-html-parser';
-
+import Resizable from "Doc/resizable";
 import "./canvas-container.scss"
 
 export function CanvasContainer({story, context}) {
-  const {info, docs, className} = context.parameters;
-
-  const style = {};
-  if (context.parameters.width) {
-    style.width = context.parameters.width;
-  }
-  if (context.parameters.height) {
-    style.height = context.parameters.height;
-  }
+  const {info, docs, className, width, height} = context.parameters;
   const queryParams = (new URL(document.location)).searchParams;
   const isDocs = queryParams.get("viewMode") === "docs";
   let infoMsg = null;
@@ -37,12 +28,9 @@ export function CanvasContainer({story, context}) {
   return (
     <div className="ez-canvas">
       <GithubLink filePath="/"/>
-      <div
-        className={cn("ez-story-wrapper", className)}
-        style={style}
-      >
+      <Resizable className={className} width={width} height={height}>
         {story}
-      </div>
+      </Resizable>
       <p>{infoMsg}</p>
       <p>{knobsMsg}</p>
     </div>

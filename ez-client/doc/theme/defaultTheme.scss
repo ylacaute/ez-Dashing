@@ -39,6 +39,18 @@ div.sbdocs-preview {
   border-radius: 6px !important;
   background-color: transparent !important;
   border: none !important;
+
+}
+
+div.sbdocs-preview > div:first-child > div:first-child {
+  width: 40%;
+  margin: auto;
+}
+
+
+div.sbdocs-preview > div > div > div > div > div {
+  min-height: 200px;
+  color: white;
 }
 
 /* PROPS BLOCK */

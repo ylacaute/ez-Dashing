@@ -43,7 +43,7 @@
     font-weight: bold;
 
     article {
-      > div { // wrapper only on building
+      > div {// wrapper only on building
         display: flex;
         flex-grow: 1;
       }

@@ -84,25 +84,25 @@ export const darkChartTheme = {
     }
   },
   annotations: {
-    text: { // Not used
+    text: {// Not used
       fontSize: 13,
       outlineWidth: 2,
       outlineColor: '#0FF'
     },
-    link: { // Not used
+    link: {// Not used
       stroke: '#0F0',
       strokeWidth: 1,
       outlineWidth: 2,
       outlineColor: '#0F0'
     },
-    outline: { // Not used
+    outline: {// Not used
       fill: '#00F',
       stroke: '#00F',
       strokeWidth: 2,
       outlineWidth: 2,
       outlineColor: '#00F'
     },
-    symbol: { // Not used
+    symbol: {// Not used
       fill: '#FF0',
       outlineWidth: 2,
       outlineColor: '#FF0'

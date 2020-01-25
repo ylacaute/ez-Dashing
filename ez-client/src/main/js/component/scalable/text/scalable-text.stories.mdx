@@ -1,5 +1,4 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
-import Resizable from "Doc/resizable";
 import ScalableText from "./scalable-text";
 import {array, object, text, withKnobs} from "@storybook/addon-knobs";
 import {linkTo} from '@storybook/addon-links'
@@ -29,12 +28,10 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="one-digit"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
     }}>
-    <Resizable>
       <ScalableText text="1" />
-    </Resizable>
   </Story>
 </Preview>
 
@@ -45,12 +42,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="two-digit"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="10" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="10" />
   </Story>
 </Preview>
 
@@ -60,12 +56,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="one-char"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="a" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="a" />
   </Story>
 </Preview>
 
@@ -76,12 +71,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="two-char-lower"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="ok" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="ok" />
   </Story>
 </Preview>
 
@@ -92,12 +86,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="two-char-upper"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="OK" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="OK" />
   </Story>
 </Preview>
 
@@ -108,12 +101,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="long-uppercase"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="SOME TEXT" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="SOME TEXT" />
   </Story>
 </Preview>
 
@@ -123,12 +115,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="long-mixcase"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="A very LONG Text..." />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="A very LONG Text..." />
   </Story>
 </Preview>
 
@@ -139,12 +130,11 @@ import {linkTo} from '@storybook/addon-links'
   <Story
     name="more-char"
     parameters={{
-      className: "widget medium",
+      className: "widget",
       info: "The text always fit the max size of the container"
-    }}>
-    <Resizable>
-      <ScalableText text="150k" />
-    </Resizable>
+    }}
+  >
+    <ScalableText text="150k" />
   </Story>
 </Preview>
 

@@ -30,7 +30,7 @@ export default class ArrayUtils {
   }
 
 
-  static splitToNArrays(inputArray, maxSize) { // 4e - 1
+  static splitToNArrays(inputArray, maxSize) {// 4e - 1
     debugger;
     if (!inputArray || inputArray.length === 0) {
       return [];

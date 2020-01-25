@@ -40,7 +40,7 @@ export default class StringUtils {
   /**
    * Replace variables in a string with their values.
    *
-   * Sample : replaceVars("hello ${var}", { var : "world" }) will return hello world
+   * Sample : replaceVars("hello ${var}", {var : "world" }) will return hello world
    */
   static replaceVars(template, variables) {
     let regex = new RegExp('\\$\\{(' + Object.keys(variables).join('|') + ')\\}', 'g');

@@ -1,7 +1,7 @@
-import { Anchor, Props, Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
 import InputRange from "./input-range";
-import { array, object, text, withKnobs } from "@storybook/addon-knobs";
-import { linkTo } from '@storybook/addon-links'
+import {array, object, text, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Components|Range/InputRange" 
@@ -28,7 +28,7 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="default"
     parameters={{
-      className: "widget small"
+      className: "widget"
     }}
   >
     <InputRange />
@@ -41,7 +41,7 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="classic"
     parameters={{
-      className: "widget small"
+      className: "widget"
     }}
   >
     <InputRange
@@ -59,7 +59,7 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="valueBinding"
     parameters={{
-      className: "widget small",
+      className: "widget",
       info: "You can't move the range here because we don't update the value onChange <br/> because we use the value field, the value is bind to the prop value, not the internal state value."
     }}>
     <InputRange 
@@ -77,7 +77,7 @@ import { linkTo } from '@storybook/addon-links'
   <Story
     name="disabled"
     parameters={{
-      className: "widget small",
+      className: "widget",
       info: "This range is disabled so you can't move it. <br/> The component looks the same because no style has been configured for this use-case."
     }}>
     <InputRange 

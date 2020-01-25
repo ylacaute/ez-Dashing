@@ -54,7 +54,7 @@ export default class HelloPieChartWidget extends React.PureComponent {
             innerRadius={0.5}
             padAngle={0.7}
             cornerRadius={3}
-            //colors={{ scheme: 'nivo' }}
+            //colors={{scheme: 'nivo' }}
             colors={d => d.color}
             borderWidth={1}
             borderColor={{
