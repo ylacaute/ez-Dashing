@@ -10,16 +10,18 @@ export default class WidgetContent extends React.PureComponent {
   static propTypes = {
     className: string,
     children: node,
+    /**
+     * Please see <code>Mosaic</code> item to have field description
+     */
     layout: shape({
-      name: string,
+      type: string,
       className: string,
       maxItemPerRow: number,
       maxRow: number,
       enableBreakpoints: bool,
     }),
     labels: array,
-    items: array,
-    maxItemPerRow: number
+    items: array
   };
 
   static defaultProps = {
@@ -43,17 +45,15 @@ export default class WidgetContent extends React.PureComponent {
     );
   }
 
-
-
   render() {
-    const {className, layout, items, labels, maxItemPerRow} = this.props;
-    const classNames = cn(className, "layout-" + layout.name);
+    const {className, layout, items, labels} = this.props;
+    const classNames = cn(className, "layout-" + layout.type);
     const labelsElt = labels.map((textObj, idx) =>
       WidgetContent.renderText(textObj, idx)
     );
 
     let content;
-    if (layout.name === "mosaic") {
+    if (layout.type === "mosaic") {
       content = (
         <Mosaic {...layout} >
           {items}

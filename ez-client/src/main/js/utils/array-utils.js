@@ -1,5 +1,9 @@
 export default class ArrayUtils {
 
+  static toArray(element) {
+    return Array.isArray(element) ? element : [element];
+  }
+
   /**
    * Return the last count element of the given array
    */

@@ -15,7 +15,7 @@ storiesOf('Widget|Bug', module)
       key="key"
       title="Default BugWidget"
       loader={<p>Widget loading...</p>}
-      dataSource={[]}
+      dataSources={[]}
     />
   )
   .add('editable', () =>

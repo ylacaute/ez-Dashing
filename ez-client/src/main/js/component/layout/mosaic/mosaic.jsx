@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, {bool, number, shape, string} from 'prop-types';
+import PropTypes, {bool, number, string} from 'prop-types';
 import cn from 'classnames';
 import withBreakpoints from '../../hoc/with-breakpoints/with-breakpoints';
 import {chunk} from "lodash";
@@ -9,32 +9,56 @@ import "./mosaic.scss"
 
 class Mosaic extends React.PureComponent {
 
+  /**
+   * Due to a Storybook bug: https://github.com/storybookjs/storybook/issues/9023
+   * The props of this component are not displayed in Storybook.
+   * This bug should be corrected fast in 2020.
+   */
   static propTypes = {
     /**
-     * sdfsdf
+     * Optional CSS Class to add for the Mosaic component
      */
-    name: string,
+    className: PropTypes.string,
+
     /**
-     * sdf
+     * Breakpoint CSS Class for width, computed with the HOC <code>withBreakpoints</code>
      */
-    className: string,
+    wBreakpointClass: string.isRequired,
+
     /**
-     * sdf
+     * Breakpoint CSS Class for height, computed with the HOC <code>withBreakpoints</code>
      */
-    wBreakpointClass: string,
+    hBreakpointClass: string.isRequired,
+
     /**
-     * sdf
+     * The maximum displayed item per row. The limitation can also be set with breakpoints
+     * if <code>enableBreakpoints</code> is true.
+     * If not set, this value is computed dynamically to keep the natural item order.
      */
-    hBreakpointClass: string,
     maxItemPerRow: number,
+
+    /**
+     * The maximum row displayed. The limitation can also be set with breakpoints if
+     * <code>enableBreakpoints</code> is true.
+     */
     maxRow: number,
-    enableBreakpoints: bool,
+
+    /**
+     * If enable, the number of displayed item per row and per column depend on the current
+     * container breakpoints. If the container is too small, only first items are displayed.
+     * As there are 4 possible breakpoint class, a maximum of 4 items can be displayed in a row
+     * or in column (giving a maximum items to 16).
+     * If disabled, all items are always displayed, depending only on the others properties
+     * <code>maxItemPerRow</code> and <code>maxRow</code>.
+     */
+    enableBreakpoints: bool
   };
 
   static defaultProps = {
     className: null,
+    maxItemPerRow: null,
+    maxRow: null,
     enableBreakpoints: true,
-    itemGap: "0"
   };
 
   state = {

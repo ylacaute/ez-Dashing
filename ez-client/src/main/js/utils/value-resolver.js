@@ -43,9 +43,6 @@ export default class ValueResolver {
 
       if (trimValue.startsWith("$.")) {
         resolvedContent = JSONPath.query(props, value);
-        // if (Array.isArray(resolvedContent)) {
-        //   resolvedContent = resolvedContent[0];
-        // }
       } else if (trimValue.startsWith("$")) {
         resolvedContent = StringUtils.replaceVars(trimValue, props);
       } else {

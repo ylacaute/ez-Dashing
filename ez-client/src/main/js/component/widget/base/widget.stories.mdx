@@ -5,10 +5,11 @@ import WidgetHeader from "./widget-header";
 import WidgetContent from "./widget-content";
 
 <Meta 
-  title="Components|Widget/Widget" 
+  title="Components|Widget/base/Widget"
   component={Widget}
   parameters={{
-    githubLink: "/blob/master/ez-client/src/main/js/component/widget/base/widget.jsx"
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/base/widget.jsx",
+    sortPriority: -100
   }}
 />
 
@@ -54,7 +55,7 @@ A loading widget, waiting all dataSources are loaded.
       info: ""
     }}
   >
-    <Widget dataSource={[{loaded: false}]}>
+    <Widget dataSources={[{loaded: false}]}>
       <WidgetHeader title="Widget Header"/>
       <WidgetContent>
         <span>Text content</span>

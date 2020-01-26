@@ -1,10 +1,9 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
-import Mosaic from "./mosaic";
+import Mosaic from "./mosaic.jsx";
 import SampleItem from "./mosaic-item.demo";
 import Metric from "component/scalable/metric";
 import {array, object, text, withKnobs, number, select} from "@storybook/addon-knobs";
 import {linkTo} from '@storybook/addon-links'
-
 
 <Meta 
   title="Components|Layout/Mosaic"
@@ -21,6 +20,7 @@ import {linkTo} from '@storybook/addon-links'
 
 ## Props
 
+
 <Props of={Mosaic} />
 
 
@@ -35,8 +35,10 @@ import {linkTo} from '@storybook/addon-links'
     info: "Play with container dimension and change the number of items !"
   }}
 >
-  <Mosaic className="demo">
-    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 5))
+  <Mosaic
+    className="demo"
+  >
+    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 3))
         .fill(0).map((i, idx) => (
             <SampleItem key={idx} value={idx}/>
         ))
@@ -46,27 +48,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Story
   decorators={[withKnobs]}
-  name="vertical-only"
-  parameters={{
-    docs: {
-      disable: true
-    },
-    className: "widget",
-    info: "Play with container dimension and change the number of items !"
-  }}
->
-  <Mosaic maxItemPerRow={1} className="demo">
-    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 6))
-        .fill(0).map((i, idx) => (
-            <SampleItem key={idx} value={idx}/>)
-        )
-    }
-  </Mosaic>
-</Story>
-
-<Story
-  decorators={[withKnobs]}
-  name="vertical-only-no-breakpoints"
+  name="vertical"
   parameters={{
     docs: {
       disable: true
@@ -77,11 +59,11 @@ import {linkTo} from '@storybook/addon-links'
 >
   <Mosaic
     className="demo"
-    maxItemPerRow={1}
-    maxRow={5}
-    enableBreakpoints={false}
+    maxRow={select("maxRow: ", [0,1,2,3,4,5,6,7,8,9,10,12,13,14,15], 2)}
+    maxItemPerRow={select("maxItemPerRow: ", [1], 1)}
+    enableBreakpoints={select("enableBreakpoints: ", [false, true], false)}
   >
-    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 6))
+    {new Array(select("Number of item", [0,1,2,3,4,5,6,7,8,9,10,12,13,14,15], 6))
         .fill(0).map((i, idx) => (
             <SampleItem key={idx} value={idx}/>)
         )
@@ -91,7 +73,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Story
   decorators={[withKnobs]}
-  name="horizontal-only"
+  name="horizontal"
   parameters={{
     docs: {
       disable: true
@@ -100,7 +82,12 @@ import {linkTo} from '@storybook/addon-links'
     info: "Play with container dimension and change the number of items !"
   }}
 >
-  <Mosaic maxRow={1} className="demo">
+  <Mosaic
+    className="demo"
+    maxRow={select("maxRow: ", [1], 1)}
+    maxItemPerRow={select("maxItemPerRow: ", [0,1,2,3,4,5,6,7,8,9,10,12,13,14,15], 3)}
+    enableBreakpoints={select("enableBreakpoints: ", [false, true], true)}
+  >
     {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 4))
         .fill(0).map((i, idx) => (
             <SampleItem key={idx} value={idx}/>)

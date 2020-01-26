@@ -36,7 +36,7 @@ properties</a>.
     parameters={{
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
-        disable: true        
+        disable: false
       }
     }}
   >
@@ -44,10 +44,41 @@ properties</a>.
       title="Unique value"
       layout="mosaic"
       datasourceField={42}
-      content={[{
+      content={{
         type: "metric",
         value: "${datasourceField}"
-      }]}
+      }}
+    />
+  </Story>
+</Preview>
+
+### List value
+
+<Preview>
+  <Story
+    name="list-value"
+    parameters={{
+      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="List with scalable text"
+      layout={{
+        type: "mosaic",
+        maxItemPerRow: 1,
+        enableBreakpoints: false
+      }}
+      datasourceField={[
+        {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
+        {val: "System-D"}, {val: "System-E"}
+      ]}
+      content={{
+        type: "metric",
+        value: "$.datasourceField[:].val"
+      }}
     />
   </Story>
 </Preview>
@@ -61,7 +92,7 @@ properties</a>.
     parameters={{
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
-        disable: true
+        disable: false
       }
     }}
   >
@@ -123,51 +154,49 @@ properties</a>.
       info: "Note that datasourceField prop would be the result of a datasource mapping.<br/>" +
             "The HTML metric does not resize as SVG, so use HTML with caution.",
       docs: {
-        disable: true
+        disable: false
       }
     }}>
-    <Resizable width={350} height={400}>
-      <PureWidget
-        title="Multiple fields"
-        layout="mosaic"
-        datasourceField1={42}
-        datasourceField2="omg"
-        datasourceField3="Hello"
-        datasourceField4="World"
-        datasourceField5="Yeah !"
-        content={[{
-          type: "metric",
-          value: "<i>HTML</i>",
-          isHtml: true
-        },{
-          type: "metric",
-          value: "${datasourceField2}",
-          thresholds: {
-            good: "omg",
-            bad: "anythingElse",
-          }
-        },{
-          type: "metric",
-          value: "${datasourceField1}",
-          legend: "bugs",
-          thresholds: {
-            bad: 100,
-            avg: 10,
-            good: 0
-          }
-        },{
-          type: "metric",
-          content: "${datasourceField2}",
-          legend: "build",
-          contentImageSrc: "img/thumb.svg",
-          thresholds: {
-            good: "omg",
-            avg: "hum",
-            bad: "bad",
-          }
-        }]}
-      />
-    </Resizable>
+    <PureWidget
+      title="Multiple fields"
+      layout="mosaic"
+      datasourceField1={42}
+      datasourceField2="omg"
+      datasourceField3="Hello"
+      datasourceField4="World"
+      datasourceField5="Yeah !"
+      content={[{
+        type: "metric",
+        value: "<i>HTML</i>",
+        isHtml: true
+      },{
+        type: "metric",
+        value: "${datasourceField2}",
+        thresholds: {
+          good: "omg",
+          bad: "anythingElse",
+        }
+      },{
+        type: "metric",
+        value: "${datasourceField1}",
+        legend: "bugs",
+        thresholds: {
+          bad: 100,
+          avg: 10,
+          good: 0
+        }
+      },{
+        type: "metric",
+        content: "${datasourceField2}",
+        legend: "build",
+        contentImageSrc: "img/thumb.svg",
+        thresholds: {
+          good: "omg",
+          avg: "hum",
+          bad: "bad",
+        }
+      }]}
+    />
   </Story>
 </Preview>
 
@@ -183,14 +212,14 @@ properties</a>.
     parameters={{
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
-        disable: true
+        disable: false
       }
     }}
   >
     <PureWidget
       title="List with scalable text"
       layout={{
-        name: "mosaic",
+        type: "mosaic",
         maxItemPerRow: 1,
         enableBreakpoints: false
       }}
@@ -198,15 +227,7 @@ properties</a>.
         {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
         {val: "System-D"}, {val: "System-E"}
       ]}
-      datasourceField2="Opened bugs"
-      datasourceField3="Release 2.42"
-      datasourceField4="Dev"
-      content={[{
-        type: "metric-list",
-        value: "${datasourceField1}"
-      }]}
       content="$.datasourceField1[:].val"
-      contentType="metric"
     />
   </Story>
 </Preview>
@@ -214,7 +235,10 @@ properties</a>.
 
 
 
-### String list
+
+
+
+### Vertical list with thresholds (TODO)
 
 <Preview>
   <Story
@@ -222,14 +246,14 @@ properties</a>.
     parameters={{
       info: "Note that datasourceField prop would be the result of a datasource mapping.",
       docs: {
-        disable: true
+        disable: false
       }
     }}
   >
     <PureWidget
       title="List with threshold"
       layout={{
-        name: "mosaic",
+        type: "mosaic",
         maxItemPerRow: 1,
         maxDisplayableItems: 3,
         enableBreakpoints: false
