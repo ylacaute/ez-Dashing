@@ -1,8 +1,8 @@
 import Logger from "utils/logger";
-import ObjectUtils from "utils/object-utils";
 import GridLayoutGenerator from "service/setup/grid-layout-generator";
 import RestClient from "utils/rest-client";
 import Constants from "constant";
+import isEmpty from "lodash/isEmpty";
 
 const logger = Logger.getLogger("GridLayoutService");
 
@@ -35,7 +35,7 @@ export default class GridLayoutService {
       logger.info("Use the grid layout defined in the local storage");
       return;
     }
-    if (ObjectUtils.isNullOrEmpty(dashboardConfig.grid.layouts)) {
+    if (isEmpty(dashboardConfig.grid.layouts)) {
       dashboardConfig.grid.layouts = GridLayoutGenerator.generate(dashboardConfig);
       logger.info("Use auto-generated grid layout configuration", dashboardConfig.grid.layouts);
     } else {
