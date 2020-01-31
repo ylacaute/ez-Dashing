@@ -22,6 +22,24 @@ import {linkTo} from '@storybook/addon-links'
 
 ## Usage
 
+### Zero
+
+
+<Story
+  name="zero"
+  decorators={[withKnobs]}
+  parameters={{
+    className: "widget",
+    docs: {
+      disable: true
+    }
+  }}
+>
+  <ScalableMetric
+    className="demo"
+    content={0}
+  />
+</Story>
 
 
 

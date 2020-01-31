@@ -67,7 +67,7 @@ class ScalableMetric extends React.PureComponent {
 
   static assertContentValid(props) {
     const {value, content, contentHtml, contentImageSrc} = props;
-    if (!value && !content && !contentHtml && !contentImageSrc) {
+    if (value == null && content == null && contentHtml == null && !contentImageSrc) {
       throw new Error("You can't create a metric without" +
         " value, content nor contentImageSrc !");
     }
@@ -80,8 +80,8 @@ class ScalableMetric extends React.PureComponent {
     const legendElt = legend
       ? <ScalableText className="metric-legend" text={legend}/>
       : null;
-    const withLegend = legendElt === null;
-    const contentElt = ScalableMetric.generateContent(props, withLegend);
+    const single = legendElt === null;
+    const contentElt = ScalableMetric.generateContent(props, single);
 
     return {
       className: metricClassName,

@@ -12,7 +12,6 @@ $padding-metric: 10px !default;
   flex-grow: 1;
   height: 100%;
   width: 100%;
-  //padding: $padding-metric; // Hummmmm TODO
 
   .metric-content {
     display: flex;
@@ -20,7 +19,7 @@ $padding-metric: 10px !default;
     height: 75%;
   }
   .metric-content:not(.single) {
-    padding-bottom: $padding-metric;
+    padding: $padding-metric;
   }
   .metric-html-content {
     display: flex;

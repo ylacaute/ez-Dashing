@@ -1,5 +1,5 @@
 import React from 'react';
-import {array, number, string, object, shape, oneOf, oneOfType} from "prop-types";
+import {array, string, object, shape, oneOf, oneOfType} from "prop-types";
 import Widget from "component/widget/base/widget";
 import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
@@ -8,18 +8,11 @@ import Logger from "utils/logger";
 import cn from "classnames";
 import ValueResolver from 'utils/value-resolver';
 import LayoutNormalizer from './layout-normalizer';
+import StringUtils from 'utils/string-utils';
 
 import "./pure-widget.scss"
-import ArrayUtils from '../../../utils/array-utils';
-import StringUtils from '../../../utils/string-utils';
 
 const logger = Logger.getLogger("PureWidget");
-
-// Careful : for list, we must use JsonPath
-
-const contentItem = {
-
-};
 
 export default class PureWidget extends React.PureComponent {
 
@@ -66,12 +59,6 @@ export default class PureWidget extends React.PureComponent {
      */
     labels: array,
 
-    /**
-     * Max number of displayed items
-     */
-    maxDisplayableItems: number,
-
-
     thresholds: object,
   };
 
@@ -79,7 +66,6 @@ export default class PureWidget extends React.PureComponent {
     layout: "mosaic",
     content: null,
     labels: [],
-    maxDisplayableItems: 10
   };
 
   state = {
@@ -88,7 +74,26 @@ export default class PureWidget extends React.PureComponent {
     items: []
   };
 
+  static getDerivedStateFromProps(props) {
+    const {layout, labels, thresholds} = props;
+    const updateProps = PureWidget.normalizeContent(props);
+    const itemConfigs = PureWidget.generateItemConfigs(updateProps);
+    const items = itemConfigs.map((cfg, idx) => PureWidget.generateItem(cfg, idx));
+    const resolvedLabels = labels.map(label => ({
+      ...label,
+      value: StringUtils.replaceVars(label.value, updateProps)
+    }));
+
+    return {
+      className: cn(props.className),
+      items: items,
+      labels: resolvedLabels,
+      layout: LayoutNormalizer.normalize(layout)
+    }
+  }
+
   static normalizeContent(props) {
+    const {thresholds} = props;
     let normalizedContent;
 
     if (!props.content) {
@@ -96,7 +101,7 @@ export default class PureWidget extends React.PureComponent {
         value: props.value,
         content: "${value}"
       }];
-    }else {
+    } else {
       const contentType = typeof props.content;
       switch (contentType) {
         case "string":
@@ -121,36 +126,13 @@ export default class PureWidget extends React.PureComponent {
       ...elt,
       type: elt.type || "metric",
       value: elt.value || "You must set the value property.",
-      content: elt.content || "${value}"
+      content: elt.content || "${value}",
+      thresholds: elt.thresholds || thresholds
     }));
     return {
       ...props,
       content: normalizedContent
     };
-  }
-
-  static getDerivedStateFromProps(props) {
-    const {layout, labels, maxDisplayableItems, thresholds} = props;
-    const updateProps = PureWidget.normalizeContent(props);
-    console.log("updateProps :", updateProps);
-    const itemConfigs = PureWidget.generateItemConfigs(updateProps);
-    console.log("itemConfigs :", itemConfigs);
-
-    const items = itemConfigs
-      .map((cfg, idx) => PureWidget.generateItem(cfg, idx, thresholds))
-      .slice(0, maxDisplayableItems);
-
-    const resolvedLabels = labels.map(label => ({
-      ...label,
-      value: StringUtils.replaceVars(label.value, updateProps)
-    }));
-
-    return {
-      className: cn(props.className),
-      items: items,
-      labels: resolvedLabels,
-      layout: LayoutNormalizer.normalize(layout)
-    }
   }
 
   static generateItemConfigs(props) {
@@ -177,15 +159,11 @@ export default class PureWidget extends React.PureComponent {
     return itemConfigs;
   }
 
-  static generateItem(itemConfig, idx, thresholds) {
+  static generateItem(itemConfig, idx) {
     return (
       <PureWidgetItem
         key={idx}
-        itemConfig={{
-          ...itemConfig,
-          type: itemConfig.type || "metric",
-          thresholds: itemConfig.thresholds || thresholds
-        }}
+        itemConfig={itemConfig}
       />
     );
   }

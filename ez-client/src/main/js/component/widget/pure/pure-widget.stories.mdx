@@ -74,7 +74,7 @@ properties</a>.
   </Story>
 </Preview>
 
-### Single value
+### Single dynamic value shortcut
 
 <Preview>
   <Story
@@ -90,7 +90,7 @@ properties</a>.
     <PureWidget
       title="Value from dateSource"
       layout="mosaic"
-      datasourceField={42}
+      datasourceField="42'"
       value="${datasourceField}"
     />
   </Story>
@@ -180,7 +180,7 @@ properties</a>.
 </Preview>
 
 
-### Vertical list
+### List values (shortcut)
 
 <Preview>
   <Story
@@ -193,7 +193,7 @@ properties</a>.
     }}
   >
     <PureWidget
-      title="List with scalable text"
+      title="List with scalable text'"
       layout={{
         type: "mosaic",
         maxItemPerRow: 1,
@@ -262,19 +262,22 @@ properties</a>.
       layout={{
         type: "mosaic",
         maxItemPerRow: 1,
-        maxDisplayableItems: 3,
-        enableBreakpoints: false
+        maxTotalItems: 11,
+        enableBreakpoints: false,
+        reverseItems: true
       }}
       datasourceField1={[
-        {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
+        {val: 999}, {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
         {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
       ]}
-      thresholds={{
-        good: 100,
-        avg: 50,
-        bad: 0
+      content={{
+        value: "$.datasourceField1[:].val",
+        thresholds: {
+          good: 100,
+          avg: 50,
+          bad: 0
+        }
       }}
-      value="$.datasourceField1[:].val"
     />
   </Story>
 </Preview>
@@ -346,6 +349,46 @@ properties</a>.
     />
   </Story>
 </Preview>
+
+
+### Multiple metric
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="multiple-metric"
+    parameters={{
+      info: "We have here a content defined with 4 independent element (have their own " +
+       "thresholds definition). This colored example show that thresholds can be applied on number " +
+       "but also on string values (strict equal in this case)",
+      docs: {
+        disable: false
+      }
+    }}>
+    <PureWidget
+      title="Multiple image fields"
+      layout="mosaic"
+      datasourceField1={42}
+      datasourceField2="omg"
+      datasourceField3="Hello"
+      datasourceField4="World"
+      content={[{
+        contentImageSrc: "img/thumb.svg",
+        legend: "${datasourceField1}"
+      },{
+        contentImageSrc: "img/thumb.svg",
+        legend: "${datasourceField2}"
+      },{
+        contentImageSrc: "img/thumb.svg",
+        legend: "${datasourceField3}"
+      },{
+        contentImageSrc: "img/thumb.svg",
+        legend: "${datasourceField4}"
+      }]}
+    />
+  </Story>
+</Preview>
+
 
 
 
