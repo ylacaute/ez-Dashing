@@ -99,6 +99,26 @@ import {linkTo} from '@storybook/addon-links'
 
 <Story
   decorators={[withKnobs]}
+  name="horizontal-reverse"
+  parameters={{
+    docs: {
+      disable: true
+    },
+    className: "widget",
+    info: "Reversed item order"
+  }}
+>
+  <Mosaic
+    className="demo"
+    reverseItems={true}
+  >
+    <SampleItem value={0}/>
+    <SampleItem value={1}/>
+  </Mosaic>
+</Story>
+
+<Story
+  decorators={[withKnobs]}
   name="square"
   parameters={{
     docs: {
@@ -143,3 +163,23 @@ parameters={{
 </Mosaic>
 </Story>
 
+
+<Story
+  decorators={[withKnobs]}
+  name="max-items"
+  parameters={{
+    docs: {
+      disable: true
+    },
+    className: "widget",
+    info: "Max item is set to 1"
+  }}
+>
+  <Mosaic
+    className="demo"
+    maxTotalItems={1}
+  >
+    <SampleItem value={0}/>
+    <SampleItem value={1}/>
+  </Mosaic>
+</Story>

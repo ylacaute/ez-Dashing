@@ -51,7 +51,17 @@ class Mosaic extends React.PureComponent {
      * If disabled, all items are always displayed, depending only on the others properties
      * <code>maxItemPerRow</code> and <code>maxRow</code>.
      */
-    enableBreakpoints: bool
+    enableBreakpoints: bool,
+
+    /**
+     * Max number of items the layout can display
+     */
+    maxTotalItems: number,
+
+    /**
+     * If true, reverse the children order
+     */
+    reverseItems: bool
   };
 
   static defaultProps = {
@@ -59,6 +69,8 @@ class Mosaic extends React.PureComponent {
     maxItemPerRow: null,
     maxRow: null,
     enableBreakpoints: true,
+    maxTotalItems: 100,
+    reverseItems: false
   };
 
   state = {
@@ -73,6 +85,8 @@ class Mosaic extends React.PureComponent {
       hBreakpointClass,
       maxItemPerRow,
       maxRow,
+      maxTotalItems,
+      reverseItems,
       enableBreakpoints} = props;
     const itemPerRow = maxItemPerRow || Mosaic.computeMaxItemPerRow(wBreakpointClass);
 
@@ -83,7 +97,7 @@ class Mosaic extends React.PureComponent {
         wBreakpointClass,
         hBreakpointClass,
         {enableBreakpoints}),
-      rows: Mosaic.renderRows(props.children, itemPerRow, maxRow)
+      rows: Mosaic.renderRows(props.children, itemPerRow, maxRow, maxTotalItems, reverseItems)
     }
   }
 
@@ -95,8 +109,12 @@ class Mosaic extends React.PureComponent {
     ))
   }
 
-  static renderRows(children, maxItemPerRow, maxRow) {
-    let mosaicItemsRows = chunk(React.Children.toArray(children), maxItemPerRow);
+  static renderRows(children, maxItemPerRow, maxRow, maxTotalItems, reverseItems) {
+    let arrayItems = React.Children.toArray(children);
+    arrayItems = reverseItems ? arrayItems.reverse() : arrayItems;
+    arrayItems = arrayItems.slice(0, maxTotalItems);
+
+    let mosaicItemsRows = chunk(arrayItems, maxItemPerRow);
 
     if (maxRow) {
       mosaicItemsRows = mosaicItemsRows.slice(0, maxRow);
