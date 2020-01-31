@@ -1,6 +1,7 @@
 import JSONPath from 'jsonpath';
 import StringUtils from './string-utils';
 
+// TODO: unit tests...
 export default class ValueResolver {
 
   /**
@@ -35,7 +36,7 @@ export default class ValueResolver {
         throw new Error("You can create valueResolver only with string, received: "
           + (typeof value));
       }
-      if (!value) {
+      if (value == null) {
         return null;
       }
       const trimValue = value.trim();
