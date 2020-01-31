@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import "./scalable-text.scss";
+import {string, number} from 'prop-types';
 import cn from 'classnames';
-import StringUtils from '../../../utils/string-utils';
+import StringUtils from 'utils/string-utils';
+
+import "./scalable-text.scss";
 
 // Some tests:
 // https://jsfiddle.net/4zgxjod9/41/
@@ -10,15 +11,15 @@ import StringUtils from '../../../utils/string-utils';
 
 class ScalableText extends React.PureComponent {
 
-  static FONT_SIZE = 16;
-
   static propTypes = {
-    className: PropTypes.string,
-    text: PropTypes.string.isRequired,
+    className: string,
+    text: string.isRequired,
+    fontSize: number
   };
 
   static defaultProps = {
     className: "",
+    fontSize: 16
   };
 
   state = {
@@ -30,18 +31,19 @@ class ScalableText extends React.PureComponent {
    * you change the font, this magic will not work anymore).
    */
   static getDerivedStateFromProps(props) {
-    const {className, text} = props;
-    const wViewPort = StringUtils.measureText(text, ScalableText.FONT_SIZE);
+    const {className, text, fontSize} = props;
+    const wViewPort = StringUtils.measureText(text, fontSize);
 
     return {
       className: cn("scalable-text", className),
       icon: null,
-      wViewPort: wViewPort,
+      wViewPort: wViewPort + 1, // +1 is magic, needed in rare and unexplainable case
       hViewPort: 18,
     }
   };
 
   render() {
+    const {fontSize} = this.props;
     const {className, wViewPort, hViewPort} = this.state;
     return (
       <div className={className}>
@@ -49,7 +51,7 @@ class ScalableText extends React.PureComponent {
           width="100%"
           height="100%"
           viewBox={`0 0 ${wViewPort} ${hViewPort}`}
-          style={{fontSize: ScalableText.FONT_SIZE}}
+          style={{fontSize: fontSize}}
         >
           <text
             x="50%"
@@ -57,7 +59,6 @@ class ScalableText extends React.PureComponent {
             dominantBaseline="central"
             textAnchor="middle"
           >
-            <strong>aaa</strong>
             {this.props.text}
           </text>
         </svg>
