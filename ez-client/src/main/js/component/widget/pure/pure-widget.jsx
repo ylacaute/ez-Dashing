@@ -11,6 +11,7 @@ import LayoutNormalizer from './layout-normalizer';
 
 import "./pure-widget.scss"
 import ArrayUtils from '../../../utils/array-utils';
+import StringUtils from '../../../utils/string-utils';
 
 const logger = Logger.getLogger("PureWidget");
 
@@ -87,79 +88,92 @@ export default class PureWidget extends React.PureComponent {
     items: []
   };
 
+  static normalizeContent(props) {
+    let normalizedContent;
+
+    if (!props.content) {
+      normalizedContent = [{
+        value: props.value,
+        content: "${value}"
+      }];
+    }else {
+      const contentType = typeof props.content;
+      switch (contentType) {
+        case "string":
+          normalizedContent = [{
+            value: props.value,
+            content: props.content
+          }];
+          break;
+        case "object":
+          if (Array.isArray(props.content)) {
+            console.log("should be here");
+            normalizedContent = props.content;
+          } else {
+            normalizedContent = [props.content];
+          }
+          break;
+        default:
+          throw new Error(`Unknown content type ${contentType}`);
+      }
+    }
+    normalizedContent = normalizedContent.map(elt => ({
+      ...elt,
+      type: elt.type || "metric",
+      value: elt.value || "You must set the value property.",
+      content: elt.content || "${value}"
+    }));
+    return {
+      ...props,
+      content: normalizedContent
+    };
+  }
+
   static getDerivedStateFromProps(props) {
     const {layout, labels, maxDisplayableItems, thresholds} = props;
-    const valueResolver = ValueResolver.create(props);
-    const itemConfigs = PureWidget.generateContentItems(valueResolver, props);
+    const updateProps = PureWidget.normalizeContent(props);
+    console.log("updateProps :", updateProps);
+    const itemConfigs = PureWidget.generateItemConfigs(updateProps);
+    console.log("itemConfigs :", itemConfigs);
+
     const items = itemConfigs
       .map((cfg, idx) => PureWidget.generateItem(cfg, idx, thresholds))
       .slice(0, maxDisplayableItems);
 
     const resolvedLabels = labels.map(label => ({
       ...label,
-      value: valueResolver(label.value)
+      value: StringUtils.replaceVars(label.value, updateProps)
     }));
 
     return {
-      className: cn("list", props.className),
+      className: cn(props.className),
       items: items,
       labels: resolvedLabels,
       layout: LayoutNormalizer.normalize(layout)
     }
   }
 
-  /**
-   * TODO: add exception when value is empty or null or undefined with a message to help the user
-   */
-  static generateContentItems(valueResolver, props) {
+  static generateItemConfigs(props) {
     const {content} = props;
-    const contentType = typeof content;
-    let resolvedContent;
-    let itemConfigs = [];
-
-    switch (contentType) {
-
-      // Here, content is defined with a single string, usually JsonPath or with variable (but
-      // can also be a static text).
-      // In fine, we generate an item array, containing one or more elements. As the content
-      // is generated automatically, we use "metric" as default item type.
-      case "string":
-        resolvedContent = valueResolver(content, props);
-        itemConfigs = ArrayUtils.toArray(resolvedContent)
-          .map((value) => ({
-          value: valueResolver(value, props)
-        }));
-        break;
-
-      // When content is an object, we assume the user has given an already correct item
-      // configuration, but we still need to resolve values.
-      case "object":
-
-        // When the user give an array of item configuration, we assume none of it is bind
-        // on an dataSource array values, otherwise it become to complicated to display.
-        if (Array.isArray(content)) {
-          itemConfigs = content.map((cfg) => ({
-            ...cfg,
-            type: cfg.type,
-            value: valueResolver(cfg.value, props),
-            legend: valueResolver(cfg.legend, props),
-          }));
-
-        // And when the user give a single element, we have to manage to case where the value
-        // is bind on a dataSource array values to generate multiple items.
-        } else {
-          itemConfigs = ArrayUtils
-            .toArray(valueResolver(content.value))
-            .map((value) => ({
-              type: content.type,
-              value: valueResolver(value, props),
-              legend: valueResolver(content.legend, props),
-            }));
+    const valueResolver = ValueResolver.create(props);
+    const itemConfigs = content
+      .flatMap((cfg) => {
+          const resolvedValue = valueResolver(cfg.value);
+          if (Array.isArray(resolvedValue)) {
+            return resolvedValue.map((value) => ({
+              ...cfg,
+              value: value,
+            }))
+          } else {
+            return {
+              ...cfg,
+              type: cfg.type,
+              value: resolvedValue,
+              legend: valueResolver(cfg.legend),
+            };
+          }
         }
-        break;
-      default:
-        throw new Error(`Unknown content type ${contentType}`);
-    }
+      );
     return itemConfigs;
   }
 
@@ -178,10 +192,10 @@ export default class PureWidget extends React.PureComponent {
 
   render() {
     const {title} = this.props;
-    const {items, layout, labels} = this.state;
+    const {className, items, layout, labels} = this.state;
 
     return (
-      <Widget {...this.props}>
+      <Widget {...this.props} className={className}>
         <WidgetHeader title={title}/>
         <WidgetContent
           layout={layout}

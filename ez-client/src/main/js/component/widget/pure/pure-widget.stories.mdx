@@ -27,38 +27,134 @@ properties</a>.
 
 ## Usage
 
-### Single value
+### Very simple static widget
 
 <Preview>
   <Story
     decorators={[withKnobs]}
-    name="single-value"
+    name="single-value-static"
     parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      info: "This is one of the simplest widget possible, but here you have a fixed content.",
       docs: {
         disable: false
       }
     }}
   >
     <PureWidget
-      title="Unique value"
+      title="Title"
+      value="This is fixed."
+    />
+  </Story>
+</Preview>
+
+
+### Single dynamic value
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="single-value-dynamic"
+    parameters={{
+      info: "Here we are directly using the <strong>${datasourceField}</strong> as <strong>value</strong> (which is here the number 42).<br/>We suppose this field would be the result of a mapped dataSource to this widget.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Value from dateSource"
       layout="mosaic"
       datasourceField={42}
       content={{
         type: "metric",
-        value: "${datasourceField}"
+        value: "${datasourceField}",
+        content: "${value}"
       }}
     />
   </Story>
 </Preview>
 
-### List value
+### Single value
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="single-value-dynamic-shortcut"
+    parameters={{
+      info: "Same as before but written only with the root <strong>value</strong> property (instead of a <strong>content</strong> object which define the value).<br/>When you do so, you use a default generated configuration (metric type, no legend, etc).",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Value from dateSource"
+      layout="mosaic"
+      datasourceField={42}
+      value="${datasourceField}"
+    />
+  </Story>
+</Preview>
+
+
+### Customized single dynamic value
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="single-value-dynamic-customized"
+    parameters={{
+      info: "As the previous widget, but we just customized the display, with the content property.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Value from dateSource"
+      layout="mosaic"
+      datasourceField={42}
+      value="${datasourceField}"
+      content="foo ${value} bar"
+    />
+  </Story>
+</Preview>
+
+
+
+### HTML single value
+
+<Preview>
+  <Story
+    decorators={[withKnobs]}
+    name="single-value-html"
+    parameters={{
+      info: "As the previous widget, but we just customized the display, with the content property.<br/>The HTML metric does not resize as SVG do, so use HTML with caution.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Value from dateSource"
+      layout="mosaic"
+      datasourceField="HTML"
+      content={{
+        value: "${datasourceField}",
+        content: "<p>This is dynamic <strong>${value}</strong> !!!</p>",
+        isHtml: true
+      }}
+    />
+  </Story>
+</Preview>
+
+### List values
 
 <Preview>
   <Story
     name="list-value"
     parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      info: "We now resolve our value with a JSONPath expression, to get an array of values.<br/>Those values still come from a widget property, which should be the result of a mapped dataSource to this widget.",
       docs: {
         disable: false
       }
@@ -84,25 +180,126 @@ properties</a>.
 </Preview>
 
 
-### Value with static text
+### Vertical list
 
 <Preview>
   <Story
-    name="single-value-static-text"
+    name="list-value-shortcut"
     parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.",
+      info: "Same as before, but as don't wanna customize display or change the type, we can directly use the root value property (look at the code).",
       docs: {
         disable: false
       }
     }}
   >
     <PureWidget
-      title="Unique value + static text"
+      title="List with scalable text"
+      layout={{
+        type: "mosaic",
+        maxItemPerRow: 1,
+        enableBreakpoints: false
+      }}
+      datasourceField1={[
+        {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
+        {val: "System-D"}, {val: "System-E"}
+      ]}
+      value="$.datasourceField1[:].val"
+    />
+  </Story>
+</Preview>
+
+
+
+
+### Customized list values
+
+<Preview>
+  <Story
+    name="list-value-customized"
+    parameters={{
+      info: "Same as before, but we customize the display of each values.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="List with scalable text"
+      layout={{
+        type: "mosaic",
+        maxItemPerRow: 1,
+        enableBreakpoints: false
+      }}
+      datasourceField={[
+        {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
+        {val: "System-D"}, {val: "System-E"}
+      ]}
+      content={{
+        type: "metric",
+        value: "$.datasourceField[:].val",
+        content: "> ${value} <"
+      }}
+    />
+  </Story>
+</Preview>
+
+
+
+### List value with thresholds
+
+<Preview>
+  <Story
+    name="list-value-threshold"
+    parameters={{
+      info: "Here a threshold is defined at the root level, so it applies on each element.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="List with threshold"
+      layout={{
+        type: "mosaic",
+        maxItemPerRow: 1,
+        maxDisplayableItems: 3,
+        enableBreakpoints: false
+      }}
+      datasourceField1={[
+        {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
+        {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
+      ]}
+      thresholds={{
+        good: 100,
+        avg: 50,
+        bad: 0
+      }}
+      value="$.datasourceField1[:].val"
+    />
+  </Story>
+</Preview>
+
+
+
+
+### Labels Customization
+
+<Preview>
+  <Story
+    name="any-value-labels"
+    parameters={{
+      info: "You can add any number of labels on the widget. Those labels can be static text but can also contains variables, revolved with widget props, which can be mapped dataSource properties. When your are using labels, you need to manage overlap yourself by resizing the widget for a better rendering.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="With custom labels"
       layout="mosaic"
       datasourceField1={100}
-      datasourceField2="Opened bugs"
-      datasourceField3="Release 2.42"
-      datasourceField4="Dev"
+      datasourceField2="2.42"
+      datasourceField3="Dev"
       content={[{
         type: "metric",
         value: "${datasourceField1}"
@@ -113,7 +310,7 @@ properties</a>.
         bad: 0
       }}
       labels={[{
-        value: "${datasourceField4}",
+        value: "Env: ${datasourceField3}",
         style: {
           position: "absolute",
           right: "10px",
@@ -121,7 +318,15 @@ properties</a>.
           fontSize: "2rem"
         }
       },{
-        value: "${datasourceField3}",
+        value: "That is special",
+        style: {
+          position: "absolute",
+          left: "10px",
+          top: "40px",
+          fontSize: "2rem"
+        }
+      },{
+        value: "Release: ${datasourceField2}",
         style: {
           position: "absolute",
           left: "10px",
@@ -129,7 +334,7 @@ properties</a>.
           fontSize: "2rem"
         }
        },{
-         value: "${datasourceField2}",
+         value: "Something centered",
          style: {
            position: "absolute",
            left: "0",
@@ -144,15 +349,16 @@ properties</a>.
 
 
 
-### Multiple thresholds
+### Multiple fields and thresholds
 
 <Preview>
   <Story
     decorators={[withKnobs]}
-    name="multiple-thresholds"
+    name="multiple-fields-thresholds"
     parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.<br/>" +
-            "The HTML metric does not resize as SVG, so use HTML with caution.",
+      info: "We have here a content defined with 4 independent element (have their own " +
+       "thresholds definition). This colored example show that thresholds can be applied on number " +
+       "but also on string values (strict equal in this case)",
       docs: {
         disable: false
       }
@@ -204,76 +410,9 @@ properties</a>.
 
 
 
-### Vertical list
-
-<Preview>
-  <Story
-    name="vertical-list"
-    parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.",
-      docs: {
-        disable: false
-      }
-    }}
-  >
-    <PureWidget
-      title="List with scalable text"
-      layout={{
-        type: "mosaic",
-        maxItemPerRow: 1,
-        enableBreakpoints: false
-      }}
-      datasourceField1={[
-        {val: "Name-A"}, {val: "Long-name-B"}, {val: "Very-long-name-C"},
-        {val: "System-D"}, {val: "System-E"}
-      ]}
-      content="$.datasourceField1[:].val"
-    />
-  </Story>
-</Preview>
 
 
 
-
-
-
-
-### Vertical list with thresholds (TODO)
-
-<Preview>
-  <Story
-    name="vertical-list-threshold"
-    parameters={{
-      info: "Note that datasourceField prop would be the result of a datasource mapping.",
-      docs: {
-        disable: false
-      }
-    }}
-  >
-    <PureWidget
-      title="List with threshold"
-      layout={{
-        type: "mosaic",
-        maxItemPerRow: 1,
-        maxDisplayableItems: 3,
-        enableBreakpoints: false
-      }}
-      datasourceField1={[
-        {val: 100}, {val: 90}, {val: 80}, {val: 70}, {val: 60},
-        {val: 50}, {val: 40}, {val: 30}, {val: 20}, {val: 10}, {val: 0}
-      ]}
-      datasourceField2="Opened bugs"
-      datasourceField3="Release 2.42"
-      datasourceField4="Dev"
-      thresholds={{
-        good: 100,
-        avg: 50,
-        bad: 0
-      }}
-      content="$.datasourceField1[:].val"
-    />
-  </Story>
-</Preview>
 
 
 
