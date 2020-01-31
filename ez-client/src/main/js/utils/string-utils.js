@@ -43,6 +43,9 @@ export default class StringUtils {
    * Sample : replaceVars("hello ${var}", {var : "world" }) will return hello world
    */
   static replaceVars(template, variables) {
+    if (typeof template !== "string") {
+      return template;
+    }
     let regex = new RegExp('\\$\\{(' + Object.keys(variables).join('|') + ')\\}', 'g');
     return template.replace(regex, (m, $1) => variables[$1] == null ? m : variables[$1]);
   }

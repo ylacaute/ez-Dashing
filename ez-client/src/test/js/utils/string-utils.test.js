@@ -69,6 +69,15 @@ describe("StringUtils", () => {
     expect(result).toStrictEqual(3);
   });
 
+  it("replaceVars() should replace nothing cause not a string", () => {
+    let input = 3.14;
+    let vars = {
+      var: 0
+    };
+    let result = StringUtils.replaceVars(input, vars);
+    expect(result).toStrictEqual(3.14);
+  });
+
   it("replaceVars() should replace the value zero", () => {
     let input = "${var}${var}7";
     let vars = {
