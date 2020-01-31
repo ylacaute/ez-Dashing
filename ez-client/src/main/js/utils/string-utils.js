@@ -44,7 +44,7 @@ export default class StringUtils {
    */
   static replaceVars(template, variables) {
     let regex = new RegExp('\\$\\{(' + Object.keys(variables).join('|') + ')\\}', 'g');
-    return template.replace(regex, (m, $1) => variables[$1] || m);
+    return template.replace(regex, (m, $1) => variables[$1] == null ? m : variables[$1]);
   }
 
   /**
