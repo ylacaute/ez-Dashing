@@ -33,35 +33,5 @@ describe("ArrayUtils", () => {
     expect(result).toStrictEqual([1, 2, 3]);
   });
 
-  it("splitToNArrays with no element", () => {
-    let array = [];
-    let result = ArrayUtils.splitToNArrays(array, 3);
-    expect(result).toStrictEqual([]);
-  });
-
-  it("splitToNArrays with 1 element, by 1", () => {
-    let array = [0];
-    let result = ArrayUtils.splitToNArrays(array, 1);
-    expect(result).toStrictEqual([
-      [0]
-    ]);
-  });
-
-  it("splitToNArrays with 2 elements, by 1", () => {
-    let array = [0, 1];
-    let result = ArrayUtils.splitToNArrays(array, 1);
-    expect(result).toStrictEqual([
-      [0]
-    ]);
-  });
-
-  it("splitToNArrays with 4 elements, by 1", () => {
-    let array = [0, 1, 2];
-    let result = ArrayUtils.splitToNArrays(array, 1);
-    expect(result).toStrictEqual([
-      [0], [1], [2], [3]
-    ]);
-  });
-
 });
 
