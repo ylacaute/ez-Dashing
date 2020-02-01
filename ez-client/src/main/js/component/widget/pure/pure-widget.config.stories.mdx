@@ -1,7 +1,9 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import PureWidget from "./pure-widget";
-import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Configuration|Widget/Code quality"
@@ -19,7 +21,7 @@ You can create this kind of widget only with a JSON configuration.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="sample-1"
     parameters={{
       info: ""
@@ -62,7 +64,7 @@ You can create this kind of widget only with a JSON configuration.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="sample-2"
     parameters={{
       info: ""

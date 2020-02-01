@@ -7,6 +7,7 @@ import AnimatedNumber from 'react-animated-number';
 
 import "./metric.scss"
 
+// Deprecated
 export default class Metric extends React.PureComponent {
 
   static propTypes = {

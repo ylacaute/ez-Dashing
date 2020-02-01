@@ -1,7 +1,10 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import ScalableText from "./scalable-text";
-import {array, object, text, withKnobs} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
+
 
 <Meta 
   title="Components|Scalable/ScalableText" 
@@ -26,12 +29,13 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
-    name="one-digit"
+    decorators={[withKnobs, jsxDecorator]}
+    name="zero"
     parameters={{
       className: "widget",
       info: "The text always fit the max size of the container"
     }}>
-      <ScalableText text="1" />
+      <ScalableText text={0} />
   </Story>
 </Preview>
 
@@ -40,6 +44,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="two-digit"
     parameters={{
       className: "widget",
@@ -54,6 +59,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="one-char"
     parameters={{
       className: "widget",
@@ -69,6 +75,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="two-char-lower"
     parameters={{
       className: "widget",
@@ -84,6 +91,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="two-char-upper"
     parameters={{
       className: "widget",
@@ -99,6 +107,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="long-uppercase"
     parameters={{
       className: "widget",
@@ -113,6 +122,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="long-mixcase"
     parameters={{
       className: "widget",
@@ -128,6 +138,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="more-char"
     parameters={{
       className: "widget",

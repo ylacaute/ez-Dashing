@@ -1,5 +1,5 @@
 import React from 'react';
-import {string, number} from 'prop-types';
+import {string, number, oneOfType} from 'prop-types';
 import cn from 'classnames';
 import StringUtils from 'utils/string-utils';
 
@@ -13,7 +13,7 @@ class ScalableText extends React.PureComponent {
 
   static propTypes = {
     className: string,
-    text: string.isRequired,
+    text: oneOfType([string.isRequired, number.isRequired]),
     fontSize: number
   };
 

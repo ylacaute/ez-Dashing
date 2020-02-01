@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {string, number, func, bool, object, oneOfType} from 'prop-types';
 import cn from "classnames";
 
 import "./circular-progress-bar.scss"
@@ -7,14 +7,14 @@ import "./circular-progress-bar.scss"
 export default class CircularProgressBar extends React.PureComponent {
 
   static propTypes = {
-    label: PropTypes.string,
-    value: PropTypes.number.isRequired,
-    strokeWidth: PropTypes.number,
-    initialAnimation: PropTypes.bool,
-    classForValue: PropTypes.func,
-    textForValue: PropTypes.func,
-    displayValue: PropTypes.number,
-    displayValueStyle: PropTypes.any,
+    label: string,
+    value: number.isRequired,
+    strokeWidth: number,
+    initialAnimation: bool,
+    classForValue: func,
+    textForValue: func,
+    displayValue: oneOfType([number, string]),
+    displayValueStyle: object,
   };
 
   static defaultProps = {

@@ -1,7 +1,10 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import ClockWidget from "./clock-widget";
-import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
+
 
 <Meta
   title="Components|Widget/Clock"
@@ -30,7 +33,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="default"
     parameters={{
       info: "",
@@ -47,7 +50,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="without-time"
     parameters={{
       info: "",

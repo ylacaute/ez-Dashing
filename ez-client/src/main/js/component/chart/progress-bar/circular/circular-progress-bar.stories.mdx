@@ -1,7 +1,9 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import CircularProgressBar from "./circular-progress-bar";
-import {array, object, text, number, withKnobs} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Components|Chart/ProgressBar/CircularProgressBar" 
@@ -26,6 +28,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="default"
     parameters={{
       className: "widget"
@@ -39,6 +42,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="default-100"
     parameters={{
       className: "widget"
@@ -52,6 +56,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="custom renderer"
     parameters={{
       className: "widget"
@@ -69,6 +74,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="with label"
     parameters={{
       className: "widget"
@@ -84,13 +90,14 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="Override displayed value"
     parameters={{
       className: "widget"
     }}
   >
     <CircularProgressBar
-      value="60"
+      value={60}
       displayValue="Some text"
       displayValueStyle={{fontSize: "1.5rem"}}
     />
@@ -101,6 +108,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="Class for value"
     parameters={{
       className: "widget",
@@ -117,8 +125,8 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="knobs"
-    decorators={[withKnobs]}
     parameters={{
       className: "widget"
     }}

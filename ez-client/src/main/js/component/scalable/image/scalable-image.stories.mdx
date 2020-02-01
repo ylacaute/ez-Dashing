@@ -1,7 +1,10 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import ScalableImage from "./scalable-image";
-import {array, object, text, withKnobs} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
+
 
 <Meta
   title="Components|Scalable/ScalableImage"
@@ -27,7 +30,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="default"
     parameters={{
       className: "widget",
@@ -41,7 +44,7 @@ import {linkTo} from '@storybook/addon-links'
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="with-svg"
     parameters={{
       className: "widget",

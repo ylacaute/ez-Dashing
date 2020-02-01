@@ -1,9 +1,12 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx'
+
 import Mosaic from "./mosaic.jsx";
 import SampleItem from "./mosaic-item.demo";
 import Metric from "component/scalable/metric";
-import {array, object, text, withKnobs, number, select} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
+
 
 <Meta 
   title="Components|Layout/Mosaic"
@@ -25,7 +28,7 @@ import {linkTo} from '@storybook/addon-links'
 
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="dynamic"
   parameters={{
     docs: {
@@ -38,7 +41,7 @@ import {linkTo} from '@storybook/addon-links'
   <Mosaic
     className="demo"
   >
-    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 3))
+    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 7))
         .fill(0).map((i, idx) => (
             <SampleItem key={idx} value={idx}/>
         ))
@@ -47,7 +50,7 @@ import {linkTo} from '@storybook/addon-links'
 </Story>
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="vertical"
   parameters={{
     docs: {
@@ -72,7 +75,7 @@ import {linkTo} from '@storybook/addon-links'
 </Story>
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="horizontal"
   parameters={{
     docs: {
@@ -98,7 +101,7 @@ import {linkTo} from '@storybook/addon-links'
 
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="horizontal-reverse"
   parameters={{
     docs: {
@@ -118,7 +121,7 @@ import {linkTo} from '@storybook/addon-links'
 </Story>
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="square"
   parameters={{
     docs: {
@@ -140,32 +143,32 @@ import {linkTo} from '@storybook/addon-links'
 
 
 <Story
-decorators={[withKnobs]}
-name="with-metric"
-parameters={{
-  docs: {
-    disable: true
-  },
-  className: "widget",
-  info: "Play with container dimension and change the number of items !"
-}}
->
-<Mosaic className="demo">
-  {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 2))
-    .fill(0).map((i, idx) => (
-      <Metric
-        key={idx}
-        contentImageSrc="img/thumb.svg"
-        legend={`${idx}%`}
-      />
-    ))
-  }
-</Mosaic>
+  decorators={[withKnobs, jsxDecorator]}
+  name="with-metric"
+  parameters={{
+    docs: {
+      disable: true
+    },
+    className: "widget",
+    info: "Play with container dimension and change the number of items !"
+  }}
+  >
+  <Mosaic className="demo">
+    {new Array(select("Number of item", [1,2,3,4,5,6,7,8,9,10,12,13,14,15], 2))
+      .fill(0).map((i, idx) => (
+        <Metric
+          key={idx}
+          contentImageSrc="img/thumb.svg"
+          legend={`${idx}%`}
+        />
+      ))
+    }
+  </Mosaic>
 </Story>
 
 
 <Story
-  decorators={[withKnobs]}
+  decorators={[withKnobs, jsxDecorator]}
   name="max-items"
   parameters={{
     docs: {

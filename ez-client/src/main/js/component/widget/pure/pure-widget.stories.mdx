@@ -1,7 +1,9 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import PureWidget from "./pure-widget";
-import {array, object, text, withKnobs, number} from "@storybook/addon-knobs";
-import {linkTo} from '@storybook/addon-links'
 
 <Meta 
   title="Components|Widget/Pure" 
@@ -31,7 +33,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="single-value-static"
     parameters={{
       info: "This is one of the simplest widget possible, but here you have a fixed content.",
@@ -52,7 +54,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="single-value-dynamic"
     parameters={{
       info: "Here we are directly using the <strong>${datasourceField}</strong> as <strong>value</strong> (which is here the number 42).<br/>We suppose this field would be the result of a mapped dataSource to this widget.",
@@ -78,7 +80,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="single-value-dynamic-shortcut"
     parameters={{
       info: "Same as before but written only with the root <strong>value</strong> property (instead of a <strong>content</strong> object which define the value).<br/>When you do so, you use a default generated configuration (metric type, no legend, etc).",
@@ -101,7 +103,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="single-value-dynamic-customized"
     parameters={{
       info: "As the previous widget, but we just customized the display, with the content property.",
@@ -126,7 +128,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="single-value-html"
     parameters={{
       info: "As the previous widget, but we just customized the display, with the content property.<br/>The HTML metric does not resize as SVG do, so use HTML with caution.",
@@ -152,6 +154,7 @@ properties</a>.
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="list-value"
     parameters={{
       info: "We now resolve our value with a JSONPath expression, to get an array of values.<br/>Those values still come from a widget property, which should be the result of a mapped dataSource to this widget.",
@@ -184,6 +187,7 @@ properties</a>.
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="list-value-shortcut"
     parameters={{
       info: "Same as before, but as don't wanna customize display or change the type, we can directly use the root value property (look at the code).",
@@ -215,6 +219,7 @@ properties</a>.
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="list-value-customized"
     parameters={{
       info: "Same as before, but we customize the display of each values.",
@@ -249,7 +254,8 @@ properties</a>.
 
 <Preview>
   <Story
-    name="list-value-threshold"
+    decorators={[withKnobs, jsxDecorator]}
+    name="list-value-threshold-with-max"
     parameters={{
       info: "Here a threshold is defined at the root level, so it applies on each element.",
       docs: {
@@ -289,6 +295,7 @@ properties</a>.
 
 <Preview>
   <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="any-value-labels"
     parameters={{
       info: "You can add any number of labels on the widget. Those labels can be static text but can also contains variables, revolved with widget props, which can be mapped dataSource properties. When your are using labels, you need to manage overlap yourself by resizing the widget for a better rendering.",
@@ -355,7 +362,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="multiple-metric"
     parameters={{
       info: "We have here a content defined with 4 independent element (have their own " +
@@ -396,7 +403,7 @@ properties</a>.
 
 <Preview>
   <Story
-    decorators={[withKnobs]}
+    decorators={[withKnobs, jsxDecorator]}
     name="multiple-fields-thresholds"
     parameters={{
       info: "We have here a content defined with 4 independent element (have their own " +

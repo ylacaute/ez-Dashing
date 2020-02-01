@@ -1,5 +1,8 @@
 import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
-import {array, object, text, withKnobs} from "@storybook/addon-knobs";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
 import Widget from "./widget";
 import WidgetHeader from "./widget-header";
 import WidgetContent from "./widget-content";
@@ -32,7 +35,8 @@ All Widgets inherit from these properties.
 A default Widget, with a header and paragraph as content.
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="default"
   >
     <Widget>
@@ -49,7 +53,8 @@ A default Widget, with a header and paragraph as content.
 A loading widget, waiting all dataSources are loaded.
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="loading"
     parameters={{
       info: ""
@@ -67,7 +72,8 @@ A loading widget, waiting all dataSources are loaded.
 ### Widget without header
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="noheader"    
   >
     <Widget>
@@ -81,7 +87,8 @@ A loading widget, waiting all dataSources are loaded.
 ### Editable widget
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="editable"    
     parameters={{
       info:
@@ -104,7 +111,8 @@ A loading widget, waiting all dataSources are loaded.
 ### Widget with list layout
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="list-layout"    
     parameters={{
       info: "List layout widget"
@@ -125,7 +133,8 @@ A loading widget, waiting all dataSources are loaded.
 ### Widget with threshold configured
 
 <Preview>
-  <Story 
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
     name="thresholds"    
     parameters={{
       info: ""
@@ -152,8 +161,8 @@ A loading widget, waiting all dataSources are loaded.
 </Preview>
 
 <Story 
+    decorators={[withKnobs, jsxDecorator]}
     name="knobs"
-    decorators={[withKnobs]}
     parameters={{
       docs: {
         disable: true        
