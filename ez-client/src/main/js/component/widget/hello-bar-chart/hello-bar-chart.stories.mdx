@@ -1,0 +1,47 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
+import HelloBarChartWidget from "./hello-bar-chart-widget";
+
+<Meta 
+  title="Components|Widget/HelloBarChart"
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/hello-bar-chart/hello-bar-chart-widget.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-widget-hello-bar-chart-widget--default-story" />
+
+
+# Hello Bar Chart Widget
+
+## Props
+ 
+<Props of={HelloBarChartWidget} />
+
+## Usage
+
+### Demo
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="simple-bar-chart"
+    parameters={{
+      info: "The purpose of this widget is just to test NIVO Chart lib.",
+      docs: {
+        disable: false
+      },
+      width: 500,
+      height: 500,
+    }}
+  >
+    <HelloBarChartWidget/>
+  </Story>
+</Preview>
+
+
+

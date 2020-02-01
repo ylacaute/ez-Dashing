@@ -1,0 +1,338 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
+import BarChart from "./bar-chart";
+
+<Meta 
+  title="Components|Chart/Bar/BarChart"
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/chart/bar/bar-chart.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-chart-bar-bar-chart--default-story" />
+
+
+# BarChart
+
+## Props
+ 
+<Props of={BarChart} />
+
+## Usage
+
+### Simple
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="simple"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <BarChart
+      axisBottom={{
+        legend: "Bug priority"
+      }}
+      axisLeft={{
+        legend: "Count"
+      }}
+      data={{
+        colors: {
+          "Before": "#569787",
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+### Stacked
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="stacked"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <BarChart
+      axisBottom={{
+        legend: "Bug priority"
+      }}
+      axisLeft={{
+        legend: "Count"
+      }}
+      data={{
+        colors: {
+          "Before": "#ddd",
+          "After": "#2268ae"
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+            "After": 153,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+            "After": 146,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+            "After": 68,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+
+### Grouped
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="grouped"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500,
+      info: "This story show that you can use Nivo property directly, here, groupMode is set to 'grouped'"
+    }}
+  >
+    <BarChart
+      groupMode="grouped"
+      axisBottom={{
+        legend: "Bug priority"
+      }}
+      axisLeft={{
+        legend: "Count"
+      }}
+      data={{
+        colors: {
+          "Before": "#ddd",
+          "After": "#2268ae"
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+            "After": 153,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+            "After": 146,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+            "After": 68,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+### No legend
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="no-legend"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <BarChart
+      axisBottom={null}
+      axisLeft={null}
+      data={{
+        colors: {
+          "Before": "#569787"
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+            "After": 153,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+            "After": 146,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+            "After": 68,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+
+### Legend bottom only (without label)
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="legend-bottom-without-label"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <BarChart
+      axisBottom={{
+        legend: null
+      }}
+      axisLeft={null}
+      data={{
+        colors: {
+          "Before": "#569787"
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+            "After": 153,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+            "After": 146,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+            "After": 68,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+### Alternative data format 1
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="alternative-data-format-1"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500,
+      info: "This story show a alternative data format, please check the code"
+    }}
+  >
+    <BarChart
+      axisBottom={{
+        legend: "Bug priority"
+      }}
+      axisLeft={{
+        legend: "Count"
+      }}
+      data={{
+        colors: {
+          Before: "#ddd",
+          After: "#2268ae"
+        },
+        indexBy: "bugType",
+        series: {
+          P1: [110, 153],
+          P2: [18, 146],
+          P3: [199, 68]
+        }
+      }}
+    />
+  </Story>
+</Preview>
+
+
+### Alternative data format 2
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="alternative-data-format-2"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500,
+      info: "This story show a alternative data format, please check the code"
+    }}
+  >
+    <BarChart
+      axisBottom={{
+        legend: "Bug priority"
+      }}
+      axisLeft={{
+        legend: "Count"
+      }}
+      data={{
+        colors: {
+          Before: "#ddd",
+          After: "#2268ae"
+        },
+        indexBy: "bugType",
+        series: [{
+          bugType: "P1",
+          values: [110, 153]
+        },{
+          bugType: "P2",
+          values: [18, 146]
+        },{
+          bugType: "P3",
+          values: [199, 68]
+        }]
+      }}
+    />
+  </Story>
+</Preview>
+
