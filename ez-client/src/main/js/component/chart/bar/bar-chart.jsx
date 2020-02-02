@@ -7,6 +7,9 @@ import BarChartDataNormalizer from './bar-chart-data-normalizer';
 
 import "./bar-chart.scss"
 
+/**
+ * Full properties for chart: https://nivo.rocks/bar/
+ */
 export default class BarChart extends React.PureComponent {
 
   static DEFAULT_CHART_PROPS = {
@@ -64,18 +67,21 @@ export default class BarChart extends React.PureComponent {
   }
 
   static adjustMargin(chartProps) {
+    const baseMargin = 10;
     return {
       ...chartProps,
       margin: {
-        top: 10,
-        right: 130,
+        top: baseMargin,
+        right: chartProps.legends.length === 0
+          ? baseMargin
+          : 130,
         bottom: !chartProps.axisBottom
-          ? 10
+          ? baseMargin
           : !chartProps.axisBottom.legend
             ? 30
             : 50,
         left: !chartProps.axisLeft
-          ? 10
+          ? baseMargin
           : !chartProps.axisLeft.legend
             ? 30
             : 60
@@ -88,6 +94,9 @@ export default class BarChart extends React.PureComponent {
     const normalizedData = BarChartDataNormalizer.normalize(data);
     let chartProps = {...BarChart.DEFAULT_CHART_PROPS};
     chartProps = merge(chartProps, props);
+    if (props.legends === null) {
+      chartProps.legends = [];
+    }
     chartProps = merge(chartProps, BarChart.generateDataProps(normalizedData));
     chartProps = BarChart.adjustMargin(chartProps);
 

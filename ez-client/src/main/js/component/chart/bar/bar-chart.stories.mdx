@@ -19,7 +19,9 @@ import BarChart from "./bar-chart";
 # BarChart
 
 ## Props
- 
+
+Available properties: https://nivo.rocks/bar/
+
 <Props of={BarChart} />
 
 ## Usage
@@ -169,12 +171,12 @@ import BarChart from "./bar-chart";
 </Preview>
 
 
-### No legend
+### No axis
 
 <Preview>
   <Story
     decorators={[withKnobs, jsxDecorator]}
-    name="no-legend"
+    name="no-axis"
     parameters={{
       className: "widget",
       width: 500,
@@ -211,6 +213,51 @@ import BarChart from "./bar-chart";
   </Story>
 </Preview>
 
+
+### No axis and no legend
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="no-axis-no-legend"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <BarChart
+      axisLeft={null}
+      axisBottom={null}
+      legends={null}
+      enableGridX={false}
+      enableGridY={false}
+      data={{
+        colors: {
+          "Before": "#569787"
+        },
+        indexBy: "bugType",
+        series: [
+          {
+            "bugType": "P1",
+            "Before": 110,
+            "After": 153,
+          },
+          {
+            "bugType": "P2",
+            "Before": 18,
+            "After": 146,
+          },
+          {
+            "bugType": "P3",
+            "Before": 199,
+            "After": 68,
+          }
+        ]
+      }}
+    />
+  </Story>
+</Preview>
 
 
 ### Legend bottom only (without label)

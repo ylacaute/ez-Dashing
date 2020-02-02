@@ -4,7 +4,7 @@ export default class BarChartDataNormalizer {
    * If the series is given as an object, we have to normalize it.
    * In this process, colors key are important and must be fully defined.
    *
-   * First accepted input format, which is also the normalized format
+   * First accepted input format, which is also the normalized output format in all cases
    *
    * colors: {
    *   Before: "#ddd",

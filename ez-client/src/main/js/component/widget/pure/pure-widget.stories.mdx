@@ -150,6 +150,76 @@ properties</a>.
   </Story>
 </Preview>
 
+
+
+### Labels Customization
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="single-value-labels"
+    parameters={{
+      info: "You can add any number of labels on the widget. Those labels can be static text but can also contains variables, revolved with widget props, which can be mapped dataSource properties. When your are using labels, you need to manage overlap yourself by resizing the widget for a better rendering.",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="With custom labels"
+      layout="mosaic"
+      datasourceField1={100}
+      datasourceField2="2.42"
+      datasourceField3="Dev"
+      content={[{
+        type: "metric",
+        value: "${datasourceField1}"
+      }]}
+      thresholds={{
+        good: 100,
+        avg: 50,
+        bad: 0
+      }}
+      labels={[{
+        value: "Env: ${datasourceField3}",
+        style: {
+          position: "absolute",
+          right: "10px",
+          top: "10px",
+          fontSize: "2rem"
+        }
+      },{
+        value: "That is special",
+        style: {
+          position: "absolute",
+          left: "10px",
+          top: "40px",
+          fontSize: "2rem"
+        }
+      },{
+        value: "Release: ${datasourceField2}",
+        style: {
+          position: "absolute",
+          left: "10px",
+          top: "10px",
+          fontSize: "2rem"
+        }
+       },{
+         value: "Something centered",
+         style: {
+           position: "absolute",
+           left: "0",
+           right: "0",
+           bottom: "10px",
+           fontSize: "2rem"
+         }
+       }]}
+    />
+  </Story>
+</Preview>
+
+
+
 ### List values
 
 <Preview>
@@ -290,74 +360,6 @@ properties</a>.
 
 
 
-
-### Labels Customization
-
-<Preview>
-  <Story
-    decorators={[withKnobs, jsxDecorator]}
-    name="any-value-labels"
-    parameters={{
-      info: "You can add any number of labels on the widget. Those labels can be static text but can also contains variables, revolved with widget props, which can be mapped dataSource properties. When your are using labels, you need to manage overlap yourself by resizing the widget for a better rendering.",
-      docs: {
-        disable: false
-      }
-    }}
-  >
-    <PureWidget
-      title="With custom labels"
-      layout="mosaic"
-      datasourceField1={100}
-      datasourceField2="2.42"
-      datasourceField3="Dev"
-      content={[{
-        type: "metric",
-        value: "${datasourceField1}"
-      }]}
-      thresholds={{
-        good: 100,
-        avg: 50,
-        bad: 0
-      }}
-      labels={[{
-        value: "Env: ${datasourceField3}",
-        style: {
-          position: "absolute",
-          right: "10px",
-          top: "10px",
-          fontSize: "2rem"
-        }
-      },{
-        value: "That is special",
-        style: {
-          position: "absolute",
-          left: "10px",
-          top: "40px",
-          fontSize: "2rem"
-        }
-      },{
-        value: "Release: ${datasourceField2}",
-        style: {
-          position: "absolute",
-          left: "10px",
-          top: "10px",
-          fontSize: "2rem"
-        }
-       },{
-         value: "Something centered",
-         style: {
-           position: "absolute",
-           left: "0",
-           right: "0",
-           bottom: "10px",
-           fontSize: "2rem"
-         }
-       }]}
-    />
-  </Story>
-</Preview>
-
-
 ### Multiple metric
 
 <Preview>
@@ -457,9 +459,104 @@ properties</a>.
 </Preview>
 
 
+### Bar chart
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="chart-bar"
+    parameters={{
+      info: "Bar chart",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Bar chart"
+      datasourceField1={[110, 153]}
+      datasourceField2={[18, 146]}
+      datasourceField3={[199, 68]}
+      content={{
+        type: "bar-chart",
+        axisBottom:{
+          legend: "Bug priority"
+        },
+        axisLeft: {
+          legend: "Count"
+        },
+        data: {
+          colors: {
+            Before: "#ddd",
+            After: "#2268ae"
+          },
+          indexBy: "bugType",
+          series: [{
+            bugType: "P1",
+            values: "$.datasourceField1[:]"
+          },{
+            bugType: "P2",
+            values: "$.datasourceField2[:]"
+          },{
+            bugType: "P3",
+            values: "$.datasourceField3[:]"
+          }]
+        }
+      }}
+    />
+  </Story>
+</Preview>
 
 
 
+### Bar chart simplified
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="chart-bar-simplified"
+    parameters={{
+      info: "Bar chart",
+      docs: {
+        disable: false
+      }
+    }}
+  >
+    <PureWidget
+      title="Bar chart"
+      datasourceField1={[110, 153]}
+      datasourceField2={[18, 146]}
+      datasourceField3={[199, 68]}
+      content={{
+        type: "bar-chart",
+        axisLeft: null,
+        axisBottom: null,
+        legends: null,
+        enableGridX: false,
+        enableGridY: false,
+        data: {
+          colors: {
+            Before: "#ddd",
+            After: "#2268ae"
+          },
+          indexBy: "bugType",
+          series: [{
+            bugType: "P1",
+            values: "$.datasourceField1[:]"
+          },{
+            bugType: "P2",
+            values: "$.datasourceField2[:]"
+          },{
+            bugType: "P3",
+            values: "$.datasourceField3[:]"
+          }]
+        }
+      }}
+    />
+  </Story>
+</Preview>
 
 
 

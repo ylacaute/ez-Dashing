@@ -1,14 +1,15 @@
 import React from 'react';
-import {array, string, object, shape, oneOf, oneOfType} from "prop-types";
+import {array, object, oneOf, oneOfType, shape, string} from "prop-types";
 import Widget from "component/widget/base/widget";
 import WidgetContent from "component/widget/base/widget-content";
 import WidgetHeader from "component/widget/base/widget-header";
 import PureWidgetItem from "component/widget/pure/pure-widget-item";
 import Logger from "utils/logger";
 import cn from "classnames";
-import ValueResolver from 'utils/value-resolver';
 import LayoutNormalizer from './layout-normalizer';
+import ContentNormalizer from './content-normalizer';
 import StringUtils from 'utils/string-utils';
+import ItemConfigGenerator from './item-config-generator';
 
 import "./pure-widget.scss"
 
@@ -75,13 +76,13 @@ export default class PureWidget extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(props) {
-    const {layout, labels, thresholds} = props;
-    const updateProps = PureWidget.normalizeContent(props);
-    const itemConfigs = PureWidget.generateItemConfigs(updateProps);
+    const {layout, labels} = props;
+    const updatedProps = ContentNormalizer.normalize(props);
+    const itemConfigs = ItemConfigGenerator.generate(updatedProps);
     const items = itemConfigs.map((cfg, idx) => PureWidget.generateItem(cfg, idx));
     const resolvedLabels = labels.map(label => ({
       ...label,
-      value: StringUtils.replaceVars(label.value, updateProps)
+      value: StringUtils.replaceVars(label.value, updatedProps)
     }));
 
     return {
@@ -90,73 +91,6 @@ export default class PureWidget extends React.PureComponent {
       labels: resolvedLabels,
       layout: LayoutNormalizer.normalize(layout)
     }
-  }
-
-  static normalizeContent(props) {
-    const {thresholds} = props;
-    let normalizedContent;
-
-    if (!props.content) {
-      normalizedContent = [{
-        value: props.value,
-        content: "${value}"
-      }];
-    } else {
-      const contentType = typeof props.content;
-      switch (contentType) {
-        case "string":
-          normalizedContent = [{
-            value: props.value,
-            content: props.content
-          }];
-          break;
-        case "object":
-          if (Array.isArray(props.content)) {
-            console.log("should be here");
-            normalizedContent = props.content;
-          } else {
-            normalizedContent = [props.content];
-          }
-          break;
-        default:
-          throw new Error(`Unknown content type ${contentType}`);
-      }
-    }
-    normalizedContent = normalizedContent.map(elt => ({
-      ...elt,
-      type: elt.type || "metric",
-      value: elt.value || "You must set the value property.",
-      content: elt.content || "${value}",
-      thresholds: elt.thresholds || thresholds
-    }));
-    return {
-      ...props,
-      content: normalizedContent
-    };
-  }
-
-  static generateItemConfigs(props) {
-    const {content} = props;
-    const valueResolver = ValueResolver.create(props);
-    const itemConfigs = content
-      .flatMap((cfg) => {
-          const resolvedValue = valueResolver(cfg.value);
-          if (Array.isArray(resolvedValue)) {
-            return resolvedValue.map((value) => ({
-              ...cfg,
-              value: value,
-            }))
-          } else {
-            return {
-              ...cfg,
-              type: cfg.type,
-              value: resolvedValue,
-              legend: valueResolver(cfg.legend),
-            };
-          }
-        }
-      );
-    return itemConfigs;
   }
 
   static generateItem(itemConfig, idx) {

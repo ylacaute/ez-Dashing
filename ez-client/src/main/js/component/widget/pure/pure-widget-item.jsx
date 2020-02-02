@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ScalableMetric from 'component/scalable/metric';
 
 import "./pure-widget-item.scss";
+import BarChart from '../../chart/bar';
 
 export default class PureWidgetItem extends React.PureComponent {
 
@@ -20,25 +21,22 @@ export default class PureWidgetItem extends React.PureComponent {
 
   static getDerivedStateFromProps(props) {
     const {itemConfig} = props;
-    let item;
+    const item = PureWidgetItem.generateItem(itemConfig);
 
-    switch (itemConfig.type) {
-      case "metric":
-        item = PureWidgetItem.generateMetricItem(itemConfig);
-        break;
-      default:
-        item = <p>Unknown type {itemConfig.type}</p>
-    }
     return {
       item: item
     }
   }
 
-  static generateMetricItem(itemConfig) {
-    return (
-      <ScalableMetric
-        {...itemConfig}
-      />);
+  static generateItem(itemConfig) {
+    switch (itemConfig.type) {
+      case "metric":
+        return <ScalableMetric {...itemConfig}/>;
+      case "bar-chart":
+        return <BarChart {...itemConfig}/>;
+      default:
+        return <p>Unknown type {itemConfig.type}</p>
+    }
   }
 
   render() {
