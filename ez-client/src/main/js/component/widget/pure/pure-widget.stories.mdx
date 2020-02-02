@@ -292,7 +292,7 @@ properties</a>.
     decorators={[withKnobs, jsxDecorator]}
     name="list-value-customized"
     parameters={{
-      info: "Same as before, but we customize the display of each values.",
+      info: "Same as before, but we customize the display of each values. Also, as we have defined only one threshold (bad), that is why all elements are red here.",
       docs: {
         disable: false
       }
@@ -313,6 +313,9 @@ properties</a>.
         type: "metric",
         value: "$.datasourceField[:].val",
         content: "> ${value} <"
+      }}
+      thresholds={{
+        bad: ""
       }}
     />
   </Story>

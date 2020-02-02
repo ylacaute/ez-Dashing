@@ -7,25 +7,37 @@ export default class ThresholdConfig {
    *
    * If nothing match, return the "neutral"
    *
+   * When only one threshold is defined, it is applied automatically what ever is the value.
+   *
    * TODO: review that code, maybe explicit we want just a className threshold
    */
   static get = (thresholds, value) => {
     const prefix = "threshold-";
+    let result = prefix + "neutral";
+    if (thresholds == null) {
+      return result;
+    }
 
-    if (thresholds != null) {
-      for (let propertyName in thresholds) {
-        if (isNaN(value)) {
-          if (value === thresholds[propertyName]) {
-            return prefix + propertyName;
-          }
-        } else {
-          if (value >= thresholds[propertyName]) {
-            return prefix + propertyName;
-          }
+    const keys = Object.keys(thresholds);
+    for (let i = 0; i < keys.length; i++) {
+      let threshold = keys[i];
+      if (keys.length === 1) {
+        result = prefix + threshold;
+        break;
+      }
+      if (isNaN(value)) {
+        if (value === thresholds[threshold]) {
+          result = prefix + threshold;
+          break;
+        }
+      } else {
+        if (value >= thresholds[threshold]) {
+          result = prefix + threshold;
+          break;
         }
       }
     }
-    return prefix + "neutral";
+    return result;
   };
 
 }
