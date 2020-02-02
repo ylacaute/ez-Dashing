@@ -12,7 +12,7 @@ export default class ValueResolver {
   }
 
   /**
-   * Create a resolver function which resolve a given value by scanning the props tree.
+   * Create a resolver function (closure) which resolve a given value by scanning the props tree.
    * The value can be a JsonPath expression or a variable or the direct name of a property. If
    * the value can't be resolved, the result is the given value.
    *
@@ -30,14 +30,8 @@ export default class ValueResolver {
    */
   static create(props) {
     return (value) => {
-      if (typeof value === "number") {
-        value = "" + value;
-      } else if (typeof value === "number") {
-        throw new Error("You can create valueResolver only with string, received: "
-          + (typeof value));
-      }
-      if (value == null) {
-        return null;
+      if (value == null || typeof value !== "string") {
+        return value;
       }
       const trimValue = value.trim();
       let resolvedContent;
