@@ -176,7 +176,7 @@ Available properties: https://nivo.rocks/bar/
 <Preview>
   <Story
     decorators={[withKnobs, jsxDecorator]}
-    name="no-axis"
+    name="no-grid-no-axis"
     parameters={{
       className: "widget",
       width: 500,
@@ -186,6 +186,8 @@ Available properties: https://nivo.rocks/bar/
     <BarChart
       axisBottom={null}
       axisLeft={null}
+      enableGridX={false}
+      enableGridY={false}
       data={{
         colors: {
           "Before": "#569787"
@@ -219,7 +221,7 @@ Available properties: https://nivo.rocks/bar/
 <Preview>
   <Story
     decorators={[withKnobs, jsxDecorator]}
-    name="no-axis-no-legend"
+    name="no-grid-no-axis-no-legend"
     parameters={{
       className: "widget",
       width: 500,
@@ -265,7 +267,7 @@ Available properties: https://nivo.rocks/bar/
 <Preview>
   <Story
     decorators={[withKnobs, jsxDecorator]}
-    name="legend-bottom-without-label"
+    name="no-grid-legend-bottom-without-label"
     parameters={{
       className: "widget",
       width: 500,
@@ -277,6 +279,8 @@ Available properties: https://nivo.rocks/bar/
         legend: null
       }}
       axisLeft={null}
+      enableGridX={false}
+      enableGridY={false}
       data={{
         colors: {
           "Before": "#569787"

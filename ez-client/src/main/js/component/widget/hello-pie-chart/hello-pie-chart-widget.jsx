@@ -8,22 +8,26 @@ import cn from "classnames";
 
 const data = [
   {
-    "id": "Not Runned",
+    "id": "Not Run",
+    "label": "Not Run",
     "value": 23,
     "color": "hsla(75,3%,73%,0.99)"
   },
   {
     "id": "Skipped",
+    "label": "Skipped",
     "value": 344,
     "color": "hsl(19,67%,55%)"
   },
   {
     "id": "Passed",
+    "label": "Passed",
     "value": 317,
     "color": "#88b250"
   },
   {
     "id": "Failed",
+    "label": "Failed",
     "value": 264,
     "color": "#ae3240"
   }

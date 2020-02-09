@@ -1,0 +1,47 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
+import HelloPieChartWidget from "./hello-pie-chart-widget";
+
+<Meta 
+  title="Components|Widget/HelloPieChart"
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/widget/hello-pie-chart/hello-pie-chart-widget.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-widget-hello-pie-chart-widget--default-story" />
+
+
+# Hello Pie Chart Widget
+
+## Props
+ 
+<Props of={HelloPieChartWidget} />
+
+## Usage
+
+### Demo
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="simple-pie-chart"
+    parameters={{
+      info: "The purpose of this widget is just to test NIVO Chart lib.",
+      docs: {
+        disable: false
+      },
+      width: 500,
+      height: 500,
+    }}
+  >
+    <HelloPieChartWidget/>
+  </Story>
+</Preview>
+
+
+

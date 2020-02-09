@@ -1,0 +1,147 @@
+import {Anchor, Props, Meta, Preview, Story} from "@storybook/addon-docs/blocks";
+import {array, object, text, number, select, withKnobs} from "@storybook/addon-knobs";
+import {linkTo} from '@storybook/addon-links';
+import {jsxDecorator} from 'storybook-addon-jsx';
+
+import PieChart from "./pie-chart";
+
+<Meta 
+  title="Components|Chart/Pie/PieChart"
+  parameters={{
+    githubLink: "/blob/master/ez-client/src/main/js/component/chart/pie/pie-chart.jsx"
+  }}
+/>
+
+                 
+<Anchor storyId="components-chart-pie-pie-chart--default-story" />
+
+
+# PieChart
+
+## Props
+
+Available properties: https://nivo.rocks/pie/
+
+<Props of={PieChart} />
+
+## Usage
+
+### Classic
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="classic"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <PieChart
+      data={[{
+        "id": "Not Run",
+        "label": "Not Run",
+        "value": 23,
+        "color": "hsla(75,3%,73%,0.99)"
+      }, {
+        "id": "Skipped",
+        "label": "Skipped",
+        "value": 344,
+        "color": "hsl(19,67%,55%)"
+      }, {
+        "id": "Passed",
+        "label": "Passed",
+        "value": 317,
+        "color": "#88b250"
+      }, {
+        "id": "Failed",
+        "label": "Failed",
+        "value": 264,
+        "color": "#ae3240"
+      }
+    ]}
+    />
+  </Story>
+</Preview>
+
+### Simple with radial label
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="with-radial-label"
+    parameters={{
+      className: "widget",
+      width: 750,
+      height: 450
+    }}
+  >
+    <PieChart
+      enableRadialLabels={true}
+      legends={null}
+      data={[{
+        "id": "Not Run",
+        "label": "Not Run",
+        "value": 23,
+        "color": "hsla(75,3%,73%,0.99)"
+      }, {
+        "id": "Skipped",
+        "label": "Skipped",
+        "value": 344,
+        "color": "hsl(19,67%,55%)"
+      }, {
+        "id": "Passed",
+        "label": "Passed",
+        "value": 317,
+        "color": "#88b250"
+      }, {
+        "id": "Failed",
+        "label": "Failed",
+        "value": 264,
+        "color": "#ae3240"
+      }
+    ]}
+    />
+  </Story>
+</Preview>
+
+### No legend
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="without-legend"
+    parameters={{
+      className: "widget",
+      width: 500,
+      height: 500
+    }}
+  >
+    <PieChart
+    legends={null}
+      data={[{
+        "id": "Not Run",
+        "label": "Not Run",
+        "value": 23,
+        "color": "hsla(75,3%,73%,0.99)"
+      }, {
+        "id": "Skipped",
+        "label": "Skipped",
+        "value": 344,
+        "color": "hsl(19,67%,55%)"
+      }, {
+        "id": "Passed",
+        "label": "Passed",
+        "value": 317,
+        "color": "#88b250"
+      }, {
+        "id": "Failed",
+        "label": "Failed",
+        "value": 264,
+        "color": "#ae3240"
+      }
+    ]}
+    />
+  </Story>
+</Preview>

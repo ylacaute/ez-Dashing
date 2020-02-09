@@ -20,16 +20,17 @@ export default class BarChart extends React.PureComponent {
       tickPadding: 5,
       tickRotation: 0,
       legendPosition: 'middle',
-      legendOffset: 32,
+      legendOffset: 40,
     },
     axisLeft: {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
       legendPosition: 'middle',
-      legendOffset: -40
+      legendOffset: -50
     },
     legends: [{
+      itemTextColor: darkChartTheme.legends.text.color,
       dataFrom: 'keys',
       anchor: 'bottom-right',
       direction: 'column',
@@ -68,23 +69,37 @@ export default class BarChart extends React.PureComponent {
 
   static adjustMargin(chartProps) {
     const baseMargin = 10;
+    let legendRightMargin = chartProps.legends.length ? 120 : 0;
+    let bottomMargin = chartProps.axisBottom
+      ? chartProps.axisBottom.legend ? chartProps.axisBottom.legendOffset : 20
+      : 0;
+    let leftMargin = chartProps.axisLeft
+      ? chartProps.axisLeft.legend ? chartProps.axisBottom.legendOffset + 10 : 20
+      : 0;
     return {
       ...chartProps,
       margin: {
         top: baseMargin,
-        right: chartProps.legends.length === 0
-          ? baseMargin
-          : 130,
-        bottom: !chartProps.axisBottom
-          ? baseMargin
-          : !chartProps.axisBottom.legend
-            ? 30
-            : 50,
-        left: !chartProps.axisLeft
-          ? baseMargin
-          : !chartProps.axisLeft.legend
-            ? 30
-            : 60
+        right: baseMargin + legendRightMargin,
+        bottom: baseMargin + bottomMargin,
+        left: baseMargin + leftMargin
+      },
+    }
+  }
+
+  static adjustMargin2(chartProps) {
+    const baseMargin = 10;
+    const legendRightMargin = chartProps.legends.length ? 120 : 0;
+    const axisLeftMargin = chartProps.axisLeft ? 40 : 0;
+    const legendBotMargin = chartProps.axisBottom ? 40 : 20;
+
+    return {
+      ...chartProps,
+      margin: {
+        top: baseMargin,
+        right: baseMargin + legendRightMargin,
+        bottom: baseMargin + legendBotMargin,
+        left: baseMargin + axisLeftMargin
       },
     }
   }

@@ -473,7 +473,9 @@ properties</a>.
       info: "Bar chart",
       docs: {
         disable: false
-      }
+      },
+      width: 500,
+      height: 500
     }}
   >
     <PureWidget
@@ -513,18 +515,20 @@ properties</a>.
 
 
 
-### Bar chart simplified
+### Bar chart without legend
 
 
 <Preview>
   <Story
     decorators={[withKnobs, jsxDecorator]}
-    name="chart-bar-simplified"
+    name="chart-bar-no-legend"
     parameters={{
-      info: "Bar chart",
+      info: "Bar chart without legend",
       docs: {
         disable: false
-      }
+      },
+      width: 500,
+      height: 500
     }}
   >
     <PureWidget
@@ -561,6 +565,110 @@ properties</a>.
   </Story>
 </Preview>
 
+
+
+### Pie chart
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="chart-pie"
+    parameters={{
+      info: "Pie chart",
+      docs: {
+        disable: false
+      },
+      width: 500,
+      height: 500
+    }}
+  >
+    <PureWidget
+      title="Pie chart"
+      datasourceField1={110}
+      datasourceField2={18}
+      datasourceField3={199}
+      datasourceField4={50}
+      content={{
+        type: "pie-chart",
+        data: [{
+          "id": "Not Run",
+          "label": "Not Run",
+          "value": "${datasourceField1}",
+          "color": "hsla(75,3%,73%,0.99)"
+        }, {
+          "id": "Skipped",
+          "label": "Skipped",
+          "value": "${datasourceField2}",
+          "color": "hsl(19,67%,55%)"
+        }, {
+          "id": "Passed",
+          "label": "Passed",
+          "value": "${datasourceField3}",
+          "color": "#88b250"
+        }, {
+          "id": "Failed",
+          "label": "Failed",
+          "value": "${datasourceField4}",
+          "color": "#ae3240"
+        }]
+      }}
+    />
+  </Story>
+</Preview>
+
+
+
+### Pie chart without legend
+
+
+<Preview>
+  <Story
+    decorators={[withKnobs, jsxDecorator]}
+    name="chart-pie-no-legend"
+    parameters={{
+      info: "Pie chart without legend",
+      docs: {
+        disable: false
+      },
+      width: 500,
+      height: 500
+    }}
+  >
+    <PureWidget
+      title="Pie chart"
+      datasourceField1={110}
+      datasourceField2={18}
+      datasourceField3={199}
+      datasourceField4={50}
+      content={{
+        type: "pie-chart",
+        legends: null,
+        data: [{
+          "id": "Not Run",
+          "label": "Not Run",
+          "value": "${datasourceField1}",
+          "color": "hsla(75,3%,73%,0.99)"
+        }, {
+          "id": "Skipped",
+          "label": "Skipped",
+          "value": "${datasourceField2}",
+          "color": "hsl(19,67%,55%)"
+        }, {
+          "id": "Passed",
+          "label": "Passed",
+          "value": "${datasourceField3}",
+          "color": "#88b250"
+        }, {
+          "id": "Failed",
+          "label": "Failed",
+          "value": "${datasourceField4}",
+          "color": "#ae3240"
+        }]
+      }}
+    />
+  </Story>
+</Preview>
 
 
 

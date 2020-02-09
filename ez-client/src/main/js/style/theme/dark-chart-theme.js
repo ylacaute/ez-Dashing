@@ -1,7 +1,7 @@
 export const darkChartTheme = {
   background: 'transparent',
   fontFamily: 'sans-serif',
-  fontSize: 11,
+  fontSize: 16,
   textColor: '#777',
   axis: {
     domain: {
@@ -12,7 +12,7 @@ export const darkChartTheme = {
     },
     ticks: {
       line: {
-        stroke: '#444',
+        stroke: '#777',
         strokeWidth: 1
       },
       text: {
@@ -23,7 +23,10 @@ export const darkChartTheme = {
     },
     legend: {
       text: {
-        fontSize: 12
+        fill: '#555',
+        fontSize: 13,
+        letterSpacing: '3px',
+        textTransform: "uppercase"
       }
     }
   },
@@ -34,9 +37,9 @@ export const darkChartTheme = {
     }
   },
   legends: {
+    slicesLabelsTextColor: "#222",
     text: {
-      fill: 'none',
-      stroke: '#777',
+      color: '#777',
       fontStyle: 'italic',
       letterSpacing: '1px'
     }

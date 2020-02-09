@@ -1,55 +1,7 @@
 export default class BarChartDataNormalizer {
 
   /**
-   * If the series is given as an object, we have to normalize it.
-   * In this process, colors key are important and must be fully defined.
-   *
-   * First accepted input format, which is also the normalized output format in all cases
-   *
-   * colors: {
-   *   Before: "#ddd",
-   *   After: "#2268ae"
-   * },
-   * indexBy: "bugType",
-   * series: [{
-   *   bugType: "P1"
-   *   Before: 110,
-   *   After: 153
-   * },{
-   *   bugType: "P2"
-   *   Before: 18
-   *   After: 146
-   * }]
-   *
-   *
-   * Second accepted input format:
-   *
-   * colors: {
-   *   Before: "#ddd",
-   *   After: "#2268ae"
-   * },
-   * indexBy: "bugType",
-   * series: {
-   *   P1: [110, 153],
-   *   P2: [18, 146]
-   * }
-   *
-   * Third accepted input format:
-   *
-   * colors: {
-   *   Before: "#ddd",
-   *   After: "#2268ae"
-   * },
-   * indexBy: "bugType",
-   * series: [{
-   *   bugType: "P1",
-   *   values: [110, 153]
-   * },{
-   *   bugType: "P2",
-   *   values: [18, 146]
-   * }]
-   *
-   *
+   * TODO
    */
   static normalize(data) {
     let series;
