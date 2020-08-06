@@ -89,7 +89,7 @@ export default class PieChart extends React.PureComponent {
    // const normalizedData = PieChartDataNormalizer.normalize(data);
     let chartProps = {...PieChart.DEFAULT_CHART_PROPS};
     chartProps = merge(chartProps, props);
-    if (props.legends === null) {
+    if (props.legends === null) {
       chartProps.legends = [];
     }
    // chartProps = merge(chartProps, PieChart.generateDataProps(normalizedData));

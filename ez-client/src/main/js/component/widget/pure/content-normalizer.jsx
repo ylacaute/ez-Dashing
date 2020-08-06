@@ -32,7 +32,7 @@ export default class ContentNormalizer {
       }
     }
     normalizedContent = normalizedContent.map(elt => {
-      if (elt.type == null || elt.type === "metric") {
+      if (elt.type == null || elt.type === "metric") {
         return {
           ...elt,
           type: elt.type || "metric",

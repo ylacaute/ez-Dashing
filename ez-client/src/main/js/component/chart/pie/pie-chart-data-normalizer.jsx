@@ -11,7 +11,7 @@ export default class PieChartDataNormalizer {
    *   After: "#2268ae"
    * },
    * indexBy: "bugType",
-   * series: [{
+   * series: [{
    *   bugType: "P1"
    *   Before: 110,
    *   After: 153

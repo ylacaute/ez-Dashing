@@ -109,7 +109,7 @@ class ScalableMetric extends React.PureComponent {
         ...props,
         value: StringUtils.formatKiloNumber(value)
       });
-      if (isHtml) {
+      if (isHtml) {
         resultContent = (
           <div className={cn("metric-html-content", thresholdClassName)}>
             {ReactHtmlParser(formattedContent)}

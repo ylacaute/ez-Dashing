@@ -32,7 +32,7 @@ export default class WidgetContent extends React.PureComponent {
   };
 
   static renderText(textObj, idx) {
-    const textValue = textObj.value || "";
+    const textValue = textObj.value || "";
     const textStyle = textObj.style || "";
     return (
       <span
@@ -59,7 +59,7 @@ export default class WidgetContent extends React.PureComponent {
           {items}
         </Mosaic>
       )
-    } else {
+    } else {
       content = items.map((i, idx) => (
         <div key={idx}>{i}</div>
       ));

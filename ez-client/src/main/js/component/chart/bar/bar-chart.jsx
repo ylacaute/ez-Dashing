@@ -109,7 +109,7 @@ export default class BarChart extends React.PureComponent {
     const normalizedData = BarChartDataNormalizer.normalize(data);
     let chartProps = {...BarChart.DEFAULT_CHART_PROPS};
     chartProps = merge(chartProps, props);
-    if (props.legends === null) {
+    if (props.legends === null) {
       chartProps.legends = [];
     }
     chartProps = merge(chartProps, BarChart.generateDataProps(normalizedData));

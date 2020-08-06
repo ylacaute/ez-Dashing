@@ -1,6 +1,6 @@
 import React from 'react';
 import {string} from "prop-types";
-import { GithubIcon } from "./assets";
+import { GithubIcon } from "./assets";
 import "./github-link.css";
 
 const GITHUB_REPOSITORY_URL = "https://github.com/ylacaute/ez-Dashing";

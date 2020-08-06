@@ -64,7 +64,7 @@ export default class StringUtils {
    * 42000 become 42k
    */
   static formatKiloNumber(number) {
-      if (isNaN(number) || number < 1000) {
+      if (isNaN(number) || number < 1000) {
         return number;
       }
       return (number / 1000.0) + "k";
